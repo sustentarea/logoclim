@@ -1,0 +1,64 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'LogoClim: WorldClim in NetLogo'
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Daniel
+    family-names: Vartanian
+    email: danvartan@gmail.com
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0001-7782-759X'
+  - given-names: Arthur Ramalho
+    family-names: Magalhães
+    email: arthurama.magalhaes@gmail.com
+    affiliation: Federal University of Pernambuco
+    orcid: 'https://orcid.org/0000-0003-3838-2844'
+  - given-names: Aline Martins
+    family-names: Carvalho
+    email: alinenutri@usp.br
+    affiliation: University of São Paulo
+    orcid: 'https://orcid.org/0000-0002-4900-5609'
+identifiers:
+  - type: doi
+    value: 10.17605/OSF.IO/EAPZU
+    description: OSF Research Compendium
+repository-code: 'https://github.com/danielvartan/logoclim'
+repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
+repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
+abstract: >-
+  LogoClim is a NetLogo submodel (a model to use with other
+  models) designed for simulating and visualizing climate
+  conditions, serving as a useful tool for exploring
+  historical and projected climate data. Its primary goal is
+  to promote the use of climate data in agent-based models
+  and enhance the reproducibility of these simulations.
+
+  The model utilizes raster data to represent climate
+  variables such as temperature and precipitation over time.
+  It integrates historical data (1960–2021) and future
+  climate projections (2021–2100) derived from various
+  global climate models under different Shared Socioeconomic
+  Pathways (SSPs).
+
+  Climate data in LogoClim is based on WorldClim 2.1,
+  which compiles interpolated data from weather stations
+  worldwide. Future projections are informed by multiple
+  climate models and various SSPs, providing data at several
+  spatial resolutions for a detailed representation of
+  climate variables.
+keywords:
+  - agent-based modeling
+  - climate change
+  - complex systems
+  - data science
+  - environment
+  - netlogo
+  - sustainability
+  - time series
+  - worldclim 2.1
+license: MIT

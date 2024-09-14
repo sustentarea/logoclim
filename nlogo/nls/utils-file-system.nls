@@ -1,0 +1,80 @@
+; # Metadata
+; 
+; This file is part of the model:
+; {logoclim}: WorldClim 2.1 on NetLogo.
+; 
+; Extensions used: sr.
+
+; # `sr:run` functions
+
+to sr-run-assign-files [#path #pattern]
+  assert-string #path
+  assert-string #pattern
+  
+  (sr:run
+    (word
+      "files <- list.files("
+      "path  = '" fix-string-for-r #path "', "
+      "pattern = '" #pattern "'" 
+      ")"
+    )
+  )
+end
+
+to sr-run-assign-start-year-month
+  (sr:run
+    (word "start_year <- " start-year)
+    (word "start_month <- " str-to-num-month start-month)
+  )
+end
+
+; # File system functions
+
+to-report file-path [#string1 #string2]
+  assert-string #string1
+  assert-string #string2
+  
+  let middle-sep ""
+  let separator pathdir:get-separator
+  
+  if (str-detect #string1 "[A-Za-z0-9]$") [
+    set middle-sep separator
+  ]
+  
+  report (word 
+    #string1
+    middle-sep
+    #string2
+  )
+end
+
+to-report fix-string-for-r [#path]
+  assert-atomic #path
+  
+  let test true
+  set #path as-character #path
+  
+  carefully [
+    let r-test sr:runresult (word "'" #path "'")
+  ] [
+    set test false
+  ]
+  
+  ifelse (test = false) [
+    let separator pathdir:get-separator
+    let double-separator rep-collapse separator 2
+    let str-split string:split-on separator #path
+    
+    if (last str-split = "") [
+      set str-split but-last str-split
+    ]
+    
+;    if (not str-detect last str-split "^[A-Za-z0-9]") [
+;      set str-split lput double-separator str-split
+;    ]
+    
+    report collapse str-split double-separator
+  ] [
+    report #path
+  ]
+end

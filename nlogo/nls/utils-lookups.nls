@@ -1,0 +1,105 @@
+; # Metadata
+; 
+; This file is part of the model:
+; {logoclim}: WorldClim 2.1 on NetLogo.
+; 
+; Extensions used: sr.
+
+to-report series-data-raw-path-lookup [#series]
+  assert-string #series
+  
+  (ifelse
+    (#series = "Historical climate data") [
+      report file-path data-raw-path "historical-climate-data"
+    ]
+    (#series = "Historical monthly weather data") [
+      report file-path data-raw-path "historical-monthly-weather-data"
+    ]
+    (#series = "Future climate data") [
+      report file-path data-raw-path "future-climate-data"
+    ]
+    [user-message (word "#series not found.")]
+  )
+end
+
+to-report data-resolution-lookup [#string]
+  assert-string #string
+  
+  (ifelse
+    (#string = "30 seconds (~1 km2  at the equator)") [report "30s"]
+    (#string = "2.5 minutes (~21 km2 at the equator)") [report "2.5m"]
+    (#string = "5 minutes (~85 km2 at the equator)") [report "5m"]
+    (#string = "10 minutes (~340 km2 at the equator)") [report "10m"]
+    [user-message (word "#string not found.")]
+  )
+end
+
+to-report climate-variable-lookup [#string]
+  assert-string #string
+  
+  (ifelse
+    (#string = "Average minimum temperature (°C)") [report "tmin"]
+    (#string = "Average maximum temperature (°C)") [report "tmax"]
+    (#string = "Average temperature (°C)") [report "tavg"]
+    (#string = "Total precipitation (mm)") [report "prec"]
+    (#string = "Solar radiation (kJ m^-2 day^-1)") [report "srad"]
+    (#string = "Wind speed (m s^-1)") [report "wind"]
+    (#string = "Wind speed (m s^-1)") [report "wind"]
+    (#string = "Water vapor pressure (kPa)") [report "vapr"]
+    (#string = "Bioclimatic variables") [report "bioc"]
+    (#string = "Elevation") [report "elev"]
+    [user-message (word "#string not found.")]
+  )
+end
+
+to-report bioclimatic-variable-lookup [#string]
+  assert-string #string
+  
+  (ifelse
+    (#string = "BIO1 - Annual mean temperature") [report "bio01"]
+    (#string = "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))") [report "bio02"]
+    (#string = "BIO3 - Isothermality (BIO2/BIO7) (×100)") [report "bio03"]
+    (#string = "BIO4 - Temperature seasonality (standard deviation ×100)") [report "bio04"]
+    (#string = "BIO5 - Max temperature of warmest month") [report "bio05"]
+    (#string = "BIO6 - Min temperature of coldest month") [report "bio06"]
+    (#string = "BIO7 - Temperature annual range (BIO5-BIO6)") [report "bio07"]
+    (#string = "BIO8 - Mean temperature of wettest quarter") [report "bio08"]
+    (#string = "BIO9 - Mean temperature of driest quarter") [report "bio09"]
+    (#string = "BIO10 - Mean temperature of warmest quarter") [report "bio10"]
+    (#string = "BIO11 - Mean temperature of coldest quarter") [report "bio11"]
+    (#string = "BIO12 - Annual precipitation") [report "bio12"]
+    (#string = "BIO13 - Precipitation of wettest month") [report "bio13"]
+    (#string = "BIO14 - Precipitation of driest month") [report "bio14"]
+    (#string = "BIO15 - Precipitation seasonality (coefficient of variation)") [report "bio15"]
+    (#string = "BIO16 - Precipitation of wettest quarter") [report "bio16"]
+    (#string = "BIO17 - Precipitation of driest quarter") [report "bio17"]
+    (#string = "BIO18 - Precipitation of warmest quarter") [report "bio18"]
+    (#string = "BIO19 - Precipitation of coldest quarter") [report "bio19"]
+    [user-message (word "#string not found.")]
+  )
+end
+
+to-report series-color
+  (ifelse
+    (data-series = "Historical climate data") [report historical-climate-data-color]
+    (data-series = "Historical monthly weather data") [report historical-monthly-weather-data-color]
+    (data-series = "Future climate data") [report future-climate-data-color]
+    [user-message (word "#data-series not found.")]
+  )
+end
+
+to-report num-to-str-month [#index]
+  assert-integer #index
+
+  let months sr:runresult "month.name"
+
+  report item (#index - 1) months
+end
+
+to-report str-to-num-month [#month]
+  assert-string #month
+
+  let months sr:runresult (word "match('" #month "', month.name)")
+
+  report months
+end

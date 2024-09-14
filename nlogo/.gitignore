@@ -1,0 +1,5 @@
+# See <https://git-scm.com/docs/gitignore>.
+
+*.tmp.nlogo
+
+user.properties

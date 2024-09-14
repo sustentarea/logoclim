@@ -1,0 +1,72 @@
+{
+    "@context": "https://w3id.org/codemeta/3.0",
+    "type": "SoftwareSourceCode",
+    "applicationCategory": "Environmental sciences",
+    "author": [
+        {
+            "id": "https://orcid.org/0000-0001-7782-759X",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "University of São Paulo"
+            },
+            "email": "danvartan@gmail.com",
+            "familyName": "Vartanian",
+            "givenName": "Daniel"
+        },
+        {
+            "id": "https://orcid.org/0000-0003-3838-2844",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Federal University of Pernambuco"
+            },
+            "email": "arthurama.magalhaes@gmail.com",
+            "familyName": "Magalhães",
+            "givenName": "Arthur Ramalho"
+        },
+        {
+            "id": "https://orcid.org/0000-0002-4900-5609",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "University of São Paulo"
+            },
+            "email": "alinenutri@usp.br",
+            "familyName": "Carvalho",
+            "givenName": "Aline Martins"
+        }
+    ],
+    "codeRepository": "https://github.com/danielvartan/logoclim",
+    "dateCreated": "2024-08-20",
+    "description": "LogoClim is a NetLogo submodel (a model to use with other models) designed for simulating and visualizing climate conditions, serving as a useful tool for exploring historical and projected climate data. Its primary goal is to promote the use of climate data in agent-based models and enhance the reproducibility of these simulations.\n\nThe model utilizes raster data to represent climate variables such as temperature and precipitation over time. It integrates historical data (1960–2021) and future climate projections (2021–2100) derived from various global climate models under different Shared Socioeconomic Pathways (SSPs).\n\nClimate data in LogoClim is based on WorldClim 2.1, which compiles interpolated data from weather stations worldwide. Future projections are informed by multiple climate models and various SSPs, providing data at several spatial resolutions for a detailed representation of climate variables.",
+    "funder": {
+        "type": "Organization",
+        "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)"
+    },
+    "identifier": "10.17605/OSF.IO/EAPZU",
+    "keywords": [
+        "agent-based modeling",
+        "climate change",
+        "complex systems",
+        "data science",
+        "environment",
+        "netlogo",
+        "sustainability",
+        "time series",
+        "worldclim 2.1"
+    ],
+    "license": "https://spdx.org/licenses/MIT",
+    "name": "LogoClim: WorldClim in NetLogo",
+    "operatingSystem": [
+        "Linux",
+        "Windows",
+        "macOS"
+    ],
+    "programmingLanguage": "NetLogo",
+    "softwareRequirements": [
+        "R (>= 4.0)",
+        "R packages: lubridate, rJava, stringr"
+    ],
+    "issueTracker": "https://github.com/danielvartan/logoclim/issues"
+}

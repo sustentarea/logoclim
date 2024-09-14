@@ -1,0 +1,5 @@
+# See <https://git-scm.com/docs/gitignore>.
+
+*
+!.gitignore
+!.base-file_brazil_10m.asc
