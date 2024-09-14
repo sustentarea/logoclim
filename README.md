@@ -159,7 +159,7 @@ Some users have reported errors related to the SimpleR ([`sr`](https://github.co
 
 In some cases, users may encounter an unknown error code when running the model for the first time. This could be related to your operating system. Typically, this issue can be resolved by trying to setup the model again.
 
-We are actively working to improve the user experience and reduce the complexity of these installation steps.
+We are actively working to improve the user experience and simplify these installation steps.
 
 ## Citation
 
@@ -174,7 +174,7 @@ A BibTeX entry for LaTeX users is:
 
     @misc{vartanian2024,
       title = {{LogoClim: WorldClim in NetLogo}},
-      author = {Vartanian, Daniel and Magalhães, Arthur Ramalho and Carvalho, Aline Martins},
+      author = {{Daniel Vartanian} and {Arthur Ramalho Magalhães} and {Aline Martins Carvalho}},
       year = {2024},
       doi = {10.17605/OSF.IO/EAPZU},
       note = {NetLogo model},
