@@ -103,7 +103,7 @@ The model relies on the GIS
 SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo
 extensions, which will be installed automatically.
 
-Additionally, you’ll need [R](https://www.r-project.org/) (version 4.0
+Additionally, you’ll need [R](https://www.r-project.org/) (version 4.1
 or later) with the
 [`lubridate`](https://cran.r-project.org/package=lubridate),
 [`rJava`](https://cran.r-project.org/package=rJava), and

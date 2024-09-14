@@ -53,7 +53,7 @@ First, install [NetLogo](https://ccl.northwestern.edu/netlogo). This model was d
 
 The model relies on the GIS [(`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)) and SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo extensions, which will be installed automatically.
 
-Additionally, you'll need [R](https://www.r-project.org/) (version 4.0 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Ensure that the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the necessary packages, run the following in your R console:
+Additionally, you'll need [R](https://www.r-project.org/) (version 4.1 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Ensure that the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the necessary packages, run the following in your R console:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
