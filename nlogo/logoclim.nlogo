@@ -807,7 +807,7 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 
 If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it. You can find the citation below.
 
-Vartanian, D., Magalhães, A. R., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo*. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Magalhães, A. R., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo*. NetLogo model. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 ## LINKS
 
