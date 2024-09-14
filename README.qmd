@@ -69,10 +69,10 @@ You can download the latest version of the model [here](https://github.com/danie
 
 The dataset is available in various spatial resolutions:
 
-- 30 seconds (~1 km² at the equator)
-- 2.5 minutes (~21 km² at the equator)
-- 5 minutes (~85 km² at the equator)
 - 10 minutes (~340 km² at the equator)
+- 5 minutes (~85 km² at the equator)
+- 2.5 minutes (~21 km² at the equator)
+- 30 seconds (~1 km² at the equator)
 
 After downloading, extract the files into the `data` folder within the model's directory.
 
@@ -84,18 +84,26 @@ Once everything is set, open the NetLogo file and start exploring! Refer to the 
 
 To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension.
 
+### Troubleshooting
+
+Some users have reported errors related to the SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension. These issues are likely caused by either directory permission problems where the model is stored, or by the absence of the [`rJava`](https://cran.r-project.org/package=rJava) R package. Please ensure both of these are correctly configured before opening an issue.
+
+In some cases, users may encounter an unknown error code when running the model for the first time. This could be related to your operating system. Typically, this issue can be resolved by trying to setup the model again.
+
+We are actively working to improve the user experience and reduce the complexity of these installation steps.
+
 ## Citation
 
-If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it. You can find the citation below.
+If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it.
 
-```
 To cite LogoClim in publications use:
 
 Vartanian, D., Magalhães, A. R., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo*. NetLogo model. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
-@Misc{vartanian2024,
+```
+@misc{vartanian2024,
   title = {{LogoClim: WorldClim in NetLogo}},
   author = {Vartanian, Daniel and Magalhães, Arthur Ramalho and Carvalho, Aline Martins},
   year = {2024},
