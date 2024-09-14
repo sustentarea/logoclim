@@ -120,8 +120,8 @@ install.packages(c("rJava", "stringr", "lubridate"))
 ### Downloading the model
 
 You can download the latest version of the model
-[here](https://github.com/danielvartan/logoclim). Extract the files and
-locate `logoclim.nlogo` in the `nlogo` folder.
+[here](https://github.com/danielvartan/logoclim/releases/latest).
+Extract the files and locate `logoclim.nlogo` in the `nlogo` folder.
 
 ### Dowloading the data
 
