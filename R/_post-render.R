@@ -1,8 +1,8 @@
-# library(beepr, quietly = TRUE)
-# library(groomr, quietly = TRUE) # github.com/danielvartan/groomr
-# library(here, quietly = TRUE)
-# library(readr, quietly = TRUE)
-# library(stringr, quietly = TRUE)
+# library(beepr)
+# library(groomr)
+# library(here)
+# library(readr)
+# library(stringr)
 
 # Remove empty lines from `README.md` -----
 

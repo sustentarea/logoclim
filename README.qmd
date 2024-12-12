@@ -1,3 +1,10 @@
+```{r}
+#| label: setup
+#| include: false
+
+library(groomr) # https://github.com/danielvartan/groomr
+```
+
 # LogoClim
 
 <!-- badges: start -->
