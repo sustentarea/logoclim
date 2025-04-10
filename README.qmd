@@ -87,7 +87,7 @@ After downloading, extract the files into the `data` folder within the model's d
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
 
-These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder. To create custom datasets, simply modify the notebooks to suit your requirements.
+These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder. To create other datasets, simply modify the notebooks to suit your requirements.
 
 ### Running the Model
 
@@ -95,9 +95,9 @@ Once everything is set, open the NetLogo file and start exploring! Refer to the 
 
 To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension.
 
-### Common Issues
+## Common Issues
 
-Some users have reported errors related to the SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension. These issues are likely caused by either directory permission problems where the model is stored, or by the absence of the [`rJava`](https://cran.r-project.org/package=rJava) R package. Please ensure both of these are correctly configured before opening an issue.
+Some users have reported errors related to the SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo extension. These issues are likely caused by either directory permission problems where the model is stored, or by the absence of the [`rJava`](https://cran.r-project.org/package=rJava) R package. Please ensure both of these are correctly configured before opening an issue.
 
 In some cases, users may encounter an unknown error code when running the model for the first time. This could be related to your operating system. Typically, this issue can be resolved by trying to setup the model again.
 

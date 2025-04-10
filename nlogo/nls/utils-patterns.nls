@@ -16,11 +16,11 @@ to-report hcd-file-pattern
   let pattern ""
 
   (ifelse
-    (climate-variable = "Elevation") [set pattern ""]
+    (climate-variable = "Elevation") [set pattern "_1970-2000"]
     (climate-variable = "Bioclimatic variables") [
-      set pattern (word "_" bioclimatic-variable-lookup bioclimatic-variable)
+      set pattern (word "_1970-2000_" bioclimatic-variable-lookup bioclimatic-variable)
     ]
-    [set pattern "_[0-9]{2}"]
+    [set pattern "_1970-2000-[0-9]{2}"]
   )
 
   report (word

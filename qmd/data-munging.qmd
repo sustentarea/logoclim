@@ -54,6 +54,24 @@ source(here::here("R", "geotiff_to_ascii.R"))
 options(cli.progress_show_after = 0)
 ```
 
+### Parameters
+
+```{r}
+series <- "historical-climate-data"
+```
+
+```{r}
+#| eval: false
+
+series <- "historical-monthly-weather-data"
+```
+
+```{r}
+#| eval: false
+
+series <- "future-climate-data"
+```
+
 ### Directories
 
 ```{r}
@@ -61,18 +79,14 @@ data_dir <- here::here("data")
 ```
 
 ```{r}
-# data_series_dir <- fs::path(data_dir, "historical-climate-data")
-data_series_dir <- fs::path(data_dir, "historical-monthly-weather-data")
-# data_series_dir <- fs::path(data_dir, "future-climate-data")
+# data_series_dir <- fs::path(data_dir, series)
 ```
 
 ::: {.callout-warning}
 This is temporary. Disregard this callout block.
 
 ```{r}
-# data_series_dir <- fs::path(data_dir, "historical-climate-data")
-data_series_dir <- fs::path(data_dir, "World", "historical-monthly-weather-data")
-# data_series_dir <- fs::path(data_dir, "future-climate-data")
+data_series_dir <- fs::path(data_dir, "usa-mainland", series)
 ```
 :::
 
@@ -81,34 +95,11 @@ raw_data_dir <- here::here("data-raw")
 ```
 
 ```{r}
-wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
-```
-
-Choose one of the following options for `wc_raw_data_series_dir`.
-
-```{r}
-#| eval: false
-
-wc_raw_data_series_dir <- file.path(
-  wc_raw_data_dir,
-  "historical-climate-data"
-)
+wc_raw_data_dir <- fs::path(raw_data_dir, "worldclim")
 ```
 
 ```{r}
-wc_raw_data_series_dir <- file.path(
-  wc_raw_data_dir,
-  "historical-monthly-weather-data"
-)
-```
-
-```{r}
-#| eval: false
-
-wc_raw_data_series_dir <- file.path(
-  wc_raw_data_dir,
-  "future-climate-data"
-)
+wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
@@ -131,7 +122,7 @@ for (i in dirs) {
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
 ```{r}
-crop_shape <- geodata::gadm("BRA", level = 0, path = raw_data_dir)
+crop_shape <- geodata::gadm("usa", level = 0, path = raw_data_dir)
 ```
 
 #### For Getting Only the Mainland of a Country
@@ -140,7 +131,7 @@ crop_shape <- geodata::gadm("BRA", level = 0, path = raw_data_dir)
 #| eval: false
 
 crop_shape <-
-  geodata::gadm("USA", level = 1, path = raw_data_dir) %>%
+  geodata::gadm("usa", level = 1, path = raw_data_dir) %>%
   terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
@@ -277,12 +268,6 @@ asc_dir |>
   fs::file_delete()
 ```
 
-```{r}
-#| eval: false
-
-# tif_files |> file.remove()
-```
-
 ## Gathering the `asc` Files
 
 ```{r}
@@ -323,7 +308,7 @@ asc_files |>
 #| eval: false
 
 asc_files |>
-  stringr::str_extract("[0-9]{4}(?=-[0-9]{2}.asc)") |>
+  stringr::str_extract("(?<=_)[0-9]{4}(?=-[0-9]{2}.asc)") |>
   rutils::drop_na() |>
   unique()
 ```
@@ -334,19 +319,18 @@ asc_files |>
 #| eval: false
 
 asc_files |>
-  stringr::str_extract("[0-9]{4}-[0-9]{2}(?=.asc)") |>
+  stringr::str_extract("(?<=_)[0-9]{4}-[0-9]{2}(?=.asc)") |>
   rutils::drop_na() |>
-  unique() |>
-  lubridate::ym()
+  unique()
 ```
 
-### By Future Years
+### By Group of Years
 
 ```{r}
 #| eval: false
 
 asc_files |>
-  stringr::str_extract("[0-9]{4}-[0-9]{4}(?=.asc)") |>
+  stringr::str_extract("[0-9]{4}-[0-9]{4}") |>
   rutils::drop_na() |>
   unique()
 ```
@@ -357,7 +341,7 @@ asc_files |>
 #| eval: false
 
 asc_files |>
-  stringr::str_extract("(?<=_)[A-Z].+(?=_ssp[0-9]{3}_[0-9]{4}-[0-9]{4}.asc)") |>
+  stringr::str_extract("(?<=_)[A-Z].+(?=_ssp[0-9]{3})") |>
   rutils:::drop_na() |>
   unique()
 ```
@@ -368,7 +352,7 @@ asc_files |>
 #| eval: false
 
 asc_files |>
-  stringr::str_extract("ssp[0-9]{3}(?=_[0-9]{4}-[0-9]{4}.asc)") |>
+  stringr::str_extract("ssp[0-9]{3}") |>
   rutils:::drop_na() |>
   unique()
 ```
@@ -389,9 +373,9 @@ asc_files |>
 ```{r}
 #| eval: false
 
-utils::zip(
-  zipfile = fs::path(data_dir, "asia_10m.zip"),
-  files = fs::dir_ls(data_series_dir, recurse = TRUE),
-  flags = "-jq"
-)
+# utils::zip(
+#   zipfile = fs::path(data_dir, "asia_10m.zip"),
+#   files = fs::dir_ls(data_series_dir, recurse = TRUE),
+#   flags = "-jq"
+# )
 ```

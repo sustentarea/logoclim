@@ -168,7 +168,7 @@ model runs smoothly on your system before trying higher resolutions.
 
 These datasets can be reproduced by running the
 [Quarto](https://quarto.org/) notebooks located in the `qmd` folder. To
-create custom datasets, simply modify the notebooks to suit your
+create other datasets, simply modify the notebooks to suit your
 requirements.
 
 ### Running the Model
@@ -180,12 +180,12 @@ To integrate `LogoClim` with other models, use the LevelSpace
 ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo
 extension.
 
-### Common Issues
+## Common Issues
 
 Some users have reported errors related to the SimpleR
-([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension. These
-issues are likely caused by either directory permission problems where
-the model is stored, or by the absence of the
+([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo
+extension. These issues are likely caused by either directory permission
+problems where the model is stored, or by the absence of the
 [`rJava`](https://cran.r-project.org/package=rJava) R package. Please
 ensure both of these are correctly configured before opening an issue.
 

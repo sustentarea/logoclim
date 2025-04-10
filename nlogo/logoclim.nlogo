@@ -213,8 +213,14 @@ to go [#continuous? #update-plots? #wait?]
   assert-logical #wait?
 
   (ifelse
-    ((year = last years and month = 12) or
-      (climate-variable = "Elevation"))
+    (
+      (year = last years and month = 12) or
+      (climate-variable = "Elevation") or
+      (
+        data-series = "Historical climate data" and
+        climate-variable = "Bioclimatic variables"
+      )
+    )
     [stop]
     [set index index + 1]
   )
@@ -251,6 +257,34 @@ to go-back
   go false false false
 end
 
+to show-labels
+  ifelse mouse-inside? [
+    ask patch mouse-xcor mouse-ycor [
+      let radius-mean round mean [pcolor] of patches in-radius 3
+      let color-shade radius-mean - (precision radius-mean -1)
+      ;let color-end read-from-string last (word radius-mean)
+
+      ifelse color-shade < 0 [
+        set plabel-color black
+      ] [
+        set plabel-color white
+      ]
+
+      carefully [
+        set plabel precision value 2
+      ] [
+        set plabel value
+      ]
+    ]
+
+    ask other patches who-are-not patch mouse-xcor mouse-ycor [
+      set plabel ""
+    ]
+  ] [
+    ask patches [set plabel ""]
+  ]
+end
+
 to-report load-patch-data [#file]
   assert-string #file
   assert-file-exists #file
@@ -261,7 +295,7 @@ end
 GRAPHICS-WINDOW
 450
 10
-991
+992
 481
 -1
 -1
@@ -353,7 +387,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-0
+3
 
 CHOOSER
 10
@@ -371,7 +405,7 @@ INPUTBOX
 222
 370
 start-year
-1960.0
+1970.0
 1
 0
 Number
@@ -594,11 +628,11 @@ CHOOSER
 10
 260
 220
-306
+305
 bioclimatic-variable
 bioclimatic-variable
-"Annual mean temperature" "Mean diurnal range (mean of monthly (max temp - min temp))" "Isothermality (BIO2/BIO7) (×100)" "Temperature seasonality (standard deviation ×100)" "Max temperature of warmest month" "Min temperature of coldest month" "Temperature annual range (BIO5-BIO6)" "Mean temperature of wettest quarter" "Mean temperature of driest quarter" "Mean temperature of warmest quarter" "Mean temperature of coldest quarter" "Annual precipitation" "Precipitation of wettest month" "Precipitation of driest month" "Precipitation seasonality (coefficient of variation)" "Precipitation of wettest quarter" "Precipitation of driest quarter" "Precipitation of warmest quarter" "Precipitation of coldest quarter"
-0
+"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8- Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
+1
 
 MONITOR
 1000
@@ -655,9 +689,9 @@ Color
 
 BUTTON
 11
-426
+463
 221
-459
+496
 Select data directory
 set data-path user-directory
 NIL
@@ -739,14 +773,31 @@ white-max
 
 INPUTBOX
 10
-463
+500
 220
-543
+580
 data-path
-../data/BRA/
+../data/bra/
 1
 0
 String
+
+BUTTON
+11
+426
+221
+460
+Show labels
+show-labels
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -820,7 +871,7 @@ After downloading, extract the files into the `data` folder within the model's d
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
 
-These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder present in the [model code repository](https://github.com/sustentarea/logoclim/). To create custom datasets, simply modify the notebooks to suit your requirements.
+These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder present in the [model code repository](https://github.com/sustentarea/logoclim/). To create other datasets, simply modify the notebooks to suit your requirements.
 
 #### RUNNING THE MODEL
 
@@ -855,6 +906,7 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 - **`Go`**: Starts or resumes the simulation.
 - **`Go back`**: Steps the simulation backward in time.
 - **`Go forward`**: Steps the simulation forward in time.
+- **`Show lables`**: Displays patch labels when hovering the mouse over them.
 - **`Select data directory`**: Opens a dialog window, allowing the user to indicate the data directory.
 
 ### MONITORS AND PLOTS

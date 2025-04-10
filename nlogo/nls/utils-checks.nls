@@ -179,14 +179,14 @@ to assert-implementation
 
       halt
     ]
-    (climate-variable = "Bioclimatic variables") [
-      user-message (word
-        "The 'Bioclimatic variables' "
-        "option is not yet implemented."
-      )
-
-      halt
-    ]
+;    (climate-variable = "Bioclimatic variables") [
+;      user-message (word
+;        "The 'Bioclimatic variables' "
+;        "option is not yet implemented."
+;      )
+;
+;      halt
+;    ]
   )
 end
 
