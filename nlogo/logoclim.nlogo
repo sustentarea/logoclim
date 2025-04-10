@@ -31,7 +31,7 @@ extensions [
 ]
 
 globals [
-  series-raw-data-path
+  series-data-path
   files
   base-file
   years
@@ -56,7 +56,6 @@ to setup
   set start-year normalize-year start-year
 
   assert-implementation
-  ;assert-base-file
   assert-data
   assert-year start-year
   assert-variables climate-variable
@@ -70,7 +69,7 @@ to setup
 end
 
 to setup-variables
-  set series-raw-data-path series-data-raw-path-lookup data-series
+  set series-data-path series-data-path-lookup data-series
 
   (ifelse
     (data-series = "Historical climate data") [
@@ -88,13 +87,13 @@ to setup-variables
   set years make-list sr:runresult "years"
 
   set index 0
-  set dataset load-patch-data file-path series-raw-data-path (item index files)
+  set dataset load-patch-data file-path series-data-path (item index files)
   set year extract-year (item index files)
   set month extract-month (item index files)
 end
 
 to setup-hcd-variables
-  sr-run-assign-files series-raw-data-path hcd-file-pattern
+  sr-run-assign-files series-data-path hcd-file-pattern
   sr-run-assign-start-year-month
   sr:run "years <- rep('1970-2000', length(files))"
 
@@ -109,7 +108,7 @@ to setup-hcd-variables
 end
 
 to setup-hmwd-variables
-  sr-run-assign-files series-raw-data-path hmwd-file-pattern
+  sr-run-assign-files series-data-path hmwd-file-pattern
   sr-run-assign-start-year-month
 
   (sr:run
@@ -129,7 +128,7 @@ to setup-hmwd-variables
 end
 
 to setup-fcd-variables
-  sr-run-assign-files series-raw-data-path fcd-file-pattern
+  sr-run-assign-files series-data-path fcd-file-pattern
   sr-run-assign-start-year-month
 
   (sr:run
@@ -154,7 +153,7 @@ to setup-fcd-variables
 end
 
 to setup-world
-  set base-file file-path series-raw-data-path (first files)
+  set base-file file-path series-data-path (first files)
 
   let base-file-dataset load-patch-data base-file
 
@@ -162,31 +161,49 @@ to setup-world
     let width floor (gis:width-of base-file-dataset / 2)
     let height floor (gis:height-of base-file-dataset / 2)
     resize-world (-1 * width ) width (-1 * height ) height
-    set-patch-size patch-size-px
+    set-patch-size patch-px-size
   ]
 end
 
 to setup-map [#dataset]
   assert-gis #dataset
 
-  gis:set-world-envelope-ds gis:envelope-of #dataset
+  let envelope gis:envelope-of #dataset
+
+  ifelse
+  ((item 0 envelope < -150) or (item 1 envelope > 150)) [
+    gis:set-world-envelope-ds gis:envelope-of #dataset
+  ]
+  [gis:set-world-envelope gis:envelope-of #dataset]
+
   gis:apply-raster #dataset value
 
-  set max-value max [value] of patches with [value >= 0]
+  ifelse (white-max = true) [
+    set max-value max [value] of patches with [value >= -99999]
+  ]
+  [set max-value white-value]
+
+  ifelse (black-min = true) [
+    set min-value min [value] of patches with [value >= -99999]
+  ]
+  [set min-value black-value]
 
   ask patches [
     ifelse
     ((value <= 0) or (value >= 0)) [
-      set pcolor scale-color series-color value 0 max-value
+      set pcolor scale-color series-color value min-value max-value
     ]
     [set pcolor background-color]
   ]
 end
 
 to setup-stats
-  set max-value max [value] of patches with [value >= 0]
-  set min-value min [value] of patches with [value >= 0]
+  set max-value max [value] of patches with [value >= -99999]
+  set min-value min [value] of patches with [value >= -99999]
+
+  ;set max-plot-y ceiling max-value
   set min-plot-y ifelse-value (min-value < 0) [floor min-value] [0]
+  ;set min-plot-y floor ((quartile 1) - (6 * (quartile "iqr")))
   set max-plot-y ceiling ((quartile 3) + (6 * (quartile "iqr")))
 end
 
@@ -212,7 +229,7 @@ to walk [#index #wait?]
   assert-integer #index
   assert-logical #wait?
 
-  set dataset load-patch-data file-path series-raw-data-path (item #index files)
+  set dataset load-patch-data file-path series-data-path (item #index files)
   set month extract-month (item #index files)
   set year extract-year (item #index files)
 
@@ -244,24 +261,24 @@ end
 GRAPHICS-WINDOW
 450
 10
-644
-193
+991
+481
 -1
 -1
-1.5
+1.97
 1
 10
 1
 1
 1
 0
+0
+0
 1
-1
-1
--62
-62
--58
-58
+-135
+135
+-117
+117
 0
 0
 1
@@ -311,7 +328,7 @@ transition-seconds
 transition-seconds
 0
 3
-0.2
+0.0
 0.1
 1
 NIL
@@ -319,9 +336,9 @@ HORIZONTAL
 
 INPUTBOX
 230
-195
+232
 440
-255
+292
 historical-monthly-weather-data-color
 25.0
 1
@@ -336,7 +353,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-3
+0
 
 CHOOSER
 10
@@ -375,7 +392,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= 0]"
+"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -99999]"
 
 MONITOR
 1000
@@ -383,7 +400,7 @@ MONITOR
 1207
 535
 Minimum
-min [value] of patches with [value >= 0]
+min [value] of patches with [value >= -99999]
 10
 1
 11
@@ -394,7 +411,7 @@ MONITOR
 1425
 535
 Maximum
-max [value] of patches with [value >= 0]
+max [value] of patches with [value >= -99999]
 10
 1
 11
@@ -427,7 +444,7 @@ MONITOR
 1210
 320
 Mean
-mean [value] of patches with [value >= 0]
+mean [value] of patches with [value >= -99999]
 10
 1
 11
@@ -438,7 +455,7 @@ MONITOR
 1425
 320
 Standard deviation
-standard-deviation [value] of patches with [value >= 0]
+standard-deviation [value] of patches with [value >= -99999]
 10
 1
 11
@@ -459,7 +476,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= 0]"
+"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -99999]"
 
 PLOT
 1215
@@ -477,7 +494,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= 0]"
+"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -99999]"
 
 PLOT
 1215
@@ -495,7 +512,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= 0]"
+"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -99999]"
 
 MONITOR
 1000
@@ -510,9 +527,9 @@ climate-variable
 
 INPUTBOX
 230
-260
+297
 440
-320
+357
 future-climate-data-color
 105.0
 1
@@ -577,10 +594,10 @@ CHOOSER
 10
 260
 220
-305
+306
 bioclimatic-variable
 bioclimatic-variable
-"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8 - Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
+"Annual mean temperature" "Mean diurnal range (mean of monthly (max temp - min temp))" "Isothermality (BIO2/BIO7) (×100)" "Temperature seasonality (standard deviation ×100)" "Max temperature of warmest month" "Min temperature of coldest month" "Temperature annual range (BIO5-BIO6)" "Mean temperature of wettest quarter" "Mean temperature of driest quarter" "Mean temperature of warmest quarter" "Mean temperature of coldest quarter" "Annual precipitation" "Precipitation of wettest month" "Precipitation of driest month" "Precipitation seasonality (coefficient of variation)" "Precipitation of wettest quarter" "Precipitation of driest quarter" "Precipitation of warmest quarter" "Precipitation of coldest quarter"
 0
 
 MONITOR
@@ -616,9 +633,9 @@ start-month
 
 INPUTBOX
 230
-130
+167
 440
-190
+227
 historical-climate-data-color
 15.0
 1
@@ -627,20 +644,9 @@ Color
 
 INPUTBOX
 230
-430
+362
 440
-510
-data-raw-path
-../data/
-1
-0
-String
-
-INPUTBOX
-230
-325
-440
-385
+422
 background-color
 9.0
 1
@@ -648,12 +654,12 @@ background-color
 Color
 
 BUTTON
-230
-390
-440
-423
-Select raw data directory
-set data-raw-path user-directory
+11
+426
+221
+459
+Select data directory
+set data-path user-directory
 NIL
 1
 T
@@ -665,19 +671,82 @@ NIL
 1
 
 SLIDER
-11
-426
-221
-460
-patch-size-px
-patch-size-px
+230
+128
+440
+161
+patch-px-size
+patch-px-size
 0
 10
-2.0
-0.1
+1.97
+0.01
 1
 NIL
 HORIZONTAL
+
+SWITCH
+231
+463
+441
+496
+black-min
+black-min
+1
+1
+-1000
+
+SLIDER
+231
+426
+440
+459
+black-value
+black-value
+-500
+500
+0.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+231
+500
+441
+533
+white-value
+white-value
+-500
+500
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+SWITCH
+231
+537
+440
+570
+white-max
+white-max
+0
+1
+-1000
+
+INPUTBOX
+10
+463
+220
+543
+data-path
+../data/BRA/
+1
+0
+String
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -686,13 +755,17 @@ HORIZONTAL
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It integrates historical data (1960–2021) and future climate projections (2021–2100) derived from various global climate models under different Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
 
-Climate data in `LogoClim` is based on [WorldClim 2.1](https://worldclim.org/), which compiles interpolated data from weather stations worldwide ([Fick and Hijmans, 2017](https://doi.org/10.1002/joc.5086); [Harris et al., 2020](https://doi.org/10.1038/s41597-020-0453-3)). Future projections are informed by multiple climate models and various SSPs, providing data at several spatial resolutions for a detailed representation of climate variables.
+Climate data in `LogoClim` is based on [WorldClim 2.1](https://worldclim.org/), which compiles interpolated data from weather stations worldwide (Fick and Hijmans, 2017; Harris et al., 2020). Future projections are informed by multiple climate models and various SSPs, providing data at several spatial resolutions for a detailed representation of climate variables.
 
 ## HOW IT WORKS
 
-LogoClim operates on a grid of patches, where each patch represents a geographical area and stores a value for a selected climate variable (e.g., minimum temperature, maximum temperature, or precipitation). It dynamically loads data for the chosen variable and time period (historical or future).
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., `Average temperature (°C)`).
 
-During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher ones. The results are displayed on a map, accompanied by plots showing the mean, minimum, maximum, and standard deviation of the selected variable over time.
+During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time, providing a comprehensive view of climate trends.
+
+## COLOR SCALE
+
+The model uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the `black-value` and `white-value` sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the `black-min` and `white-max` switches. By default, the black threshold is set to 0, and the white threshold corresponds to the maximum value of the current data.
 
 ## DATA SERIES
 
@@ -757,32 +830,40 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 
 ### INTERFACE CONTROLS
 
-- **data-series**: A chooser for selecting a data series.
-- **data-resolution**: A chooser to select the resolution of the data, expressed as minutes of a degree of longitude and latitude: 30 seconds (~1 km2  at the equator), 2.5 minutes (~21 km2 at the equator), 5 minutes (~85 km2), or 10 minutes (~340 km2).
-- **climate-var**: A chooser to select the climate variable (e.g., "Minimum temperature (°C)", "Maximum temperature (°C)", "Precipitation (mm)").
-- **start-year-month**: An input box to set the starting year and month for the simulation in the format YYYY-MM.
-- **global-climate-model**: A chooser for selecting a global climate model.
-- **shared-socioeconomic-pathways**: A chooser for selecting an SSP scenario (e.g., "ssp126", "ssp245", "ssp370", "ssp585").
-- **bioclimatic-variable**: A chooser to select which bioclimatic variable to show. Works only when *climate-var* is set to *bioclimatic-variables*.
-- **transition-seconds**: A slider controlling the speed of time progression in the simulation.
-- **historical-climate-color**: An input box to set the color for the *historical climate* data series representation.
-- **historical-monthly-weather-color:** An input box to set the color for the *historical monthly weather* data series representation.
-- **future-climate-color**: An input box to set the color for *future climate* data series representation.
+- **`data-series`**: Chooser for selecting a data series (e.g., `Historical monthly weather data`).`
+- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (e.g., `10 minutes (~340 km2 at the equator)`).
+- **`climate-variable`**: Chooser for selecting the climate variable (e.g., `Average temperature (°C)`).  
+- **`global-climate-model`**: Chooser for selecting a global climate model (e.g., `ACCESS-CM2`).  
+- **`shared`-socioeconomic-pathways`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario (e.g., `ssp126`).  
+- **`bioclimatic-variable`**: Chooser for selecting a bioclimatic variable. Only available when `climate-variable` is set to `bioclimatic-variables` (e.g., `Annual mean temperature`)`.
+- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (e.g., `1960`).  
+- **`start-month`**: Chooser for selecting the simulation's starting month.  
+- **`data-path`**: Input box for setting the path to the data folder. Usually, this doesn't need to be changed. Use the `Select data directory` button to navigate via a dialog window.  
+- **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step).  
+- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections.  
+- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series.  
+- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series.
+- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series.  
+- **`black-value`**: Slider for setting the lower threshold for the black color on the map.  
+- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset.  
+- **`white-value`**: Slider for setting the upper threshold for the white color on the map.  
+- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset.  
 
 ### BUTTONS
 
-- **Setup**: Initializes the simulation with the selected parameters.
-- **Go**: Starts or resumes the simulation.
-- **Go back**: Steps the simulation backward in time.
-- **Go forward**: Steps the simulation forward in time.
+- **`Setup`**: Initializes the simulation with the selected parameters.
+- **`Go`**: Starts or resumes the simulation.
+- **`Go back`**: Steps the simulation backward in time.
+- **`Go forward`**: Steps the simulation forward in time.
+- **`Select data directory`**: Opens a dialog window, allowing the user to indicate the data directory.
 
 ### MONITORS AND PLOTS
 
-- **Climate variable**: Displays the chosen climate variable.
-- **Bioclimatic variable**: Displays the chosen bioclimatic variable.Works only when *climate-var* is set to *bioclimatic-variables*.
-- **Year and Month**: Displays the current year and month being simulated.
-- **Min, Max, Mean, SD (Standard Deviation)**: Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
-- **Plots**: Graphs for Mean, Minimum, Maximum, and Standard Deviation against time.
+- **`Climate variable`**: Displays the chosen climate variable.
+- **`Bioclimatic variable`**: Displays the chosen bioclimatic variable.Works only when *`climate-variable`* is set to *`bioclimatic-variables`*.
+- **`Year`**, **`Month`**: Displays the current year and month being simulated.
+- **`Min`**, **`Max`**, **`Mean`**, **`SD`** (Standard Deviation)**: Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
+- **`Plots`**: Graphs for Mean, Minimum, Maximum, and Standard Deviation against time.
 
 ## THINGS TO NOTICE
 
@@ -827,7 +908,7 @@ A BibTeX entry for LaTeX users is:
 
 ![MIT license badge](images/mit-license-badge.png)
 
-`LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit).
+LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit).
 
 ## ACKNOWLEDGMENTS
 

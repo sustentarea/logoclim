@@ -11,7 +11,7 @@ geotiff_to_ascii <- function(
     aggregate = NULL,
     dir = dirname(file[1]),
     overwrite = TRUE,
-    NAflag = -9999, #nolint
+    NAflag = -99999, #nolint
     ...
   ) {
   checkmate::assert_character(file)
@@ -35,7 +35,7 @@ geotiff_to_ascii <- function(
   }
 
   cli::cli_progress_bar(
-    name = "Converting",
+    name = "Converting Data",
     total = length(file),
     clear = FALSE
   )
@@ -46,22 +46,31 @@ geotiff_to_ascii <- function(
       basename() %>%
       fs::path(dir, .)
 
+    # To adjust the historical-climate-data bioclimatic var. files.
     if (stringr::str_detect(asc_file, "(?i)_bio_")) {
       asc_file <- asc_file |> stringr::str_replace("(?i)_bio_", "_bioc_")
 
-      if (stringr::str_detect(asc_file, "[0-9]{2}.asc$")) {
-        asc_file <- paste0(
-          stringr::str_extract(asc_file, ".*(?=[0-9]{2}.asc)"),
-          "bio",
-          stringr::str_extract(asc_file, "[0-9]{2}.asc$")
-        )
-      } else {
+      if (!stringr::str_detect(asc_file, "[0-9]{2}.asc$")) {
         asc_file <- paste0(
           stringr::str_extract(asc_file, ".*(?=[0-9]{1}.asc)"),
-          "bio0",
+          "0",
           stringr::str_extract(asc_file, "[0-9]{1}.asc$")
         )
       }
+
+      # if (stringr::str_detect(asc_file, "[0-9]{2}.asc$")) {
+      #   asc_file <- paste0(
+      #     stringr::str_extract(asc_file, ".*(?=[0-9]{2}.asc)"),
+      #     "var_",
+      #     stringr::str_extract(asc_file, "[0-9]{2}.asc$")
+      #   )
+      # } else {
+      #   asc_file <- paste0(
+      #     stringr::str_extract(asc_file, ".*(?=[0-9]{1}.asc)"),
+      #     "var_0",
+      #     stringr::str_extract(asc_file, "[0-9]{1}.asc$")
+      #   )
+      # }
     }
 
     data_i <- i |> terra::rast()

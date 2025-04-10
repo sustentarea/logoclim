@@ -12,7 +12,7 @@ zip_wc_files <- function(
     dir,
     suffix,
     broken_links = NULL,
-    engine = "zip"
+    engine = "utils"
   ) {
   checkmate::assert_tibble(metadata)
   checkmate::assert_subset(c("file", "size"), colnames(metadata))

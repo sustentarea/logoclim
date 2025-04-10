@@ -24,9 +24,13 @@ Climate data in `LogoClim` is based on [WorldClim 2.1](https://worldclim.org/), 
 
 ## How It Works
 
-LogoClim operates on a grid of patches, where each patch represents a geographical area and stores a value for a selected climate variable (e.g., minimum temperature, maximum temperature, or precipitation). It dynamically loads data for the chosen variable and time period (historical or future).
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., `Average temperature (°C)`).
 
-During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher ones. The results are displayed on a map, accompanied by plots showing the mean, minimum, maximum, and standard deviation of the selected variable over time.
+During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time, providing a comprehensive view of climate trends.
+
+## Color Scale
+
+The model uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the `black-value` and `white-value` sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the `black-min` and `white-max` switches. By default, the black threshold is set to 0, and the white threshold corresponds to the maximum value of the current data.
 
 ## Data Series
 

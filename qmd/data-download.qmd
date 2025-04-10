@@ -10,7 +10,7 @@ execute:
 This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
 
 ::: {.callout-important}
-This may take a while.
+This process may take some time to complete. Please be patient.
 :::
 
 ## Setting the Environment
@@ -38,36 +38,104 @@ source(here::here("R", "zip_wc_files.R"))
 
 ## Setting Variables
 
+### Options
+
 ```{r}
 options(cli.progress_show_after = 0)
 ```
 
+### Directories
+
 ```{r}
 raw_data_dir <- here::here("data-raw")
+```
 
-if (!checkmate::test_directory_exists(raw_data_dir)) {
-  fs::dir_create(raw_data_dir)
-}
+```{r}
+wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
+```
+
+Choose one of the following options for `wc_raw_data_series_dir`.
+
+```{r}
+#| eval: false
+
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "historical-climate-data"
+)
+```
+
+```{r}
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "historical-monthly-weather-data"
+)
 ```
 
 ```{r}
 #| eval: false
 
-# # Historical climate data
-# source <- "https://worldclim.org/data/worldclim21.html"
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "future-climate-data"
+)
+```
 
+```{r}
+dirs <- c(raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir)
+
+for (i in dirs) {
+  if (!checkmate::test_directory_exists(i)) {
+    fs::dir_create(i, recurse = TRUE)
+  }
+}
+```
+
+### Source (Data Series)
+
+Choose one of the following options for `source`.
+
+```{r}
+#| eval: false
+
+# Historical climate data
+source <- "https://worldclim.org/data/worldclim21.html"
+```
+
+```{r}
 # Historical monthly weather data
 source <- "https://worldclim.org/data/monthlywth.html"
-
-# # Future climate, 10 minutes spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim10m.html"
-# # Future climate, 5 minutes spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim5m.html"
-# # Future climate, 2.5 minutes spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim2.5m.html"
-# # Future climate, 30 seconds spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim30s.html"
 ```
+
+```{r}
+#| eval: false
+
+# Future climate, 10 minutes spatial resolution
+source <- "https://worldclim.org/data/cmip6/cmip6_clim10m.html"
+```
+
+```{r}
+#| eval: false
+
+# Future climate, 5 minutes spatial resolution
+source <- "https://worldclim.org/data/cmip6/cmip6_clim5m.html"
+```
+
+```{r}
+#| eval: false
+
+# Future climate, 2.5 minutes spatial resolution
+source <- "https://worldclim.org/data/cmip6/cmip6_clim2.5m.html"
+```
+
+```{r}
+#| eval: false
+
+# Future climate, 30 seconds spatial resolution
+source <- "https://worldclim.org/data/cmip6/cmip6_clim30s.html"
+```
+
+### Parameters
 
 ```{r}
 resolution <- "10m" # all, 10m, 5m, 2.5m, 30s
@@ -158,20 +226,19 @@ models
 ## Downloading Files
 
 ```{r}
-wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
+#| eval: false
 
-if (!checkmate::test_directory_exists(wc_raw_data_dir)) {
-  fs::dir_create(wc_raw_data_dir)
+zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
+
+if (!checkmate::test_directory_exists(zip_dir)) {
+  zip_dir |> fs::dir_create(recurse = TRUE)
 }
 ```
 
 ```{r}
 broken_links <-
   metadata |>
-  download_wc_files(
-    dir = file.path(wc_raw_data_dir, "zip"),
-    model = model
-  )
+  download_wc_files(dir = zip_dir, model = model)
 
 beepr::beep(1)
 ```
@@ -181,17 +248,17 @@ beepr::beep(1)
 
 # Use only if the download process was interrupted.
 
-downloaded_files <-
-  file.path(wc_raw_data_dir, "zip") |>
-  fs::dir_ls(type = "file")
+# downloaded_files <-
+#   file.path(wc_raw_data_dir, "zip") |>
+#   fs::dir_ls(type = "file")
 
-broken_links <-
-  metadata |>
-  # dplyr::filter(stringr::str_detect(file, model)) |>
-  dplyr::filter(!file %in% downloaded_files) |>
-  download_wc_files(dir = file.path(wc_raw_data_dir, "zip"))
+# broken_links <-
+#   metadata |>
+#   # dplyr::filter(stringr::str_detect(file, model)) |>
+#   dplyr::filter(!file %in% downloaded_files) |>
+#   download_wc_files(dir = file.path(wc_raw_data_dir, "zip"))
 
-beepr::beep(1)
+# beepr::beep(1)
 ```
 
 ## Compressing Files (Just for Future Climate Data)
@@ -200,7 +267,7 @@ beepr::beep(1)
 #| eval: false
 #| output: false
 
-suffix <- "_2-5m"
+suffix <- paste0("_", "2-5m")
 
 metadata |>
   zip_wc_files(

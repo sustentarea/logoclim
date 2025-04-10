@@ -1,8 +1,8 @@
 ; # Metadata
-; 
+;
 ; This file is part of the model:
 ; {LogoClim}: WorldClim 2.1 on NetLogo.
-; 
+;
 ; Extensions used: pathdir, sr.
 
 ; # Halt functions
@@ -19,13 +19,13 @@ end
 
 to-report all-true? [#list]
   assert-list #list
-  
+
   report reduce [[i j] -> i and j] #list
 end
 
 to-report any-true? [#list]
   assert-list #list
-  
+
   report reduce [[i j] -> i or j] #list
 end
 
@@ -35,13 +35,13 @@ end
 
 to-report is-gis? [#x]
   let test true
-  
+
   carefully [
     let dummy gis:type-of #x
   ] [
     set test false
   ]
-  
+
   report test
 end
 
@@ -57,14 +57,14 @@ to-report is-logical? [#x]
   report #x = true or #x = false
 end
 
-to-report test-series-raw-data-path [#series-raw-path]
-  assert-string #series-raw-path
-  
+to-report test-series-data-path [#series-path]
+  assert-string #series-path
+
   (sr:run
     (word
       "path <- "
       "'"
-      fix-string-for-r #series-raw-path
+      fix-string-for-r #series-path
       "'"
     )
     (word
@@ -81,15 +81,15 @@ end
 
 to-report test-string-in-r [#string]
   assert-string #string
-  
+
   let test true
-  
+
   carefully [
     let r-test sr:runresult (word "'" #string "'")
   ] [
     set test false
   ]
-  
+
   report test
 end
 
@@ -101,37 +101,23 @@ to assert-atomic [#x]
   ]
 end
 
-to assert-base-file
-  sr-run-assign-files data-raw-path base-file-pattern
-  sr:run "base_file <- files[1]"
-
-  if (sr:runresult "is.na(base_file)" = true) [
-    let choice user-yes-or-no? (word
-      "No base file was found in the raw data "
-      "directory. "
-      "Do you want to select the file?"
-    )
-    
-    ifelse (choice = true) [
-      set base-file user-file
-      
-      if (str-detect basename base-file base-file-pattern = false) [
-        user-message (word
-          "The selected file is not a valid base file. " 
-          "Please check your settings."
-        )
-        
-        halt
-      ]
-    ] [
-      halt 
-    ]
-  ]
-end
-
 to assert-data
-  let path series-data-raw-path-lookup data-series
-  let test test-series-raw-data-path path
+  let path series-data-path-lookup data-series
+  let test test-series-data-path path
+
+  if (
+      data-series = "Future climate data" and
+      data-resolution = "10 minutes (~340 km2 at the equator)" and
+      global-climate-model = "BCC-CSM2-MR" and
+      climate-variable = "Bioclimatic variables"
+     ) [
+    error (word
+      "WorldClim 2.1 does not provide "
+      "bioclimatic data for the "
+      "BCC-CSM2-MR model at the "
+      "10-minute resolution ."
+    )
+  ]
 
   if (test = false) [
     error (word
@@ -145,9 +131,9 @@ end
 
 to assert-dir-exists [#dir]
   assert-string #dir
-  
+
   if (not pathdir:isDirectory? #dir) [
-    error (word 
+    error (word
       "The directory" #dir "does not exist."
     )
   ]
@@ -155,7 +141,7 @@ end
 
 to assert-file-exists [#file]
   assert-string #file
-  
+
   if (not file-exists? #file) [
     error (word "The file " #file "does not exist.")
   ]
@@ -174,7 +160,7 @@ to assert-implementation
         "The '30 seconds (~1 km2  at the equator)' "
         "option is not yet implemented."
       )
-      
+
       halt
     ]
     (data-resolution = "2.5 minutes (~21 km2 at the equator)") [
@@ -182,7 +168,7 @@ to assert-implementation
         "The '2.5 minutes (~21 km2 at the equator)' "
         "option is not yet implemented."
       )
-      
+
       halt
     ]
     (data-resolution = "5 minutes (~85 km2 at the equator)") [
@@ -190,7 +176,7 @@ to assert-implementation
         "The '5 minutes (~85 km2 at the equator)' "
         "option is not yet implemented."
       )
-      
+
       halt
     ]
     (climate-variable = "Bioclimatic variables") [
@@ -198,7 +184,7 @@ to assert-implementation
         "The 'Bioclimatic variables' "
         "option is not yet implemented."
       )
-      
+
       halt
     ]
   )
@@ -293,7 +279,7 @@ to assert-variables [#climate-variable]
       "\n"
       variables
     )
-    
+
     halt
   ]
 end
@@ -304,15 +290,15 @@ to assert-year [#year]
   if (str-detect #year "^[0-9]{4}" = false) [
     error "The year must have 4 digits."
   ]
-  
+
   if (is-string? #year) [set #year read-from-string #year]
-  
+
   (ifelse
     (#year < 1960 or #year > 2100) [
-      user-message (word 
+      user-message (word
         "You must choose a year between 1960 and 2100."
       )
-      
+
       halt
     ]
     (data-series = "Historical climate data" and (#year < 1970 or #year > 2000)) [
@@ -321,7 +307,7 @@ to assert-year [#year]
         "series must be between "
         "1970 and 2000."
       )
-      
+
       halt
     ]
     (data-series = "Historical monthly weather data" and #year > 2021) [
@@ -330,7 +316,7 @@ to assert-year [#year]
         "series must be between "
         "1960 and 2021."
       )
-      
+
       halt
     ]
     (data-series = "Future climate data" and (#year < 2021 or #year > 2100)) [
@@ -339,7 +325,7 @@ to assert-year [#year]
         "series must be between "
         "2021 and 2100."
       )
-      
+
       halt
     ]
   )

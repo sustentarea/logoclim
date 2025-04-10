@@ -9,6 +9,10 @@ execute:
 
 This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [WorldClim 2.1: Data Download](data-download.qmd) document. You must have already downloaded the WorldClim data files.
 
+::: {.callout-important}
+This process may take some time to complete. Please be patient.
+:::
+
 ## Setting the Environment
 
 ::: {.callout-important}
@@ -44,9 +48,13 @@ source(here::here("R", "geotiff_to_ascii.R"))
 
 ## Setting Variables
 
+### Options
+
 ```{r}
 options(cli.progress_show_after = 0)
 ```
+
+### Directories
 
 ```{r}
 data_dir <- here::here("data")
@@ -58,6 +66,16 @@ data_series_dir <- fs::path(data_dir, "historical-monthly-weather-data")
 # data_series_dir <- fs::path(data_dir, "future-climate-data")
 ```
 
+::: {.callout-warning}
+This is temporary. Disregard this callout block.
+
+```{r}
+# data_series_dir <- fs::path(data_dir, "historical-climate-data")
+data_series_dir <- fs::path(data_dir, "World", "historical-monthly-weather-data")
+# data_series_dir <- fs::path(data_dir, "future-climate-data")
+```
+:::
+
 ```{r}
 raw_data_dir <- here::here("data-raw")
 ```
@@ -66,15 +84,57 @@ raw_data_dir <- here::here("data-raw")
 wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
 ```
 
+Choose one of the following options for `wc_raw_data_series_dir`.
+
+```{r}
+#| eval: false
+
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "historical-climate-data"
+)
+```
+
+```{r}
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "historical-monthly-weather-data"
+)
+```
+
+```{r}
+#| eval: false
+
+wc_raw_data_series_dir <- file.path(
+  wc_raw_data_dir,
+  "future-climate-data"
+)
+```
+
+```{r}
+dirs <- c(
+  data_dir, data_series_dir, raw_data_dir, wc_raw_data_dir,
+  wc_raw_data_series_dir
+)
+
+for (i in dirs) {
+  if (!checkmate::test_directory_exists(i)) {
+    fs::dir_create(i, recurse = TRUE)
+  }
+}
+```
+
 ### Cropping Shape
 
-For getting the shape of a single country.
+#### For Getting the Shape of a Single Country
+
+For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
 ```{r}
 crop_shape <- geodata::gadm("BRA", level = 0, path = raw_data_dir)
 ```
 
-For getting only the mainland of a country.
+#### For Getting Only the Mainland of a Country
 
 ```{r}
 #| eval: false
@@ -84,14 +144,14 @@ crop_shape <-
   terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
-For getting a continent.
+#### For Getting a Particular Region
 
 ```{r}
 #| eval: false
 
 countries <-
   geodata::country_codes() |>
-  dplyr::filter(continent == "South America") |>
+  dplyr::filter(continent == "Asia") |>
   magrittr::extract2("ISO3")
 
 crop_shape <-
@@ -99,40 +159,40 @@ crop_shape <-
   terra::subset(., .$GID_0 %in% countries)
 ```
 
-Alternative way for getting a particular region.
+#### For Getting the Whole World
 
 ```{r}
 #| eval: false
 
-crop_shape <-
-  ISOcodes::UN_M.49_Regions |>
-  dplyr::filter(Parent == 150) |>
-  magrittr::extract2("Children") |>
-  stringr::str_flatten_comma() |>
-  stringr::str_split_1(", ") %>%
-  magrittr::is_in(ISOcodes::UN_M.49_Countries$Code, .) %>%
-  magrittr::extract(ISOcodes::UN_M.49_Countries$ISO_Alpha_3, .) |>
-  geodata::gadm(level = 0, path = raw_data_dir)
+crop_shape <- geodata::world(resolution = 1, path = raw_data_dir)
 ```
 
-## Unzipping the Files
+## Unzipping the Files (If Needed)
 
 ```{r}
-if (!checkmate::test_directory_exists(fs::path(wc_raw_data_dir, "zip"))) {
-  fs::path(wc_raw_data_dir, "zip") |> fs::dir_create(recurse = TRUE)
+#| eval: false
+
+zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
+
+if (!checkmate::test_directory_exists(zip_dir)) {
+  zip_dir |> fs::dir_create(recurse = TRUE)
 }
 ```
 
 ```{r}
+#| eval: false
+
+tif_dir <- fs::path(wc_raw_data_series_dir, "tif")
+
 zip_files <-
-  fs::path(wc_raw_data_dir, "zip") |>
+  zip_dir |>
   fs::dir_ls(type = "file", regexp = "zip$")
 
 for (i in zip_files) {
   i |>
     utils::unzip(
       overwrite = TRUE,
-      exdir = fs::path(wc_raw_data_dir, "tif")
+      exdir = tif_dir
     )
 }
 ```
@@ -140,14 +200,16 @@ for (i in zip_files) {
 ```{r}
 #| eval: false
 
-# zip_files |> fs::file_delete()
+zip_dir |> fs::dir_delete()
 ```
+
+## Gathering the `tif` Files
 
 ```{r}
 #| eval: false
 
 tif_files <-
-  fs::path(wc_raw_data_dir, "tif") |>
+  fs::path(wc_raw_data_series_dir, "tif") |>
   fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
 ```
 
@@ -186,8 +248,10 @@ croped_ras |> terra::plot()
 ## Cropping and Transforming Data to ASCII
 
 ```{r}
-if (!checkmate::test_directory_exists(fs::path(wc_raw_data_dir, "asc"))) {
-  fs::path(wc_raw_data_dir, "asc") |> fs::dir_create(recurse = TRUE)
+asc_dir <- fs::path(wc_raw_data_series_dir, "asc")
+
+if (!checkmate::test_directory_exists(asc_dir)) {
+  asc_dir |> fs::dir_create(recurse = TRUE)
 }
 ```
 
@@ -199,7 +263,7 @@ geotiff_to_ascii(
   file = tif_files,
   shape = crop_shape,
   aggregate = NULL,
-  dir = fs::path(wc_raw_data_dir, "asc")
+  dir = asc_dir
 )
 
 beepr::beep(1)
@@ -208,7 +272,7 @@ beepr::beep(1)
 ```{r}
 #| eval: false
 
-fs::path(wc_raw_data_dir, "asc") |>
+asc_dir |>
   fs::dir_ls(type = "file", regexp = "asc.aux.xml$|prj$", recurse = TRUE) |>
   fs::file_delete()
 ```
@@ -219,15 +283,17 @@ fs::path(wc_raw_data_dir, "asc") |>
 # tif_files |> file.remove()
 ```
 
-## Checking the Final Files
+## Gathering the `asc` Files
 
 ```{r}
 #| eval: false
 
 asc_files <-
-  fs::path(wc_raw_data_dir, "asc") |>
+  asc_dir |>
   fs::dir_ls(type = "file", regexp = "asc$", recurse = TRUE)
 ```
+
+## Checking the Final Files
 
 ### By Resolution
 
@@ -307,13 +373,7 @@ asc_files |>
   unique()
 ```
 
-## Moving Files
-
-```{r}
-if (!checkmate::test_directory_exists(data_series_dir)) {
-  data_series_dir |> fs::dir_create(recurse = TRUE)
-}
-```
+## Moving the Files
 
 ```{r}
 #| eval: false
@@ -324,16 +384,14 @@ asc_files |>
   )
 ```
 
-## Creating Shape Base Reference File
+## Zipping the Files
 
 ```{r}
 #| eval: false
 
-data_series_dir |>
-  fs::dir_ls(type = "file", regexp = "asc$")
-  magrittr::extract(1) |>
-  fs::file_copy(
-    new_path = fs::path(data_dir, "shape_base_reference.asc"),
-    overwrite = TRUE
-  )
+utils::zip(
+  zipfile = fs::path(data_dir, "asia_10m.zip"),
+  files = fs::dir_ls(data_series_dir, recurse = TRUE),
+  flags = "-jq"
+)
 ```

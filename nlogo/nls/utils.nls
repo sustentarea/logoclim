@@ -7,7 +7,7 @@
 
 to-report normalize-year [#year]
   assert-string-or-integer #year
-  
+
   let out #year
   let pattern "^[0-9]{4}$"
 
@@ -16,11 +16,11 @@ to-report normalize-year [#year]
   ]
 
   (ifelse
-    (data-series = "Historical climate data" and 
+    (data-series = "Historical climate data" and
       (out < 1970 or out > 2000)) [set out 1970]
-    (data-series = "Historical monthly weather data" 
+    (data-series = "Historical monthly weather data"
       and (out < 1960 or out > 2021)) [set out 1960]
-    (data-series = "Future climate data" 
+    (data-series = "Future climate data"
       and out < 2021) [set out 2021]
   )
 
@@ -35,16 +35,17 @@ end
 
 to-report quartile [#stat]
   assert-string-or-integer #stat
-  
-  let data sort ([value] of patches with [value >= 0])
+
+  let data sort ([value] of patches with [value >= -99999])
   let length-data length data
   let quartile-length length-data / 4
 
   (ifelse
+    (#stat = 0)[report first data]
     (#stat = 1)[report last (sublist data 0 (quartile-length * 1))]
     (#stat = 2)[report last (sublist data 0 (quartile-length * 2))]
     (#stat = 3)[report last (sublist data 0 (quartile-length * 3))]
-    (#stat = 4)[report last (sublist data 0 (quartile-length * 4))]
+    (#stat = 4)[report last data]
     (#stat = "iqr")[
       let quartile-1 last (sublist data 0 (quartile-length * 1))
       let quartile-3 last (sublist data 0 (quartile-length * 3))
