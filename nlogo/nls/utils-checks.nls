@@ -1,7 +1,7 @@
 ; # Metadata
 ; 
 ; This file is part of the model:
-; {logoclim}: WorldClim 2.1 on NetLogo.
+; {LogoClim}: WorldClim 2.1 on NetLogo.
 ; 
 ; Extensions used: pathdir, sr.
 
@@ -29,18 +29,6 @@ to-report any-true? [#list]
   report reduce [[i j] -> i or j] #list
 end
 
-to-report is-integer? [#x]
-  ifelse (not is-number? #x) [
-    report false
-  ] [
-    report (int #x) = #x
-  ]
-end
-
-to-report is-logical? [#x]
-  report #x = true or #x = false
-end
-
 to-report is-atomic? [#x]
   report not is-list? #x
 end
@@ -57,18 +45,16 @@ to-report is-gis? [#x]
   report test
 end
 
-to-report test-string-in-r [#string]
-  assert-string #string
-  
-  let test true
-  
-  carefully [
-    let r-test sr:runresult (word "'" #string "'")
+to-report is-integer? [#x]
+  ifelse (not is-number? #x) [
+    report false
   ] [
-    set test false
+    report (int #x) = #x
   ]
-  
-  report test
+end
+
+to-report is-logical? [#x]
+  report #x = true or #x = false
 end
 
 to-report test-series-raw-data-path [#series-raw-path]
@@ -93,115 +79,26 @@ to-report test-series-raw-data-path [#series-raw-path]
   report sr:runresult "test"
 end
 
+to-report test-string-in-r [#string]
+  assert-string #string
+  
+  let test true
+  
+  carefully [
+    let r-test sr:runresult (word "'" #string "'")
+  ] [
+    set test false
+  ]
+  
+  report test
+end
+
 ; # Assert/check functions
-
-to assert-string [#x]
-  if (not is-string? #x) [
-    error "The value is not a string."
-  ]
-end
-
-to assert-number [#x]
-  if (not is-number? #x) [
-    error "The value is not a number."
-  ]
-end
-
-to assert-integer [#x]
-  if (not is-integer? #x) [
-    error "The value is not an integer number."
-  ]
-end
-
-to assert-string-or-number [#x]
-  if (not is-string? #x and not is-number? #x) [
-    error "The value is neither a string nor a number."
-  ]
-end
-
-to assert-string-or-integer [#x]
-  if (not is-string? #x and not is-integer? #x) [
-    error "The value is neither a string nor an integer number."
-  ]
-end
-
-to assert-logical [#x]
-  if (not is-logical? #x) [
-    error "The value is not logical/boolean."
-  ]
-end
 
 to assert-atomic [#x]
   if (not is-atomic? #x) [
     error "The value is not atomic."
   ]
-end
-
-to assert-list [#x]
-  if (not is-list? #x) [
-    error "The value is not a list."
-  ]
-end
-
-to assert-gis [#x]
-  if (not is-gis? #x) [
-    error "The value is not a GIS dataset."
-  ]
-end
-
-to assert-file-exists [#file]
-  assert-string #file
-  
-  if (not file-exists? #file) [
-    error (word "The file " #file "does not exist.")
-  ]
-end
-
-to assert-dir-exists [#dir]
-  assert-string #dir
-  
-  if (not pathdir:isDirectory? #dir) [
-    error (word 
-      "The directory" #dir "does not exist."
-    )
-  ]
-end
-
-to assert-implementation
-  (ifelse
-    (data-resolution = "30 seconds (~1 km2  at the equator)") [
-      user-message (word
-        "The '30 seconds (~1 km2  at the equator)' "
-        "option is not yet implemented."
-      )
-      
-      halt
-    ]
-    (data-resolution = "2.5 minutes (~21 km2 at the equator)") [
-      user-message (word
-        "The '2.5 minutes (~21 km2 at the equator)' "
-        "option is not yet implemented."
-      )
-      
-      halt
-    ]
-    (data-resolution = "5 minutes (~85 km2 at the equator)") [
-      user-message (word
-        "The '5 minutes (~85 km2 at the equator)' "
-        "option is not yet implemented."
-      )
-      
-      halt
-    ]
-    (climate-variable = "Bioclimatic variables") [
-      user-message (word
-        "The 'Bioclimatic variables' "
-        "option is not yet implemented."
-      )
-      
-      halt
-    ]
-  )
 end
 
 to assert-base-file
@@ -246,46 +143,60 @@ to assert-data
   ]
 end
 
-to assert-year [#year]
-  assert-string-or-integer #year
-
-  if (str-detect #year "^[0-9]{4}" = false) [
-    error "The year must have 4 digits."
+to assert-dir-exists [#dir]
+  assert-string #dir
+  
+  if (not pathdir:isDirectory? #dir) [
+    error (word 
+      "The directory" #dir "does not exist."
+    )
   ]
+end
+
+to assert-file-exists [#file]
+  assert-string #file
   
-  if (is-string? #year) [set #year read-from-string #year]
-  
+  if (not file-exists? #file) [
+    error (word "The file " #file "does not exist.")
+  ]
+end
+
+to assert-gis [#x]
+  if (not is-gis? #x) [
+    error "The value is not a GIS dataset."
+  ]
+end
+
+to assert-implementation
   (ifelse
-    (#year < 1960 or #year > 2100) [
-      user-message (word 
-        "You must choose a year between 1960 and 2100."
+    (data-resolution = "30 seconds (~1 km2  at the equator)") [
+      user-message (word
+        "The '30 seconds (~1 km2  at the equator)' "
+        "option is not yet implemented."
       )
       
       halt
     ]
-    (data-series = "Historical climate data" and (#year < 1970 or #year > 2000)) [
+    (data-resolution = "2.5 minutes (~21 km2 at the equator)") [
       user-message (word
-        "The year for the 'Historical climate data' "
-        "series must be between "
-        "1970 and 2000."
+        "The '2.5 minutes (~21 km2 at the equator)' "
+        "option is not yet implemented."
       )
       
       halt
     ]
-    (data-series = "Historical monthly weather data" and #year > 2021) [
+    (data-resolution = "5 minutes (~85 km2 at the equator)") [
       user-message (word
-        "The year for the 'Historical monthly weather data' "
-        "series must be between "
-        "1960 and 2021."
+        "The '5 minutes (~85 km2 at the equator)' "
+        "option is not yet implemented."
       )
       
       halt
     ]
-    (data-series = "Future climate data" and (#year < 2021 or #year > 2100)) [
+    (climate-variable = "Bioclimatic variables") [
       user-message (word
-        "The year for the 'Future climate data' "
-        "series must be between "
-        "2021 and 2100."
+        "The 'Bioclimatic variables' "
+        "option is not yet implemented."
       )
       
       halt
@@ -293,7 +204,49 @@ to assert-year [#year]
   )
 end
 
-to assert-variables
+to assert-integer [#x]
+  if (not is-integer? #x) [
+    error "The value is not an integer number."
+  ]
+end
+
+to assert-list [#x]
+  if (not is-list? #x) [
+    error "The value is not a list."
+  ]
+end
+
+to assert-logical [#x]
+  if (not is-logical? #x) [
+    error "The value is not logical/boolean."
+  ]
+end
+
+to assert-number [#x]
+  if (not is-number? #x) [
+    error "The value is not a number."
+  ]
+end
+
+to assert-string [#x]
+  if (not is-string? #x) [
+    error "The value is not a string."
+  ]
+end
+
+to assert-string-or-integer [#x]
+  if (not is-string? #x and not is-integer? #x) [
+    error "The value is neither a string nor an integer number."
+  ]
+end
+
+to assert-string-or-number [#x]
+  if (not is-string? #x and not is-number? #x) [
+    error "The value is neither a string nor a number."
+  ]
+end
+
+to assert-variables [#climate-variable]
   let variables []
 
   (ifelse
@@ -343,4 +296,51 @@ to assert-variables
     
     halt
   ]
+end
+
+to assert-year [#year]
+  assert-string-or-integer #year
+
+  if (str-detect #year "^[0-9]{4}" = false) [
+    error "The year must have 4 digits."
+  ]
+  
+  if (is-string? #year) [set #year read-from-string #year]
+  
+  (ifelse
+    (#year < 1960 or #year > 2100) [
+      user-message (word 
+        "You must choose a year between 1960 and 2100."
+      )
+      
+      halt
+    ]
+    (data-series = "Historical climate data" and (#year < 1970 or #year > 2000)) [
+      user-message (word
+        "The year for the 'Historical climate data' "
+        "series must be between "
+        "1970 and 2000."
+      )
+      
+      halt
+    ]
+    (data-series = "Historical monthly weather data" and #year > 2021) [
+      user-message (word
+        "The year for the 'Historical monthly weather data' "
+        "series must be between "
+        "1960 and 2021."
+      )
+      
+      halt
+    ]
+    (data-series = "Future climate data" and (#year < 2021 or #year > 2100)) [
+      user-message (word
+        "The year for the 'Future climate data' "
+        "series must be between "
+        "2021 and 2100."
+      )
+      
+      halt
+    ]
+  )
 end

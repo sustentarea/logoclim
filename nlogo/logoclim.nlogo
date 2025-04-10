@@ -1,18 +1,17 @@
-; # Metadata
+; ## Metadata
 ;
-; Title: {logoclim}: WorldClim 2.1 on NetLogo.
+; Title: {LogoClim}: WorldClim 2.1 on NetLogo.
 ; Version: 2024-08-29 0.0.0.9004
 ; License: MIT.
-; Repository: https://github.com/danielvartan/logoclim/
+; Repository: https://github.com/sustentarea/logoclim/
 ;
 ; Authors: Daniel Vartanian & Aline Martins de Carvalho.
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
 ;
 ; Created on NetLogo 6.4.
-; Required NetLogo extensions: `gis` and `sr`.
+; Required
+; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string``.
 ; Required R packages: `rJava`, `stringr` and `lubridate`.
-
-; # Source
 
 __includes [
   "nls/utils.nls"
@@ -24,16 +23,12 @@ __includes [
   "nls/utils-strings.nls"
 ]
 
-; # Extensions
-
 extensions [
   gis
   pathdir
   sr
   string
 ]
-
-; # Variables
 
 globals [
   series-raw-data-path
@@ -54,8 +49,6 @@ patches-own [
   value
 ]
 
-; # Main procedures
-
 to setup
   clear-all
   sr:setup
@@ -63,10 +56,10 @@ to setup
   set start-year normalize-year start-year
 
   assert-implementation
-  assert-base-file
+  ;assert-base-file
   assert-data
   assert-year start-year
-  assert-variables
+  assert-variables climate-variable
 
   setup-variables
   setup-world
@@ -161,12 +154,7 @@ to setup-fcd-variables
 end
 
 to setup-world
-  if (base-file = 0) [
-    sr-run-assign-files data-raw-path base-file-pattern
-    sr:run "base_file <- files[1]"
-    set base-file sr:runresult "base_file"
-    set base-file file-path data-raw-path base-file
-  ]
+  set base-file file-path series-raw-data-path (first files)
 
   let base-file-dataset load-patch-data base-file
 
@@ -174,7 +162,7 @@ to setup-world
     let width floor (gis:width-of base-file-dataset / 2)
     let height floor (gis:height-of base-file-dataset / 2)
     resize-world (-1 * width ) width (-1 * height ) height
-    set-patch-size 4.25
+    set-patch-size patch-size-px
   ]
 end
 
@@ -256,11 +244,11 @@ end
 GRAPHICS-WINDOW
 450
 10
-989
-516
+644
+193
 -1
 -1
-4.25
+1.5
 1
 10
 1
@@ -323,7 +311,7 @@ transition-seconds
 transition-seconds
 0
 3
-0.0
+0.2
 0.1
 1
 NIL
@@ -348,7 +336,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-0
+3
 
 CHOOSER
 10
@@ -641,9 +629,9 @@ INPUTBOX
 230
 430
 440
-490
+510
 data-raw-path
-..\\data\\
+../data/
 1
 0
 String
@@ -676,20 +664,22 @@ NIL
 NIL
 1
 
+SLIDER
+11
+426
+221
+460
+patch-size-px
+patch-size-px
+0
+10
+2.0
+0.1
+1
+NIL
+HORIZONTAL
+
 @#$#@#$#@
-### TO DO
-
-- Define a base file for each projection.
-- Implement bioclimatic variables for future data series.
-- Create bioclimatic variables for historical data.
-- Add more options for data resolution.
-- Create a section explaining the model requirements.
-- Create a section explaining how to load data into the model.
-- Prepare data and add a chooser allowing the user visualize the data by state.
-- Update the info tab.
-- Prepare an OSF compendium for this project.
-- Prepare an article on JOSS about the model.
-
 ## WHAT IS IT?
 
 `LogoClim` is a NetLogo submodel (a model to use with other models) designed for simulating and visualizing climate conditions, serving as a useful tool for exploring historical and projected climate data. Its primary goal is to promote the use of climate data in agent-based models and enhance the reproducibility of these simulations.
@@ -700,7 +690,9 @@ Climate data in `LogoClim` is based on [WorldClim 2.1](https://worldclim.org/), 
 
 ## HOW IT WORKS
 
-The model operates on a grid of patches, where each patch corresponds to a geographical area and holds a value for a chosen climate variable (e.g., minimum temperature, maximum temperature, precipitation). The model loads data for the selected variable and time period (either historical or future). As the simulation runs, patches update their colors based on the data values: darker shades represent lower values, while lighter shades indicate higher ones. The results are visualized on a map, alongside plots showing mean, minimum, maximum, and standard deviation of the selected variable over time.
+LogoClim operates on a grid of patches, where each patch represents a geographical area and stores a value for a selected climate variable (e.g., minimum temperature, maximum temperature, or precipitation). It dynamically loads data for the chosen variable and time period (historical or future).
+
+During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher ones. The results are displayed on a map, accompanied by plots showing the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
 ## DATA SERIES
 
@@ -730,11 +722,11 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### INSTALLATION
 
-This model was developed using NetLogo 6.4, so it's recommended to use this version or higher. Download NetLogo [here](https://ccl.northwestern.edu/netlogo/download.shtml).
+This model was developed using NetLogo 6.4, so it's recommended to use this version or higher. You can download each version of NetLogo [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
-The model relies on the GIS [(`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)) and SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo extensions, which will be installed automatically.
+The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
 
-Additionally, you'll need [R](https://www.r-project.org/) (version 4.0 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Ensure that the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the necessary packages, run the following in your R console:
+You'll also need [R](https://www.r-project.org/) (version 4.1 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -755,7 +747,9 @@ After downloading, extract the files into the `data` folder within the model's d
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
 
-#### Running the model
+These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder present in the [model code repository](https://github.com/sustentarea/logoclim/). To create custom datasets, simply modify the notebooks to suit your requirements.
+
+#### RUNNING THE MODEL
 
 Once everything is set, open the NetLogo file and start exploring!
 
@@ -805,31 +799,45 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 
 ## HOW TO CITE
 
-If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it. You can find the citation below.
+If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it.
 
-Vartanian, D., Magalhães, A. R., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo*. NetLogo model. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+To cite `LogoClim` in publications please use the following format:
+
+Vartanian, D., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo* [Software, NetLogo model]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+
+A BibTeX entry for LaTeX users is:
+
+```latex
+@misc{vartanian2025,
+  title = {{LogoClim: WorldClim in NetLogo}},
+  author = {{Daniel Vartanian} and and {Aline Martins Carvalho}},
+  year = {2025},
+  doi = {10.17605/OSF.IO/EAPZU},
+  note = {NetLogo model},
+}
+```
 
 ## LINKS
 
 - OSF compendium: https://doi.org/10.17605/OSF.IO/EAPZU
-- Code repository: https://doi.org/10.17605/OSF.IO/RE95Z
+- Code repository: https://github.com/sustentarea/logoclim
 - Data repository: https://osf.io/re95z
-
+`
 ## LICENSE
 
-![MIT license badge](images/license-MIT-green.png)
+![MIT license badge](images/mit-license-badge.png)
 
-This project is licensed under the [MIT license](https://opensource.org/license/mit/).
+`LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit).
 
 ## ACKNOWLEDGMENTS
 
-![CNPq logo](images/cnpq_v2017_rgb.png)
-
-This project was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil ([CNPq](https://www.gov.br/cnpq/)).
-
-![Sustentarea logo](images/sustentarea_logo.png)
+![Sustentarea logo](images/sustentarea-logo.png)
 
 `LogoClim` was developed with support from the Research and Extension Center [Sustentarea](https://github.com/sustentarea/) at the University of São Paulo ([USP](https://www.usp.br/)), and was initially created for a Sustentarea research project.
+
+![CNPq logo](images/cnpq-logo.png)
+
+This project was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil ([CNPq](https://www.gov.br/cnpq/)).
 
 ## REFERENCES
 

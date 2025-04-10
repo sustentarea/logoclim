@@ -1,0 +1,231 @@
+---
+execute:
+  eval: false
+---
+
+# WorldClim 2.1: Data Download
+
+## Overview
+
+This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
+
+::: {.callout-important}
+This may take a while.
+:::
+
+## Setting the Environment
+
+```{r}
+#| eval: false
+
+library(beepr)
+library(checkmate)
+library(cli)
+library(fs)
+library(here)
+library(magrittr)
+library(purrr)
+library(rvest)
+library(rutils) # github.com/danielvartan/rutils (GitHub)
+library(stringr)
+```
+
+```{r}
+source(here::here("R", "download_wc_files.R"))
+source(here::here("R", "get_content_length.R"))
+source(here::here("R", "zip_wc_files.R"))
+```
+
+## Setting Variables
+
+```{r}
+options(cli.progress_show_after = 0)
+```
+
+```{r}
+raw_data_dir <- here::here("data-raw")
+
+if (!checkmate::test_directory_exists(raw_data_dir)) {
+  fs::dir_create(raw_data_dir)
+}
+```
+
+```{r}
+#| eval: false
+
+# # Historical climate data
+# source <- "https://worldclim.org/data/worldclim21.html"
+
+# Historical monthly weather data
+source <- "https://worldclim.org/data/monthlywth.html"
+
+# # Future climate, 10 minutes spatial resolution
+# source <- "https://worldclim.org/data/cmip6/cmip6_clim10m.html"
+# # Future climate, 5 minutes spatial resolution
+# source <- "https://worldclim.org/data/cmip6/cmip6_clim5m.html"
+# # Future climate, 2.5 minutes spatial resolution
+# source <- "https://worldclim.org/data/cmip6/cmip6_clim2.5m.html"
+# # Future climate, 30 seconds spatial resolution
+# source <- "https://worldclim.org/data/cmip6/cmip6_clim30s.html"
+```
+
+```{r}
+resolution <- "10m" # all, 10m, 5m, 2.5m, 30s
+```
+
+```{r}
+# This is only needed for future climate data.
+model <- NULL # "ACCESS-CM2"
+```
+
+## Scrapping Source
+
+```{r}
+html <- source |> rvest::read_html()
+```
+
+## Extracting URLs
+
+```{r}
+urls <- html |>
+  rvest::html_elements("a") |>
+  rvest::html_attr("href") |>
+  stringr::str_subset("geodata")
+```
+
+```{r}
+if (!resolution == "all") {
+  urls <-
+    urls %>%
+    magrittr::extract(stringr::str_detect(basename(.), resolution))
+}
+```
+
+## Creating the Metadata
+
+```{r}
+sizes <-
+  urls |>
+  purrr::map_dbl(
+    .f = get_content_length,
+    .progress = TRUE
+)
+
+beepr::beep(1)
+```
+
+```{r}
+metadata <- dplyr::tibble(
+  url = urls,
+  file = basename(urls),
+  size = as.numeric(sizes), # In bytes # 1 megabyte = 2^20 bytes
+  size_cum_sum = cumsum(dplyr::coalesce(size, 0)) + (size * 0)
+)
+```
+
+```{r}
+metadata |> dplyr::glimpse()
+```
+
+```{r}
+models <-
+  metadata |>
+  magrittr::extract2("file") |>
+  stringr::str_extract("(?<=(bioc_|tmin_|tmax_|prec_)).*(?=_ssp)") |>
+  unique()
+
+models
+```
+
+## Checking for Errors
+
+```{r}
+{
+  cli::cli_alert_info(
+    paste0(
+      "{.strong {cli::col_red(rutils:::count_na(metadata$size))}} ",
+      "url requests resulted in error."
+    )
+  )
+
+  if (rutils::count_na(metadata$size) > 0) {
+    cli::cli_alert_info("Their file names are:")
+    cli::cli_li(metadata$file[is.na(metadata$size)])
+  }
+}
+```
+
+## Downloading Files
+
+```{r}
+wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
+
+if (!checkmate::test_directory_exists(wc_raw_data_dir)) {
+  fs::dir_create(wc_raw_data_dir)
+}
+```
+
+```{r}
+broken_links <-
+  metadata |>
+  download_wc_files(
+    dir = file.path(wc_raw_data_dir, "zip"),
+    model = model
+  )
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: false
+
+# Use only if the download process was interrupted.
+
+downloaded_files <-
+  file.path(wc_raw_data_dir, "zip") |>
+  fs::dir_ls(type = "file")
+
+broken_links <-
+  metadata |>
+  # dplyr::filter(stringr::str_detect(file, model)) |>
+  dplyr::filter(!file %in% downloaded_files) |>
+  download_wc_files(dir = file.path(wc_raw_data_dir, "zip"))
+
+beepr::beep(1)
+```
+
+## Compressing Files (Just for Future Climate Data)
+
+```{r}
+#| eval: false
+#| output: false
+
+suffix <- "_2-5m"
+
+metadata |>
+  zip_wc_files(
+    model = model,
+    dir = dir,
+    suffix = suffix,
+    broken_links = broken_links,
+    engine = "utils" # "zip"
+  )
+
+beepr::beep(1)
+```
+
+## Deleting Downloaded Files (Just for Future Climate Data)
+
+```{r}
+#| eval: false
+
+# Careful! This routine should be use only in special cases.
+
+for (i in model) {
+  list.files(raw_data_dir, full.names = TRUE) |>
+    stringr::str_subset(i) |>
+    file.remove()
+}
+
+invisible(gc())
+```

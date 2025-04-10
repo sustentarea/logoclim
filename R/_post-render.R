@@ -1,6 +1,6 @@
 # library(beepr)
-# library(groomr)
-# library(here)
+# library(groomr) # github.com/danielvartan/groomr
+# library(lubridate)
 # library(readr)
 # library(stringr)
 
@@ -24,4 +24,6 @@ data |> readr::write_lines(file)
 
 # Check if the script ran successfully -----
 
-# beepr::beep(1)
+beepr::beep(1)
+
+Sys.sleep(3)

@@ -1,0 +1,5 @@
+linters: linters_with_defaults(
+    commented_code_linter = NULL,
+    cyclocomp_linter = lintr::cyclocomp_linter(15),
+    line_length_linter = lintr::line_length_linter(80)
+  )

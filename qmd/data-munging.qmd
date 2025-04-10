@@ -1,0 +1,339 @@
+---
+execute:
+  eval: false
+---
+
+# WordClim 2.1: Data Transformation for NetLogo
+
+## Overview
+
+This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [WorldClim 2.1: Data Download](data-download.qmd) document. You must have already downloaded the WorldClim data files.
+
+## Setting the Environment
+
+::: {.callout-important}
+Date: 2025-04-09
+
+The `terra` package may encounter issues when exporting data to ASCII format. If this happens, you can resolve it by installing the development version of the package from GitHub using the following command:
+
+```r
+# install.packages("remotes")
+remotes::install_github("rspatial/terra")
+```
+:::
+
+```{r}
+#| eval: false
+
+library(beepr)
+library(checkmate)
+library(fs)
+library(geodata)
+library(here)
+library(ISOcodes)
+library(lubridate)
+library(rutils) # github.com/danielvartan/rutils
+library(stringr)
+library(terra)
+library(utils)
+```
+
+```{r}
+source(here::here("R", "geotiff_to_ascii.R"))
+```
+
+## Setting Variables
+
+```{r}
+options(cli.progress_show_after = 0)
+```
+
+```{r}
+data_dir <- here::here("data")
+```
+
+```{r}
+# data_series_dir <- fs::path(data_dir, "historical-climate-data")
+data_series_dir <- fs::path(data_dir, "historical-monthly-weather-data")
+# data_series_dir <- fs::path(data_dir, "future-climate-data")
+```
+
+```{r}
+raw_data_dir <- here::here("data-raw")
+```
+
+```{r}
+wc_raw_data_dir <- file.path(raw_data_dir, "worldclim")
+```
+
+### Cropping Shape
+
+For getting the shape of a single country.
+
+```{r}
+crop_shape <- geodata::gadm("BRA", level = 0, path = raw_data_dir)
+```
+
+For getting only the mainland of a country.
+
+```{r}
+#| eval: false
+
+crop_shape <-
+  geodata::gadm("USA", level = 1, path = raw_data_dir) %>%
+  terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
+```
+
+For getting a continent.
+
+```{r}
+#| eval: false
+
+countries <-
+  geodata::country_codes() |>
+  dplyr::filter(continent == "South America") |>
+  magrittr::extract2("ISO3")
+
+crop_shape <-
+  geodata::world(resolution = 1, path = raw_data_dir) %>%
+  terra::subset(., .$GID_0 %in% countries)
+```
+
+Alternative way for getting a particular region.
+
+```{r}
+#| eval: false
+
+crop_shape <-
+  ISOcodes::UN_M.49_Regions |>
+  dplyr::filter(Parent == 150) |>
+  magrittr::extract2("Children") |>
+  stringr::str_flatten_comma() |>
+  stringr::str_split_1(", ") %>%
+  magrittr::is_in(ISOcodes::UN_M.49_Countries$Code, .) %>%
+  magrittr::extract(ISOcodes::UN_M.49_Countries$ISO_Alpha_3, .) |>
+  geodata::gadm(level = 0, path = raw_data_dir)
+```
+
+## Unzipping the Files
+
+```{r}
+if (!checkmate::test_directory_exists(fs::path(wc_raw_data_dir, "zip"))) {
+  fs::path(wc_raw_data_dir, "zip") |> fs::dir_create(recurse = TRUE)
+}
+```
+
+```{r}
+zip_files <-
+  fs::path(wc_raw_data_dir, "zip") |>
+  fs::dir_ls(type = "file", regexp = "zip$")
+
+for (i in zip_files) {
+  i |>
+    utils::unzip(
+      overwrite = TRUE,
+      exdir = fs::path(wc_raw_data_dir, "tif")
+    )
+}
+```
+
+```{r}
+#| eval: false
+
+# zip_files |> fs::file_delete()
+```
+
+```{r}
+#| eval: false
+
+tif_files <-
+  fs::path(wc_raw_data_dir, "tif") |>
+  fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
+```
+
+## Testing the Files
+
+```{r}
+tif_file <- tif_files[1]
+```
+
+```{r}
+#| eval: false
+
+ras <- tif_file |> terra::rast()
+```
+
+```{r}
+#| eval: false
+
+croped_ras <-
+  ras |>
+  terra::crop(
+    crop_shape,
+    snap = "near",
+    mask = TRUE,
+    touches = TRUE,
+    extend = TRUE
+  )
+```
+
+```{r}
+#| eval: false
+
+croped_ras |> terra::plot()
+```
+
+## Cropping and Transforming Data to ASCII
+
+```{r}
+if (!checkmate::test_directory_exists(fs::path(wc_raw_data_dir, "asc"))) {
+  fs::path(wc_raw_data_dir, "asc") |> fs::dir_create(recurse = TRUE)
+}
+```
+
+```{r}
+#| eval: false
+#| output: false
+
+geotiff_to_ascii(
+  file = tif_files,
+  shape = crop_shape,
+  aggregate = NULL,
+  dir = fs::path(wc_raw_data_dir, "asc")
+)
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: false
+
+fs::path(wc_raw_data_dir, "asc") |>
+  fs::dir_ls(type = "file", regexp = "asc.aux.xml$|prj$", recurse = TRUE) |>
+  fs::file_delete()
+```
+
+```{r}
+#| eval: false
+
+# tif_files |> file.remove()
+```
+
+## Checking the Final Files
+
+```{r}
+#| eval: false
+
+asc_files <-
+  fs::path(wc_raw_data_dir, "asc") |>
+  fs::dir_ls(type = "file", regexp = "asc$", recurse = TRUE)
+```
+
+### By Resolution
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("(?<=wc2.1_)(30s|2.5m|5m|10m)") |>
+  rutils::drop_na() |>
+  unique()
+```
+
+### By Month
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("(?<=-)[0-9]{2}(?=.asc)") |>
+  rutils::drop_na() |>
+  unique()
+```
+
+### By Year
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("[0-9]{4}(?=-[0-9]{2}.asc)") |>
+  rutils::drop_na() |>
+  unique()
+```
+
+### By Year-Month
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("[0-9]{4}-[0-9]{2}(?=.asc)") |>
+  rutils::drop_na() |>
+  unique() |>
+  lubridate::ym()
+```
+
+### By Future Years
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("[0-9]{4}-[0-9]{4}(?=.asc)") |>
+  rutils::drop_na() |>
+  unique()
+```
+
+## By Global Climate Model (GCM)
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("(?<=_)[A-Z].+(?=_ssp[0-9]{3}_[0-9]{4}-[0-9]{4}.asc)") |>
+  rutils:::drop_na() |>
+  unique()
+```
+
+### By Shared Socioeconomic Pathways (SSP)
+
+```{r}
+#| eval: false
+
+asc_files |>
+  stringr::str_extract("ssp[0-9]{3}(?=_[0-9]{4}-[0-9]{4}.asc)") |>
+  rutils:::drop_na() |>
+  unique()
+```
+
+## Moving Files
+
+```{r}
+if (!checkmate::test_directory_exists(data_series_dir)) {
+  data_series_dir |> fs::dir_create(recurse = TRUE)
+}
+```
+
+```{r}
+#| eval: false
+
+asc_files |>
+  fs::file_move(
+    new_path = fs::path(data_series_dir, basename(asc_files))
+  )
+```
+
+## Creating Shape Base Reference File
+
+```{r}
+#| eval: false
+
+data_series_dir |>
+  fs::dir_ls(type = "file", regexp = "asc$")
+  magrittr::extract(1) |>
+  fs::file_copy(
+    new_path = fs::path(data_dir, "shape_base_reference.asc"),
+    overwrite = TRUE
+  )
+```

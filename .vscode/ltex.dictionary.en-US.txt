@@ -1,0 +1,3 @@
+Clim
+LogoClim
+WorldClim
