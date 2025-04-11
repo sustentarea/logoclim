@@ -8,7 +8,7 @@
 ;
 ; Require NetLogo >= 6.4 and R >= 4.4.
 ; Required R packages: `rJava`, `stringr`, and `lubridate`.
-; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string`.
+; Required NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`.
 
 __includes [
   "nls/utils.nls"
@@ -331,8 +331,8 @@ end
 GRAPHICS-WINDOW
 450
 10
-990
-480
+1000
+489
 -1
 -1
 2.0
@@ -423,7 +423,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-0
+3
 
 CHOOSER
 10
@@ -813,7 +813,7 @@ INPUTBOX
 220
 580
 data-path
-../data/
+../data/bra/10m/
 1
 0
 String

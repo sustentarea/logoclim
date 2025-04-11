@@ -6,5 +6,6 @@ project:
   post-render: "R/_post-render.R"
 
 html-table-processing: none
+default-image-extension: ""
 
 format: gfm

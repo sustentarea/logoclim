@@ -1,14 +1,11 @@
-# LogoClim <img src = "man/figures/logo.png" align="right" width="120" />
+# LogoClim
 
 <!-- quarto render -->
 
 <!-- badges: start -->
+<!-- [![CoMSES Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-%233884B8.svg)](https://www.comses.net/) -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![OSF DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![CoMSES Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-%233884B8.svg)](https://www.comses.net/)
-[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu)
-[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
-[![CII Best Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/)
+[![OSF DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com/licenses/mit/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
@@ -25,9 +22,7 @@ The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worl
 
 ## How It Works
 
-`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., Average temperature (°C)).
-
-During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time, providing a comprehensive view of climate trends.
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables. During the simulation, patches update their colors based on the data values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
 ### Color Scale
 
@@ -96,7 +91,9 @@ Once everything is set, open the `logoclim.nlogo` file located in the `nlogo` fo
 
 Refer to the `Info` tab in the model for additional details.
 
-To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension.
+### Integrating with Other Models
+
+`LogoClim` can be integrated with other models using the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension. This extension enables parallel execution and data exchange between models, making it particularly valuable for agent-based simulations that incorporate climate data to study ecological or environmental processes.
 
 ## Common Issues
 

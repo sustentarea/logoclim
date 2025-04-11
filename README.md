@@ -1,29 +1,22 @@
-# LogoClim <img src = "images/logo.png" align="right" width="120" />
+# LogoClim
 
 <!-- quarto render -->
 
 <!-- badges: start -->
+<!-- [![CoMSES Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-%233884B8.svg)](https://www.comses.net/) -->
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![OSF
-DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![CoMSES
-Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
-[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu)
-[![FAIR checklist
-badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
-[![CII Best
-Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/)
+DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://choosealicense.com/licenses/mit/)
+MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com/licenses/mit/)
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 ## Overview
-
-⛅🌍🌡️🗺️🌧️☀️🌬️📅📈🔗🔁
 
 `LogoClim` is a NetLogo model designed for simulating and visualizing
 climate conditions, providing a powerful tool for exploring historical
@@ -49,15 +42,11 @@ detailed and comprehensive representation of climate variables.
 ## How It Works
 
 `LogoClim` operates on a grid of patches, where each patch represents a
-geographical area and stores values for selected climate variables
-(e.g., Average temperature (°C)).
-
+geographical area and stores values for selected climate variables.
 During the simulation, patches update their colors based on the data
-values: darker shades indicate lower values, while lighter shades
-represent higher values. The results are visualized on a map,
-accompanied by plots that display the mean, minimum, maximum, and
-standard deviation of the selected variable over time, providing a
-comprehensive view of climate trends.
+values. The results are visualized on a map, accompanied by plots that
+display the mean, minimum, maximum, and standard deviation of the
+selected variable over time.
 
 ### Color Scale
 
@@ -181,9 +170,14 @@ Once everything is set, open the `logoclim.nlogo` file located in the
 
 Refer to the `Info` tab in the model for additional details.
 
-To integrate `LogoClim` with other models, use the LevelSpace
+### Integrating with Other Models
+
+`LogoClim` can be integrated with other models using the LevelSpace
 ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo
-extension.
+extension. This extension enables parallel execution and data exchange
+between models, making it particularly valuable for agent-based
+simulations that incorporate climate data to study ecological or
+environmental processes.
 
 ## Common Issues
 
@@ -239,7 +233,7 @@ a donation. Please mention `LogoClim` in your donation message.
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
+MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit)
 
 The `LogoClim` code is licensed under the [MIT
 License](https://opensource.org/license/mit). This means you can use,
@@ -282,8 +276,8 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     <td width="70%">
       <p>
         <code>LogoClim</code>
-        was developed with support from the Research and
-        Extension Center
+        was developed with support from the Research and 
+        Extension Center 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -304,7 +298,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This project was supported by the Conselho Nacional de
+        This project was supported by the Conselho Nacional de 
         Desenvolvimento Científico e Tecnológico - Brazil (<a href="https://www.gov.br/cnpq/">CNPq</a>).
       </p>
     </td>

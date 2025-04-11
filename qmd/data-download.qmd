@@ -109,17 +109,15 @@ resolution <- "5m" # all, 10m, 5m, 2.5m, 30s
 ```
 
 ```{r}
-# This is only needed for future climate data.
+# (Optional) Only for future climate data.
 model <- NULL # "ACCESS-CM2"
 ```
 
-## Scrapping Source
+## Scrapping the Source
 
 ```{r}
 html <- source |> rvest::read_html()
 ```
-
-## Extracting URLs
 
 ```{r}
 urls <- html |>
@@ -132,7 +130,12 @@ urls <- html |>
 if (!resolution == "all") {
   urls <-
     urls %>%
-    magrittr::extract(stringr::str_detect(basename(.), resolution))
+    magrittr::extract(
+      stringr::str_detect(
+        basename(.),
+        paste0("(?<=_)", resolution)
+      )
+    )
 }
 ```
 
@@ -162,16 +165,6 @@ metadata <- dplyr::tibble(
 metadata |> dplyr::glimpse()
 ```
 
-```{r}
-models <-
-  metadata |>
-  magrittr::extract2("file") |>
-  stringr::str_extract("(?<=(bioc_|tmin_|tmax_|prec_)).*(?=_ssp)") |>
-  unique()
-
-models
-```
-
 ## Checking for Errors
 
 ```{r}
@@ -190,7 +183,7 @@ models
 }
 ```
 
-## Downloading Files
+## Downloading the Files
 
 ```{r}
 #| eval: false
@@ -226,40 +219,4 @@ beepr::beep(1)
 #   download_wc_files(dir = file.path(wc_raw_data_dir, "zip"))
 
 # beepr::beep(1)
-```
-
-## Compressing Files (Just for Future Climate Data)
-
-```{r}
-#| eval: false
-#| output: false
-
-suffix <- paste0("_", "2-5m")
-
-metadata |>
-  zip_wc_files(
-    model = model,
-    dir = dir,
-    suffix = suffix,
-    broken_links = broken_links,
-    engine = "utils" # "zip"
-  )
-
-beepr::beep(1)
-```
-
-## Deleting Downloaded Files (Just for Future Climate Data)
-
-```{r}
-#| eval: false
-
-# Careful! This routine should be use only in special cases.
-
-for (i in model) {
-  list.files(raw_data_dir, full.names = TRUE) |>
-    stringr::str_subset(i) |>
-    file.remove()
-}
-
-invisible(gc())
 ```
