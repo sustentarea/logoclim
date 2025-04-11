@@ -1,4 +1,4 @@
-# LogoClim
+# LogoClim <img src = "images/logo.png" align="right" width="120" />
 
 <!-- quarto render -->
 
@@ -6,11 +6,13 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CoMSES
-Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-%233884B8.svg)](https://www.comses.net/)
 [![OSF
-DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![CoMSES
+Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu)
+[![FAIR checklist
+badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![CII Best
 Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/)
 [![License:
@@ -21,27 +23,26 @@ Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](C
 
 ## Overview
 
-`LogoClim` is a NetLogo submodel (A model to use with other models)
-designed for simulating and visualizing climate conditions, serving as a
-useful tool for exploring historical and projected climate data. Its
-primary goal is to promote the use of climate data in agent-based models
-and enhance the reproducibility of these simulations.
+⛅🌍🌡️🗺️🌧️☀️🌬️📅📈🔗🔁
 
-The model utilizes raster data to represent climate variables such as
-temperature and precipitation over time. It integrates historical data
+`LogoClim` is a NetLogo model designed for simulating and visualizing
+climate conditions, providing a powerful tool for exploring historical
+and projected climate data. Its primary objective is to facilitate the
+integration of climate data into agent-based models and enhance the
+reproducibility of these simulations.
+
+The model uses raster data to represent climate variables such as
+temperature and precipitation over time. It incorporates historical data
 (1960–2021) and future climate projections (2021–2100) derived from
-various global climate models under different Shared Socioeconomic
-Pathways
+global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
 
-Climate data in `LogoClim` is based on [WorldClim
-2.1](https://worldclim.org/), which compiles interpolated data from
-weather stations worldwide ([Fick and Hijmans,
-2017](https://doi.org/10.1002/joc.5086); [Harris et al.,
-2020](https://doi.org/10.1038/s41597-020-0453-3)). Future projections
-are informed by multiple climate models and various SSPs, providing data
-at several spatial resolutions for a detailed representation of climate
-variables.
+The climate data used in `LogoClim` is sourced from [WorldClim
+2.1](https://worldclim.org/), which offers high-resolution interpolated
+data from weather stations worldwide ([Fick & Hijmans,
+2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1
+km², the data is available at multiple spatial scales, ensuring a
+detailed and comprehensive representation of climate variables.
 
 ![LogoClim Interface](images/logoclim-interface.png)
 
@@ -49,7 +50,7 @@ variables.
 
 `LogoClim` operates on a grid of patches, where each patch represents a
 geographical area and stores values for selected climate variables
-(e.g., `Average temperature (°C)`).
+(e.g., Average temperature (°C)).
 
 During the simulation, patches update their colors based on the data
 values: darker shades indicate lower values, while lighter shades
@@ -58,7 +59,7 @@ accompanied by plots that display the mean, minimum, maximum, and
 standard deviation of the selected variable over time, providing a
 comprehensive view of climate trends.
 
-## Color Scale
+### Color Scale
 
 The model uses a color scale ranging from black (representing the lowest
 value) to white (representing the highest value). Users can adjust the
@@ -69,12 +70,12 @@ by toggling the `black-min` and `white-max` switches. By default, the
 black threshold is set to 0, and the white threshold corresponds to the
 maximum value of the current data.
 
-## Data Series
+### Data Series
 
 The model can simulate the three climate data series provided by
 [WorldClim 2.1](https://worldclim.org/).
 
-### Historical Climate Data
+#### Historical Climate Data
 
 This series includes 12 monthly data points representing average climate
 conditions for the period 1970–2000. It provides information on minimum,
@@ -85,7 +86,7 @@ historical climate patterns.
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
-### Historical Monthly Weather Data
+#### Historical Monthly Weather Data
 
 This series provides downscaled data from
 [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by
@@ -96,7 +97,7 @@ patterns.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
-### Future Climate Data
+#### Future Climate Data
 
 This series includes downscaled climate projections from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models.
@@ -141,9 +142,9 @@ install.packages(c("rJava", "stringr", "lubridate"))
 
 ### Downloading the Model
 
-You can download the latest version of the model
-[here](https://github.com/danielvartan/logoclim/releases/latest).
-Extract the files and locate `logoclim.nlogo` in the `nlogo` folder.
+You can download the latest release of the model from [GitHub
+Releases](https://github.com/danielvartan/logoclim/releases/latest). To
+access the development version, clone or download this repository.
 
 ### Downloading the Data
 
@@ -153,7 +154,9 @@ can download the data directly from [WorldClim
 the project’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository
 for compatibility.
 
-The dataset is available in various spatial resolutions:
+The datasets are organized using [ISO 3166-1
+alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
+country codes and are available in multiple spatial resolutions:
 
 - 10 minutes (~340 km² at the equator)
 - 5 minutes (~85 km² at the equator)
@@ -173,8 +176,10 @@ requirements.
 
 ### Running the Model
 
-Once everything is set, open the NetLogo file and start exploring! Refer
-to the `Info` tab in the model for additional details.
+Once everything is set, open the `logoclim.nlogo` file located in the
+`nlogo` folder to start exploring the model!
+
+Refer to the `Info` tab in the model for additional details.
 
 To integrate `LogoClim` with other models, use the LevelSpace
 ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo
@@ -197,7 +202,7 @@ model again.
 We are actively working to improve the user experience and simplify
 these installation steps.
 
-## Citation
+## How to Cite
 
 If you use this model in your research, please cite it to acknowledge
 the effort invested in its development and maintenance. Your citation
@@ -206,8 +211,7 @@ helps support the ongoing improvement of the model.
 To cite `LogoClim` in publications please use the following format:
 
 Vartanian, D., & Carvalho, A. M. (2024). *LogoClim: WorldClim in
-NetLogo* \[Software, NetLogo model\].
-<https://doi.org/10.17605/OSF.IO/EAPZU>
+NetLogo* \[Software\]. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
@@ -221,15 +225,9 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
-## License
+## How to Contribute
 
-[![License:
-MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
-
-The `LogoClim` code is licensed under the [MIT
-License](https://opensource.org/license/mit).
-
-## Contributing
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 Contributions are welcome! Whether it’s reporting bugs, suggesting
 features, or improving documentation, your input is valuable.
@@ -238,7 +236,36 @@ You can also support the development of `LogoClim` by becoming a
 sponsor. Click [here](https://github.com/sponsors/danielvartan) to make
 a donation. Please mention `LogoClim` in your donation message.
 
+## License
+
+[![License:
+MIT](https://img.shields.io/badge/license-MIT-green.png)](https://opensource.org/license/mit)
+
+The `LogoClim` code is licensed under the [MIT
+License](https://opensource.org/license/mit). This means you can use,
+modify, and distribute the code freely, as long as you include the
+original license and copyright notice in any copies or substantial
+portions of the software.
+
 ## Acknowledgments
+
+We gratefully acknowledge the contributions of [Stephen E.
+Fick](https://orcid.org/0000-0002-3548-6966), [Robert J.
+Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire
+[WorldClim](https://worldclim.org/) team for their dedication to
+creating and maintaining the WorldClim datasets. Their work has been
+instrumental in enabling researchers and practitioners to access
+high-quality climate data.
+
+We also acknowledge the [World Climate Research Programme
+(WCRP)](https://www.wcrp-climate.org/), which, through its Working Group
+on Coupled Modelling, coordinated and promoted the [Coupled Model
+Intercomparison Project Phase 6 (CMIP6)](https://pcmdi.llnl.gov/CMIP6/).
+
+We thank the climate modeling groups for producing and sharing their
+model outputs, the [Earth System Grid Federation
+(ESGF)](https://esgf.llnl.gov/) for archiving and providing access to
+the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
@@ -255,8 +282,8 @@ a donation. Please mention `LogoClim` in your donation message.
     <td width="70%">
       <p>
         <code>LogoClim</code>
-        was developed with support from the Research and 
-        Extension Center 
+        was developed with support from the Research and
+        Extension Center
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -277,7 +304,7 @@ a donation. Please mention `LogoClim` in your donation message.
     </td>
     <td width="70%">
       <p>
-        This project was supported by the Conselho Nacional de 
+        This project was supported by the Conselho Nacional de
         Desenvolvimento Científico e Tecnológico - Brazil (<a href="https://www.gov.br/cnpq/">CNPq</a>).
       </p>
     </td>

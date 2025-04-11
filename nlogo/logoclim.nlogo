@@ -1,14 +1,14 @@
-; Title: LogoClim: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
+;
 ; Version: 2025-04-10 0.0.0.9005
 ; Authors: Daniel Vartanian & Aline Martins de Carvalho.
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
 ; License: MIT.
 ; Repository: https://github.com/sustentarea/logoclim/
 ;
-; Created on NetLogo 6.4.
-; Require R >= 4.4.
-; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string`.
+; Require NetLogo >= 6.4 and R >= 4.4.
 ; Required R packages: `rJava`, `stringr`, and `lubridate`.
+; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string`.
 
 __includes [
   "nls/utils.nls"
@@ -294,7 +294,7 @@ to go-back
   go false false false
 end
 
-to show-labels
+to show-values
   ifelse mouse-inside? [
     ask patch mouse-xcor mouse-ycor [
       let radius-mean round mean [pcolor] of patches in-radius 3
@@ -331,11 +331,11 @@ end
 GRAPHICS-WINDOW
 450
 10
-992
-481
+990
+480
 -1
 -1
-1.97
+2.0
 1
 10
 1
@@ -423,7 +423,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-2
+0
 
 CHOOSER
 10
@@ -601,7 +601,7 @@ INPUTBOX
 440
 357
 future-climate-data-color
-105.0
+15.0
 1
 0
 Color
@@ -707,7 +707,7 @@ INPUTBOX
 440
 227
 historical-climate-data-color
-15.0
+105.0
 1
 0
 Color
@@ -749,7 +749,7 @@ patch-px-size
 patch-px-size
 0
 10
-1.97
+2.0
 0.01
 1
 NIL
@@ -823,8 +823,8 @@ BUTTON
 426
 221
 460
-Show labels
-show-labels
+Show values
+show-values
 T
 1
 T
@@ -838,39 +838,39 @@ NIL
 @#$#@#$#@
 ## WHAT IS IT?
 
-`LogoClim` is a NetLogo submodel (a model to use with other models) designed for simulating and visualizing climate conditions, serving as a useful tool for exploring historical and projected climate data. Its primary goal is to promote the use of climate data in agent-based models and enhance the reproducibility of these simulations.
+`LogoClim` is a NetLogo submodel designed for simulating and visualizing climate conditions, providing a powerful tool for exploring historical and projected climate data. Its primary objective is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It integrates historical data (1960–2021) and future climate projections (2021–2100) derived from various global climate models under different Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
+The model uses raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960–2021) and future climate projections (2021–2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
 
-Climate data in `LogoClim` is based on [WorldClim 2.1](https://worldclim.org/), which compiles interpolated data from weather stations worldwide (Fick and Hijmans, 2017; Harris et al., 2020). Future projections are informed by multiple climate models and various SSPs, providing data at several spatial resolutions for a detailed representation of climate variables.
+The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which offers high-resolution interpolated data from weather stations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
 ## HOW IT WORKS
 
-`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., `Average temperature (°C)`).
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., `average temperature (°C)`).
 
 During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time, providing a comprehensive view of climate trends.
 
-## COLOR SCALE
+### COLOR SCALE
 
-The model uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the `black-value` and `white-value` sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the `black-min` and `white-max` switches. By default, the black threshold is set to 0, and the white threshold corresponds to the maximum value of the current data.
+The model uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches. By default, the black threshold is set to 0, and the white threshold corresponds to the maximum value of the current data.
 
-## DATA SERIES
+### DATA SERIES
 
 The model can simulate the three climate data series provided by [WorldClim 2.1](https://worldclim.org/):
 
-### HISTORICAL CLIMATE DATA
+#### HISTORICAL CLIMATE DATA
 
 This dataset, covering the period 1970–2000, provides monthly climate data for minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, and vapor pressure.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
-### HISTORICAL MONTHLY WEATHER DATA
+#### HISTORICAL MONTHLY WEATHER DATA
 
 Downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by the Climatic Research Unit at the University of East Anglia. It includes average minimum temperature, average maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
-### FUTURE CLIMATE DATA
+#### FUTURE CLIMATE DATA
 
 This series includes downscaled climate projections from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models. Projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for minimum and maximum temperature, and precipitation.
 
@@ -882,11 +882,11 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### INSTALLATION
 
-This model was developed using NetLogo 6.4, so it's recommended to use this version or higher. You can download each version of NetLogo [here](https://ccl.northwestern.edu/netlogo/download.shtml).
+This model was developed using NetLogo 6.4, so it's recommended to use this version or later. You can download it [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
 The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
 
-You'll also need [R](https://www.r-project.org/) (version 4.1 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
+You'll also need [R](https://www.r-project.org/) (version 4.4 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -896,7 +896,7 @@ install.packages(c("rJava", "stringr", "lubridate"))
 
 `LogoClim` uses raster data to represent climate variables. While you can download the data directly from [WorldClim 2.1](https://worldclim.org/), we recommend using the dataset provided in the project's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository for compatibility.
 
-The dataset is available in various spatial resolutions:
+The datasets are organized using [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter country codes and are available in multiple spatial resolutions:
 
 - 30 seconds (~1 km² at the equator)
 - 2.5 minutes (~21 km² at the equator)
@@ -986,19 +986,35 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
-## LINKS
+## HOW TO CONTRIBUTE
 
-- OSF compendium: https://doi.org/10.17605/OSF.IO/EAPZU
+![GitHub Sponsor badge](images/gituhub-sponsor-badge.png)
+
+Contributions are welcome! Whether it's reporting bugs, suggesting features, or improving documentation, your input is valuable.
+
+You can also support the development of `LogoClim` by becoming a sponsor. Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
+
+## IMPORTANT LINKS
+
+- Project repository: https://doi.org/10.17605/OSF.IO/EAPZU
 - Code repository: https://github.com/sustentarea/logoclim
-- Data repository: https://osf.io/re95z
-`
+- Latest release: https://github.com/danielvartan/logoclim/releases/latest
+- Data repository: https://doi.org/10.17605/OSF.IO/RE95Z
+- Support development: https://github.com/sponsors/danielvartan
+
 ## LICENSE
 
 ![MIT license badge](images/mit-license-badge.png)
 
-LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit).
+The `LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit). This means you can use, modify, and distribute the code freely, as long as you include the original license and copyright notice in any copies or substantial portions of the software.
 
 ## ACKNOWLEDGMENTS
+
+We gratefully acknowledge the contributions of [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their dedication to creating and maintaining the WorldClim datasets. Their work has been instrumental in enabling researchers and practitioners to access high-quality climate data.
+
+We also acknowledge the [World Climate Research Programme (WCRP)](https://www.wcrp-climate.org/), which, through its Working Group on Coupled Modelling, coordinated and promoted the [Coupled Model Intercomparison Project Phase 6 (CMIP6)](https://pcmdi.llnl.gov/CMIP6/).
+
+We thank the climate modeling groups for producing and sharing their model outputs, the [Earth System Grid Federation (ESGF)](https://esgf.llnl.gov/) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
 
 ![Sustentarea logo](images/sustentarea-logo.png)
 

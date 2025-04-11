@@ -35,7 +35,7 @@ geotiff_to_ascii <- function(
   }
 
   cli::cli_progress_bar(
-    name = "Converting Data",
+    name = "Converting data",
     total = length(file),
     clear = FALSE
   )

@@ -36,6 +36,7 @@ library(geodata)
 library(here)
 library(ISOcodes)
 library(lubridate)
+library(magrittr)
 library(rutils) # github.com/danielvartan/rutils
 library(stringr)
 library(terra)
@@ -54,7 +55,7 @@ source(here::here("R", "geotiff_to_ascii.R"))
 options(cli.progress_show_after = 0)
 ```
 
-### Parameters
+### Series
 
 ```{r}
 series <- "historical-climate-data"
@@ -79,16 +80,8 @@ data_dir <- here::here("data")
 ```
 
 ```{r}
-# data_series_dir <- fs::path(data_dir, series)
+data_series_dir <- fs::path(data_dir, "gbr", series)
 ```
-
-::: {.callout-warning}
-This is temporary. Disregard this callout block.
-
-```{r}
-data_series_dir <- fs::path(data_dir, "usa-mainland", series)
-```
-:::
 
 ```{r}
 raw_data_dir <- here::here("data-raw")
@@ -122,7 +115,7 @@ for (i in dirs) {
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
 ```{r}
-crop_shape <- geodata::gadm("usa", level = 0, path = raw_data_dir)
+crop_shape <- geodata::gadm("gbr", level = 0, path = raw_data_dir)
 ```
 
 #### For Getting Only the Mainland of a Country
@@ -335,7 +328,7 @@ asc_files |>
   unique()
 ```
 
-## By Global Climate Model (GCM)
+### By Global Climate Model (GCM)
 
 ```{r}
 #| eval: false
