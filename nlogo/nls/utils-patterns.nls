@@ -1,7 +1,5 @@
-; # Metadata
-; 
 ; This file is part of the model:
-; {logoclim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 
 to-report base-file-pattern
   report (word
@@ -16,11 +14,13 @@ to-report hcd-file-pattern
   let pattern ""
 
   (ifelse
-    (climate-variable = "Elevation") [set pattern "_1970-2000"]
-    (climate-variable = "Bioclimatic variables") [
+    (climate-variable = "Elevation") [
+      set pattern "_1970-2000"
+    ] (climate-variable = "Bioclimatic variables") [
       set pattern (word "_1970-2000_" bioclimatic-variable-lookup bioclimatic-variable)
+    ] [
+      set pattern "_1970-2000-[0-9]{2}"
     ]
-    [set pattern "_1970-2000-[0-9]{2}"]
   )
 
   report (word
@@ -45,14 +45,14 @@ end
 to-report fcd-file-pattern
   let pattern ""
   
-  ifelse
-  (climate-variable = "Bioclimatic variables") [
+  ifelse (climate-variable = "Bioclimatic variables") [
     set pattern (word
       "[0-9]{4}-[0-9]{4}" "_"
       bioclimatic-variable-lookup bioclimatic-variable
     )
+  ] [
+    set pattern "[0-9]{4}-[0-9]{4}-[0-9]{2}"
   ]
-  [set pattern "[0-9]{4}-[0-9]{4}-[0-9]{2}"]
   
   report (word
     "^wc2.1_"
@@ -69,9 +69,8 @@ to-report file-year-pattern
   (ifelse
     (data-series = "Historical monthly weather data") [
       report "[0-9]{4}(?=-[0-9]{2}.asc)"
-    ]
-    (data-series = "Future climate data") [
-      report "[0-9]{4}-[0-9]{4}(?=-[0-9]{2}.asc)"
+    ] (data-series = "Future climate data") [
+      report "[0-9]{4}-[0-9]{4}"
     ] [
       user-message (word "Pattern not found.")
     ]
@@ -79,7 +78,7 @@ to-report file-year-pattern
 end
 
 to-report file-month-pattern
-  report "(?<=(-|_))[0-9]{2}(?=.asc)"
+  report "(?<=-)[0-9]{2}(?=.asc)"
 end
 
 to-report file-gcm-pattern

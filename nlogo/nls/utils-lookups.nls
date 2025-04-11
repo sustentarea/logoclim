@@ -1,9 +1,7 @@
-; # Metadata
-;
 ; This file is part of the model:
-; {logoclim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 ;
-; Extensions used: sr.
+; Extensions used: `sr`.
 
 to-report series-data-path-lookup [#series]
   assert-string #series

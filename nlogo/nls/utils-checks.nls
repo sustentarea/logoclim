@@ -1,11 +1,9 @@
-; # Metadata
-;
 ; This file is part of the model:
-; {LogoClim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 ;
-; Extensions used: pathdir, sr.
+; Extensions used: pathdir` and `sr`.
 
-; # Halt functions
+; # Halt Functions
 
 to halt
   error (word
@@ -15,7 +13,7 @@ to halt
   )
 end
 
-; # Test functions
+; # Test Functions
 
 to-report all-true? [#list]
   assert-list #list
@@ -93,7 +91,7 @@ to-report test-string-in-r [#string]
   report test
 end
 
-; # Assert/check functions
+; # Assert Functions
 
 to assert-atomic [#x]
   if (not is-atomic? #x) [
@@ -151,43 +149,6 @@ to assert-gis [#x]
   if (not is-gis? #x) [
     error "The value is not a GIS dataset."
   ]
-end
-
-to assert-implementation
-  (ifelse
-    (data-resolution = "30 seconds (~1 km2  at the equator)") [
-      user-message (word
-        "The '30 seconds (~1 km2  at the equator)' "
-        "option is not yet implemented."
-      )
-
-      halt
-    ]
-    (data-resolution = "2.5 minutes (~21 km2 at the equator)") [
-      user-message (word
-        "The '2.5 minutes (~21 km2 at the equator)' "
-        "option is not yet implemented."
-      )
-
-      halt
-    ]
-    (data-resolution = "5 minutes (~85 km2 at the equator)") [
-      user-message (word
-        "The '5 minutes (~85 km2 at the equator)' "
-        "option is not yet implemented."
-      )
-
-      halt
-    ]
-;    (climate-variable = "Bioclimatic variables") [
-;      user-message (word
-;        "The 'Bioclimatic variables' "
-;        "option is not yet implemented."
-;      )
-;
-;      halt
-;    ]
-  )
 end
 
 to assert-integer [#x]

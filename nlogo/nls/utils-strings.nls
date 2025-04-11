@@ -1,9 +1,7 @@
-; # Metadata
-
 ; This file is part of the model:
-; {logoclim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 
-; Extensions used: sr.
+; Extensions used: `sr`.
 
 to-report as-character [#x]
   assert-atomic #x
@@ -83,11 +81,15 @@ to-report extract-month [#string]
   
   let out str-extract #string file-month-pattern
 
-  ifelse (out = "NA") [
-    report out
-  ] [
-    report read-from-string out
-  ]
+  (ifelse
+    (out = "NA") [
+      report out
+    ] (climate-variable =   "Bioclimatic variables") [
+      report "NA"
+    ] [
+      report read-from-string out
+    ]
+  )
 end
 
 to-report extract-year [#string]

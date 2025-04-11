@@ -1,17 +1,14 @@
-; ## Metadata
-;
-; Title: {LogoClim}: WorldClim 2.1 on NetLogo.
-; Version: 2024-08-29 0.0.0.9004
+; Title: LogoClim: WorldClim 2.1 on NetLogo.
+; Version: 2025-04-10 0.0.0.9005
+; Authors: Daniel Vartanian & Aline Martins de Carvalho.
+; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
 ; License: MIT.
 ; Repository: https://github.com/sustentarea/logoclim/
 ;
-; Authors: Daniel Vartanian & Aline Martins de Carvalho.
-; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
-;
 ; Created on NetLogo 6.4.
-; Required
-; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string``.
-; Required R packages: `rJava`, `stringr` and `lubridate`.
+; Require R >= 4.4.
+; Required NetLogo extensions: `gis`, `pathdir`, `sr, and `string`.
+; Required R packages: `rJava`, `stringr`, and `lubridate`.
 
 __includes [
   "nls/utils.nls"
@@ -55,7 +52,6 @@ to setup
 
   set start-year normalize-year start-year
 
-  assert-implementation
   assert-data
   assert-year start-year
   assert-variables climate-variable
@@ -97,7 +93,10 @@ to setup-hcd-variables
   sr-run-assign-start-year-month
   sr:run "years <- rep('1970-2000', length(files))"
 
-  if (climate-variable != "Elevation" and climate-variable != "Bioclimatic variables") [
+  if (
+    climate-variable != "Elevation" and
+    climate-variable != "Bioclimatic variables"
+    ) [
     (sr:run
       "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
       "months <- as.numeric(months)"
@@ -131,38 +130,49 @@ to setup-fcd-variables
   sr-run-assign-files series-data-path fcd-file-pattern
   sr-run-assign-start-year-month
 
-  (sr:run
-    "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}-[0-9]{2}(?=.asc)')"
-    "years <- stringr::str_extract(year_months, '^[0-9]{4}-[0-9]{4}')"
+  ifelse (climate-variable != "Bioclimatic variables") [
+    (sr:run
+      "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}-[0-9]{2}(?=.asc)')"
+      "years <- stringr::str_extract(year_months, '^[0-9]{4}-[0-9]{4}')"
 
-    "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
-    "start_years <- as.numeric(start_years)"
+      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
+      "start_years <- as.numeric(start_years)"
 
-    "end_years <- stringr::str_extract(years, '[0-9]{4}$')"
-    "end_years <- as.numeric(end_years)"
+      "end_years <- stringr::str_extract(years, '[0-9]{4}$')"
+      "end_years <- as.numeric(end_years)"
 
-    "months <- stringr::str_extract(year_months, '[0-9]{2}$')"
+      "months <- stringr::str_extract(year_months, '[0-9]{2}$')"
 
-    "start_year_months <- paste0(start_years, '-', months)"
-    "start_year_months <- lubridate::ym(start_year_months)"
+      "start_year_months <- paste0(start_years, '-', months)"
+      "start_year_months <- lubridate::ym(start_year_months)"
 
-    (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
+      (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
 
-    "files <- files[start_year_months >= start_year_month]"
-  )
+      "files <- files[start_year_months >= start_year_month]"
+    )
+  ] [
+    (sr:run
+      "years <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}')"
+
+      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
+      "start_years <- as.numeric(start_years)"
+
+      "months <- NA"
+
+      "files <- files[start_years >= start_year]"
+    )
+  ]
 end
 
 to setup-world
   set base-file file-path series-data-path (first files)
 
   let base-file-dataset load-patch-data base-file
+  let width floor (gis:width-of base-file-dataset / 2)
+  let height floor (gis:height-of base-file-dataset / 2)
 
-  if data-resolution = "10 minutes (~340 km2 at the equator)" [
-    let width floor (gis:width-of base-file-dataset / 2)
-    let height floor (gis:height-of base-file-dataset / 2)
-    resize-world (-1 * width ) width (-1 * height ) height
-    set-patch-size patch-px-size
-  ]
+  resize-world (-1 * width ) width (-1 * height ) height
+  set-patch-size patch-px-size
 end
 
 to setup-map [#dataset]
@@ -180,20 +190,22 @@ to setup-map [#dataset]
 
   ifelse (white-max = true) [
     set max-value max [value] of patches with [value >= -99999]
+  ] [
+    set max-value white-value
   ]
-  [set max-value white-value]
 
   ifelse (black-min = true) [
     set min-value min [value] of patches with [value >= -99999]
+  ] [
+    set min-value black-value
   ]
-  [set min-value black-value]
 
-  ask patches [
-    ifelse
-    ((value <= 0) or (value >= 0)) [
+  ask (patches) [
+    ifelse ((value <= 0) or (value >= 0)) [
       set pcolor scale-color series-color value min-value max-value
+    ] [
+      set pcolor background-color
     ]
-    [set pcolor background-color]
   ]
 end
 
@@ -214,15 +226,25 @@ to go [#continuous? #update-plots? #wait?]
 
   (ifelse
     (
-      (year = last years and month = 12) or
+      (
+        year = last years and
+        month = 12
+      ) or
       (climate-variable = "Elevation") or
       (
         data-series = "Historical climate data" and
         climate-variable = "Bioclimatic variables"
+      ) or
+      (
+        data-series = "Future climate data" and
+        climate-variable = "Bioclimatic variables" and
+        year = last years
       )
-    )
-    [stop]
-    [set index index + 1]
+    ) [
+      stop
+    ] [
+      set index index + 1
+    ]
   )
 
   walk index #wait?
@@ -246,9 +268,24 @@ end
 
 to go-back
   (ifelse
-    (climate-variable = "Elevation") [stop]
-    (year = first years and month = str-to-num-month start-month) [stop]
-    [
+    (
+      climate-variable = "Elevation" or
+      (
+        year = first years and
+        (
+          month = str-to-num-month start-month or
+          month = "NA"
+        )
+      )
+    ) [
+      stop
+    ] (
+      data-series = "Future climate data" and
+      climate-variable = "Bioclimatic variables"
+    ) [
+      set year item (index - 1) years
+      set index index - 2
+    ] [
       set month month - 1
       set index index - 2
     ]
@@ -262,9 +299,8 @@ to show-labels
     ask patch mouse-xcor mouse-ycor [
       let radius-mean round mean [pcolor] of patches in-radius 3
       let color-shade radius-mean - (precision radius-mean -1)
-      ;let color-end read-from-string last (word radius-mean)
 
-      ifelse color-shade < 0 [
+      ifelse (color-shade < 0) [
         set plabel-color black
       ] [
         set plabel-color white
@@ -387,7 +423,7 @@ CHOOSER
 climate-variable
 climate-variable
 "Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-3
+2
 
 CHOOSER
 10
@@ -405,7 +441,7 @@ INPUTBOX
 222
 370
 start-year
-1970.0
+1960.0
 1
 0
 Number
@@ -631,8 +667,8 @@ CHOOSER
 305
 bioclimatic-variable
 bioclimatic-variable
-"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8- Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
-1
+"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8 - Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
+0
 
 MONITOR
 1000
@@ -777,7 +813,7 @@ INPUTBOX
 220
 580
 data-path
-../data/bra/
+../data/
 1
 0
 String

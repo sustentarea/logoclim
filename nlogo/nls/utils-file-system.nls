@@ -1,11 +1,9 @@
-; # Metadata
-;
 ; This file is part of the model:
-; {LogoClim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 ;
-; Extensions used: sr.
+; Extensions used: `sr`.
 
-; # `sr:run` functions
+; # `sr:run` Functions
 
 to sr-run-assign-files [#path #pattern]
   assert-string #path
@@ -28,7 +26,7 @@ to sr-run-assign-start-year-month
   )
 end
 
-; # File system functions
+; # File System Functions
 
 to-report file-path [#string-1 #string-2]
   assert-string #string-1
@@ -68,10 +66,6 @@ to-report fix-string-for-r [#path]
     if (last str-split = "") [
       set str-split but-last str-split
     ]
-
-;    if (not str-detect last str-split "^[A-Za-z0-9]") [
-;      set str-split lput double-separator str-split
-;    ]
 
     report collapse str-split double-separator
   ] [

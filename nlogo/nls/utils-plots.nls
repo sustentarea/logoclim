@@ -1,18 +1,22 @@
-; # Metadata
-
 ; This file is part of the model:
-; {logoclim}: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 on NetLogo.
 
 to-report month-monitor [#month]
   assert-string-or-integer #month
   
-  ifelse
-    (is-number? #month) [report num-to-str-month #month]
-    [report #month]
+  ifelse (is-number? #month) [
+    report num-to-str-month #month
+  ] [
+    report #month
+  ]
 end
 
 to-report bioclimatic-variable-monitor
-  ifelse
-    (climate-variable-lookup climate-variable = "bioc") [report bioclimatic-variable]
-    [report "NA"]
+  ifelse (
+    climate-variable-lookup climate-variable = "bioc"
+  ) [
+    report bioclimatic-variable
+  ] [
+    report "NA"
+  ]
 end
