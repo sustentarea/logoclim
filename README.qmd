@@ -3,9 +3,12 @@
 <!-- quarto render -->
 
 <!-- badges: start -->
+<!-- [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu) -->
+<!-- [![CII Best Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/) -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https://www.repostatus.org/#active)
 [![CoMSES Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![OSF DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![License: MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
@@ -14,7 +17,7 @@
 
 `LogoClim` is a NetLogo model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960–2021) and future climate projections (2021–2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
 The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
@@ -116,7 +119,7 @@ A BibTeX entry for LaTeX users is:
 ```latex
 @misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
-  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins Carvalho}},
+  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {NetLogo model}

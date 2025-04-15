@@ -3,6 +3,10 @@
 <!-- quarto render -->
 
 <!-- badges: start -->
+<!-- [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu) -->
+
+<!-- [![CII Best Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/) -->
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https://www.repostatus.org/#active)
@@ -10,6 +14,8 @@ developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https
 Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![OSF
 DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![FAIR checklist
+badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
 [![Contributor
@@ -26,7 +32,7 @@ reproducibility of these simulations.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
-(1960–2021) and future climate projections (2021–2100) derived from
+(1960-2021) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
 O’Neill et
@@ -219,7 +225,7 @@ A BibTeX entry for LaTeX users is:
 ``` latex
 @misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
-  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins Carvalho}},
+  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {NetLogo model}

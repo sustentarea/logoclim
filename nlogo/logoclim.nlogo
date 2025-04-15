@@ -983,7 +983,7 @@ A BibTeX entry for LaTeX users is:
 ```latex
 @misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
-  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins Carvalho}},
+  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {NetLogo model}
