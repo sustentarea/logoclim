@@ -14,6 +14,7 @@ developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https
 Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![OSF
 DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 [![FAIR checklist
 badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![License:
