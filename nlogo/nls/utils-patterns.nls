@@ -59,7 +59,7 @@ to-report fcd-file-pattern
     data-resolution-lookup data-resolution "_"
     climate-variable-lookup climate-variable "_"
     global-climate-model "_"
-    shared-socioeconomic-pathways "_"
+    shared-socioeconomic-pathway "_"
     pattern
     ".asc$"
   )

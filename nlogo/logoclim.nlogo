@@ -329,9 +329,9 @@ to-report load-patch-data [#file]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-450
+455
 10
-1000
+1005
 489
 -1
 -1
@@ -355,11 +355,137 @@ GRAPHICS-WINDOW
 Months
 30.0
 
+CHOOSER
+10
+10
+220
+55
+data-series
+data-series
+"Historical climate data" "Historical monthly weather data" "Future climate data"
+1
+
+CHOOSER
+10
+60
+220
+105
+data-resolution
+data-resolution
+"30 seconds (~1 km2  at the equator)" "2.5 minutes (~21 km2 at the equator)" "5 minutes (~85 km2 at the equator)" "10 minutes (~340 km2 at the equator)"
+3
+
+CHOOSER
+10
+110
+220
+155
+climate-variable
+climate-variable
+"Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
+1
+
+CHOOSER
+10
+160
+220
+205
+global-climate-model
+global-climate-model
+"ACCESS-CM2" "BCC-CSM2-MR" "CMCC-ESM2" "EC-Earth3-Veg" "FIO-ESM-2-0" "GFDL-ESM4" "GISS-E2-1-G" "HadGEM3-GC31-LL" "INM-CM5-0" "IPSL-CM6A-LR" "MIROC6" "MPI-ESM1-2-HR" "MRI-ESM2-0" "UKESM1-0-LL"
+0
+
+CHOOSER
+10
+210
+220
+255
+shared-socioeconomic-pathway
+shared-socioeconomic-pathway
+"ssp126" "ssp245" "ssp370" "ssp585"
+0
+
+CHOOSER
+10
+260
+220
+305
+bioclimatic-variable
+bioclimatic-variable
+"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8 - Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
+0
+
+CHOOSER
+10
+310
+220
+355
+start-month
+start-month
+"January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December"
+0
+
+INPUTBOX
+10
+360
+220
+420
+start-year
+1960.0
+1
+0
+Number
+
+BUTTON
+10
+425
+220
+460
+Select data directory
+set data-path user-directory
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+INPUTBOX
+10
+465
+220
+530
+data-path
+../data/bra/10m/
+1
+0
+String
+
+BUTTON
+10
+535
+220
+570
+Show values
+show-values
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
 BUTTON
 230
 10
-293
-43
+330
+45
 Setup
 setup
 NIL
@@ -373,10 +499,10 @@ NIL
 1
 
 BUTTON
-300
+340
 10
-363
-43
+440
+45
 Go
 go true true true
 T
@@ -385,6 +511,40 @@ T
 OBSERVER
 NIL
 G
+NIL
+NIL
+1
+
+BUTTON
+230
+50
+330
+85
+Go back
+go-back
+NIL
+1
+T
+OBSERVER
+NIL
+A
+NIL
+NIL
+1
+
+BUTTON
+340
+50
+440
+85
+Go forward
+go false false false
+NIL
+1
+T
+OBSERVER
+NIL
+D
 NIL
 NIL
 1
@@ -404,342 +564,6 @@ transition-seconds
 NIL
 HORIZONTAL
 
-INPUTBOX
-230
-232
-440
-292
-historical-monthly-weather-data-color
-25.0
-1
-0
-Color
-
-CHOOSER
-10
-110
-220
-155
-climate-variable
-climate-variable
-"Average minimum temperature (°C)" "Average maximum temperature (°C)" "Average temperature (°C)" "Total precipitation (mm)" "Solar radiation (kJ m^-2 day^-1)" "Wind speed (m s^-1)" "Water vapor pressure (kPa)" "Bioclimatic variables" "Elevation"
-3
-
-CHOOSER
-10
-210
-220
-255
-shared-socioeconomic-pathways
-shared-socioeconomic-pathways
-"ssp126" "ssp245" "ssp370" "ssp585"
-0
-
-INPUTBOX
-10
-310
-222
-370
-start-year
-1960.0
-1
-0
-Number
-
-PLOT
-1000
-110
-1210
-270
-Mean
-Months
-Value
-0.0
-0.0
-0.0
-0.0
-true
-false
-"set-plot-y-range min-plot-y max-plot-y" ""
-PENS
-"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -99999]"
-
-MONITOR
-1000
-490
-1207
-535
-Minimum
-min [value] of patches with [value >= -99999]
-10
-1
-11
-
-MONITOR
-1215
-490
-1425
-535
-Maximum
-max [value] of patches with [value >= -99999]
-10
-1
-11
-
-MONITOR
-1215
-10
-1315
-55
-Year
-year
-0
-1
-11
-
-MONITOR
-1320
-10
-1425
-55
-Month
-month-monitor month
-0
-1
-11
-
-MONITOR
-1000
-275
-1210
-320
-Mean
-mean [value] of patches with [value >= -99999]
-10
-1
-11
-
-MONITOR
-1215
-275
-1425
-320
-Standard deviation
-standard-deviation [value] of patches with [value >= -99999]
-10
-1
-11
-
-PLOT
-1000
-325
-1210
-485
-Minimum
-Months
-Value
-0.0
-0.0
-0.0
-0.0
-true
-false
-"set-plot-y-range min-plot-y max-plot-y" ""
-PENS
-"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -99999]"
-
-PLOT
-1215
-325
-1425
-485
-Maximum
-Months
-Value
-0.0
-0.0
-0.0
-0.0
-true
-false
-"set-plot-y-range min-plot-y max-plot-y" ""
-PENS
-"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -99999]"
-
-PLOT
-1215
-110
-1425
-270
-Standard deviation
-Months
-Value
-0.0
-0.0
-0.0
-0.0
-true
-false
-"set-plot-y-range min-plot-y max-plot-y" ""
-PENS
-"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -99999]"
-
-MONITOR
-1000
-10
-1210
-55
-Climate variable
-climate-variable
-0
-1
-11
-
-INPUTBOX
-230
-297
-440
-357
-future-climate-data-color
-15.0
-1
-0
-Color
-
-CHOOSER
-10
-160
-220
-205
-global-climate-model
-global-climate-model
-"ACCESS-CM2" "BCC-CSM2-MR" "CMCC-ESM2" "EC-Earth3-Veg" "FIO-ESM-2-0" "GFDL-ESM4" "GISS-E2-1-G" "HadGEM3-GC31-LL" "INM-CM5-0" "IPSL-CM6A-LR" "MIROC6" "MPI-ESM1-2-HR" "MRI-ESM2-0" "UKESM1-0-LL"
-0
-
-BUTTON
-230
-50
-302
-83
-Go back
-go-back
-NIL
-1
-T
-OBSERVER
-NIL
-A
-NIL
-NIL
-1
-
-BUTTON
-305
-50
-392
-83
-Go forward
-go false false false
-NIL
-1
-T
-OBSERVER
-NIL
-D
-NIL
-NIL
-1
-
-CHOOSER
-10
-60
-220
-105
-data-resolution
-data-resolution
-"30 seconds (~1 km2  at the equator)" "2.5 minutes (~21 km2 at the equator)" "5 minutes (~85 km2 at the equator)" "10 minutes (~340 km2 at the equator)"
-3
-
-CHOOSER
-10
-260
-220
-305
-bioclimatic-variable
-bioclimatic-variable
-"BIO1 - Annual mean temperature" "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))" "BIO3 - Isothermality (BIO2/BIO7) (×100)" "BIO4 - Temperature seasonality (standard deviation ×100)" "BIO5 - Max temperature of warmest month" "BIO6 - Min temperature of coldest month" "BIO7 - Temperature annual range (BIO5-BIO6)" "BIO8 - Mean temperature of wettest quarter" "BIO9 - Mean temperature of driest quarter" "BIO10 - Mean temperature of warmest quarter" "BIO11 - Mean temperature of coldest quarter" "BIO12 - Annual precipitation" "BIO13 - Precipitation of wettest month" "BIO14 - Precipitation of driest month" "BIO15 - Precipitation seasonality (coefficient of variation)" "BIO16 - Precipitation of wettest quarter" "BIO17 - Precipitation of driest quarter" "BIO18 - Precipitation of warmest quarter" "BIO19 - Precipitation of coldest quarter"
-0
-
-MONITOR
-1000
-60
-1425
-105
-Bioclimatic variable
-bioclimatic-variable-monitor
-0
-1
-11
-
-CHOOSER
-10
-10
-220
-55
-data-series
-data-series
-"Historical climate data" "Historical monthly weather data" "Future climate data"
-1
-
-CHOOSER
-10
-375
-220
-420
-start-month
-start-month
-"January" "February" "March" "April" "May" "June" "July" "August" "September" "October" "November" "December"
-0
-
-INPUTBOX
-230
-167
-440
-227
-historical-climate-data-color
-105.0
-1
-0
-Color
-
-INPUTBOX
-230
-362
-440
-422
-background-color
-9.0
-1
-0
-Color
-
-BUTTON
-11
-463
-221
-496
-Select data directory
-set data-path user-directory
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
 SLIDER
 230
 128
@@ -755,19 +579,52 @@ patch-px-size
 NIL
 HORIZONTAL
 
-SWITCH
+INPUTBOX
+230
+166
+440
+226
+historical-climate-data-color
+105.0
+1
+0
+Color
+
+INPUTBOX
+230
 231
-463
-441
-496
-black-min
-black-min
+440
+291
+historical-monthly-weather-data-color
+25.0
 1
+0
+Color
+
+INPUTBOX
+230
+296
+440
+356
+future-climate-data-color
+15.0
 1
--1000
+0
+Color
+
+INPUTBOX
+230
+361
+440
+421
+background-color
+9.0
+1
+0
+Color
 
 SLIDER
-231
+230
 426
 440
 459
@@ -781,11 +638,22 @@ black-value
 NIL
 HORIZONTAL
 
+SWITCH
+230
+466
+440
+499
+black-min
+black-min
+1
+1
+-1000
+
 SLIDER
-231
-500
-441
-533
+230
+506
+440
+539
 white-value
 white-value
 -500
@@ -797,43 +665,175 @@ NIL
 HORIZONTAL
 
 SWITCH
-231
-537
+230
+546
 440
-570
+579
 white-max
 white-max
 0
 1
 -1000
 
-INPUTBOX
+MONITOR
+1020
 10
-500
-220
-580
-data-path
-../data/bra/10m/
-1
+1230
+55
+Climate variable
+climate-variable
 0
-String
-
-BUTTON
+1
 11
-426
-221
-460
-Show values
-show-values
-T
+
+MONITOR
+1240
+10
+1340
+55
+Year
+year
+0
 1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
+11
+
+MONITOR
+1350
+10
+1450
+55
+Month
+month-monitor month
+0
 1
+11
+
+MONITOR
+1020
+60
+1450
+105
+Bioclimatic variable
+bioclimatic-variable-monitor
+0
+1
+11
+
+PLOT
+1020
+110
+1230
+290
+Mean
+Months
+Value
+0.0
+0.0
+0.0
+0.0
+true
+false
+"set-plot-y-range min-plot-y max-plot-y" ""
+PENS
+"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -99999]"
+
+MONITOR
+1020
+295
+1230
+340
+Mean
+mean [value] of patches with [value >= -99999]
+10
+1
+11
+
+PLOT
+1020
+345
+1230
+525
+Minimum
+Months
+Value
+0.0
+0.0
+0.0
+0.0
+true
+false
+"set-plot-y-range min-plot-y max-plot-y" ""
+PENS
+"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -99999]"
+
+MONITOR
+1020
+530
+1230
+575
+Minimum
+min [value] of patches with [value >= -99999]
+10
+1
+11
+
+PLOT
+1240
+110
+1450
+290
+Standard deviation
+Months
+Value
+0.0
+0.0
+0.0
+0.0
+true
+false
+"set-plot-y-range min-plot-y max-plot-y" ""
+PENS
+"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -99999]"
+
+MONITOR
+1240
+295
+1450
+340
+Standard deviation
+standard-deviation [value] of patches with [value >= -99999]
+10
+1
+11
+
+PLOT
+1240
+345
+1450
+525
+Maximum
+Months
+Value
+0.0
+0.0
+0.0
+0.0
+true
+false
+"set-plot-y-range min-plot-y max-plot-y" ""
+PENS
+"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -99999]"
+
+MONITOR
+1240
+530
+1450
+575
+Maximum
+max [value] of patches with [value >= -99999]
+10
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -919,22 +919,22 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 
 - **`data-series`**: Chooser for selecting a data series (e.g., `Historical monthly weather data`).`
 - **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (e.g., `10 minutes (~340 km2 at the equator)`).
-- **`climate-variable`**: Chooser for selecting the climate variable (e.g., `Average temperature (°C)`).  
-- **`global-climate-model`**: Chooser for selecting a global climate model (e.g., `ACCESS-CM2`).  
-- **`shared`-socioeconomic-pathways`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario (e.g., `ssp126`).  
+- **`climate-variable`**: Chooser for selecting the climate variable (e.g., `Average temperature (°C)`).
+- **`global-climate-model`**: Chooser for selecting a global climate model (e.g., `ACCESS-CM2`).
+- **`shared`-socioeconomic-pathways`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario (e.g., `ssp126`).
 - **`bioclimatic-variable`**: Chooser for selecting a bioclimatic variable. Only available when `climate-variable` is set to `bioclimatic-variables` (e.g., `Annual mean temperature`)`.
-- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (e.g., `1960`).  
-- **`start-month`**: Chooser for selecting the simulation's starting month.  
-- **`data-path`**: Input box for setting the path to the data folder. Usually, this doesn't need to be changed. Use the `Select data directory` button to navigate via a dialog window.  
-- **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step).  
-- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections.  
-- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series.  
+- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (e.g., `1960`).
+- **`start-month`**: Chooser for selecting the simulation's starting month.
+- **`data-path`**: Input box for setting the path to the data folder. Usually, this doesn't need to be changed. Use the `Select data directory` button to navigate via a dialog window.
+- **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step).
+- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections.
+- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series.
 - **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series.
-- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series.  
-- **`black-value`**: Slider for setting the lower threshold for the black color on the map.  
-- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset.  
-- **`white-value`**: Slider for setting the upper threshold for the white color on the map.  
-- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset.  
+- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series.
+- **`black-value`**: Slider for setting the lower threshold for the black color on the map.
+- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset.
+- **`white-value`**: Slider for setting the upper threshold for the white color on the map.
+- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset.
 
 ### BUTTONS
 
