@@ -16,6 +16,17 @@
             "givenName": "Daniel"
         },
         {
+            "id": "https://orcid.org/0000-0001-5947-2617",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Queen's University Belfast"
+            },
+            "email": "l.garcia@qub.ac.uk",
+            "familyName": "Leandro Martin Totaro",
+            "givenName": "Garcia"
+        },
+        {
             "id": "https://orcid.org/0000-0002-4900-5609",
             "type": "Person",
             "affiliation": {
@@ -35,7 +46,7 @@
     },
     "identifier": "10.17605/OSF.IO/EAPZU",
     "keywords": [
-        "agent-based modeling",
+        "Agent-based modeling",
         "Climate change",
         "Climate data visualization",
         "Climate model integration",
@@ -55,7 +66,9 @@
         "R (programming language)",
         "Raster data",
         "Reproducible research",
+        "Shared socioeconomic pathways",
         "Simulations",
+        "Spatial analysis",
         "Spatial resolution",
         "SSPs",
         "Time series",
@@ -72,8 +85,8 @@
     "softwareRequirements": [
         "NetLogo (>= 6.4)",
         "R (>= 4.4)",
-        "NetLogo extensions:gis, pathdir, sr, and string",
-        "R packages: lubridate, rJava, stringr"
+        "NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`",
+        "R packages: `lubridate`, `rJava`, and `stringr`"
     ],
     "issueTracker": "https://github.com/sustentarea/logoclim/issues"
 }

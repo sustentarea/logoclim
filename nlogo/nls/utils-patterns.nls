@@ -1,14 +1,4 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-
-to-report base-file-pattern
-  report (word
-    "^base-file" "_"
-    ".*" "_"
-    data-resolution-lookup data-resolution
-    ".asc$"
-  )
-end
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 
 to-report hcd-file-pattern
   let pattern ""
@@ -38,13 +28,13 @@ to-report hmwd-file-pattern
     data-resolution-lookup data-resolution "_"
     climate-variable-lookup climate-variable "_"
     "[0-9]{4}-[0-9]{2}"
-    ".asc$" 
+    ".asc$"
   )
 end
 
 to-report fcd-file-pattern
   let pattern ""
-  
+
   ifelse (climate-variable = "Bioclimatic variables") [
     set pattern (word
       "[0-9]{4}-[0-9]{4}" "_"
@@ -53,13 +43,13 @@ to-report fcd-file-pattern
   ] [
     set pattern "[0-9]{4}-[0-9]{4}-[0-9]{2}"
   ]
-  
+
   report (word
     "^wc2.1_"
     data-resolution-lookup data-resolution "_"
     climate-variable-lookup climate-variable "_"
     global-climate-model "_"
-    shared-socioeconomic-pathway "_"
+    shared-socioeconomic-pathway-lookup shared-socioeconomic-pathway "_"
     pattern
     ".asc$"
   )

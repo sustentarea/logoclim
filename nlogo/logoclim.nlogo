@@ -1,12 +1,12 @@
 ; LogoClim: WorldClim 2.1 on NetLogo.
 ;
-; Version: 2025-04-10 0.0.0.9005
-; Authors: Daniel Vartanian & Aline Martins de Carvalho.
+; Version: 2025-04-15 0.0.0.9006
+; Authors: Daniel Vartanian, Leandro M. T. Garcia, & Aline M. de Carvalho.
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
 ; License: MIT.
 ; Repository: https://github.com/sustentarea/logoclim/
 ;
-; Require NetLogo >= 6.4 and R >= 4.4.
+; Require: NetLogo >= 6.4 and R >= 4.4.
 ; Required R packages: `rJava`, `stringr`, and `lubridate`.
 ; Required NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`.
 
@@ -402,7 +402,7 @@ CHOOSER
 255
 shared-socioeconomic-pathway
 shared-socioeconomic-pathway
-"ssp126" "ssp245" "ssp370" "ssp585"
+"SSP-126" "SSP-245" "SSP-370" "SSP-585"
 0
 
 CHOOSER
@@ -459,7 +459,7 @@ INPUTBOX
 220
 530
 data-path
-../data/bra/10m/
+../data/
 1
 0
 String
@@ -838,15 +838,15 @@ max [value] of patches with [value >= -99999]
 @#$#@#$#@
 ## WHAT IS IT?
 
-`LogoClim` is a NetLogo submodel designed for simulating and visualizing climate conditions, providing a powerful tool for exploring historical and projected climate data. Its primary objective is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.
+`LogoClim` is a NetLogo model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.
 
-The model uses raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960–2021) and future climate projections (2021–2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960–2021) and future climate projections (2021–2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
-The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which offers high-resolution interpolated data from weather stations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
+The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
 ## HOW IT WORKS
 
-`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., `average temperature (°C)`).
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for selected climate variables (e.g., average temperature in °C).
 
 During the simulation, patches update their colors based on the data values: darker shades indicate lower values, while lighter shades represent higher values. The results are visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time, providing a comprehensive view of climate trends.
 
@@ -860,19 +860,19 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### HISTORICAL CLIMATE DATA
 
-This dataset, covering the period 1970–2000, provides monthly climate data for minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, and vapor pressure.
+This series includes 12 monthly data points representing average climate conditions for the period 1970–2000. It provides information on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, and vapor pressure.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### HISTORICAL MONTHLY WEATHER DATA
 
-Downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by the Climatic Research Unit at the University of East Anglia. It includes average minimum temperature, average maximum temperature, and total precipitation.
+This series provides downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It includes monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### FUTURE CLIMATE DATA
 
-This series includes downscaled climate projections from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models. Projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for minimum and maximum temperature, and precipitation.
+This series includes downscaled climate projections from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models. Projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for minimum temperature, maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -882,7 +882,7 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### INSTALLATION
 
-This model was developed using NetLogo 6.4, so it's recommended to use this version or later. You can download it [here](https://ccl.northwestern.edu/netlogo/download.shtml).
+This model was developed using NetLogo 6.4; so it's recommended to use this version or later. You can download it [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
 The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
 
@@ -892,16 +892,16 @@ You'll also need [R](https://www.r-project.org/) (version 4.4 or later) with the
 install.packages(c("rJava", "stringr", "lubridate"))
 ```
 
-#### DOWLOADING THE DATA
+#### DOWNLOADING THE DATA
 
 `LogoClim` uses raster data to represent climate variables. While you can download the data directly from [WorldClim 2.1](https://worldclim.org/), we recommend using the dataset provided in the project's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository for compatibility.
 
 The datasets are organized using [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter country codes and are available in multiple spatial resolutions:
 
-- 30 seconds (~1 km² at the equator)
-- 2.5 minutes (~21 km² at the equator)
-- 5 minutes (~85 km² at the equator)
 - 10 minutes (~340 km² at the equator)
+- 5 minutes (~85 km² at the equator)
+- 2.5 minutes (~21 km² at the equator)
+- 30 seconds (~1 km² at the equator)
 
 After downloading, extract the files into the `data` folder within the model's directory.
 
@@ -913,28 +913,32 @@ These datasets can be reproduced by running the [Quarto](https://quarto.org/) no
 
 Once everything is set, open the NetLogo file and start exploring!
 
-To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension.
+#### INTEGRATING WITH OTHER MODELS
+
+`LogoClim` can be integrated with other models using the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension. This extension enables parallel execution and data exchange between models, making it particularly valuable for agent-based simulations that incorporate climate data to study ecological or environmental processes.
 
 ### INTERFACE CONTROLS
 
-- **`data-series`**: Chooser for selecting a data series (e.g., `Historical monthly weather data`).`
-- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (e.g., `10 minutes (~340 km2 at the equator)`).
-- **`climate-variable`**: Chooser for selecting the climate variable (e.g., `Average temperature (°C)`).
-- **`global-climate-model`**: Chooser for selecting a global climate model (e.g., `ACCESS-CM2`).
-- **`shared`-socioeconomic-pathways`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario (e.g., `ssp126`).
-- **`bioclimatic-variable`**: Chooser for selecting a bioclimatic variable. Only available when `climate-variable` is set to `bioclimatic-variables` (e.g., `Annual mean temperature`)`.
-- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (e.g., `1960`).
-- **`start-month`**: Chooser for selecting the simulation's starting month.
-- **`data-path`**: Input box for setting the path to the data folder. Usually, this doesn't need to be changed. Use the `Select data directory` button to navigate via a dialog window.
-- **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step).
-- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections.
-- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series.
-- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series.
-- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series.
-- **`black-value`**: Slider for setting the lower threshold for the black color on the map.
-- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset.
-- **`white-value`**: Slider for setting the upper threshold for the white color on the map.
-- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset.
+#### CHOOSERS, INPUT BOXES, AND SLIDERS
+
+- **`data-series`**: Chooser for selecting a data series (default: `Historical monthly weather data`).
+- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 minutes (~340 km2 at the equator)`).
+- **`climate-variable`**: Chooser for selecting the climate variable (default: `Average maximum temperature (°C)`).
+- **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future climate data`* is selected (default: `ACCESS-CM2`).
+- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario. Only useful when *`Future climate data`* is selected (default: `SSP-126`).
+- **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual mean temperature`)`.
+- **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
+- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1960`).
+- **`data-path`**: Input box for setting the path to the data folder. Usually, this doesn't need to be changed. Use the *`Select data directory`* button to navigate via a dialog window (default: `../data/`).
+- **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step/month) (default: `0.0`).
+- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections (default: `2.00`).
+- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series (default: `105 (blue)`).
+- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series (default: `25 orange)`).
+- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series (default: `15 red)`).
+- **`black-value`**: Slider for setting the lower threshold for the black color on the map (default: `0`).
+- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, *`black-value`* will be ignored (default: `Off`).
+- **`white-value`**: Slider for setting the upper threshold for the white color on the map (default: `50`).
+- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, *`white-value`* will be ignored (default: `On`).
 
 ### BUTTONS
 
@@ -942,22 +946,22 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 - **`Go`**: Starts or resumes the simulation.
 - **`Go back`**: Steps the simulation backward in time.
 - **`Go forward`**: Steps the simulation forward in time.
-- **`Show lables`**: Displays patch labels when hovering the mouse over them.
 - **`Select data directory`**: Opens a dialog window, allowing the user to indicate the data directory.
+- **`Show labels`**: Displays patch labels when hovering the mouse over them.
 
 ### MONITORS AND PLOTS
 
 - **`Climate variable`**: Displays the chosen climate variable.
-- **`Bioclimatic variable`**: Displays the chosen bioclimatic variable.Works only when *`climate-variable`* is set to *`bioclimatic-variables`*.
+- **`Bioclimatic variable`**: Displays the chosen bioclimatic variable. Works only when *`climate-variable`* is set to *`bioclimatic-variables`*.
 - **`Year`**, **`Month`**: Displays the current year and month being simulated.
-- **`Min`**, **`Max`**, **`Mean`**, **`SD`** (Standard Deviation)**: Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
-- **`Plots`**: Graphs for Mean, Minimum, Maximum, and Standard Deviation against time.
+- **`Min`**, **`Max`**, **`Mean`**, **`SD`** (Standard Deviation): Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
+- **`Plots`**: Graphs for mean, minimum, maximum, and standard deviation against time.
 
 ## THINGS TO NOTICE
 
 - Observe the changes in the map as the simulation progresses, particularly how the colors (values) vary over time and space.
 - Pay attention to the plots and monitors to see trends and variation in the climate variable across different time periods.
-- Notice the differences when switching between historical data and future projections, especially for various SSP scenarios.
+- Notice the differences when switching between historical data and future projections, especially for different SSP scenarios.
 
 ## THINGS TO TRY
 
@@ -968,21 +972,21 @@ To integrate `LogoClim` with other models, use the LevelSpace ([`ls`](https://cc
 
 ## HOW TO CITE
 
-If you use this model in your research, please consider citing it. We put significant effort into building and maintaining it.
+If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., & Carvalho, A. M. (2024). *LogoClim: WorldClim in NetLogo* [Software, NetLogo model]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
 @misc{vartanian2025,
-  title = {{LogoClim: WorldClim in NetLogo}},
-  author = {{Daniel Vartanian} and and {Aline Martins Carvalho}},
+  title = {LogoClim: WorldClim in NetLogo},
+  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
-  note = {NetLogo model},
+  note = {NetLogo model}
 }
 ```
 
@@ -1012,13 +1016,13 @@ The `LogoClim` code is licensed under the [MIT License](https://opensource.org/l
 
 We gratefully acknowledge the contributions of [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their dedication to creating and maintaining the WorldClim datasets. Their work has been instrumental in enabling researchers and practitioners to access high-quality climate data.
 
-We also acknowledge the [World Climate Research Programme (WCRP)](https://www.wcrp-climate.org/), which, through its Working Group on Coupled Modelling, coordinated and promoted the [Coupled Model Intercomparison Project Phase 6 (CMIP6)](https://pcmdi.llnl.gov/CMIP6/).
+We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), which, through its Working Group on Coupled Modelling, coordinated and promoted the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)).
 
-We thank the climate modeling groups for producing and sharing their model outputs, the [Earth System Grid Federation (ESGF)](https://esgf.llnl.gov/) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
+We thank the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
 
 ![Sustentarea logo](images/sustentarea-logo.png)
 
-`LogoClim` was developed with support from the Research and Extension Center [Sustentarea](https://github.com/sustentarea/) at the University of São Paulo ([USP](https://www.usp.br/)), and was initially created for a Sustentarea research project.
+`LogoClim` was developed with support from the Research and Extension Center [Sustentarea](https://github.com/sustentarea/) at the University of São Paulo ([USP](https://www.usp.br/)). It was originally created as part of a Sustentarea research project.
 
 ![CNPq logo](images/cnpq-logo.png)
 
@@ -1031,6 +1035,8 @@ Eyring, V., Bony, S., Meehl, G. A., Senior, C. A., Stevens, B., Stouffer, R. J.,
 Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. *International Journal of Climatology*, *37*(12), 4302–4315. [https://doi.org/10.1002/joc.5086](https://doi.org/10.1002/joc.5086)
 
 Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. [https://doi.org/10.1038/s41597-020-0453-3](https://doi.org/10.1038/s41597-020-0453-3)
+
+O’Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169–180. [https://doi.org/10.1016/j.gloenvcha.2015.01.004](https://doi.org/10.1016/j.gloenvcha.2015.01.004)
 @#$#@#$#@
 default
 true

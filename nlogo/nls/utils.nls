@@ -1,6 +1,4 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 ; Extensions used: `pathdir`, `sr`, and `string`.
 
 to-report normalize-year [#year]
@@ -20,7 +18,7 @@ to-report normalize-year [#year]
      ) [
       set out 1970
     ] (
-      data-series = "Historical monthly weather data" and 
+      data-series = "Historical monthly weather data" and
       (out < 1960 or out > 2021)
     ) [
       set out 1960

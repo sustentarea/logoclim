@@ -3,7 +3,7 @@ execute:
   eval: false
 ---
 
-# WordClim 2.1: Data Transformation for NetLogo
+# WorldClim 2.1: Data Transformation for NetLogo
 
 ## Overview
 

@@ -1,9 +1,8 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 
 to-report month-monitor [#month]
   assert-string-or-integer #month
-  
+
   ifelse (is-number? #month) [
     report num-to-str-month #month
   ] [

@@ -1,6 +1,4 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-;
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 ; Extensions used: `sr`.
 
 to-report series-data-path-lookup [#series]
@@ -46,6 +44,18 @@ to-report climate-variable-lookup [#string]
     (#string = "Water vapor pressure (kPa)") [report "vapr"]
     (#string = "Bioclimatic variables") [report "bioc"]
     (#string = "Elevation") [report "elev"]
+    [user-message (word "#string not found.")]
+  )
+end
+
+to-report shared-socioeconomic-pathway-lookup [#string]
+  assert-string #string
+
+  (ifelse
+    (#string = "SSP-126") [report "ssp126"]
+    (#string = "SSP-245") [report "ssp245"]
+    (#string = "SSP-370") [report "ssp370"]
+    (#string = "SSP-585") [report "ssp585"]
     [user-message (word "#string not found.")]
   )
 end

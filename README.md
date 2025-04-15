@@ -3,39 +3,42 @@
 <!-- quarto render -->
 
 <!-- badges: start -->
-<!-- [![CoMSES Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-%233884B8.svg)](https://www.comses.net/) -->
-
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https://www.repostatus.org/#active)
+[![CoMSES
+Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![OSF
-DOI](https://img.shields.io/badge/DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green)](https://choosealicense.com/licenses/mit/)
+MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
 [![Contributor
 Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 ## Overview
 
-`LogoClim` is a NetLogo model designed for simulating and visualizing
-climate conditions, providing a powerful tool for exploring historical
-and projected climate data. Its primary objective is to facilitate the
+`LogoClim` is a NetLogo model designed to simulate and visualize climate
+conditions, serving as a powerful tool for exploring both historical and
+projected climate data. Its primary goal is to facilitate the
 integration of climate data into agent-based models and enhance the
 reproducibility of these simulations.
 
-The model uses raster data to represent climate variables such as
+The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
 (1960–2021) and future climate projections (2021–2100) derived from
 global climate models under various Shared Socioeconomic Pathways
-([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways)).
+([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
+O’Neill et
+al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
 The climate data used in `LogoClim` is sourced from [WorldClim
-2.1](https://worldclim.org/), which offers high-resolution interpolated
-data from weather stations worldwide ([Fick & Hijmans,
-2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1
-km², the data is available at multiple spatial scales, ensuring a
-detailed and comprehensive representation of climate variables.
+2.1](https://worldclim.org/), which provides high-resolution
+interpolated climate data based on weather station records from around
+the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
+With resolutions as fine as ~1 km², the data is available at multiple
+spatial scales, ensuring a detailed and comprehensive representation of
+climate variables.
 
 ![LogoClim Interface](images/logoclim-interface.png)
 
@@ -52,25 +55,24 @@ selected variable over time.
 
 The model uses a color scale ranging from black (representing the lowest
 value) to white (representing the highest value). Users can adjust the
-thresholds for these colors using the `black-value` and `white-value`
-sliders. Alternatively, users can set the black or white color to
-automatically represent the minimum or maximum value of the current data
-by toggling the `black-min` and `white-max` switches. By default, the
-black threshold is set to 0, and the white threshold corresponds to the
-maximum value of the current data.
+thresholds for these colors using the **`black-value`** and
+**`white-value`** sliders. Alternatively, users can set the black or
+white color to automatically represent the minimum or maximum value of
+the current data by toggling the **`black-min`** and **`white-max`**
+switches. By default, the black threshold is set to 0, and the white
+threshold corresponds to the maximum value of the current data.
 
 ### Data Series
 
 The model can simulate the three climate data series provided by
-[WorldClim 2.1](https://worldclim.org/).
+[WorldClim 2.1](https://worldclim.org/):
 
 #### Historical Climate Data
 
 This series includes 12 monthly data points representing average climate
 conditions for the period 1970–2000. It provides information on minimum,
 mean, and maximum temperature, precipitation, solar radiation, wind
-speed, and vapor pressure, offering a comprehensive overview of
-historical climate patterns.
+speed, and vapor pressure.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
@@ -79,10 +81,11 @@ Learn more
 
 This series provides downscaled data from
 [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by
-the Climatic Research Unit at the University of East Anglia. It includes
+the [Climatic Research
+Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
+at the [University of East Anglia](https://www.uea.ac.uk/). It includes
 monthly averages for minimum temperature, maximum temperature, and total
-precipitation, offering a detailed representation of historical weather
-patterns.
+precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
@@ -100,7 +103,7 @@ Learn more
 
 ## How to Use It
 
-### Installation
+### Setup
 
 To get started, ensure you have
 [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
@@ -166,7 +169,7 @@ requirements.
 ### Running the Model
 
 Once everything is set, open the `logoclim.nlogo` file located in the
-`nlogo` folder to start exploring the model!
+`nlogo` folder to start exploring!
 
 Refer to the `Info` tab in the model for additional details.
 
@@ -182,19 +185,22 @@ environmental processes.
 ## Common Issues
 
 Some users have reported errors related to the SimpleR
-([`sr`](https://github.com/NetLogo/SimpleR-Extension)) NetLogo
-extension. These issues are likely caused by either directory permission
-problems where the model is stored, or by the absence of the
-[`rJava`](https://cran.r-project.org/package=rJava) R package. Please
-ensure both of these are correctly configured before opening an issue.
+([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension for
+NetLogo. TThese issues are most commonly caused by directory permission
+problems where the model is stored, the absence of the
+[`rJava`](https://cran.r-project.org/package=rJava) R package, or R not
+being included in the system’s
+[`PATH`](https://www.java.com/en/download/help/path.html) environment
+variable. Please ensure all of these are properly configured before
+opening an issue.
 
 In some cases, users may encounter an unknown error code when running
-the model for the first time. This could be related to your operating
-system. Typically, this issue can be resolved by trying to setup the
-model again.
+the model for the first time. This may be related to your operating
+system. Typically, this issue is resolved by trying to setup the model
+again.
 
-We are actively working to improve the user experience and simplify
-these installation steps.
+We are actively working to improve the user experience and make the
+installation process more straightforward.
 
 ## How to Cite
 
@@ -204,18 +210,19 @@ helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., & Carvalho, A. M. (2024). *LogoClim: WorldClim in
-NetLogo* \[Software\]. <https://doi.org/10.17605/OSF.IO/EAPZU>
+Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim:
+WorldClim in NetLogo* \[Software\].
+<https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
 ``` latex
 @misc{vartanian2025,
-  title = {{LogoClim: WorldClim in NetLogo}},
-  author = {{Daniel Vartanian} and and {Aline Martins Carvalho}},
+  title = {LogoClim: WorldClim in NetLogo},
+  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
-  note = {NetLogo model},
+  note = {NetLogo model}
 }
 ```
 
@@ -233,7 +240,7 @@ a donation. Please mention `LogoClim` in your donation message.
 ## License
 
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/license/mit)
+MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
 
 The `LogoClim` code is licensed under the [MIT
 License](https://opensource.org/license/mit). This means you can use,
@@ -251,14 +258,15 @@ creating and maintaining the WorldClim datasets. Their work has been
 instrumental in enabling researchers and practitioners to access
 high-quality climate data.
 
-We also acknowledge the [World Climate Research Programme
-(WCRP)](https://www.wcrp-climate.org/), which, through its Working Group
-on Coupled Modelling, coordinated and promoted the [Coupled Model
-Intercomparison Project Phase 6 (CMIP6)](https://pcmdi.llnl.gov/CMIP6/).
+We also acknowledge the World Climate Research Programme
+([WCRP](https://www.wcrp-climate.org/)), which, through its Working
+Group on Coupled Modelling, coordinated and promoted the Coupled Model
+Intercomparison Project Phase 6
+([CMIP6](https://pcmdi.llnl.gov/CMIP6/)).
 
 We thank the climate modeling groups for producing and sharing their
-model outputs, the [Earth System Grid Federation
-(ESGF)](https://esgf.llnl.gov/) for archiving and providing access to
+model outputs, the Earth System Grid Federation
+([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to
 the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>

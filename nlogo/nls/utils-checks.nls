@@ -1,7 +1,5 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-;
-; Extensions used: pathdir` and `sr`.
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
+; Extensions used: `pathdir` and `sr`.
 
 ; # Halt Functions
 

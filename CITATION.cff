@@ -12,6 +12,11 @@ authors:
     email: danvartan@gmail.com
     affiliation: University of São Paulo
     orcid: 'https://orcid.org/0000-0001-7782-759X'
+  - given-names: Leandro Martin Totaro
+    family-names: Garcia
+    email: l.garcia@qub.ac.uk
+    affiliation: Queen's University Belfast
+    orcid: 'https://orcid.org/0000-0001-5947-2617'
   - given-names: Aline Martins
     family-names: Carvalho
     email: alinenutri@usp.br
@@ -25,22 +30,22 @@ repository-code: 'https://github.com/sustentarea/logoclim'
 repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
 repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
 abstract: >-
-  {LogoClim} is a NetLogo submodel (a model to use with other models) designed
-  for simulating and visualizing climate conditions, serving as a useful tool
-  for exploring historical and projected climate data. Its primary goal is to
-  promote the use of climate data in agent-based models and enhance the
-  reproducibility of these simulations.
+  {LogoClim} is a NetLogo model designed to simulate and visualize climate
+  conditions, serving as a powerful tool for exploring both historical and
+  projected climate data. Its primary goal is to facilitate the integration
+  of climate data into agent-based models and enhance the reproducibility
+  of these simulations.
 
   The model utilizes raster data to represent climate variables such as
-  temperature and precipitation over time. It integrates historical data
-  (1960-2021) and future climate projections (2021-2100) derived from various
-  global climate models under different Shared Socioeconomic Pathways (SSPs).
+  temperature and precipitation over time. It incorporates historical data
+  (1960-2021) and future climate projections (2021-2100) derived from global
+  climate models under various Shared Socioeconomic Pathways (SSPs).
 
-  Climate data in {LogoClim} is based on WorldClim 2.1, which comprises
-  interpolated data from weather stations worldwide (Fick and Hijmans, 2017;
-  Harris et al., 2020). Future projections are informed by multiple climate
-  models and various SSPs, providing data at several spatial resolutions for a
-  detailed representation of climate variables.
+  The climate data used in {LogoClim} is sourced from WorldClim 2.1, which
+  provides high-resolution interpolated climate data based on weather station
+  records from around the world (Fick & Hijmans, 2017). With resolutions as
+  fine as ~1 km², the data is available at multiple spatial scales, ensuring
+  a detailed and comprehensive representation of climate variables.
 keywords:
   - Agent-based modeling
   - Climate change
@@ -62,7 +67,9 @@ keywords:
   - R (programming language)
   - Raster data
   - Reproducible research
+  - Shared socioeconomic pathways
   - Simulations
+  - Spatial analysis
   - Spatial resolution
   - SSPs
   - Time series

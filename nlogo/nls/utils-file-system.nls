@@ -1,6 +1,4 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-;
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 ; Extensions used: `sr`.
 
 ; # `sr:run` Functions

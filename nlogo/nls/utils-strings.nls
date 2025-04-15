@@ -1,39 +1,37 @@
-; This file is part of the model:
-; LogoClim: WorldClim 2.1 on NetLogo.
-
+; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 ; Extensions used: `sr`.
 
 to-report as-character [#x]
   assert-atomic #x
-  
+
   report word #x ""
 end
 
 to-report rep [#x #times]
   assert-atomic #x
   assert-integer #times
-  
+
   report map [i -> #x] (range 0 #times)
 end
 
 to-report collapse [#list #sep]
   assert-list #list
   assert-string #sep
-  
+
   report reduce [[i j] -> (word i #sep j)] #list
 end
 
 to-report rep-collapse [#x #times]
   assert-atomic #x
   assert-integer #times
-  
+
   report collapse rep #x #times ""
 end
 
 to-report str-extract [#x #pattern]
   assert-atomic #x
   assert-string #pattern
-  
+
   let rscript (word
     "stringr::str_extract("
     "string = '"
@@ -43,14 +41,14 @@ to-report str-extract [#x #pattern]
     fix-string-for-r #pattern
     "')"
   )
-  
+
   report sr:runresult rscript
 end
 
 to-report str-detect [#x #pattern]
   assert-atomic #x
   assert-string #pattern
-  
+
   let rscript (word
     "stringr::str_detect("
     "string = '"
@@ -60,25 +58,25 @@ to-report str-detect [#x #pattern]
     fix-string-for-r #pattern
     "')"
   )
-  
+
   report sr:runresult rscript
 end
 
 to-report basename [#string]
   assert-string #string
-  
+
   let rscript (word
     "basename('"
     fix-string-for-r #string
     "')"
   )
-  
+
   report sr:runresult rscript
 end
 
 to-report extract-month [#string]
   assert-string #string
-  
+
   let out str-extract #string file-month-pattern
 
   (ifelse
@@ -94,7 +92,7 @@ end
 
 to-report extract-year [#string]
   assert-string #string
-  
+
   (ifelse
     (data-series = "Historical climate data") [
       report "1970-2000"
@@ -109,12 +107,12 @@ end
 
 to-report extract-gcm [#string]
   assert-string #string
-  
+
   report str-extract #string file-gcm-pattern
 end
 
 to-report extract-ssp [#string]
   assert-string #string
-  
+
   report str-extract #string file-ssp-pattern
 end
