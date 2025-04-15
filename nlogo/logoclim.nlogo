@@ -860,19 +860,19 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### HISTORICAL CLIMATE DATA
 
-This series includes 12 monthly data points representing average climate conditions for the period 1970–2000. It provides information on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, and vapor pressure.
+This series includes 12 monthly data points representing average climate conditions for the period 1970–2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### HISTORICAL MONTHLY WEATHER DATA
 
-This series provides downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It includes monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This series includes 12 monthly data points for each year from 1960 to 2018, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### FUTURE CLIMATE DATA
 
-This series includes downscaled climate projections from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models. Projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for minimum temperature, maximum temperature, and total precipitation.
+This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 

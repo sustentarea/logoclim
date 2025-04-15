@@ -77,33 +77,37 @@ The model can simulate the three climate data series provided by
 #### Historical Climate Data
 
 This series includes 12 monthly data points representing average climate
-conditions for the period 1970–2000. It provides information on minimum,
+conditions for the period 1970–2000. It provides averages on minimum,
 mean, and maximum temperature, precipitation, solar radiation, wind
-speed, and vapor pressure.
+speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### Historical Monthly Weather Data
 
-This series provides downscaled data from
-[CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/) by
-the [Climatic Research
+This series includes 12 monthly data points for each year from 1960 to
+2018, based on downscaled data from
+[CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/),
+developed by the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
-at the [University of East Anglia](https://www.uea.ac.uk/). It includes
+at the [University of East Anglia](https://www.uea.ac.uk/). It provides
 monthly averages for minimum temperature, maximum temperature, and total
-precipitation.
+precipitation..
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
-This series includes downscaled climate projections from
-[CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models.
-Projections cover four
+This series includes 12 monthly data points from downscaled climate
+projections derived from
+[CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
+four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
+projections cover four
 [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways):
-126, 245, 370, and 585, with data available for minimum temperature,
-maximum temperature, and total precipitation.
+126, 245, 370, and 585, with data available for average minimum
+temperature, average maximum temperature, total precipitation, and
+bioclimatic variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
@@ -193,7 +197,7 @@ environmental processes.
 
 Some users have reported errors related to the SimpleR
 ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension for
-NetLogo. TThese issues are most commonly caused by directory permission
+NetLogo. These issues are most commonly caused by directory permission
 problems where the model is stored, the absence of the
 [`rJava`](https://cran.r-project.org/package=rJava) R package, or R not
 being included in the system’s
