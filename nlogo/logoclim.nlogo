@@ -6,7 +6,7 @@
 ; License: MIT.
 ; Repository: https://github.com/sustentarea/logoclim/
 ;
-; Require: NetLogo >= 6.4 and R >= 4.4.
+; Require: NetLogo >= 6.4 and R >= 4.5.
 ; Required R packages: `rJava`, `stringr`, and `lubridate`.
 ; Required NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`.
 
@@ -52,9 +52,10 @@ to setup
 
   set start-year normalize-year start-year
 
+  assert-climate-variable
+  assert-data-resolution
+  assert-start-year
   assert-data
-  assert-year start-year
-  assert-variables climate-variable
 
   setup-variables
   setup-world
@@ -431,7 +432,7 @@ INPUTBOX
 220
 420
 start-year
-1960.0
+1970.0
 1
 0
 Number
@@ -457,7 +458,7 @@ INPUTBOX
 10
 465
 220
-530
+525
 data-path
 ../data/
 1
@@ -466,9 +467,9 @@ String
 
 BUTTON
 10
-535
+530
 220
-570
+565
 Show values
 show-values
 T
@@ -561,7 +562,7 @@ transition-seconds
 0.0
 0.1
 1
-NIL
+s
 HORIZONTAL
 
 SLIDER
@@ -576,7 +577,7 @@ patch-px-size
 2.0
 0.01
 1
-NIL
+px
 HORIZONTAL
 
 INPUTBOX
@@ -640,9 +641,9 @@ HORIZONTAL
 
 SWITCH
 230
-466
+464
 440
-499
+497
 black-min
 black-min
 1
@@ -651,9 +652,9 @@ black-min
 
 SLIDER
 230
-506
+502
 440
-539
+535
 white-value
 white-value
 -500
@@ -666,9 +667,9 @@ HORIZONTAL
 
 SWITCH
 230
-546
+540
 440
-579
+573
 white-max
 white-max
 0
@@ -782,7 +783,7 @@ PLOT
 110
 1450
 290
-Standard deviation
+Standard Deviation
 Months
 Value
 0.0
@@ -836,6 +837,8 @@ max [value] of patches with [value >= -99999]
 11
 
 @#$#@#$#@
+# LOGOCLIM: WORLDCLIM 2.1 ON NETLOGO
+
 ## WHAT IS IT?
 
 `LogoClim` is a NetLogo model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.

@@ -47,7 +47,7 @@ With resolutions as fine as ~1 km², the data is available at multiple
 spatial scales, ensuring a detailed and comprehensive representation of
 climate variables.
 
-![LogoClim Interface](images/logoclim-interface.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.png)
 
 ## How It Works
 
@@ -152,10 +152,11 @@ access the development version, clone or download this repository.
 ### Downloading the Data
 
 `LogoClim` uses raster data to represent climate variables. While you
-can download the data directly from [WorldClim
-2.1](https://worldclim.org/), we recommend using the dataset provided in
-the project’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository
-for compatibility.
+can download the original datasets directly from [WorldClim
+2.1](https://worldclim.org/), they must first be converted to ASCII
+format before being used in NetLogo. To simplify this process, we
+recommend using the preprocessed dataset included in the project’s
+[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
 
 The datasets are organized using [ISO 3166-1
 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
@@ -295,8 +296,8 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     <td width="70%">
       <p>
         <code>LogoClim</code>
-        was developed with support from the Research and 
-        Extension Center 
+        was developed with support from the Research and
+        Extension Center
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -317,7 +318,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This project was supported by the Conselho Nacional de 
+        This project was supported by the Conselho Nacional de
         Desenvolvimento Científico e Tecnológico - Brazil (<a href="https://www.gov.br/cnpq/">CNPq</a>).
       </p>
     </td>

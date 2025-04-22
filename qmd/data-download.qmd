@@ -3,11 +3,19 @@ execute:
   eval: false
 ---
 
+<!-- To do: Move these algorithms to a `logoclim` R package. -->
+
 # WorldClim 2.1: Data Download
 
 ## Overview
 
 This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
+
+::: {.callout-note}
+Due to UC Davis server constraints, it's much faster to download WorldClim 2.1 raw data from the `LogoClim` research compendium on the Open Science Framework (OSF). Click [here](https://osf.io/2bpjh/) to access this data.
+
+This notebook should be used if you want to download the data directly from the WorldClim website.
+:::
 
 ::: {.callout-important}
 This process may take some time to complete. Please be patient.
@@ -51,31 +59,22 @@ options(cli.progress_show_after = 0)
 
 ### Series
 
+Pick one of the following series:
+
 ```{r}
 series <- "historical-climate-data"
-source <- "https://worldclim.org/data/worldclim21.html"
 ```
 
 ```{r}
 #| eval: false
 
 series <- "historical-monthly-weather-data"
-source <- "https://worldclim.org/data/monthlywth.html"
 ```
 
 ```{r}
 #| eval: false
 
 series <- "future-climate-data"
-
-# # Future climate, 10 minutes spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim10m.html"
-# Future climate, 5 minutes spatial resolution
-source <- "https://worldclim.org/data/cmip6/cmip6_clim5m.html"
-# # Future climate, 2.5 minutes spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim2.5m.html"
-# # Future climate, 30 seconds spatial resolution
-# source <- "https://worldclim.org/data/cmip6/cmip6_clim30s.html"
 ```
 
 ### Directories
@@ -108,19 +107,17 @@ for (i in dirs) {
 resolution <- "5m" # all, 10m, 5m, 2.5m, 30s
 ```
 
-```{r}
-# (Optional) Only for future climate data.
-model <- NULL # "ACCESS-CM2"
-```
-
 ## Scrapping the Source
 
 ```{r}
-html <- source |> rvest::read_html()
+html <-
+  get_wc_2_1_url(series, resolution) |>
+  rvest::read_html()
 ```
 
 ```{r}
-urls <- html |>
+urls <-
+  html |>
   rvest::html_elements("a") |>
   rvest::html_attr("href") |>
   stringr::str_subset("geodata")
@@ -183,11 +180,42 @@ metadata |> dplyr::glimpse()
 }
 ```
 
+## Defining the Model
+
+This is only useful when dealing with future climate data.
+
+Run the `model <- NULL` code chunk when downloading other series.
+
+```{r}
+model <- NULL
+```
+
+```{r}
+#| eval: false
+
+models <-
+  metadata |>
+  magrittr::extract2("file") |>
+  stringr::str_extract("(?<=(bioc_|tmin_|tmax_|prec_)).*(?=_ssp)") |>
+  unique()
+
+models
+```
+
+```{r}
+#| eval: false
+
+model <- "ACCESS-CM2"
+# model <- c("IPSL-CM6A-LR", "MIROC6", "UKESM1-0-LL")
+# model <- models
+```
+
 ## Downloading the Files
 
 ```{r}
 #| eval: false
 
+# zip_dir <- fs::path(wc_raw_data_series_dir, "tif")
 zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
 
 if (!checkmate::test_directory_exists(zip_dir)) {
@@ -203,20 +231,53 @@ broken_links <-
 beepr::beep(1)
 ```
 
+Run the code chunk below only if the download process was interrupted.
+
 ```{r}
 #| eval: false
 
-# Use only if the download process was interrupted.
+downloaded_files <-
+  fs::path(wc_raw_data_series_dir, "zip") |>
+  fs::dir_ls(type = "file")
 
-# downloaded_files <-
-#   file.path(wc_raw_data_dir, "zip") |>
-#   fs::dir_ls(type = "file")
+broken_links <-
+  metadata |>
+  # dplyr::filter(stringr::str_detect(file, model)) |>
+  dplyr::filter(!file %in% basename(downloaded_files)) |>
+  download_wc_files(dir = file.path(wc_raw_data_series_dir, "zip"))
 
-# broken_links <-
-#   metadata |>
-#   # dplyr::filter(stringr::str_detect(file, model)) |>
-#   dplyr::filter(!file %in% downloaded_files) |>
-#   download_wc_files(dir = file.path(wc_raw_data_dir, "zip"))
+beepr::beep(1)
+```
 
-# beepr::beep(1)
+## Compress files (Optional)
+
+This is only useful when dealing with future climate data.
+
+```{r}
+#| eval: false
+#| output: false
+
+metadata |>
+  zip_wc_files(
+    model = model,
+    dir = wc_raw_data_series_dir,
+    broken_links = broken_links
+  )
+
+beepr::beep(1)
+```
+
+## Delete TIF Files (Optional)
+
+This is only useful when dealing with future climate data.
+
+```{r}
+#| eval: false
+
+for (i in model) {
+  fs::dir_ls(zip_dir, type = "file", regexp = i) |>
+    fs::file_delete()
+}
+
+invisible(gc())
 ```

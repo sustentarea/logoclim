@@ -53,23 +53,18 @@ to-report is-logical? [#x]
   report #x = true or #x = false
 end
 
-to-report test-series-data-path [#series-path]
-  assert-string #series-path
-
+to-report test-data
+  let path series-data-path-lookup data-series
+  let pattern data-file-pattern
+  
   (sr:run
     (word
-      "path <- "
-      "'"
-      fix-string-for-r #series-path
-      "'"
-    )
-    (word
-      "test <- ifelse("
-      "dir.exists(path),"
-      "!length(list.files(path)) == 0,"
-      "FALSE"
+      "files <- list.files("
+      "path  = '" fix-string-for-r path "', "
+      "pattern = '" pattern "'"
       ")"
     )
+    "test <- !length(files) == 0"
   )
 
   report sr:runresult "test"
@@ -94,34 +89,6 @@ end
 to assert-atomic [#x]
   if (not is-atomic? #x) [
     error "The value is not atomic."
-  ]
-end
-
-to assert-data
-  let path series-data-path-lookup data-series
-  let test test-series-data-path path
-
-  if (
-      data-series = "Future climate data" and
-      data-resolution = "10 minutes (~340 km2 at the equator)" and
-      global-climate-model = "BCC-CSM2-MR" and
-      climate-variable = "Bioclimatic variables"
-     ) [
-    error (word
-      "WorldClim 2.1 does not provide "
-      "bioclimatic data for the "
-      "BCC-CSM2-MR model at the "
-      "10-minute resolution ."
-    )
-  ]
-
-  if (test = false) [
-    error (word
-      "There are no data available to run the "
-      "'" data-series "' "
-      "series. "
-      "Please check your settings."
-    )
   ]
 end
 
@@ -191,7 +158,7 @@ to assert-string-or-number [#x]
   ]
 end
 
-to assert-variables [#climate-variable]
+to assert-climate-variable
   let variables []
 
   (ifelse
@@ -243,24 +210,63 @@ to assert-variables [#climate-variable]
   ]
 end
 
-to assert-year [#year]
-  assert-string-or-integer #year
+to assert-data-resolution
+  let variables []
 
-  if (str-detect #year "^[0-9]{4}" = false) [
+  ifelse (data-series = "Historical monthly weather data") [
+    set variables [
+      "2.5 minutes (~21 km2 at the equator)"
+      "5 minutes (~85 km2 at the equator)"
+      "10 minutes (~340 km2 at the equator)"
+    ]
+  ] [
+    set variables [
+      "30 seconds (~1 km2  at the equator)"
+      "2.5 minutes (~21 km2 at the equator)"
+      "5 minutes (~85 km2 at the equator)"
+      "10 minutes (~340 km2 at the equator)"
+    ]
+  ]
+
+  if (not member? data-resolution variables) [
+    set variables collapse variables "\n"
+
+    user-message (word
+      "The option "
+      "'" data-resolution "' "
+      "cannot be used with "
+      "'" data-series "' "
+      "series. "
+      "Use one the following options: "
+      "\n"
+      variables
+    )
+
+    halt
+  ]
+end
+
+to assert-start-year
+  if (str-detect start-year "^[0-9]{4}" = false) [
     error "The year must have 4 digits."
   ]
 
-  if (is-string? #year) [set #year read-from-string #year]
+  if (is-string? start-year) [
+    set start-year read-from-string start-year
+  ]
 
   (ifelse
-    (#year < 1960 or #year > 2100) [
+    (start-year < 1960 or start-year > 2100) [
       user-message (word
         "You must choose a year between 1960 and 2100."
       )
 
       halt
     ]
-    (data-series = "Historical climate data" and (#year < 1970 or #year > 2000)) [
+    (
+      data-series = "Historical climate data" and 
+      (start-year < 1970 or start-year > 2000)
+    ) [
       user-message (word
         "The year for the 'Historical climate data' "
         "series must be between "
@@ -269,7 +275,10 @@ to assert-year [#year]
 
       halt
     ]
-    (data-series = "Historical monthly weather data" and #year > 2021) [
+    (
+      data-series = "Historical monthly weather data" and 
+      start-year > 2021
+    ) [
       user-message (word
         "The year for the 'Historical monthly weather data' "
         "series must be between "
@@ -278,7 +287,10 @@ to assert-year [#year]
 
       halt
     ]
-    (data-series = "Future climate data" and (#year < 2021 or #year > 2100)) [
+    (
+      data-series = "Future climate data" and 
+      (start-year < 2021 or start-year > 2100)
+    ) [
       user-message (word
         "The year for the 'Future climate data' "
         "series must be between "
@@ -288,4 +300,38 @@ to assert-year [#year]
       halt
     ]
   )
+end
+
+to assert-data
+  if (
+      ; Applied for 10m and 5m resolutions (at least).
+      data-series = "Future climate data" and
+      global-climate-model = "BCC-CSM2-MR" and
+      climate-variable = "Bioclimatic variables" and
+      (
+        data-resolution = "5 minutes (~85 km2 at the equator)" or
+        data-resolution = "10 minutes (~340 km2 at the equator)"
+      )
+      ; (not shared-socioeconomic-pathway = "SSP-126")
+     ) [
+    user-message (word
+      "WorldClim 2.1 does not provide "
+      "bioclimatic data for the "
+      "BCC-CSM2-MR model at the "
+      data-resolution " "
+      "resolution."
+    )
+    
+    halt
+  ]
+
+  if (test-data = false) [
+    user-message (word
+      "There are no data available to run LogoClim "
+      "with the parameters provided. "
+      "Please check your settings."
+    )
+    
+    halt
+  ]
 end

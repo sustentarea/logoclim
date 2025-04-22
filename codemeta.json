@@ -84,7 +84,7 @@
     "programmingLanguage": "NetLogo",
     "softwareRequirements": [
         "NetLogo (>= 6.4)",
-        "R (>= 4.4)",
+        "R (>= 4.5)",
         "NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`",
         "R packages: `lubridate`, `rJava`, and `stringr`"
     ],

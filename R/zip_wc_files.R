@@ -10,14 +10,12 @@ zip_wc_files <- function(
     metadata, #nolint
     model,
     dir,
-    suffix,
     broken_links = NULL,
     engine = "utils"
   ) {
   checkmate::assert_tibble(metadata)
   checkmate::assert_subset(c("file", "size"), colnames(metadata))
   checkmate::assert_directory_exists(dir, access = "w")
-  checkmate::assert_string(suffix)
   checkmate::assert_character(broken_links, null.ok = TRUE)
   checkmate::assert_choice(engine, c("utils", "zip"))
 
@@ -31,6 +29,12 @@ zip_wc_files <- function(
 
   zip_dir <- file.path(dir, "zip")
   if (!checkmate::test_directory_exists(zip_dir)) dir.create(zip_dir)
+
+  suffix <-
+    metadata |>
+    magrittr::extract2("file") |>
+    stringr::str_extract("(?<=wc2.1_).*(?=(_bioc|_tmin|_tmax|_prec))") |>
+    unique()
 
   cli::cli_alert_info(
     paste0(
@@ -94,8 +98,8 @@ zip_wc_files <- function(
       zip_file_name <-
         ifelse(
           length(file_chunks) == 1,
-          file.path(zip_dir, paste0(i, suffix, ".zip")),
-          file.path(zip_dir, paste0(i, suffix, "_", j, ".zip"))
+          file.path(zip_dir, paste0(i, "_", suffix, ".zip")),
+          file.path(zip_dir, paste0(i, "_", suffix, "_", j, ".zip"))
         )
 
       if (engine == "zip") {

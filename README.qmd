@@ -22,7 +22,7 @@ The model utilizes raster data to represent climate variables such as temperatur
 
 The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
-![LogoClim Interface](images/logoclim-interface.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.png)
 
 ## How It Works
 
@@ -62,7 +62,7 @@ To get started, ensure you have [NetLogo](https://ccl.northwestern.edu/netlogo) 
 
 The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
 
-You'll also need [R](https://www.r-project.org/) (version 4.4 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
+You'll also need [R](https://www.r-project.org/) (version 4.5 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -74,7 +74,7 @@ You can download the latest release of the model from [GitHub Releases](https://
 
 ### Downloading the Data
 
-`LogoClim` uses raster data to represent climate variables. While you can download the data directly from [WorldClim 2.1](https://worldclim.org/), we recommend using the dataset provided in the project's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository for compatibility.
+`LogoClim` uses raster data to represent climate variables. While you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must first be converted to ASCII format before being used in NetLogo. To simplify this process, we recommend using the preprocessed dataset included in the project's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
 
 The datasets are organized using [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter country codes and are available in multiple spatial resolutions:
 

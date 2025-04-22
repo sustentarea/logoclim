@@ -1,5 +1,21 @@
 ; This file is part of the model: LogoClim: WorldClim 2.1 on NetLogo.
 
+to-report data-file-pattern
+  let pattern ""
+  
+  (ifelse
+    (data-series = "Historical climate data") [
+      set pattern hcd-file-pattern
+    ] (data-series = "Historical monthly weather data") [
+      set pattern hmwd-file-pattern
+    ] (data-series = "Future climate data") [
+      set pattern fcd-file-pattern
+    ]
+  )
+  
+  report pattern
+end
+
 to-report hcd-file-pattern
   let pattern ""
 

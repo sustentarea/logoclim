@@ -3,6 +3,8 @@ execute:
   eval: false
 ---
 
+<!-- To do: Move these algorithms to a `logoclim` R package. -->
+
 # WorldClim 2.1: Data Transformation for NetLogo
 
 ## Overview
@@ -16,7 +18,7 @@ This process may take some time to complete. Please be patient.
 ## Setting the Environment
 
 ::: {.callout-important}
-Date: 2025-04-09
+Notice date: 2025-04-09
 
 The `terra` package may encounter issues when exporting data to ASCII format. If this happens, you can resolve it by installing the development version of the package from GitHub using the following command:
 
@@ -57,6 +59,8 @@ options(cli.progress_show_after = 0)
 
 ### Series
 
+Pick one of the following series:
+
 ```{r}
 series <- "historical-climate-data"
 ```
@@ -80,7 +84,7 @@ data_dir <- here::here("data")
 ```
 
 ```{r}
-data_series_dir <- fs::path(data_dir, "gbr", series)
+data_series_dir <- fs::path(data_dir, "bra", series)
 ```
 
 ```{r}
@@ -110,15 +114,15 @@ for (i in dirs) {
 
 ### Cropping Shape
 
-#### For Getting the Shape of a Single Country
-
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 
+For getting the shape of a single country, use:
+
 ```{r}
-crop_shape <- geodata::gadm("gbr", level = 0, path = raw_data_dir)
+crop_shape <- geodata::gadm("bra", level = 0, path = raw_data_dir)
 ```
 
-#### For Getting Only the Mainland of a Country
+For getting only the mainland of a country, use:
 
 ```{r}
 #| eval: false
@@ -128,7 +132,7 @@ crop_shape <-
   terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
-#### For Getting a Particular Region
+For getting a particular region, use:
 
 ```{r}
 #| eval: false
@@ -143,7 +147,7 @@ crop_shape <-
   terra::subset(., .$GID_0 %in% countries)
 ```
 
-#### For Getting the Whole World
+For getting the whole world, use:
 
 ```{r}
 #| eval: false
@@ -157,20 +161,29 @@ crop_shape <- geodata::world(resolution = 1, path = raw_data_dir)
 #| eval: false
 
 zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
+```
 
-if (!checkmate::test_directory_exists(zip_dir)) {
-  zip_dir |> fs::dir_create(recurse = TRUE)
+```{r}
+tif_dir <- fs::path(wc_raw_data_series_dir, "tif")
+
+if (!checkmate::test_directory_exists(tif_dir)) {
+  tif_dir |> fs::dir_create(recurse = TRUE)
 }
 ```
 
 ```{r}
 #| eval: false
-
-tif_dir <- fs::path(wc_raw_data_series_dir, "tif")
+#| output: false
 
 zip_files <-
   zip_dir |>
   fs::dir_ls(type = "file", regexp = "zip$")
+
+cli::cli_progress_bar(
+    name = "Unzipping data",
+    total = length(zip_files),
+    clear = FALSE
+  )
 
 for (i in zip_files) {
   i |>
@@ -178,7 +191,11 @@ for (i in zip_files) {
       overwrite = TRUE,
       exdir = tif_dir
     )
+
+  cli::cli_progress_update()
 }
+
+cli::cli_progress_done()
 ```
 
 ```{r}
@@ -197,7 +214,7 @@ tif_files <-
   fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
 ```
 
-## Testing the Files
+## Testing the Files (Optional)
 
 ```{r}
 tif_file <- tif_files[1]
@@ -271,7 +288,7 @@ asc_files <-
   fs::dir_ls(type = "file", regexp = "asc$", recurse = TRUE)
 ```
 
-## Checking the Final Files
+## Checking the Final Files (Optional)
 
 ### By Resolution
 
@@ -361,14 +378,16 @@ asc_files |>
   )
 ```
 
-## Zipping the Files
+## Zipping the Files (Optional)
+
+If you want to zip the files, you can use the following code. However, this is optional and not necessary for the transformation process.
 
 ```{r}
 #| eval: false
 
-# utils::zip(
-#   zipfile = fs::path(data_dir, "asia_10m.zip"),
-#   files = fs::dir_ls(data_series_dir, recurse = TRUE),
-#   flags = "-jq"
-# )
+utils::zip(
+  zipfile = fs::path(data_dir, "gbr_5m.zip"),
+  files = fs::dir_ls(data_series_dir, recurse = TRUE),
+  flags = "-jq"
+)
 ```
