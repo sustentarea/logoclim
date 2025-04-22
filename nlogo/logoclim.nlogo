@@ -1,4 +1,4 @@
-; LogoClim: WorldClim 2.1 on NetLogo.
+; LogoClim: WorldClim 2.1 in NetLogo
 ;
 ; Version: 2025-04-15 0.0.0.9006
 ; Authors: Daniel Vartanian, Leandro M. T. Garcia, & Aline M. de Carvalho.
@@ -432,7 +432,7 @@ INPUTBOX
 220
 420
 start-year
-1970.0
+1960.0
 1
 0
 Number
@@ -837,7 +837,7 @@ max [value] of patches with [value >= -99999]
 11
 
 @#$#@#$#@
-# LOGOCLIM: WORLDCLIM 2.1 ON NETLOGO
+# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
 
 ## WHAT IS IT?
 
