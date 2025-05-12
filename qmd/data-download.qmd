@@ -3,18 +3,14 @@ execute:
   eval: false
 ---
 
-<!-- To do: Move these algorithms to a `logoclim` R package. -->
-
-# WorldClim 2.1: Data Download
+# LogoClim: WorldClim 2.1 Data Download
 
 ## Overview
 
 This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
 
 ::: {.callout-note}
-Due to UC Davis server constraints, it's much faster to download WorldClim 2.1 raw data from the `LogoClim` research compendium on the Open Science Framework (OSF). Click [here](https://osf.io/2bpjh/) to access this data.
-
-This notebook should be used if you want to download the data directly from the WorldClim website.
+Due to UC Davis server constraints, it's much faster to download WorldClim 2.1 raw data from the `LogoClim` backups stored on the Open Science Framework (OSF). Click [here](https://osf.io/2bpjh/) to access this data.
 :::
 
 ::: {.callout-important}
@@ -27,29 +23,20 @@ This process may take some time to complete. Please be patient.
 #| eval: false
 
 library(beepr)
-library(checkmate)
 library(cli)
-library(curl)
 library(dplyr)
 library(fs)
+library(groomr) # github.com/danielvartan/groomr
 library(here)
-library(httr)
 library(magrittr)
+library(orbis) # github.com/danielvartan/orbis
 library(purrr)
-library(rutils) # github.com/danielvartan/rutils (GitHub)
+library(rutils) # github.com/danielvartan/rutils
 library(rvest)
 library(stringr)
-library(utils)
-library(zip)
 ```
 
-```{r}
-source(here::here("R", "download_wc_files.R"))
-source(here::here("R", "get_content_length.R"))
-source(here::here("R", "zip_wc_files.R"))
-```
-
-## Setting Variables
+## Setting the Initial Variables
 
 ### Options
 
@@ -59,7 +46,7 @@ options(cli.progress_show_after = 0)
 
 ### Series
 
-Pick one of the following series:
+Pick **one** of the following.
 
 ```{r}
 series <- "historical-climate-data"
@@ -77,7 +64,71 @@ series <- "historical-monthly-weather-data"
 series <- "future-climate-data"
 ```
 
+### Resolution
+
+Pick **one** of the following.
+
+```{r}
+resolution <- "10m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "2.5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "30s"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "all"
+```
+
+### Global Climate Model
+
+::: {.callout-note}
+This is only useful when dealing with future climate data. Here you can specify the model(s) you want to download. If you want to download all models, set `model <- NULL`.
+
+Run `model <- NULL` when downloading other series.
+:::
+
+Pick **one** of the following.
+
+```{r}
+model <- NULL
+```
+
+```{r}
+#| eval: false
+
+model <- "ACCESS-CM2"
+```
+
+```{r}
+#| eval: false
+
+model <- c(
+  "ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
+  "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
+  "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL"
+)
+```
+
 ### Directories
+
+Check the paths to the directories where the data will be stored.
 
 ```{r}
 raw_data_dir <- here::here("data-raw")
@@ -92,26 +143,27 @@ wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
-dirs <- c(raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir)
+wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+```
+
+```{r}
+dirs <- c(
+  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
+  wc_raw_data_series_res_dir
+)
 
 for (i in dirs) {
-  if (!checkmate::test_directory_exists(i)) {
+  if (!dir.exists(i)) {
     fs::dir_create(i, recurse = TRUE)
   }
 }
-```
-
-### Parameters
-
-```{r}
-resolution <- "5m" # all, 10m, 5m, 2.5m, 30s
 ```
 
 ## Scrapping the Source
 
 ```{r}
 html <-
-  get_wc_2_1_url(series, resolution) |>
+  orbis::get_wc_url(series, resolution) |>
   rvest::read_html()
 ```
 
@@ -136,30 +188,52 @@ if (!resolution == "all") {
 }
 ```
 
+```{r}
+if (!is.null(model)) {
+  urls <-
+    urls %>%
+    magrittr::extract(
+      stringr::str_detect(
+        basename(.),
+        paste0("(?<=_)", model)
+      )
+    )
+}
+```
+
 ## Creating the Metadata
 
 ```{r}
 sizes <-
   urls |>
   purrr::map_dbl(
-    .f = get_content_length,
+    .f = rutils::get_file_size,
     .progress = TRUE
-)
+  ) |>
+  fs::as_fs_bytes()
 
 beepr::beep(1)
 ```
 
 ```{r}
-metadata <- dplyr::tibble(
-  url = urls,
-  file = basename(urls),
-  size = as.numeric(sizes), # In bytes # 1 megabyte = 2^20 bytes
-  size_cum_sum = cumsum(dplyr::coalesce(size, 0)) + (size * 0)
-)
+metadata <-
+  dplyr::tibble(
+    url = urls,
+    file = basename(urls),
+    size = sizes
+  ) |>
+  dplyr::arrange(size) |>
+  dplyr::mutate(
+  size_cum_sum =
+      size |>
+      tidyr::replace_na() |>
+      cumsum() |>
+      fs::as_fs_bytes()
+  )
 ```
 
 ```{r}
-metadata |> dplyr::glimpse()
+metadata
 ```
 
 ## Checking for Errors
@@ -180,104 +254,70 @@ metadata |> dplyr::glimpse()
 }
 ```
 
-## Defining the Model
-
-This is only useful when dealing with future climate data.
-
-Run the `model <- NULL` code chunk when downloading other series.
-
-```{r}
-model <- NULL
-```
-
-```{r}
-#| eval: false
-
-models <-
-  metadata |>
-  magrittr::extract2("file") |>
-  stringr::str_extract("(?<=(bioc_|tmin_|tmax_|prec_)).*(?=_ssp)") |>
-  unique()
-
-models
-```
-
-```{r}
-#| eval: false
-
-model <- "ACCESS-CM2"
-# model <- c("IPSL-CM6A-LR", "MIROC6", "UKESM1-0-LL")
-# model <- models
-```
-
 ## Downloading the Files
 
 ```{r}
-#| eval: false
+if (series == "future-climate-data") {
+  dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+} else {
+  dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+}
 
-# zip_dir <- fs::path(wc_raw_data_series_dir, "tif")
-zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
-
-if (!checkmate::test_directory_exists(zip_dir)) {
-  zip_dir |> fs::dir_create(recurse = TRUE)
+if (!dir.exists(dir)) {
+  dir |> fs::dir_create(recurse = TRUE)
 }
 ```
 
 ```{r}
 broken_links <-
   metadata |>
-  download_wc_files(dir = zip_dir, model = model)
+  dplyr::pull(url) |>
+  rutils::download_file(dir = dir, broken_links = TRUE)
 
 beepr::beep(1)
 ```
 
-Run the code chunk below only if the download process was interrupted.
+If the download process was interrupted or not all files were downloaded, run the code chunk below to retry downloading only the missing files.
 
 ```{r}
 #| eval: false
 
-downloaded_files <-
-  fs::path(wc_raw_data_series_dir, "zip") |>
-  fs::dir_ls(type = "file")
+files <- dir |> fs::dir_ls(type = "file")
 
 broken_links <-
   metadata |>
-  # dplyr::filter(stringr::str_detect(file, model)) |>
-  dplyr::filter(!file %in% basename(downloaded_files)) |>
-  download_wc_files(dir = file.path(wc_raw_data_series_dir, "zip"))
+  dplyr::filter(!file %in% basename(files)) |>
+  dplyr::pull(url) |>
+  rutils::download_file(dir = dir, broken_links = TRUE)
 
 beepr::beep(1)
 ```
 
-## Compress files (Optional)
+## Zipping the Files (Optional)
 
 This is only useful when dealing with future climate data.
+
+```{r}
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+
+if (!dir.exists(zip_dir)) {
+  zip_dir |> fs::dir_create(recurse = TRUE)
+}
+```
 
 ```{r}
 #| eval: false
 #| output: false
 
 metadata |>
-  zip_wc_files(
-    model = model,
-    dir = wc_raw_data_series_dir,
-    broken_links = broken_links
+  dplyr::pull(file) |>
+  groomr::zip_files_by_pattern(
+    pattern = model,
+    suffix = paste0("_", resolution),
+    max_size = fs::fs_bytes("5GB"),
+    root = dir,
+    dir = zip_dir
   )
 
 beepr::beep(1)
-```
-
-## Delete TIF Files (Optional)
-
-This is only useful when dealing with future climate data.
-
-```{r}
-#| eval: false
-
-for (i in model) {
-  fs::dir_ls(zip_dir, type = "file", regexp = i) |>
-    fs::file_delete()
-}
-
-invisible(gc())
 ```

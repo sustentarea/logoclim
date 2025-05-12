@@ -3,13 +3,11 @@ execute:
   eval: false
 ---
 
-<!-- To do: Move these algorithms to a `logoclim` R package. -->
-
-# WorldClim 2.1: Data Transformation for NetLogo
+# LogoClim: WorldClim 2.1 Data Transformation for NetLogo
 
 ## Overview
 
-This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [WorldClim 2.1: Data Download](data-download.qmd) document. You must have already downloaded the WorldClim data files.
+This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [LogoClim: WorldClim 2.1 Data Download](data-download.qmd) document. To use it, you must have already downloaded the WorldClim data files.
 
 ::: {.callout-important}
 This process may take some time to complete. Please be patient.
@@ -32,24 +30,18 @@ remotes::install_github("rspatial/terra")
 #| eval: false
 
 library(beepr)
-library(checkmate)
 library(fs)
 library(geodata)
 library(here)
-library(ISOcodes)
-library(lubridate)
 library(magrittr)
+library(orbis) # github.com/danielvartan/orbis
 library(rutils) # github.com/danielvartan/rutils
 library(stringr)
 library(terra)
-library(utils)
+library(zip) # OS independent
 ```
 
-```{r}
-source(here::here("R", "geotiff_to_ascii.R"))
-```
-
-## Setting Variables
+## Setting the Initial Variables
 
 ### Options
 
@@ -59,7 +51,7 @@ options(cli.progress_show_after = 0)
 
 ### Series
 
-Pick one of the following series:
+Pick **one** of the following, according to the data you downloaded.
 
 ```{r}
 series <- "historical-climate-data"
@@ -77,15 +69,52 @@ series <- "historical-monthly-weather-data"
 series <- "future-climate-data"
 ```
 
+### Resolution
+
+Pick **one** of the following, according to the data you downloaded.
+
+```{r}
+resolution <- "10m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "2.5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "30s"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "all"
+```
+
 ### Directories
 
-```{r}
-data_dir <- here::here("data")
+Check the **paths** to the directories where the final data will be stored.
+
+LogoClim requires the data files to be organized in the following directory structure:
+
+```text
+data
+├── historical-climate-data
+├── historical-monthly-weather-data
+├── future-climate-data
 ```
 
-```{r}
-data_series_dir <- fs::path(data_dir, "bra", series)
-```
+The following settings assumes that the data will be stored in the `data` directory of the project, but you can change it to any other directory. If you do, make sure to change the model `data-path` variable accordingly.
 
 ```{r}
 raw_data_dir <- here::here("data-raw")
@@ -100,26 +129,48 @@ wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
+wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+```
+
+```{r}
+data_dir <- here::here("data")
+```
+
+```{r}
+data_series_dir <- fs::path(data_dir, series)
+```
+
+```{r}
+#| eval: false
+
 dirs <- c(
-  data_dir, data_series_dir, raw_data_dir, wc_raw_data_dir,
-  wc_raw_data_series_dir
+  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
+  wc_raw_data_series_res_dir, data_dir, data_series_dir
 )
 
 for (i in dirs) {
-  if (!checkmate::test_directory_exists(i)) {
+  if (!dir.exists(i)) {
     fs::dir_create(i, recurse = TRUE)
   }
 }
 ```
 
-### Cropping Shape
+### Shape
 
+::: {.callout-note}
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+:::
+
+Select the shape you want to use.
 
 For getting the shape of a single country, use:
 
 ```{r}
-crop_shape <- geodata::gadm("bra", level = 0, path = raw_data_dir)
+shape <- geodata::gadm(
+  country = "nor", # Change to the desired country code
+  level = 0,
+  path = raw_data_dir
+)
 ```
 
 For getting only the mainland of a country, use:
@@ -127,8 +178,12 @@ For getting only the mainland of a country, use:
 ```{r}
 #| eval: false
 
-crop_shape <-
-  geodata::gadm("usa", level = 1, path = raw_data_dir) %>%
+shape <-
+  geodata::gadm(
+    country = "usa",
+    level = 1,
+    path = raw_data_dir
+  ) %>%
   terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
@@ -142,7 +197,7 @@ countries <-
   dplyr::filter(continent == "Asia") |>
   magrittr::extract2("ISO3")
 
-crop_shape <-
+shape <-
   geodata::world(resolution = 1, path = raw_data_dir) %>%
   terra::subset(., .$GID_0 %in% countries)
 ```
@@ -152,21 +207,23 @@ For getting the whole world, use:
 ```{r}
 #| eval: false
 
-crop_shape <- geodata::world(resolution = 1, path = raw_data_dir)
+shape <- NULL
 ```
 
-## Unzipping the Files (If Needed)
+## Unzipping the Files (Optional)
 
 ```{r}
 #| eval: false
 
-zip_dir <- fs::path(wc_raw_data_series_dir, "zip")
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 ```
 
 ```{r}
-tif_dir <- fs::path(wc_raw_data_series_dir, "tif")
+#| eval: false
 
-if (!checkmate::test_directory_exists(tif_dir)) {
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+
+if (!dir.exists(tif_dir)) {
   tif_dir |> fs::dir_create(recurse = TRUE)
 }
 ```
@@ -187,7 +244,7 @@ cli::cli_progress_bar(
 
 for (i in zip_files) {
   i |>
-    utils::unzip(
+    zip::unzip(
       overwrite = TRUE,
       exdir = tif_dir
     )
@@ -196,6 +253,8 @@ for (i in zip_files) {
 }
 
 cli::cli_progress_done()
+
+beepr::beep(1)
 ```
 
 ```{r}
@@ -207,16 +266,22 @@ zip_dir |> fs::dir_delete()
 ## Gathering the `tif` Files
 
 ```{r}
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+```
+
+```{r}
 #| eval: false
 
 tif_files <-
-  fs::path(wc_raw_data_series_dir, "tif") |>
+  tif_dir |>
   fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
 ```
 
 ## Testing the Files (Optional)
 
 ```{r}
+#| eval: false
+
 tif_file <- tif_files[1]
 ```
 
@@ -232,7 +297,7 @@ ras <- tif_file |> terra::rast()
 croped_ras <-
   ras |>
   terra::crop(
-    crop_shape,
+    shape,
     snap = "near",
     mask = TRUE,
     touches = TRUE,
@@ -249,22 +314,15 @@ croped_ras |> terra::plot()
 ## Cropping and Transforming Data to ASCII
 
 ```{r}
-asc_dir <- fs::path(wc_raw_data_series_dir, "asc")
-
-if (!checkmate::test_directory_exists(asc_dir)) {
-  asc_dir |> fs::dir_create(recurse = TRUE)
-}
-```
-
-```{r}
-#| eval: false
 #| output: false
 
-geotiff_to_ascii(
+orbis::wc_to_ascii(
   file = tif_files,
-  shape = crop_shape,
+  dir = data_series_dir,
+  shape = shape,
   aggregate = NULL,
-  dir = asc_dir
+  overwrite = TRUE,
+  na_flag = -9999
 )
 
 beepr::beep(1)
@@ -273,8 +331,12 @@ beepr::beep(1)
 ```{r}
 #| eval: false
 
-asc_dir |>
-  fs::dir_ls(type = "file", regexp = "asc.aux.xml$|prj$", recurse = TRUE) |>
+data_series_dir |>
+  fs::dir_ls(
+    type = "file",
+    regexp = "asc.aux.xml$|prj$",
+    recurse = TRUE
+  ) |>
   fs::file_delete()
 ```
 
@@ -284,9 +346,15 @@ asc_dir |>
 #| eval: false
 
 asc_files <-
-  asc_dir |>
-  fs::dir_ls(type = "file", regexp = "asc$", recurse = TRUE)
+  data_series_dir |>
+  fs::dir_ls(
+    type = "file",
+    regexp = "asc$",
+    recurse = TRUE
+  )
 ```
+
+<!-- REMOVE AFTER PUSH -->
 
 ## Checking the Final Files (Optional)
 
@@ -367,27 +435,25 @@ asc_files |>
   unique()
 ```
 
-## Moving the Files
-
-```{r}
-#| eval: false
-
-asc_files |>
-  fs::file_move(
-    new_path = fs::path(data_series_dir, basename(asc_files))
-  )
-```
-
 ## Zipping the Files (Optional)
 
-If you want to zip the files, you can use the following code. However, this is optional and not necessary for the transformation process.
+This is optional and only useful for storing the final data.
+
+Check the **name of the file** where the data will be stored.
+
+```{r}
+zip_file <- fs::path(data_dir, "bra-2-5m.zip")
+```
 
 ```{r}
 #| eval: false
 
-utils::zip(
-  zipfile = fs::path(data_dir, "gbr_5m.zip"),
-  files = fs::dir_ls(data_series_dir, recurse = TRUE),
-  flags = "-jq"
-)
+zip_file |>
+  zip::zip(
+    files =
+      data_dir |>
+      fs::dir_ls(recurse = TRUE) |>
+      fs::path_rel(data_dir),
+    root = data_dir
+  )
 ```

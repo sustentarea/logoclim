@@ -3,24 +3,17 @@
 <!-- quarto render -->
 
 <!-- badges: start -->
-<!-- [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-Placeholder-green.svg)](https://fair-software.eu) -->
-
-<!-- [![CII Best Practices](https://img.shields.io/badge/openssf%20best%20practices-Placeholder-green.svg)](https://bestpractices.coreinfrastructure.org/) -->
-
-[![Project Status: Active – The project has reached a stable, usable
+[![Project Status: Active - The project has reached a stable, usable
 state and is being actively
-developed.](https://img.shields.io/badge/Repo%20Status-Active-10D810.svg)](https://www.repostatus.org/#active)
-[![CoMSES
-Network](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
-[![OSF
-DOI](https://img.shields.io/badge/OSF-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
+[![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![](https://img.shields.io/badge/fair----software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B---orange.svg)](https://fair-software.eu)
 [![FAIR checklist
 badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![License:
-MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
-[![Contributor
-Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
 ## Overview
@@ -46,6 +39,10 @@ the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 With resolutions as fine as ~1 km², the data is available at multiple
 spatial scales, ensuring a detailed and comprehensive representation of
 climate variables.
+
+> If you find this project useful, please consider giving it a star!  
+> [![GitHub repo
+> stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
 ![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.png)
 
@@ -130,7 +127,7 @@ The model relies on the GIS
 extensions, which will be installed automatically when you run the
 model.
 
-You’ll also need [R](https://www.r-project.org/) (version 4.4 or later)
+You’ll also need [R](https://www.r-project.org/) (version 4.5 or later)
 with the [`lubridate`](https://cran.r-project.org/package=lubridate),
 [`rJava`](https://cran.r-project.org/package=rJava), and
 [`stringr`](https://cran.r-project.org/package=stringr) packages. Make
@@ -154,9 +151,10 @@ access the development version, clone or download this repository.
 `LogoClim` uses raster data to represent climate variables. While you
 can download the original datasets directly from [WorldClim
 2.1](https://worldclim.org/), they must first be converted to ASCII
-format before being used in NetLogo. To simplify this process, we
-recommend using the preprocessed dataset included in the project’s
-[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
+format before being used in NetLogo—Keep the original file names. To
+simplify this process, we recommend using the preprocessed dataset
+included in the project’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z)
+repository.
 
 The datasets are organized using [ISO 3166-1
 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
@@ -223,13 +221,13 @@ helps support the ongoing improvement of the model.
 To cite `LogoClim` in publications please use the following format:
 
 Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim:
-WorldClim in NetLogo* \[Software\].
+WorldClim in NetLogo* \[Computer software, NetLogo model\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
 ``` latex
-@misc{vartanian2025,
+@Misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
@@ -240,10 +238,12 @@ A BibTeX entry for LaTeX users is:
 
 ## How to Contribute
 
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
+[![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
 Contributions are welcome! Whether it’s reporting bugs, suggesting
 features, or improving documentation, your input is valuable.
+
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 You can also support the development of `LogoClim` by becoming a
 sponsor. Click [here](https://github.com/sponsors/danielvartan) to make
@@ -251,8 +251,7 @@ a donation. Please mention `LogoClim` in your donation message.
 
 ## License
 
-[![License:
-MIT](https://img.shields.io/badge/License-MIT-10D810.svg)](https://choosealicense.com/licenses/mit/)
+[![](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 The `LogoClim` code is licensed under the [MIT
 License](https://opensource.org/license/mit). This means you can use,
@@ -296,8 +295,8 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     <td width="70%">
       <p>
         <code>LogoClim</code>
-        was developed with support from the Research and
-        Extension Center
+        was developed with support from the Research and 
+        Extension Center 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -318,7 +317,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This project was supported by the Conselho Nacional de
+        This project was supported by the Conselho Nacional de 
         Desenvolvimento Científico e Tecnológico - Brazil (<a href="https://www.gov.br/cnpq/">CNPq</a>).
       </p>
     </td>

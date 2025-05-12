@@ -30,7 +30,7 @@ to-report normalize-year [#year]
   report out
 end
 
-to-report make-list [#x]
+to-report as-list [#x]
   ifelse (not is-list? #x) [
     report (list #x)
   ] [

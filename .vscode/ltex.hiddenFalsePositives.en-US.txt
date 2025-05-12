@@ -1,0 +1,1 @@
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Qcrop_shape <-\n  geodata::gadm(\n    country = \"usa\",\n    level = 1,\n    path = raw_data_dir\n  ) %>%\n  terra::subset(., !.$NAME_1 %in% c(\"Alaska\", \"Hawaii\"))\n```\\E$"}

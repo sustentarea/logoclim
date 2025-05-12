@@ -80,8 +80,8 @@ to setup-variables
     ]
   )
 
-  set files make-list sr:runresult "files"
-  set years make-list sr:runresult "years"
+  set files as-list sr:runresult "files"
+  set years as-list sr:runresult "years"
 
   set index 0
   set dataset load-patch-data file-path series-data-path (item index files)
@@ -190,13 +190,13 @@ to setup-map [#dataset]
   gis:apply-raster #dataset value
 
   ifelse (white-max = true) [
-    set max-value max [value] of patches with [value >= -99999]
+    set max-value max [value] of patches with [value >= -9999]
   ] [
     set max-value white-value
   ]
 
   ifelse (black-min = true) [
-    set min-value min [value] of patches with [value >= -99999]
+    set min-value min [value] of patches with [value >= -9999]
   ] [
     set min-value black-value
   ]
@@ -211,8 +211,8 @@ to setup-map [#dataset]
 end
 
 to setup-stats
-  set max-value max [value] of patches with [value >= -99999]
-  set min-value min [value] of patches with [value >= -99999]
+  set max-value max [value] of patches with [value >= -9999]
+  set min-value min [value] of patches with [value >= -9999]
 
   ;set max-plot-y ceiling max-value
   set min-plot-y ifelse-value (min-value < 0) [floor min-value] [0]
@@ -736,7 +736,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -99999]"
+"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -9999]"
 
 MONITOR
 1020
@@ -744,7 +744,7 @@ MONITOR
 1230
 340
 Mean
-mean [value] of patches with [value >= -99999]
+mean [value] of patches with [value >= -9999]
 10
 1
 11
@@ -765,7 +765,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -99999]"
+"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -9999]"
 
 MONITOR
 1020
@@ -773,7 +773,7 @@ MONITOR
 1230
 575
 Minimum
-min [value] of patches with [value >= -99999]
+min [value] of patches with [value >= -9999]
 10
 1
 11
@@ -794,7 +794,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -99999]"
+"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -9999]"
 
 MONITOR
 1240
@@ -802,7 +802,7 @@ MONITOR
 1450
 340
 Standard deviation
-standard-deviation [value] of patches with [value >= -99999]
+standard-deviation [value] of patches with [value >= -9999]
 10
 1
 11
@@ -823,7 +823,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -99999]"
+"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -9999]"
 
 MONITOR
 1240
@@ -831,7 +831,7 @@ MONITOR
 1450
 575
 Maximum
-max [value] of patches with [value >= -99999]
+max [value] of patches with [value >= -9999]
 10
 1
 11
@@ -979,12 +979,12 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software, NetLogo model]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
-@misc{vartanian2025,
+@Misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
@@ -995,9 +995,11 @@ A BibTeX entry for LaTeX users is:
 
 ## HOW TO CONTRIBUTE
 
-![GitHub Sponsor badge](images/gituhub-sponsor-badge.png)
+![Contributor Covenant 2.1 badge](images/contributor-covenant-2-1-badge.png)
 
 Contributions are welcome! Whether it's reporting bugs, suggesting features, or improving documentation, your input is valuable.
+
+![GitHub Sponsor badge](images/github-sponsor-badge.png)
 
 You can also support the development of `LogoClim` by becoming a sponsor. Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
 
