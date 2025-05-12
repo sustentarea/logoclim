@@ -161,7 +161,7 @@ for (i in dirs) {
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
 :::
 
-Select the shape you want to use.
+Check the **shape** you want to use.
 
 For getting the shape of a single country, use:
 
@@ -328,19 +328,11 @@ orbis::wc_to_ascii(
 beepr::beep(1)
 ```
 
-```{r}
-#| eval: false
+## Zipping the Files (Optional)
 
-data_series_dir |>
-  fs::dir_ls(
-    type = "file",
-    regexp = "asc.aux.xml$|prj$",
-    recurse = TRUE
-  ) |>
-  fs::file_delete()
-```
+This is optional and only useful for storing the final data.
 
-## Gathering the `asc` Files
+Check the **name of the file** where the data will be stored.
 
 ```{r}
 #| eval: false
@@ -353,93 +345,6 @@ asc_files <-
     recurse = TRUE
   )
 ```
-
-<!-- REMOVE AFTER PUSH -->
-
-## Checking the Final Files (Optional)
-
-### By Resolution
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("(?<=wc2.1_)(30s|2.5m|5m|10m)") |>
-  rutils::drop_na() |>
-  unique()
-```
-
-### By Month
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("(?<=-)[0-9]{2}(?=.asc)") |>
-  rutils::drop_na() |>
-  unique()
-```
-
-### By Year
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("(?<=_)[0-9]{4}(?=-[0-9]{2}.asc)") |>
-  rutils::drop_na() |>
-  unique()
-```
-
-### By Year-Month
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("(?<=_)[0-9]{4}-[0-9]{2}(?=.asc)") |>
-  rutils::drop_na() |>
-  unique()
-```
-
-### By Group of Years
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("[0-9]{4}-[0-9]{4}") |>
-  rutils::drop_na() |>
-  unique()
-```
-
-### By Global Climate Model (GCM)
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("(?<=_)[A-Z].+(?=_ssp[0-9]{3})") |>
-  rutils:::drop_na() |>
-  unique()
-```
-
-### By Shared Socioeconomic Pathways (SSP)
-
-```{r}
-#| eval: false
-
-asc_files |>
-  stringr::str_extract("ssp[0-9]{3}") |>
-  rutils:::drop_na() |>
-  unique()
-```
-
-## Zipping the Files (Optional)
-
-This is optional and only useful for storing the final data.
-
-Check the **name of the file** where the data will be stored.
 
 ```{r}
 zip_file <- fs::path(data_dir, "bra-2-5m.zip")
