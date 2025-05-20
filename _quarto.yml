@@ -1,11 +1,10 @@
 editor: source
 
 project:
-  output-dir: "."
   render: [README.qmd]
   post-render: "R/_post-render.R"
 
-html-table-processing: none
-default-image-extension: ""
-
-format: gfm
+format:
+  gfm:
+    html-table-processing: none
+    default-image-extension: ""

@@ -2,12 +2,22 @@
 
 <!-- quarto render -->
 
+```{r}
+#| label: setup
+#| include: false
+
+library(badger)
+library(beepr)
+library(groomr) # github.com/danielvartan/groomr
+library(lubridate)
+library(readr)
+library(stringr)
+```
+
 <!-- badges: start -->
 ```{r}
 #| echo: false
 #| output: asis
-
-library(badger)
 
 cat(
   badger::badge_repostatus("active"),
@@ -23,11 +33,18 @@ cat(
     "1284C5",
     "https://doi.org/10.17605/OSF.IO/EAPZU"
   ),
-  badger::badge_custom(
-    "fair--software.eu",
-    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-",
+  paste0(
+    "[![",
+    "fair-software.eu",
+    "](",
+    "https://img.shields.io/badge/",
+    "fair--software.eu", "-",
+    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B",
+    "-",
     "orange",
-    "https://fair-software.eu"
+    ")](",
+    "https://fair-software.eu",
+    ")"
   ),
   paste0(
     "[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)]",
@@ -44,7 +61,7 @@ cat(
     "green",
     url = "https://choosealicense.com/licenses/mit/"
   ),
-  badger::badge_custom( # Contributor Covenant
+  badger::badge_custom(
     "Contributor%20Covenant",
     "2.1",
     "4baaaa",
@@ -206,7 +223,7 @@ cat(
 )
 ```
 
-The `LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit). This means you can use, modify, and distribute the code freely, as long as you include the original license and copyright notice in any copies or substantial portions of the software.
+`LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit). This means you can use, modify, and distribute the code freely, as long as you include the original license and copyright notice in any copies or substantial portions of the software.
 
 ## Acknowledgments
 

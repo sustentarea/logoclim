@@ -8,7 +8,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![](https://img.shields.io/badge/fair----software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B---orange.svg)](https://fair-software.eu)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 [![FAIR checklist
 badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)
 [![License:
@@ -253,7 +253,7 @@ a donation. Please mention `LogoClim` in your donation message.
 
 [![](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-The `LogoClim` code is licensed under the [MIT
+`LogoClim` code is licensed under the [MIT
 License](https://opensource.org/license/mit). This means you can use,
 modify, and distribute the code freely, as long as you include the
 original license and copyright notice in any copies or substantial
