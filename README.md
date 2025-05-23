@@ -20,9 +20,8 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 
 `LogoClim` is a NetLogo model designed to simulate and visualize climate
 conditions, serving as a powerful tool for exploring both historical and
-projected climate data. Its primary goal is to facilitate the
-integration of climate data into agent-based models and enhance the
-reproducibility of these simulations.
+projected climate data. Its primary goal is to support empirically-based
+agent-based models and enhance the reproducibility of their simulations.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data

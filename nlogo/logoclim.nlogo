@@ -40,14 +40,21 @@ globals [
   min-value
   min-plot-y
   max-plot-y
+  seed
 ]
 
 patches-own [
   value
+  latitude
+  longitude
 ]
 
-to setup
+to setup [#seed]
   clear-all
+
+  set seed #seed
+  random-seed #seed
+
   sr:setup
 
   set start-year normalize-year start-year
@@ -207,6 +214,10 @@ to setup-map [#dataset]
     ] [
       set pcolor background-color
     ]
+
+    let patch-envelope gis:envelope-of self
+    set latitude sublist patch-envelope 0 2
+    set longitude sublist patch-envelope 2 4
   ]
 end
 
@@ -488,7 +499,7 @@ BUTTON
 330
 45
 Setup
-setup
+setup new-seed
 NIL
 1
 T
@@ -959,6 +970,12 @@ Once everything is set, open the NetLogo file and start exploring!
 - **`Year`**, **`Month`**: Displays the current year and month being simulated.
 - **`Min`**, **`Max`**, **`Mean`**, **`SD`** (Standard Deviation): Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
 - **`Plots`**: Graphs for mean, minimum, maximum, and standard deviation against time.
+
+### PATCH ATTRIBUTES
+
+- **`value`**: A number representing the series value at the patch point.
+- **`latitude`**: A `list` of two numbers indicating the minimum and maximum latitude of the patch point.
+- **`longitude`**: A `list` of two numbers indicating the minimum and maximum longitude of the patch point.
 
 ## THINGS TO NOTICE
 

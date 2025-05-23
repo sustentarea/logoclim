@@ -167,7 +167,7 @@ For getting the shape of a single country, use:
 
 ```{r}
 shape <- geodata::gadm(
-  country = "nor", # Change to the desired country code
+  country = "bra", # Change to the desired country code
   level = 0,
   path = raw_data_dir
 )
@@ -282,7 +282,7 @@ tif_files <-
 ```{r}
 #| eval: false
 
-tif_file <- tif_files[1]
+tif_file <- tif_files |> sample(1)
 ```
 
 ```{r}
