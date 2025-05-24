@@ -231,9 +231,8 @@ to setup-stats
   set max-plot-y ceiling ((quartile 3) + (6 * (quartile "iqr")))
 end
 
-to go [#continuous? #update-plots? #wait?]
-  assert-logical #continuous?
-  assert-logical #update-plots?
+to go [#tick? #wait?]
+  assert-logical #tick?
   assert-logical #wait?
 
   (ifelse
@@ -261,8 +260,7 @@ to go [#continuous? #update-plots? #wait?]
 
   walk index #wait?
 
-  if (#update-plots? = true) [update-plots]
-  if (#continuous? = true) [tick]
+  if (#tick? = true) [tick]
 end
 
 to walk [#index #wait?]
@@ -303,7 +301,7 @@ to go-back
     ]
   )
 
-  go false false false
+  go false false
 end
 
 to show-values
@@ -516,7 +514,7 @@ BUTTON
 440
 45
 Go
-go true true true
+go true true
 T
 1
 T
@@ -550,7 +548,7 @@ BUTTON
 440
 85
 Go forward
-go false false false
+go false false
 NIL
 1
 T
@@ -880,7 +878,7 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### HISTORICAL MONTHLY WEATHER DATA
 
-This series includes 12 monthly data points for each year from 1960 to 2018, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This series includes 12 monthly data points for each year from 1960 to 2021, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 

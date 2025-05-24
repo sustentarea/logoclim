@@ -83,7 +83,7 @@ Learn more
 #### Historical Monthly Weather Data
 
 This series includes 12 monthly data points for each year from 1960 to
-2018, based on downscaled data from
+2021, based on downscaled data from
 [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/),
 developed by the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)

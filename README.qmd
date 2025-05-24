@@ -50,7 +50,7 @@ cat(
     "[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)]",
     "(https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)"
   ),
-  # badger::badge_custom( # CII Best Practices
+  # badger::badge_custom(
   #   "openssf%20best%20practices",
   #   "Placeholder",
   #   "orange",
@@ -73,7 +73,7 @@ cat(
 
 ## Overview
 
-`LogoClim` is a NetLogo model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to support empirically-based agent-based models and enhance the reproducibility of their simulations.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to support empirically-based agent-based models and enhance the reproducibility of their simulations.
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
@@ -103,7 +103,7 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### Historical Monthly Weather Data
 
-This series includes 12 monthly data points for each year from 1960 to 2018, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation..
+This series includes 12 monthly data points for each year from 1960 to 2021, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation..
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
