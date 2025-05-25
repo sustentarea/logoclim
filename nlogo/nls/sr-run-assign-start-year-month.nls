@@ -1,6 +1,6 @@
+; __includes ["str-to-num-month.nls"]
 ; extensions [sr]
 ; globals [start-month start-year]
-; __includes ["str-to-num-month.nls"]
 
 ; Ensure `sr:setup` is called in the `setup` procedure.
 

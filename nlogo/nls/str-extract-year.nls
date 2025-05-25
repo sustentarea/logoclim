@@ -1,5 +1,5 @@
-; globals [data-series]
 ; __includes ["check-string.nls" "str-extract.nls" "pattern-file-year.nls"]
+; globals [data-series]
 
 to-report str-extract-year [#string]
   assert-string #string

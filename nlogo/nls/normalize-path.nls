@@ -1,5 +1,5 @@
-; extensions [pathdir sr string]
 ; __includes ["check-atomic.nls" "collapse.nls" "rep-collapse.nls"]
+; extensions [pathdir sr string]
 
 ; Ensure `sr:setup` is called in the `setup` procedure.
 

@@ -1,16 +1,16 @@
+; __includes [
+;   "lookup-bioclimatic-variable.nls"
+;   "lookup-climate-variable.nls"
+;   "lookup-data-resolution.nls"
+;   "lookup-shared-socioeconomic-pathway.nls"
+; ]
+
 ; globals [
 ;   bioclimatic-variable
 ;   climate-variable
 ;   data-resolution
 ;   global-climate-model
 ;   shared-socioeconomic-pathway
-; ]
-
-; __includes [
-;   "lookup-bioclimatic-variable.nls"
-;   "lookup-climate-variable.nls"
-;   "lookup-data-resolution.nls"
-;   "lookup-shared-socioeconomic-pathway.nls"
 ; ]
 
 to-report pattern-fcd-file

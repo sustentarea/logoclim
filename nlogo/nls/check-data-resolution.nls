@@ -1,5 +1,5 @@
-; globals [data-resolution data-series]
 ; __includes ["collapse.nls" "halt.nls"]
+; globals [data-resolution data-series]
 
 to assert-data-resolution
   let variables []

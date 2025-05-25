@@ -1,5 +1,5 @@
-; globals [climate-variable data-series index month start-month year years]
 ; __includes ["str-to-num-month.nls"]
+; globals [climate-variable data-series index month start-month year years]
 
 to go-back
   (ifelse

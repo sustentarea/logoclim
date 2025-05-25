@@ -1,11 +1,11 @@
-; extensions [sr]
-; globals [series-data-path start-month start-year]
-
 ; __includes [
 ;   "pattern-hmwd-file.nls"
 ;   "sr-run-assign-files.nls"
 ;   "sr-run-assign-start-year-month.nls"
 ; ]
+
+; extensions [sr]
+; globals [series-data-path start-month start-year]
 
 to setup-hmwd-variables
   sr-run-assign-files series-data-path pattern-hmwd-file

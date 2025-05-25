@@ -16,7 +16,7 @@ to-report lookup-shared-socioeconomic-pathway [#string]
       user-message (word
         "The option "
         single-quote #string " "
-        "was not found among the valid options. "
+        "is not found among the valid options. "
         "Please check your settings."
       )
     ]

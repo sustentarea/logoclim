@@ -1,5 +1,5 @@
-; globals [data-series]
 ; __includes ["check-string-or-integer.nls" "str-detect.nls" "str-extract.nls"]
+; globals [data-series]
 
 to-report normalize-year [#year]
   assert-string-or-integer #year

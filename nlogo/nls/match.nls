@@ -1,5 +1,5 @@
-; extensions [sr]
 ; __includes ["check-atomic.nls" "normalize-value.nls"]
+; extensions [sr]
 
 ; Ensure `sr:setup` is called in the `setup` procedure.
 

@@ -1,5 +1,4 @@
 ; extensions [sr]
-; globals [data-series global-climate-model climate-variable data-resolution]
 
 ; __includes [
 ;   "normalize-path.nls"
@@ -9,6 +8,8 @@
 ;   "pattern-data-file.nls"
 ;   "lookup-series-data-path.nls"
 ; ]
+
+; globals [data-series global-climate-model climate-variable data-resolution]
 
 ; Ensure `sr:setup` is called in the `setup` procedure.
 

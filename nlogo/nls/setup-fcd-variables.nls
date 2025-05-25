@@ -1,11 +1,11 @@
-; extensions [sr]
-; globals [climate-variable series-data-path start-month start-year]
-
 ; __includes [
 ;   "pattern-fcd-file.nls"
 ;   "sr-run-assign-files.nls"
 ;   "sr-run-assign-start-year-month.nls"
 ; ]
+
+; extensions [sr]
+; globals [climate-variable series-data-path start-month start-year]
 
 to setup-fcd-variables
   sr-run-assign-files series-data-path pattern-fcd-file

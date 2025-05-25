@@ -1,13 +1,13 @@
 ; Require the `stringr` R package.
 
-; extensions [sr]
-
 ; __includes [
 ;   "check-atomic.nls"
 ;   "check-string.nls"
 ;   "normalize-value.nls"
 ;   "single-quote.nls"
 ; ]
+
+; extensions [sr]
 
 ; Ensure `sr:setup` is called in the `setup` procedure.
 

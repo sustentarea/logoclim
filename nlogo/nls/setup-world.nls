@@ -1,6 +1,6 @@
+; __includes ["file-path.nls"]
 ; extensions [gis]
 ; globals [base-file patch-px-size series-data-path]
-; __includes ["file-path.nls"]
 
 to setup-world
   set base-file file-path series-data-path (first files)

@@ -1,3 +1,4 @@
+; __includes ["check-gis.nls" "lookup-series-color.nls"]
 ; extensions [gis]
 
 ; globals [
@@ -9,8 +10,6 @@
 ;   white-max
 ;   white-value
 ; ]
-
-; __includes ["check-gis.nls" "lookup-series-color.nls"]
 
 to setup-map [#dataset]
   assert-gis #dataset

@@ -1,19 +1,19 @@
-; globals [
-;   dataset
-;   files
-;   month
-;   series-data-path
-;   year
-; ]
-
-; extensions [gis]
-
 ; __includes [
 ;   "check-integer.nls"
 ;   "file-path.nls"
 ;   "setup-map.nls"
 ;   "str-extract-month.nls"
 ;   "str-extract-year.nls"
+; ]
+
+; extensions [gis]
+
+; globals [
+;   dataset
+;   files
+;   month
+;   series-data-path
+;   year
 ; ]
 
 to walk [#index]

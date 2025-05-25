@@ -1,5 +1,5 @@
-; globals [climate-variable]
 ; __includes ["check-string.nls" "str-extract.nls" "pattern-file-month.nls"]
+; globals [climate-variable]
 
 to-report str-extract-month [#string]
   assert-string #string

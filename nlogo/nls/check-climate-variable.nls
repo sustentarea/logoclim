@@ -1,5 +1,5 @@
-; globals [climate-variable data-series]
 ; __includes ["collapse.nls" "halt.nls"]
+; globals [climate-variable data-series]
 
 to assert-climate-variable
   let variables []

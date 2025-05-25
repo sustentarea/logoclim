@@ -1,5 +1,5 @@
-; extensions [pathdir]
 ; __include ["check-string.nls" "str-detect.nls"]
+; extensions [pathdir]
 
 to-report file-path [#string-1 #string-2]
   assert-string #string-1

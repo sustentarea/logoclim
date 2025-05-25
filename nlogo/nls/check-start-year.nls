@@ -1,5 +1,5 @@
-; globals [start-year data-series]
 ; __includes ["str-detect.nls" "check-string.nls" "halt.nls"]
+; globals [start-year data-series]
 
 to assert-start-year
   if (str-detect start-year "^[0-9]{4}" = false) [

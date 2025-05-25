@@ -1,10 +1,10 @@
-; globals [data-series]
-
 ; __includes [
 ;   "pattern-hcd-file.nls"
 ;   "pattern-hmwd-file.nls"
 ;   "pattern-fcd-file.nls"
 ; ]
+
+; globals [data-series]
 
 to-report pattern-data-file
   let pattern ""
