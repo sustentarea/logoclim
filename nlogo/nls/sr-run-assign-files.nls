@@ -1,0 +1,18 @@
+; extensions [sr]
+; __includes ["check-string.nls" "normalize-path.nls"]
+
+; Ensure `sr:setup` is called in the `setup` procedure.
+
+to sr-run-assign-files [#path #pattern]
+  assert-string #path
+  assert-string #pattern
+
+  (sr:run
+    (word
+      "files <- list.files("
+      "path  = '" normalize-path #path "', "
+      "pattern = '" #pattern "'"
+      ")"
+    )
+  )
+end

@@ -1,0 +1,21 @@
+to-report is-atomic? [#x]
+  report not is-list? #x
+end
+
+to-report test-atomic [#x]
+  report is-atomic? #x
+end
+
+to-report check-atomic [#x]
+  ifelse (is-atomic? #x) [
+    report true
+  ] [
+    report "The value is not atomic; it is a list."
+  ]
+end
+
+to assert-atomic [#x]
+  if (not is-atomic? #x) [
+    error check-atomic #x
+  ]
+end

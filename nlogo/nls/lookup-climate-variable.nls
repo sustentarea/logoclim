@@ -1,0 +1,36 @@
+; __includes ["single-quote.nls"]
+
+to-report lookup-climate-variable [#string]
+  assert-string #string
+
+  (ifelse
+    (#string = "Average minimum temperature (°C)") [
+      report "tmin"
+    ] (#string = "Average maximum temperature (°C)") [
+      report "tmax"
+    ] (#string = "Average temperature (°C)") [
+      report "tavg"
+    ] (#string = "Total precipitation (mm)") [
+      report "prec"
+    ] (#string = "Solar radiation (kJ m^-2 day^-1)") [
+      report "srad"
+    ] (#string = "Wind speed (m s^-1)") [
+      report "wind"
+    ] (#string = "Wind speed (m s^-1)") [
+      report "wind"
+    ] (#string = "Water vapor pressure (kPa)") [
+      report "vapr"
+    ] (#string = "Bioclimatic variables") [
+      report "bioc"
+    ] (#string = "Elevation") [
+      report "elev"
+    ] [
+      user-message (word
+        "The option "
+        single-quote #string " "
+        "was not found among the valid options. "
+        "Please check your settings."
+      )
+    ]
+  )
+end

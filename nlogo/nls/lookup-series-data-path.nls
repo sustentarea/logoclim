@@ -1,0 +1,26 @@
+; __includes ["single-quote.nls"]
+
+to-report lookup-series-data-path [#string]
+  assert-string #string
+
+  (ifelse
+    (#string = "Historical climate data") [
+      report file-path data-path "historical-climate-data"
+    ]
+    (#string = "Historical monthly weather data") [
+      report file-path data-path "historical-monthly-weather-data"
+    ]
+    (#string = "Future climate data") [
+      report file-path data-path "future-climate-data"
+    ]
+    [
+      user-message (word
+        "The option "
+        single-quote #string " "
+        "was not found among the valid options. "
+        "Please check your settings."
+      )
+
+    ]
+  )
+end

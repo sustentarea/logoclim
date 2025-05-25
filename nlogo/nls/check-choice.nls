@@ -1,0 +1,29 @@
+; __includes ["check-atomic.nls" "check-list.nls" "single-quote.nls"]
+
+to-report test-choice [#x #choices]
+  assert-atomic #x
+  assert-list #choices
+
+  report member? #x #choices
+end
+
+to-report check-choice [#x #choices]
+  assert-atomic #x
+  assert-list #choices
+
+  ifelse (test-choice #x #choices) [
+    report true
+  ] [
+    report (word
+      "#x must be one of the following values: "
+      collapse #choices ", " true "; "
+      "not " single-quote #x
+    )
+  ]
+end
+
+to assert-choice [#x #choices]
+  if (not test-choice #x #choices) [
+    error check-choice #x #choices
+  ]
+end

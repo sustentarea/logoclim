@@ -1,0 +1,12 @@
+; __includes ["check-integer.nls"]
+
+to-report num-to-str-month [#month-number]
+  assert-integer #month-number
+
+  let months (list
+    "January" "February" "March" "April" "May" "June"
+    "July" "August" "September" "October" "November" "December"
+  )
+
+  report item (#month-number - 1) months
+end

@@ -1,0 +1,27 @@
+; globals [
+;   dataset
+;   files
+;   month
+;   series-data-path
+;   year
+; ]
+
+; extensions [gis]
+
+; __includes [
+;   "check-integer.nls"
+;   "file-path.nls"
+;   "setup-map.nls"
+;   "str-extract-month.nls"
+;   "str-extract-year.nls"
+; ]
+
+to walk [#index]
+  assert-integer #index
+
+  set dataset gis:load-dataset file-path series-data-path (item #index files)
+  set month str-extract-month (item #index files)
+  set year str-extract-year (item #index files)
+
+  setup-map dataset
+end

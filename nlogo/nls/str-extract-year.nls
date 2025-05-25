@@ -1,0 +1,17 @@
+; globals [data-series]
+; __includes ["check-string.nls" "str-extract.nls" "pattern-file-year.nls"]
+
+to-report str-extract-year [#string]
+  assert-string #string
+
+  (ifelse
+    (data-series = "Historical climate data") [
+      report "1970-2000"
+    ]
+    (data-series = "Future climate data") [
+      report str-extract #string pattern-file-year
+    ] [
+      report read-from-string str-extract #string pattern-file-year
+    ]
+  )
+end

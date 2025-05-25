@@ -1,0 +1,7 @@
+; __includes ["check-string.nls" "str-extract.nls" "pattern-file-gcm.nls"]
+
+to-report str-extract-gcm [#string]
+  assert-string #string
+
+  report str-extract #string pattern-file-gcm
+end

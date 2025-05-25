@@ -1,0 +1,8 @@
+; __includes ["check-atomic.nls" "check-integer.nls"]
+
+to-report rep [#x #times]
+  assert-atomic #x
+  assert-integer #times
+
+  report map [i -> #x] (range 0 #times)
+end

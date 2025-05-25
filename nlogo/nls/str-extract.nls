@@ -1,0 +1,28 @@
+; Require the `stringr` R package.
+
+; extensions [sr]
+
+; __includes [
+;   "check-atomic.nls"
+;   "check-string.nls"
+;   "normalize-value.nls"
+;   "single-quote.nls"
+; ]
+
+; Ensure `sr:setup` is called in the `setup` procedure.
+
+to-report str-extract [#x #pattern]
+  assert-string #pattern
+
+  set #x normalize-value #x
+
+  report sr:runresult (word
+    "stringr::str_extract("
+    "string = "
+    #x
+    ", "
+    "pattern = "
+    single-quote #pattern
+    ")"
+  )
+end

@@ -1,0 +1,53 @@
+; extensions [gis]
+
+; globals [
+;   background-color
+;   black-value
+;   data-series
+;   max-value
+;   min-value
+;   white-max
+;   white-value
+; ]
+
+; __includes ["check-gis.nls" "lookup-series-color.nls"]
+
+to setup-map [#dataset]
+  assert-gis #dataset
+
+  let envelope gis:envelope-of #dataset
+
+  ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
+    gis:set-world-envelope-ds gis:envelope-of #dataset
+  ] [
+    gis:set-world-envelope gis:envelope-of #dataset
+  ]
+
+  gis:apply-raster #dataset value
+
+  ifelse (white-max = true) [
+    set max-value max [value] of patches with [(value <= 0) or (value >= 0)]
+  ] [
+    set max-value white-value
+  ]
+
+  ifelse (black-min = true) [
+    set min-value min [value] of patches with [(value <= 0) or (value >= 0)]
+  ] [
+    set min-value black-value
+  ]
+
+  ask (patches) [
+    ifelse ((value <= 0) or (value >= 0)) [
+      let series-color lookup-series-color data-series
+
+      set pcolor scale-color series-color value min-value max-value
+    ] [
+      set pcolor background-color
+    ]
+
+    let patch-envelope gis:envelope-of self
+    set latitude sublist patch-envelope 0 2
+    set longitude sublist patch-envelope 2 4
+  ]
+end

@@ -1,0 +1,11 @@
+; __includes ["check-list.nls" "check-string.nls" "check-logical.nls"]
+
+to-report collapse [#list #sep #quote?]
+  assert-list #list
+  assert-string #sep
+  assert-logical #quote?
+
+  if (#quote? = true) [set #list single-quote #list]
+
+  report reduce [[i j] -> (word i #sep j)] #list
+end

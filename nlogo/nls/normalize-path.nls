@@ -1,0 +1,30 @@
+; extensions [pathdir sr string]
+; __includes ["check-atomic.nls" "collapse.nls" "rep-collapse.nls"]
+
+; Ensure `sr:setup` is called in the `setup` procedure.
+
+to-report normalize-path [#path]
+  assert-atomic #path
+
+  let test true
+
+  carefully [
+    let r-test sr:runresult (word "'" #path "'")
+  ] [
+    set test false
+  ]
+
+  ifelse (test = false) [
+    let separator pathdir:get-separator
+    let double-separator rep-collapse separator 2
+    let str-split string:split-on separator #path
+
+    if (last str-split = "") [
+      set str-split but-last str-split
+    ]
+
+    report collapse str-split double-separator false
+  ] [
+    report #path
+  ]
+end

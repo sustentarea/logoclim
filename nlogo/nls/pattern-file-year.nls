@@ -1,0 +1,13 @@
+; globals [data-series]
+
+to-report pattern-file-year
+  (ifelse
+    (data-series = "Historical monthly weather data") [
+      report "[0-9]{4}(?=-[0-9]{2}.asc)"
+    ] (data-series = "Future climate data") [
+      report "[0-9]{4}-[0-9]{4}"
+    ] [
+      user-message (word "Pattern not found.")
+    ]
+  )
+end

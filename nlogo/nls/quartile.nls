@@ -1,0 +1,33 @@
+; __include ["check-choice.nls" "check-list.nls"]
+
+to-report quartile [#data #stat]
+  assert-list #data
+  assert-choice #stat [0 1 2 3 4 "iqr" "length"]
+
+  set #data sort #data
+  let length-data length #data
+  let quartile-length length-data / 4
+
+  (ifelse
+    (#stat = 0)[
+      report first #data
+    ] (#stat = 1) [
+      report last (sublist #data 0 (quartile-length * 1))
+    ] (#stat = 2) [
+      report last (sublist #data 0 (quartile-length * 2))
+    ] (#stat = 3) [
+      report last (sublist #data 0 (quartile-length * 3))
+    ] (#stat = 4) [
+      report last #data
+    ] (#stat = "iqr") [
+      let quartile-1 last (sublist #data 0 (quartile-length * 1))
+      let quartile-3 last (sublist #data 0 (quartile-length * 3))
+
+      report quartile-3 - quartile-1
+    ] (#stat = "length") [
+      report quartile-length
+    ] [
+      error (word "#stat not found.")
+    ]
+  )
+end

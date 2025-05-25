@@ -1,0 +1,24 @@
+; __includes ["single-quote.nls"]
+
+to-report lookup-data-resolution [#string]
+  assert-string #string
+
+  (ifelse
+    (#string = "30 seconds (~1 km2  at the equator)") [
+      report "30s"
+    ] (#string = "2.5 minutes (~21 km2 at the equator)") [
+      report "2.5m"
+    ] (#string = "5 minutes (~85 km2 at the equator)") [
+      report "5m"
+    ] (#string = "10 minutes (~340 km2 at the equator)") [
+      report "10m"
+    ] [
+      user-message (word
+        "The option "
+        single-quote #string " "
+        "was not found among the valid options. "
+        "Please check your settings."
+      )
+    ]
+  )
+end

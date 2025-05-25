@@ -1,0 +1,30 @@
+; globals [climate-variable data-series index month start-month year years]
+; __includes ["str-to-num-month.nls"]
+
+to go-back
+  (ifelse
+    (
+      climate-variable = "Elevation" or
+      (
+        year = first years and
+        (
+          month = str-to-num-month start-month or
+          month = "NA"
+        )
+      )
+    ) [
+      stop
+    ] (
+      data-series = "Future climate data" and
+      climate-variable = "Bioclimatic variables"
+    ) [
+      set year item (index - 1) years
+      set index index - 2
+    ] [
+      set month month - 1
+      set index index - 2
+    ]
+  )
+
+  go false false
+end

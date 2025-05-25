@@ -1,0 +1,7 @@
+to halt
+  error (word
+    "The model stopped running due "
+    "to the reason presented in the "
+    "last dialog window."
+  )
+end

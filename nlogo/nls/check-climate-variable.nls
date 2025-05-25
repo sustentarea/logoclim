@@ -1,0 +1,54 @@
+; globals [climate-variable data-series]
+; __includes ["collapse.nls" "halt.nls"]
+
+to assert-climate-variable
+  let variables []
+
+  (ifelse
+    (data-series = "Historical climate data") [
+      set variables [
+        "Average minimum temperature (°C)"
+        "Average maximum temperature (°C)"
+        "Average temperature (°C)"
+        "Total precipitation (mm)"
+        "Solar radiation (kJ m^-2 day^-1)"
+        "Wind speed (m s^-1)"
+        "Water vapor pressure (kPa)"
+        "Bioclimatic variables"
+        "Elevation"
+      ]
+   ]
+    (data-series = "Historical monthly weather data") [
+      set variables [
+        "Average minimum temperature (°C)"
+        "Average maximum temperature (°C)"
+        "Total precipitation (mm)"
+      ]
+    ]
+    (data-series = "Future climate data") [
+      set variables [
+        "Average minimum temperature (°C)"
+        "Average maximum temperature (°C)"
+        "Total precipitation (mm)"
+        "Bioclimatic variables"
+      ]
+    ]
+  )
+
+  if (not member? climate-variable variables) [
+    set variables collapse variables "\n" false
+
+    user-message (word
+      "The option "
+      "'" climate-variable "' "
+      "cannot be used with "
+      "'" data-series "' "
+      "series. "
+      "Use one the following options: "
+      "\n"
+      variables
+    )
+
+    halt
+  ]
+end

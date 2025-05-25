@@ -1,0 +1,34 @@
+; globals [data-series]
+; __includes ["check-string-or-integer.nls" "str-detect.nls" "str-extract.nls"]
+
+to-report normalize-year [#year]
+  assert-string-or-integer #year
+
+  let out #year
+  let pattern "^[0-9]{4}$"
+
+  if ((str-detect #year pattern) = true) [
+    set out read-from-string str-extract #year pattern
+  ]
+
+  (ifelse
+    (
+      (data-series = "Historical climate data") and
+      (out < 1970 or out > 2000)
+     ) [
+      set out 1970
+    ] (
+      (data-series = "Historical monthly weather data") and
+      (out < 1960 or out > 2021)
+    ) [
+      set out 1960
+    ] (
+      (data-series = "Future climate data") and
+      (out < 2021)
+     ) [
+      set out 2021
+    ]
+  )
+
+  report out
+end

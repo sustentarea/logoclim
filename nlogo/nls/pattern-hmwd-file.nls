@@ -1,0 +1,12 @@
+; globals [climate-variable data-resolution]
+; __includes ["lookup-climate-variable.nls" "lookup-data-resolution.nls"]
+
+to-report pattern-hmwd-file
+  report (word
+    "^wc2.1_"
+    lookup-data-resolution data-resolution "_"
+    lookup-climate-variable climate-variable "_"
+    "[0-9]{4}-[0-9]{2}"
+    ".asc$"
+  )
+end

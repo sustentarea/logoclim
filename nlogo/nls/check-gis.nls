@@ -1,0 +1,31 @@
+; extensions [gis]
+
+to-report is-gis? [#x]
+  let test true
+
+  carefully [
+    let dummy gis:type-of #x
+  ] [
+    set test false
+  ]
+
+  report test
+end
+
+to-report test-gis [#x]
+  report is-gis? #x
+end
+
+to-report check-gis [#x]
+  ifelse (not is-gis? #x) [
+    report false
+  ] [
+    report "The value is not a GIS dataset."
+  ]
+end
+
+to assert-gis [#x]
+  if (not is-gis? #x) [
+    error check-gis #x
+  ]
+end

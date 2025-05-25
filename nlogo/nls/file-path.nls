@@ -1,0 +1,16 @@
+; extensions [pathdir]
+; __include ["check-string.nls" "str-detect.nls"]
+
+to-report file-path [#string-1 #string-2]
+  assert-string #string-1
+  assert-string #string-2
+
+  let middle-sep ""
+  let separator pathdir:get-separator
+
+  if (str-detect #string-1 "[A-Za-z0-9]$") [
+    set middle-sep separator
+  ]
+
+  report (word #string-1 middle-sep #string-2)
+end

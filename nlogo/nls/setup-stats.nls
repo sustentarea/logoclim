@@ -1,0 +1,12 @@
+; globals [max-value max-plot-y min-plot-y min-value]
+; __includes ["quartile.nls"]
+
+to setup-stats
+  let values [value] of patches with [(value <= 0) or (value >= 0)]
+
+  set max-value max values
+  set min-value min values
+
+  set min-plot-y ifelse-value (min-value < 0) [floor min-value] [0]
+  set max-plot-y ceiling ((quartile values 3) + (6 * (quartile values "iqr")))
+end

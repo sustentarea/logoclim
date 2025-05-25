@@ -1,0 +1,19 @@
+; `is-string?` is a NetLogo base function.
+
+to-report test-string [#x]
+  report is-string? #x
+end
+
+to-report check-string [#x]
+  ifelse (is-string? #x) [
+    report true
+  ] [
+    report "The value is not a string."
+  ]
+end
+
+to assert-string [#x]
+  if (not is-string? #x) [
+    error check-string #x
+  ]
+end

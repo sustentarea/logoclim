@@ -1,0 +1,27 @@
+; __includes ["check-string.nls" "check-integer.nls"]
+
+to-report is-string-or-integer? [#x]
+  ifelse (is-string? #x or is-integer? #x) [
+    report true
+  ] [
+    report false
+  ]
+end
+
+to-report test-string-or-integer [#x]
+  report is-string-or-integer? #x
+end
+
+to-report check-string-or-integer [#x]
+  ifelse (is-string-or-integer? #x) [
+    report true
+  ] [
+    report "The value is neither a string nor an integer number."
+  ]
+end
+
+to assert-string-or-integer [#x]
+  if (not is-string-or-integer? #x) [
+    error check-string-or-integer #x
+  ]
+end

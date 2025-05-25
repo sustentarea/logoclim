@@ -1,0 +1,56 @@
+; extensions [sr]
+; globals [climate-variable series-data-path start-month start-year]
+
+; __includes [
+;   "pattern-fcd-file.nls"
+;   "sr-run-assign-files.nls"
+;   "sr-run-assign-start-year-month.nls"
+; ]
+
+to setup-fcd-variables
+  sr-run-assign-files series-data-path pattern-fcd-file
+  sr-run-assign-start-year-month
+
+  ifelse (climate-variable != "Bioclimatic variables") [
+    (sr:run
+      (word
+        "year_months <- "
+        "stringr::str_extract(files, '[0-9]{4}-[0-9]{4}-[0-9]{2}(?=.asc)')"
+      )
+
+      "years <- stringr::str_extract(year_months, '^[0-9]{4}-[0-9]{4}')"
+
+      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
+      "start_years <- as.numeric(start_years)"
+
+      "end_years <- stringr::str_extract(years, '[0-9]{4}$')"
+      "end_years <- as.numeric(end_years)"
+
+      "months <- stringr::str_extract(year_months, '[0-9]{2}$')"
+
+      "start_year_months <- paste0(start_years, '-', months)"
+      "start_year_months <- lubridate::ym(start_year_months)"
+
+      (word
+        "start_year_month <- lubridate::ym('"
+        start-year
+        "-"
+        start-month
+        "')"
+      )
+
+      "files <- files[start_year_months >= start_year_month]"
+    )
+  ] [
+    (sr:run
+      "years <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}')"
+
+      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
+      "start_years <- as.numeric(start_years)"
+
+      "months <- NA"
+
+      "files <- files[start_years >= start_year]"
+    )
+  ]
+end

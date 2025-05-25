@@ -1,23 +1,76 @@
-; LogoClim: WorldClim 2.1 in NetLogo
+; LogoClim: WorldClim in NetLogo
 ;
 ; Version: 2025-04-15 0.0.0.9006
-; Authors: Daniel Vartanian, Leandro M. T. Garcia, & Aline M. de Carvalho.
-; Maintainer: Daniel Vartanian <https://github.com/danielvartan>.
-; License: MIT.
-; Repository: https://github.com/sustentarea/logoclim/
+; Authors: Daniel Vartanian, Leandro M. T. Garcia, & Aline M. de Carvalho
+; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
+; License: MIT
+; Repository: https://github.com/sustentarea/logoclim
 ;
 ; Require: NetLogo >= 6.4 and R >= 4.5.
 ; Required R packages: `rJava`, `stringr`, and `lubridate`.
 ; Required NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`.
 
 __includes [
-  "nls/utils.nls"
-  "nls/utils-checks.nls"
-  "nls/utils-file-system.nls"
-  "nls/utils-lookups.nls"
-  "nls/utils-patterns.nls"
-  "nls/utils-plots.nls"
-  "nls/utils-strings.nls"
+  "nls/as-list.nls"
+  "nls/check-atomic.nls"
+  "nls/check-choice.nls"
+  "nls/check-climate-variable.nls"
+  "nls/check-data-resolution.nls"
+  "nls/check-data.nls"
+  "nls/check-file-exists.nls"
+  "nls/check-gis.nls"
+  "nls/check-integer.nls"
+  "nls/check-list.nls"
+  "nls/check-logical.nls"
+  "nls/check-start-year.nls"
+  "nls/check-string.nls"
+  "nls/check-string-or-integer.nls"
+  "nls/collapse.nls"
+  "nls/file-path.nls"
+  "nls/go-back.nls"
+  "nls/halt.nls"
+  "nls/list-to-c.nls"
+  "nls/lookup-bioclimatic-variable.nls"
+  "nls/lookup-climate-variable.nls"
+  "nls/lookup-data-resolution.nls"
+  "nls/lookup-series-color.nls"
+  "nls/lookup-series-data-path.nls"
+  "nls/lookup-shared-socioeconomic-pathway.nls"
+  "nls/match.nls"
+  "nls/normalize-path.nls"
+  "nls/normalize-value.nls"
+  "nls/normalize-year.nls"
+  "nls/num-to-str-month.nls"
+  "nls/pattern-data-file.nls"
+  "nls/pattern-fcd-file.nls"
+;  "nls/pattern-file-gcm.nls"
+  "nls/pattern-file-month.nls"
+;  "nls/pattern-file-ssp.nls"
+  "nls/pattern-file-year.nls"
+  "nls/pattern-hcd-file.nls"
+  "nls/pattern-hmwd-file.nls"
+  "nls/quartile.nls"
+  "nls/rep.nls"
+  "nls/rep-collapse.nls"
+  "nls/setup-hcd-variables.nls"
+  "nls/setup-hmwd-variables.nls"
+  "nls/setup-fcd-variables.nls"
+  "nls/setup-map.nls"
+  "nls/setup-stats.nls"
+  "nls/setup-variables.nls"
+  "nls/setup-world.nls"
+  "nls/single-quote.nls"
+  "nls/sr-run-assign-files.nls"
+  "nls/sr-run-assign-start-year-month.nls"
+  "nls/show-values.nls"
+  "nls/str-detect.nls"
+  "nls/str-extract.nls"
+;  "nls/str-extract-gcm.nls"
+  "nls/str-extract-month.nls"
+;  "nls/str-extract-ssp.nls"
+  "nls/str-extract-year.nls"
+  "nls/str-to-num-month.nls"
+  "nls/walk.nls"
 ]
 
 extensions [
@@ -28,33 +81,28 @@ extensions [
 ]
 
 globals [
-  series-data-path
-  files
   base-file
-  years
   dataset
+  files
   index
-  month
-  year
-  max-value
-  min-value
-  min-plot-y
   max-plot-y
-  seed
+  max-value
+  min-plot-y
+  min-value
+  month
+  series-data-path
+  year
+  years
 ]
 
 patches-own [
-  value
   latitude
   longitude
+  value
 ]
 
-to setup [#seed]
+to setup
   clear-all
-
-  set seed #seed
-  random-seed #seed
-
   sr:setup
 
   set start-year normalize-year start-year
@@ -70,165 +118,6 @@ to setup [#seed]
   setup-stats
 
   reset-ticks
-end
-
-to setup-variables
-  set series-data-path series-data-path-lookup data-series
-
-  (ifelse
-    (data-series = "Historical climate data") [
-      setup-hcd-variables
-    ]
-    (data-series = "Historical monthly weather data") [
-      setup-hmwd-variables
-    ]
-    (data-series = "Future climate data") [
-      setup-fcd-variables
-    ]
-  )
-
-  set files as-list sr:runresult "files"
-  set years as-list sr:runresult "years"
-
-  set index 0
-  set dataset load-patch-data file-path series-data-path (item index files)
-  set year extract-year (item index files)
-  set month extract-month (item index files)
-end
-
-to setup-hcd-variables
-  sr-run-assign-files series-data-path hcd-file-pattern
-  sr-run-assign-start-year-month
-  sr:run "years <- rep('1970-2000', length(files))"
-
-  if (
-    climate-variable != "Elevation" and
-    climate-variable != "Bioclimatic variables"
-    ) [
-    (sr:run
-      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-      "months <- as.numeric(months)"
-
-      "files <- files[months >= start_month]"
-    )
-  ]
-end
-
-to setup-hmwd-variables
-  sr-run-assign-files series-data-path hmwd-file-pattern
-  sr-run-assign-start-year-month
-
-  (sr:run
-    "years <- stringr::str_extract(files, '[0-9]{4}(?=-[0-9]{2}.asc)')"
-    "years <- as.numeric(years)"
-    "years <- years[years >= start_year]"
-
-    "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-
-    "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{2}(?=.asc)')"
-    "year_months <- lubridate::ym(year_months)"
-
-    (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
-
-    "files <- files[year_months >= start_year_month]"
-  )
-end
-
-to setup-fcd-variables
-  sr-run-assign-files series-data-path fcd-file-pattern
-  sr-run-assign-start-year-month
-
-  ifelse (climate-variable != "Bioclimatic variables") [
-    (sr:run
-      "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}-[0-9]{2}(?=.asc)')"
-      "years <- stringr::str_extract(year_months, '^[0-9]{4}-[0-9]{4}')"
-
-      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
-      "start_years <- as.numeric(start_years)"
-
-      "end_years <- stringr::str_extract(years, '[0-9]{4}$')"
-      "end_years <- as.numeric(end_years)"
-
-      "months <- stringr::str_extract(year_months, '[0-9]{2}$')"
-
-      "start_year_months <- paste0(start_years, '-', months)"
-      "start_year_months <- lubridate::ym(start_year_months)"
-
-      (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
-
-      "files <- files[start_year_months >= start_year_month]"
-    )
-  ] [
-    (sr:run
-      "years <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}')"
-
-      "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
-      "start_years <- as.numeric(start_years)"
-
-      "months <- NA"
-
-      "files <- files[start_years >= start_year]"
-    )
-  ]
-end
-
-to setup-world
-  set base-file file-path series-data-path (first files)
-
-  let base-file-dataset load-patch-data base-file
-  let width floor (gis:width-of base-file-dataset / 2)
-  let height floor (gis:height-of base-file-dataset / 2)
-
-  resize-world (-1 * width ) width (-1 * height ) height
-  set-patch-size patch-px-size
-end
-
-to setup-map [#dataset]
-  assert-gis #dataset
-
-  let envelope gis:envelope-of #dataset
-
-  ifelse
-  ((item 0 envelope < -150) or (item 1 envelope > 150)) [
-    gis:set-world-envelope-ds gis:envelope-of #dataset
-  ]
-  [gis:set-world-envelope gis:envelope-of #dataset]
-
-  gis:apply-raster #dataset value
-
-  ifelse (white-max = true) [
-    set max-value max [value] of patches with [value >= -9999]
-  ] [
-    set max-value white-value
-  ]
-
-  ifelse (black-min = true) [
-    set min-value min [value] of patches with [value >= -9999]
-  ] [
-    set min-value black-value
-  ]
-
-  ask (patches) [
-    ifelse ((value <= 0) or (value >= 0)) [
-      set pcolor scale-color series-color value min-value max-value
-    ] [
-      set pcolor background-color
-    ]
-
-    let patch-envelope gis:envelope-of self
-    set latitude sublist patch-envelope 0 2
-    set longitude sublist patch-envelope 2 4
-  ]
-end
-
-to setup-stats
-  set max-value max [value] of patches with [value >= -9999]
-  set min-value min [value] of patches with [value >= -9999]
-
-  ;set max-plot-y ceiling max-value
-  set min-plot-y ifelse-value (min-value < 0) [floor min-value] [0]
-  ;set min-plot-y floor ((quartile 1) - (6 * (quartile "iqr")))
-  set max-plot-y ceiling ((quartile 3) + (6 * (quartile "iqr")))
 end
 
 to go [#tick? #wait?]
@@ -251,91 +140,17 @@ to go [#tick? #wait?]
         climate-variable = "Bioclimatic variables" and
         year = last years
       )
-    ) [
+      ) [
       stop
     ] [
       set index index + 1
     ]
   )
 
-  walk index #wait?
+  walk index
 
   if (#tick? = true) [tick]
-end
-
-to walk [#index #wait?]
-  assert-integer #index
-  assert-logical #wait?
-
-  set dataset load-patch-data file-path series-data-path (item #index files)
-  set month extract-month (item #index files)
-  set year extract-year (item #index files)
-
-  setup-map dataset
-
   if (#wait? = true) [wait transition-seconds]
-end
-
-to go-back
-  (ifelse
-    (
-      climate-variable = "Elevation" or
-      (
-        year = first years and
-        (
-          month = str-to-num-month start-month or
-          month = "NA"
-        )
-      )
-    ) [
-      stop
-    ] (
-      data-series = "Future climate data" and
-      climate-variable = "Bioclimatic variables"
-    ) [
-      set year item (index - 1) years
-      set index index - 2
-    ] [
-      set month month - 1
-      set index index - 2
-    ]
-  )
-
-  go false false
-end
-
-to show-values
-  ifelse mouse-inside? [
-    ask patch mouse-xcor mouse-ycor [
-      let radius-mean round mean [pcolor] of patches in-radius 3
-      let color-shade radius-mean - (precision radius-mean -1)
-
-      ifelse (color-shade < 0) [
-        set plabel-color black
-      ] [
-        set plabel-color white
-      ]
-
-      carefully [
-        set plabel precision value 2
-      ] [
-        set plabel value
-      ]
-    ]
-
-    ask other patches who-are-not patch mouse-xcor mouse-ycor [
-      set plabel ""
-    ]
-  ] [
-    ask patches [set plabel ""]
-  ]
-end
-
-to-report load-patch-data [#file]
-  assert-string #file
-  assert-file-exists #file
-
-  report gis:load-dataset #file
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -373,7 +188,7 @@ CHOOSER
 data-series
 data-series
 "Historical climate data" "Historical monthly weather data" "Future climate data"
-1
+2
 
 CHOOSER
 10
@@ -403,7 +218,7 @@ CHOOSER
 global-climate-model
 global-climate-model
 "ACCESS-CM2" "BCC-CSM2-MR" "CMCC-ESM2" "EC-Earth3-Veg" "FIO-ESM-2-0" "GFDL-ESM4" "GISS-E2-1-G" "HadGEM3-GC31-LL" "INM-CM5-0" "IPSL-CM6A-LR" "MIROC6" "MPI-ESM1-2-HR" "MRI-ESM2-0" "UKESM1-0-LL"
-0
+2
 
 CHOOSER
 10
@@ -413,7 +228,7 @@ CHOOSER
 shared-socioeconomic-pathway
 shared-socioeconomic-pathway
 "SSP-126" "SSP-245" "SSP-370" "SSP-585"
-0
+3
 
 CHOOSER
 10
@@ -441,7 +256,7 @@ INPUTBOX
 220
 420
 start-year
-1960.0
+2021.0
 1
 0
 Number
@@ -497,7 +312,7 @@ BUTTON
 330
 45
 Setup
-setup new-seed
+setup
 NIL
 1
 T
@@ -713,7 +528,7 @@ MONITOR
 1450
 55
 Month
-month-monitor month
+ifelse-value (is-integer? month) [num-to-str-month month] [month]
 0
 1
 11
@@ -724,7 +539,7 @@ MONITOR
 1450
 105
 Bioclimatic variable
-bioclimatic-variable-monitor
+ifelse-value (lookup-climate-variable climate-variable = \"bioc\") [bioclimatic-variable] [\"NA\"]
 0
 1
 11
@@ -745,7 +560,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [value >= -9999]"
+"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1020
@@ -753,7 +568,7 @@ MONITOR
 1230
 340
 Mean
-mean [value] of patches with [value >= -9999]
+mean [value] of patches with [(value <= 0) or (value >= 0)]
 10
 1
 11
@@ -774,7 +589,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [value >= -9999]"
+"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1020
@@ -782,7 +597,7 @@ MONITOR
 1230
 575
 Minimum
-min [value] of patches with [value >= -9999]
+min [value] of patches with [(value <= 0) or (value >= 0)]
 10
 1
 11
@@ -803,7 +618,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [value >= -9999]"
+"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1240
@@ -811,7 +626,7 @@ MONITOR
 1450
 340
 Standard deviation
-standard-deviation [value] of patches with [value >= -9999]
+standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]
 10
 1
 11
@@ -832,7 +647,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" ""
 PENS
-"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [value >= -9999]"
+"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1240
@@ -840,7 +655,7 @@ MONITOR
 1450
 575
 Maximum
-max [value] of patches with [value >= -9999]
+max [value] of patches with [(value <= 0) or (value >= 0)]
 10
 1
 11

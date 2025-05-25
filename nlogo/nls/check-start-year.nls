@@ -1,0 +1,58 @@
+; globals [start-year data-series]
+; __includes ["str-detect.nls" "check-string.nls" "halt.nls"]
+
+to assert-start-year
+  if (str-detect start-year "^[0-9]{4}" = false) [
+    error "The year must have 4 digits."
+  ]
+
+  if (is-string? start-year) [
+    set start-year read-from-string start-year
+  ]
+
+  (ifelse
+    (start-year < 1960 or start-year > 2100) [
+      user-message (word
+        "You must choose a year between 1960 and 2100."
+      )
+
+      halt
+    ]
+    (
+      data-series = "Historical climate data" and
+      (start-year < 1970 or start-year > 2000)
+    ) [
+      user-message (word
+        "The year for the 'Historical climate data' "
+        "series must be between "
+        "1970 and 2000."
+      )
+
+      halt
+    ]
+    (
+      data-series = "Historical monthly weather data" and
+      start-year > 2021
+    ) [
+      user-message (word
+        "The year for the 'Historical monthly weather data' "
+        "series must be between "
+        "1960 and 2021."
+      )
+
+      halt
+    ]
+    (
+      data-series = "Future climate data" and
+      (start-year < 2021 or start-year > 2100)
+    ) [
+      user-message (word
+        "The year for the 'Future climate data' "
+        "series must be between "
+        "2021 and 2100."
+      )
+
+      halt
+    ]
+  )
+end

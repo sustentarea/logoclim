@@ -1,0 +1,25 @@
+to-report is-integer? [#x]
+  ifelse (not is-number? #x) [
+    report false
+  ] [
+    report (int #x) = #x
+  ]
+end
+
+to-report test-integer [#x]
+  report is-integer? #x
+end
+
+to-report check-integer [#x]
+  ifelse (is-integer? #x) [
+    report true
+  ] [
+    report "The value is not an integer number."
+  ]
+end
+
+to assert-integer [#x]
+  if (not is-integer? #x) [
+    error check-integer #x
+  ]
+end

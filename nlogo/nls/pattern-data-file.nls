@@ -1,0 +1,23 @@
+; globals [data-series]
+
+; __includes [
+;   "pattern-hcd-file.nls"
+;   "pattern-hmwd-file.nls"
+;   "pattern-fcd-file.nls"
+; ]
+
+to-report pattern-data-file
+  let pattern ""
+
+  (ifelse
+    (data-series = "Historical climate data") [
+      set pattern pattern-hcd-file
+    ] (data-series = "Historical monthly weather data") [
+      set pattern pattern-hmwd-file
+    ] (data-series = "Future climate data") [
+      set pattern pattern-fcd-file
+    ]
+  )
+
+  report pattern
+end

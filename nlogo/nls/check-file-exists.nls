@@ -1,0 +1,27 @@
+; __includes ["check-string.nls"]
+
+; `file-exists?` is a NetLogo primitive function.
+
+to-report test-file-exists [#file]
+  assert-string #file
+
+  report file-exists? #file
+end
+
+to-report check-file-exists [#file]
+  assert-string #file
+
+  ifelse (file-exists? #file) [
+    report true
+  ] [
+    report (word "The file " #file " does not exist.")
+  ]
+end
+
+to assert-file-exists [#file]
+  assert-string #file
+
+  if (not file-exists? #file) [
+    error check-file-exists #file
+  ]
+end

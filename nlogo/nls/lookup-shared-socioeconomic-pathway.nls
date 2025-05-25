@@ -1,0 +1,24 @@
+; __includes ["single-quote.nls"]
+
+to-report lookup-shared-socioeconomic-pathway [#string]
+  assert-string #string
+
+  (ifelse
+    (#string = "SSP-126") [
+      report "ssp126"
+    ] (#string = "SSP-245") [
+      report "ssp245"
+    ] (#string = "SSP-370") [
+      report "ssp370"
+    ] (#string = "SSP-585") [
+      report "ssp585"
+    ] [
+      user-message (word
+        "The option "
+        single-quote #string " "
+        "was not found among the valid options. "
+        "Please check your settings."
+      )
+    ]
+  )
+end

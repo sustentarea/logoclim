@@ -1,0 +1,20 @@
+; __includes ["single-quote.nls"]
+
+to-report lookup-series-color [#string]
+  (ifelse
+    (#string = "Historical climate data") [
+      report historical-climate-data-color
+    ] (#string = "Historical monthly weather data") [
+      report historical-monthly-weather-data-color
+    ] (#string = "Future climate data") [
+      report future-climate-data-color
+    ] [
+      user-message (word
+        "The option "
+        single-quote #string " "
+        "was not found among the valid options. "
+        "Please check your settings."
+      )
+    ]
+  )
+end

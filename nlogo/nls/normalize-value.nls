@@ -1,0 +1,9 @@
+; __include ["check-atomic.nls" "list-to-c.nls" "single-quote.nls"]
+
+to-report normalize-value [#x]
+  ifelse (is-atomic? #x) [
+    report single-quote #x
+  ] [
+    report list-to-c #x true
+  ]
+end

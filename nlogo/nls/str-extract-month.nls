@@ -1,0 +1,18 @@
+; globals [climate-variable]
+; __includes ["check-string.nls" "str-extract.nls" "pattern-file-month.nls"]
+
+to-report str-extract-month [#string]
+  assert-string #string
+
+  let out str-extract #string pattern-file-month
+
+  (ifelse
+    (out = "NA") [
+      report out
+    ] (climate-variable = "Bioclimatic variables") [
+      report "NA"
+    ] [
+      report read-from-string out
+    ]
+  )
+end

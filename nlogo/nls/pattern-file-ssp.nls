@@ -1,0 +1,3 @@
+to-report pattern-file-ssp
+  report "(?<=_)ssp[0-9]{3}(?=_[0-9]{4})"
+end

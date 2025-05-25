@@ -1,0 +1,19 @@
+; `is-list?` is a NetLogo base function.
+
+to-report test-list [#x]
+  report is-list? #x
+end
+
+to-report check-list [#x]
+  ifelse (is-list? #x) [
+    report true
+  ] [
+    report "The value is not a list."
+  ]
+end
+
+to assert-list [#x]
+  if (not is-list? #x) [
+    error check-list #x
+  ]
+end

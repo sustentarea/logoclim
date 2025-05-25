@@ -1,0 +1,39 @@
+; extensions [sr]
+; globals [data-series series-data-path]
+
+; __includes [
+;   "as-list.nls"
+;   "file-path.nls"
+;   "lookup-series-data-path.nls"
+;   "setup-fcd-variables.nls"
+;   "setup-hcd-variables.nls"
+;   "setup-hmwd-variables.nls"
+;   "str-extract-month.nls"
+;   "str-extract-year.nls"
+; ]
+
+; Ensure `sr:setup` is called in the `setup` procedure.
+
+to setup-variables
+  set series-data-path lookup-series-data-path data-series
+
+  (ifelse
+    (data-series = "Historical climate data") [
+      setup-hcd-variables
+    ]
+    (data-series = "Historical monthly weather data") [
+      setup-hmwd-variables
+    ]
+    (data-series = "Future climate data") [
+      setup-fcd-variables
+    ]
+  )
+
+  set files as-list sr:runresult "files"
+  set years as-list sr:runresult "years"
+
+  set index 0
+  set dataset gis:load-dataset file-path series-data-path (item index files)
+  set year str-extract-year (item index files)
+  set month str-extract-month (item index files)
+end

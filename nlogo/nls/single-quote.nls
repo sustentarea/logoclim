@@ -1,0 +1,7 @@
+to-report single-quote [#x]
+  ifelse (is-atomic? #x) [
+    report (word "'" #x "'")
+  ] [
+    report map [i -> (word "'" i "'")] #x
+  ]
+end

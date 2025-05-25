@@ -1,0 +1,26 @@
+; extensions [sr]
+; globals [climate-variable]
+
+; __includes [
+;   "pattern-hcd-file.nls"
+;   "sr-run-assign-files.nls"
+;   "sr-run-assign-start-year-month.nls"
+; ]
+
+to setup-hcd-variables
+  sr-run-assign-files series-data-path pattern-hcd-file
+  sr-run-assign-start-year-month
+  sr:run "years <- rep('1970-2000', length(files))"
+
+  if (
+    climate-variable != "Elevation" and
+    climate-variable != "Bioclimatic variables"
+    ) [
+    (sr:run
+      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
+      "months <- as.numeric(months)"
+
+      "files <- files[months >= start_month]"
+    )
+  ]
+end

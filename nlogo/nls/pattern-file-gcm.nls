@@ -1,0 +1,3 @@
+to-report pattern-file-gcm
+  report "(?<=_)[A-Z].*(?=_ssp[0-9]{3})"
+end

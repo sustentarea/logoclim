@@ -1,0 +1,38 @@
+; globals [data-resolution data-series]
+; __includes ["collapse.nls" "halt.nls"]
+
+to assert-data-resolution
+  let variables []
+
+  ifelse (data-series = "Historical monthly weather data") [
+    set variables [
+      "2.5 minutes (~21 km2 at the equator)"
+      "5 minutes (~85 km2 at the equator)"
+      "10 minutes (~340 km2 at the equator)"
+    ]
+  ] [
+    set variables [
+      "30 seconds (~1 km2  at the equator)"
+      "2.5 minutes (~21 km2 at the equator)"
+      "5 minutes (~85 km2 at the equator)"
+      "10 minutes (~340 km2 at the equator)"
+    ]
+  ]
+
+  if (not member? data-resolution variables) [
+    set variables collapse variables "\n" false
+
+    user-message (word
+      "The option "
+      "'" data-resolution "' "
+      "cannot be used with "
+      "'" data-series "' "
+      "series. "
+      "Use one the following options: "
+      "\n"
+      variables
+    )
+
+    halt
+  ]
+end

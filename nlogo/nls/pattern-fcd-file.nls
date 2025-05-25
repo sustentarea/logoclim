@@ -1,0 +1,37 @@
+; globals [
+;   bioclimatic-variable
+;   climate-variable
+;   data-resolution
+;   global-climate-model
+;   shared-socioeconomic-pathway
+; ]
+
+; __includes [
+;   "lookup-bioclimatic-variable.nls"
+;   "lookup-climate-variable.nls"
+;   "lookup-data-resolution.nls"
+;   "lookup-shared-socioeconomic-pathway.nls"
+; ]
+
+to-report pattern-fcd-file
+  let pattern ""
+
+  ifelse (climate-variable = "Bioclimatic variables") [
+    set pattern (word
+      "[0-9]{4}-[0-9]{4}" "_"
+      lookup-bioclimatic-variable bioclimatic-variable
+    )
+  ] [
+    set pattern "[0-9]{4}-[0-9]{4}-[0-9]{2}"
+  ]
+
+  report (word
+    "^wc2.1_"
+    lookup-data-resolution data-resolution "_"
+    lookup-climate-variable climate-variable "_"
+    global-climate-model "_"
+    lookup-shared-socioeconomic-pathway shared-socioeconomic-pathway "_"
+    pattern
+    ".asc$"
+  )
+end
