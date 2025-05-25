@@ -1,7 +1,0 @@
-; __includes ["check-string.nls" "str-extract.nls" "pattern-file-ssp.nls"]
-
-to-report str-extract-ssp [#string]
-  assert-string #string
-
-  report str-extract #string pattern-file-ssp
-end
