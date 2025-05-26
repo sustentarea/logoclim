@@ -2,7 +2,7 @@
 ; globals [max-value max-plot-y min-plot-y min-value]
 
 to setup-stats
-  let values [value] of patches with [(value <= 0) or (value >= 0)]
+  let values [value] of patches with [not is-nan? value]
 
   set max-value max values
   set min-value min values

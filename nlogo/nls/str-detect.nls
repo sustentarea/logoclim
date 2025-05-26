@@ -1,7 +1,6 @@
 ; Require the `stringr` R package.
 
 ; __includes [
-;   "check-atomic.nls"
 ;   "check-string.nls"
 ;   "normalize-value.nls"
 ;   "single-quote.nls"

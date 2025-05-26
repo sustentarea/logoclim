@@ -25,19 +25,19 @@ to setup-map [#dataset]
   gis:apply-raster #dataset value
 
   ifelse (white-max = true) [
-    set max-value max [value] of patches with [(value <= 0) or (value >= 0)]
+    set max-value max [value] of patches with [not is-nan? value]
   ] [
     set max-value white-value
   ]
 
   ifelse (black-min = true) [
-    set min-value min [value] of patches with [(value <= 0) or (value >= 0)]
+    set min-value min [value] of patches with [not is-nan? value]
   ] [
     set min-value black-value
   ]
 
   ask (patches) [
-    ifelse ((value <= 0) or (value >= 0)) [
+    ifelse (not is-nan? value) [
       let series-color lookup-series-color data-series
 
       set pcolor scale-color series-color value min-value max-value

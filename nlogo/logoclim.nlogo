@@ -23,6 +23,7 @@ __includes [
   "nls/check-integer.nls"
   "nls/check-list.nls"
   "nls/check-logical.nls"
+  "nls/check-nan.nls"
   "nls/check-number.nls"
   "nls/check-start-year.nls"
   "nls/check-string.nls"
@@ -558,7 +559,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 1.0 0 -16777216 true "" "plot mean [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot mean [value] of patches with [not is-nan? value]"
 
 MONITOR
 1020
@@ -566,7 +567,7 @@ MONITOR
 1230
 340
 Mean
-mean [value] of patches with [(value <= 0) or (value >= 0)]
+mean [value] of patches with [not is-nan? value]
 5
 1
 11
@@ -587,7 +588,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 1.0 0 -16777216 true "" "plot min [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot min [value] of patches with [not is-nan? value]"
 
 MONITOR
 1020
@@ -595,7 +596,7 @@ MONITOR
 1230
 575
 Minimum
-min [value] of patches with [(value <= 0) or (value >= 0)]
+min [value] of patches with [not is-nan? value]
 5
 1
 11
@@ -616,7 +617,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 1.0 0 -16777216 true "" "plot standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot standard-deviation [value] of patches with [not is-nan? value]"
 
 MONITOR
 1240
@@ -624,7 +625,7 @@ MONITOR
 1450
 340
 Standard deviation
-standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]
+standard-deviation [value] of patches with [not is-nan? value]
 5
 1
 11
@@ -645,7 +646,7 @@ true
 false
 "set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 1.0 0 -16777216 true "" "plot max [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot max [value] of patches with [not is-nan? value]"
 
 MONITOR
 1240
@@ -653,7 +654,7 @@ MONITOR
 1450
 575
 Maximum
-max [value] of patches with [(value <= 0) or (value >= 0)]
+max [value] of patches with [not is-nan? value]
 5
 1
 11
