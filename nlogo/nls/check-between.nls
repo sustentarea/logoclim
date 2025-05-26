@@ -1,0 +1,32 @@
+; __includes ["check-number.nls"]
+
+to-report is-between? [#x #left #right]
+  assert-number #x
+  assert-number #left
+  assert-number #right
+
+  ifelse (#x >= #left and #x <= #right) [
+    report true
+  ] [
+    report false
+  ]
+
+end
+
+to-report test-between [#x #left #right]
+  report is-between? #x #left #right
+end
+
+to-report check-between [#x #left #right]
+  ifelse (is-between? #x #left #right) [
+    report true
+  ] [
+    report "The value is not between the left and right bounds."
+  ]
+end
+
+to assert-between [#x #left #right]
+  if (not is-between? #x #left #right) [
+    error check-between #x #left #right
+  ]
+end

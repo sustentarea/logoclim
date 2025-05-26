@@ -1,0 +1,35 @@
+; `is-number?` is a NetLogo base function.
+
+to-report is-numeric? [#x]
+  report is-number? #x
+end
+
+to-report test-number [#x]
+  report is-number? #x
+end
+
+to-report test-numeric [#x]
+  report is-number? #x
+end
+
+to-report check-number [#x]
+  ifelse (is-number? #x) [
+    report true
+  ] [
+    report "The value is not a number."
+  ]
+end
+
+to-report check-numeric [#x]
+  report check-number #x
+end
+
+to assert-number [#x]
+  if (not is-number? #x) [
+    error check-number #x
+  ]
+end
+
+to assert-numeric [#x]
+  assert-number #x
+end

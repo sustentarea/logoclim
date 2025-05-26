@@ -1,18 +1,13 @@
-; __includes ["check-string.nls" "match.nls"]
+; __includes ["check-string.nls" "check-choice.nls" "match.nls"]
 
 to-report str-to-num-month [#month]
-  assert-string #month
-
   let months (list
     "January" "February" "March" "April" "May" "June"
     "July" "August" "September" "October" "November" "December"
   )
 
-  let out match #month months
+  assert-string #month
+  assert-choice #month months
 
-  ifelse (is-number? out) [
-    report out + 1
-  ] [
-    report out
-  ]
+  report (match #month months) + 1
 end

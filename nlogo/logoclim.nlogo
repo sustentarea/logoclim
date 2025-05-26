@@ -13,6 +13,7 @@
 __includes [
   "nls/as-list.nls"
   "nls/check-atomic.nls"
+  "nls/check-between.nls"
   "nls/check-choice.nls"
   "nls/check-climate-variable.nls"
   "nls/check-data-resolution.nls"
@@ -22,6 +23,7 @@ __includes [
   "nls/check-integer.nls"
   "nls/check-list.nls"
   "nls/check-logical.nls"
+  "nls/check-number.nls"
   "nls/check-start-year.nls"
   "nls/check-string.nls"
   "nls/check-string-or-integer.nls"
@@ -184,7 +186,7 @@ CHOOSER
 data-series
 data-series
 "Historical climate data" "Historical monthly weather data" "Future climate data"
-2
+1
 
 CHOOSER
 10
@@ -252,7 +254,7 @@ INPUTBOX
 220
 420
 start-year
-2021.0
+1970.0
 1
 0
 Number
@@ -513,7 +515,7 @@ MONITOR
 1340
 55
 Year
-year
+ifelse-value (year = 0) [\"NA\"] [year]
 0
 1
 11
@@ -524,7 +526,7 @@ MONITOR
 1450
 55
 Month
-ifelse-value (is-integer? month) [num-to-str-month month] [month]
+(ifelse-value (month = 0) [\"NA\"] (is-integer? month) [num-to-str-month month] [month])
 0
 1
 11
@@ -554,9 +556,9 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" ""
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 0.5 0 -16777216 true "" "plot mean [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot mean [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1020
@@ -565,7 +567,7 @@ MONITOR
 340
 Mean
 mean [value] of patches with [(value <= 0) or (value >= 0)]
-10
+5
 1
 11
 
@@ -583,9 +585,9 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" ""
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 0.5 0 -16777216 true "" "plot min [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot min [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1020
@@ -594,7 +596,7 @@ MONITOR
 575
 Minimum
 min [value] of patches with [(value <= 0) or (value >= 0)]
-10
+5
 1
 11
 
@@ -612,9 +614,9 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" ""
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 0.5 0 -16777216 true "" "plot standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1240
@@ -623,7 +625,7 @@ MONITOR
 340
 Standard deviation
 standard-deviation [value] of patches with [(value <= 0) or (value >= 0)]
-10
+5
 1
 11
 
@@ -641,9 +643,9 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" ""
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
 PENS
-"default" 0.5 0 -16777216 true "" "plot max [value] of patches with [(value <= 0) or (value >= 0)]"
+"default" 1.0 0 -16777216 true "" "plot max [value] of patches with [(value <= 0) or (value >= 0)]"
 
 MONITOR
 1240
@@ -652,7 +654,7 @@ MONITOR
 575
 Maximum
 max [value] of patches with [(value <= 0) or (value >= 0)]
-10
+5
 1
 11
 
