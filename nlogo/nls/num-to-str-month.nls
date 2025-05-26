@@ -9,7 +9,7 @@ to-report num-to-str-month [#month-number]
     "July" "August" "September" "October" "November" "December"
   )
 
-  if (#month-number < 0) [set #month-number (#month-number + 12)]
+  if (#month-number <= 0) [set #month-number (#month-number + 12)]
 
   report item (#month-number - 1) months
 end

@@ -328,6 +328,20 @@ orbis::wc_to_ascii(
 beepr::beep(1)
 ```
 
+## Delete Non-ASCII Files (Optional)
+
+```{r}
+#| eval: false
+
+data_series_dir |>
+  fs::dir_ls(
+    type = "file",
+    regexp = "asc$",
+    invert = TRUE
+  ) |>
+  fs::file_delete()
+```
+
 ## Zipping the Files (Optional)
 
 This is optional and only useful for storing the final data.
