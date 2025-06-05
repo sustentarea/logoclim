@@ -72,8 +72,8 @@ The model can simulate the three climate data series provided by
 
 #### Historical Climate Data
 
-This series includes 12 monthly data points representing average climate
-conditions for the period 1970–2000. It provides averages on minimum,
+This series includes 12 monthly data points for each year from 1970 to 2000 containing average climate
+conditions. It provides averages on minimum,
 mean, and maximum temperature, precipitation, solar radiation, wind
 speed, vapor pressure, elevation, and on bioclimatic variables.
 
@@ -89,13 +89,13 @@ developed by the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
 at the [University of East Anglia](https://www.uea.ac.uk/). It provides
 monthly averages for minimum temperature, maximum temperature, and total
-precipitation..
+precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
-This series includes 12 monthly data points from downscaled climate
+This series includes 12 monthly data points for each year from downscaled climate
 projections derived from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
 four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
@@ -114,7 +114,7 @@ Learn more
 
 To get started, ensure you have
 [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
-was developed using NetLogo 6.4, so it’s recommended to use this version
+was developed using NetLogo 6.4, so it is recommended to use this version
 or later. You can download it
 [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
@@ -126,7 +126,7 @@ The model relies on the GIS
 extensions, which will be installed automatically when you run the
 model.
 
-You’ll also need [R](https://www.r-project.org/) (version 4.5 or later)
+You will also need [R](https://www.r-project.org/) (version 4.5 or later)
 with the [`lubridate`](https://cran.r-project.org/package=lubridate),
 [`rJava`](https://cran.r-project.org/package=rJava), and
 [`stringr`](https://cran.r-project.org/package=stringr) packages. Make
@@ -150,9 +150,9 @@ access the development version, clone or download this repository.
 `LogoClim` uses raster data to represent climate variables. While you
 can download the original datasets directly from [WorldClim
 2.1](https://worldclim.org/), they must first be converted to ASCII
-format before being used in NetLogo—Keep the original file names. To
+format before being used in NetLogo. To
 simplify this process, we recommend using the preprocessed dataset
-included in the project’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z)
+included in the model’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z)
 repository.
 
 The datasets are organized using [ISO 3166-1
@@ -219,7 +219,7 @@ helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L. M. T., & Carvalho, A. M. (2025). *LogoClim:
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim:
 WorldClim in NetLogo* \[Computer software, NetLogo model\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
@@ -228,7 +228,7 @@ A BibTeX entry for LaTeX users is:
 ``` latex
 @Misc{vartanian2025,
   title = {LogoClim: WorldClim in NetLogo},
-  author = {{Daniel Vartanian} and {Leandro Martin Totaro Garcia} and {Aline Martins de Carvalho}},
+  author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {NetLogo model}
