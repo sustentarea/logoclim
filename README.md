@@ -18,10 +18,11 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 
 ## Overview
 
-`LogoClim` is a NetLogo model designed to simulate and visualize climate
-conditions, serving as a powerful tool for exploring both historical and
-projected climate data. Its primary goal is to support empirically-based
-agent-based models and enhance the reproducibility of their simulations.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
+designed to simulate and visualize climate conditions, serving as a
+powerful tool for exploring both historical and projected climate data.
+Its primary goal is to support empirically-based agent-based models and
+enhance the reproducibility of their simulations.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -72,10 +73,11 @@ The model can simulate the three climate data series provided by
 
 #### Historical Climate Data
 
-This series includes 12 monthly data points for each year from 1970 to 2000 containing average climate
-conditions. It provides averages on minimum,
-mean, and maximum temperature, precipitation, solar radiation, wind
-speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes 12 monthly data points for each year from 1970 to
+2000 containing average climate conditions. It provides averages on
+minimum,. It provides averages on minimum, mean, and maximum
+temperature, precipitation, solar radiation, wind speed, vapor pressure,
+elevation, and on bioclimatic variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
@@ -95,8 +97,8 @@ Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
-This series includes 12 monthly data points for each year from downscaled climate
-projections derived from
+This series includes 12 monthly data points for each year from
+downscaled climate projections derived from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
 four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
 projections cover four
@@ -114,8 +116,8 @@ Learn more
 
 To get started, ensure you have
 [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
-was developed using NetLogo 6.4, so it is recommended to use this version
-or later. You can download it
+was developed using NetLogo 6.4, so it is recommended to use this
+version or later. You can download it
 [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
 The model relies on the GIS
@@ -126,8 +128,9 @@ The model relies on the GIS
 extensions, which will be installed automatically when you run the
 model.
 
-You will also need [R](https://www.r-project.org/) (version 4.5 or later)
-with the [`lubridate`](https://cran.r-project.org/package=lubridate),
+You will also need [R](https://www.r-project.org/) (version 4.5 or
+later) with the
+[`lubridate`](https://cran.r-project.org/package=lubridate),
 [`rJava`](https://cran.r-project.org/package=rJava), and
 [`stringr`](https://cran.r-project.org/package=stringr) packages. Make
 sure the R executable is added to your system’s
@@ -150,10 +153,9 @@ access the development version, clone or download this repository.
 `LogoClim` uses raster data to represent climate variables. While you
 can download the original datasets directly from [WorldClim
 2.1](https://worldclim.org/), they must first be converted to ASCII
-format before being used in NetLogo. To
-simplify this process, we recommend using the preprocessed dataset
-included in the model’s [OSF](https://doi.org/10.17605/OSF.IO/RE95Z)
-repository.
+format before being used in NetLogo. To simplify this process, we
+recommend using the preprocessed dataset included in the model’s
+[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
 
 The datasets are organized using [ISO 3166-1
 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
