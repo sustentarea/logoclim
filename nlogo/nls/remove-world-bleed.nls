@@ -1,0 +1,16 @@
+; __include ["check-any.nls" "check-world-bleed.nls"]
+
+to remove-world-bleed
+  let test test-world-bleed
+  let min-xcor min-pxcor
+  let max-xcor max-pxcor
+  let min-ycor min-pycor
+  let max-ycor max-pycor
+
+  if ((item 0 test) = true) [set min-xcor min-pxcor + 1]
+  if ((item 1 test) = true) [set max-xcor max-pxcor - 1]
+  if ((item 2 test) = true) [set min-ycor min-pycor + 1]
+  if ((item 3 test) = true) [set max-ycor max-pycor - 1]
+
+  resize-world min-xcor max-xcor min-ycor max-ycor
+end

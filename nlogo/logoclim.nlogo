@@ -1,7 +1,7 @@
 ; LogoClim: WorldClim in NetLogo
 ;
 ; Version: 2025-04-15 0.0.0.9006
-; Authors: Daniel Vartanian, Leandro M. T. Garcia, & Aline M. de Carvalho
+; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
 ; Repository: https://github.com/sustentarea/logoclim
@@ -12,6 +12,8 @@
 
 __includes [
   "nls/as-list.nls"
+  "nls/check-all.nls"
+  "nls/check-any.nls"
   "nls/check-atomic.nls"
   "nls/check-between.nls"
   "nls/check-choice.nls"
@@ -28,6 +30,7 @@ __includes [
   "nls/check-start-year.nls"
   "nls/check-string.nls"
   "nls/check-string-or-integer.nls"
+  "nls/check-world-bleed.nls"
   "nls/collapse.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
@@ -51,6 +54,7 @@ __includes [
   "nls/pattern-hcd-file.nls"
   "nls/pattern-hmwd-file.nls"
   "nls/quartile.nls"
+  "nls/remove-world-bleed.nls"
   "nls/rep.nls"
   "nls/rep-collapse.nls"
   "nls/setup-hcd-variables.nls"
@@ -90,6 +94,7 @@ globals [
   min-value
   month
   series-data-path
+  settings
   year
   years
 ]
@@ -255,7 +260,7 @@ INPUTBOX
 220
 420
 start-year
-1970.0
+2021.0
 1
 0
 Number
@@ -283,7 +288,7 @@ INPUTBOX
 220
 525
 data-path
-../data/
+../data
 1
 0
 String
@@ -505,7 +510,7 @@ MONITOR
 1230
 55
 Climate variable
-climate-variable
+ifelse-value\n  (settings = 0)\n  [\"NA\"]\n  [item 2 settings]
 0
 1
 11
@@ -516,7 +521,7 @@ MONITOR
 1340
 55
 Year
-ifelse-value (year = 0) [\"NA\"] [year]
+ifelse-value \n  (settings = 0)\n  [\"NA\"]\n  [year]
 0
 1
 11
@@ -527,7 +532,7 @@ MONITOR
 1450
 55
 Month
-(ifelse-value (month = 0) [\"NA\"] (is-integer? month) [num-to-str-month month] [month])
+(ifelse-value \n  ((settings = 0) or (month = 0)) [\"NA\"]\n  (is-integer? month) [num-to-str-month month]\n  [month]\n)
 0
 1
 11
@@ -538,7 +543,7 @@ MONITOR
 1450
 105
 Bioclimatic variable
-ifelse-value (lookup-climate-variable climate-variable = \"bioc\") [bioclimatic-variable] [\"NA\"]
+ifelse-value\n  (lookup-climate-variable climate-variable = \"bioc\") and (settings != 0)\n  [item 5 settings]\n  [\"NA\"]
 0
 1
 11
@@ -686,7 +691,7 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### HISTORICAL CLIMATE DATA
 
-This series includes 12 monthly data points for each year from 1970 to 2000 containing average climate conditions for the period. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes 12 monthly data points representing average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -698,7 +703,7 @@ Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### FUTURE CLIMATE DATA
 
-This series includes 12 monthly data points for each year from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
+This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -860,7 +865,7 @@ We thank the climate modeling groups for producing and sharing their model outpu
 
 ![CNPq logo](images/cnpq-logo.png)
 
-This project was supported by the Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil ([CNPq](https://www.gov.br/cnpq/)).
+This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics)) of the [Ministry of Health](https://www.gov.br/saude/en) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0).
 
 ## REFERENCES
 

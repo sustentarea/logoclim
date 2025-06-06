@@ -36,4 +36,15 @@ to setup-variables
   set dataset gis:load-dataset file-path series-data-path (item index files)
   set year str-extract-year (item index files)
   set month str-extract-month (item index files)
+  
+  set settings (list 
+    data-series
+    data-resolution
+    climate-variable
+    global-climate-model
+    shared-socioeconomic-pathway
+    bioclimatic-variable
+    start-month
+    start-year
+  )
 end

@@ -1,0 +1,5 @@
+to-report any-true? [#list]
+  assert-list #list
+
+  report reduce [[i j] -> i or j] #list
+end

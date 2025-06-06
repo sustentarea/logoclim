@@ -44,7 +44,7 @@ climate variables.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-5m.png)
 
 ## How It Works
 
@@ -73,11 +73,11 @@ The model can simulate the three climate data series provided by
 
 #### Historical Climate Data
 
-This series includes 12 monthly data points for each year from 1970 to
-2000 containing average climate conditions. It provides averages on
-minimum,. It provides averages on minimum, mean, and maximum
-temperature, precipitation, solar radiation, wind speed, vapor pressure,
-elevation, and on bioclimatic variables.
+This series includes 12 monthly data points representing average climate
+conditions for the period 1970–2000. It provides averages on minimum. It
+provides averages on minimum, mean, and maximum temperature,
+precipitation, solar radiation, wind speed, vapor pressure, elevation,
+and on bioclimatic variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
@@ -97,8 +97,8 @@ Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
-This series includes 12 monthly data points for each year from
-downscaled climate projections derived from
+This series includes 12 monthly data points from downscaled climate
+projections derived from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
 four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
 projections cover four
@@ -132,11 +132,16 @@ You will also need [R](https://www.r-project.org/) (version 4.5 or
 later) with the
 [`lubridate`](https://cran.r-project.org/package=lubridate),
 [`rJava`](https://cran.r-project.org/package=rJava), and
-[`stringr`](https://cran.r-project.org/package=stringr) packages. Make
-sure the R executable is added to your system’s
-[`PATH`](https://www.java.com/en/download/help/path.html) environment
-variable. To install the required R packages, run the following command
-in your R console:
+[`stringr`](https://cran.r-project.org/package=stringr) packages.
+
+Ensure that the R executable is included in your system’s
+[`PATH`](https://configu.com/blog/setting-env-variables-in-windows-linux-macos-beginners-guide/)
+environment variable. Alternatively, you can specify the path to the
+`RScript` executable in NetLogo by navigating to *SimpleR Extension* \>
+*Configure*.
+
+To install the required R packages, run the following command in your R
+console:
 
 ``` r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -204,11 +209,6 @@ being included in the system’s
 [`PATH`](https://www.java.com/en/download/help/path.html) environment
 variable. Please ensure all of these are properly configured before
 opening an issue.
-
-In some cases, users may encounter an unknown error code when running
-the model for the first time. This may be related to your operating
-system. Typically, this issue is resolved by trying to setup the model
-again.
 
 We are actively working to improve the user experience and make the
 installation process more straightforward.
@@ -318,8 +318,11 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This project was supported by the Conselho Nacional de 
-        Desenvolvimento Científico e Tecnológico - Brazil (<a href="https://www.gov.br/cnpq/">CNPq</a>).
+        This work was supported by the Department of Science and 
+        Technology of the Secretariat of Science, Technology, and Innovation 
+        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
+        of Brazil, and the National Council for Scientific and 
+        Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0)
       </p>
     </td>
   </tr>

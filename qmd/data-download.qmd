@@ -236,6 +236,10 @@ metadata <-
 metadata
 ```
 
+```{r}
+metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+```
+
 ## Checking for Errors
 
 ```{r}

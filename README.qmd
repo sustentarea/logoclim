@@ -81,7 +81,7 @@ The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worl
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-5m.png)
 
 ## How It Works
 
@@ -97,7 +97,7 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### Historical Climate Data
 
-This series includes 12 monthly data points for each year from 1970 to 2000 containing average climate conditions. It provides averages on minimum,. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes 12 monthly data points representing average climate conditions for the period 1970–2000. It provides averages on minimum. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -109,7 +109,7 @@ Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
-This series includes 12 monthly data points for each year from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
+This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -121,7 +121,11 @@ To get started, ensure you have [NetLogo](https://ccl.northwestern.edu/netlogo) 
 
 The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
 
-You will also need [R](https://www.r-project.org/) (version 4.5 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
+You will also need [R](https://www.r-project.org/) (version 4.5 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages.
+
+Ensure that the R executable is included in your system's [`PATH`](https://configu.com/blog/setting-env-variables-in-windows-linux-macos-beginners-guide/) environment variable. Alternatively, you can specify the path to the `RScript` executable in NetLogo by navigating to *SimpleR Extension* > *Configure*.
+
+To install the required R packages, run the following command in your R console:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -161,8 +165,6 @@ Refer to the `Info` tab in the model for additional details.
 ## Common Issues
 
 Some users have reported errors related to the SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension for NetLogo. These issues are most commonly caused by directory permission problems where the model is stored, the absence of the [`rJava`](https://cran.r-project.org/package=rJava) R package, or R not being included in the system’s [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. Please ensure all of these are properly configured before opening an issue.
-
-In some cases, users may encounter an unknown error code when running the model for the first time. This may be related to your operating system. Typically, this issue is resolved by trying to setup the model again.
 
 We are actively working to improve the user experience and make the installation process more straightforward.
 
@@ -297,14 +299,28 @@ htmltools::tags$table(
     ),
     htmltools::tags$td(
       htmltools::tags$p(
-        "This project was supported by the Conselho Nacional de ",
-        "Desenvolvimento Científico e Tecnológico - Brazil (",
+        "This work was supported by the Department of Science and ",
+        "Technology of the Secretariat of Science, Technology, and Innovation ",
+        "and of the Health Economic-Industrial Complex (",
+        htmltools::tags$a(
+          "SECTICS",
+          href = "https://www.gov.br/saude/pt-br/composicao/sectics/",
+          .noWS = "outside"
+        ),
+        ")  of the ",
+        htmltools::tags$a(
+          "Ministry of Health",
+          href = "https://www.gov.br/saude/pt-br/composicao/sectics/",
+          .noWS = "outside"
+        ), " ",
+        "of Brazil, and the National Council for Scientific and ",
+        "Technological Development (",
         htmltools::tags$a(
           "CNPq",
           href = "https://www.gov.br/cnpq/",
           .noWS = "outside"
         ),
-        ")."
+        ") (grant no. 444588/2023-0)"
       ),
       width = "70%"
     )
