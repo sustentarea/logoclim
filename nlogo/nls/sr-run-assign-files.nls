@@ -1,7 +1,7 @@
 ; __includes ["check-string.nls" "normalize-path.nls"]
 ; extensions [sr]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to sr-run-assign-files [#path #pattern]
   assert-string #path

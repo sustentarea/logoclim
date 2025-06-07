@@ -361,7 +361,7 @@ asc_files <-
 ```
 
 ```{r}
-zip_file <- fs::path(data_dir, "bra-2-5m.zip")
+zip_file <- fs::path(data_dir, "bra-10m.zip")
 ```
 
 ```{r}

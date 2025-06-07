@@ -1,6 +1,6 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-04-15 0.0.0.9006
+; Version: 2025-04-15 0.0.0.9008
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
@@ -12,6 +12,7 @@
 
 __includes [
   "nls/as-list.nls"
+  "nls/as-string.nls"
   "nls/check-all.nls"
   "nls/check-any.nls"
   "nls/check-atomic.nls"
@@ -30,6 +31,7 @@ __includes [
   "nls/check-start-year.nls"
   "nls/check-string.nls"
   "nls/check-string-or-integer.nls"
+  "nls/check-windows.nls"
   "nls/check-world-bleed.nls"
   "nls/collapse.nls"
   "nls/file-path.nls"
@@ -260,7 +262,7 @@ INPUTBOX
 220
 420
 start-year
-2021.0
+1951.0
 1
 0
 Number
@@ -691,13 +693,13 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### HISTORICAL CLIMATE DATA
 
-This series includes 12 monthly data points representing average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes only 12 monthly data points representing average climate conditions for the period 1970–2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### HISTORICAL MONTHLY WEATHER DATA
 
-This series includes 12 monthly data points for each year from 1960 to 2021, based on downscaled data from [CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This series includes 12 monthly data points for each year from 1951 to 2024, based on downscaled data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 

@@ -1,0 +1,27 @@
+; extensions [pathdir]
+
+to-report is-windows? [#x]
+  ifelse (not (pathdir:get-separator = "\\")) [
+    report false
+  ] [
+    report true
+  ]
+end
+
+to-report test-windows [#x]
+  report is-windows? #x
+end
+
+to-report check-windows [#x]
+  ifelse (is-windows? #x) [
+    report true
+  ] [
+    report "The current operating system is not Windows."
+  ]
+end
+
+to assert-windows [#x]
+  if (not is-windows? #x) [
+    error check-windows #x
+  ]
+end

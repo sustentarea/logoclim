@@ -1,0 +1,657 @@
+---
+execute:
+  eval: false
+---
+
+# LogoClim: WorldClim 2.1 Data Download
+
+## Overview
+
+::: {.callout-note}
+This document is intended for use by the LogoClim project team. For related workflows, refer to the other notebooks in the `qmd` directory, which cover data downloading and transformation procedures.
+:::
+
+This document provides a step-by-step guide for uploading WorldClim 2.1 data to the [LogoClim OSF repository](https://osf.io/2bpjh/). For information on obtaining the data, see the [WorldClim website](https://www.worldclim.org/).
+
+::: {.callout-important}
+This process may take some time to complete. Please be patient.
+:::
+
+## Setting the Environment
+
+```{r}
+#| eval: false
+
+library(beepr)
+library(cli)
+library(dplyr)
+library(fs)
+library(groomr) # github.com/danielvartan/groomr
+library(here)
+library(osfr)
+library(purrr)
+library(readr)
+library(rutils) # github.com/danielvartan/rutils
+library(stringr)
+library(zip) # OS independent
+```
+
+## Setting the Initial Variables
+
+### Options
+
+```{r}
+options(cli.progress_show_after = 0)
+```
+
+### Series
+
+Pick **one** of the following.
+
+```{r}
+series <- "historical-climate-data"
+```
+
+```{r}
+#| eval: false
+
+series <- "historical-monthly-weather-data"
+```
+
+```{r}
+#| eval: false
+
+series <- "future-climate-data"
+```
+
+### Resolution
+
+Pick **one** of the following.
+
+```{r}
+resolution <- "10m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "2.5m"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "30s"
+```
+
+```{r}
+#| eval: false
+
+resolution <- "all"
+```
+
+### Directories
+
+Check the paths to the directories where the data will be stored.
+
+```{r}
+raw_data_dir <- here::here("data-raw")
+```
+
+```{r}
+wc_raw_data_dir <- fs::path(raw_data_dir, "worldclim")
+```
+
+```{r}
+wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
+```
+
+```{r}
+wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+```
+
+```{r}
+data_dir <- here::here("data")
+```
+
+```{r}
+data_series_dir <- fs::path(data_dir, series)
+```
+
+```{r}
+#| eval: false
+
+dirs <- c(
+  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
+  wc_raw_data_series_res_dir, data_dir, data_series_dir
+)
+
+for (i in dirs) {
+  if (!dir.exists(i)) {
+    fs::dir_create(i, recurse = TRUE)
+  }
+}
+```
+
+## Unzipping the Raw Data Files (Optional)
+
+```{r}
+#| eval: false
+
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+```
+
+```{r}
+#| eval: false
+
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+
+if (!dir.exists(tif_dir)) {
+  tif_dir |> fs::dir_create(recurse = TRUE)
+}
+```
+
+```{r}
+#| eval: false
+#| output: false
+
+zip_files <- zip_dir |> fs::dir_ls(type = "file", regexp = "zip$")
+
+cli::cli_progress_bar(
+  name = "Unzipping data",
+  total = length(zip_files),
+  clear = FALSE
+)
+
+for (i in zip_files) {
+  i |>
+    zip::unzip(
+      overwrite = TRUE,
+      exdir = tif_dir
+    )
+
+  cli::cli_progress_update()
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: false
+
+zip_dir |> fs::dir_delete()
+```
+
+## Zipping the Raw Data Files (Optional)
+
+### Creating the Metadata
+
+```{r}
+#| eval: false
+
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+```
+
+```{r}
+#| eval: false
+
+files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
+```
+
+```{r}
+#| eval: false
+
+sizes <-
+  files |>
+  purrr::map_dbl(
+    .f = rutils::get_file_size,
+    .progress = TRUE
+  ) |>
+  fs::as_fs_bytes()
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: false
+
+metadata <-
+  dplyr::tibble(
+    file = basename(files),
+    size = sizes
+  ) |>
+  dplyr::arrange(size) |>
+  dplyr::mutate(
+  size_cum_sum =
+      size |>
+      tidyr::replace_na() |>
+      cumsum() |>
+      fs::as_fs_bytes()
+  )
+```
+
+```{r}
+#| eval: false
+
+metadata
+```
+
+```{r}
+#| eval: false
+
+metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+```
+
+### Zipping the Files
+
+```{r}
+#| eval: false
+
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+
+if (!dir.exists(zip_dir)) {
+  zip_dir |> fs::dir_create(recurse = TRUE)
+}
+```
+
+```{r}
+#| eval: false
+
+if (series == "historical-monthly-weather-data") {
+  prefix_start <- "wc2.1_cruts4.09_" # Always check this number!
+} else {
+  prefix_start <- "wc2.1_"
+}
+```
+
+```{r}
+#| eval: false
+
+climate_variable <-
+  metadata |>
+  dplyr::pull(file) |>
+  orbis:::extract_wc_variable() |>
+  unique()
+
+climate_variable
+```
+
+```{r}
+#| eval: false
+
+model <-
+  metadata |>
+  dplyr::pull(file) |>
+  orbis:::extract_wc_gcm() |>
+  unique()
+
+model
+```
+
+For zipping files by climate variable, use:
+
+```{r}
+#| eval: false
+
+cli::cli_progress_bar(
+  name = "Zipping data",
+  total = length(climate_variable),
+  clear = FALSE
+)
+
+for (i in climate_variable) {
+  metadata |>
+    dplyr::pull(file) |>
+    groomr::zip_files_by_pattern(
+      pattern = i,
+      prefix = paste0(prefix_start, resolution, "_"),
+      max_size = fs::fs_bytes("5GB"),
+      root = tif_dir,
+      dir = zip_dir
+    )
+
+  cli::cli_progress_update()
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+For zipping files by model, use:
+
+```{r}
+#| eval: false
+
+cli::cli_progress_bar(
+  name = "Zipping data",
+  total = length(model),
+  clear = FALSE
+)
+
+for (i in model) {
+  metadata |>
+    dplyr::pull(file) |>
+    groomr::zip_files_by_pattern(
+      pattern = i,
+      prefix = paste0(prefix_start, resolution, "_"),
+      max_size = fs::fs_bytes("5GB"),
+      root = tif_dir,
+      dir = zip_dir
+    )
+
+  cli::cli_progress_update()
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+For zipping files by model and climate variable, use:
+
+```{r}
+#| eval: false
+
+cli::cli_progress_bar(
+  name = "Zipping data",
+  total = length(model) * length(climate_variable),
+  clear = FALSE
+)
+
+for (i in model) {
+  for (j in climate_variable) {
+    metadata |>
+      dplyr::pull(file) |>
+      groomr::zip_files_by_pattern(
+        pattern = paste0(j, "_", i),
+        prefix = paste0(prefix_start, resolution, "_"),
+        max_size = fs::fs_bytes("5GB"),
+        root = tif_dir,
+        dir = zip_dir
+      )
+
+      cli::cli_progress_update()
+  }
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+For zipping the entire series, use:
+
+```{r}
+#| eval: false
+
+# zip::zip(
+#   zipfile = fs::path(zip_dir, paste0(prefix_start, resolution)),
+#   files = metadata |> dplyr::pull(file),
+#   root = tif_dir
+# )
+
+metadata |>
+  dplyr::pull(file) |>
+  groomr::zip_files_by_pattern(
+    pattern = ".",
+    prefix = paste0(prefix_start, resolution),
+    max_size = fs::fs_bytes("5GB"),
+    root = tif_dir,
+    dir = zip_dir
+  )
+
+beepr::beep(1)
+```
+
+## Zipping the Processed Files (Optional)
+
+```{r}
+#| eval: false
+
+asc_files <-
+  data_series_dir |>
+  fs::dir_ls(
+    type = "file",
+    regexp = "asc$",
+    recurse = TRUE
+  )
+```
+
+```{r}
+zip_file <- fs::path(data_dir, "bra-10m.zip")
+```
+
+```{r}
+#| eval: false
+
+zip_file |>
+  zip::zip(
+    files =
+      data_dir |>
+      fs::dir_ls(recurse = TRUE) |>
+      fs::path_rel(data_dir),
+    root = data_dir
+  )
+```
+
+## Uploading the Files to OSF
+
+When uploading processed files, run only the code chunk below and skip the preparation steps.
+
+```{r}
+osf_files <- zip_file
+```
+
+### Preparing the Metadata
+
+```{r}
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+```
+
+```{r}
+zip_files <- zip_dir |> fs::dir_ls(type = "file")
+```
+
+```{r}
+sizes <-
+  zip_files |>
+  purrr::map_dbl(
+    .f = rutils::get_file_size,
+    .progress = TRUE
+  ) |>
+  fs::as_fs_bytes()
+
+beepr::beep(1)
+```
+
+```{r}
+metadata <-
+  dplyr::tibble(
+    file = basename(zip_files),
+    size = sizes
+  ) |>
+  dplyr::arrange(size) |>
+  dplyr::mutate(
+  size_cum_sum =
+      size |>
+      tidyr::replace_na() |>
+      cumsum() |>
+      fs::as_fs_bytes()
+  )
+```
+
+```{r}
+metadata
+```
+
+```{r}
+metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+```
+
+### Preparing the Accompanying Files
+
+If you already uploaded the accompanying files, run only the following code to gather the files for upload.
+
+```{r}
+osf_files <- zip_files
+
+osf_files
+```
+
+```{r}
+"The data are freely available for academic use and other non-commercial use. Redistribution or commercial use is not allowed without prior permission. Using the data to create maps for publishing of academic research articles is allowed. Thus you can use the maps you made with WorldClim data for figures in articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are allowed (but not required) to publish these articles (and the maps they contain) under an open license such as CC-BY as is the case with PLoS journals and may be the case with other open access articles.
+
+Please send your questions to info@worldclim.org" |>
+  paste0(
+    "\n\n",
+    "[Extracted from https://worldclim.org/about.html on ",
+    "2025-06-06", # Sys.Date()
+    "]"
+  ) |>
+  readr::write_lines(fs::path(zip_dir, "license.txt"))
+```
+
+```{r}
+"The data are freely available for academic use and other non-commercial use. Redistribution or commercial use is not allowed without prior permission. Using the data to create maps for publishing of academic research articles is allowed. Thus you can use the maps you made with WorldClim data for figures in articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are allowed (but not required) to publish these articles (and the maps they contain) under an open license such as CC-BY as is the case with PLoS journals and may be the case with other open access articles.
+
+Please send your questions to <info@worldclim.org>" |>
+  paste0(
+    "\n\n",
+    "\\[Extracted from <https://worldclim.org/about.html> on ",
+    "2025-06-06", # Sys.Date()
+    "\\]"
+  ) |>
+  readr::write_lines(fs::path(zip_dir, "LICENSE.md"))
+```
+
+```{r}
+paste0(
+  "# WorldClim 2.1",
+  "\n\n",
+  "- Series: ",
+  stringr::str_replace_all(series, "-", " ") |> stringr::str_to_title(),
+  "\n",
+  "- Source: ", orbis::get_wc_url(series, resolution),
+  "\n",
+  "- Note: You can find the file download date by checking the last modified ",
+  "date in the component metadata."
+) |>
+  readr::write_lines(fs::path(zip_dir, "README.md"))
+```
+
+```{r}
+osf_files <-
+  zip_dir |>
+    fs::path(
+      c(
+        "license.txt",
+        "LICENSE.md",
+        "README.md"
+      )
+    ) |>
+    c(fs::path(wc_raw_data_series_res_dir, "metadata.rds"), zip_files) |>
+    unname()
+```
+
+### Setting the OSF Node
+
+Pick **one** of the following.
+
+Run the code chunk below to store data in the WorldClim OSF repository.
+
+```{r}
+osf_id <- orbis::get_wc_osf_id(series, resolution)
+
+osf_id
+```
+
+Run the code chunk below to store data in the LogoClim OSF repository.
+
+```{r}
+if (resolution == "10m") {
+  osf_id <- "x7fcm"
+} else if (resolution == "5m") {
+  osf_id <- "un5jm"
+} else if (resolution == "2.5m") {
+  osf_id <- "4vxet"
+} else if (resolution == "30s") {
+  osf_id <- "qgyha"
+}
+
+osf_id
+```
+
+### Uploading the Files to OSF
+
+```{r}
+prettycheck::assert_internet()
+
+osfr::osf_auth()
+```
+
+```{r}
+#| eval: false
+
+# osf_files <-
+#   osf_files |>
+#   stringr::str_subset("tmin")
+#   magrittr::extract(seq(1, length(osf_files)))
+```
+
+```{r}
+osf_id |>
+  osfr::osf_retrieve_node() |>
+  osfr::osf_upload(
+    path = osf_files,
+    conflicts = "overwrite",
+    progress = TRUE,
+    verbose = TRUE
+  )
+
+beepr::beep(1)
+```
+
+## Deleting Files on OSF (Optional)
+
+::: {.callout-caution}
+Careful! There is no coming back from this.
+:::
+
+```{r}
+#| eval: false
+
+osf_id <- orbis::get_wc_osf_id(series, resolution)
+
+osf_id
+```
+
+```{r}
+#| eval: false
+
+file_list <-
+  osf_id |>
+  osfr::osf_retrieve_node() |>
+  osfr::osf_ls_files(
+    pattern = "cruts4.06",
+    n_max = Inf
+  )
+
+file_list
+```
+
+```{r}
+#| eval: false
+
+# for (i in split(file_list, seq_len(nrow(file_list)))) {
+#   i |> osfr::osf_rm(check = FALSE)
+# }
+```

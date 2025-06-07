@@ -8,7 +8,7 @@
 
 ; extensions [sr]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to-report str-extract [#x #pattern]
   assert-string #pattern

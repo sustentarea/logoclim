@@ -1,7 +1,7 @@
 ; __includes ["check-atomic.nls" "normalize-value.nls"]
 ; extensions [sr]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to-report match [#x #y]
   set #x normalize-value #x

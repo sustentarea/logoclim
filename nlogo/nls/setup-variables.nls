@@ -12,7 +12,7 @@
 ; extensions [sr]
 ; globals [data-series series-data-path]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to setup-variables
   set series-data-path lookup-series-data-path data-series
@@ -36,8 +36,8 @@ to setup-variables
   set dataset gis:load-dataset file-path series-data-path (item index files)
   set year str-extract-year (item index files)
   set month str-extract-month (item index files)
-  
-  set settings (list 
+
+  set settings (list
     data-series
     data-resolution
     climate-variable

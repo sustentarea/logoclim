@@ -11,9 +11,9 @@ to assert-start-year
   ]
 
   (ifelse
-    (start-year < 1960 or start-year > 2100) [
+    (start-year < 1951 or start-year > 2100) [
       user-message (word
-        "You must choose a year between 1960 and 2100."
+        "You must choose a year between 1951 and 2100."
       )
 
       halt
@@ -32,12 +32,12 @@ to assert-start-year
     ]
     (
       data-series = "Historical monthly weather data" and
-      start-year > 2021
+      (start-year < 1951 or start-year > 2024)
     ) [
       user-message (word
         "The year for the 'Historical monthly weather data' "
         "series must be between "
-        "1960 and 2021."
+        "1951 and 2024."
       )
 
       halt

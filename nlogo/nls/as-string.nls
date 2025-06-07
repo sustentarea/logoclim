@@ -1,0 +1,3 @@
+to-report as-string [#x]
+  report word #x ""
+end

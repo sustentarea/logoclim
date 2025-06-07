@@ -240,6 +240,13 @@ metadata
 metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
 ```
 
+```{r}
+metadata |>
+  readr::write_rds(
+    fs::path(wc_raw_data_series_res_dir, "metadata.rds")
+  )
+```
+
 ## Checking for Errors
 
 ```{r}
@@ -302,6 +309,8 @@ beepr::beep(1)
 This is only useful when dealing with future climate data.
 
 ```{r}
+#| eval: false
+
 zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 
 if (!dir.exists(zip_dir)) {
@@ -317,7 +326,7 @@ metadata |>
   dplyr::pull(file) |>
   groomr::zip_files_by_pattern(
     pattern = model,
-    suffix = paste0("_", resolution),
+    prefix = paste0("wc2.1_", resolution, "_"),
     max_size = fs::fs_bytes("5GB"),
     root = dir,
     dir = zip_dir

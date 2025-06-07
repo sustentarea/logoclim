@@ -11,7 +11,7 @@
 
 ; globals [data-series global-climate-model climate-variable data-resolution]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to-report test-data
   let path lookup-series-data-path data-series

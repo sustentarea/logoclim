@@ -1,30 +1,49 @@
-; __includes ["check-atomic.nls" "collapse.nls" "rep-collapse.nls"]
+; __includes [
+;   "check-atomic.nls"
+;   "halt.nls"
+;   "single-quote.nls"
+; ]
+
 ; extensions [pathdir sr string]
 
-; Ensure `sr:setup` is called in the `setup` procedure.
+; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to-report normalize-path [#path]
   assert-atomic #path
 
+  let out as-string #path
+  let sep pathdir:get-separator
+
+  ; string:rex-replace-all "/" "../data" "\\\\"
+  set out string:rex-replace-all "/" out sep
+
+  ; string:rex-replace-all "\\\\" "..\\data" "/"
+  set out string:rex-replace-all "\\\\" out sep
+
+  while [string:rex-match? (word ".*" sep "$") out] [
+    set out string:rex-replace-first (word sep "$") out ""
+  ]
+
   let test true
 
   carefully [
-    let r-test sr:runresult (word "'" #path "'")
+    let r-test sr:runresult single-quote out
   ] [
     set test false
   ]
 
   ifelse (test = false) [
-    let separator pathdir:get-separator
-    let double-separator rep-collapse separator 2
-    let str-split string:split-on separator #path
+    user-message (word
+      "An unknown error occurred while normalizing the path: "
+      "\n"
+      "Original: " single-quote #path
+      "Processed: " single-quote out
+      "\n"
+      "Please check the path and try again."
+    )
 
-    if (last str-split = "") [
-      set str-split but-last str-split
-    ]
-
-    report collapse str-split double-separator false
+    halt
   ] [
-    report #path
+    report out
   ]
 end

@@ -19,9 +19,9 @@ to-report normalize-year [#year]
       set out 1970
     ] (
       (data-series = "Historical monthly weather data") and
-      (out < 1960 or out > 2021)
+      (out < 1951 or out > 2024)
     ) [
-      set out 1960
+      set out 1951
     ] (
       (data-series = "Future climate data") and
       (out < 2021)
