@@ -14,6 +14,8 @@ to-report normalize-path [#path]
   let out as-string #path
   let sep pathdir:get-separator
 
+  ; rep-collapse sep 2
+
   ; string:rex-replace-all "/" "../data" "\\\\"
   set out string:rex-replace-all "/" out sep
 

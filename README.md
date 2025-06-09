@@ -6,7 +6,7 @@
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/CoMSES%20Network-Placeholder-1284C5.svg)](https://www.comses.net/)
+[![](https://img.shields.io/badge/CoMSES%20Network-not%20published-F5514D.svg)](https://www.comses.net/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
 [![FAIR checklist
@@ -26,7 +26,7 @@ enhance the reproducibility of their simulations.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
-(1960-2021) and future climate projections (2021-2100) derived from
+(1951-2021) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
 O’Neill et
@@ -44,7 +44,7 @@ climate variables.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface-bra-hmwd-5m.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.gif)
 
 ## How It Works
 
@@ -73,20 +73,19 @@ The model can simulate the three climate data series provided by
 
 #### Historical Climate Data
 
-This series includes 12 monthly data points representing average climate
-conditions for the period 1970–2000. It provides averages on minimum. It
-provides averages on minimum, mean, and maximum temperature,
-precipitation, solar radiation, wind speed, vapor pressure, elevation,
-and on bioclimatic variables.
+This series includes only 12 monthly data points representing average
+climate conditions for the period 1970–2000. It provides averages on
+minimum, mean, and maximum temperature, precipitation, solar radiation,
+wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### Historical Monthly Weather Data
 
-This series includes 12 monthly data points for each year from 1960 to
-2021, based on downscaled data from
-[CRU-TS-4.06](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.06/),
+This series includes 12 monthly data points for each year from 1951 to
+2024, based on downscaled data from
+[CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/),
 developed by the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
 at the [University of East Anglia](https://www.uea.ac.uk/). It provides

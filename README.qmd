@@ -23,8 +23,8 @@ cat(
   badger::badge_repostatus("active"),
   badger::badge_custom(
     x = "CoMSES Network",
-    y = "Placeholder",
-    color = "1284C5",
+    y = "not published",
+    color = "F5514D", # "1284C5"
     url = "https://www.comses.net/"
   ),
   badger::badge_custom(
@@ -75,13 +75,13 @@ cat(
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to support empirically-based agent-based models and enhance the reproducibility of their simulations.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
 The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface-bra-hmwd-5m.png)
+![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.gif)
 
 ## How It Works
 

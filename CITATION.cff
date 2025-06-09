@@ -38,7 +38,7 @@ abstract: >-
 
   The model utilizes raster data to represent climate variables such as
   temperature and precipitation over time. It incorporates historical data
-  (1960-2021) and future climate projections (2021-2100) derived from global
+  (1951-2021) and future climate projections (2021-2100) derived from global
   climate models under various Shared Socioeconomic Pathways (SSPs).
 
   The climate data used in {LogoClim} is sourced from WorldClim 2.1, which

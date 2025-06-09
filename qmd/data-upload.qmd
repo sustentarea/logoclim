@@ -449,6 +449,8 @@ When uploading processed files, run only the code chunk below and skip the prepa
 
 ```{r}
 osf_files <- zip_file
+
+osf_files
 ```
 
 ### Preparing the Metadata
