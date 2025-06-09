@@ -671,11 +671,11 @@ max [value] of patches with [not is-nan? value]
 
 ## WHAT IS IT?
 
-`LogoClim` is a NetLogo model designed to simulate and visualize climate conditions, serving as a powerful tool for exploring both historical and projected climate data. Its primary goal is to facilitate the integration of climate data into agent-based models and enhance the reproducibility of these simulations.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing climate conditions using both historical and projected data. It is designed to support empirically grounded agent-based models and to improve the reproducibility of simulations by enabling [parallel execution](#integrating-with-other-models) alongside other models.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1960–2021) and future climate projections (2021–2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O’Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
-The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
+The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
 ## HOW IT WORKS
 
@@ -693,7 +693,7 @@ The model can simulate the three climate data series provided by [WorldClim 2.1]
 
 #### HISTORICAL CLIMATE DATA
 
-This series includes only 12 monthly data points representing average climate conditions for the period 1970–2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes only 12 monthly data points representing average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
 Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
@@ -871,13 +871,13 @@ This work was supported by the Department of Science and Technology of the Secre
 
 ## REFERENCES
 
-Eyring, V., Bony, S., Meehl, G. A., Senior, C. A., Stevens, B., Stouffer, R. J., & Taylor, K. E. (2016). Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organization. Geoscientific Model Development, 9(5), 1937–1958. https://doi.org/10.5194/gmd-9-1937-2016
+Eyring, V., Bony, S., Meehl, G. A., Senior, C. A., Stevens, B., Stouffer, R. J., & Taylor, K. E. (2016). Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organization. Geoscientific Model Development, 9(5), 1937-1958. https://doi.org/10.5194/gmd-9-1937-2016
 
-Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. *International Journal of Climatology*, *37*(12), 4302–4315. [https://doi.org/10.1002/joc.5086](https://doi.org/10.1002/joc.5086)
+Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. *International Journal of Climatology*, *37*(12), 4302-4315. [https://doi.org/10.1002/joc.5086](https://doi.org/10.1002/joc.5086)
 
 Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. [https://doi.org/10.1038/s41597-020-0453-3](https://doi.org/10.1038/s41597-020-0453-3)
 
-O’Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169–180. [https://doi.org/10.1016/j.gloenvcha.2015.01.004](https://doi.org/10.1016/j.gloenvcha.2015.01.004)
+O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. [https://doi.org/10.1016/j.gloenvcha.2015.01.004](https://doi.org/10.1016/j.gloenvcha.2015.01.004)
 @#$#@#$#@
 default
 true

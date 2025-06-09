@@ -19,26 +19,26 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 ## Overview
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
-designed to simulate and visualize climate conditions, serving as a
-powerful tool for exploring both historical and projected climate data.
-Its primary goal is to support empirically-based agent-based models and
-enhance the reproducibility of their simulations.
+for simulating and visualizing climate conditions. It is designed to
+support empirically grounded agent-based models and to improve the
+reproducibility of simulations by enabling [parallel
+execution](#integrating-with-other-models) alongside other models.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
 (1951-2021) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
-O’Neill et
+O'Neill et
 al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
 The climate data used in `LogoClim` is sourced from [WorldClim
-2.1](https://worldclim.org/), which provides high-resolution
-interpolated climate data based on weather station records from around
-the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
-With resolutions as fine as ~1 km², the data is available at multiple
-spatial scales, ensuring a detailed and comprehensive representation of
-climate variables.
+2.1](https://worldclim.org/), which provides high-resolution climate
+data based on weather station records from around the world ([Fick &
+Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as
+fine as ~1 km², the data is available at multiple spatial scales,
+ensuring a detailed and comprehensive representation of climate
+variables.
 
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
@@ -74,7 +74,7 @@ The model can simulate the three climate data series provided by
 #### Historical Climate Data
 
 This series includes only 12 monthly data points representing average
-climate conditions for the period 1970–2000. It provides averages on
+climate conditions for the period 1970-2000. It provides averages on
 minimum, mean, and maximum temperature, precipitation, solar radiation,
 wind speed, vapor pressure, elevation, and on bioclimatic variables.
 
@@ -133,7 +133,7 @@ later) with the
 [`rJava`](https://cran.r-project.org/package=rJava), and
 [`stringr`](https://cran.r-project.org/package=stringr) packages.
 
-Ensure that the R executable is included in your system’s
+Ensure that the R executable is included in your system's
 [`PATH`](https://configu.com/blog/setting-env-variables-in-windows-linux-macos-beginners-guide/)
 environment variable. Alternatively, you can specify the path to the
 `RScript` executable in NetLogo by navigating to *SimpleR Extension* \>
@@ -158,7 +158,7 @@ access the development version, clone or download this repository.
 can download the original datasets directly from [WorldClim
 2.1](https://worldclim.org/), they must first be converted to ASCII
 format before being used in NetLogo. To simplify this process, we
-recommend using the preprocessed dataset included in the model’s
+recommend using the preprocessed dataset included in the model's
 [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
 
 The datasets are organized using [ISO 3166-1
@@ -171,7 +171,7 @@ country codes and are available in multiple spatial resolutions:
 - 30 seconds (~1 km² at the equator)
 
 After downloading, extract the files into the `data` folder within the
-model’s directory.
+model's directory.
 
 We suggest starting with the 10-minute resolution to verify that the
 model runs smoothly on your system before trying higher resolutions.
@@ -197,6 +197,9 @@ between models, making it particularly valuable for agent-based
 simulations that incorporate climate data to study ecological or
 environmental processes.
 
+For an example of integrating `LogoClim` with another model, see the
+[FoodClim](https://github.com/sustentarea/foodclim) project.
+
 ## Common Issues
 
 Some users have reported errors related to the SimpleR
@@ -204,7 +207,7 @@ Some users have reported errors related to the SimpleR
 NetLogo. These issues are most commonly caused by directory permission
 problems where the model is stored, the absence of the
 [`rJava`](https://cran.r-project.org/package=rJava) R package, or R not
-being included in the system’s
+being included in the system's
 [`PATH`](https://www.java.com/en/download/help/path.html) environment
 variable. Please ensure all of these are properly configured before
 opening an issue.
@@ -240,7 +243,7 @@ A BibTeX entry for LaTeX users is:
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-Contributions are welcome! Whether it’s reporting bugs, suggesting
+Contributions are welcome! Whether it's reporting bugs, suggesting
 features, or improving documentation, your input is valuable.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
