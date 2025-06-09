@@ -671,7 +671,7 @@ max [value] of patches with [not is-nan? value]
 
 ## WHAT IS IT?
 
-`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing climate conditions using both historical and projected data. It is designed to support empirically grounded agent-based models and to improve the reproducibility of simulations by enabling [parallel execution](#integrating-with-other-models) alongside other models.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing climate conditions. It is designed to support empirically grounded agent-based models and to improve the reproducibility of simulations by enabling [parallel execution](#integrating-with-other-models) alongside other models.
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
@@ -841,7 +841,7 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 
 ## IMPORTANT LINKS
 
-- Project repository: https://doi.org/10.17605/OSF.IO/EAPZU
+- OSF repository: https://doi.org/10.17605/OSF.IO/EAPZU
 - Code repository: https://github.com/sustentarea/logoclim
 - Latest release: https://github.com/danielvartan/logoclim/releases/latest
 - Data repository: https://doi.org/10.17605/OSF.IO/RE95Z

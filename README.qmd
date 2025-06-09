@@ -50,12 +50,6 @@ cat(
     "[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)]",
     "(https://fairsoftwarechecklist.net/v0.2?f=21&a=32113&i=32001&r=123)"
   ),
-  # badger::badge_custom(
-  #   x = "openssf%20best%20practices",
-  #   y = "Placeholder",
-  #   color = "orange",
-  #   url = "https://bestpractices.coreinfrastructure.org/"
-  # ),
   badger::badge_license(
     license = "MIT",
     color = "green",
@@ -261,8 +255,7 @@ htmltools::tags$table(
     ),
     htmltools::tags$td(
       htmltools::tags$p(
-        htmltools::tags$code("LogoClim"),
-        "was developed with support from the Research and ",
+        "This work was developed with support from the Research and ",
         "Extension Center ",
         htmltools::tags$a(
           "Sustentarea",
