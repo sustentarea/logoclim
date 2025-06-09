@@ -1,5 +1,10 @@
 # LogoClim (development version)
 
+# LogoClim 0.0.0.9010 (Pre-Release)
+
+- Fixed an issue with Windows file paths for improved cross-platform
+compatibility
+
 # LogoClim 0.0.0.9009 (Pre-Release)
 
 - Enhanced Quarto notebooks for improved readability and clarity

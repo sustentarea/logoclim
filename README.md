@@ -297,8 +297,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        <code>LogoClim</code>
-        was developed with support from the Research and 
+        This work was developed with support from the Research and 
         Extension Center 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
