@@ -19,26 +19,30 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 ## Overview
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
-for simulating and visualizing climate conditions. It is designed to
-support empirically grounded agent-based models and to improve the
-reproducibility of simulations by enabling [parallel
-execution](#integrating-with-other-models) alongside other models.
+for simulating and visualizing global climate conditions. It is designed
+to support and enhance the reproducibility of empirically grounded
+agent-based models by providing a standardized tool for integrating
+high-resolution climate data. Through [parallel
+execution](#integrating-with-other-models) using the
+[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
+extension, it can be seamlessly coupled with other models, making it
+valuable for research in ecology, agriculture, environmental science,
+and other fields that require climate dynamics integration.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
-(1951-2021) and future climate projections (2021-2100) derived from
+(1951-2024) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
 O'Neill et
 al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
-The climate data used in `LogoClim` is sourced from [WorldClim
+The climate data is sourced from [WorldClim
 2.1](https://worldclim.org/), which provides high-resolution climate
-data based on weather station records from around the world ([Fick &
-Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as
-fine as ~1 km², the data is available at multiple spatial scales,
-ensuring a detailed and comprehensive representation of climate
-variables.
+data based on weather station records worldwide ([Fick & Hijmans,
+2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1
+km², the data is available at multiple spatial scales, ensuring a
+detailed and comprehensive representation of climate variables.
 
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
@@ -68,15 +72,21 @@ threshold corresponds to the maximum value of the current data.
 
 ### Data Series
 
-The model can simulate the three climate data series provided by
-[WorldClim 2.1](https://worldclim.org/):
+In addition to latitude and longitude data points, `LogoClim` supports
+simulation with all three climate data series provided by [WorldClim
+2.1](https://worldclim.org/): long-term historical climate averages,
+historical monthly weather, and future climate projections. Each series
+is available at multiple spatial resolutions (from 10 minutes to 30
+seconds) and can be selected within the model interface to fit your
+research needs.
 
 #### Historical Climate Data
 
-This series includes only 12 monthly data points representing average
-climate conditions for the period 1970-2000. It provides averages on
-minimum, mean, and maximum temperature, precipitation, solar radiation,
-wind speed, vapor pressure, elevation, and on bioclimatic variables.
+This series includes only 12 monthly data points representing long-term
+average climate conditions for the period 1970-2000. It provides
+averages on minimum, mean, and maximum temperature, precipitation, solar
+radiation, wind speed, vapor pressure, elevation, and on bioclimatic
+variables.
 
 Learn more
 [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
@@ -158,12 +168,14 @@ access the development version, clone or download this repository.
 can download the original datasets directly from [WorldClim
 2.1](https://worldclim.org/), they must first be converted to ASCII
 format before being used in NetLogo. To simplify this process, we
-recommend using the preprocessed dataset included in the model's
-[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository.
+recommend using the preprocessed datasets included in the model's
+[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already
+converted the data to ASCII format for many countries and resolutions,
+making it easier to get started.
 
 The datasets are organized using [ISO 3166-1
 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
-country codes and are available in multiple spatial resolutions:
+country codes and are available in the following spatial resolutions:
 
 - 10 minutes (~340 km² at the equator)
 - 5 minutes (~85 km² at the equator)

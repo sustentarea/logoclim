@@ -1,14 +1,32 @@
 ; __includes ["file-path.nls"]
 ; extensions [gis]
-; globals [base-file patch-px-size series-data-path]
+; globals [series-data-path patch-px-size]
 
 to setup-world
-  set base-file file-path series-data-path (first files)
-
-  let base-file-dataset gis:load-dataset base-file
-  let width floor (gis:width-of base-file-dataset / 2)
-  let height floor (gis:height-of base-file-dataset / 2)
+  let width floor (gis:width-of dataset / 2)
+  let height floor (gis:height-of dataset / 2)
 
   resize-world (-1 * width ) width (-1 * height ) height
   set-patch-size patch-px-size
+
+  foreach (sublist files 0 12) [
+    x ->
+      let dataset-i gis:load-dataset file-path series-data-path x
+      let envelope gis:envelope-of dataset-i
+      let test test-world-bleed
+
+      ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
+        gis:set-world-envelope-ds envelope
+      ] [
+        gis:set-world-envelope envelope
+      ]
+
+      gis:apply-raster dataset-i value
+
+      while [any-true? test] [
+        remove-world-bleed
+        gis:apply-raster dataset-i value
+        set test test-world-bleed
+      ]
+  ]
 end

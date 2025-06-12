@@ -23,5 +23,5 @@ to walk [#index]
   set month str-extract-month (item #index files)
   set year str-extract-year (item #index files)
 
-  setup-map dataset
+  setup-map
 end

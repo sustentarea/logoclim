@@ -86,7 +86,6 @@ extensions [
 ]
 
 globals [
-  base-file
   dataset
   files
   index
@@ -120,7 +119,7 @@ to setup
 
   setup-variables
   setup-world
-  setup-map dataset
+  setup-map
   setup-stats
 
   reset-ticks
@@ -671,11 +670,11 @@ max [value] of patches with [not is-nan? value]
 
 ## WHAT IS IT?
 
-`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing climate conditions. It is designed to support empirically grounded agent-based models and to improve the reproducibility of simulations by enabling [parallel execution](#integrating-with-other-models) alongside other models.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It is designed to support and enhance the reproducibility of empirically grounded agent-based models by providing a standardized tool for integrating high-resolution climate data. Through [parallel execution](#integrating-with-other-models) using the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension, it can be seamlessly coupled with other models, making it valuable for research in ecology, agriculture, environmental science, and other fields that require climate dynamics integration.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2021) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
 
-The climate data used in `LogoClim` is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution climate data based on weather station records from around the world ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
+The climate data is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution climate data based on weather station records worldwide([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
 
 ## HOW IT WORKS
 
@@ -689,7 +688,7 @@ The model uses a color scale ranging from black (representing the lowest value) 
 
 ### DATA SERIES
 
-The model can simulate the three climate data series provided by [WorldClim 2.1](https://worldclim.org/):
+In addition to latitude and longitude data points, `LogoClim` supports simulation with all three climate data series provided by [WorldClim 2.1](https://worldclim.org/): long-term historical climate averages, historical monthly weather, and future climate projections. Each series is available at multiple spatial resolutions (from 10 minutes to 30 seconds) and can be selected within the model interface to fit your research needs.
 
 #### HISTORICAL CLIMATE DATA
 
@@ -749,6 +748,8 @@ Once everything is set, open the NetLogo file and start exploring!
 #### INTEGRATING WITH OTHER MODELS
 
 `LogoClim` can be integrated with other models using the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension. This extension enables parallel execution and data exchange between models, making it particularly valuable for agent-based simulations that incorporate climate data to study ecological or environmental processes.
+
+For an example of integrating `LogoClim` with another model, see the [FoodClim](https://github.com/sustentarea/foodclim) project.
 
 ### INTERFACE CONTROLS
 

@@ -16,18 +16,18 @@
 ;   white-value
 ; ]
 
-to setup-map [#dataset]
-  assert-gis #dataset
+to setup-map
+  assert-gis dataset
 
-  let envelope gis:envelope-of #dataset
+  let envelope gis:envelope-of dataset
 
   ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
-    gis:set-world-envelope-ds gis:envelope-of #dataset
+    gis:set-world-envelope-ds envelope
   ] [
-    gis:set-world-envelope gis:envelope-of #dataset
+    gis:set-world-envelope envelope
   ]
 
-  gis:apply-raster #dataset value
+  gis:apply-raster dataset value
 
   ifelse (white-max = true) [
     set max-value max [value] of patches with [not is-nan? value]
@@ -35,16 +35,6 @@ to setup-map [#dataset]
     set max-value white-value
   ]
 
-  if (index = 0) [
-    let test test-world-bleed
-    
-    while [any-true? test] [
-      remove-world-bleed
-      gis:apply-raster #dataset value
-      set test test-world-bleed
-   ]
-  ]
-  
   ifelse (black-min = true) [
     set min-value min [value] of patches with [not is-nan? value]
   ] [

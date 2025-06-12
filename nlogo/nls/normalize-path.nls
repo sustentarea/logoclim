@@ -1,5 +1,6 @@
 ; __includes [
 ;   "check-atomic.nls"
+;   "check-windows.nls"
 ;   "halt.nls"
 ;   "rep-collapse.nls"
 ;   "single-quote.nls"
@@ -16,10 +17,10 @@ to-report normalize-path [#path]
   let sep pathdir:get-separator
 
   if (is-windows?) [set sep rep-collapse sep 4]
-  
+
   ; string:rex-replace-all "\\\\" "..\\data" "/"
     set out string:rex-replace-all "\\\\" out sep
-    
+
   ; string:rex-replace-all "/" "../data" "\\\\"
   set out string:rex-replace-all "/" out sep
 
