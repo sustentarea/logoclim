@@ -20,7 +20,6 @@ to-report lookup-series-data-path [#string]
         "is not found among the valid options. "
         "Please check your settings."
       )
-
     ]
   )
 end

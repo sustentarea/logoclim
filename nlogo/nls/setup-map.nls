@@ -1,9 +1,4 @@
-; __includes [
-;   "check-gis.nls"
-;   "lookup-series-color.nls"
-;   "remove-world-bleed.nls"
-; ]
-
+; __includes ["check-gis.nls" "lookup-series-color.nls"]
 ; extensions [gis]
 
 ; globals [
@@ -28,6 +23,8 @@ to setup-map
   ]
 
   gis:apply-raster dataset value
+
+  if (any-true? test-world-bleed) [remove-world-bleed 1]
 
   ifelse (white-max = true) [
     set max-value max [value] of patches with [not is-nan? value]

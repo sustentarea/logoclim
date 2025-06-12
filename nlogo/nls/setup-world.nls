@@ -1,4 +1,4 @@
-; __includes ["file-path.nls"]
+; __includes ["file-path.nls" "remove-world-bleed.nls"]
 ; extensions [gis]
 ; globals [series-data-path patch-px-size]
 
@@ -9,24 +9,27 @@ to setup-world
   resize-world (-1 * width ) width (-1 * height ) height
   set-patch-size patch-px-size
 
-  foreach (sublist files 0 12) [
-    x ->
-      let dataset-i gis:load-dataset file-path series-data-path x
-      let envelope gis:envelope-of dataset-i
-      let test test-world-bleed
+  let i 0
+  let test test-world-bleed
 
-      ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
-        gis:set-world-envelope-ds envelope
-      ] [
-        gis:set-world-envelope envelope
-      ]
+  while [(any-true? test) and (i != 2)] [ ; (i != length files)
+    let dataset-i gis:load-dataset file-path series-data-path (item i files)
+    let envelope gis:envelope-of dataset-i
 
-      gis:apply-raster dataset-i value
+    ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
+      gis:set-world-envelope-ds envelope
+    ] [
+      gis:set-world-envelope envelope
+    ]
 
-      while [any-true? test] [
-        remove-world-bleed
-        gis:apply-raster dataset-i value
-        set test test-world-bleed
-      ]
+    gis:apply-raster dataset-i value
+    remove-world-bleed 0
+    gis:apply-raster dataset-i value
+    set test test-world-bleed
+    set i i + 1
   ]
+
+  set nan (
+    item 0 filter is-nan? [value] of patches with [is-number? value]
+  )
 end

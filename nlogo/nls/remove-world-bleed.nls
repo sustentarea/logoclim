@@ -1,16 +1,48 @@
 ; __include ["check-any.nls" "check-world-bleed.nls"]
 
-to remove-world-bleed
+to remove-world-bleed [#mode]
+  assert-integer #mode
+  assert-between #mode 0 1
+
   let test test-world-bleed
   let min-xcor min-pxcor
   let max-xcor max-pxcor
   let min-ycor min-pycor
   let max-ycor max-pycor
 
-  if ((item 0 test) = true) [set min-xcor min-pxcor + 1]
-  if ((item 1 test) = true) [set max-xcor max-pxcor - 1]
-  if ((item 2 test) = true) [set min-ycor min-pycor + 1]
-  if ((item 3 test) = true) [set max-ycor max-pycor - 1]
+ (ifelse
+  (#mode = 0) [
+    if ((item 0 test) = true) [set min-xcor min-pxcor + 1]
+    if ((item 1 test) = true) [set max-xcor max-pxcor - 1]
+    if ((item 2 test) = true) [set min-ycor min-pycor + 1]
+    if ((item 3 test) = true) [set max-ycor max-pycor - 1]
 
-  resize-world min-xcor max-xcor min-ycor max-ycor
+    resize-world min-xcor max-xcor min-ycor max-ycor
+  ] (#mode = 1) [
+    let replacement nan
+
+    if ((item 0 test) = true) [
+      ask patches with [pxcor = min-pxcor] [set value replacement]
+    ]
+
+    if ((item 1 test) = true) [
+      ask patches with [pxcor = max-pxcor] [set value replacement]
+    ]
+
+    if ((item 2 test) = true) [
+      ask patches with [pycor = min-pycor] [set value replacement]
+    ]
+
+    if ((item 3 test) = true) [
+      ask patches with [pycor = max-pycor] [set value replacement]
+    ]
+  ] [
+    user-message (word
+      "The mode "
+      single-quote #mode " "
+      "is not found among the valid options. "
+      "Please check your settings."
+    )
+  ]
+ )
 end

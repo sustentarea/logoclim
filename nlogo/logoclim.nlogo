@@ -98,6 +98,7 @@ globals [
   settings
   year
   years
+  nan
 ]
 
 patches-own [
