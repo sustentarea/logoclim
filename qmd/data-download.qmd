@@ -1,6 +1,8 @@
 ---
-execute:
-  eval: false
+params:
+  series: "historical-climate-data"
+  resolution: "10m"
+  model: NULL
 ---
 
 # LogoClim: WorldClim 2.1 Data Download
@@ -20,8 +22,6 @@ This process may take some time to complete. Please be patient.
 ## Setting the Environment
 
 ```{r}
-#| eval: false
-
 library(beepr)
 library(cli)
 library(dplyr)
@@ -31,12 +31,26 @@ library(here)
 library(magrittr)
 library(orbis) # github.com/danielvartan/orbis
 library(purrr)
+library(readr)
 library(rutils) # github.com/danielvartan/rutils
 library(rvest)
 library(stringr)
 ```
 
+```{r}
+source(here::here("R", "wc_license.R"))
+source(here::here("R", "wc_readme.R"))
+```
+
 ## Setting the Initial Variables
+
+### `params`
+
+This code chunk is only used when the document is rendered from the command line. See `quarto-loop.R` in the `R` directory for more details.
+
+```{r}
+if (exists("params")) params |> list2env(envir = environment())
+```
 
 ### Options
 
@@ -49,6 +63,8 @@ options(cli.progress_show_after = 0)
 Pick **one** of the following.
 
 ```{r}
+#| eval: false
+
 series <- "historical-climate-data"
 ```
 
@@ -69,6 +85,8 @@ series <- "future-climate-data"
 Pick **one** of the following.
 
 ```{r}
+#| eval: false
+
 resolution <- "10m"
 ```
 
@@ -107,6 +125,8 @@ Run `model <- NULL` when downloading other series.
 Pick **one** of the following.
 
 ```{r}
+#| eval: false
+
 model <- NULL
 ```
 
@@ -265,7 +285,18 @@ metadata |>
 }
 ```
 
-## Downloading the Files
+```{r}
+if (any(is.na(metadata$size))) {
+  paste0(
+    "The following url requests resulted in error.",
+    "\n\n",
+    paste(metadata$url[is.na(metadata$size)], collapse = "\n")
+  ) |>
+    readr::write_lines(here::here("qmd", "data-download.log"))
+}
+```
+
+## Adding LICENSE and README Files
 
 ```{r}
 if (series == "future-climate-data") {
@@ -280,10 +311,42 @@ if (!dir.exists(dir)) {
 ```
 
 ```{r}
+dirs <- c(
+  wc_raw_data_dir,
+  wc_raw_data_series_dir,
+  wc_raw_data_series_res_dir,
+  dir
+)
+
+for (i in dirs) {
+  wc_license() |> readr::write_lines(fs::path(i, "LICENSE.md"))
+}
+```
+
+```{r}
+wc_readme() |>
+  readr::write_lines(fs::path(wc_raw_data_dir, "README.md"))
+
+wc_readme(series) |>
+  readr::write_lines(fs::path(wc_raw_data_series_dir, "README.md"))
+
+wc_readme(series, resolution) |>
+  readr::write_lines(fs::path(wc_raw_data_series_res_dir, "README.md"))
+
+wc_readme(series, resolution) |>
+  readr::write_lines(fs::path(dir, "README.md"))
+```
+
+## Downloading the Files
+
+```{r}
 broken_links <-
   metadata |>
   dplyr::pull(url) |>
-  rutils::download_file(dir = dir, broken_links = TRUE)
+  rutils::download_file(
+    dir = dir,
+    broken_links = TRUE
+  )
 
 beepr::beep(1)
 ```
@@ -313,9 +376,7 @@ This is only useful when dealing with future climate data.
 
 zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 
-if (!dir.exists(zip_dir)) {
-  zip_dir |> fs::dir_create(recurse = TRUE)
-}
+if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
 ```
 
 ```{r}
@@ -328,6 +389,7 @@ metadata |>
     pattern = model,
     prefix = paste0("wc2.1_", resolution, "_"),
     max_size = fs::fs_bytes("5GB"),
+    appendices = c("LICENSE.md", "README.md"),
     root = dir,
     dir = zip_dir
   )

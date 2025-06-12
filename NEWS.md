@@ -1,6 +1,7 @@
 # LogoClim (development version)
 
-- Enhanced `setup-world` to use the first 12 files of the series
+- Improved `setup-world` to utilize the first three files in the series and address bleeding issues
+- Persistent world bleeding is now converted to `NaN` values
 - Enhanced Quarto notebooks to fix dateline issues
 - Automated the generation of README and LICENSE files in the
   Quarto notebooks

@@ -1,6 +1,7 @@
 ---
-execute:
-  eval: false
+params:
+  series: "historical-climate-data"
+  resolution: "10m"
 ---
 
 # LogoClim: WorldClim 2.1 Data Transformation for NetLogo
@@ -27,8 +28,6 @@ remotes::install_github("rspatial/terra")
 :::
 
 ```{r}
-#| eval: false
-
 library(beepr)
 library(fs)
 library(geodata)
@@ -41,7 +40,20 @@ library(terra)
 library(zip) # OS independent
 ```
 
+```{r}
+source(here::here("R", "wc_license.R"))
+source(here::here("R", "logoclim_readme.R"))
+```
+
 ## Setting the Initial Variables
+
+### `params`
+
+This code chunk is only used when the document is rendered from the command line. See `quarto-loop.R` in the `R` directory for more details.
+
+```{r}
+if (exists("params")) params |> list2env(envir = environment())
+```
 
 ### Options
 
@@ -54,6 +66,8 @@ options(cli.progress_show_after = 0)
 Pick **one** of the following, according to the data you downloaded.
 
 ```{r}
+#| eval: false
+
 series <- "historical-climate-data"
 ```
 
@@ -74,6 +88,8 @@ series <- "future-climate-data"
 Pick **one** of the following, according to the data you downloaded.
 
 ```{r}
+#| eval: false
+
 resolution <- "10m"
 ```
 
@@ -141,8 +157,6 @@ data_series_dir <- fs::path(data_dir, series)
 ```
 
 ```{r}
-#| eval: false
-
 dirs <- c(
   raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
   wc_raw_data_series_res_dir, data_dir, data_series_dir
@@ -159,21 +173,29 @@ for (i in dirs) {
 
 ::: {.callout-note}
 For a list of ISO 3166-1 alpha-3 country codes, refer to the [ISO 3166-1 Wikipedia page](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3).
+
+See [`rnaturalearth`](https://ropensci.github.io/rnaturalearth/) for an alternative way to get good quality country shapes.
 :::
 
-Check the **shape** you want to use.
+Pick the **shape** you want to use.
 
-For getting the shape of a single country, use:
+#### Single Country
+
+Change to the desired country code (ISO 3166-1 alpha-3).
 
 ```{r}
+#| eval: true
+
 shape <- geodata::gadm(
-  country = "bra", # Change to the desired country code
+  country = "bra",
   level = 0,
   path = raw_data_dir
 )
 ```
 
-For getting only the mainland of a country, use:
+#### Mainland of a Country
+
+##### United States
 
 ```{r}
 #| eval: false
@@ -187,14 +209,118 @@ shape <-
   terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
-For getting a particular region, use:
+##### Portugal
+
+```{r}
+#| eval: false
+
+shape <-
+  geodata::gadm(
+    country = "prt",
+    level = 1,
+    path = raw_data_dir
+  ) %>%
+  terra::subset(., !.$NAME_1 %in% c("Azores", "Madeira"))
+```
+
+##### Spain
+
+```{r}
+#| eval: false
+shape <-
+  geodata::gadm(
+    country = "esp",
+    level = 1,
+    path = raw_data_dir
+  ) %>%
+  terra::subset(., !.$NAME_1 %in% c("Islas Canarias"))
+```
+
+#### European Part of Russia
+
+```{r}
+#| eval: false
+
+european_russia_regions <- c(
+  "Adygey", "Arkhangel'sk", "Astrakhan'", "Bashkortostan", "Belgorod",
+  "Bryansk", "Chechnya", "Chuvash", "City of St. Petersburg", "Dagestan",
+  "Ingush", "Ivanovo", "Kabardin-Balkar", "Kaliningrad", "Kalmyk", "Kaluga",
+  "Karachay-Cherkess", "Karelia", "Kirov", "Komi", "Kostroma", "Krasnodar",
+  "Kursk", "Leningrad", "Lipetsk", "Mariy-El", "Mordovia", "Moscow City",
+  "Moskva", "Murmansk", "Nenets", "Nizhegorod", "North Ossetia", "Novgorod",
+  "Orel", "Orenburg", "Penza", "Perm'", "Pskov", "Rostov", "Ryazan'",
+  "Samara", "Saratov", "Smolensk", "Stavropol'", "Tambov", "Tatarstan",
+  "Tula", "Tver'", "Udmurt", "Ul'yanovsk", "Vladimir", "Volgograd",
+  "Vologda", "Voronezh", "Yaroslavl'"
+)
+```
+
+```{r}
+#| eval: false
+
+shape <-
+  geodata::gadm(
+    country = "rus",
+    level = 1,
+    path = raw_data_dir
+  ) %>%
+  terra::subset(., .$NAME_1 %in% european_russia_regions)
+```
+
+#### European Region
+
+```{r}
+#| eval: false
+
+european_russia_regions <- c(
+  "Adygey", "Arkhangel'sk", "Astrakhan'", "Bashkortostan", "Belgorod",
+  "Bryansk", "Chechnya", "Chuvash", "City of St. Petersburg", "Dagestan",
+  "Ingush", "Ivanovo", "Kabardin-Balkar", "Kaliningrad", "Kalmyk", "Kaluga",
+  "Karachay-Cherkess", "Karelia", "Kirov", "Komi", "Kostroma", "Krasnodar",
+  "Kursk", "Leningrad", "Lipetsk", "Mariy-El", "Mordovia", "Moscow City",
+  "Moskva", "Murmansk", "Nenets", "Nizhegorod", "North Ossetia", "Novgorod",
+  "Orel", "Orenburg", "Penza", "Perm'", "Pskov", "Rostov", "Ryazan'",
+  "Samara", "Saratov", "Smolensk", "Stavropol'", "Tambov", "Tatarstan",
+  "Tula", "Tver'", "Udmurt", "Ul'yanovsk", "Vladimir", "Volgograd",
+  "Vologda", "Voronezh", "Yaroslavl'"
+)
+```
+
+```{r}
+#| eval: false
+
+european_russia_shape <-
+  geodata::gadm(
+    country = "rus",
+    level = 1,
+    path = raw_data_dir
+  ) %>%
+  terra::subset(., .$NAME_1 %in% european_russia_regions)
+```
 
 ```{r}
 #| eval: false
 
 countries <-
   geodata::country_codes() |>
-  dplyr::filter(continent == "Asia") |>
+  dplyr::filter(continent == "Europe") |>
+  magrittr::extract2("ISO3") |>
+  stringr::str_subset("RUS", negate =  TRUE)
+
+shape <-
+  geodata::world(resolution = 1, path = raw_data_dir) %>%
+  terra::subset(., .$GID_0 %in% countries) |>
+  terra::union(european_russia_shape)
+```
+
+#### Continent
+
+```{r}
+#| eval: false
+
+countries <-
+  geodata::country_codes() |>
+  dplyr::filter(continent == "Africa") |>
   magrittr::extract2("ISO3")
 
 shape <-
@@ -202,12 +328,34 @@ shape <-
   terra::subset(., .$GID_0 %in% countries)
 ```
 
-For getting the whole world, use:
+#### World as a Whole
 
 ```{r}
 #| eval: false
 
 shape <- NULL
+```
+
+### Box
+
+::: {.callout-note}
+Use this option if you want to crop the data to a specific area. The box is defined by the coordinates of the bounding box in the format `c(xmin, xmax, ymin, ymax)`.
+:::
+
+```{r}
+#| eval: true
+
+box <- NULL
+```
+
+#### Europe
+
+```{r}
+#| eval: false
+
+# xmin, xmax, ymin, ymax
+# Iceland, Azerbaijan, Cyprus, Norway
+box <- c(-24.534, 50.601, 34.625, 71.181)
 ```
 
 ## Unzipping the Files (Optional)
@@ -223,8 +371,22 @@ zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 
 tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
 
-if (!dir.exists(tif_dir)) {
-  tif_dir |> fs::dir_create(recurse = TRUE)
+if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
+```
+
+```{r}
+#| eval: false
+
+accompanying_files <- c("README.md", "LICENSE.md")
+
+for (i in accompanying_files) {
+  if (file.exists(fs::path(zip_dir, i))) {
+    fs::file_copy(
+      fs::path(zip_dir, i),
+      fs::path(tif_dir, i),
+      overwrite = TRUE
+    )
+  }
 }
 ```
 
@@ -270,8 +432,6 @@ tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
 ```
 
 ```{r}
-#| eval: false
-
 tif_files <-
   tif_dir |>
   fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
@@ -288,27 +448,46 @@ tif_file <- tif_files |> sample(1)
 ```{r}
 #| eval: false
 
-ras <- tif_file |> terra::rast()
+raster <- tif_file |> terra::rast()
 ```
 
 ```{r}
 #| eval: false
 
-croped_ras <-
-  ras |>
-  terra::crop(
-    shape,
-    snap = "near",
-    mask = TRUE,
-    touches = TRUE,
-    extend = TRUE
-  )
+if (!is.null(shape)) {
+  shape_x_min <- round(terra::ext(shape)[1])
+  shape_x_max <- round(terra::ext(shape)[2])
+
+  if (shape_x_min == -180 && shape_x_max == 180) {
+    cropped_ras <-
+      raster |>
+      orbis::shift_and_crop(shape, dx = -45)
+  } else {
+    cropped_ras <-
+      raster |>
+      terra::crop(
+        shape,
+        snap = "near",
+        mask = TRUE,
+        touches = TRUE,
+        extend = TRUE
+      )
+  }
+} else {
+  cropped_ras <- raster
+}
 ```
 
 ```{r}
 #| eval: false
 
-croped_ras |> terra::plot()
+if (!is.null(box)) cropped_ras <- cropped_ras |> terra::crop(box)
+```
+
+```{r}
+#| eval: false
+
+cropped_ras |> terra::plot()
 ```
 
 ## Cropping and Transforming Data to ASCII
@@ -320,15 +499,40 @@ orbis::wc_to_ascii(
   file = tif_files,
   dir = data_series_dir,
   shape = shape,
+  box = box,
+  dateline_fix = ifelse(is.null(shape), FALSE, TRUE),
   aggregate = NULL,
   overwrite = TRUE,
+  dx = -45,
   na_flag = -9999
 )
 
 beepr::beep(1)
 ```
 
-## Delete Non-ASCII Files (Optional)
+## Adding LICENSE and README Files
+
+```{r}
+for (i in c(data_dir, data_series_dir)) {
+  wc_license() |> readr::write_lines(fs::path(i, "LICENSE.md"))
+}
+```
+
+```{r}
+download_date <-
+  fs::path(tif_dir, "README.md") |>
+  readr::read_lines() |>
+  paste0(collapse = "\n") |>
+  stringr::str_extract("\\d{4}-\\d{2}-\\d{2}")
+
+logoclim_readme(resolution = resolution, download_date = download_date) |>
+  readr::write_lines(fs::path(data_dir, "README.md"))
+
+logoclim_readme(series, resolution, download_date) |>
+  readr::write_lines(fs::path(data_series_dir, "README.md"))
+```
+
+## Deleting Non-ASCII Files (Optional)
 
 ```{r}
 #| eval: false
@@ -342,9 +546,7 @@ data_series_dir |>
   fs::file_delete()
 ```
 
-## Zipping the Files (Optional)
-
-This is optional and only useful for storing the final data.
+## Zipping the Final Files (Optional)
 
 Check the **name of the file** where the data will be stored.
 
@@ -361,6 +563,8 @@ asc_files <-
 ```
 
 ```{r}
+#| eval: false
+
 zip_file <- fs::path(data_dir, "bra-10m.zip")
 ```
 
