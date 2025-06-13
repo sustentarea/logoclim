@@ -29,7 +29,9 @@ to setup-world
     set i i + 1
   ]
 
-  set nan (
-    item 0 filter is-nan? [value] of patches with [is-number? value]
-  )
+  carefully [
+    set nan item 0 filter is-nan? [value] of patches with [is-number? value]
+  ] [
+    set nan 0
+  ]
 end

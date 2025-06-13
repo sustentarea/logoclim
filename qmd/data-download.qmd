@@ -69,7 +69,7 @@ series <- "historical-climate-data"
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 series <- "historical-monthly-weather-data"
 ```
@@ -97,7 +97,7 @@ resolution <- "5m"
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 resolution <- "2.5m"
 ```
@@ -125,7 +125,7 @@ Run `model <- NULL` when downloading other series.
 Pick **one** of the following.
 
 ```{r}
-#| eval: false
+#| eval: true
 
 model <- NULL
 ```
@@ -365,6 +365,73 @@ broken_links <-
   rutils::download_file(dir = dir, broken_links = TRUE)
 
 beepr::beep(1)
+```
+
+## Unzipping the Files (Optional)
+
+```{r}
+#| eval: true
+
+zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+```
+
+```{r}
+#| eval: true
+
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+
+if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
+```
+
+```{r}
+#| eval: true
+
+accompanying_files <- c("README.md", "LICENSE.md")
+
+for (i in accompanying_files) {
+  if (file.exists(fs::path(zip_dir, i))) {
+    fs::file_copy(
+      fs::path(zip_dir, i),
+      fs::path(tif_dir, i),
+      overwrite = TRUE
+    )
+  }
+}
+```
+
+```{r}
+#| eval: true
+#| output: false
+
+zip_files <-
+  zip_dir |>
+  fs::dir_ls(type = "file", regexp = "zip$")
+
+cli::cli_progress_bar(
+    name = "Unzipping data",
+    total = length(zip_files),
+    clear = FALSE
+  )
+
+for (i in zip_files) {
+  i |>
+    zip::unzip(
+      overwrite = TRUE,
+      exdir = tif_dir
+    )
+
+  cli::cli_progress_update()
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: false
+
+zip_dir |> fs::dir_delete()
 ```
 
 ## Zipping the Files (Optional)

@@ -11,17 +11,20 @@
 # Setting Initial Parameters -----
 
 series <- c(
-  "historical-climate-data",
-  "historical-monthly-weather-data",
-  "future-climate-data"
+  "historical-climate-data"
+  # "historical-monthly-weather-data",
+  # "future-climate-data"
 )
 
-resolution <- "10m"
+resolution <- "30s" # "10m"
 
-country_codes <- "europe"
-# country_codes <- c("arg", "chl", "nor", "zaf", "ind", "aus")
+# country_codes <- "gbr"
+country_codes <- c(
+  "arg", "aus", "bra", "can", "chl", "cnh", "deu", "esp", "fra", "ind",
+  "ita", "nor", "prt", "ury", "zaf"
+)
 
-country_suffix <- NULL # "box" # "mainland"
+country_suffix <- "hcd" # "box" # "mainland"
 
 for (i in country_codes) {
   ## Rendering the Data Series -----

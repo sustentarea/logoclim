@@ -9,7 +9,7 @@ params:
 
 ## Overview
 
-This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [LogoClim: WorldClim 2.1 Data Download](data-download.qmd) document. To use it, you must have already downloaded the WorldClim data files.
+This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [LogoClim: WorldClim 2.1 Data Download](data-download.qmd) document. To use it, you must have already downloaded and unzipped the WorldClim 2.1 data files.
 
 ::: {.callout-important}
 This process may take some time to complete. Please be patient.
@@ -191,7 +191,7 @@ country_code <- "bra"
 Change to the desired country code (ISO 3166-1 alpha-3).
 
 ```{r}
-#| eval: false
+#| eval: true
 
 shape <- geodata::gadm(
   country = country_code,
@@ -277,7 +277,7 @@ shape <-
 #### European Region
 
 ```{r}
-#| eval: true
+#| eval: false
 
 european_russia_regions <- c(
   "Adygey", "Arkhangel'sk", "Astrakhan'", "Bashkortostan", "Belgorod",
@@ -294,7 +294,7 @@ european_russia_regions <- c(
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 european_russia_shape <-
   geodata::gadm(
@@ -306,7 +306,7 @@ european_russia_shape <-
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 countries <-
   geodata::country_codes() |>
@@ -363,73 +363,6 @@ box <- NULL
 # xmin, xmax, ymin, ymax
 # Iceland, Azerbaijan, Cyprus, Norway
 box <- c(-24.534, 50.601, 34.625, 71.181)
-```
-
-## Unzipping the Files (Optional)
-
-```{r}
-#| eval: false
-
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
-```
-
-```{r}
-#| eval: false
-
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
-
-if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
-```
-
-```{r}
-#| eval: false
-
-accompanying_files <- c("README.md", "LICENSE.md")
-
-for (i in accompanying_files) {
-  if (file.exists(fs::path(zip_dir, i))) {
-    fs::file_copy(
-      fs::path(zip_dir, i),
-      fs::path(tif_dir, i),
-      overwrite = TRUE
-    )
-  }
-}
-```
-
-```{r}
-#| eval: false
-#| output: false
-
-zip_files <-
-  zip_dir |>
-  fs::dir_ls(type = "file", regexp = "zip$")
-
-cli::cli_progress_bar(
-    name = "Unzipping data",
-    total = length(zip_files),
-    clear = FALSE
-  )
-
-for (i in zip_files) {
-  i |>
-    zip::unzip(
-      overwrite = TRUE,
-      exdir = tif_dir
-    )
-
-  cli::cli_progress_update()
-}
-
-cli::cli_progress_done()
-
-beepr::beep(1)
-```
-
-```{r}
-#| eval: false
-
-zip_dir |> fs::dir_delete()
 ```
 
 ## Gathering the `tif` Files

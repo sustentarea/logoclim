@@ -22,12 +22,7 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 for simulating and visualizing global climate conditions. It is designed
 to support and enhance the reproducibility of empirically grounded
 agent-based models by providing a standardized tool for integrating
-high-resolution climate data. Through [parallel
-execution](#integrating-with-other-models) using the
-[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
-extension, it can be seamlessly coupled with other models, making it
-valuable for research in ecology, agriculture, environmental science,
-and other fields that require climate dynamics integration.
+high-resolution climate data.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -35,20 +30,24 @@ temperature and precipitation over time. It incorporates historical data
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
 O'Neill et
-al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All
+climate inputs are sourced from [WorldClim 2.1](https://worldclim.org/),
+which provides high-resolution interpolated datasets derived from
+weather station records worldwide ([Fick & Hijmans,
+2017](https://doi.org/10.1002/joc.5086)).
 
-The climate data is sourced from [WorldClim
-2.1](https://worldclim.org/), which provides high-resolution climate
-data based on weather station records worldwide ([Fick & Hijmans,
-2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1
-km², the data is available at multiple spatial scales, ensuring a
-detailed and comprehensive representation of climate variables.
+`LogoClim` supports [parallel execution](#integrating-with-other-models)
+via the NetLogo
+[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
+extension, enabling seamless coupling with other models. This makes it a
+valuable tool for research in ecology, agriculture, environmental
+science, and other fields requiring integrated climate dynamics.
 
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface-bra-hmwd-10m.gif)
+![LogoClim Interface](images/logoclim-interface.gif)
 
 ## How It Works
 
