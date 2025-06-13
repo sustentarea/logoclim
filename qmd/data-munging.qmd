@@ -2,6 +2,7 @@
 params:
   series: "historical-climate-data"
   resolution: "10m"
+  country_code: "bra"
 ---
 
 # LogoClim: WorldClim 2.1 Data Transformation for NetLogo
@@ -179,15 +180,21 @@ See [`rnaturalearth`](https://ropensci.github.io/rnaturalearth/) for an alternat
 
 Pick the **shape** you want to use.
 
+```{r}
+#| eval: false
+
+country_code <- "bra"
+```
+
 #### Single Country
 
 Change to the desired country code (ISO 3166-1 alpha-3).
 
 ```{r}
-#| eval: true
+#| eval: false
 
 shape <- geodata::gadm(
-  country = "bra",
+  country = country_code,
   level = 0,
   path = raw_data_dir
 )
@@ -270,7 +277,7 @@ shape <-
 #### European Region
 
 ```{r}
-#| eval: false
+#| eval: true
 
 european_russia_regions <- c(
   "Adygey", "Arkhangel'sk", "Astrakhan'", "Bashkortostan", "Belgorod",
@@ -287,7 +294,7 @@ european_russia_regions <- c(
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 european_russia_shape <-
   geodata::gadm(
@@ -299,7 +306,7 @@ european_russia_shape <-
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 countries <-
   geodata::country_codes() |>
@@ -458,10 +465,17 @@ if (!is.null(shape)) {
   shape_x_min <- round(terra::ext(shape)[1])
   shape_x_max <- round(terra::ext(shape)[2])
 
-  if (shape_x_min == -180 && shape_x_max == 180) {
+  if ((shape_x_max - shape_x_min) > 180) {
     cropped_ras <-
       raster |>
-      orbis::shift_and_crop(shape, dx = -45)
+      orbis::shift_and_crop(
+        shape,
+        dx = dplyr::case_when(
+          shape$GID_0 == "USA" ~ 30,
+          shape$GID_0 == "RUS" ~ -45,
+          TRUE ~ -45
+        )
+      )
   } else {
     cropped_ras <-
       raster |>
@@ -493,6 +507,18 @@ cropped_ras |> terra::plot()
 ## Cropping and Transforming Data to ASCII
 
 ```{r}
+if (!is.null(shape)) {
+  dx <- dplyr::case_when(
+    shape$GID_0[1] == "USA" ~ 30,
+    shape$GID_0[1] == "RUS" ~ -45,
+    TRUE ~ -45
+  )
+} else {
+  dx <- -45
+}
+```
+
+```{r}
 #| output: false
 
 orbis::wc_to_ascii(
@@ -503,7 +529,7 @@ orbis::wc_to_ascii(
   dateline_fix = ifelse(is.null(shape), FALSE, TRUE),
   aggregate = NULL,
   overwrite = TRUE,
-  dx = -45,
+  dx = dx,
   na_flag = -9999
 )
 

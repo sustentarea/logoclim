@@ -2,7 +2,8 @@
 params:
   series: "historical-climate-data"
   resolution: "10m"
-  zip_file: NULL
+  country_code: "bra"
+  country_suffix: NULL
 ---
 
 # LogoClim: WorldClim 2.1 Data Download
@@ -436,9 +437,27 @@ beepr::beep(1)
 ## Zipping the Processed Files (Optional)
 
 ```{r}
+#| eval: false
+
+country_code <- "bra"
+country_suffix <- NULL # "mainland"
+```
+
+```{r}
 #| eval: true
 
-zip_file <- fs::path(data_dir, "gbr-10m.zip")
+zip_file <-
+  data_dir |>
+  fs::path(
+      paste0(
+      country_code,
+      ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
+      paste0("-", resolution),
+      ".zip"
+    )
+  )
+
+zip_file
 ```
 
 ```{r}
@@ -450,7 +469,7 @@ zip_file |>
       data_dir |>
       fs::dir_ls(
         type = "file",
-        regexp = ".gitignore$",
+        regexp = "\\.zip$|\\.gitignore$",
         recurse = TRUE,
         invert = TRUE
       ) |>

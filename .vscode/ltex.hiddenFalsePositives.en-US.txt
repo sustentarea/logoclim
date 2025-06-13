@@ -1,1 +1,3 @@
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Qcrop_shape <-\n  geodata::gadm(\n    country = \"usa\",\n    level = 1,\n    path = raw_data_dir\n  ) %>%\n  terra::subset(., !.$NAME_1 %in% c(\"Alaska\", \"Hawaii\"))\n```\\E$"}
+{"rule":"PASSIVE_VOICE","sentence":"^\\QImproved \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q to utilize the first three files in the series and address bleeding issues\nPersistent world bleeding is now converted to \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q values\nEnhanced Quarto notebooks to fix dateline issues\nAutomated the generation of README and LICENSE files in the Quarto notebooks\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q---\nparams:\n  series: \"historical-climate-data\"\n  resolution: \"10m\"\n---\\E$"}
