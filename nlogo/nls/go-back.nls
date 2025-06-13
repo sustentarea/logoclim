@@ -3,7 +3,9 @@
 
 to go-back
   (ifelse
-    (
+    (not is-gis? dataset) [
+      stop
+    ] (
       climate-variable = "Elevation" or
       (
         year = first years and

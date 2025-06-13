@@ -131,7 +131,9 @@ to go [#tick? #wait?]
   assert-logical #wait?
 
   (ifelse
-    (
+    (not is-gis? dataset) [
+      stop
+    ] (
       (
         year = last years and
         month = 12
@@ -146,7 +148,7 @@ to go [#tick? #wait?]
         climate-variable = "Bioclimatic variables" and
         year = last years
       )
-      ) [
+    ) [
       stop
     ] [
       set index index + 1
