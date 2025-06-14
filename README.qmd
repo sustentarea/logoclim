@@ -75,8 +75,10 @@ The model utilizes raster data to represent climate variables such as temperatur
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-> [!IMPORTANT]
+```{=gfm}
+> `r "[!IMPORTANT]"`
 > `LogoClim` is an independent project and is not affiliated with [WorldClim](https://worldclim.org/) or its developers. Please note that the WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
+```
 
 ![LogoClim Interface](images/logoclim-interface.gif)
 
@@ -134,8 +136,10 @@ You can download the latest release of the model from [GitHub Releases](https://
 
 ### Downloading the Data
 
+```{=gfm}
 > [!IMPORTANT]
 > The WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
+```
 
 `LogoClim` uses raster data to represent climate variables. While you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must first be converted to ASCII format before being used in NetLogo. To simplify this process, we recommend using the preprocessed datasets included in the model's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already converted the data to ASCII format for many countries and resolutions, making it easier to get started.
 
@@ -172,8 +176,10 @@ We are actively working to improve the user experience and make the installation
 
 ## How to Cite
 
+```{=gfm}
 > [!IMPORTANT]
 > When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+```
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 
