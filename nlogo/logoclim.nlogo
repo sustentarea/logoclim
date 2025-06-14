@@ -673,11 +673,13 @@ max [value] of patches with [not is-nan? value]
 
 ## WHAT IS IT?
 
-`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It is designed to support and enhance the reproducibility of empirically grounded agent-based models by providing a standardized tool for integrating high-resolution climate data. Through [parallel execution](#integrating-with-other-models) using the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension, it can be seamlessly coupled with other models, making it valuable for research in ecology, agriculture, environmental science, and other fields that require climate dynamics integration.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It is designed to support and enhance the reproducibility of empirically grounded agent-based models by providing a standardized tool for integrating high-resolution climate data.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs are sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated datasets derived from weather station records worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
-The climate data is sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution climate data based on weather station records worldwide([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). With resolutions as fine as ~1 km², the data is available at multiple spatial scales, ensuring a detailed and comprehensive representation of climate variables.
+`LogoClim` supports [parallel execution](#integrating-with-other-models) via the NetLogo [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension, enabling seamless coupling with other models. This makes it a valuable tool for research in ecology, agriculture, environmental science, and other fields requiring integrated climate dynamics.
+
+> `LogoClim` is an independent project and is not affiliated with [WorldClim](https://worldclim.org/) or its developers. Please note that the WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
 
 ## HOW IT WORKS
 
@@ -728,6 +730,8 @@ install.packages(c("rJava", "stringr", "lubridate"))
 ```
 
 #### DOWNLOADING THE DATA
+
+> The WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the [WorldClim license information](https://worldclim.org/about.html).
 
 `LogoClim` uses raster data to represent climate variables. While you can download the data directly from [WorldClim 2.1](https://worldclim.org/), we recommend using the dataset provided in the project's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository for compatibility.
 
@@ -814,6 +818,8 @@ For an example of integrating `LogoClim` with another model, see the [FoodClim](
 - Adjust the transition speed to slow down or speed up the simulation for detailed observation or quicker results.
 
 ## HOW TO CITE
+
+> When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 

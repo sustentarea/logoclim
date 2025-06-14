@@ -75,6 +75,9 @@ The model utilizes raster data to represent climate variables such as temperatur
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
+> [!IMPORTANT]
+> `LogoClim` is an independent project and is not affiliated with [WorldClim](https://worldclim.org/) or its developers. Please note that the WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
+
 ![LogoClim Interface](images/logoclim-interface.gif)
 
 ## How It Works
@@ -119,7 +122,7 @@ You will also need [R](https://www.r-project.org/) (version 4.5 or later) with t
 
 Ensure that the R executable is included in your system's [`PATH`](https://configu.com/blog/setting-env-variables-in-windows-linux-macos-beginners-guide/) environment variable. Alternatively, you can specify the path to the `RScript` executable in NetLogo by navigating to *SimpleR Extension* > *Configure*.
 
-To install the required R packages, run the following command in your R console:
+To install the required R packages, run the following command in R:
 
 ```r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -130,6 +133,9 @@ install.packages(c("rJava", "stringr", "lubridate"))
 You can download the latest release of the model from [GitHub Releases](https://github.com/danielvartan/logoclim/releases/latest). To access the development version, clone or download this repository.
 
 ### Downloading the Data
+
+> [!IMPORTANT]
+> The WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
 
 `LogoClim` uses raster data to represent climate variables. While you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must first be converted to ASCII format before being used in NetLogo. To simplify this process, we recommend using the preprocessed datasets included in the model's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already converted the data to ASCII format for many countries and resolutions, making it easier to get started.
 
@@ -165,6 +171,9 @@ Some users have reported errors related to the SimpleR ([`sr`](https://github.co
 We are actively working to improve the user experience and make the installation process more straightforward.
 
 ## How to Cite
+
+> [!IMPORTANT]
+> When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 

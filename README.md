@@ -47,6 +47,13 @@ science, and other fields requiring integrated climate dynamics.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
+> \[!IMPORTANT\] `LogoClim` is an independent project and is not
+> affiliated with [WorldClim](https://worldclim.org/) or its developers.
+> Please note that the WorldClim datasets are freely available for
+> academic and other non-commercial use only. For details on licensing
+> and permitted uses, see the WorldClim [license
+> information](https://worldclim.org/about.html).
+
 ![LogoClim Interface](images/logoclim-interface.gif)
 
 ## How It Works
@@ -148,8 +155,7 @@ environment variable. Alternatively, you can specify the path to the
 `RScript` executable in NetLogo by navigating to *SimpleR Extension* \>
 *Configure*.
 
-To install the required R packages, run the following command in your R
-console:
+To install the required R packages, run the following command in R:
 
 ``` r
 install.packages(c("rJava", "stringr", "lubridate"))
@@ -162,6 +168,11 @@ Releases](https://github.com/danielvartan/logoclim/releases/latest). To
 access the development version, clone or download this repository.
 
 ### Downloading the Data
+
+> \[!IMPORTANT\] The WorldClim datasets are freely available for
+> academic and other non-commercial use only. For details on licensing
+> and permitted uses, see the WorldClim [license
+> information](https://worldclim.org/about.html).
 
 `LogoClim` uses raster data to represent climate variables. While you
 can download the original datasets directly from [WorldClim
@@ -227,6 +238,12 @@ We are actively working to improve the user experience and make the
 installation process more straightforward.
 
 ## How to Cite
+
+> \[!IMPORTANT\] When using WorldClim data, you must also cite the
+> original data sources. The appropriate citation depends on the
+> specific dataset utilized. Please refer to the [WorldClim
+> website](https://www.worldclim.org/data/index.html#citation) for
+> up-to-date citation guidelines and dataset references.
 
 If you use this model in your research, please cite it to acknowledge
 the effort invested in its development and maintenance. Your citation
