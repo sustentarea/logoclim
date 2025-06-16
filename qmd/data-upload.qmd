@@ -4,6 +4,7 @@ params:
   resolution: "10m"
   country_code: "bra"
   country_suffix: NULL
+  series_suffix: NULL
 ---
 
 # LogoClim: WorldClim 2.1 Data Download
@@ -151,296 +152,14 @@ for (i in dirs) {
 }
 ```
 
-## Unzipping the Raw Data Files (Optional)
-
-```{r}
-#| eval: false
-
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
-```
-
-```{r}
-#| eval: false
-
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
-
-if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
-```
-
-```{r}
-#| eval: false
-
-accompanying_files <- c("README.md", "LICENSE.md")
-
-for (i in accompanying_files) {
-  if (file.exists(fs::path(zip_dir, i))) {
-    fs::file_copy(
-      fs::path(zip_dir, i),
-      fs::path(tif_dir, i),
-      overwrite = TRUE
-    )
-  }
-}
-```
-
-```{r}
-#| eval: false
-#| output: false
-
-zip_files <- zip_dir |> fs::dir_ls(type = "file", regexp = "zip$")
-
-cli::cli_progress_bar(
-  name = "Unzipping data",
-  total = length(zip_files),
-  clear = FALSE
-)
-
-for (i in zip_files) {
-  i |>
-    zip::unzip(
-      overwrite = TRUE,
-      exdir = tif_dir
-    )
-
-  cli::cli_progress_update()
-}
-
-cli::cli_progress_done()
-
-beepr::beep(1)
-```
-
-```{r}
-#| eval: false
-
-zip_dir |> fs::dir_delete()
-```
-
-## Zipping the Raw Data Files (Optional)
-
-### Creating the Metadata
-
-```{r}
-#| eval: false
-
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
-```
-
-```{r}
-#| eval: false
-
-files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
-```
-
-```{r}
-#| eval: false
-
-sizes <-
-  files |>
-  purrr::map_dbl(
-    .f = rutils::get_file_size,
-    .progress = TRUE
-  ) |>
-  fs::as_fs_bytes()
-
-beepr::beep(1)
-```
-
-```{r}
-#| eval: false
-
-metadata <-
-  dplyr::tibble(
-    file = basename(files),
-    size = sizes
-  ) |>
-  dplyr::arrange(size) |>
-  dplyr::mutate(
-  size_cum_sum =
-      size |>
-      tidyr::replace_na() |>
-      cumsum() |>
-      fs::as_fs_bytes()
-  )
-```
-
-```{r}
-#| eval: false
-
-metadata
-```
-
-```{r}
-#| eval: false
-
-metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
-```
-
-### Zipping the Files
-
-```{r}
-#| eval: false
-
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
-
-if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
-```
-
-```{r}
-#| eval: false
-
-if (series == "historical-monthly-weather-data") {
-  prefix_start <- "wc2.1_cruts4.09_" # Always check this number!
-} else {
-  prefix_start <- "wc2.1_"
-}
-```
-
-```{r}
-#| eval: false
-
-climate_variable <-
-  metadata |>
-  dplyr::pull(file) |>
-  orbis:::extract_wc_variable() |>
-  unique()
-
-climate_variable
-```
-
-```{r}
-#| eval: false
-
-model <-
-  metadata |>
-  dplyr::pull(file) |>
-  orbis:::extract_wc_gcm() |>
-  unique()
-
-model
-```
-
-For zipping files by climate variable, use:
-
-```{r}
-#| eval: false
-
-cli::cli_progress_bar(
-  name = "Zipping data",
-  total = length(climate_variable),
-  clear = FALSE
-)
-
-for (i in climate_variable) {
-  metadata |>
-    dplyr::pull(file) |>
-    groomr::zip_files_by_pattern(
-      pattern = i,
-      prefix = paste0(prefix_start, resolution, "_"),
-      max_size = fs::fs_bytes("5GB"),
-      appendices = c("LICENSE.md", "README.md"),
-      root = tif_dir,
-      dir = zip_dir
-    )
-
-  cli::cli_progress_update()
-}
-
-cli::cli_progress_done()
-
-beepr::beep(1)
-```
-
-For zipping files by model, use:
-
-```{r}
-#| eval: false
-
-cli::cli_progress_bar(
-  name = "Zipping data",
-  total = length(model),
-  clear = FALSE
-)
-
-for (i in model) {
-  metadata |>
-    dplyr::pull(file) |>
-    groomr::zip_files_by_pattern(
-      pattern = i,
-      prefix = paste0(prefix_start, resolution, "_"),
-      max_size = fs::fs_bytes("5GB"),
-      appendices = c("LICENSE.md", "README.md"),
-      root = tif_dir,
-      dir = zip_dir
-    )
-
-  cli::cli_progress_update()
-}
-
-cli::cli_progress_done()
-
-beepr::beep(1)
-```
-
-For zipping files by model and climate variable, use:
-
-```{r}
-#| eval: false
-
-cli::cli_progress_bar(
-  name = "Zipping data",
-  total = length(model) * length(climate_variable),
-  clear = FALSE
-)
-
-for (i in model) {
-  for (j in climate_variable) {
-    metadata |>
-      dplyr::pull(file) |>
-      groomr::zip_files_by_pattern(
-        pattern = paste0(j, "_", i),
-        prefix = paste0(prefix_start, resolution, "_"),
-        max_size = fs::fs_bytes("5GB"),
-        appendices = c("LICENSE.md", "README.md"),
-        root = tif_dir,
-        dir = zip_dir
-      )
-
-      cli::cli_progress_update()
-  }
-}
-
-cli::cli_progress_done()
-
-beepr::beep(1)
-```
-
-For zipping the entire series, use:
-
-```{r}
-#| eval: false
-
-metadata |>
-  dplyr::pull(file) |>
-  groomr::zip_files_by_pattern(
-    pattern = ".",
-    prefix = paste0(prefix_start, resolution),
-    max_size = fs::fs_bytes("5GB"),
-    appendices = c("LICENSE.md", "README.md"),
-    root = tif_dir,
-    dir = zip_dir
-  )
-
-beepr::beep(1)
-```
-
-## Zipping the Processed Files (Optional)
+## Zipping the Files
 
 ```{r}
 #| eval: false
 
 country_code <- "bra"
-country_suffix <- NULL # "mainland"
+country_suffix <- NULL # "box" # "mainland"
+series_suffix <- NULL # "hcd" # "hmwd" # "fcd"
 ```
 
 ```{r}
@@ -453,6 +172,7 @@ zip_file <-
       country_code,
       ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
       paste0("-", resolution),
+      ifelse(!is.null(series_suffix), paste0("-", series_suffix), ""),
       ".zip"
     )
   )
@@ -480,125 +200,39 @@ zip_file |>
 beepr::beep(1)
 ```
 
-## Uploading the Files to OSF
-
-When uploading processed files, run only the code chunk below and skip the preparation steps.
+### Adding LICENSE and README Files
 
 ```{r}
 #| eval: true
 
-osf_files <- zip_file
-
-osf_files
-```
-
-### Preparing the Metadata
-
-```{r}
-#| eval: false
-
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
-```
-
-```{r}
-#| eval: false
-
-zip_files <- zip_dir |> fs::dir_ls(type = "file")
-```
-
-```{r}
-#| eval: false
-
-sizes <-
-  zip_files |>
-  purrr::map_dbl(
-    .f = rutils::get_file_size,
-    .progress = TRUE
-  ) |>
-  fs::as_fs_bytes()
-
-beepr::beep(1)
-```
-
-```{r}
-#| eval: false
-
-metadata <-
-  dplyr::tibble(
-    file = basename(zip_files),
-    size = sizes
-  ) |>
-  dplyr::arrange(size) |>
-  dplyr::mutate(
-  size_cum_sum =
-      size |>
-      tidyr::replace_na() |>
-      cumsum() |>
-      fs::as_fs_bytes()
-  )
-```
-
-```{r}
-#| eval: false
-
-metadata
-```
-
-```{r}
-#| eval: false
-
-metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
-```
-
-### Adding LICENSE and README Files
-
-```{r}
-#| eval: false
-
-osf_files <- zip_files
-
-osf_files
-```
-
-```{r}
-#| eval: false
-
 txt_license <- fs::file_copy(
-  fs::path(zip_dir, "LICENSE.md"),
+  fs::path(data_dir, "LICENSE.md"),
   fs::path(tempdir(), "license.txt"),
   overwrite = TRUE
 )
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 osf_files <-
-  zip_dir |>
+  data_dir |>
     fs::path(c("LICENSE.md", "README.md")) |>
-    c(
-      fs::path(wc_raw_data_series_res_dir, "metadata.rds"),
-      txt_license,
-      zip_files
-    ) |>
+    c(txt_license, zip_file) |>
     unname()
+
+osf_files
 ```
 
-### Setting the OSF Node
-
-Pick **one** of the following.
-
-Run the code chunk below to store data in the WorldClim OSF repository.
+## Uploading the Files to OSF
 
 ```{r}
-#| eval: false
+#| eval: true
 
-osf_id <- orbis::get_wc_osf_id(series, resolution)
+prettycheck::assert_internet()
 
-osf_id
+osfr::osf_auth()
 ```
-
-Run the code chunk below to store data in the LogoClim OSF repository.
 
 ```{r}
 #| eval: true
@@ -614,16 +248,6 @@ if (resolution == "10m") {
 }
 
 osf_id
-```
-
-### Uploading the Files to OSF
-
-```{r}
-#| eval: true
-
-prettycheck::assert_internet()
-
-osfr::osf_auth()
 ```
 
 ```{r}
@@ -659,7 +283,15 @@ Careful! There is no coming back from this.
 ```{r}
 #| eval: false
 
-osf_id <- orbis::get_wc_osf_id(series, resolution)
+if (resolution == "10m") {
+  osf_id <- "x7fcm"
+} else if (resolution == "5m") {
+  osf_id <- "un5jm"
+} else if (resolution == "2.5m") {
+  osf_id <- "4vxet"
+} else if (resolution == "30s") {
+  osf_id <- "qgyha"
+}
 
 osf_id
 ```
@@ -671,7 +303,7 @@ file_list <-
   osf_id |>
   osfr::osf_retrieve_node() |>
   osfr::osf_ls_files(
-    pattern = "cruts4.06",
+    pattern = "_2-5m",
     n_max = Inf
   )
 
