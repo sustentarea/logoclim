@@ -11,10 +11,6 @@ params:
 
 This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
 
-::: {.callout-note}
-Due to UC Davis server constraints, it's much faster to download WorldClim 2.1 raw data from the `LogoClim` backups stored on the Open Science Framework (OSF). Click [here](https://osf.io/2bpjh/) to access this data.
-:::
-
 ::: {.callout-important}
 This process may take some time to complete. Please be patient.
 :::
@@ -386,15 +382,17 @@ if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
 ```{r}
 #| eval: true
 
-accompanying_files <- c("README.md", "LICENSE.md")
+if (dir.exists(zip_dir)) {
+  accompanying_files <- c("README.md", "LICENSE.md")
 
-for (i in accompanying_files) {
-  if (file.exists(fs::path(zip_dir, i))) {
-    fs::file_copy(
-      fs::path(zip_dir, i),
-      fs::path(tif_dir, i),
-      overwrite = TRUE
-    )
+  for (i in accompanying_files) {
+    if (file.exists(fs::path(zip_dir, i))) {
+      fs::file_copy(
+        fs::path(zip_dir, i),
+        fs::path(tif_dir, i),
+        overwrite = TRUE
+      )
+    }
   }
 }
 ```
@@ -403,35 +401,37 @@ for (i in accompanying_files) {
 #| eval: true
 #| output: false
 
-zip_files <-
-  zip_dir |>
-  fs::dir_ls(type = "file", regexp = "zip$")
+if (dir.exists(zip_dir)) {
+  zip_files <-
+    zip_dir |>
+    fs::dir_ls(type = "file", regexp = "zip$")
 
-cli::cli_progress_bar(
-    name = "Unzipping data",
-    total = length(zip_files),
-    clear = FALSE
-  )
-
-for (i in zip_files) {
-  i |>
-    zip::unzip(
-      overwrite = TRUE,
-      exdir = tif_dir
+  cli::cli_progress_bar(
+      name = "Unzipping data",
+      total = length(zip_files),
+      clear = FALSE
     )
 
-  cli::cli_progress_update()
+  for (i in zip_files) {
+    i |>
+      zip::unzip(
+        overwrite = TRUE,
+        exdir = tif_dir
+      )
+
+    cli::cli_progress_update()
+  }
+
+  cli::cli_progress_done()
+
+  beepr::beep(1)
 }
-
-cli::cli_progress_done()
-
-beepr::beep(1)
 ```
 
 ```{r}
 #| eval: false
 
-zip_dir |> fs::dir_delete()
+if (dir.exists(zip_dir)) zip_dir |> fs::dir_delete()
 ```
 
 ## Zipping the Files (Optional)
