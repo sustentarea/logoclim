@@ -5,6 +5,8 @@
 - Enhanced Quarto notebooks to fix dateline issues
 - Automated the generation of README and LICENSE files in the
   Quarto notebooks
+- Removed `patch-px-size` slider and added `adjust-world-size?` slider for
+  automatic world size adjustment
 
 # LogoClim 0.0.0.9010 (Pre-Release)
 

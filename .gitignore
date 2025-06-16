@@ -4,4 +4,6 @@
 .Ruserdata
 /.quarto/
 /.data/
+/..data/
+/...data/
 /data-raw/

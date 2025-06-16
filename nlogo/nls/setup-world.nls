@@ -3,11 +3,19 @@
 ; globals [series-data-path patch-px-size]
 
 to setup-world
-  let width floor (gis:width-of dataset / 2)
-  let height floor (gis:height-of dataset / 2)
+  let width (gis:width-of dataset / 2)
+  let height (gis:height-of dataset / 2)
 
   resize-world (-1 * width ) width (-1 * height ) height
-  set-patch-size patch-px-size
+
+  ifelse (adjust-world-size? = true) [
+    let patch-size-width (550 - 10) / ((floor width) * 2)
+    let patch-size-height (573 - 10) / ((floor height) * 2)
+
+    set-patch-size min (list patch-size-width patch-size-height)
+  ] [
+    set-patch-size 1
+  ]
 
   let i 0
   let test test-world-bleed

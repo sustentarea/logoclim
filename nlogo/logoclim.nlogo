@@ -1,6 +1,6 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-06-09 0.0.0.9010
+; Version: 2025-06-15 0.0.0.9011
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
@@ -397,20 +397,16 @@ transition-seconds
 s
 HORIZONTAL
 
-SLIDER
+SWITCH
 230
 128
 440
 161
-patch-px-size
-patch-px-size
+adjust-world-size?
+adjust-world-size?
 0
-10
-2.0
-0.01
 1
-px
-HORIZONTAL
+-1000
 
 INPUTBOX
 230
@@ -772,7 +768,7 @@ For an example of integrating `LogoClim` with another model, see the [FoodClim](
 - **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1960`).
 - **`data-path`**: Input box for setting the path to the data folder. Usually, this does not need to be changed. Use the *`Select data directory`* button to navigate via a dialog window (default: `../data/`).
 - **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step/month) (default: `0.0`).
-- **`patch-px-size`**: Slider for adjusting the display size of each patch in the world window. Useful for adapting to different map projections (default: `2.00`).
+- **`adjust-world-size?`**: Switch for automatically adjusting the world size. If it is set to *`On`*, the model will resize the world to fit the available interface space. If it is set to *`Off`*, the world size remains fixed, and each patch has a size of `1` (default: `On`).
 - **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series (default: `105 (blue)`).
 - **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series (default: `25 orange)`).
 - **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series (default: `15 red)`).

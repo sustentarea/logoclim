@@ -177,15 +177,6 @@ recommend using the preprocessed datasets included in the model's
 converted the data to ASCII format for many countries and resolutions,
 making it easier to get started.
 
-The datasets are organized using [ISO 3166-1
-alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) three-letter
-country codes and are available in the following spatial resolutions:
-
-- 10 minutes (~340 km² at the equator)
-- 5 minutes (~85 km² at the equator)
-- 2.5 minutes (~21 km² at the equator)
-- 30 seconds (~1 km² at the equator)
-
 After downloading, extract the files into the `data` folder within the
 model's directory.
 
