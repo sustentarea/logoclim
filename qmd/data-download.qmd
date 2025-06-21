@@ -65,13 +65,13 @@ series <- "historical-climate-data"
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 series <- "historical-monthly-weather-data"
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
 series <- "future-climate-data"
 ```
@@ -121,15 +121,17 @@ Run `model <- NULL` when downloading other series.
 Pick **one** of the following.
 
 ```{r}
-#| eval: true
+#| eval: false
 
 model <- NULL
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 
-model <- "CMCC-ESM2"
+model <- c(
+  "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0"
+)
 ```
 
 ```{r}
@@ -159,7 +161,11 @@ wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+wc_raw_data_series_res_dir <- fs::path(
+  wc_raw_data_dir,
+  series,
+  resolution |> stringr::str_replace_all("\\.", "\\-")
+)
 ```
 
 ```{r}
@@ -211,7 +217,7 @@ if (!is.null(model)) {
     magrittr::extract(
       stringr::str_detect(
         basename(.),
-        paste0("(?<=_)", model)
+        paste0("(?<=_)", model, collapse = "|")
       )
     )
 }
@@ -246,9 +252,7 @@ metadata <-
       cumsum() |>
       fs::as_fs_bytes()
   )
-```
 
-```{r}
 metadata
 ```
 
@@ -436,10 +440,66 @@ if (dir.exists(zip_dir)) zip_dir |> fs::dir_delete()
 
 ## Zipping the Files (Optional)
 
-This is only useful when dealing with future climate data.
+You need to unzip the files first if you want to zip them again. Use the code chunk above to unzip the files.
+
+### Creating a New Metadata
 
 ```{r}
-#| eval: false
+#| eval: true
+
+tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+```
+
+```{r}
+#| eval: true
+
+files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
+```
+
+```{r}
+#| eval: true
+
+sizes <-
+  files |>
+  purrr::map_dbl(
+    .f = rutils::get_file_size,
+    .progress = TRUE
+  ) |>
+  fs::as_fs_bytes()
+
+beepr::beep(1)
+```
+
+```{r}
+#| eval: true
+
+metadata <-
+  dplyr::tibble(
+    file = basename(files),
+    size = sizes
+  ) |>
+  dplyr::arrange(size) |>
+  dplyr::mutate(
+  size_cum_sum =
+      size |>
+      tidyr::replace_na() |>
+      cumsum() |>
+      fs::as_fs_bytes()
+  )
+
+metadata
+```
+
+```{r}
+#| eval: true
+
+metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+```
+
+### Zipping the Files
+
+```{r}
+#| eval: true
 
 zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 
@@ -447,17 +507,220 @@ if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
 ```
 
 ```{r}
+#| eval: true
+
+climate_variables <-
+  metadata |>
+  dplyr::pull(file) |>
+  orbis:::extract_wc_variable() |>
+  unique()
+
+climate_variables
+```
+
+```{r}
+#| eval: true
+
+models <-
+  metadata |>
+  dplyr::pull(file) |>
+  orbis:::extract_wc_gcm() |>
+  unique()
+
+models
+```
+
+```{r}
+#| eval: true
+
+if (length(series) == 1) {
+  switch(
+    series,
+    "historical-climate-data" = {
+      series_suffix <- "hcd"
+    },
+    "historical-monthly-weather-data" = {
+      series_suffix <- "hmwd"
+    },
+    "future-climate-data" = {
+      series_suffix <- "fcd"
+    }
+  )
+} else {
+  series_suffix <- NULL
+}
+```
+
+For zipping files by climate variable, use:
+
+```{r}
 #| eval: false
-#| output: false
+
+cli::cli_progress_bar(
+  name = "Zipping data",
+  total = length(climate_variables),
+  clear = FALSE
+)
+
+for (i in climate_variables) {
+  i_file <-
+    metadata |>
+    dplyr::pull(file) |>
+    groomr::zip_files_by_pattern(
+      pattern = i,
+      prefix = paste0(
+        stringr::str_replace_all(resolution, "\\.", "\\-"),
+        ifelse(
+          !is.null(series_suffix),
+          paste0("-", series_suffix),
+          ""
+        ),
+        "-"
+      ),
+      max_size = fs::fs_bytes("50GB"),
+      appendices = c("LICENSE.md", "README.md"),
+      root = tif_dir,
+      dir = zip_dir
+    )
+
+  i_file |>
+      fs::file_move(
+        fs::path(
+          zip_dir,
+          stringr::str_to_lower(basename(i_file))
+        )
+      )
+
+  cli::cli_progress_update()
+}
+
+cli::cli_progress_done()
+
+beepr::beep(1)
+```
+
+For zipping files by model, use:
+
+```{r}
+#| eval: true
+
+if (!is.null(model)) {
+  cli::cli_progress_bar(
+    name = "Zipping data",
+    total = length(model),
+    clear = FALSE
+  )
+
+  for (i in model) {
+    i_file <-
+      metadata |>
+      dplyr::pull(file) |>
+      groomr::zip_files_by_pattern(
+        pattern = i,
+        prefix = paste0(
+          stringr::str_replace_all(resolution, "\\.", "\\-"),
+          ifelse(
+            !is.null(series_suffix),
+            paste0("-", series_suffix),
+            ""
+          ),
+          "-"
+        ),
+        max_size = fs::fs_bytes("50GB"),
+        appendices = c("LICENSE.md", "README.md"),
+        root = tif_dir,
+        dir = zip_dir
+      )
+
+    i_file |>
+      fs::file_move(
+        fs::path(
+          zip_dir,
+          stringr::str_to_lower(basename(i_file))
+        )
+      )
+
+    cli::cli_progress_update()
+  }
+
+  cli::cli_progress_done()
+}
+
+beepr::beep(1)
+```
+
+For zipping files by model and climate variable, use:
+
+```{r}
+#| eval: false
+
+if (!is.null(model)) {
+  cli::cli_progress_bar(
+    name = "Zipping data",
+    total = length(model) * length(climate_variables),
+    clear = FALSE
+  )
+
+  for (i in model) {
+    for (j in climate_variables) {
+      i_file <-
+        metadata |>
+        dplyr::pull(file) |>
+        groomr::zip_files_by_pattern(
+          pattern = paste0(j, "_", i),
+          prefix = paste0(
+            stringr::str_replace_all(resolution, "\\.", "\\-"),
+            ifelse(
+              !is.null(series_suffix),
+              paste0("-", series_suffix),
+              ""
+            ),
+            "-"
+          ),
+          max_size = fs::fs_bytes("50GB"),
+          appendices = c("LICENSE.md", "README.md"),
+          root = tif_dir,
+          dir = zip_dir
+        )
+
+      i_file |>
+        fs::file_move(
+          fs::path(
+            zip_dir,
+            stringr::str_to_lower(basename(i_file))
+          )
+        )
+
+        cli::cli_progress_update()
+    }
+  }
+
+  cli::cli_progress_done()
+}
+
+beepr::beep(1)
+```
+
+For zipping the entire series, use:
+
+```{r}
+#| eval: false
 
 metadata |>
   dplyr::pull(file) |>
   groomr::zip_files_by_pattern(
-    pattern = model,
-    prefix = paste0("wc2.1_", resolution, "_"),
-    max_size = fs::fs_bytes("5GB"),
+    pattern = ".",
+    prefix = paste0(
+      stringr::str_replace_all(resolution, "\\.", "\\-"),
+      ifelse(
+        !is.null(series_suffix),
+        paste0("-", series_suffix),
+        ""
+      )
+    ),
+    max_size = fs::fs_bytes("50GB"),
     appendices = c("LICENSE.md", "README.md"),
-    root = dir,
+    root = tif_dir,
     dir = zip_dir
   )
 

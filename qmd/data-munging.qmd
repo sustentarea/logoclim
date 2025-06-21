@@ -2,6 +2,7 @@
 params:
   series: "historical-climate-data"
   resolution: "10m"
+  model: NULL
   country_code: "bra"
 ---
 
@@ -118,6 +119,38 @@ resolution <- "30s"
 resolution <- "all"
 ```
 
+### Global Climate Model
+
+::: {.callout-note}
+This is only relevant when working with future climate data. Here you can specify which model(s) to process. To process data for all models, set `model <- NULL`.
+
+Use `model <- NULL` for other series.
+:::
+
+Pick **one** of the following, according to the data you downloaded.
+
+```{r}
+#| eval: false
+
+model <- NULL
+```
+
+```{r}
+#| eval: false
+
+model <- "ACCESS-CM2"
+```
+
+```{r}
+#| eval: false
+
+model <- c(
+  "ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
+  "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
+  "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL"
+)
+```
+
 ### Directories
 
 Check the **paths** to the directories where the final data will be stored.
@@ -146,7 +179,11 @@ wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+wc_raw_data_series_res_dir <- fs::path(
+  wc_raw_data_dir,
+  series,
+  resolution |> stringr::str_replace_all("\\.", "\\-")
+)
 ```
 
 ```{r}
@@ -234,6 +271,7 @@ shape <-
 
 ```{r}
 #| eval: false
+
 shape <-
   geodata::gadm(
     country = "esp",
@@ -377,6 +415,19 @@ tif_files <-
   fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
 ```
 
+```{r}
+if (!is.null(model)) {
+  tif_files <-
+    tif_files %>%
+    magrittr::extract(
+      stringr::str_detect(
+        basename(.),
+        paste0("(?<=_)", model)
+      )
+    )
+}
+```
+
 ## Testing the Files (Optional)
 
 ```{r}
@@ -507,8 +558,6 @@ data_series_dir |>
 
 ## Zipping the Final Files (Optional)
 
-Check the **name of the file** where the data will be stored.
-
 ```{r}
 #| eval: false
 
@@ -524,7 +573,29 @@ asc_files <-
 ```{r}
 #| eval: false
 
-zip_file <- fs::path(data_dir, "bra-10m.zip")
+country_code <- "bra"
+country_suffix <- NULL # "box" # "mainland"
+series_suffix <- NULL # "hcd" # "hmwd" # "fcd"
+model <- NULL # "ACCESS-CM2"
+```
+
+```{r}
+#| eval: false
+
+zip_file <-
+  data_dir |>
+  fs::path(
+      paste0(
+      country_code,
+      ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
+      paste0("-", stringr::str_replace_all(resolution, "\\.", "\\-")),
+      ifelse(!is.null(series_suffix), paste0("-", series_suffix), ""),
+      ifelse(!is.null(model), paste0("-", tolower(model)), ""),
+      ".zip"
+    )
+  )
+
+zip_file
 ```
 
 ```{r}

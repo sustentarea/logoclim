@@ -2,9 +2,9 @@
 params:
   series: "historical-climate-data"
   resolution: "10m"
+  model: NULL
   country_code: "bra"
   country_suffix: NULL
-  series_suffix: NULL
 ---
 
 # LogoClim: WorldClim 2.1 Data Download
@@ -128,7 +128,11 @@ wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(wc_raw_data_dir, series, resolution)
+wc_raw_data_series_res_dir <- fs::path(
+  wc_raw_data_dir,
+  series,
+  resolution |> stringr::str_replace_all("\\.", "\\-")
+)
 ```
 
 ```{r}
@@ -159,7 +163,26 @@ for (i in dirs) {
 
 country_code <- "bra"
 country_suffix <- NULL # "box" # "mainland"
-series_suffix <- NULL # "hcd" # "hmwd" # "fcd"
+model <- NULL # "ACCESS-CM2"
+```
+
+```{r}
+if (length(series) == 1) {
+  switch(
+    series,
+    "historical-climate-data" = {
+      series_suffix <- "hcd"
+    },
+    "historical-monthly-weather-data" = {
+      series_suffix <- "hmwd"
+    },
+    "future-climate-data" = {
+      series_suffix <- "fcd"
+    }
+  )
+} else {
+  series_suffix <- NULL
+}
 ```
 
 ```{r}
@@ -171,8 +194,9 @@ zip_file <-
       paste0(
       country_code,
       ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
-      paste0("-", resolution),
+      paste0("-", stringr::str_replace_all(resolution, "\\.", "\\-")),
       ifelse(!is.null(series_suffix), paste0("-", series_suffix), ""),
+      ifelse(!is.null(model), paste0("-", tolower(model)), ""),
       ".zip"
     )
   )
@@ -274,11 +298,33 @@ osf_id |>
 beepr::beep(1)
 ```
 
-## Deleting Files on OSF (Optional)
+## Other Resources (Optional)
 
-::: {.callout-caution}
-Careful! There is no coming back from this.
-:::
+### Renaming Data Dir Files
+
+```{r}
+#| eval: false
+
+files <- data_dir |> fs::dir_ls()
+
+files |>
+  fs::file_move(
+    fs::path(
+      data_dir,
+      files |> basename() |> stringr::str_to_lower()
+    )
+  )
+```
+
+### Renaming Files on OSF
+
+```{r}
+#| eval: false
+
+prettycheck::assert_internet()
+
+osfr::osf_auth()
+```
 
 ```{r}
 #| eval: false
@@ -299,7 +345,66 @@ osf_id
 ```{r}
 #| eval: false
 
-file_list <-
+osf_files <-
+  osf_id |>
+  osfr::osf_retrieve_node() |>
+  osfr::osf_ls_files(
+    pattern = "5m",
+    n_max = Inf
+  )
+
+osf_files |> print(n = Inf)
+```
+
+```{r}
+#| eval: false
+
+osf_files <-
+  osf_files |>
+  dplyr::mutate(
+    name =
+      name |>
+      stringr::str_to_lower() |>
+      stringr::str_replace_all("\\.", "\\-")
+  )
+
+osf_files |> print(n = Inf)
+```
+
+### Deleting Files on OSF
+
+::: {.callout-caution}
+Careful! There is no coming back from this.
+:::
+
+```{r}
+#| eval: false
+
+prettycheck::assert_internet()
+
+osfr::osf_auth()
+```
+
+```{r}
+#| eval: false
+
+if (resolution == "10m") {
+  osf_id <- "x7fcm"
+} else if (resolution == "5m") {
+  osf_id <- "un5jm"
+} else if (resolution == "2.5m") {
+  osf_id <- "4vxet"
+} else if (resolution == "30s") {
+  osf_id <- "qgyha"
+}
+
+osf_id
+```
+
+```{r}
+#| eval: false
+
+osf_files <-
   osf_id |>
   osfr::osf_retrieve_node() |>
   osfr::osf_ls_files(
@@ -307,13 +412,13 @@ file_list <-
     n_max = Inf
   )
 
-file_list
+osf_files
 ```
 
 ```{r}
 #| eval: false
 
-# for (i in split(file_list, seq_len(nrow(file_list)))) {
+# for (i in split(osf_files, seq_len(nrow(osf_files)))) {
 #   i |> osfr::osf_rm(check = FALSE)
 # }
 ```
