@@ -1,48 +1,63 @@
-; __include ["check-any.nls" "check-world-bleed.nls"]
+; __include [
+;   "check-integer.nls"
+;   "check-between.nls"
+;   "check-list.nls"
+;   "check-numeric.nls"
+;   "check-world-bleed.nls"
+; ]
 
-to remove-world-bleed [#mode]
+to remove-world-bleed [#size #mode]
+  assert-numeric #size
+  assert-between #size 0 1
   assert-integer #mode
   assert-between #mode 0 1
 
-  let test test-world-bleed
-  let min-xcor min-pxcor
-  let max-xcor max-pxcor
-  let min-ycor min-pycor
-  let max-ycor max-pycor
+  let test check-world-bleed #size
+  let xcor-world-bleed item 0 test
+  let ycor-world-bleed item 1 test
 
- (ifelse
-  (#mode = 0) [
-    if ((item 0 test) = true) [set min-xcor min-pxcor + 1]
-    if ((item 1 test) = true) [set max-xcor max-pxcor - 1]
-    if ((item 2 test) = true) [set min-ycor min-pycor + 1]
-    if ((item 3 test) = true) [set max-ycor max-pycor - 1]
-
-    resize-world min-xcor max-xcor min-ycor max-ycor
+ (ifelse (#mode = 0) [
+    resize-world 
+      match-pcor min-pxcor xcor-world-bleed
+      match-pcor max-pxcor xcor-world-bleed
+      match-pcor min-pycor ycor-world-bleed
+      match-pcor max-pycor ycor-world-bleed
   ] (#mode = 1) [
     let replacement nan
 
-    if ((item 0 test) = true) [
-      ask patches with [pxcor = min-pxcor] [set value replacement]
-    ]
-
-    if ((item 1 test) = true) [
-      ask patches with [pxcor = max-pxcor] [set value replacement]
-    ]
-
-    if ((item 2 test) = true) [
-      ask patches with [pycor = min-pycor] [set value replacement]
-    ]
-
-    if ((item 3 test) = true) [
-      ask patches with [pycor = max-pycor] [set value replacement]
+    ask patches with [
+      (member? pxcor xcor-world-bleed) or
+      (member? pycor ycor-world-bleed)
+    ] [
+      set value replacement
     ]
   ] [
     user-message (word
-      "The mode "
-      single-quote #mode " "
-      "is not found among the valid options. "
+      "Mode "
+      single-quote #mode
+      " is not a valid option. "
       "Please check your settings."
     )
+  ])
+end
+
+to-report match-pcor [#x #list]
+  assert-numeric #x
+  assert-list #list
+  
+  ifelse (empty? #list) [
+    report #x
+  ] [
+    ifelse (#x < 0) [
+      foreach (#list) [
+        i -> set #x ifelse-value (#x = i) [#x + 1] [#x]
+      ]
+    ] [
+      foreach (#list) [
+        i -> set #x ifelse-value (#x = i) [#x - 1] [#x]
+      ]
+    ]
+    
+    report #x
   ]
- )
 end

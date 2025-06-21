@@ -1,0 +1,10 @@
+to adjust-patch-size
+  ifelse (adjust-world-size? = true) [
+    let patch-size-width (550 - 10) / world-width
+    let patch-size-height (573 - 10) / world-height
+
+    set-patch-size min (list patch-size-width patch-size-height)
+  ] [
+    set-patch-size 1
+  ]
+end

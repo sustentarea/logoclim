@@ -36,6 +36,7 @@ to setup-variables
   set dataset gis:load-dataset file-path series-data-path (item index files)
   set year str-extract-year (item index files)
   set month str-extract-month (item index files)
+  set nan nan-value dataset
 
   set settings (list
     data-series

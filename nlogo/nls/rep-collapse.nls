@@ -1,8 +1,8 @@
-; __includes ["check-atomic.nls" "check-integer.nls" "colapse.nls"]
+; __includes ["check-atomic.nls" "check-integer.nls" "collapse.nls"]
 
 to-report rep-collapse [#x #times]
   assert-atomic #x
   assert-integer #times
 
-  report collapse rep #x #times "" false
+  report collapse (n-values #times [#x]) "" false
 end

@@ -1,6 +1,6 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-06-15 0.0.0.9011
+; Version: 2025-06-21 0.0.0.9012
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
@@ -13,6 +13,8 @@
 __includes [
   "nls/as-list.nls"
   "nls/as-string.nls"
+  "nls/adjust-patch-size.nls"
+  "nls/adjust-world-size.nls"
   "nls/check-abs.nls"
   "nls/check-all.nls"
   "nls/check-any.nls"
@@ -22,9 +24,11 @@ __includes [
   "nls/check-climate-variable.nls"
   "nls/check-data-resolution.nls"
   "nls/check-data.nls"
+  "nls/check-empty.nls"
   "nls/check-file-exists.nls"
   "nls/check-gis.nls"
   "nls/check-integer.nls"
+  "nls/check-length.nls"
   "nls/check-list.nls"
   "nls/check-logical.nls"
   "nls/check-nan.nls"
@@ -47,6 +51,7 @@ __includes [
   "nls/lookup-series-data-path.nls"
   "nls/lookup-shared-socioeconomic-pathway.nls"
   "nls/match.nls"
+  "nls/nan-value.nls"
   "nls/normalize-path.nls"
   "nls/normalize-value.nls"
   "nls/normalize-year.nls"
@@ -68,6 +73,7 @@ __includes [
   "nls/setup-stats.nls"
   "nls/setup-variables.nls"
   "nls/setup-world.nls"
+  "nls/setup-world-bleed.nls"
   "nls/single-quote.nls"
   "nls/sr-run-assign-files.nls"
   "nls/sr-run-assign-start-year-month.nls"
@@ -98,11 +104,12 @@ globals [
   min-plot-y
   min-value
   month
+  nan
   series-data-path
   settings
+  world-bleed
   year
   years
-  nan
 ]
 
 patches-own [

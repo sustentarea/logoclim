@@ -4,5 +4,5 @@ to-report rep [#x #times]
   assert-atomic #x
   assert-integer #times
 
-  report map [i -> #x] (range 0 #times)
+  report n-values #times [#x]
 end

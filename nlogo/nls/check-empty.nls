@@ -1,0 +1,43 @@
+to-report is-empty? [#list]
+  report empty? #list
+end
+
+to-report test-empty [#list]
+  report empty? #list
+end
+
+to-report check-empty [#list]
+  ifelse (empty? #list) [
+    report true
+  ] [
+    report "The value is not an empty list or string."
+  ]
+end
+
+to assert-empty [#list]
+  if (not empty? #list) [
+    error check-empty #list
+  ]
+end
+
+to-report not-empty? [#list]
+  report not empty? #list
+end
+
+to-report test-not-empty [#list]
+  report not empty? #list
+end
+
+to-report check-not-empty [#list]
+  ifelse (not empty? #list) [
+    report true
+  ] [
+    report "The value is an empty list or string."
+  ]
+end
+
+to assert-not-empty [#list]
+  if (empty? #list) [
+    error check-not-empty #list
+  ]
+end

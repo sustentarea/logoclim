@@ -1,0 +1,25 @@
+to adjust-world-edges
+  let i 0
+  set world-bleed [[0] [0]]
+
+  while [
+    (reduce [[a b] -> not-empty? a or not-empty? b] world-bleed) and
+    (i < 3)
+  ] [
+    let dataset-i gis:load-dataset file-path series-data-path (item i files)
+    let envelope gis:envelope-of dataset-i
+
+    ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
+      gis:set-world-envelope-ds envelope
+    ] [
+      gis:set-world-envelope envelope
+    ]
+
+    gis:apply-raster dataset-i value
+    set world-bleed check-world-bleed 0.25
+    
+    remove-world-bleed 0.25 0
+    
+    set i i + 1
+  ]
+end

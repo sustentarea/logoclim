@@ -1,0 +1,29 @@
+; __includes ["check-abs.nls" "check-integer.nls"]
+
+to-report test-length [#list #x]
+  assert-integer #x
+  assert-abs #x
+
+  if ((not is-list? #list) and (not is-string? #list)) [
+    error "The value is not a list or a string."
+  ]
+
+  report length #list = #x
+end
+
+to-report check-length [#list #x]
+  ifelse (test-length #list #x) [
+    report true
+  ] [
+    report (word
+      "The value does not have length "
+      #x " (length is " length #list ")."
+    )
+  ]
+end
+
+to assert-length [#list #x]
+  if (not test-length #list #x) [
+    error check-length #list #x
+  ]
+end

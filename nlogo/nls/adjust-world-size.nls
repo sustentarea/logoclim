@@ -1,0 +1,17 @@
+to adjust-world-size
+  let max-xcor floor (gis:width-of dataset / 2)
+  let min-xcor -1 * max-xcor
+
+  if ((gis:width-of dataset / 2) mod 2 = 0) [
+    set max-xcor max-xcor + 1
+  ]
+
+  let max-ycor floor (gis:height-of dataset / 2)
+  let min-ycor -1 * max-ycor
+
+  if ((gis:height-of dataset / 2) mod 2 = 0) [
+    set max-ycor max-ycor + 1
+  ]
+
+  resize-world min-xcor max-xcor min-ycor max-ycor
+end

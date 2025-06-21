@@ -3,43 +3,8 @@
 ; globals [series-data-path patch-px-size]
 
 to setup-world
-  let width (gis:width-of dataset / 2)
-  let height (gis:height-of dataset / 2)
-
-  resize-world (-1 * width ) width (-1 * height ) height
-
-  ifelse (adjust-world-size? = true) [
-    let patch-size-width (550 - 10) / ((floor width) * 2)
-    let patch-size-height (573 - 10) / ((floor height) * 2)
-
-    set-patch-size min (list patch-size-width patch-size-height)
-  ] [
-    set-patch-size 1
-  ]
-
-  let i 0
-  let test test-world-bleed
-
-  while [(any-true? test) and (i != 2)] [ ; (i != length files)
-    let dataset-i gis:load-dataset file-path series-data-path (item i files)
-    let envelope gis:envelope-of dataset-i
-
-    ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
-      gis:set-world-envelope-ds envelope
-    ] [
-      gis:set-world-envelope envelope
-    ]
-
-    gis:apply-raster dataset-i value
-    remove-world-bleed 0
-    gis:apply-raster dataset-i value
-    set test test-world-bleed
-    set i i + 1
-  ]
-
-  carefully [
-    set nan item 0 filter is-nan? [value] of patches with [is-number? value]
-  ] [
-    set nan 0
-  ]
+  adjust-world-size
+  adjust-patch-size
+  setup-world-bleed
+;  adjust-world-edges
 end

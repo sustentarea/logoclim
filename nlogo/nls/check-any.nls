@@ -1,5 +1,38 @@
-to-report any-true? [#list]
-  assert-list #list
+; __includes ["check-empty.nls" "check-list.nls"]
 
-  report reduce [[i j] -> i or j] #list
+to-report any-member? [#list #member-list]
+  assert-list #list
+  assert-not-empty #list
+  assert-list #member-list
+  assert-not-empty #member-list
+
+  set #list remove-duplicates #list
+  set #member-list remove-duplicates #member-list
+
+  let test map [i -> (member? i #member-list)] #list
+
+  report reduce [[i j] -> i or j] test
+end
+
+to-report list-any? [#list #x]
+  assert-list #list
+  assert-not-empty #list
+
+  set #list remove-duplicates #list
+
+  ifelse (is-list? #x) [
+    assert-not-empty #x
+
+    report any-member? #list #x
+  ] [
+    report member? #x #list
+  ]
+end
+
+to-report any-true? [#list]
+  report list-any? #list true
+end
+
+to-report any-false? [#list]
+  report list-any? #list false
 end

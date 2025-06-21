@@ -24,7 +24,9 @@ to setup-map
 
   gis:apply-raster dataset value
 
-  if (any-true? test-world-bleed) [remove-world-bleed 1]
+  if (reduce [[i j] -> not-empty? i or not-empty? j] world-bleed) [
+    remove-world-bleed 0.25 1
+  ]
   
   set max-value max [value] of patches with [not is-nan? value]
   set min-value min [value] of patches with [not is-nan? value]
