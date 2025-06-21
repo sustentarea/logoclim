@@ -6,5 +6,4 @@ to setup-world
   adjust-world-size
   adjust-patch-size
   setup-world-bleed
-;  adjust-world-edges
 end

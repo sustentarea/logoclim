@@ -64,7 +64,6 @@ __includes [
   "nls/pattern-hmwd-file.nls"
   "nls/quartile.nls"
   "nls/remove-world-bleed.nls"
-  "nls/rep.nls"
   "nls/rep-collapse.nls"
   "nls/setup-hcd-variables.nls"
   "nls/setup-hmwd-variables.nls"

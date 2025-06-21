@@ -1,8 +1,0 @@
-; __includes ["check-atomic.nls" "check-integer.nls"]
-
-to-report rep [#x #times]
-  assert-atomic #x
-  assert-integer #times
-
-  report n-values #times [#x]
-end
