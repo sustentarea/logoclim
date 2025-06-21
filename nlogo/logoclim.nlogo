@@ -13,6 +13,7 @@
 __includes [
   "nls/as-list.nls"
   "nls/as-string.nls"
+  "nls/check-abs.nls"
   "nls/check-all.nls"
   "nls/check-any.nls"
   "nls/check-atomic.nls"
@@ -34,6 +35,7 @@ __includes [
   "nls/check-windows.nls"
   "nls/check-world-bleed.nls"
   "nls/collapse.nls"
+  "nls/extreme-unique-values.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
   "nls/halt.nls"
@@ -89,8 +91,10 @@ globals [
   dataset
   files
   index
+  max-pcolor-value
   max-plot-y
   max-value
+  min-pcolor-value
   min-plot-y
   min-value
   month

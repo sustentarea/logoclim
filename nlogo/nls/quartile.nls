@@ -4,6 +4,10 @@ to-report quartile [#data #stat]
   assert-list #data
   assert-choice #stat [0 1 2 3 4 "iqr" "length"]
 
+  if (length #data < 4) [
+    error "'#data' must contain at least four numeric values."
+  ]
+  
   set #data sort #data
   let length-data length #data
   let quartile-length length-data / 4

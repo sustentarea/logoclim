@@ -1,0 +1,32 @@
+; __includes [
+;   "check-abs.nls"
+;   "check-list.nls"
+;   "check-number.nls"
+;   "quartile.nls"
+; ]
+
+to-report extreme-unique-values [#list #n-iqr]
+  assert-list #list
+  assert-number #n-iqr
+  assert-abs #n-iqr
+
+  let unique-values remove-duplicates #list
+  set unique-values filter [x -> is-number? x and not is-nan? x] unique-values
+
+  ifelse (length unique-values < 4) [
+    report []
+  ] [
+    let quartile-1 quartile unique-values 1
+    let quartile-3 quartile unique-values 3
+    let iqr quartile-3 - quartile-1
+
+    report (sentence
+      filter [
+        i -> (
+          (i < quartile-1 - (#n-iqr * iqr)) or
+          (i > quartile-3 + (#n-iqr * iqr))
+        )
+      ] unique-values
+    )
+  ]
+end

@@ -25,24 +25,43 @@ to setup-map
   gis:apply-raster dataset value
 
   if (any-true? test-world-bleed) [remove-world-bleed 1]
-
-  ifelse (white-max = true) [
+  
+  set max-value max [value] of patches with [not is-nan? value]
+  set min-value min [value] of patches with [not is-nan? value]
+  
+  ; Correct inflated values
+  if ((max-value - min-value) > (10 ^ 6)) [
+    let extreme-values extreme-unique-values (
+      [value] of patches with [not is-nan? value]
+    ) 10
+    
+    ask patches with [member? value extreme-values] [
+      set value nan
+    ]
+    
     set max-value max [value] of patches with [not is-nan? value]
+    set min-value min [value] of patches with [not is-nan? value]
+  ]
+  
+  ifelse (white-max = true) [
+    set max-pcolor-value max-value
   ] [
-    set max-value white-value
+    set max-pcolor-value white-value
   ]
 
   ifelse (black-min = true) [
-    set min-value min [value] of patches with [not is-nan? value]
+    set min-pcolor-value min-value
   ] [
-    set min-value black-value
+    set min-pcolor-value black-value
   ]
 
   ask (patches) [
     ifelse (not is-nan? value) [
       let series-color lookup-series-color data-series
 
-      set pcolor scale-color series-color value min-value max-value
+      set pcolor (
+        scale-color series-color value min-pcolor-value max-pcolor-value
+      )
     ] [
       set pcolor background-color
     ]

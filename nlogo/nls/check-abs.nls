@@ -1,0 +1,25 @@
+; __includes ["check-number.nls"]
+
+to-report is-abs? [#x]
+  assert-number #x
+
+  report #x = abs #x
+end
+
+to-report test-abs [#x]
+  report is-abs? #x
+end
+
+to-report check-abs [#x]
+  ifelse (is-abs? #x) [
+    report true
+  ] [
+    report "The value is not the absolute (positive) value."
+  ]
+end
+
+to assert-abs [#x]
+  if (not is-abs? #x) [
+    error check-abs #x
+  ]
+end
