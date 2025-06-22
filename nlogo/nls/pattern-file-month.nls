@@ -1,3 +1,0 @@
-to-report pattern-file-month
-  report "(?<=-)[0-9]{2}(?=.asc)"
-end

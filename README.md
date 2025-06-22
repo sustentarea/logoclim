@@ -19,10 +19,13 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 ## Overview
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
-for simulating and visualizing global climate conditions. It is designed
-to support and enhance the reproducibility of empirically grounded
-agent-based models by providing a standardized tool for integrating
-high-resolution climate data.
+for simulating and visualizing global climate conditions. It allows
+researchers to incorporate high-resolution climate data into agent-based
+models using the NetLogo
+[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
+extension. This facilitates reproducible research in ecology,
+agriculture, environmental science, and related fields that require
+climate data integration.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -35,13 +38,6 @@ climate inputs are sourced from [WorldClim 2.1](https://worldclim.org/),
 which provides high-resolution interpolated datasets derived from
 weather station records worldwide ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)).
-
-`LogoClim` supports [parallel execution](#integrating-with-other-models)
-via the NetLogo
-[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
-extension, enabling seamless coupling with other models. This makes it a
-valuable tool for research in ecology, agriculture, environmental
-science, and other fields requiring integrated climate dynamics.
 
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
@@ -132,38 +128,20 @@ version or later. You can download it
 [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
 The model relies on the GIS
-([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir
-([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR
-([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string
-([`string`](https://github.com/NetLogo/String-Extension)) NetLogo
-extensions, which will be installed automatically when you run the
+([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir
+([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String
+([`string`](https://github.com/NetLogo/String-Extension)), and Time
+([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo
+extensions, which will be installed automatically when you first run the
 model.
 
-You will also need [R](https://www.r-project.org/) (version 4.5 or
-later) with the
-[`lubridate`](https://cran.r-project.org/package=lubridate),
-[`rJava`](https://cran.r-project.org/package=rJava), and
-[`stringr`](https://cran.r-project.org/package=stringr) packages.
-
-Ensure that the R executable is included in your system's
-[`PATH`](https://configu.com/blog/setting-env-variables-in-windows-linux-macos-beginners-guide/)
-environment variable. Alternatively, you can specify the path to the
-`RScript` executable in NetLogo by navigating to *SimpleR Extension* \>
-*Configure*.
-
-To install the required R packages, run the following command in R:
-
-``` r
-install.packages(c("rJava", "stringr", "lubridate"))
-```
-
-### Downloading the Model
+#### Downloading the Model
 
 You can download the latest release of the model from [GitHub
 Releases](https://github.com/danielvartan/logoclim/releases/latest). To
 access the development version, clone or download this repository.
 
-### Downloading the Data
+#### Downloading the Data
 
 > [!IMPORTANT]
 > The WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
@@ -188,7 +166,7 @@ These datasets can be reproduced by running the
 create other datasets, simply modify the notebooks to suit your
 requirements.
 
-### Running the Model
+#### Running the Model
 
 Once everything is set, open the `logoclim.nlogo` file located in the
 `nlogo` folder to start exploring!
@@ -206,21 +184,6 @@ environmental processes.
 
 For an example of integrating `LogoClim` with another model, see the
 [FoodClim](https://github.com/sustentarea/foodclim) project.
-
-## Common Issues
-
-Some users have reported errors related to the SimpleR
-([`sr`](https://github.com/NetLogo/SimpleR-Extension)) extension for
-NetLogo. These issues are most commonly caused by directory permission
-problems where the model is stored, the absence of the
-[`rJava`](https://cran.r-project.org/package=rJava) R package, or R not
-being included in the system's
-[`PATH`](https://www.java.com/en/download/help/path.html) environment
-variable. Please ensure all of these are properly configured before
-opening an issue.
-
-We are actively working to improve the user experience and make the
-installation process more straightforward.
 
 ## How to Cite
 

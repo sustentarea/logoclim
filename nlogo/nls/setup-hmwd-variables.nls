@@ -1,28 +1,41 @@
 ; __includes [
+;   "list-files-by-pattern.nls"
+;   "lookup-series-data-path.nls"
+;   "num-to-str-month.nls"
 ;   "pattern-hmwd-file.nls"
-;   "sr-run-assign-files.nls"
-;   "sr-run-assign-start-year-month.nls"
+;   "str-extract.nls"
+;   "str-to-num-month.nls"
 ; ]
 
-; extensions [sr]
-; globals [series-data-path start-month start-year]
+; extensions [time]
+; globals [start-month start-year]
 
 to setup-hmwd-variables
-  sr-run-assign-files series-data-path pattern-hmwd-file
-  sr-run-assign-start-year-month
+  let path lookup-series-data-path
+  let pattern pattern-hmwd-file
+  
+  set files list-files-by-pattern path pattern
+  
+  set years str-extract files "[0-9]{4}(?=-[0-9]{2}.asc)"
+  set years map read-from-string years
+  
+  set months str-extract files "[0-9]{2}(?=.asc)"
+  let num-start-month str-to-num-month start-month
+  
+  let dates (map [[i j] -> (word i "-" j "-01")] years months)
+  set dates map [i -> time:create i] dates
+  let start-date time:create (word start-year "-" num-start-month "-01")
 
-  (sr:run
-    "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{2}(?=.asc)')"
-    "year_months <- lubridate::ym(year_months)"
-
-    (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
-
-    "files <- files[year_months >= start_year_month]"
+  set files filter [
+      i -> 
+        (time:is-equal? item (position i files) dates start-date) or
+        (time:is-after? item (position i files) dates start-date)
+    ] files
     
-    "years <- stringr::str_extract(files, '[0-9]{4}(?=-[0-9]{2}.asc)')"
-    "years <- as.numeric(years)"
-
-    "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-    "months <- as.numeric(months)"
-  )
+  set years str-extract files "[0-9]{4}(?=-[0-9]{2}.asc)"
+  set years map read-from-string years
+    
+  set months str-extract files "[0-9]{2}(?=.asc)"
+  set months map read-from-string months
+  set months map num-to-str-month months
 end

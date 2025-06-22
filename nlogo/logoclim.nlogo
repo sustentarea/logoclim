@@ -1,14 +1,13 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-06-21 0.0.0.9012
+; Version: 2025-06-21 0.0.0.9013
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
 ; Repository: https://github.com/sustentarea/logoclim
 ;
-; Require: NetLogo >= 6.4 and R >= 4.5.
-; Required R packages: `rJava`, `stringr`, and `lubridate`.
-; Required NetLogo extensions: `gis`, `pathdir`, `sr`, and `string`.
+; Require: NetLogo >= 6.4
+; Required NetLogo extensions: `gis`, `pathdir`, `string`, and `time`
 
 __includes [
   "nls/as-list.nls"
@@ -25,24 +24,21 @@ __includes [
   "nls/check-data-resolution.nls"
   "nls/check-data.nls"
   "nls/check-empty.nls"
-  "nls/check-file-exists.nls"
   "nls/check-gis.nls"
   "nls/check-integer.nls"
-  "nls/check-length.nls"
   "nls/check-list.nls"
   "nls/check-logical.nls"
   "nls/check-nan.nls"
   "nls/check-number.nls"
   "nls/check-start-year.nls"
   "nls/check-string.nls"
-  "nls/check-string-or-integer.nls"
   "nls/check-windows.nls"
   "nls/check-world-bleed.nls"
   "nls/collapse.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
   "nls/halt.nls"
-  "nls/list-to-c.nls"
+  "nls/list-files-by-pattern.nls"
   "nls/lookup-bioclimatic-variable.nls"
   "nls/lookup-climate-variable.nls"
   "nls/lookup-data-resolution.nls"
@@ -51,12 +47,9 @@ __includes [
   "nls/lookup-shared-socioeconomic-pathway.nls"
   "nls/nan-value.nls"
   "nls/normalize-path.nls"
-  "nls/make-sr-compatible.nls"
   "nls/num-to-str-month.nls"
   "nls/pattern-data-file.nls"
   "nls/pattern-fcd-file.nls"
-  "nls/pattern-file-month.nls"
-  "nls/pattern-file-year.nls"
   "nls/pattern-hcd-file.nls"
   "nls/pattern-hmwd-file.nls"
   "nls/quartile.nls"
@@ -72,8 +65,6 @@ __includes [
   "nls/setup-world-bleed.nls"
   "nls/show-values.nls"
   "nls/single-quote.nls"
-  "nls/sr-run-assign-files.nls"
-  "nls/sr-run-assign-start-year-month.nls"
   "nls/str-extract.nls"
   "nls/str-to-num-month.nls"
   "nls/unique-outliers.nls"
@@ -83,8 +74,8 @@ __includes [
 extensions [
   gis
   pathdir
-  sr
   string
+  time
 ]
 
 globals [
@@ -115,7 +106,6 @@ patches-own [
 
 to setup
   clear-all
-  sr:setup
 
   assert-climate-variable
   assert-data-resolution
@@ -536,7 +526,7 @@ MONITOR
 1450
 55
 Month
-(ifelse-value \n  ((settings = 0) or (month = 0)) [\"NA\"]\n  (is-integer? month) [num-to-str-month month]\n  [month]\n)
+ifelse-value \n  ((settings = 0))\n  [\"NA\"]\n  [month]
 0
 1
 11
@@ -673,11 +663,9 @@ max [value] of patches with [not is-nan? value]
 
 ## WHAT IS IT?
 
-`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It is designed to support and enhance the reproducibility of empirically grounded agent-based models by providing a standardized tool for integrating high-resolution climate data.
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It allows researchers to incorporate high-resolution climate data into agent-based models using the NetLogo [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This facilitates reproducible research in ecology, agriculture, environmental science, and related fields that require climate data integration.
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs are sourced from [WorldClim 2.1](https://worldclim.org/), which provides high-resolution interpolated datasets derived from weather station records worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
-
-`LogoClim` supports [parallel execution](#integrating-with-other-models) via the NetLogo [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension, enabling seamless coupling with other models. This makes it a valuable tool for research in ecology, agriculture, environmental science, and other fields requiring integrated climate dynamics.
 
 > `LogoClim` is an independent project and is not affiliated with [WorldClim](https://worldclim.org/) or its developers. Please note that the WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
 
@@ -717,17 +705,9 @@ Learn more [here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 ### SETUP
 
-#### INSTALLATION
+`LogoClim` was developed using NetLogo 6.4, so it is recommended to use this version or later. You can download it [here](https://ccl.northwestern.edu/netlogo/download.shtml).
 
-This model was developed using NetLogo 6.4; so it's recommended to use this version or later. You can download it [here](https://ccl.northwestern.edu/netlogo/download.shtml).
-
-The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), SimpleR ([`sr`](https://github.com/NetLogo/SimpleR-Extension)), and string ([`string`](https://github.com/NetLogo/String-Extension)) NetLogo extensions, which will be installed automatically when you run the model.
-
-You'll also need [R](https://www.r-project.org/) (version 4.4 or later) with the [`lubridate`](https://cran.r-project.org/package=lubridate), [`rJava`](https://cran.r-project.org/package=rJava), and [`stringr`](https://cran.r-project.org/package=stringr) packages. Make sure the R executable is added to your system's [`PATH`](https://www.java.com/en/download/help/path.html) environment variable. To install the required R packages, run the following command in your R console:
-
-```r
-install.packages(c("rJava", "stringr", "lubridate"))
-```
+The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions, which will be installed automatically when you first run the model.
 
 #### DOWNLOADING THE DATA
 
@@ -752,7 +732,7 @@ These datasets can be reproduced by running the [Quarto](https://quarto.org/) no
 
 Once everything is set, open the NetLogo file and start exploring!
 
-#### INTEGRATING WITH OTHER MODELS
+### INTEGRATING WITH OTHER MODELS
 
 `LogoClim` can be integrated with other models using the LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo extension. This extension enables parallel execution and data exchange between models, making it particularly valuable for agent-based simulations that incorporate climate data to study ecological or environmental processes.
 
@@ -781,7 +761,7 @@ For an example of integrating `LogoClim` with another model, see the [FoodClim](
 - **`white-value`**: Slider for setting the upper threshold for the white color on the map (default: `50`).
 - **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, *`white-value`* will be ignored (default: `On`).
 
-### BUTTONS
+#### BUTTONS
 
 - **`Setup`**: Initializes the simulation with the selected parameters.
 - **`Go`**: Starts or resumes the simulation.

@@ -1,5 +1,6 @@
 # LogoClim (development version)
 
+- Removed all dependencies on the `R` programming language and its packages
 - Improved `setup-world` to address bleeding issues
 - Persistent world bleeding is now converted to `NaN` values
 - Enhanced Quarto notebooks to fix dateline issues
@@ -7,9 +8,10 @@
   Quarto notebooks
 - Removed `patch-px-size` slider and added `adjust-world-size?` slider for
   automatic world size adjustment
-- Removed auto-adjustment of `start-year`. An error will now be raised if the
+- Removed automatic adjustment of `start-year`. An error is now raised if
   `start-year` is not set to a valid value.
-- Removed dependencies and improved code structure for better maintainability.
+- Removed unnecessary dependencies and refactored code structure for improved
+  maintainability.
 
 # LogoClim 0.0.0.9010 (Pre-Release)
 

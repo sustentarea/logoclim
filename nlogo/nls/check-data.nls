@@ -1,57 +1,27 @@
-; extensions [sr]
-
 ; __includes [
-;   "normalize-path.nls"
 ;   "halt.nls"
-;   "pattern-data-file.nls"
+;   "list-files-by-pattern.nls"
 ;   "lookup-series-data-path.nls"
+;   "pattern-data-file.nls"
 ; ]
 
 ; globals [data-series global-climate-model climate-variable data-resolution]
 
-; Note: Ensure `sr:setup` is called in the `setup` procedure.
-
 to-report test-data
   let path lookup-series-data-path
   let pattern pattern-data-file
-
-  (sr:run
-    (word
-      "files <- list.files("
-      "path  = '" normalize-path path "', "
-      "pattern = '" pattern "'"
-      ")"
-    )
-    "test <- !length(files) == 0"
-  )
-
-  report sr:runresult "test"
+  
+  let test false
+  
+  carefully [
+    set test not empty? list-files-by-pattern path pattern
+  ] []
+  
+  report test
 end
 
 
 to assert-data
-  if (
-      ; Applied for 10m and 5m resolutions (at least).
-      data-series = "Future climate data" and
-      global-climate-model = "BCC-CSM2-MR" and
-      climate-variable = "Bioclimatic variables" and
-      (
-        data-resolution = "5 minutes (~85 km2 at the equator)" or
-        data-resolution = "10 minutes (~340 km2 at the equator)"
-      )
-      ; (not shared-socioeconomic-pathway = "SSP-126")
-     ) [
-    user-message (word
-      "WorldClim 2.1 does not provide "
-      "bioclimatic data for the "
-      "BCC-CSM2-MR model at the "
-      data-resolution " "
-      "resolution."
-    )
-
-    halt
-  ]
-
   if (test-data = false) [
     user-message (word
       "There are no data available to run LogoClim "

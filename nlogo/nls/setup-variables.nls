@@ -1,16 +1,13 @@
 ; __includes [
-;   "as-list.nls"
 ;   "file-path.nls"
 ;   "lookup-series-data-path.nls"
+;   "nan-value.nls"
 ;   "setup-fcd-variables.nls"
 ;   "setup-hcd-variables.nls"
 ;   "setup-hmwd-variables.nls"
 ; ]
 
-; extensions [sr]
 ; globals [data-series series-data-path]
-
-; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to setup-variables
   set series-data-path lookup-series-data-path
@@ -26,11 +23,6 @@ to setup-variables
       setup-fcd-variables
     ]
   )
-
-  set files as-list sr:runresult "files"
-  set years as-list sr:runresult "years"
-  set months as-list sr:runresult "months"
-  set months map num-to-str-month months
 
   set index 0
   set dataset gis:load-dataset file-path series-data-path (item index files)

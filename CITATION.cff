@@ -30,22 +30,18 @@ repository-code: 'https://github.com/sustentarea/logoclim'
 repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
 repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
 abstract: >-
-  {LogoClim} is a NetLogo model for simulating and visualizing climate
-  conditions. It is designed to support empirically grounded agent-based models
-  and to improve the reproducibility of simulations by enabling parallel
-  execution alongside other models.
+  {LogoClim} is a NetLogo model for simulating and visualizing global climate
+  conditions. It allows researchers to incorporate high-resolution climate data
+  into agent-based models using the NetLogo {LevelSpace} extension. This
+  facilitates reproducible research in ecology, agriculture, environmental
+  science, and related fields that require climate data integration.
 
   The model utilizes raster data to represent climate variables such as
   temperature and precipitation over time. It incorporates historical data
   (1951-2024) and future climate projections (2021-2100) derived from global
-  climate models under various Shared Socioeconomic Pathways (SSPs, O'Neill et
-  al. (2017)).
-
-  The climate data used in LogoClim is sourced from WorldClim 2.1, which
-  provides high-resolution climate data based on weather station records from
-  around the world (Fick & Hijmans, 2017). With resolutions as fine as ~1 km²,
-  the data is available at multiple spatial scales, ensuring a detailed and
-  comprehensive representation of climate variables.
+  climate models under various Shared Socioeconomic Pathways (SSPs). All climate
+  inputs are sourced from WorldClim 2.1, which provides high-resolution
+  interpolated datasets derived from weather station records worldwide.
 keywords:
   - Agent-based modeling
   - Climate change

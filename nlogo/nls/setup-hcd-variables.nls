@@ -1,29 +1,37 @@
 ; __includes [
+;   "list-files-by-pattern.nls"
+;   "lookup-series-data-path.nls"
+;   "num-to-str-month.nls"
 ;   "pattern-hcd-file.nls"
-;   "sr-run-assign-files.nls"
-;   "sr-run-assign-start-year-month.nls"
+;   "str-extract.nls"
+;   "str-to-num-month.nls"
 ; ]
 
-; extensions [sr]
-; globals [climate-variable]
+; globals [climate-variable start-month]
 
 to setup-hcd-variables
-  sr-run-assign-files series-data-path pattern-hcd-file
-  sr-run-assign-start-year-month
-  sr:run "years <- rep('1970-2000', length(files))"
+  let path lookup-series-data-path
+  let pattern pattern-hcd-file
+  
+  set files list-files-by-pattern path pattern
+  set years n-values (length files) ["1970-2000"]
+  set months str-extract files "[0-9]{2}(?=.asc)"
+  let num-start-month str-to-num-month start-month
 
-  if (
+  ifelse (
     climate-variable != "Elevation" and
     climate-variable != "Bioclimatic variables"
     ) [
-    (sr:run
-      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-      "months <- as.numeric(months)"
-
-      "files <- files[months >= start_month]"
-      
-      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-      "months <- as.numeric(months)"
-    )
+    let num-months map read-from-string months
+    
+    set files filter [
+      i -> item (position i files) num-months >= num-start-month
+    ] files
+    
+    set months str-extract files "[0-9]{2}(?=.asc)"
+    set months map read-from-string months
+    set months map num-to-str-month months
+  ] [
+    set months ["NA"]
   ]
 end
