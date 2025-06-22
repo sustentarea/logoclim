@@ -1,4 +1,9 @@
-; __includes ["check-list.nls" "check-string.nls" "check-logical.nls"]
+; __includes [
+;   "check-list.nls"
+;   "check-string.nls"
+;   "check-logical.nls"
+;   "single-quote.nls"
+; ]
 
 to-report collapse [#list #sep #quote?]
   assert-list #list

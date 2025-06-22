@@ -5,8 +5,8 @@ to-report pattern-hmwd-file
   report (word
     "^wc2.1_"
     "cruts[0-9]{1,2}.[0-9]{2}" "_"
-    lookup-data-resolution data-resolution "_"
-    lookup-climate-variable climate-variable "_"
+    lookup-data-resolution "_"
+    lookup-climate-variable "_"
     "[0-9]{4}-[0-9]{2}"
     ".asc$"
   )

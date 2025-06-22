@@ -1,7 +1,7 @@
 to-report as-list [#x]
-  ifelse (not is-list? #x) [
-    report (list #x)
-  ] [
+  ifelse (is-list? #x) [
     report #x
+  ] [
+    report (list #x)
   ]
 end

@@ -1,17 +1,8 @@
-; __includes [
-;   "collapse.nls"
-;   "single-quote.nls"
-;   "check-list.nls"
-;   "check-logical.nls"
-; ]
+; __includes ["check-list.nls" "check-logical.nls" "collapse.nls"]
 
 to-report list-to-c [#list #quote?]
   assert-list #list
   assert-logical #quote?
 
-  report (word
-    "c("
-    collapse #list ", " #quote?
-    ")"
-  )
+  report (word "c(" (collapse #list ", " #quote?) ")")
 end

@@ -12,17 +12,17 @@ to setup-hmwd-variables
   sr-run-assign-start-year-month
 
   (sr:run
-    "years <- stringr::str_extract(files, '[0-9]{4}(?=-[0-9]{2}.asc)')"
-    "years <- as.numeric(years)"
-    "years <- years[years >= start_year]"
-
-    "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
-
     "year_months <- stringr::str_extract(files, '[0-9]{4}-[0-9]{2}(?=.asc)')"
     "year_months <- lubridate::ym(year_months)"
 
     (word "start_year_month <- lubridate::ym('" start-year "-" start-month "')")
 
     "files <- files[year_months >= start_year_month]"
+    
+    "years <- stringr::str_extract(files, '[0-9]{4}(?=-[0-9]{2}.asc)')"
+    "years <- as.numeric(years)"
+
+    "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
+    "months <- as.numeric(months)"
   )
 end

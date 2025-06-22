@@ -5,8 +5,6 @@
 ;   "setup-fcd-variables.nls"
 ;   "setup-hcd-variables.nls"
 ;   "setup-hmwd-variables.nls"
-;   "str-extract-month.nls"
-;   "str-extract-year.nls"
 ; ]
 
 ; extensions [sr]
@@ -15,7 +13,7 @@
 ; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to setup-variables
-  set series-data-path lookup-series-data-path data-series
+  set series-data-path lookup-series-data-path
 
   (ifelse
     (data-series = "Historical climate data") [
@@ -31,11 +29,13 @@ to setup-variables
 
   set files as-list sr:runresult "files"
   set years as-list sr:runresult "years"
+  set months as-list sr:runresult "months"
+  set months map num-to-str-month months
 
   set index 0
   set dataset gis:load-dataset file-path series-data-path (item index files)
-  set year str-extract-year (item index files)
-  set month str-extract-month (item index files)
+  set year item index years
+  set month item index months
   set nan nan-value dataset
 
   set settings (list

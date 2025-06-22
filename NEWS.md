@@ -1,12 +1,15 @@
 # LogoClim (development version)
 
-- Improved `setup-world` to utilize the first three files in the series and address bleeding issues
+- Improved `setup-world` to address bleeding issues
 - Persistent world bleeding is now converted to `NaN` values
 - Enhanced Quarto notebooks to fix dateline issues
 - Automated the generation of README and LICENSE files in the
   Quarto notebooks
 - Removed `patch-px-size` slider and added `adjust-world-size?` slider for
   automatic world size adjustment
+- Removed auto-adjustment of `start-year`. An error will now be raised if the
+  `start-year` is not set to a valid value.
+- Removed dependencies and improved code structure for better maintainability.
 
 # LogoClim 0.0.0.9010 (Pre-Release)
 

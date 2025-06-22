@@ -10,7 +10,7 @@ to remove-world-bleed [#size #mode]
   assert-numeric #size
   assert-between #size 0 1
   assert-integer #mode
-  assert-between #mode 0 1
+  assert-choice #mode [0 1]
 
   let test check-world-bleed #size
   let xcor-world-bleed item 0 test

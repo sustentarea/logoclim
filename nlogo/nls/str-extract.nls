@@ -1,27 +1,48 @@
-; Require the `stringr` R package.
-
 ; __includes [
+;   "as-list.nls"
+;   "as-string.nls"
+;   "check-atomic.nls"
 ;   "check-string.nls"
-;   "normalize-value.nls"
-;   "single-quote.nls"
 ; ]
 
-; extensions [sr]
+; extensions [string]
 
-; Note: Ensure `sr:setup` is called in the `setup` procedure.
+; Limitations:
+; - It can't handle sequence matching
+;   (e.g., `str-extract-scalar "197019701970" "[0-9]{4}"`)
 
 to-report str-extract [#x #pattern]
   assert-string #pattern
 
-  set #x normalize-value #x
+  set #x as-string #x
+  set #x as-list #x
 
-  report sr:runresult (word
-    "stringr::str_extract("
-    "string = "
-    #x
-    ", "
-    "pattern = "
-    single-quote #pattern
-    ")"
-  )
+  let out map [i -> str-extract-scalar i #pattern] #x
+
+  ifelse (length out = 1) [
+    report first out
+  ] [
+    report out
+  ]
+end
+
+to-report str-extract-scalar [#x #pattern]
+  assert-atomic #x
+  assert-string #pattern
+
+  set #x as-string #x
+
+  let nonmatches string:rex-split #x #pattern
+
+  (ifelse (length nonmatches = 1) [
+    report "NA"
+  ] (list-all? nonmatches "") [
+    report #x
+  ] [
+    set nonmatches sublist nonmatches 0 2
+    set #x string:rex-replace-first (word "^" first nonmatches) #x ""
+    set #x string:rex-replace-first (word last nonmatches ".*$") #x ""
+
+    report #x
+  ])
 end

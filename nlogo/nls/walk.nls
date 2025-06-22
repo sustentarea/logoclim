@@ -2,8 +2,6 @@
 ;   "check-integer.nls"
 ;   "file-path.nls"
 ;   "setup-map.nls"
-;   "str-extract-month.nls"
-;   "str-extract-year.nls"
 ; ]
 
 ; extensions [gis]
@@ -20,8 +18,8 @@ to walk [#index]
   assert-integer #index
 
   set dataset gis:load-dataset file-path series-data-path (item #index files)
-  set month str-extract-month (item #index files)
-  set year str-extract-year (item #index files)
+  set year item #index years
+  set month item #index months
 
   setup-map
 end

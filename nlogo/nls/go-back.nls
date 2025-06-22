@@ -1,4 +1,3 @@
-; __includes ["str-to-num-month.nls"]
 ; globals [climate-variable data-series index month start-month year years]
 
 to go-back
@@ -6,24 +5,21 @@ to go-back
     (not is-gis? dataset) [
       stop
     ] (
-      climate-variable = "Elevation" or
+      (climate-variable = "Elevation") or
       (
-        year = first years and
-        (
-          month = str-to-num-month start-month or
-          month = "NA"
-        )
+        (year = first years) and
+        ((month = start-month) or (month = "NA"))
       )
     ) [
       stop
     ] (
-      data-series = "Future climate data" and
-      climate-variable = "Bioclimatic variables"
+      (data-series = "Future climate data") and
+      (climate-variable = "Bioclimatic variables")
     ) [
       set year item (index - 1) years
       set index index - 2
     ] [
-      set month month - 1
+      set month item (index - 1) months
       set index index - 2
     ]
   )

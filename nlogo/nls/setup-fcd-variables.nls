@@ -40,6 +40,11 @@ to setup-fcd-variables
       )
 
       "files <- files[start_year_months >= start_year_month]"
+      
+      "years <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}')"
+      
+      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
+      "months <- as.numeric(months)"
     )
   ] [
     (sr:run
@@ -48,9 +53,10 @@ to setup-fcd-variables
       "start_years <- stringr::str_extract(years, '^[0-9]{4}')"
       "start_years <- as.numeric(start_years)"
 
-      "months <- NA"
-
       "files <- files[start_years >= start_year]"
+      
+      "years <- stringr::str_extract(files, '[0-9]{4}-[0-9]{4}')"
+      "months <- rep(NA, length(files))"
     )
   ]
 end

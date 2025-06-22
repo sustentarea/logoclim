@@ -19,7 +19,7 @@ to-report pattern-hcd-file
     ] (climate-variable = "Bioclimatic variables") [
       set pattern (word
       "_1970-2000_"
-      lookup-bioclimatic-variable bioclimatic-variable
+      lookup-bioclimatic-variable
       )
     ] [
       set pattern "_1970-2000-[0-9]{2}"
@@ -28,8 +28,8 @@ to-report pattern-hcd-file
 
   report (word
     "^wc2.1_"
-    lookup-data-resolution data-resolution "_"
-    lookup-climate-variable climate-variable
+    lookup-data-resolution "_"
+    lookup-climate-variable
     pattern
     ".asc$"
   )

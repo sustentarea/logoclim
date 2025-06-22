@@ -1,8 +1,9 @@
-; __includes ["str-detect.nls" "check-string.nls" "halt.nls"]
+; __includes ["check-string.nls" "halt.nls"]
+; extensions [string]
 ; globals [start-year data-series]
 
 to assert-start-year
-  if (str-detect start-year "^[0-9]{4}" = false) [
+  if (not string:rex-match? "^[0-9]{4}.*" (word start-year)) [
     error "The year must have 4 digits."
   ]
 

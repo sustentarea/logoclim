@@ -27,24 +27,24 @@ to setup-map
   if (reduce [[i j] -> not-empty? i or not-empty? j] world-bleed) [
     remove-world-bleed 0.25 1
   ]
-  
+
   set max-value max [value] of patches with [not is-nan? value]
   set min-value min [value] of patches with [not is-nan? value]
-  
+
   ; Correct inflated values
   if ((max-value - min-value) > (10 ^ 6)) [
-    let extreme-values extreme-unique-values (
+    let extreme-values unique-outliers (
       [value] of patches with [not is-nan? value]
     ) 10
-    
+
     ask patches with [member? value extreme-values] [
       set value nan
     ]
-    
+
     set max-value max [value] of patches with [not is-nan? value]
     set min-value min [value] of patches with [not is-nan? value]
   ]
-  
+
   ifelse (white-max = true) [
     set max-pcolor-value max-value
   ] [
@@ -59,7 +59,7 @@ to setup-map
 
   ask (patches) [
     ifelse (not is-nan? value) [
-      let series-color lookup-series-color data-series
+      let series-color lookup-series-color
 
       set pcolor (
         scale-color series-color value min-pcolor-value max-pcolor-value

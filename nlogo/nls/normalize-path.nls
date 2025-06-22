@@ -1,14 +1,10 @@
 ; __includes [
 ;   "check-atomic.nls"
 ;   "check-windows.nls"
-;   "halt.nls"
 ;   "rep-collapse.nls"
-;   "single-quote.nls"
 ; ]
 
-; extensions [pathdir sr string]
-
-; Note: Ensure `sr:setup` is called in the `setup` procedure.
+; extensions [pathdir string]
 
 to-report normalize-path [#path]
   assert-atomic #path
@@ -19,7 +15,7 @@ to-report normalize-path [#path]
   if (is-windows?) [set sep rep-collapse sep 4]
 
   ; string:rex-replace-all "\\\\" "..\\data" "/"
-    set out string:rex-replace-all "\\\\" out sep
+  set out string:rex-replace-all "\\\\" out sep
 
   ; string:rex-replace-all "/" "../data" "\\\\"
   set out string:rex-replace-all "/" out sep
@@ -28,27 +24,5 @@ to-report normalize-path [#path]
     set out string:rex-replace-first (word sep "$") out ""
   ]
 
-  let test true
-
-  carefully [
-    let r-test sr:runresult single-quote out
-  ] [
-    set test false
-  ]
-
-  ifelse (test = false) [
-    user-message (word
-      "An unknown error occurred while normalizing the path: "
-      "\n\n"
-      "Original: " single-quote #path
-      "\n"
-      "Processed: " single-quote out
-      "\n\n"
-      "Please check the path and try again."
-    )
-
-    halt
-  ] [
-    report out
-  ]
+  report out
 end

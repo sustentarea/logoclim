@@ -1,21 +1,16 @@
-; __includes ["single-quote.nls"]
-
-to-report lookup-shared-socioeconomic-pathway [#string]
-  assert-string #string
-
+to-report lookup-shared-socioeconomic-pathway
   (ifelse
-    (#string = "SSP-126") [
+    (shared-socioeconomic-pathway = "SSP-126") [
       report "ssp126"
-    ] (#string = "SSP-245") [
+    ] (shared-socioeconomic-pathway = "SSP-245") [
       report "ssp245"
-    ] (#string = "SSP-370") [
+    ] (shared-socioeconomic-pathway = "SSP-370") [
       report "ssp370"
-    ] (#string = "SSP-585") [
+    ] (shared-socioeconomic-pathway = "SSP-585") [
       report "ssp585"
     ] [
       user-message (word
-        "The option "
-        single-quote #string " "
+        "The option '" shared-socioeconomic-pathway "' "
         "is not found among the valid options. "
         "Please check your settings."
       )

@@ -1,17 +1,14 @@
-; __includes ["single-quote.nls"]
-
-to-report lookup-series-color [#string]
+to-report lookup-series-color
   (ifelse
-    (#string = "Historical climate data") [
+    (data-series = "Historical climate data") [
       report historical-climate-data-color
-    ] (#string = "Historical monthly weather data") [
+    ] (data-series = "Historical monthly weather data") [
       report historical-monthly-weather-data-color
-    ] (#string = "Future climate data") [
+    ] (data-series = "Future climate data") [
       report future-climate-data-color
     ] [
       user-message (word
-        "The option "
-        single-quote #string " "
+        "The option '" data-series "' "
         "is not found among the valid options. "
         "Please check your settings."
       )

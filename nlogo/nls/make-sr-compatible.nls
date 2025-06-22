@@ -1,0 +1,9 @@
+; __include ["list-to-c.nls"]
+
+to-report make-sr-compatible [#x]
+  ifelse (is-list? #x) [
+    report list-to-c #x true
+  ] [
+    report (word "'" #x "'")
+  ]
+end

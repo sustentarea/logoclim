@@ -15,6 +15,7 @@ __includes [
   "nls/as-string.nls"
   "nls/adjust-patch-size.nls"
   "nls/adjust-world-size.nls"
+  "nls/adjust-year.nls"
   "nls/check-abs.nls"
   "nls/check-all.nls"
   "nls/check-any.nls"
@@ -39,7 +40,6 @@ __includes [
   "nls/check-windows.nls"
   "nls/check-world-bleed.nls"
   "nls/collapse.nls"
-  "nls/extreme-unique-values.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
   "nls/halt.nls"
@@ -50,11 +50,9 @@ __includes [
   "nls/lookup-series-color.nls"
   "nls/lookup-series-data-path.nls"
   "nls/lookup-shared-socioeconomic-pathway.nls"
-  "nls/match.nls"
   "nls/nan-value.nls"
   "nls/normalize-path.nls"
-  "nls/normalize-value.nls"
-  "nls/normalize-year.nls"
+  "nls/make-sr-compatible.nls"
   "nls/num-to-str-month.nls"
   "nls/pattern-data-file.nls"
   "nls/pattern-fcd-file.nls"
@@ -73,15 +71,13 @@ __includes [
   "nls/setup-variables.nls"
   "nls/setup-world.nls"
   "nls/setup-world-bleed.nls"
+  "nls/show-values.nls"
   "nls/single-quote.nls"
   "nls/sr-run-assign-files.nls"
   "nls/sr-run-assign-start-year-month.nls"
-  "nls/show-values.nls"
-  "nls/str-detect.nls"
   "nls/str-extract.nls"
-  "nls/str-extract-month.nls"
-  "nls/str-extract-year.nls"
   "nls/str-to-num-month.nls"
+  "nls/unique-outliers.nls"
   "nls/walk.nls"
 ]
 
@@ -103,6 +99,7 @@ globals [
   min-plot-y
   min-value
   month
+  months
   nan
   series-data-path
   settings
@@ -121,7 +118,7 @@ to setup
   clear-all
   sr:setup
 
-  set start-year normalize-year start-year
+  ; set start-year adjust-year start-year
 
   assert-climate-variable
   assert-data-resolution
@@ -146,7 +143,7 @@ to go [#tick? #wait?]
     ] (
       (
         year = last years and
-        month = 12
+        month = "December"
       ) or
       (climate-variable = "Elevation") or
       (
@@ -553,7 +550,7 @@ MONITOR
 1450
 105
 Bioclimatic variable
-ifelse-value\n  (lookup-climate-variable climate-variable = \"bioc\") and (settings != 0)\n  [item 5 settings]\n  [\"NA\"]
+ifelse-value\n  (lookup-climate-variable = \"bioc\") and (settings != 0)\n  [item 5 settings]\n  [\"NA\"]
 0
 1
 11

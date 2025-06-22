@@ -5,7 +5,7 @@
 ;   "quartile.nls"
 ; ]
 
-to-report extreme-unique-values [#list #n-iqr]
+to-report unique-outliers [#list #n-iqr]
   assert-list #list
   assert-number #n-iqr
   assert-abs #n-iqr

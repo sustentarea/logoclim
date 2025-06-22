@@ -1,13 +1,14 @@
-; __includes ["check-string-or-integer.nls" "str-detect.nls" "str-extract.nls"]
+; __includes ["check-string-or-integer.nls" "str-extract.nls"]
+; extensions [string]
 ; globals [data-series]
 
-to-report normalize-year [#year]
+to-report adjust-year [#year]
   assert-string-or-integer #year
 
   let out #year
   let pattern "^[0-9]{4}$"
 
-  if ((str-detect #year pattern) = true) [
+  if (string:rex-match? pattern (word #year)) [
     set out read-from-string str-extract #year pattern
   ]
 

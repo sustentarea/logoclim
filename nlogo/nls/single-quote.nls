@@ -1,9 +1,7 @@
-; __includes ["check-atomic.nls"]
-
 to-report single-quote [#x]
-  ifelse (is-atomic? #x) [
-    report (word "'" #x "'")
-  ] [
+  ifelse (is-list? #x) [
     report map [i -> (word "'" i "'")] #x
+  ] [
+    report (word "'" #x "'")
   ]
 end

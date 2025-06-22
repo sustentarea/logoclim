@@ -1,33 +1,28 @@
-; __includes ["single-quote.nls"]
-
-to-report lookup-climate-variable [#string]
-  assert-string #string
-
+to-report lookup-climate-variable
   (ifelse
-    (#string = "Average minimum temperature (°C)") [
+    (climate-variable = "Average minimum temperature (°C)") [
       report "tmin"
-    ] (#string = "Average maximum temperature (°C)") [
+    ] (climate-variable = "Average maximum temperature (°C)") [
       report "tmax"
-    ] (#string = "Average temperature (°C)") [
+    ] (climate-variable = "Average temperature (°C)") [
       report "tavg"
-    ] (#string = "Total precipitation (mm)") [
+    ] (climate-variable = "Total precipitation (mm)") [
       report "prec"
-    ] (#string = "Solar radiation (kJ m^-2 day^-1)") [
+    ] (climate-variable = "Solar radiation (kJ m^-2 day^-1)") [
       report "srad"
-    ] (#string = "Wind speed (m s^-1)") [
+    ] (climate-variable = "Wind speed (m s^-1)") [
       report "wind"
-    ] (#string = "Wind speed (m s^-1)") [
+    ] (climate-variable = "Wind speed (m s^-1)") [
       report "wind"
-    ] (#string = "Water vapor pressure (kPa)") [
+    ] (climate-variable = "Water vapor pressure (kPa)") [
       report "vapr"
-    ] (#string = "Bioclimatic variables") [
+    ] (climate-variable = "Bioclimatic variables") [
       report "bioc"
-    ] (#string = "Elevation") [
+    ] (climate-variable = "Elevation") [
       report "elev"
     ] [
       user-message (word
-        "The option "
-        single-quote #string " "
+        "The option '" climate-variable "'' "
         "is not found among the valid options. "
         "Please check your settings."
       )

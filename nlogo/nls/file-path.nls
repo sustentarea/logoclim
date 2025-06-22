@@ -5,9 +5,6 @@ to-report file-path [#string-1 #string-2]
   assert-string #string-1
   assert-string #string-2
 
-  set #string-1 normalize-path #string-1
-  set #string-2 normalize-path #string-2
-  
   ifelse (string:rex-match? ".*[A-Za-z0-9]$" #string-1) [
     report (word #string-1 pathdir:get-separator #string-2)
   ] [

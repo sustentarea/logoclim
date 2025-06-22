@@ -2,8 +2,6 @@
 
 ; __includes [
 ;   "normalize-path.nls"
-;   "str-detect.nls"
-;   "check-string.nls"
 ;   "halt.nls"
 ;   "pattern-data-file.nls"
 ;   "lookup-series-data-path.nls"
@@ -14,7 +12,7 @@
 ; Note: Ensure `sr:setup` is called in the `setup` procedure.
 
 to-report test-data
-  let path lookup-series-data-path data-series
+  let path lookup-series-data-path
   let pattern pattern-data-file
 
   (sr:run

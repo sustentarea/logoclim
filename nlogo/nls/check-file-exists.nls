@@ -14,7 +14,7 @@ to-report check-file-exists [#file]
   ifelse (file-exists? #file) [
     report true
   ] [
-    report (word "The file " #file " does not exist.")
+    report (word "The file '" #file "' does not exist.")
   ]
 end
 

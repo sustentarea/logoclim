@@ -1,4 +1,9 @@
-; __includes ["file-path.nls" "remove-world-bleed.nls"]
+; __includes [
+;   "adjust-world-size.nls"
+;   "adjust-patch-size.nls"
+;   "setup-world-bleed.nls"
+; ]
+
 ; extensions [gis]
 ; globals [series-data-path patch-px-size]
 

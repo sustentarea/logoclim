@@ -1,22 +1,19 @@
-; __includes ["single-quote.nls"]
-
-to-report lookup-series-data-path [#string]
-  assert-string #string
+to-report lookup-series-data-path
+  let normalized-data-path normalize-path data-path
 
   (ifelse
-    (#string = "Historical climate data") [
-      report file-path data-path "historical-climate-data"
+    (data-series = "Historical climate data") [
+      report file-path normalized-data-path "historical-climate-data"
     ]
-    (#string = "Historical monthly weather data") [
-      report file-path data-path "historical-monthly-weather-data"
+    (data-series = "Historical monthly weather data") [
+      report file-path normalized-data-path "historical-monthly-weather-data"
     ]
-    (#string = "Future climate data") [
-      report file-path data-path "future-climate-data"
+    (data-series = "Future climate data") [
+      report file-path normalized-data-path "future-climate-data"
     ]
     [
       user-message (word
-        "The option "
-        single-quote #string " "
+        "The option '" data-series "' "
         "is not found among the valid options. "
         "Please check your settings."
       )

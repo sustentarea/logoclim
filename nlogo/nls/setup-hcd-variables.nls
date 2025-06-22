@@ -21,6 +21,9 @@ to setup-hcd-variables
       "months <- as.numeric(months)"
 
       "files <- files[months >= start_month]"
+      
+      "months <- stringr::str_extract(files, '[0-9]{2}(?=.asc)')"
+      "months <- as.numeric(months)"
     )
   ]
 end
