@@ -15,7 +15,6 @@ __includes [
   "nls/as-string.nls"
   "nls/adjust-patch-size.nls"
   "nls/adjust-world-size.nls"
-  "nls/adjust-year.nls"
   "nls/check-abs.nls"
   "nls/check-all.nls"
   "nls/check-any.nls"
@@ -117,8 +116,6 @@ patches-own [
 to setup
   clear-all
   sr:setup
-
-  ; set start-year adjust-year start-year
 
   assert-climate-variable
   assert-data-resolution
