@@ -20,12 +20,10 @@ MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
 for simulating and visualizing global climate conditions. It allows
-researchers to incorporate high-resolution climate data into agent-based
-models using the NetLogo
-[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
-extension. This facilitates reproducible research in ecology,
-agriculture, environmental science, and related fields that require
-climate data integration.
+researchers to integrate high-resolution climate data into agent-based
+models, supporting reproducible research in ecology, agriculture,
+environmental science, and other fields that rely on climate data
+integration.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -34,9 +32,9 @@ global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
 O'Neill et
 al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All
-climate inputs are sourced from [WorldClim 2.1](https://worldclim.org/),
-which provides high-resolution interpolated datasets derived from
-weather station records worldwide ([Fick & Hijmans,
+climate inputs come from [WorldClim 2.1](https://worldclim.org/), a
+widely used source of high-resolution, interpolated climate datasets
+based on weather station observations worldwide ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)).
 
 > If you find this project useful, please consider giving it a star!  
@@ -44,18 +42,18 @@ weather station records worldwide ([Fick & Hijmans,
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
 > [!IMPORTANT]
-> `LogoClim` is an independent project and is not affiliated with [WorldClim](https://worldclim.org/) or its developers. Please note that the WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
+> `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 
 ![LogoClim Interface](images/logoclim-interface.gif)
 
 ## How It Works
 
 `LogoClim` operates on a grid of patches, where each patch represents a
-geographical area and stores values for selected climate variables.
-During the simulation, patches update their colors based on the data
-values. The results are visualized on a map, accompanied by plots that
-display the mean, minimum, maximum, and standard deviation of the
-selected variable over time.
+geographical area and stores values for latitude, longitude, and
+selected climate variables. During the simulation, patches update their
+colors based on the data values. The results can be visualized on a map,
+accompanied by plots that display the mean, minimum, maximum, and
+standard deviation of the selected variable over time.
 
 ### Color Scale
 
@@ -74,9 +72,10 @@ In addition to latitude and longitude data points, `LogoClim` supports
 simulation with all three climate data series provided by [WorldClim
 2.1](https://worldclim.org/): long-term historical climate averages,
 historical monthly weather, and future climate projections. Each series
-is available at multiple spatial resolutions (from 10 minutes to 30
-seconds) and can be selected within the model interface to fit your
-research needs.
+is available at multiple spatial resolutions (from 10 minutes (~340 km²
+at the equator) to 30 seconds (~1 km² at the equator)) and can be
+selected within the model interface to fit your research needs. More
+information about each series can be found in the WorldClim website.
 
 #### Historical Climate Data
 
@@ -85,9 +84,6 @@ average climate conditions for the period 1970-2000. It provides
 averages on minimum, mean, and maximum temperature, precipitation, solar
 radiation, wind speed, vapor pressure, elevation, and on bioclimatic
 variables.
-
-Learn more
-[here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
 
 #### Historical Monthly Weather Data
 
@@ -99,8 +95,6 @@ Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
 at the [University of East Anglia](https://www.uea.ac.uk/). It provides
 monthly averages for minimum temperature, maximum temperature, and total
 precipitation.
-
-Learn more [here](https://www.worldclim.org/data/monthlywth.html).
 
 #### Future Climate Data
 
@@ -114,9 +108,6 @@ projections cover four
 temperature, average maximum temperature, total precipitation, and
 bioclimatic variables.
 
-Learn more
-[here](https://www.worldclim.org/data/cmip6/cmip6climate.html).
-
 ## How to Use It
 
 ### Setup
@@ -124,27 +115,23 @@ Learn more
 To get started, ensure you have
 [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
 was developed using NetLogo 6.4, so it is recommended to use this
-version or later. You can download it
-[here](https://ccl.northwestern.edu/netlogo/download.shtml).
+version or later.
 
 The model relies on the GIS
 ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir
 ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String
 ([`string`](https://github.com/NetLogo/String-Extension)), and Time
 ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo
-extensions, which will be installed automatically when you first run the
-model.
+extensions. These are automatically installed when the model is run for
+the first time.
 
 #### Downloading the Model
 
-You can download the latest release of the model from [GitHub
-Releases](https://github.com/danielvartan/logoclim/releases/latest). To
+You can download the latest release of the model in the [GitHub
+Releases](https://github.com/sustentarea/logoclim/releases/latest). To
 access the development version, clone or download this repository.
 
 #### Downloading the Data
-
-> [!IMPORTANT]
-> The WorldClim datasets are freely available for academic and other non-commercial use only. For details on licensing and permitted uses, see the WorldClim [license information](https://worldclim.org/about.html).
 
 `LogoClim` uses raster data to represent climate variables. While you
 can download the original datasets directly from [WorldClim
@@ -153,10 +140,8 @@ format before being used in NetLogo. To simplify this process, we
 recommend using the preprocessed datasets included in the model's
 [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already
 converted the data to ASCII format for many countries and resolutions,
-making it easier to get started.
-
-After downloading, extract the files into the `data` folder within the
-model's directory.
+making it easier to get started. After downloading, extract the files
+into the `data` folder within the model's directory.
 
 We suggest starting with the 10-minute resolution to verify that the
 model runs smoothly on your system before trying higher resolutions.
@@ -175,15 +160,12 @@ Refer to the `Info` tab in the model for additional details.
 
 ### Integrating with Other Models
 
-`LogoClim` can be integrated with other models using the LevelSpace
-([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) NetLogo
+`LogoClim` can be integrated with other models using NetLogo's
+LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html))
 extension. This extension enables parallel execution and data exchange
-between models, making it particularly valuable for agent-based
-simulations that incorporate climate data to study ecological or
-environmental processes.
-
-For an example of integrating `LogoClim` with another model, see the
-[FoodClim](https://github.com/sustentarea/foodclim) project.
+between models. For an example of integrating `LogoClim` with another
+model, see the [FoodClim](https://github.com/sustentarea/foodclim)
+project.
 
 ## How to Cite
 
@@ -270,10 +252,9 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This work was developed with support from the Research and 
-        Extension Center 
+        This work was developed with support from the 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
-         at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
+         Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
     </td>
   </tr>
