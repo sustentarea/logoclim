@@ -31,17 +31,17 @@ repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
 repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
 abstract: >-
   {LogoClim} is a NetLogo model for simulating and visualizing global climate
-  conditions. It allows researchers to incorporate high-resolution climate data
-  into agent-based models using the NetLogo {LevelSpace} extension. This
-  facilitates reproducible research in ecology, agriculture, environmental
-  science, and related fields that require climate data integration.
+  conditions. It allows researchers to integrate high-resolution climate data
+  into agent-based models, supporting reproducible research in ecology,
+  agriculture, environmental science, and other fields that rely on climate data
+  integration.
 
   The model utilizes raster data to represent climate variables such as
   temperature and precipitation over time. It incorporates historical data
   (1951-2024) and future climate projections (2021-2100) derived from global
   climate models under various Shared Socioeconomic Pathways (SSPs). All climate
-  inputs are sourced from WorldClim 2.1, which provides high-resolution
-  interpolated datasets derived from weather station records worldwide.
+  inputs come from WorldClim 2.1, a widely used source of high-resolution,
+  interpolated climate datasets based on weather station observations worldwide.
 keywords:
   - Agent-based modeling
   - Climate change

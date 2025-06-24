@@ -40,10 +40,16 @@
     ],
     "codeRepository": "https://github.com/sustentarea/logoclim",
     "dateCreated": "2024-08-20",
-    "funder": {
+    "funder": [
+        {
+        "type": "Organization",
+        "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil"
+        },
+        {
         "type": "Organization",
         "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)"
-    },
+        }
+    ],
     "identifier": "10.17605/OSF.IO/EAPZU",
     "keywords": [
         "Agent-based modeling",
