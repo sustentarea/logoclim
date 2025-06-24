@@ -55,13 +55,11 @@ wmctrl -r NetLogo -e 0,278,182,1485,815
 
 ### Sequence (12 months)
 
-- Brazil: HMWD, 10m, 2px/2.025px, 1951, Average maximum temperature
-- EUA-Mainland: FCD, 1.5875px, 10m, 2021, Total precipitation
+- Brazil: HMWD, 10m, 1951, Average maximum temperature
+- EUA-Mainland: FCD, 10m, 2021, Total precipitation
 - Europe-Box: HCD, 10m, 1970, Water vapor pressure
-- UK: HCD, 30s, 0.435px, 1970, Water vapor pressure
-- South Africa: HMWD, 5m, 1951, Average maximum temperature
-- China: FCD, 10m, 2021, Total precipitation
-- Australia: HCD, 10m, 1970, Water vapor pressure
+- China: FCD, 10m, 2081, Total precipitation
+- Australia: HMWD, 10m, 2010, Water vapor pressure
 
 ```nlogo
 go true true
