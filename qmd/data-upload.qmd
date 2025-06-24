@@ -161,12 +161,14 @@ for (i in dirs) {
 ```{r}
 #| eval: false
 
+model <- NULL # "ACCESS-CM2"
 country_code <- "bra"
 country_suffix <- NULL # "box" # "mainland"
-model <- NULL # "ACCESS-CM2"
 ```
 
 ```{r}
+#| eval: true
+
 if (length(series) == 1) {
   switch(
     series,
@@ -186,7 +188,7 @@ if (length(series) == 1) {
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 zip_file <-
   data_dir |>
@@ -205,7 +207,7 @@ zip_file
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 zip_file |>
   zip::zip(
@@ -224,25 +226,21 @@ zip_file |>
 beepr::beep(1)
 ```
 
+```{r}
+#| eval: false
+
+osf_files <- zip_file
+```
+
 ### Adding LICENSE and README Files
 
 ```{r}
-#| eval: true
-
-txt_license <- fs::file_copy(
-  fs::path(data_dir, "LICENSE.md"),
-  fs::path(tempdir(), "license.txt"),
-  overwrite = TRUE
-)
-```
-
-```{r}
-#| eval: true
+#| eval: false
 
 osf_files <-
   data_dir |>
     fs::path(c("LICENSE.md", "README.md")) |>
-    c(txt_license, zip_file) |>
+    c(zip_file) |>
     unname()
 
 osf_files
@@ -251,7 +249,7 @@ osf_files
 ## Uploading the Files to OSF
 
 ```{r}
-#| eval: true
+#| eval: false
 
 prettycheck::assert_internet()
 
@@ -259,7 +257,7 @@ osfr::osf_auth()
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 if (resolution == "10m") {
   osf_id <- "x7fcm"
@@ -276,15 +274,6 @@ osf_id
 
 ```{r}
 #| eval: false
-
-# osf_files <-
-#   osf_files |>
-#   stringr::str_subset("tmin")
-#   magrittr::extract(seq(1, length(osf_files)))
-```
-
-```{r}
-#| eval: true
 
 osf_id |>
   osfr::osf_retrieve_node() |>

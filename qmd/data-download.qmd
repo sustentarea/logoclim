@@ -71,7 +71,7 @@ series <- "historical-monthly-weather-data"
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 series <- "future-climate-data"
 ```
@@ -93,7 +93,7 @@ resolution <- "5m"
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 resolution <- "2.5m"
 ```
@@ -124,14 +124,6 @@ Pick **one** of the following.
 #| eval: false
 
 model <- NULL
-```
-
-```{r}
-#| eval: true
-
-model <- c(
-  "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0"
-)
 ```
 
 ```{r}
@@ -348,7 +340,7 @@ broken_links <-
     broken_links = TRUE
   )
 
-beepr::beep(1)
+beepr::beep(8)
 ```
 
 If the download process was interrupted or not all files were downloaded, run the code chunk below to retry downloading only the missing files.
@@ -364,19 +356,19 @@ broken_links <-
   dplyr::pull(url) |>
   rutils::download_file(dir = dir, broken_links = TRUE)
 
-beepr::beep(1)
+beepr::beep(8)
 ```
 
 ## Unzipping the Files (Optional)
 
 ```{r}
-#| eval: true
+#| eval: false
 
 zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
 
@@ -384,7 +376,7 @@ if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 if (dir.exists(zip_dir)) {
   accompanying_files <- c("README.md", "LICENSE.md")
@@ -445,19 +437,19 @@ You need to unzip the files first if you want to zip them again. Use the code ch
 ### Creating a New Metadata
 
 ```{r}
-#| eval: true
+#| eval: false
 
 tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 sizes <-
   files |>
@@ -466,12 +458,10 @@ sizes <-
     .progress = TRUE
   ) |>
   fs::as_fs_bytes()
-
-beepr::beep(1)
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 metadata <-
   dplyr::tibble(
@@ -491,7 +481,7 @@ metadata
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
 ```
@@ -499,7 +489,7 @@ metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
 ### Zipping the Files
 
 ```{r}
-#| eval: true
+#| eval: false
 
 zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
 
@@ -507,7 +497,7 @@ if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 climate_variables <-
   metadata |>
@@ -519,7 +509,7 @@ climate_variables
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 models <-
   metadata |>
@@ -531,7 +521,7 @@ models
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 
 if (length(series) == 1) {
   switch(
@@ -602,7 +592,7 @@ beepr::beep(1)
 For zipping files by model, use:
 
 ```{r}
-#| eval: true
+#| eval: false
 
 if (!is.null(model)) {
   cli::cli_progress_bar(

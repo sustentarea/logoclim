@@ -138,12 +138,6 @@ model <- NULL
 ```{r}
 #| eval: false
 
-model <- "ACCESS-CM2"
-```
-
-```{r}
-#| eval: false
-
 model <- c(
   "ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
   "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
@@ -228,7 +222,7 @@ country_code <- "bra"
 Change to the desired country code (ISO 3166-1 alpha-3).
 
 ```{r}
-#| eval: true
+#| eval: false
 
 shape <- geodata::gadm(
   country = country_code,

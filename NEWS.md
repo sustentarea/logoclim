@@ -2,7 +2,7 @@
 
 # LogoClim 0.0.0.9013 (Pre-Release)
 
-- Improved the documentation.
+- Improved the documentation
 - Removed all dependencies on the `R` programming language and its packages
 - Improved `setup-world` to address bleeding issues
 - Persistent world bleeding is now converted to `NaN` values

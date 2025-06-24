@@ -1,5 +1,7 @@
+# library(beepr)
 # library(cli)
 # library(fs)
+# library(glue)
 # library(here)
 # library(stringr)
 
@@ -12,29 +14,14 @@
 # Setting Initial Parameters -----
 
 series <- c(
-  # "historical-climate-data",
-  "historical-monthly-weather-data"
-  # "future-climate-data"
+  "historical-climate-data",
+  "historical-monthly-weather-data",
+  "future-climate-data"
 )
 
-resolution <- "2.5m" # "10m" "5m" "2.5m" "30s" "all"
-
-# "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0"
-model <- NULL # NULL
-# model <- c(
-#   "ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
-#   "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
-#   "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL"
-# )
-
+resolution <- "10m" # "10m" "5m" "2.5m" "30s"
+model <- NULL
 country_codes <- "nor" # "europe" "usa"
-# country_codes <- c("bra", "ind", "gbr", "nor", "zaf") # 2.5m
-# country_codes <- c("bra", "gbr", "nor") # 30s
-# country_codes <- c(
-#   "arg", "aus", "bra", "can", "chl", "chn", "deu", "esp", "fra", "gbr",
-#   "ind", "ita", "nor", "prt", "rus", "ury", "usa", "zaf"
-# )
-
 country_suffix <- NULL # "box" "mainland"
 
 ## Cleaning the Data Directory -----
@@ -153,6 +140,8 @@ for (i in country_codes) {
       )
     )
   }
+
+  beepr::beep(11)
 }
 
 ## Cleaning Quarto Output Files -----
@@ -178,4 +167,4 @@ here::here("qmd") |>
 
 cli::cli_progress_done()
 
-beepr::beep(2)
+beepr::beep(8)
