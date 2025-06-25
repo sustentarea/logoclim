@@ -1,6 +1,6 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-06-21 0.0.0.9013
+; Version: 2025-06-21 0.0.0.9014
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
@@ -219,8 +219,8 @@ CHOOSER
 205
 global-climate-model
 global-climate-model
-"ACCESS-CM2" "BCC-CSM2-MR" "CMCC-ESM2" "EC-Earth3-Veg" "FIO-ESM-2-0" "GFDL-ESM4" "GISS-E2-1-G" "HadGEM3-GC31-LL" "INM-CM5-0" "IPSL-CM6A-LR" "MIROC6" "MPI-ESM1-2-HR" "MRI-ESM2-0" "UKESM1-0-LL"
-2
+"ACCESS-CM2" "ACCESS-ESM1-5" "BCC-CSM2-MR" "CanESM5" "CanESM5-CanOE" "CMCC-ESM2" "CNRM-CM6-1" "CNRM-CM6-1-HR" "CNRM-ESM2-1" "EC-Earth3-Veg" "EC-Earth3-Veg-LR" "FIO-ESM-2-0" "GFDL-ESM4" "GISS-E2-1-G" "GISS-E2-1-H" "HadGEM3-GC31-LL" "INM-CM4-8" "INM-CM5-0" "IPSL-CM6A-LR" "MIROC-ES2L" "MIROC6" "MPI-ESM1-2-HR" "MPI-ESM1-2-LR" "MRI-ESM2-0" "UKESM1-0-LL"
+5
 
 CHOOSER
 10
