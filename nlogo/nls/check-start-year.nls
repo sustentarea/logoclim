@@ -12,13 +12,6 @@ to assert-start-year
   ]
 
   (ifelse
-    (start-year < 1951 or start-year > 2100) [
-      user-message (word
-        "You must choose a year between 1951 and 2100."
-      )
-
-      halt
-    ]
     (
       data-series = "Historical climate data" and
       (start-year < 1970 or start-year > 2000)

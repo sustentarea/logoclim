@@ -29,7 +29,7 @@ The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
 (1951-2024) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
-([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways),
+([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/),
 O'Neill et
 al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All
 climate inputs come from [WorldClim 2.1](https://worldclim.org/), a
@@ -103,7 +103,7 @@ projections derived from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
 four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
 projections cover four
-[SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways):
+[SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/):
 126, 245, 370, and 585, with data available for average minimum
 temperature, average maximum temperature, total precipitation, and
 bioclimatic variables.
@@ -129,7 +129,7 @@ the first time.
 
 You can download the latest release of the model in the [GitHub
 Releases](https://github.com/sustentarea/logoclim/releases/latest). To
-access the development version, clone or download this repository.
+access the development version, clone, or download this repository.
 
 #### Downloading the Data
 

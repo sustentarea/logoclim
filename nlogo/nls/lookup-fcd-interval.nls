@@ -1,0 +1,19 @@
+to-report lookup-fcd-interval
+  (ifelse
+    ((start-year >= 2021) and (start-year <= 2040)) [
+      report [2021 2040]
+    ] ((start-year >= 2041) and (start-year <= 2060)) [
+      report [2041 2060]
+    ] ((start-year >= 2061) and (start-year <= 2080)) [
+      report [2061 2080]
+    ] ((start-year >= 2081) and (start-year <= 2100)) [
+      report [2081 2100]
+    ] [
+      user-message (word
+        "The option '" start-year "' "
+        "is not found among the valid options. "
+        "Please check your settings."
+      )
+    ]
+  )
+end

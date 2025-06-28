@@ -16,36 +16,46 @@ to setup-fcd-variables
   
   set files list-files-by-pattern path pattern
   
-  set years str-extract files "[0-9]{4}-[0-9]{4}"
-  let start-years str-extract years  "^[0-9]{4}"
+  set years as-list (str-extract files "[0-9]{4}-[0-9]{4}")
+  let start-years as-list (str-extract years "^[0-9]{4}")
   set start-years map read-from-string start-years
   
-  set months str-extract files "[0-9]{2}(?=.asc)"
+  set months as-list (str-extract files "[0-9]{2}(?=.asc)")
   let num-start-month str-to-num-month start-month
   
-  let start_dates (map [[i j] -> (word i "-" j "-01")] start-years months)
-  set start_dates map [i -> time:create i] start_dates
-
+  let start-dates (map [[i j] -> (word i "-" j "-01")] start-years months)
+  set start-dates map [i -> time:create i] start-dates
+  
+  let fcd-interval lookup-fcd-interval
+  
   ifelse (climate-variable != "Bioclimatic variables") [
-    let start-date time:create (word start-year "-" num-start-month "-01")
+    let start-date time:create (word 
+      (item 0 fcd-interval) "-" 
+      num-start-month
+      "-01"
+    )
     
     set files filter [
       i -> 
-        (time:is-equal? item (position i files) start_dates start-date) or
-        (time:is-after? item (position i files) start_dates start-date)
+        time:is-between? 
+          (item (position i files) start-dates)
+          start-date
+          time:create "2100-12-31"
     ] files
     
-    set years str-extract files "[0-9]{4}-[0-9]{4}"
+    set years as-list (str-extract files "[0-9]{4}-[0-9]{4}")
     
-    set months str-extract files "[0-9]{2}(?=.asc)"
+    set months as-list (str-extract files "[0-9]{2}(?=.asc)")
     set months map read-from-string months
     set months map num-to-str-month months
   ] [
     set files filter [
-      i -> item (position i files) start-years >= start-year
+      i -> 
+        (item (position i files) start-years >= (item 0 fcd-interval)) and
+        (item (position i files) start-years <= 2100)
     ] files
     
-    set years str-extract files "[0-9]{4}-[0-9]{4}"
+    set years as-list (str-extract files "[0-9]{4}-[0-9]{4}")
     set months n-values (length files) ["NA"]
   ]
 end

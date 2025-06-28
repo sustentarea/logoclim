@@ -15,7 +15,7 @@ to setup-hcd-variables
   
   set files list-files-by-pattern path pattern
   set years n-values (length files) ["1970-2000"]
-  set months str-extract files "[0-9]{2}(?=.asc)"
+  set months as-list (str-extract files "[0-9]{2}(?=.asc)")
   let num-start-month str-to-num-month start-month
 
   ifelse (
@@ -28,7 +28,7 @@ to setup-hcd-variables
       i -> item (position i files) num-months >= num-start-month
     ] files
     
-    set months str-extract files "[0-9]{2}(?=.asc)"
+    set months as-list (str-extract files "[0-9]{2}(?=.asc)")
     set months map read-from-string months
     set months map num-to-str-month months
   ] [

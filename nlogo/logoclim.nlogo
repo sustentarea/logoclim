@@ -42,6 +42,7 @@ __includes [
   "nls/lookup-bioclimatic-variable.nls"
   "nls/lookup-climate-variable.nls"
   "nls/lookup-data-resolution.nls"
+  "nls/lookup-fcd-interval.nls"
   "nls/lookup-series-color.nls"
   "nls/lookup-series-data-path.nls"
   "nls/lookup-shared-socioeconomic-pathway.nls"
@@ -129,18 +130,18 @@ to go [#tick? #wait?]
       stop
     ] (
       (
-        year = last years and
-        month = "December"
+        (year = last years) and
+        (month = "December")
       ) or
       (climate-variable = "Elevation") or
       (
-        data-series = "Historical climate data" and
-        climate-variable = "Bioclimatic variables"
+        (data-series = "Historical climate data") and
+        (climate-variable = "Bioclimatic variables")
       ) or
       (
-        data-series = "Future climate data" and
-        climate-variable = "Bioclimatic variables" and
-        year = last years
+        (data-series = "Future climate data") and
+        (climate-variable = "Bioclimatic variables") and
+        (year = last years)
       )
     ) [
       stop
@@ -665,7 +666,7 @@ max [value] of patches with [not is-nan? value]
 
 `LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 
@@ -691,7 +692,7 @@ This series includes 12 monthly data points for each year from 1951 to 2024, bas
 
 #### FUTURE CLIMATE DATA
 
-This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://en.wikipedia.org/wiki/Shared_Socioeconomic_Pathways): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
+This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
 
 ## HOW TO USE IT
 
@@ -725,7 +726,7 @@ Once everything is set up, click the `Setup` and `Go` buttons to start exploring
 - **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 minutes (~340 km2 at the equator)`).
 - **`climate-variable`**: Chooser for selecting the climate variable (default: `Average maximum temperature (°C)`).
 - **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future climate data`* is selected (default: `CMCC-ESM2`).
-- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway (SSP) scenario. Only useful when *`Future climate data`* is selected (default: `SSP-585`).
+- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenario. Only useful when *`Future climate data`* is selected (default: `SSP-585`).
 - **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual mean temperature`).
 - **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
 - **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1951`).
