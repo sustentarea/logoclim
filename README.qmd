@@ -131,11 +131,11 @@ To run the model, make sure to download all files in the `nlogo` folder. Note th
 
 #### Downloading the Data
 
-`LogoClim` relies on raster data to represent climate variables. Although you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must be converted to ASCII format before use in NetLogo. To streamline this process, we provide [Quarto](https://quarto.org/) notebooks in the `qmd` folder, containing reproducible pipelines with all necessary commands to download and process the data. You can easily adapt these notebooks to fit your specific needs.
+`LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to ASCII format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
 
-For quick testing, you can find example datasets in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z). These files are already converted to ASCII format and are ready for use with `LogoClim`. Please note that these datasets are intended for demonstration and testing only and should not be used for research or analysis.
+We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`.
 
-After downloading, extract the files into the `data` folder within the model's directory, or use the `Select data directory` button in the model interface to choose the folder where you extracted the data.
+After downloading and processing the files, place them in the `data` folder within the model's directory. Alternatively, you can use the *Select data directory* button in the model interface to specify the location of your data files.
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
 
