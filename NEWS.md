@@ -1,5 +1,9 @@
 # LogoClim (development version)
 
+# LogoClim 1.0.0
+
+First stable release. 🎉
+
 # LogoClim 0.0.0.9015 (Pre-Release)
 
 - Added variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
