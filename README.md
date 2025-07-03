@@ -28,11 +28,11 @@ temperature and precipitation over time. It incorporates historical data
 (1951-2024) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/),
-O'Neill et
-al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All
-climate inputs come from [WorldClim 2.1](https://worldclim.org/), a
-widely used source of high-resolution, interpolated climate datasets
-based on weather station observations worldwide ([Fick & Hijmans,
+[O'Neill et al.,
+2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate
+inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used
+source of high-resolution, interpolated climate datasets based on
+weather station observations worldwide ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)).
 
 > If you find this project useful, please consider giving it a star!  
