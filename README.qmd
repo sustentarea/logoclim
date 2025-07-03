@@ -37,8 +37,16 @@ cat(
     url = "https://doi.org/10.17605/OSF.IO/EAPZU"
   ),
   paste0(
-    "[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)]",
-    "(https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)"
+    "[![",
+    "FAIR checklist badge",
+    "](",
+    "https://img.shields.io/badge/",
+    "fairsoftwarechecklist.net", "-",
+    "-",
+    "00a7d9",
+    ")](",
+    "https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123",
+    ")"
   ),
   paste0(
     "[![",
