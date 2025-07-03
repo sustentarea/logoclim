@@ -125,8 +125,8 @@
   "runtimePlatform": "NetLogo version 6.4.0 (2023-11)",
   "operatingSystem": [
     "Linux",
-    "Windows",
-    "macOS"
+    "macOS",
+    "Windows"
   ],
   "softwareRequirements": [
     {
@@ -155,14 +155,20 @@
     {
       "name": "NetLogo Pathdir extension",
       "version": ">= 3.1.0",
-      "sameAs": "https://github.com/NetLogo/Pathdir-Extension/releases/latest/"
+      "provider": {
+        "@type": "Person",
+        "name": "Charles Staelin"
+      },
+      "sameAs": "https://github.com/cstaelin/Pathdir-Extension/releases/latest/"
     },
     {
       "name": "NetLogo String extension",
       "version": ">= 1.1.0",
       "provider": {
-        "@type": "Person",
-        "name": "Charles Staelin"
+        "@id": "https://ccl.northwestern.edu/netlogo/",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://ccl.northwestern.edu/netlogo/"
       },
       "sameAs": "https://github.com/NetLogo/String-Extension/releases/latest/"
     },
