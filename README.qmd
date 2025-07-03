@@ -42,9 +42,9 @@ cat(
     "](",
     "https://img.shields.io/badge/",
     "fair--software.eu", "-",
-    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B",
+    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8F",
     "-",
-    "orange",
+    "yellow",
     ")](",
     "https://fair-software.eu",
     ")"
