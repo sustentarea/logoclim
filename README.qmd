@@ -37,13 +37,8 @@ cat(
     url = "https://doi.org/10.17605/OSF.IO/EAPZU"
   ),
   paste0(
-    "[![",
-    "OpenSSF Best Practices",
-    "](",
-    "https://bestpractices.coreinfrastructure.org/projects/10852/badge",
-    ")](",
-    "https://bestpractices.coreinfrastructure.org/projects/10852",
-    ")"
+    "[![FAIR checklist badge](https://fairsoftwarechecklist.net/badge.svg)]",
+    "(https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)"
   ),
   paste0(
     "[![",
@@ -118,7 +113,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 To get started, ensure you have [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model was developed using NetLogo 6.4, so it is recommended to use this version or later.
 
-The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
+The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
 
 #### Downloading the Model
 

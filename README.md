@@ -8,8 +8,8 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![](https://img.shields.io/badge/CoMSES%20Network-0.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![OpenSSF Best
-Practices](https://bestpractices.coreinfrastructure.org/projects/10852/badge)](https://bestpractices.coreinfrastructure.org/projects/10852)
+[![FAIR checklist
+badge](https://fairsoftwarechecklist.net/badge.svg)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
@@ -120,7 +120,7 @@ was developed using NetLogo 6.4, so it is recommended to use this
 version or later.
 
 The model relies on the GIS
-([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir
+([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir
 ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String
 ([`string`](https://github.com/NetLogo/String-Extension)), and Time
 ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo
