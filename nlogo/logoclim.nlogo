@@ -1,6 +1,6 @@
 ; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-06-21 0.0.0.9015
+; Version: 2025-06-21 0.0.0.9016
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: MIT
@@ -700,7 +700,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 `LogoClim` was developed using NetLogo 6.4, so it is recommended to use this version or later.
 
-The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
+The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
 
 To run the model, make sure to download all files in the repository `nlogo` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 

@@ -1,97 +1,187 @@
 {
-    "@context": "https://w3id.org/codemeta/3.0",
-    "type": "SoftwareSourceCode",
-    "applicationCategory": "Agent-based modeling",
-    "applicationSubCategory": "Climate modeling",
-    "author": [
-        {
-            "id": "https://orcid.org/0000-0001-7782-759X",
-            "type": "Person",
-            "affiliation": {
-                "type": "Organization",
-                "name": "University of São Paulo"
-            },
-            "email": "danvartan@gmail.com",
-            "familyName": "Vartanian",
-            "givenName": "Daniel"
-        },
-        {
-            "id": "https://orcid.org/0000-0001-5947-2617",
-            "type": "Person",
-            "affiliation": {
-                "type": "Organization",
-                "name": "Queen's University Belfast"
-            },
-            "email": "l.garcia@qub.ac.uk",
-            "familyName": "Leandro",
-            "givenName": "Garcia"
-        },
-        {
-            "id": "https://orcid.org/0000-0002-4900-5609",
-            "type": "Person",
-            "affiliation": {
-                "type": "Organization",
-                "name": "University of São Paulo"
-            },
-            "email": "alinenutri@usp.br",
-            "familyName": "Carvalho",
-            "givenName": "Aline Martins de"
-        }
-    ],
-    "codeRepository": "https://github.com/sustentarea/logoclim",
-    "dateCreated": "2024-08-20",
-    "funder": [
-        {
-        "type": "Organization",
-        "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil"
-        },
-        {
-        "type": "Organization",
-        "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)"
-        }
-    ],
-    "identifier": "10.17605/OSF.IO/EAPZU",
-    "keywords": [
-        "Agent-based modeling",
-        "Climate change",
-        "Climate data visualization",
-        "Climate model integration",
-        "Climate projections",
-        "Climate simulation",
-        "CMIP6",
-        "Complex systems",
-        "Complexity science",
-        "Data interoperability",
-        "Environmental sciences",
-        "Environmental simulation",
-        "Future climate scenarios",
-        "Geospatial analysis",
-        "Historical climate data",
-        "LevelSpace",
-        "Models",
-        "NetLogo",
-        "Parallel execution",
-        "Raster data",
-        "Reproducible research",
-        "Shared socioeconomic pathways",
-        "Simulations",
-        "Spatial analysis",
-        "Spatial resolution",
-        "SSPs",
-        "Time series",
-        "WorldClim"
-    ],
-    "license": "https://spdx.org/licenses/MIT",
-    "name": "LogoClim: WorldClim in NetLogo",
-    "operatingSystem": [
-        "Linux",
-        "Windows",
-        "macOS"
-    ],
-    "programmingLanguage": "NetLogo",
-    "softwareRequirements": [
-        "NetLogo (>= 6.4)",
-        "NetLogo extensions: `gis`, `pathdir`, `string`, and `time`"
-    ],
-    "issueTracker": "https://github.com/sustentarea/logoclim/issues"
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "identifier": "LogoClim",
+  "dateCreated": "2024-08-20",
+  "applicationCategory": "Agent-based modeling",
+  "applicationSubCategory": "Climate modeling",
+  "name": "LogoClim: WorldClim in NetLogo",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Vartanian",
+      "givenName": "Daniel",
+      "email": "danvartan@gmail.com",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0001-7782-759X"
+    },
+    {
+      "@type": "Person",
+      "familyName": "Leandro",
+      "givenName": "Garcia",
+      "email": "l.garcia@qub.ac.uk",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Queen's University Belfast",
+        "url": "https://www.qub.ac.uk"
+      },
+      "@id": "https://orcid.org/0000-0001-5947-2617"
+    },
+    {
+      "@type": "Person",
+      "familyName": "Carvalho",
+      "givenName": "Aline Martins de",
+      "email": "alinenutri@usp.br",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "University of São Paulo",
+        "url": "https://www.usp.br"
+      },
+      "@id": "https://orcid.org/0000-0002-4900-5609"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil",
+      "@id": "https://www.gov.br/saude/pt-br/composicao/sectics/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)",
+      "@id": "https://www.gov.br/cnpq/"
+    }
+  ],
+  "funding": "CNPq 444588/2023-0",
+  "provider": {
+    "@id": "https://www.fsp.usp.br/sustentarea/",
+    "@type": "Organization",
+    "name": "Sustentarea",
+    "url": "https://www.fsp.usp.br/sustentarea/"
+  },
+  "copyrightHolder": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "danvartan@gmail.com",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "maintainer": {
+    "@type": "Person",
+    "familyName": "Vartanian",
+    "givenName": "Daniel",
+    "email": "danvartan@gmail.com",
+    "@id": "https://orcid.org/0000-0001-7782-759X"
+  },
+  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions.",
+  "keywords": [
+    "Agent-based modeling",
+    "Climate change",
+    "Climate data visualization",
+    "Climate model integration",
+    "Climate projections",
+    "Climate simulation",
+    "CMIP6",
+    "Complex systems",
+    "Complexity science",
+    "Data interoperability",
+    "Environmental sciences",
+    "Environmental simulation",
+    "Future climate scenarios",
+    "Geospatial analysis",
+    "Historical climate data",
+    "LevelSpace",
+    "Models",
+    "NetLogo",
+    "Parallel execution",
+    "Raster data",
+    "Reproducible research",
+    "Shared socioeconomic pathways",
+    "Simulations",
+    "Spatial analysis",
+    "Spatial resolution",
+    "SSPs",
+    "Time series",
+    "WorldClim"
+  ],
+  "license": "https://spdx.org/licenses/MIT",
+  "codeRepository": "https://github.com/sustentarea/logoclim",
+  "issueTracker": "https://github.com/sustentarea/logoclim/issues",
+  "relatedLink": [
+    "https://doi.org/10.17605/OSF.IO/EAPZU",
+    "https://doi.org/10.17605/OSF.IO/RE95Z",
+    "https://github.com/sponsors/danielvartan"
+  ],
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "NetLogo",
+    "version": "6.4.0",
+    "url": "https://ccl.northwestern.edu/netlogo/"
+  },
+  "runtimePlatform": "NetLogo version 6.4.0 (2023-11)",
+  "operatingSystem": [
+    "Linux",
+    "Windows",
+    "macOS"
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "NetLogo",
+      "version": ">= 6.4",
+      "provider": {
+        "@id": "https://ccl.northwestern.edu/netlogo/",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://ccl.northwestern.edu/netlogo/"
+      },
+      "sameAs": "https://ccl.northwestern.edu/netlogo/download.shtml"
+    },
+    {
+      "name": "NetLogo GIS extension",
+      "version": ">= 1.3.1",
+      "provider": {
+        "@id": "https://ccl.northwestern.edu/netlogo/",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://ccl.northwestern.edu/netlogo/"
+      },
+      "sameAs": "https://github.com/NetLogo/GIS-Extension"
+    },
+    {
+      "name": "NetLogo Pathdir extension",
+      "version": ">= 3.1.0",
+      "sameAs": "https://github.com/NetLogo/Pathdir-Extension/releases/latest/"
+    },
+    {
+      "name": "NetLogo String extension",
+      "version": ">= 1.1.0",
+      "provider": {
+        "@type": "Person",
+        "name": "Charles Staelin"
+      },
+      "sameAs": "https://github.com/NetLogo/String-Extension/releases/latest/"
+    },
+    {
+      "name": "NetLogo Time extension",
+      "version": ">= 2.0.0",
+      "provider": {
+        "@id": "https://ccl.northwestern.edu/netlogo/",
+        "@type": "Organization",
+        "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
+        "url": "https://ccl.northwestern.edu/netlogo/"
+      },
+      "sameAs": "https://github.com/NetLogo/Time-Extension/releases/latest/"
+    }
+  ],
+  "developmentStatus": "active",
+  "readme": "https://github.com/sustentarea/logoclim/blob/main/README.md",
+  "releaseNotes": "https://github.com/sustentarea/logoclim/blob/main/NEWS.md",
+  "version": "0.0.0.9015",
+  "datePublished":"2025-06-02",
+  "downloadUrl": "https://github.com/sustentarea/logoclim/archive/refs/tags/v0.0.0.9015.zip"
 }

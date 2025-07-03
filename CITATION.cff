@@ -22,13 +22,6 @@ authors:
     email: alinenutri@usp.br
     affiliation: University of São Paulo
     orcid: 'https://orcid.org/0000-0002-4900-5609'
-identifiers:
-  - type: doi
-    value: 10.17605/OSF.IO/EAPZU
-    description: OSF Research Compendium
-repository-code: 'https://github.com/sustentarea/logoclim'
-repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
-repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
 abstract: >-
   {LogoClim} is a NetLogo model for simulating and visualizing global climate
   conditions. It allows researchers to integrate high-resolution climate data
@@ -71,4 +64,11 @@ keywords:
   - SSPs
   - Time series
   - WorldClim
+identifiers:
+  - type: doi
+    value: 10.17605/OSF.IO/EAPZU
+    description: OSF Research Compendium
+repository-code: 'https://github.com/sustentarea/logoclim'
+repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
+repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
 license: MIT
