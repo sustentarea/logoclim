@@ -9,6 +9,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![](https://img.shields.io/badge/CoMSES%20Network-0.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8B-orange)](https://fair-software.eu)
+[![OpenSSF Best
+Practices](https://www.bestpractices.dev/projects/10852/badge)](https://www.bestpractices.dev/projects/10852)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
@@ -208,8 +210,13 @@ A BibTeX entry for LaTeX users is:
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-Contributions are welcome! Whether it's reporting bugs, suggesting
-features, or improving documentation, your input is valuable.
+Contributions are welcome! Whether you want to report bugs, suggest
+features, or improve the code or documentation, your input is highly
+valued.
+
+When contributing code, please follow the [tidy design
+principles](https://design.tidyverse.org/) and the [tidyverse style
+guide](https://style.tidyverse.org/) whenever possible.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 

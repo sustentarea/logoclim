@@ -49,6 +49,15 @@ cat(
     "https://fair-software.eu",
     ")"
   ),
+  paste0(
+    "[![",
+    "OpenSSF Best Practices",
+    "](",
+    "https://www.bestpractices.dev/projects/10852/badge",
+    ")](",
+    "https://www.bestpractices.dev/projects/10852",
+    ")"
+  ),
   badger::badge_license(
     license = "MIT",
     color = "green",
@@ -178,7 +187,9 @@ cat(
 )
 ```
 
-Contributions are welcome! Whether it's reporting bugs, suggesting features, or improving documentation, your input is valuable.
+Contributions are welcome! Whether you want to report bugs, suggest features, or improve the code or documentation, your input is highly valued.
+
+When contributing code, please follow the [tidy design principles](https://design.tidyverse.org/) and the [tidyverse style guide](https://style.tidyverse.org/) whenever possible.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
