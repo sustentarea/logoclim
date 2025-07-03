@@ -88,7 +88,8 @@ variables.
 #### Historical Monthly Weather Data
 
 This series includes 12 monthly data points for each year from 1951 to
-2024, based on downscaled data from
+2024, based on [downscaled](https://worldclim.org/data/downscaling.html)
+data from
 [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/),
 developed by the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
@@ -98,7 +99,8 @@ precipitation.
 
 #### Future Climate Data
 
-This series includes 12 monthly data points from downscaled climate
+This series includes 12 monthly data points from
+[downscaled](https://worldclim.org/data/downscaling.html) climate
 projections derived from
 [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
 four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
@@ -127,29 +129,39 @@ the first time.
 
 #### Downloading the Model
 
-You can download the latest release of the model in the [GitHub
-Releases](https://github.com/sustentarea/logoclim/releases/latest). To
-access the development version, clone, or download this repository.
+You can download the latest release of the model from its [GitHub
+Releases page](https://github.com/sustentarea/logoclim/releases/latest).
+For the development version, you can clone or download its [GitHub
+repository](https://github.com/sustentarea/logoclim/) directly.
+
+To run the model, make sure to download all files in the `nlogo` folder.
+Note that climate data from WorldClim is required but not included in
+this repository; see the next section for instructions on obtaining and
+preparing the data.
 
 #### Downloading the Data
 
-`LogoClim` uses raster data to represent climate variables. While you
-can download the original datasets directly from [WorldClim
-2.1](https://worldclim.org/), they must first be converted to ASCII
-format before being used in NetLogo. To simplify this process, we
-recommend using the preprocessed datasets included in the model's
-[OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already
-converted the data to ASCII format for many countries and resolutions,
-making it easier to get started. After downloading, extract the files
-into the `data` folder within the model's directory.
+`LogoClim` relies on raster data to represent climate variables.
+Although you can download the original datasets directly from [WorldClim
+2.1](https://worldclim.org/), they must be converted to ASCII format
+before use in NetLogo. To streamline this process, we provide
+[Quarto](https://quarto.org/) notebooks in the `qmd` folder, containing
+reproducible pipelines with all necessary commands to download and
+process the data. You can easily adapt these notebooks to fit your
+specific needs.
+
+For quick testing, you can find example datasets in the model's [OSF
+repository](https://doi.org/10.17605/OSF.IO/RE95Z). These files are
+already converted to ASCII format and are ready for use with `LogoClim`.
+Please note that these datasets are intended for demonstration and
+testing only and should not be used for research or analysis.
+
+After downloading, extract the files into the `data` folder within the
+model's directory, or use the `Select data directory` button in the
+model interface to choose the folder where you extracted the data.
 
 We suggest starting with the 10-minute resolution to verify that the
 model runs smoothly on your system before trying higher resolutions.
-
-These datasets can be reproduced by running the
-[Quarto](https://quarto.org/) notebooks located in the `qmd` folder. To
-create other datasets, simply modify the notebooks to suit your
-requirements.
 
 #### Running the Model
 
@@ -219,22 +231,29 @@ portions of the software.
 
 ## Acknowledgments
 
-We gratefully acknowledge the contributions of [Stephen E.
+We gratefully acknowledge [Stephen E.
 Fick](https://orcid.org/0000-0002-3548-6966), [Robert J.
 Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire
-[WorldClim](https://worldclim.org/) team for their dedication to
-creating and maintaining the WorldClim datasets. Their work has been
-instrumental in enabling researchers and practitioners to access
-high-quality climate data.
+[WorldClim](https://worldclim.org/) team for their outstanding work in
+creating and maintaining the WorldClim datasets, which form the
+foundation of this project.
+
+We thank the [Climatic Research
+Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
+at the [University of East Anglia](https://www.uea.ac.uk/) and the
+United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for
+developing and providing access to the
+[CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/)
+dataset, a vital source of historical climate data.
 
 We also acknowledge the World Climate Research Programme
-([WCRP](https://www.wcrp-climate.org/)), which, through its Working
-Group on Coupled Modelling, coordinated and promoted the Coupled Model
-Intercomparison Project Phase 6
-([CMIP6](https://pcmdi.llnl.gov/CMIP6/)).
+([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled
+Modelling, and the Coupled Model Intercomparison Project Phase 6
+([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing
+global climate model development.
 
-We thank the climate modeling groups for producing and sharing their
-model outputs, the Earth System Grid Federation
+We are grateful to the climate modeling groups for producing and sharing
+their model outputs, the Earth System Grid Federation
 ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to
 the data, and the many funding agencies that support CMIP6 and ESGF.
 

@@ -688,11 +688,11 @@ This series includes only 12 monthly data points representing long-term average 
 
 #### HISTORICAL MONTHLY WEATHER DATA
 
-This series includes 12 monthly data points for each year from 1951 to 2024, based on downscaled data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This series includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 #### FUTURE CLIMATE DATA
 
-This series includes 12 monthly data points from downscaled climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
+This series includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
 
 ## HOW TO USE IT
 
@@ -702,13 +702,17 @@ This series includes 12 monthly data points from downscaled climate projections 
 
 The model relies on the GIS ([`gis`](https://ccl.northwestern.edu/netlogo/docs/gis.html)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
 
+To run the model, make sure to download all files in the repository `nlogo` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
+
 #### DOWNLOADING THE DATA
 
-`LogoClim` uses raster data to represent climate variables. While you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must first be converted to ASCII format before being used in NetLogo. To simplify this process, we recommend using the preprocessed datasets included in the model's [OSF](https://doi.org/10.17605/OSF.IO/RE95Z) repository. We have already converted the data to ASCII format for many countries and resolutions, making it easier to get started. After downloading, extract the files into the `data` folder within the model's directory.
+`LogoClim` relies on raster data to represent climate variables. Although you can download the original datasets directly from [WorldClim 2.1](https://worldclim.org/), they must be converted to ASCII format before use in NetLogo. To streamline this process, we provide [Quarto](https://quarto.org/) notebooks in the `qmd` folder, containing reproducible pipelines with all necessary commands to download and process the data. You can easily adapt these notebooks to fit your specific needs.
+
+For quick testing, you can find example datasets in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z). These files are already converted to ASCII format and are ready for use with `LogoClim`. Please note that these datasets are intended for demonstration and testing only and should not be used for research or analysis.
+
+After downloading, extract the files into the `data` folder within the model's directory, or use the `Select data directory` button in the model interface to choose the folder where you extracted the data.
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
-
-These datasets can be reproduced by running the [Quarto](https://quarto.org/) notebooks located in the `qmd` folder. To create other datasets, simply modify the notebooks to suit your requirements.
 
 #### RUNNING THE MODEL
 
@@ -734,7 +738,7 @@ Once everything is set up, click the `Setup` and `Go` buttons to start exploring
 - **`transition-seconds`**: Slider for controlling the speed of time progression in the simulation (in seconds per step/month) (default: `0.0`).
 - **`adjust-world-size?`**: Switch for automatically adjusting the world size. If it is set to *`On`*, the model will resize the world to fit the available interface space. If it is set to *`Off`*, the world size remains fixed, and each patch has a size of `1` (default: `On`).
 - **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series (default: `105 (blue)`).
-- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series (default: `25 orange)`).
+- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series (default: `25 (orange)`).
 - **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series (default: `15 red)`).
 - **`black-value`**: Slider for setting the lower threshold for the black color on the map (default: `0`).
 - **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, *`black-value`* will be ignored (default: `Off`).
@@ -755,7 +759,7 @@ Once everything is set up, click the `Setup` and `Go` buttons to start exploring
 - **`Climate variable`**: Displays the climate variable being used.
 - **`Bioclimatic variable`**: Displays the bioclimatic variable being used. Works only when *`climate-variable`* is set to *`bioclimatic-variables`*.
 - **`Year`**, **`Month`**: Displays the current year and month being simulated.
-- **`Min`**, **`Max`**, **`Mean`**, **`SD`** (Standard Deviation): Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
+- **`Min`**, **`Max`**, **`Mean`**, **`SD`**: Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
 - **`Plots`**: Graphs for mean, minimum, maximum, and standard deviation against time.
 
 ### PATCH ATTRIBUTES
@@ -825,11 +829,13 @@ The `LogoClim` code is licensed under the [MIT License](https://opensource.org/l
 
 ## ACKNOWLEDGMENTS
 
-We gratefully acknowledge the contributions of [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their dedication to creating and maintaining the WorldClim datasets. Their work has been instrumental in enabling researchers and practitioners to access high-quality climate data.
+We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets, which form the foundation of this project.
 
-We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), which, through its Working Group on Coupled Modelling, coordinated and promoted the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)).
+We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
 
-We thank the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
+We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing global climate model development.
+
+We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
 
 ![Sustentarea logo](images/sustentarea-logo.png)
 
