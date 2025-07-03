@@ -38,24 +38,24 @@ cat(
   ),
   paste0(
     "[![",
-    "fair-software.eu",
-    "](",
-    "https://img.shields.io/badge/",
-    "fair--software.eu", "-",
-    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8B%20%20%E2%97%8F%20%20%E2%97%8F",
-    "-",
-    "yellow",
-    ")](",
-    "https://fair-software.eu",
-    ")"
-  ),
-  paste0(
-    "[![",
     "OpenSSF Best Practices",
     "](",
     "https://bestpractices.coreinfrastructure.org/projects/10852/badge",
     ")](",
     "https://bestpractices.coreinfrastructure.org/projects/10852",
+    ")"
+  ),
+  paste0(
+    "[![",
+    "fair-software.eu",
+    "](",
+    "https://img.shields.io/badge/",
+    "fair--software.eu", "-",
+    "%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F",
+    "-",
+    "green",
+    ")](",
+    "https://fair-software.eu",
     ")"
   ),
   badger::badge_license(
