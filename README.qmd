@@ -23,7 +23,7 @@ cat(
   badger::badge_repostatus("active"),
   badger::badge_custom(
     x = "CoMSES Network",
-    y = "0.0.0",
+    y = "1.0.0",
     color = "1284C5",
     url = paste0(
       "https://www.comses.net/codebases/",
@@ -308,7 +308,7 @@ htmltools::tags$table(
           href = "https://www.gov.br/cnpq/",
           .noWS = "outside"
         ),
-        ") (grant no. 444588/2023-0)"
+        ") (grant no. 444588/2023-0)."
       ),
       width = "70%"
     )

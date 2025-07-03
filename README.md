@@ -6,7 +6,7 @@
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/CoMSES%20Network-0.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![](https://img.shields.io/badge/CoMSES%20Network-1.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
@@ -300,7 +300,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
         Technology of the Secretariat of Science, Technology, and Innovation 
         and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
         of Brazil, and the National Council for Scientific and 
-        Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0)
+        Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
       </p>
     </td>
   </tr>
