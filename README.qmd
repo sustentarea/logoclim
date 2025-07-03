@@ -53,9 +53,9 @@ cat(
     "[![",
     "OpenSSF Best Practices",
     "](",
-    "https://www.bestpractices.dev/projects/10852/badge",
+    "https://bestpractices.coreinfrastructure.org/projects/10852/badge",
     ")](",
-    "https://www.bestpractices.dev/projects/10852",
+    "https://bestpractices.coreinfrastructure.org/projects/10852",
     ")"
   ),
   badger::badge_license(
