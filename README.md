@@ -1,8 +1,10 @@
 # LogoClim
 
-<!-- quarto render -->
+<!-- Quarto render -->
 
 <!-- badges: start -->
+[![JOSS journal
+badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)

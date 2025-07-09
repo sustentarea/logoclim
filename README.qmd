@@ -1,6 +1,6 @@
 # LogoClim
 
-<!-- quarto render -->
+<!-- Quarto render -->
 
 ```{r}
 #| label: setup
@@ -20,6 +20,16 @@ library(stringr)
 #| output: asis
 
 cat(
+  paste0(
+    "[![",
+    "JOSS journal badge",
+    "](",
+    "https://joss.theoj.org/papers/",
+    "093e7333c6a34b5f3dc0b44b76e05480/status.svg",
+    ")](",
+    "https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480",
+    ")"
+  ),
   badger::badge_repostatus("active"),
   badger::badge_custom(
     x = "CoMSES Network",
