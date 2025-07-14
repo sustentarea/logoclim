@@ -20,6 +20,7 @@ to walk [#index]
   set dataset gis:load-dataset file-path series-data-path (item #index files)
   set year item #index years
   set month item #index months
+  set plot-x-max-range ceiling ((ticks + 1) * 1.25)
 
   setup-map
 end

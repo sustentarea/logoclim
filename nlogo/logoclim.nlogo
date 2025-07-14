@@ -92,6 +92,7 @@ globals [
   month
   months
   nan
+  plot-x-max-range
   series-data-path
   settings
   world-bleed
@@ -159,11 +160,11 @@ end
 GRAPHICS-WINDOW
 455
 10
-1005
-489
+1003
+487
 -1
 -1
-2.0
+1.992619926199262
 1
 10
 1
@@ -557,7 +558,7 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 plot-x-max-range"
 PENS
 "default" 1.0 0 -16777216 true "" "plot mean [value] of patches with [not is-nan? value]"
 
@@ -586,7 +587,7 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 plot-x-max-range"
 PENS
 "default" 1.0 0 -16777216 true "" "plot min [value] of patches with [not is-nan? value]"
 
@@ -615,7 +616,7 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 plot-x-max-range"
 PENS
 "default" 1.0 0 -16777216 true "" "plot standard-deviation [value] of patches with [not is-nan? value]"
 
@@ -644,7 +645,7 @@ Value
 0.0
 true
 false
-"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 (ifelse-value (ticks = 0) [1] [ceiling (ticks * 1.25)])"
+"set-plot-y-range min-plot-y max-plot-y" "set-plot-x-range 0 plot-x-max-range"
 PENS
 "default" 1.0 0 -16777216 true "" "plot max [value] of patches with [not is-nan? value]"
 

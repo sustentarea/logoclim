@@ -1,5 +1,7 @@
 # LogoClim (development version)
 
+- Add the global variable `plot-max-y-range` to avoid unnecessary computations.
+
 # LogoClim 1.0.0
 
 First stable release. 🎉
