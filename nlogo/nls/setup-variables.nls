@@ -7,7 +7,11 @@
 ;   "setup-hmwd-variables.nls"
 ; ]
 
-; globals [data-series series-data-path]
+; globals [
+;   data-series
+;   series-color
+;   series-data-path
+; ]
 
 to setup-variables
   set series-data-path lookup-series-data-path
@@ -29,6 +33,7 @@ to setup-variables
   set year item index years
   set month item index months
   set nan nan-value dataset
+  set series-color lookup-series-color
 
   set settings (list
     data-series

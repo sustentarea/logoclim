@@ -7,6 +7,7 @@
 ;   data-series
 ;   max-value
 ;   min-value
+;   series-color
 ;   white-max
 ;   white-value
 ; ]
@@ -59,8 +60,6 @@ to setup-map
 
   ask (patches) [
     ifelse (not is-nan? value) [
-      let series-color lookup-series-color
-
       set pcolor (
         scale-color series-color value min-pcolor-value max-pcolor-value
       )

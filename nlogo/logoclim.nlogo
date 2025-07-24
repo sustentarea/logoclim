@@ -93,6 +93,7 @@ globals [
   months
   nan
   plot-x-max-range
+  series-color
   series-data-path
   settings
   world-bleed
