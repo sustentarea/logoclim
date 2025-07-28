@@ -1,0 +1,1357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<model version="NetLogo 7.0.0-beta2" snapToGrid="true">
+  <code><![CDATA[; LogoClim: WorldClim in NetLogo
+;
+; Version: 2025-07-23 2.0.0.9000
+; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
+; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
+; License: MIT
+; Repository: https://github.com/sustentarea/logoclim
+;
+; Require: NetLogo >= 7.0
+; Required NetLogo extensions: `gis`, `pathdir`, `string`, and `time`
+
+__includes [
+  "nls/as-list.nls"
+  "nls/as-string.nls"
+  "nls/adjust-patch-size.nls"
+  "nls/adjust-world-size.nls"
+  "nls/check-abs.nls"
+  "nls/check-all.nls"
+  "nls/check-any.nls"
+  "nls/check-atomic.nls"
+  "nls/check-between.nls"
+  "nls/check-choice.nls"
+  "nls/check-climate-variable.nls"
+  "nls/check-data-resolution.nls"
+  "nls/check-data.nls"
+  "nls/check-empty.nls"
+  "nls/check-gis.nls"
+  "nls/check-integer.nls"
+  "nls/check-list.nls"
+  "nls/check-logical.nls"
+  "nls/check-nan.nls"
+  "nls/check-number.nls"
+  "nls/check-start-year.nls"
+  "nls/check-string.nls"
+  "nls/check-windows.nls"
+  "nls/check-world-bleed.nls"
+  "nls/collapse.nls"
+  "nls/file-path.nls"
+  "nls/go-back.nls"
+  "nls/halt.nls"
+  "nls/list-files-by-pattern.nls"
+  "nls/lookup-bioclimatic-variable.nls"
+  "nls/lookup-climate-variable.nls"
+  "nls/lookup-data-resolution.nls"
+  "nls/lookup-fcd-interval.nls"
+  "nls/lookup-series-color.nls"
+  "nls/lookup-series-data-path.nls"
+  "nls/lookup-shared-socioeconomic-pathway.nls"
+  "nls/nan-value.nls"
+  "nls/normalize-path.nls"
+  "nls/num-to-str-month.nls"
+  "nls/pattern-data-file.nls"
+  "nls/pattern-fcd-file.nls"
+  "nls/pattern-hcd-file.nls"
+  "nls/pattern-hmwd-file.nls"
+  "nls/quartile.nls"
+  "nls/remove-world-bleed.nls"
+  "nls/rep-collapse.nls"
+  "nls/setup-hcd-variables.nls"
+  "nls/setup-hmwd-variables.nls"
+  "nls/setup-fcd-variables.nls"
+  "nls/setup-map.nls"
+  "nls/setup-stats.nls"
+  "nls/setup-variables.nls"
+  "nls/setup-world.nls"
+  "nls/setup-world-bleed.nls"
+  "nls/show-values.nls"
+  "nls/single-quote.nls"
+  "nls/str-extract.nls"
+  "nls/str-to-num-month.nls"
+  "nls/unique-outliers.nls"
+  "nls/walk.nls"
+]
+
+extensions [
+  gis
+  pathdir
+  string
+  time
+]
+
+globals [
+  dataset
+  files
+  index
+  max-pcolor-value
+  max-plot-y
+  max-value
+  min-pcolor-value
+  min-plot-y
+  min-value
+  month
+  months
+  nan
+  plot-x-max-range
+  series-color
+  series-data-path
+  settings
+  world-bleed
+  year
+  years
+]
+
+patches-own [
+  latitude
+  longitude
+  value
+]
+
+to setup
+  clear-all
+
+  assert-climate-variable
+  assert-data-resolution
+  assert-start-year
+  assert-data
+
+  setup-variables
+  setup-world
+  setup-map
+  setup-stats
+
+  reset-ticks
+end
+
+to go [#tick? #wait?]
+  assert-logical #tick?
+  assert-logical #wait?
+
+  (ifelse
+    (not is-gis? dataset) [
+      stop
+    ] (
+      (
+        (year = last years) and
+        (month = "December")
+      ) or
+      (climate-variable = "Elevation") or
+      (
+        (data-series = "Historical climate data") and
+        (climate-variable = "Bioclimatic variables")
+      ) or
+      (
+        (data-series = "Future climate data") and
+        (climate-variable = "Bioclimatic variables") and
+        (year = last years)
+      )
+    ) [
+      stop
+    ] [
+      set index index + 1
+    ]
+  )
+
+  walk index
+
+  if (#tick? = true) [tick]
+end]]></code>
+  <widgets>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.29" fontSize="10" wrappingAllowedY="false" width="624" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
+    <chooser x="10" y="10" height="60" variable="data-series" current="0" width="250" display="data-series">
+      <choice type="string" value="Historical climate data"></choice>
+      <choice type="string" value="Historical monthly weather data"></choice>
+      <choice type="string" value="Future climate data"></choice>
+    </chooser>
+    <chooser x="10" y="75" height="60" variable="data-resolution" current="3" width="250" display="data-resolution">
+      <choice type="string" value="30 seconds (~1 km2  at the equator)"></choice>
+      <choice type="string" value="2.5 minutes (~21 km2 at the equator)"></choice>
+      <choice type="string" value="5 minutes (~85 km2 at the equator)"></choice>
+      <choice type="string" value="10 minutes (~340 km2 at the equator)"></choice>
+    </chooser>
+    <chooser x="10" y="140" height="60" variable="climate-variable" current="1" width="250" display="climate-variable">
+      <choice type="string" value="Average minimum temperature (°C)"></choice>
+      <choice type="string" value="Average maximum temperature (°C)"></choice>
+      <choice type="string" value="Average temperature (°C)"></choice>
+      <choice type="string" value="Total precipitation (mm)"></choice>
+      <choice type="string" value="Solar radiation (kJ m^-2 day^-1)"></choice>
+      <choice type="string" value="Wind speed (m s^-1)"></choice>
+      <choice type="string" value="Water vapor pressure (kPa)"></choice>
+      <choice type="string" value="Bioclimatic variables"></choice>
+      <choice type="string" value="Elevation"></choice>
+    </chooser>
+    <chooser x="10" y="205" height="60" variable="global-climate-model" current="5" width="250" display="global-climate-model">
+      <choice type="string" value="ACCESS-CM2"></choice>
+      <choice type="string" value="ACCESS-ESM1-5"></choice>
+      <choice type="string" value="BCC-CSM2-MR"></choice>
+      <choice type="string" value="CanESM5"></choice>
+      <choice type="string" value="CanESM5-CanOE"></choice>
+      <choice type="string" value="CMCC-ESM2"></choice>
+      <choice type="string" value="CNRM-CM6-1"></choice>
+      <choice type="string" value="CNRM-CM6-1-HR"></choice>
+      <choice type="string" value="CNRM-ESM2-1"></choice>
+      <choice type="string" value="EC-Earth3-Veg"></choice>
+      <choice type="string" value="EC-Earth3-Veg-LR"></choice>
+      <choice type="string" value="FIO-ESM-2-0"></choice>
+      <choice type="string" value="GFDL-ESM4"></choice>
+      <choice type="string" value="GISS-E2-1-G"></choice>
+      <choice type="string" value="GISS-E2-1-H"></choice>
+      <choice type="string" value="HadGEM3-GC31-LL"></choice>
+      <choice type="string" value="INM-CM4-8"></choice>
+      <choice type="string" value="INM-CM5-0"></choice>
+      <choice type="string" value="IPSL-CM6A-LR"></choice>
+      <choice type="string" value="MIROC-ES2L"></choice>
+      <choice type="string" value="MIROC6"></choice>
+      <choice type="string" value="MPI-ESM1-2-HR"></choice>
+      <choice type="string" value="MPI-ESM1-2-LR"></choice>
+      <choice type="string" value="MRI-ESM2-0"></choice>
+      <choice type="string" value="UKESM1-0-LL"></choice>
+    </chooser>
+    <chooser x="10" y="270" height="60" variable="shared-socioeconomic-pathway" current="3" width="250" display="shared-socioeconomic-pathway">
+      <choice type="string" value="SSP-126"></choice>
+      <choice type="string" value="SSP-245"></choice>
+      <choice type="string" value="SSP-370"></choice>
+      <choice type="string" value="SSP-585"></choice>
+    </chooser>
+    <chooser x="10" y="335" height="60" variable="bioclimatic-variable" current="0" width="250" display="bioclimatic-variable">
+      <choice type="string" value="BIO1 - Annual mean temperature"></choice>
+      <choice type="string" value="BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))"></choice>
+      <choice type="string" value="BIO3 - Isothermality (BIO2/BIO7) (×100)"></choice>
+      <choice type="string" value="BIO4 - Temperature seasonality (standard deviation ×100)"></choice>
+      <choice type="string" value="BIO5 - Max temperature of warmest month"></choice>
+      <choice type="string" value="BIO6 - Min temperature of coldest month"></choice>
+      <choice type="string" value="BIO7 - Temperature annual range (BIO5-BIO6)"></choice>
+      <choice type="string" value="BIO8 - Mean temperature of wettest quarter"></choice>
+      <choice type="string" value="BIO9 - Mean temperature of driest quarter"></choice>
+      <choice type="string" value="BIO10 - Mean temperature of warmest quarter"></choice>
+      <choice type="string" value="BIO11 - Mean temperature of coldest quarter"></choice>
+      <choice type="string" value="BIO12 - Annual precipitation"></choice>
+      <choice type="string" value="BIO13 - Precipitation of wettest month"></choice>
+      <choice type="string" value="BIO14 - Precipitation of driest month"></choice>
+      <choice type="string" value="BIO15 - Precipitation seasonality (coefficient of variation)"></choice>
+      <choice type="string" value="BIO16 - Precipitation of wettest quarter"></choice>
+      <choice type="string" value="BIO17 - Precipitation of driest quarter"></choice>
+      <choice type="string" value="BIO18 - Precipitation of warmest quarter"></choice>
+      <choice type="string" value="BIO19 - Precipitation of coldest quarter"></choice>
+    </chooser>
+    <chooser x="10" y="400" height="60" variable="start-month" current="0" width="250" display="start-month">
+      <choice type="string" value="January"></choice>
+      <choice type="string" value="February"></choice>
+      <choice type="string" value="March"></choice>
+      <choice type="string" value="April"></choice>
+      <choice type="string" value="May"></choice>
+      <choice type="string" value="June"></choice>
+      <choice type="string" value="July"></choice>
+      <choice type="string" value="August"></choice>
+      <choice type="string" value="September"></choice>
+      <choice type="string" value="October"></choice>
+      <choice type="string" value="November"></choice>
+      <choice type="string" value="December"></choice>
+    </chooser>
+    <input x="10" multiline="false" y="465" height="60" variable="start-year" type="number" width="250">1970.0</input>
+    <input x="10" multiline="false" y="575" height="60" variable="data-path" type="string" width="250">../data</input>
+    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false false</button>
+    <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true true</button>
+    <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value 
+  (settings = 0)
+  ["NA"]
+  [year]</monitor>
+    <monitor x="1540" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value 
+  ((settings = 0))
+  ["NA"]
+  [month]</monitor>
+    <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic variable">ifelse-value
+  (lookup-climate-variable = "bioc") and (settings != 0)
+  [item 5 settings]
+  ["NA"]</monitor>
+    <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="250" display="Climate variable">ifelse-value
+  (settings = 0)
+  ["NA"]
+  [item 2 settings]</monitor>
+    <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
+    <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go back">go-back</button>
+    <button x="10" y="530" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select data directory">set data-path user-directory</button>
+    <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
+    <slider x="265" step="1" y="360" max="500" width="250" display="black-value" height="50" min="-500" direction="Horizontal" default="0.0" variable="black-value"></slider>
+    <input x="265" multiline="false" y="295" height="60" variable="background-color" type="color" width="250">9.2</input>
+    <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
+    <input x="265" multiline="false" y="165" height="60" variable="historical-monthly-weather-data-color" type="color" width="250">25.0</input>
+    <slider x="265" step="1" y="460" max="500" width="250" display="white-value" height="50" min="-500" direction="Horizontal" default="50.0" variable="white-value"></slider>
+    <switch x="265" y="415" height="40" on="false" variable="black-min" width="250" display="black-min"></switch>
+    <switch x="265" y="515" height="40" on="true" variable="white-max" width="250" display="white-max"></switch>
+    <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show values">show-values</button>
+    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
+      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
+      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update>plot standard-deviation [value] of patches with [not is-nan? value]</update>
+      </pen>
+    </plot>
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
+      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
+      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update>plot mean [value] of patches with [not is-nan? value]</update>
+      </pen>
+    </plot>
+    <monitor x="1160" precision="5" y="325" height="60" fontSize="11" width="250" display="Mean">mean [value] of patches with [not is-nan? value]</monitor>
+    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
+      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
+      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update>plot max [value] of patches with [not is-nan? value]</update>
+      </pen>
+    </plot>
+    <monitor x="1415" precision="5" y="325" height="60" fontSize="11" width="250" display="Standard deviation">standard-deviation [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-nan? value]</monitor>
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
+      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
+      <update>set-plot-x-range 0 plot-x-max-range</update>
+      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+        <setup></setup>
+        <update>plot min [value] of patches with [not is-nan? value]</update>
+      </pen>
+    </plot>
+    <switch x="705" y="590" height="45" on="true" variable="adjust-world-size?" width="250" display="adjust-world-size?"></switch>
+  </widgets>
+  <info><![CDATA[# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
+
+## WHAT IS IT?
+
+`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.
+
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
+
+> `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
+
+## HOW IT WORKS
+
+`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
+
+### COLOR SCALE
+
+The model uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches. By default, the black threshold is set to 0, and the white threshold corresponds to the maximum value of the current data.
+
+### DATA SERIES
+
+In addition to latitude and longitude data points, `LogoClim` supports simulation with all three climate data series provided by [WorldClim 2.1](https://worldclim.org/): long-term historical climate averages, historical monthly weather, and future climate projections. Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)) and can be selected within the model interface to fit your research needs. More information about each series can be found in the WorldClim website.
+
+#### HISTORICAL CLIMATE DATA
+
+This series includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on bioclimatic variables.
+
+#### HISTORICAL MONTHLY WEATHER DATA
+
+This series includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+
+#### FUTURE CLIMATE DATA
+
+This series includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and bioclimatic variables.
+
+## HOW TO USE IT
+
+### SETUP
+
+`LogoClim` was developed using NetLogo 6.4, so it is recommended to use this version or later.
+
+The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
+
+To run the model, make sure to download all files in the repository `nlogo` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
+
+#### DOWNLOADING THE DATA
+
+`LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to ASCII format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
+
+We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`.
+
+After downloading and processing the files, place them in the `data` folder within the model's directory. Alternatively, you can use the *Select data directory* button in the model interface to specify the location of your data files.
+
+We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
+
+#### RUNNING THE MODEL
+
+Once everything is set up, click the `Setup` and `Go` buttons to start exploring!
+
+### INTEGRATING WITH OTHER MODELS
+
+`LogoClim` can be integrated with other models using NetLogo's LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension. This extension enables parallel execution and data exchange between models. For an example of integrating `LogoClim` with another model, see the [FoodClim](https://github.com/sustentarea/foodclim) project.
+
+### INTERFACE CONTROLS
+
+#### CHOOSERS, INPUT BOXES, AND SLIDERS
+
+- **`data-series`**: Chooser for selecting a data series (default: `Historical monthly weather data`).
+- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 minutes (~340 km2 at the equator)`).
+- **`climate-variable`**: Chooser for selecting the climate variable (default: `Average maximum temperature (°C)`).
+- **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future climate data`* is selected (default: `CMCC-ESM2`).
+- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenario. Only useful when *`Future climate data`* is selected (default: `SSP-585`).
+- **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual mean temperature`).
+- **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
+- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1951`).
+- **`data-path`**: Input box for setting the path to the data folder. Usually, this does not need to be changed. Use the *`Select data directory`* button to navigate via a dialog window (default: `../data/`).
+- **`historical-climate-color`**: Input box for setting the color used to represent the *historical climate data* series (default: `105 (blue)`).
+- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *historical monthly weather data* series (default: `25 (orange)`).
+- **`future-climate-color`**: Input box for setting the color used to represent the *future climate data* series (default: `15 red)`).
+- **`black-value`**: Slider for setting the lower threshold for the black color on the map (default: `0`).
+- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, *`black-value`* will be ignored (default: `Off`).
+- **`white-value`**: Slider for setting the upper threshold for the white color on the map (default: `50`).
+- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, *`white-value`* will be ignored (default: `On`).
+
+#### BUTTONS
+
+- **`Setup`**: Initializes the simulation with the selected parameters.
+- **`Go`**: Starts or resumes the simulation.
+- **`Go back`**: Steps the simulation backward in time.
+- **`Go forward`**: Steps the simulation forward in time.
+- **`Select data directory`**: Opens a dialog window, allowing the user to indicate the data directory.
+- **`Show values`**: Displays patch values when hovering the mouse over them.
+
+### MONITORS AND PLOTS
+
+- **`Climate variable`**: Displays the climate variable being used.
+- **`Bioclimatic variable`**: Displays the bioclimatic variable being used. Works only when *`climate-variable`* is set to *`bioclimatic-variables`*.
+- **`Year`**, **`Month`**: Displays the current year and month being simulated.
+- **`Min`**, **`Max`**, **`Mean`**, **`SD`**: Monitors showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches.
+- **`Plots`**: Graphs for mean, minimum, maximum, and standard deviation against time.
+
+### PATCH ATTRIBUTES
+
+- **`value`**: A number representing the series value at the patch point.
+- **`latitude`**: A `list` of two numbers indicating the minimum and maximum latitude of the patch point.
+- **`longitude`**: A `list` of two numbers indicating the minimum and maximum longitude of the patch point.
+
+## THINGS TO NOTICE
+
+- Observe the changes in the map as the simulation progresses, particularly how the colors (values) vary over time and space.
+- Pay attention to the plots and monitors to see trends and variation in the climate variable across different time periods.
+- Notice the differences when switching between historical data and future projections, especially for different SSP scenarios.
+
+## THINGS TO TRY
+
+- Change the starting year and month to observe different historical periods or future projections.
+- Switch between different climate variables to see how each variable evolves over time.
+- Experiment with various global climate models and SSPs to explore a range of future scenarios.
+- Adjust the transition speed to slow down or speed up the simulation for detailed observation or quicker results.
+
+## HOW TO CITE
+
+> When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+
+If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
+
+To cite `LogoClim` in publications please use the following format:
+
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software, NetLogo model]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+
+A BibTeX entry for LaTeX users is:
+
+```latex
+@Misc{vartanian2025,
+  title = {LogoClim: WorldClim in NetLogo},
+  author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
+  year = {2025},
+  doi = {10.17605/OSF.IO/EAPZU},
+  note = {NetLogo model}
+}
+```
+
+## HOW TO CONTRIBUTE
+
+![Contributor Covenant 2.1 badge](contributor-covenant-2-1-badge)
+
+Contributions are welcome! Whether it's reporting bugs, suggesting features, or improving documentation, your input is valuable.
+
+![GitHub Sponsor badge](github-sponsor-badge)
+
+You can also support the development of `LogoClim` by becoming a sponsor. Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
+
+## IMPORTANT LINKS
+
+- OSF repository: https://doi.org/10.17605/OSF.IO/EAPZU
+- Code repository: https://github.com/sustentarea/logoclim
+- Latest release: https://github.com/sustentarea/logoclim/releases/latest
+- Data repository: https://doi.org/10.17605/OSF.IO/RE95Z
+- Support development: https://github.com/sponsors/danielvartan
+
+## LICENSE
+
+![MIT license badge](mit-license-badge)
+
+The `LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit). This means you can use, modify, and distribute the code freely, as long as you include the original license and copyright notice in any copies or substantial portions of the software.
+
+## ACKNOWLEDGMENTS
+
+We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets, which form the foundation of this project.
+
+We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
+
+We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing global climate model development.
+
+We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
+
+![Sustentarea logo](sustentarea-logo)
+
+`LogoClim` was developed with support from the [Sustentarea](https://github.com/sustentarea/) Research and Extension Center at the University of São Paulo ([USP](https://www.usp.br/)).
+
+![CNPq logo](cnpq-logo)
+
+This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics)) of the [Ministry of Health](https://www.gov.br/saude/en) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0).
+
+## REFERENCES
+
+Eyring, V., Bony, S., Meehl, G. A., Senior, C. A., Stevens, B., Stouffer, R. J., & Taylor, K. E. (2016). Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organization. *Geoscientific Model Development*, *9*(5), 1937-1958. https://doi.org/10.5194/gmd-9-1937-2016
+
+Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. *International Journal of Climatology*, *37*(12), 4302-4315. [https://doi.org/10.1002/joc.5086](https://doi.org/10.1002/joc.5086)
+
+Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. [https://doi.org/10.1038/s41597-020-0453-3](https://doi.org/10.1038/s41597-020-0453-3)
+
+O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. [https://doi.org/10.1016/j.gloenvcha.2015.01.004](https://doi.org/10.1016/j.gloenvcha.2015.01.004)]]></info>
+  <turtleShapes>
+    <shape name="default" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="5"></point>
+        <point x="40" y="250"></point>
+        <point x="150" y="205"></point>
+        <point x="260" y="250"></point>
+      </polygon>
+    </shape>
+    <shape name="airplane" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="135" y="15"></point>
+        <point x="120" y="60"></point>
+        <point x="120" y="105"></point>
+        <point x="15" y="165"></point>
+        <point x="15" y="195"></point>
+        <point x="120" y="180"></point>
+        <point x="135" y="240"></point>
+        <point x="105" y="270"></point>
+        <point x="120" y="285"></point>
+        <point x="150" y="270"></point>
+        <point x="180" y="285"></point>
+        <point x="210" y="270"></point>
+        <point x="165" y="240"></point>
+        <point x="180" y="180"></point>
+        <point x="285" y="195"></point>
+        <point x="285" y="165"></point>
+        <point x="180" y="105"></point>
+        <point x="180" y="60"></point>
+        <point x="165" y="15"></point>
+      </polygon>
+    </shape>
+    <shape name="arrow" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="0"></point>
+        <point x="0" y="150"></point>
+        <point x="105" y="150"></point>
+        <point x="105" y="293"></point>
+        <point x="195" y="293"></point>
+        <point x="195" y="150"></point>
+        <point x="300" y="150"></point>
+      </polygon>
+    </shape>
+    <shape name="box" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="285"></point>
+        <point x="285" y="225"></point>
+        <point x="285" y="75"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="135"></point>
+        <point x="15" y="75"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="75"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="75"></point>
+        <point x="15" y="225"></point>
+        <point x="150" y="285"></point>
+        <point x="150" y="135"></point>
+      </polygon>
+      <line endX="150" startY="285" marked="false" color="255" endY="135" startX="150"></line>
+      <line endX="15" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+      <line endX="285" startY="135" marked="false" color="255" endY="75" startX="150"></line>
+    </shape>
+    <shape name="bug" rotatable="true" editableColorIndex="0">
+      <circle x="96" y="182" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="110" y="127" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <circle x="110" y="75" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <line endX="80" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+      <line endX="220" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
+    </shape>
+    <shape name="butterfly" rotatable="true" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="209" y="199"></point>
+        <point x="225" y="225"></point>
+        <point x="225" y="255"></point>
+        <point x="195" y="270"></point>
+        <point x="165" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="165"></point>
+        <point x="89" y="198"></point>
+        <point x="75" y="225"></point>
+        <point x="75" y="255"></point>
+        <point x="105" y="270"></point>
+        <point x="135" y="255"></point>
+        <point x="150" y="240"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="139" y="148"></point>
+        <point x="100" y="105"></point>
+        <point x="55" y="90"></point>
+        <point x="25" y="90"></point>
+        <point x="10" y="105"></point>
+        <point x="10" y="135"></point>
+        <point x="25" y="180"></point>
+        <point x="40" y="195"></point>
+        <point x="85" y="194"></point>
+        <point x="139" y="163"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="162" y="150"></point>
+        <point x="200" y="105"></point>
+        <point x="245" y="90"></point>
+        <point x="275" y="90"></point>
+        <point x="290" y="105"></point>
+        <point x="290" y="135"></point>
+        <point x="275" y="180"></point>
+        <point x="260" y="195"></point>
+        <point x="215" y="195"></point>
+        <point x="162" y="165"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="135" y="225"></point>
+        <point x="120" y="150"></point>
+        <point x="135" y="120"></point>
+        <point x="150" y="105"></point>
+        <point x="165" y="120"></point>
+        <point x="180" y="150"></point>
+        <point x="165" y="225"></point>
+      </polygon>
+      <circle x="135" y="90" marked="false" color="255" diameter="30" filled="true"></circle>
+      <line endX="195" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+      <line endX="105" startY="105" marked="false" color="255" endY="60" startX="150"></line>
+    </shape>
+    <shape name="car" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="300" y="180"></point>
+        <point x="279" y="164"></point>
+        <point x="261" y="144"></point>
+        <point x="240" y="135"></point>
+        <point x="226" y="132"></point>
+        <point x="213" y="106"></point>
+        <point x="203" y="84"></point>
+        <point x="185" y="63"></point>
+        <point x="159" y="50"></point>
+        <point x="135" y="50"></point>
+        <point x="75" y="60"></point>
+        <point x="0" y="150"></point>
+        <point x="0" y="165"></point>
+        <point x="0" y="225"></point>
+        <point x="300" y="225"></point>
+        <point x="300" y="180"></point>
+      </polygon>
+      <circle x="180" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <circle x="30" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="162" y="80"></point>
+        <point x="132" y="78"></point>
+        <point x="134" y="135"></point>
+        <point x="209" y="135"></point>
+        <point x="194" y="105"></point>
+        <point x="189" y="96"></point>
+        <point x="180" y="89"></point>
+      </polygon>
+      <circle x="47" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+      <circle x="195" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
+    </shape>
+    <shape name="circle" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="circle 2" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+    </shape>
+    <shape name="cow" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="200" y="193"></point>
+        <point x="197" y="249"></point>
+        <point x="179" y="249"></point>
+        <point x="177" y="196"></point>
+        <point x="166" y="187"></point>
+        <point x="140" y="189"></point>
+        <point x="93" y="191"></point>
+        <point x="78" y="179"></point>
+        <point x="72" y="211"></point>
+        <point x="49" y="209"></point>
+        <point x="48" y="181"></point>
+        <point x="37" y="149"></point>
+        <point x="25" y="120"></point>
+        <point x="25" y="89"></point>
+        <point x="45" y="72"></point>
+        <point x="103" y="84"></point>
+        <point x="179" y="75"></point>
+        <point x="198" y="76"></point>
+        <point x="252" y="64"></point>
+        <point x="272" y="81"></point>
+        <point x="293" y="103"></point>
+        <point x="285" y="121"></point>
+        <point x="255" y="121"></point>
+        <point x="242" y="118"></point>
+        <point x="224" y="167"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="73" y="210"></point>
+        <point x="86" y="251"></point>
+        <point x="62" y="249"></point>
+        <point x="48" y="208"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="25" y="114"></point>
+        <point x="16" y="195"></point>
+        <point x="9" y="204"></point>
+        <point x="23" y="213"></point>
+        <point x="25" y="200"></point>
+        <point x="39" y="123"></point>
+      </polygon>
+    </shape>
+    <shape name="cylinder" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+    </shape>
+    <shape name="dot" rotatable="false" editableColorIndex="0">
+      <circle x="90" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+    </shape>
+    <shape name="face happy" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="255"></point>
+        <point x="90" y="239"></point>
+        <point x="62" y="213"></point>
+        <point x="47" y="191"></point>
+        <point x="67" y="179"></point>
+        <point x="90" y="203"></point>
+        <point x="109" y="218"></point>
+        <point x="150" y="225"></point>
+        <point x="192" y="218"></point>
+        <point x="210" y="203"></point>
+        <point x="227" y="181"></point>
+        <point x="251" y="194"></point>
+        <point x="236" y="217"></point>
+        <point x="212" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="face neutral" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="7" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <rectangle endX="240" startY="195" marked="false" color="255" endY="225" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="face sad" rotatable="false" editableColorIndex="0">
+      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
+      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="150" y="168"></point>
+        <point x="90" y="184"></point>
+        <point x="62" y="210"></point>
+        <point x="47" y="232"></point>
+        <point x="67" y="244"></point>
+        <point x="90" y="220"></point>
+        <point x="109" y="205"></point>
+        <point x="150" y="198"></point>
+        <point x="192" y="205"></point>
+        <point x="210" y="220"></point>
+        <point x="227" y="242"></point>
+        <point x="251" y="229"></point>
+        <point x="236" y="206"></point>
+        <point x="212" y="183"></point>
+      </polygon>
+    </shape>
+    <shape name="fish" rotatable="false" editableColorIndex="0">
+      <polygon color="-1" filled="true" marked="false">
+        <point x="44" y="131"></point>
+        <point x="21" y="87"></point>
+        <point x="15" y="86"></point>
+        <point x="0" y="120"></point>
+        <point x="15" y="150"></point>
+        <point x="0" y="180"></point>
+        <point x="13" y="214"></point>
+        <point x="20" y="212"></point>
+        <point x="45" y="166"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="135" y="195"></point>
+        <point x="119" y="235"></point>
+        <point x="95" y="218"></point>
+        <point x="76" y="210"></point>
+        <point x="46" y="204"></point>
+        <point x="60" y="165"></point>
+      </polygon>
+      <polygon color="-1" filled="true" marked="false">
+        <point x="75" y="45"></point>
+        <point x="83" y="77"></point>
+        <point x="71" y="103"></point>
+        <point x="86" y="114"></point>
+        <point x="166" y="78"></point>
+        <point x="135" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="136"></point>
+        <point x="151" y="77"></point>
+        <point x="226" y="81"></point>
+        <point x="280" y="119"></point>
+        <point x="292" y="146"></point>
+        <point x="292" y="160"></point>
+        <point x="287" y="170"></point>
+        <point x="270" y="195"></point>
+        <point x="195" y="210"></point>
+        <point x="151" y="212"></point>
+        <point x="30" y="166"></point>
+      </polygon>
+      <circle x="215" y="106" marked="false" color="255" diameter="30" filled="true"></circle>
+    </shape>
+    <shape name="flag" rotatable="false" editableColorIndex="0">
+      <rectangle endX="75" startY="15" marked="true" color="-1920102913" endY="300" startX="60" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="90" y="150"></point>
+        <point x="270" y="90"></point>
+        <point x="90" y="30"></point>
+      </polygon>
+      <line endX="90" startY="135" marked="true" color="-1920102913" endY="135" startX="75"></line>
+      <line endX="90" startY="45" marked="true" color="-1920102913" endY="45" startX="75"></line>
+    </shape>
+    <shape name="flower" rotatable="false" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="135" y="120"></point>
+        <point x="165" y="165"></point>
+        <point x="180" y="210"></point>
+        <point x="180" y="240"></point>
+        <point x="150" y="300"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="240"></point>
+        <point x="195" y="195"></point>
+        <point x="165" y="135"></point>
+      </polygon>
+      <circle x="85" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="147" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="192" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="85" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="177" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="70" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="130" y="25" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
+      <circle x="96" y="51" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="113" y="68" marked="false" color="255" diameter="74" filled="true"></circle>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="189" y="233"></point>
+        <point x="219" y="188"></point>
+        <point x="249" y="173"></point>
+        <point x="279" y="188"></point>
+        <point x="234" y="218"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="180" y="255"></point>
+        <point x="150" y="210"></point>
+        <point x="105" y="210"></point>
+        <point x="75" y="240"></point>
+        <point x="135" y="240"></point>
+      </polygon>
+    </shape>
+    <shape name="house" rotatable="false" editableColorIndex="0">
+      <rectangle endX="255" startY="120" marked="true" color="-1920102913" endY="285" startX="45" filled="true"></rectangle>
+      <rectangle endX="180" startY="210" marked="false" color="255" endY="285" startX="120" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="15" y="120"></point>
+        <point x="150" y="15"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+      <line endX="270" startY="120" marked="false" color="255" endY="120" startX="30"></line>
+    </shape>
+    <shape name="leaf" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="210"></point>
+        <point x="135" y="195"></point>
+        <point x="120" y="210"></point>
+        <point x="60" y="210"></point>
+        <point x="30" y="195"></point>
+        <point x="60" y="180"></point>
+        <point x="60" y="165"></point>
+        <point x="15" y="135"></point>
+        <point x="30" y="120"></point>
+        <point x="15" y="105"></point>
+        <point x="40" y="104"></point>
+        <point x="45" y="90"></point>
+        <point x="60" y="90"></point>
+        <point x="90" y="105"></point>
+        <point x="105" y="120"></point>
+        <point x="120" y="120"></point>
+        <point x="105" y="60"></point>
+        <point x="120" y="60"></point>
+        <point x="135" y="30"></point>
+        <point x="150" y="15"></point>
+        <point x="165" y="30"></point>
+        <point x="180" y="60"></point>
+        <point x="195" y="60"></point>
+        <point x="180" y="120"></point>
+        <point x="195" y="120"></point>
+        <point x="210" y="105"></point>
+        <point x="240" y="90"></point>
+        <point x="255" y="90"></point>
+        <point x="263" y="104"></point>
+        <point x="285" y="105"></point>
+        <point x="270" y="120"></point>
+        <point x="285" y="135"></point>
+        <point x="240" y="165"></point>
+        <point x="240" y="180"></point>
+        <point x="270" y="195"></point>
+        <point x="240" y="210"></point>
+        <point x="180" y="210"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="195"></point>
+        <point x="135" y="240"></point>
+        <point x="120" y="255"></point>
+        <point x="105" y="255"></point>
+        <point x="105" y="285"></point>
+        <point x="135" y="285"></point>
+        <point x="165" y="240"></point>
+        <point x="165" y="195"></point>
+      </polygon>
+    </shape>
+    <shape name="line" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="300" startX="150"></line>
+    </shape>
+    <shape name="line half" rotatable="true" editableColorIndex="0">
+      <line endX="150" startY="0" marked="true" color="-1920102913" endY="150" startX="150"></line>
+    </shape>
+    <shape name="pentagon" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="15"></point>
+        <point x="15" y="120"></point>
+        <point x="60" y="285"></point>
+        <point x="240" y="285"></point>
+        <point x="285" y="120"></point>
+      </polygon>
+    </shape>
+    <shape name="person" rotatable="false" editableColorIndex="0">
+      <circle x="110" y="5" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="120" y="195"></point>
+        <point x="90" y="285"></point>
+        <point x="105" y="300"></point>
+        <point x="135" y="300"></point>
+        <point x="150" y="225"></point>
+        <point x="165" y="300"></point>
+        <point x="195" y="300"></point>
+        <point x="210" y="285"></point>
+        <point x="180" y="195"></point>
+        <point x="195" y="90"></point>
+      </polygon>
+      <rectangle endX="172" startY="79" marked="true" color="-1920102913" endY="94" startX="127" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="195" y="90"></point>
+        <point x="240" y="150"></point>
+        <point x="225" y="180"></point>
+        <point x="165" y="105"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="105" y="90"></point>
+        <point x="60" y="150"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="105"></point>
+      </polygon>
+    </shape>
+    <shape name="plant" rotatable="false" editableColorIndex="0">
+      <rectangle endX="165" startY="90" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="255"></point>
+        <point x="90" y="210"></point>
+        <point x="45" y="195"></point>
+        <point x="75" y="255"></point>
+        <point x="135" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="255"></point>
+        <point x="210" y="210"></point>
+        <point x="255" y="195"></point>
+        <point x="225" y="255"></point>
+        <point x="165" y="285"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="180"></point>
+        <point x="90" y="135"></point>
+        <point x="45" y="120"></point>
+        <point x="75" y="180"></point>
+        <point x="135" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="180"></point>
+        <point x="165" y="210"></point>
+        <point x="225" y="180"></point>
+        <point x="255" y="120"></point>
+        <point x="210" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="105"></point>
+        <point x="90" y="60"></point>
+        <point x="45" y="45"></point>
+        <point x="75" y="105"></point>
+        <point x="135" y="135"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="165" y="105"></point>
+        <point x="165" y="135"></point>
+        <point x="225" y="105"></point>
+        <point x="255" y="45"></point>
+        <point x="210" y="60"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="135" y="90"></point>
+        <point x="120" y="45"></point>
+        <point x="150" y="15"></point>
+        <point x="180" y="45"></point>
+        <point x="165" y="90"></point>
+      </polygon>
+    </shape>
+    <shape name="sheep" rotatable="false" editableColorIndex="15">
+      <circle x="203" y="65" marked="true" color="-1" diameter="88" filled="true"></circle>
+      <circle x="70" y="65" marked="true" color="-1" diameter="162" filled="true"></circle>
+      <circle x="150" y="105" marked="true" color="-1" diameter="120" filled="true"></circle>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="218" y="120"></point>
+        <point x="240" y="165"></point>
+        <point x="255" y="165"></point>
+        <point x="278" y="120"></point>
+      </polygon>
+      <circle x="214" y="72" marked="false" color="-1920102913" diameter="67" filled="true"></circle>
+      <rectangle endX="179" startY="223" marked="true" color="-1" endY="298" startX="164" filled="true"></rectangle>
+      <polygon color="-1" filled="true" marked="true">
+        <point x="45" y="285"></point>
+        <point x="30" y="285"></point>
+        <point x="30" y="240"></point>
+        <point x="15" y="195"></point>
+        <point x="45" y="210"></point>
+      </polygon>
+      <circle x="3" y="83" marked="true" color="-1" diameter="150" filled="true"></circle>
+      <rectangle endX="80" startY="221" marked="true" color="-1" endY="296" startX="65" filled="true"></rectangle>
+      <polygon color="-1" filled="true" marked="true">
+        <point x="195" y="285"></point>
+        <point x="210" y="285"></point>
+        <point x="210" y="240"></point>
+        <point x="240" y="210"></point>
+        <point x="195" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="276" y="85"></point>
+        <point x="285" y="105"></point>
+        <point x="302" y="99"></point>
+        <point x="294" y="83"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="false">
+        <point x="219" y="85"></point>
+        <point x="210" y="105"></point>
+        <point x="193" y="99"></point>
+        <point x="201" y="83"></point>
+      </polygon>
+    </shape>
+    <shape name="square" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+    </shape>
+    <shape name="square 2" rotatable="false" editableColorIndex="0">
+      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
+      <rectangle endX="240" startY="60" marked="false" color="255" endY="240" startX="60" filled="true"></rectangle>
+    </shape>
+    <shape name="star" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="151" y="1"></point>
+        <point x="185" y="108"></point>
+        <point x="298" y="108"></point>
+        <point x="207" y="175"></point>
+        <point x="242" y="282"></point>
+        <point x="151" y="216"></point>
+        <point x="59" y="282"></point>
+        <point x="94" y="175"></point>
+        <point x="3" y="108"></point>
+        <point x="116" y="108"></point>
+      </polygon>
+    </shape>
+    <shape name="target" rotatable="false" editableColorIndex="0">
+      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <circle x="60" y="60" marked="true" color="-1920102913" diameter="180" filled="true"></circle>
+      <circle x="90" y="90" marked="false" color="255" diameter="120" filled="true"></circle>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+    </shape>
+    <shape name="tree" rotatable="false" editableColorIndex="0">
+      <circle x="118" y="3" marked="true" color="-1920102913" diameter="94" filled="true"></circle>
+      <rectangle endX="180" startY="195" marked="false" color="-1653716737" endY="300" startX="120" filled="true"></rectangle>
+      <circle x="65" y="21" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
+      <circle x="116" y="41" marked="true" color="-1920102913" diameter="127" filled="true"></circle>
+      <circle x="45" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
+      <circle x="104" y="74" marked="true" color="-1920102913" diameter="152" filled="true"></circle>
+    </shape>
+    <shape name="triangle" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+    </shape>
+    <shape name="triangle 2" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="150" y="30"></point>
+        <point x="15" y="255"></point>
+        <point x="285" y="255"></point>
+      </polygon>
+      <polygon color="255" filled="true" marked="false">
+        <point x="151" y="99"></point>
+        <point x="225" y="223"></point>
+        <point x="75" y="224"></point>
+      </polygon>
+    </shape>
+    <shape name="truck" rotatable="false" editableColorIndex="0">
+      <rectangle endX="195" startY="45" marked="true" color="-1920102913" endY="187" startX="4" filled="true"></rectangle>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="296" y="193"></point>
+        <point x="296" y="150"></point>
+        <point x="259" y="134"></point>
+        <point x="244" y="104"></point>
+        <point x="208" y="104"></point>
+        <point x="207" y="194"></point>
+      </polygon>
+      <rectangle endX="195" startY="60" marked="false" color="-1" endY="105" startX="195" filled="true"></rectangle>
+      <polygon color="255" filled="true" marked="false">
+        <point x="238" y="112"></point>
+        <point x="252" y="141"></point>
+        <point x="219" y="141"></point>
+        <point x="218" y="112"></point>
+      </polygon>
+      <circle x="234" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <rectangle endX="214" startY="185" marked="true" color="-1920102913" endY="194" startX="181" filled="true"></rectangle>
+      <circle x="144" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
+      <circle x="24" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="144" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+      <circle x="234" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
+    </shape>
+    <shape name="turtle" rotatable="true" editableColorIndex="0">
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="215" y="204"></point>
+        <point x="240" y="233"></point>
+        <point x="246" y="254"></point>
+        <point x="228" y="266"></point>
+        <point x="215" y="252"></point>
+        <point x="193" y="210"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="195" y="90"></point>
+        <point x="225" y="75"></point>
+        <point x="245" y="75"></point>
+        <point x="260" y="89"></point>
+        <point x="269" y="108"></point>
+        <point x="261" y="124"></point>
+        <point x="240" y="105"></point>
+        <point x="225" y="105"></point>
+        <point x="210" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="105" y="90"></point>
+        <point x="75" y="75"></point>
+        <point x="55" y="75"></point>
+        <point x="40" y="89"></point>
+        <point x="31" y="108"></point>
+        <point x="39" y="124"></point>
+        <point x="60" y="105"></point>
+        <point x="75" y="105"></point>
+        <point x="90" y="105"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="132" y="85"></point>
+        <point x="134" y="64"></point>
+        <point x="107" y="51"></point>
+        <point x="108" y="17"></point>
+        <point x="150" y="2"></point>
+        <point x="192" y="18"></point>
+        <point x="192" y="52"></point>
+        <point x="169" y="65"></point>
+        <point x="172" y="87"></point>
+      </polygon>
+      <polygon color="1504722175" filled="true" marked="false">
+        <point x="85" y="204"></point>
+        <point x="60" y="233"></point>
+        <point x="54" y="254"></point>
+        <point x="72" y="266"></point>
+        <point x="85" y="252"></point>
+        <point x="107" y="210"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="119" y="75"></point>
+        <point x="179" y="75"></point>
+        <point x="209" y="101"></point>
+        <point x="224" y="135"></point>
+        <point x="220" y="225"></point>
+        <point x="175" y="261"></point>
+        <point x="128" y="261"></point>
+        <point x="81" y="224"></point>
+        <point x="74" y="135"></point>
+        <point x="88" y="99"></point>
+      </polygon>
+    </shape>
+    <shape name="wheel" rotatable="false" editableColorIndex="0">
+      <circle x="3" y="3" marked="true" color="-1920102913" diameter="294" filled="true"></circle>
+      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
+      <line endX="150" startY="285" marked="true" color="-1920102913" endY="15" startX="150"></line>
+      <line endX="285" startY="150" marked="true" color="-1920102913" endY="150" startX="15"></line>
+      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
+      <line endX="79" startY="40" marked="true" color="-1920102913" endY="269" startX="216"></line>
+      <line endX="269" startY="84" marked="true" color="-1920102913" endY="221" startX="40"></line>
+      <line endX="269" startY="216" marked="true" color="-1920102913" endY="79" startX="40"></line>
+      <line endX="221" startY="40" marked="true" color="-1920102913" endY="269" startX="84"></line>
+    </shape>
+    <shape name="wolf" rotatable="false" editableColorIndex="0">
+      <polygon color="255" filled="true" marked="false">
+        <point x="253" y="133"></point>
+        <point x="245" y="131"></point>
+        <point x="245" y="133"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="2" y="194"></point>
+        <point x="13" y="197"></point>
+        <point x="30" y="191"></point>
+        <point x="38" y="193"></point>
+        <point x="38" y="205"></point>
+        <point x="20" y="226"></point>
+        <point x="20" y="257"></point>
+        <point x="27" y="265"></point>
+        <point x="38" y="266"></point>
+        <point x="40" y="260"></point>
+        <point x="31" y="253"></point>
+        <point x="31" y="230"></point>
+        <point x="60" y="206"></point>
+        <point x="68" y="198"></point>
+        <point x="75" y="209"></point>
+        <point x="66" y="228"></point>
+        <point x="65" y="243"></point>
+        <point x="82" y="261"></point>
+        <point x="84" y="268"></point>
+        <point x="100" y="267"></point>
+        <point x="103" y="261"></point>
+        <point x="77" y="239"></point>
+        <point x="79" y="231"></point>
+        <point x="100" y="207"></point>
+        <point x="98" y="196"></point>
+        <point x="119" y="201"></point>
+        <point x="143" y="202"></point>
+        <point x="160" y="195"></point>
+        <point x="166" y="210"></point>
+        <point x="172" y="213"></point>
+        <point x="173" y="238"></point>
+        <point x="167" y="251"></point>
+        <point x="160" y="248"></point>
+        <point x="154" y="265"></point>
+        <point x="169" y="264"></point>
+        <point x="178" y="247"></point>
+        <point x="186" y="240"></point>
+        <point x="198" y="260"></point>
+        <point x="200" y="271"></point>
+        <point x="217" y="271"></point>
+        <point x="219" y="262"></point>
+        <point x="207" y="258"></point>
+        <point x="195" y="230"></point>
+        <point x="192" y="198"></point>
+        <point x="210" y="184"></point>
+        <point x="227" y="164"></point>
+        <point x="242" y="144"></point>
+        <point x="259" y="145"></point>
+        <point x="284" y="151"></point>
+        <point x="277" y="141"></point>
+        <point x="293" y="140"></point>
+        <point x="299" y="134"></point>
+        <point x="297" y="127"></point>
+        <point x="273" y="119"></point>
+        <point x="270" y="105"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="-1" y="195"></point>
+        <point x="14" y="180"></point>
+        <point x="36" y="166"></point>
+        <point x="40" y="153"></point>
+        <point x="53" y="140"></point>
+        <point x="82" y="131"></point>
+        <point x="134" y="133"></point>
+        <point x="159" y="126"></point>
+        <point x="188" y="115"></point>
+        <point x="227" y="108"></point>
+        <point x="236" y="102"></point>
+        <point x="238" y="98"></point>
+        <point x="268" y="86"></point>
+        <point x="269" y="92"></point>
+        <point x="281" y="87"></point>
+        <point x="269" y="103"></point>
+        <point x="269" y="113"></point>
+      </polygon>
+    </shape>
+    <shape name="x" rotatable="false" editableColorIndex="0">
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="270" y="75"></point>
+        <point x="225" y="30"></point>
+        <point x="30" y="225"></point>
+        <point x="75" y="270"></point>
+      </polygon>
+      <polygon color="-1920102913" filled="true" marked="true">
+        <point x="30" y="75"></point>
+        <point x="75" y="30"></point>
+        <point x="270" y="225"></point>
+        <point x="225" y="270"></point>
+      </polygon>
+    </shape>
+  </turtleShapes>
+  <linkShapes>
+    <shape name="default" curviness="0.0">
+      <lines>
+        <line x="-0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+        <line x="0.0" visible="true">
+          <dash value="1.0"></dash>
+          <dash value="0.0"></dash>
+        </line>
+        <line x="0.2" visible="false">
+          <dash value="0.0"></dash>
+          <dash value="1.0"></dash>
+        </line>
+      </lines>
+      <indicator>
+        <shape name="link direction" rotatable="true" editableColorIndex="0">
+          <line endX="90" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+          <line endX="210" startY="150" marked="true" color="-1920102913" endY="180" startX="150"></line>
+        </shape>
+      </indicator>
+    </shape>
+  </linkShapes>
+  <previewCommands>setup repeat 75 [ go ]</previewCommands>
+  <resources>
+    <resource name="cc-license-badge" extension="png">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</resource>
+    <resource name="cnpq-logo" extension="png">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</resource>
+    <resource name="contributor-covenant-2-1-badge" extension="png">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</resource>
+    <resource name="github-sponsor-badge" extension="png">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</resource>
+    <resource name="mit-license-badge" extension="png">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</resource>
+    <resource name="sustentarea-logo" extension="png">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</resource>
+  </resources>
+</model>
