@@ -6,7 +6,6 @@ Interface snapshot settings.
 
 - Resize the window (see GIF Settings)
 - No scrollbars (horizontal or vertical)
-- `transition-seconds`: `0.5s`.
 - Command center: clear, minimal height
 - No `nls` script visible
 - “View updates” checkbox checked
@@ -31,10 +30,18 @@ Interface snapshot settings.
 
 ### Window Size
 
-Install `wmctrl` to manage windows (if not already installed) with:
+Install `wmctrl` to manage windows (if not already installed).
+
+Use the following for *Ubuntu* Linux:
 
 ```bash
 sudo apt-get install wmctrl
+```
+
+For *Arch* Linux or *Manjaro*:
+
+```bash
+sudo pacman -S wmctrl
 ```
 
 List and identify the window to be included in the GIF with:
@@ -44,13 +51,13 @@ List and identify the window to be included in the GIF with:
 wmctrl -lG
 ```
 
-Resize the window to 1485x815 pixels using with:
+Resize the window to `1696`x`807` pixels using with:
 
 > If there are two windows with the same name, use the `-i` option to specify the window ID.
 
 ```bash
 #gravity,x,y,width,height
-wmctrl -r NetLogo -e 0,278,182,1485,815
+wmctrl -r NetLogo -e 0,112,75,1696,807
 ```
 
 ### Sequence (12 months)
@@ -68,7 +75,23 @@ go true true
 
 ### Render
 
+Install `ImageMagick` (if not already installed) to convert the PNG files to a GIF.
+
+Use the following for *Ubuntu* Linux:
+
+```bash
+sudo apt-get install imagemagick
+```
+
+For *Arch* Linux or *Manjaro*:
+
+```bash
+sudo pacman -S imagemagick
+```
+
+Use the following for the conversion:
+
 ```bash
 # sudo apt-get install imagemagick
-convert -delay 60 -loop 0 *.png output.gif
+magick -delay 60 -loop 0 *.png output.gif
 ```

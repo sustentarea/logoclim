@@ -27,7 +27,7 @@ data |> readr::write_lines(file)
 files <- c(
   here::here("README.qmd"),
   here::here("README.md"),
-  here::here("nlogo", "logoclim.nlogo")
+  here::here("nlogo", "logoclim.nlogox")
 )
 
 special_characters <- list(

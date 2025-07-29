@@ -14,7 +14,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![License:
-MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 <!-- badges: end -->
 
@@ -227,13 +227,23 @@ a donation. Please mention `LogoClim` in your donation message.
 
 ## License
 
-[![](https://img.shields.io/badge/license-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![](https://img.shields.io/badge/license-GPL--3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-`LogoClim` code is licensed under the [MIT
-License](https://opensource.org/license/mit). This means you can use,
-modify, and distribute the code freely, as long as you include the
-original license and copyright notice in any copies or substantial
-portions of the software.
+``` text
+Copyright (C) 2025 Daniel Vartanian
+
+LogoClim is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+```
 
 ## Acknowledgments
 

@@ -72,9 +72,9 @@ cat(
     ")"
   ),
   badger::badge_license(
-    license = "MIT",
-    color = "green",
-    url = "https://choosealicense.com/licenses/mit/"
+    license = "GPLv3",
+    color = "bd0000",
+    url = "https://www.gnu.org/licenses/gpl-3.0"
   ),
   badger::badge_custom(
     x = "Contributor%20Covenant",
@@ -216,14 +216,28 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 
 cat(
   badger::badge_license(
-    "MIT",
-    "green",
-    url = "https://choosealicense.com/licenses/mit/"
+    license = "GPL-3",
+    color = "bd0000",
+    url = "https://www.gnu.org/licenses/gpl-3.0"
   )
 )
 ```
 
-`LogoClim` code is licensed under the [MIT License](https://opensource.org/license/mit). This means you can use, modify, and distribute the code freely, as long as you include the original license and copyright notice in any copies or substantial portions of the software.
+```text
+Copyright (C) 2025 Daniel Vartanian
+
+LogoClim is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+```
 
 ## Acknowledgments
 

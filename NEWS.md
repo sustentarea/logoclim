@@ -1,5 +1,12 @@
 # LogoClim (development version)
 
+# LogoClim 2.0.0
+
+- Adjust model to work with the new NetLogo 7.0.0 version.
+- Resized the interface widgets to fit the new standard size for the NetLogo verison.
+- Changed `LogoClim` license from MIT to GPL-3.0. ✊
+- Removed the `transition-seconds` slider, as it is no longer needed.
+- Removed the `adjust-world-size?` slider. This is now set as default.
 - Add the global variable `plot-max-y-range` to avoid unnecessary computations.
 
 # LogoClim 1.0.0

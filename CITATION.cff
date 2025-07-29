@@ -68,4 +68,4 @@ identifiers:
 repository-code: 'https://github.com/sustentarea/logoclim'
 repository: 'https://doi.org/10.17605/OSF.IO/EAPZU'
 repository-artifact: 'https://doi.org/10.17605/OSF.IO/RE95Z'
-license: MIT
+license: GPLv3
