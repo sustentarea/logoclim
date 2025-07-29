@@ -119,10 +119,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "NetLogo",
-    "version": "6.4.0",
+    "version": "7.0.0",
     "url": "https://ccl.northwestern.edu/netlogo/"
   },
-  "runtimePlatform": "NetLogo version 6.4.0 (2023-11)",
+  "runtimePlatform": "NetLogo version 7.0.0 (2025)",
   "operatingSystem": [
     "Linux",
     "macOS",
@@ -132,7 +132,7 @@
     {
       "@type": "SoftwareApplication",
       "name": "NetLogo",
-      "version": ">= 6.4",
+      "version": ">= 7.0.0",
       "provider": {
         "@id": "https://ccl.northwestern.edu/netlogo/",
         "@type": "Organization",

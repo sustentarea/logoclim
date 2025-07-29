@@ -129,7 +129,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 ### Setup
 
-To get started, ensure you have [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model was developed using NetLogo 6.4, so it is recommended to use this version or later.
+To get started, ensure you have [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model was developed using NetLogo 7, so it is recommended to use this version or later.
 
 The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
 

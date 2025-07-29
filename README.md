@@ -118,8 +118,8 @@ bioclimatic variables.
 
 To get started, ensure you have
 [NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
-was developed using NetLogo 6.4, so it is recommended to use this
-version or later.
+was developed using NetLogo 7, so it is recommended to use this version
+or later.
 
 The model relies on the GIS
 ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir
