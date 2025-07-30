@@ -11,7 +11,7 @@
       "@type": "Person",
       "familyName": "Vartanian",
       "givenName": "Daniel",
-      "email": "danvartan@gmail.com",
+      "email": "hi@danielvartan.com",
       "affiliation": {
         "@type": "Organization",
         "name": "University of São Paulo",
@@ -67,14 +67,14 @@
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "danvartan@gmail.com",
+    "email": "hi@danielvartan.com",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
   "maintainer": {
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "danvartan@gmail.com",
+    "email": "hi@danielvartan.com",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
   "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions.",
