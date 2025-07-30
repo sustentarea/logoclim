@@ -1,24 +1,25 @@
-# LogoClim (development version)
+# LogoClim (development version) (NetLogo 7.0)
 
-# LogoClim 2.0.0
+# LogoClim 2.0.0 (NetLogo 7.0)
 
-- Adjust model to work with the new NetLogo 7.0.0 version.
-- Resized the interface widgets to fit the new standard size for the NetLogo verison.
-- Changed `LogoClim` license from MIT to GPL-3.0. ✊
-- Removed the `transition-seconds` slider, as it is no longer needed.
-- Removed the `adjust-world-size?` slider. This is now set as default.
-- Add the global variable `plot-max-y-range` to avoid unnecessary computations.
+- Updated the model for compatibility with NetLogo 7.0
+- Resized interface widgets to match the new NetLogo standard dimensions
+- Changed the `LogoClim` license from MIT to GPL-3.0
+- Removed the `transition-seconds` slider, as it is no longer necessary
+- Removed the `adjust-world-size?` slider; world size adjustment is now always enabled by default
+- Introduced the global variable `plot-max-y-range` to optimize computations
+- Revised documentation to reflect these updates
 
-# LogoClim 1.0.0
+# LogoClim 1.0.0 (NetLogo 6.4)
 
 First stable release. 🎉
 
-# LogoClim 0.0.0.9015 (Pre-Release)
+# LogoClim 0.0.0.9015 (Pre-Release) (NetLogo 6.4)
 
 - Added variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
-- Fixed an issue with year intervals when using the *Future climate data* series.
+- Fixed an issue with year intervals when using the *Future climate data* series
 
-# LogoClim 0.0.0.9013 (Pre-Release)
+# LogoClim 0.0.0.9013 (Pre-Release) (NetLogo 6.4)
 
 - Improved the documentation
 - Removed all dependencies on the `R` programming language and its packages
@@ -34,12 +35,12 @@ First stable release. 🎉
 - Removed unnecessary dependencies and refactored code structure for improved
   maintainability.
 
-# LogoClim 0.0.0.9010 (Pre-Release)
+# LogoClim 0.0.0.9010 (Pre-Release) (NetLogo 6.4)
 
 - Fixed an issue with Windows file paths for improved cross-platform
 compatibility
 
-# LogoClim 0.0.0.9009 (Pre-Release)
+# LogoClim 0.0.0.9009 (Pre-Release) (NetLogo 6.4)
 
 - Enhanced Quarto notebooks for improved readability and clarity
 - Refactored codebase to increase modularity and maintainability
@@ -47,10 +48,10 @@ compatibility
 - Updated charts to display whole numbers
 - Expanded documentation
 
-# LogoClim 0.0.0.9004 (Pre-Release)
+# LogoClim 0.0.0.9004 (Pre-Release) (NetLogo 6.4)
 
 First pre-release. 🎉
 
-# LogoClim 0.0.0.9000
+# LogoClim 0.0.0.9000 (NetLogo 6.4)
 
 - Added a `NEWS.md` file to track changes to the model

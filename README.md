@@ -20,12 +20,11 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.o
 
 ## Overview
 
-`LogoClim` is a [NetLogo](https://ccl.northwestern.edu/netlogo/) model
-for simulating and visualizing global climate conditions. It allows
-researchers to integrate high-resolution climate data into agent-based
-models, supporting reproducible research in ecology, agriculture,
-environmental science, and other fields that rely on climate data
-integration.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating
+and visualizing global climate conditions. It allows researchers to
+integrate high-resolution climate data into agent-based models,
+supporting reproducible research in ecology, agriculture, environmental
+science, and other fields that rely on climate data integration.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -116,10 +115,9 @@ bioclimatic variables.
 
 ### Setup
 
-To get started, ensure you have
-[NetLogo](https://ccl.northwestern.edu/netlogo) installed. This model
-was developed using NetLogo 7, so it is recommended to use this version
-or later.
+To get started, ensure you have [NetLogo](https://www.netlogo.org)
+installed. This model was developed using NetLogo 7.0, so it is
+recommended to use this version or later.
 
 The model relies on the GIS
 ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir
@@ -174,11 +172,10 @@ Refer to the `Info` tab in the model for additional details.
 ### Integrating with Other Models
 
 `LogoClim` can be integrated with other models using NetLogo's
-LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html))
-extension. This extension enables parallel execution and data exchange
-between models. For an example of integrating `LogoClim` with another
-model, see the [FoodClim](https://github.com/sustentarea/foodclim)
-project.
+LevelSpace ([`ls`](https://www.netlogo.orgdocs/ls.html)) extension. This
+extension enables parallel execution and data exchange between models.
+For an example of integrating `LogoClim` with another model, see the
+[FoodClim](https://github.com/sustentarea/foodclim) project.
 
 ## How to Cite
 
@@ -227,12 +224,12 @@ a donation. Please mention `LogoClim` in your donation message.
 
 ## License
 
-[![](https://img.shields.io/badge/license-GPL--3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ``` text
 Copyright (C) 2025 Daniel Vartanian
 
-LogoClim is free software: you can redistribute it and/or modify it under the
+LogoClim is a free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.
