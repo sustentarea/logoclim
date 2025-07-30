@@ -1,1 +1,1 @@
-git ls-files | grep -e "\.nls" -e "\.nlogo" | xargs wc -l
+git ls-files | grep -e "\.nls" -e "\.nlogox" | xargs wc -l

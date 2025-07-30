@@ -137,7 +137,7 @@ The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)),
 
 You can download the latest release of the model from its [GitHub Releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the `nlogo` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
+To run the model, make sure to download all files in the `nlogox` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 
 #### Downloading the Data
 
@@ -151,7 +151,7 @@ We suggest starting with the 10-minute resolution to verify that the model runs 
 
 #### Running the Model
 
-Once everything is set, open the `logoclim.nlogo` file located in the `nlogo` folder to start exploring!
+Once everything is set, open the `logoclim.nlogox` file located in the `nlogox` folder to start exploring!
 
 Refer to the `Info` tab in the model for additional details.
 

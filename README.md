@@ -134,7 +134,7 @@ Releases page](https://github.com/sustentarea/logoclim/releases/latest).
 For the development version, you can clone or download its [GitHub
 repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the `nlogo` folder.
+To run the model, make sure to download all files in the `nlogox` folder.
 Note that climate data from WorldClim is required but not included in
 this repository; see the next section for instructions on obtaining and
 preparing the data.
@@ -164,8 +164,8 @@ model runs smoothly on your system before trying higher resolutions.
 
 #### Running the Model
 
-Once everything is set, open the `logoclim.nlogo` file located in the
-`nlogo` folder to start exploring!
+Once everything is set, open the `logoclim.nlogox` file located in the
+`nlogox` folder to start exploring!
 
 Refer to the `Info` tab in the model for additional details.
 
@@ -284,7 +284,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This work was developed with support from the 
+        This work was developed with support from the
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -305,10 +305,10 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This work was supported by the Department of Science and 
-        Technology of the Secretariat of Science, Technology, and Innovation 
-        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
-        of Brazil, and the National Council for Scientific and 
+        This work was supported by the Department of Science and
+        Technology of the Secretariat of Science, Technology, and Innovation
+        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a>
+        of Brazil, and the National Council for Scientific and
         Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
       </p>
     </td>

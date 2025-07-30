@@ -23,6 +23,7 @@ Pathdir
 pathdir
 logoclim
 nlogo
+nlogox
 LevelSpace
 FoodClim
 gfm
