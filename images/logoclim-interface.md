@@ -6,6 +6,8 @@ Interface snapshot settings.
 
 - Theme: Light
 - Screen resolution: 1920x1080
+
+- Turn off Night Light mode!
 - Resize the window (see GIF Settings)
 - No scrollbars (horizontal or vertical)
 - Command center: closed
@@ -23,7 +25,7 @@ Interface snapshot settings.
 
 - Climate variable: Average maximum temperature (°C)
 - Period: 2024 to the end of the series
-`
+
 ## Future Climate Data (FCD)
 
 - Climate Total precipitation (mm)
