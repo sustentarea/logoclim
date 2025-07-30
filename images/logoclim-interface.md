@@ -4,11 +4,14 @@ Interface snapshot settings.
 
 ## General Settings
 
+- Theme: Light
+- Screen resolution: 1920x1080
 - Resize the window (see GIF Settings)
 - No scrollbars (horizontal or vertical)
-- Command center: clear, minimal height
+- Command center: closed
 - No `nls` script visible
 - “View updates” checkbox checked
+- Default widget settings
 - Maintain default settings
 
 ## Historical Climate Data (HCD)
@@ -19,8 +22,8 @@ Interface snapshot settings.
 ## Historical Monthly Weather Data (HMWD)
 
 - Climate variable: Average maximum temperature (°C)
-- Period: 1951 to 1961
-
+- Period: 2024 to the end of the series
+`
 ## Future Climate Data (FCD)
 
 - Climate Total precipitation (mm)
@@ -63,10 +66,11 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 ### Sequence (12 months)
 
 - Brazil: HMWD, 10m, 1951, Average maximum temperature
-- EUA-Mainland: FCD, 10m, 2021, Total precipitation
-- Europe-Box: HCD, 10m, 1970, Water vapor pressure
-- China: FCD, 10m, 2081, Total precipitation
-- Australia: HMWD, 10m, 2010, Water vapor pressure
+- China: FCD, 10m, 2021-2040, Total precipitation
+- UK: HCD, 30s, 1970-2000, Water vapor pressure
+- Australia: HMWD, 10m, 2010, Average maximum temperature
+- India: FCD, 2.5m, 2081-2100, Total precipitation
+- France: HCD, 30s, 1970-2000, Water vapor pressure
 
 ```nlogo
 go true true
