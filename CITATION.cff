@@ -6,7 +6,7 @@ type: software
 authors:
   - given-names: Daniel
     family-names: Vartanian
-    email: hi@danielvartan.com
+    email: danvartan@gmail.com
     affiliation: University of São Paulo
     orcid: 'https://orcid.org/0000-0001-7782-759X'
   - given-names: Leandro
@@ -33,33 +33,33 @@ abstract: >-
   inputs come from WorldClim 2.1, a widely used source of high-resolution,
   interpolated climate datasets based on weather station observations worldwide.
 keywords:
-  - Agent-based modeling
-  - Climate change
-  - Climate data visualization
-  - Climate model integration
-  - Climate projections
-  - Climate simulation
-  - CMIP6
-  - Complex systems
-  - Complexity science
-  - Data interoperability
-  - Environmental sciences
-  - Environmental simulation
-  - Future climate scenarios
-  - Geospatial analysis
-  - Historical climate data
+  - Agent-Based Modeling
+  - Climate Change
+  - Climate Data Visualization
+  - Climate Model Integration
+  - Climate Projections
+  - Climate Simulation
+  - Cmip6
+  - Complex Systems
+  - Complexity Science
+  - Data Interoperability
+  - Environmental Sciences
+  - Environmental Simulation
+  - Future Climate Scenarios
+  - Geospatial Analysis
+  - Historical Climate Data
   - LevelSpace
   - Models
   - NetLogo
-  - Parallel execution
-  - Raster data
-  - Reproducible research
-  - Shared socioeconomic pathways
+  - Parallel Execution
+  - Raster Data
+  - Reproducible Research
+  - Shared Socioeconomic Pathways
   - Simulations
-  - Spatial analysis
-  - Spatial resolution
+  - Spatial Analysis
+  - Spatial Resolution
   - SSPs
-  - Time series
+  - Time Series
   - WorldClim
 identifiers:
   - type: doi

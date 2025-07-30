@@ -134,10 +134,10 @@ Releases page](https://github.com/sustentarea/logoclim/releases/latest).
 For the development version, you can clone or download its [GitHub
 repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the `nlogox` folder.
-Note that climate data from WorldClim is required but not included in
-this repository; see the next section for instructions on obtaining and
-preparing the data.
+To run the model, make sure to download all files in the `nlogox`
+folder. Note that climate data from WorldClim is required but not
+included in this repository; see the next section for instructions on
+obtaining and preparing the data.
 
 #### Downloading the Data
 
@@ -172,10 +172,11 @@ Refer to the `Info` tab in the model for additional details.
 ### Integrating with Other Models
 
 `LogoClim` can be integrated with other models using NetLogo's
-LevelSpace ([`ls`](https://www.netlogo.orgdocs/ls.html)) extension. This
-extension enables parallel execution and data exchange between models.
-For an example of integrating `LogoClim` with another model, see the
-[FoodClim](https://github.com/sustentarea/foodclim) project.
+LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html))
+extension. This extension enables parallel execution and data exchange
+between models. For an example of integrating `LogoClim` with another
+model, see the [FoodClim](https://github.com/sustentarea/foodclim)
+project.
 
 ## How to Cite
 
@@ -229,7 +230,7 @@ a donation. Please mention `LogoClim` in your donation message.
 ``` text
 Copyright (C) 2025 Daniel Vartanian
 
-LogoClim is a free software: you can redistribute it and/or modify it under the
+LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.
@@ -284,7 +285,7 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This work was developed with support from the
+        This work was developed with support from the 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -305,10 +306,10 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
     </td>
     <td width="70%">
       <p>
-        This work was supported by the Department of Science and
-        Technology of the Secretariat of Science, Technology, and Innovation
-        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a>
-        of Brazil, and the National Council for Scientific and
+        This work was supported by the Department of Science and 
+        Technology of the Secretariat of Science, Technology, and Innovation 
+        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
+        of Brazil, and the National Council for Scientific and 
         Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
       </p>
     </td>

@@ -379,7 +379,7 @@ Once everything is set up, click the `Setup` and `Go` buttons to start exploring
 
 ### INTEGRATING WITH OTHER MODELS
 
-`LogoClim` can be integrated with other models using NetLogo's LevelSpace ([`ls`](https://www.netlogo.orgdocs/ls.html)) extension. This extension enables parallel execution and data exchange between models. For an example of integrating `LogoClim` with another model, see the [FoodClim](https://github.com/sustentarea/foodclim) project.
+`LogoClim` can be integrated with other models using NetLogo's LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension. This extension enables parallel execution and data exchange between models. For an example of integrating `LogoClim` with another model, see the [FoodClim](https://github.com/sustentarea/foodclim) project.
 
 ### INTERFACE CONTROLS
 
@@ -485,7 +485,7 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 ```text
 Copyright (C) 2025 Daniel Vartanian
 
-LogoClim is a free software: you can redistribute it and/or modify it under the
+LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.

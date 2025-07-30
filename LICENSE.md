@@ -1,8 +1,8 @@
 # GNU General Public License
 
-Version 3, 29 June 2025
+Version 3, 29 June 2007
 
-Copyright (C) 2025 Free Software Foundation, Inc.
+Copyright (C) 2007 Free Software Foundation, Inc.
 <https://fsf.org/>
 
 Everyone is permitted to copy and distribute verbatim copies of this
@@ -527,7 +527,7 @@ license (a) in connection with copies of the covered work conveyed by
 you (or copies made from those copies), or (b) primarily for and in
 connection with specific products or compilations that contain the
 covered work, unless you entered into that arrangement, or that patent
-license was granted, prior to 28 March 2025.
+license was granted, prior to 28 March 2007.
 
 Nothing in this License shall be construed as excluding or limiting
 any implied license or other defenses to infringement that may
