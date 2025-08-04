@@ -33,7 +33,7 @@ cat(
   badger::badge_repostatus("active"),
   badger::badge_custom(
     x = "CoMSES Network",
-    y = "1.0.0",
+    y = "2.0.0",
     color = "1284C5",
     url = paste0(
       "https://www.comses.net/codebases/",
@@ -129,7 +129,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 ### Setup
 
-To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0, so it is recommended to use this version or later.
+To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
 
 The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
 
@@ -170,7 +170,7 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software, NetLogo model]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
@@ -180,7 +180,7 @@ A BibTeX entry for LaTeX users is:
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
-  note = {NetLogo model}
+  note = {Computer software}
 }
 ```
 
@@ -191,11 +191,11 @@ A BibTeX entry for LaTeX users is:
 #| output: asis
 
 cat(
-  badger::badge_custom( # Contributor Covenant
-    "Contributor%20Covenant",
-    "2.1",
-    "4baaaa",
-    "CODE_OF_CONDUCT.md"
+  badger::badge_custom(
+    x = "Contributor%20Covenant",
+    y = "2.1",
+    color = "4baaaa",
+    url = "CODE_OF_CONDUCT.md"
   )
 )
 ```

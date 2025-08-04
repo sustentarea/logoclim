@@ -8,7 +8,7 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/CoMSES%20Network-1.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![](https://img.shields.io/badge/CoMSES%20Network-2.0.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
@@ -116,7 +116,7 @@ bioclimatic variables.
 ### Setup
 
 To get started, ensure you have [NetLogo](https://www.netlogo.org)
-installed. This model was developed using NetLogo 7.0, so it is
+installed. This model was developed using NetLogo 7.0.0, so it is
 recommended to use this version or later.
 
 The model relies on the GIS
@@ -190,7 +190,7 @@ helps support the ongoing improvement of the model.
 To cite `LogoClim` in publications please use the following format:
 
 Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim:
-WorldClim in NetLogo* \[Computer software, NetLogo model\].
+WorldClim in NetLogo* \[Computer software\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
@@ -201,7 +201,7 @@ A BibTeX entry for LaTeX users is:
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
-  note = {NetLogo model}
+  note = {Computer software}
 }
 ```
 
