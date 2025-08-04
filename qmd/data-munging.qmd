@@ -399,6 +399,15 @@ Use this option if you want to crop the data to a specific area. The box is defi
 box <- NULL
 ```
 
+#### Brazil
+
+```{r}
+#| eval: false
+
+# xmin, xmax, ymin, ymax
+box <- c(-73.99044997, -28.83594354, -33.75114991, 5.27184108)
+```
+
 #### Europe
 
 ```{r}
