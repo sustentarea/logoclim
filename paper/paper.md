@@ -103,11 +103,11 @@ Finally, we acknowledge the [Sustentarea](https://www.fsp.usp.br/sustentarea/) R
 
 The roles below were defined based on the Contributor Roles Taxonomy ([CRediT](https://credit.niso.org/)).
 
-[**Daniel Vartanian**](https://orcid.org/0000-0001-7782-759X): Conceptualization, Data curation, Methodology, Project administration, Software, Validation, Writing – Review & editing.
+[**Daniel Vartanian**](https://orcid.org/0000-0001-7782-759X): Conceptualization, Data curation, Methodology, Project administration, Software, Validation, Visualization, Writing – original draft, and Writing – Review & editing.
 
-[**Leandro Garcia**](https://orcid.org/0000-0001-5947-2617): Validation, Writing - Review & editing.
+[**Leandro Garcia**](https://orcid.org/0000-0001-5947-2617): Validation, Writing – original draft, and Writing - Review & editing.
 
-[**Aline Martins de Carvalho**](https://orcid.org/0000-0002-4900-5609): Conceptualization, Funding acquisition, Project administration, Supervision, Validation, Writing – Review & editing.
+[**Aline Martins de Carvalho**](https://orcid.org/0000-0002-4900-5609): Conceptualization, Funding acquisition, Project administration, Supervision, Validation, Writing – original draft, and Writing – Review & editing.
 
 # Additional information
 

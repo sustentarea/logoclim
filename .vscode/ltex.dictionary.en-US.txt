@@ -33,3 +33,12 @@ doi
 ESGF
 knitr
 htmltools
+CRediT
+CNPq
+SECTICS
+Sustentarea
+Intercomparison
+Programme
+submodel
+newpage
+autoref
