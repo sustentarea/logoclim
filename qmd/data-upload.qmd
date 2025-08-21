@@ -17,7 +17,7 @@ This document is intended for use by the LogoClim project team. For related work
 
 This document provides a step-by-step guide for uploading WorldClim 2.1 data to the [LogoClim OSF repository](https://osf.io/2bpjh/). For information on obtaining the data, see the [WorldClim website](https://www.worldclim.org/).
 
-## Setting the Environment
+## Set the Environment
 
 ```{r}
 library(beepr)
@@ -27,6 +27,7 @@ library(fs)
 library(groomr) # github.com/danielvartan/groomr
 library(here)
 library(osfr)
+library(prettycheck) # github.com/danielvartan/prettycheck
 library(purrr)
 library(readr)
 library(rutils) # github.com/danielvartan/rutils
@@ -35,11 +36,11 @@ library(zip) # OS independent
 ```
 
 ```{r}
-source(here::here("R", "wc_license.R"))
-source(here::here("R", "wc_readme.R"))
+source(here("R", "wc_license.R"))
+source(here("R", "wc_readme.R"))
 ```
 
-## Setting the Initial Variables
+## Set the Initial Variables
 
 ### `params`
 
@@ -116,47 +117,47 @@ resolution <- "all"
 Check the paths to the directories where the data will be stored.
 
 ```{r}
-raw_data_dir <- here::here("data-raw")
+raw_data_dir <- here("data-raw")
 ```
 
 ```{r}
-wc_raw_data_dir <- fs::path(raw_data_dir, "worldclim")
+raw_data_wc_dir <- path(raw_data_dir, "worldclim")
 ```
 
 ```{r}
-wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
+raw_data_wc_series_dir <- path(raw_data_wc_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(
-  wc_raw_data_dir,
+raw_data_wc_series_res_dir <- path(
+  raw_data_wc_dir,
   series,
-  resolution |> stringr::str_replace_all("\\.", "\\-")
+  resolution |> str_replace_all("\\.", "\\-")
 )
 ```
 
 ```{r}
-data_dir <- here::here("data")
+data_dir <- here("data")
 ```
 
 ```{r}
-data_series_dir <- fs::path(data_dir, series)
+data_series_dir <- path(data_dir, series)
 ```
 
 ```{r}
 dirs <- c(
-  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
-  wc_raw_data_series_res_dir, data_dir, data_series_dir
+  raw_data_dir, raw_data_wc_dir, raw_data_wc_series_dir,
+  raw_data_wc_series_res_dir, data_dir, data_series_dir
 )
 
 for (i in dirs) {
-  if (!dir.exists(i)) {
-    fs::dir_create(i, recurse = TRUE)
+  if (!dir_exists(i)) {
+    dir_create(i, recurse = TRUE)
   }
 }
 ```
 
-## Zipping the Files
+## Zip the Files
 
 ```{r}
 #| eval: false
@@ -192,11 +193,11 @@ if (length(series) == 1) {
 
 zip_file <-
   data_dir |>
-  fs::path(
+  path(
       paste0(
       country_code,
       ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
-      paste0("-", stringr::str_replace_all(resolution, "\\.", "\\-")),
+      paste0("-", str_replace_all(resolution, "\\.", "\\-")),
       ifelse(!is.null(series_suffix), paste0("-", series_suffix), ""),
       ifelse(!is.null(model), paste0("-", tolower(model)), ""),
       ".zip"
@@ -213,17 +214,17 @@ zip_file |>
   zip::zip(
     files =
       data_dir |>
-      fs::dir_ls(
+      dir_ls(
         type = "file",
         regexp = "\\.zip$|\\.gitignore$",
         recurse = TRUE,
         invert = TRUE
       ) |>
-      fs::path_rel(data_dir),
+      path_rel(data_dir),
     root = data_dir
   )
 
-beepr::beep(1)
+beep(1)
 ```
 
 ```{r}
@@ -232,28 +233,28 @@ beepr::beep(1)
 osf_files <- zip_file
 ```
 
-### Adding LICENSE and README Files
+### Add LICENSE and README Files
 
 ```{r}
 #| eval: false
 
 osf_files <-
   data_dir |>
-    fs::path(c("LICENSE.md", "README.md")) |>
+    path(c("LICENSE.md", "README.md")) |>
     c(zip_file) |>
     unname()
 
 osf_files
 ```
 
-## Uploading the Files to OSF
+## Upload the Files to OSF
 
 ```{r}
 #| eval: false
 
-prettycheck::assert_internet()
+assert_internet()
 
-osfr::osf_auth()
+osf_auth()
 ```
 
 ```{r}
@@ -276,43 +277,43 @@ osf_id
 #| eval: false
 
 osf_id |>
-  osfr::osf_retrieve_node() |>
-  osfr::osf_upload(
+  osf_retrieve_node() |>
+  osf_upload(
     path = osf_files,
     conflicts = "overwrite",
     progress = TRUE,
     verbose = TRUE
   )
 
-beepr::beep(1)
+beep(1)
 ```
 
 ## Other Resources (Optional)
 
-### Renaming Data Dir Files
+### Rename Data Directory Files
 
 ```{r}
 #| eval: false
 
-files <- data_dir |> fs::dir_ls()
+files <- data_dir |> dir_ls()
 
 files |>
-  fs::file_move(
-    fs::path(
+  file_move(
+    path(
       data_dir,
-      files |> basename() |> stringr::str_to_lower()
+      files |> basename() |> str_to_lower()
     )
   )
 ```
 
-### Renaming Files on OSF
+### Rename Files in OSF
 
 ```{r}
 #| eval: false
 
-prettycheck::assert_internet()
+assert_internet()
 
-osfr::osf_auth()
+osf_auth()
 ```
 
 ```{r}
@@ -336,8 +337,8 @@ osf_id
 
 osf_files <-
   osf_id |>
-  osfr::osf_retrieve_node() |>
-  osfr::osf_ls_files(
+  osf_retrieve_node() |>
+  osf_ls_files(
     pattern = "5m",
     n_max = Inf
   )
@@ -353,14 +354,14 @@ osf_files <-
   dplyr::mutate(
     name =
       name |>
-      stringr::str_to_lower() |>
-      stringr::str_replace_all("\\.", "\\-")
+      str_to_lower() |>
+      str_replace_all("\\.", "\\-")
   )
 
 osf_files |> print(n = Inf)
 ```
 
-### Deleting Files on OSF
+### Delete Files in OSF
 
 ::: {.callout-caution}
 Careful! There is no coming back from this.
@@ -369,9 +370,9 @@ Careful! There is no coming back from this.
 ```{r}
 #| eval: false
 
-prettycheck::assert_internet()
+assert_internet()
 
-osfr::osf_auth()
+osf_auth()
 ```
 
 ```{r}
@@ -395,8 +396,8 @@ osf_id
 
 osf_files <-
   osf_id |>
-  osfr::osf_retrieve_node() |>
-  osfr::osf_ls_files(
+  osf_retrieve_node() |>
+  osf_ls_files(
     pattern = "_2-5m",
     n_max = Inf
   )
@@ -408,6 +409,6 @@ osf_files
 #| eval: false
 
 # for (i in split(osf_files, seq_len(nrow(osf_files)))) {
-#   i |> osfr::osf_rm(check = FALSE)
+#   i |> osf_rm(check = FALSE)
 # }
 ```

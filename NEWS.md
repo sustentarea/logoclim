@@ -1,6 +1,7 @@
 # LogoClim 2.0.0.9000 (development version) (NetLogo 7.0.0)
 
 - Removed `#wait` parameters from `go` procedure, as it is no longer necessary
+- Updated Quarto notebooks
 
 # LogoClim 2.0.0 (NetLogo 7.0.0)
 

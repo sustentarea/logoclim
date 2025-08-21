@@ -16,7 +16,7 @@ This document provides a step-by-step guide to transform the WorldClim 2.1 data 
 This process may take some time to complete. Please be patient.
 :::
 
-## Setting the Environment
+## Set the Environment
 
 ::: {.callout-important}
 Notice date: 2025-04-09
@@ -43,11 +43,11 @@ library(zip) # OS independent
 ```
 
 ```{r}
-source(here::here("R", "wc_license.R"))
-source(here::here("R", "logoclim_readme.R"))
+source(here("R", "wc_license.R"))
+source(here("R", "logoclim_readme.R"))
 ```
 
-## Setting the Initial Variables
+## Set the Initial Variables
 
 ### `params`
 
@@ -173,42 +173,42 @@ data
 The following settings assumes that the data will be stored in the `data` directory of the project, but you can change it to any other directory. If you do, make sure to change the model `data-path` variable accordingly.
 
 ```{r}
-raw_data_dir <- here::here("data-raw")
+raw_data_dir <- here("data-raw")
 ```
 
 ```{r}
-wc_raw_data_dir <- fs::path(raw_data_dir, "worldclim")
+raw_data_wc_dir <- path(raw_data_dir, "worldclim")
 ```
 
 ```{r}
-wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
+raw_data_wc_series_dir <- path(raw_data_wc_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(
-  wc_raw_data_dir,
+raw_data_wc_series_res_dir <- path(
+  raw_data_wc_dir,
   series,
-  resolution |> stringr::str_replace_all("\\.", "\\-")
+  resolution |> str_replace_all("\\.", "\\-")
 )
 ```
 
 ```{r}
-data_dir <- here::here("data")
+data_dir <- here("data")
 ```
 
 ```{r}
-data_series_dir <- fs::path(data_dir, series)
+data_series_dir <- path(data_dir, series)
 ```
 
 ```{r}
 dirs <- c(
-  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
-  wc_raw_data_series_res_dir, data_dir, data_series_dir
+  raw_data_dir, raw_data_wc_dir, raw_data_wc_series_dir,
+  raw_data_wc_series_res_dir, data_dir, data_series_dir
 )
 
 for (i in dirs) {
-  if (!dir.exists(i)) {
-    fs::dir_create(i, recurse = TRUE)
+  if (!dir_exists(i)) {
+    dir_create(i, recurse = TRUE)
   }
 }
 ```
@@ -236,7 +236,7 @@ Change to the desired country code (ISO 3166-1 alpha-3).
 ```{r}
 #| eval: false
 
-shape <- geodata::gadm(
+shape <- gadm(
   country = country_code,
   level = 0,
   path = raw_data_dir
@@ -251,12 +251,12 @@ shape <- geodata::gadm(
 #| eval: false
 
 shape <-
-  geodata::gadm(
+  gadm(
     country = "usa",
     level = 1,
     path = raw_data_dir
   ) %>%
-  terra::subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
+  subset(., !.$NAME_1 %in% c("Alaska", "Hawaii"))
 ```
 
 ##### Portugal
@@ -265,12 +265,12 @@ shape <-
 #| eval: false
 
 shape <-
-  geodata::gadm(
+  gadm(
     country = "prt",
     level = 1,
     path = raw_data_dir
   ) %>%
-  terra::subset(., !.$NAME_1 %in% c("Azores", "Madeira"))
+  subset(., !.$NAME_1 %in% c("Azores", "Madeira"))
 ```
 
 ##### Spain
@@ -279,12 +279,12 @@ shape <-
 #| eval: false
 
 shape <-
-  geodata::gadm(
+  gadm(
     country = "esp",
     level = 1,
     path = raw_data_dir
   ) %>%
-  terra::subset(., !.$NAME_1 %in% c("Islas Canarias"))
+  subset(., !.$NAME_1 %in% c("Islas Canarias"))
 ```
 
 #### European Part of Russia
@@ -310,12 +310,12 @@ european_russia_regions <- c(
 #| eval: false
 
 shape <-
-  geodata::gadm(
+  gadm(
     country = "rus",
     level = 1,
     path = raw_data_dir
   ) %>%
-  terra::subset(., .$NAME_1 %in% european_russia_regions)
+  subset(., .$NAME_1 %in% european_russia_regions)
 ```
 
 #### European Region
@@ -341,27 +341,27 @@ european_russia_regions <- c(
 #| eval: false
 
 european_russia_shape <-
-  geodata::gadm(
+  gadm(
     country = "rus",
     level = 1,
     path = raw_data_dir
   ) %>%
-  terra::subset(., .$NAME_1 %in% european_russia_regions)
+  subset(., .$NAME_1 %in% european_russia_regions)
 ```
 
 ```{r}
 #| eval: false
 
 countries <-
-  geodata::country_codes() |>
+  country_codes() |>
   dplyr::filter(continent == "Europe") |>
   magrittr::extract2("ISO3") |>
-  stringr::str_subset("RUS", negate =  TRUE)
+  str_subset("RUS", negate =  TRUE)
 
 shape <-
-  geodata::world(resolution = 1, path = raw_data_dir) %>%
-  terra::subset(., .$GID_0 %in% countries) |>
-  terra::union(european_russia_shape)
+  world(resolution = 1, path = raw_data_dir) %>%
+  subset(., .$GID_0 %in% countries) |>
+  union(european_russia_shape)
 ```
 
 #### Continent
@@ -370,13 +370,13 @@ shape <-
 #| eval: false
 
 countries <-
-  geodata::country_codes() |>
+  country_codes() |>
   dplyr::filter(continent == "Africa") |>
   magrittr::extract2("ISO3")
 
 shape <-
-  geodata::world(resolution = 1, path = raw_data_dir) %>%
-  terra::subset(., .$GID_0 %in% countries)
+  world(resolution = 1, path = raw_data_dir) %>%
+  subset(., .$GID_0 %in% countries)
 ```
 
 #### World as a Whole
@@ -418,16 +418,16 @@ box <- c(-73.99044997, -28.83594354, -33.75114991, 5.27184108)
 box <- c(-24.534, 50.601, 34.625, 71.181)
 ```
 
-## Gathering the `tif` Files
+## Gather the `tif` Files
 
 ```{r}
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+tif_dir <- path(raw_data_wc_series_res_dir, "tif")
 ```
 
 ```{r}
 tif_files <-
   tif_dir |>
-  fs::dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
+  dir_ls(type = "file", regexp = "tif$", recurse = TRUE)
 ```
 
 ```{r}
@@ -435,7 +435,7 @@ if (!is.null(model)) {
   tif_files <-
     tif_files %>%
     magrittr::extract(
-      stringr::str_detect(
+      str_detect(
         basename(.),
         paste0("(?<=_)", model)
       )
@@ -443,7 +443,7 @@ if (!is.null(model)) {
 }
 ```
 
-## Testing the Files (Optional)
+## Test the Files (Optional)
 
 ```{r}
 #| eval: false
@@ -454,22 +454,22 @@ tif_file <- tif_files |> sample(1)
 ```{r}
 #| eval: false
 
-raster <- tif_file |> terra::rast()
+raster <- tif_file |> rast()
 ```
 
 ```{r}
 #| eval: false
 
 if (!is.null(shape)) {
-  shape_x_min <- round(terra::ext(shape)[1])
-  shape_x_max <- round(terra::ext(shape)[2])
+  shape_x_min <- round(ext(shape)[1])
+  shape_x_max <- round(ext(shape)[2])
 
   if ((shape_x_max - shape_x_min) > 180) {
     cropped_ras <-
       raster |>
-      orbis::shift_and_crop(
+      shift_and_crop(
         shape,
-        dx = dplyr::case_when(
+        dx = case_when(
           shape$GID_0 == "USA" ~ 30,
           shape$GID_0 == "RUS" ~ -45,
           TRUE ~ -45
@@ -478,7 +478,7 @@ if (!is.null(shape)) {
   } else {
     cropped_ras <-
       raster |>
-      terra::crop(
+      crop(
         shape,
         snap = "near",
         mask = TRUE,
@@ -494,20 +494,20 @@ if (!is.null(shape)) {
 ```{r}
 #| eval: false
 
-if (!is.null(box)) cropped_ras <- cropped_ras |> terra::crop(box)
+if (!is.null(box)) cropped_ras <- cropped_ras |> crop(box)
 ```
 
 ```{r}
 #| eval: false
 
-cropped_ras |> terra::plot()
+cropped_ras |> plot()
 ```
 
-## Cropping and Transforming Data to ASCII
+## Crop and Transform the Data to ASCII
 
 ```{r}
 if (!is.null(shape)) {
-  dx <- dplyr::case_when(
+  dx <- case_when(
     shape$GID_0[1] == "USA" ~ 30,
     shape$GID_0[1] == "RUS" ~ -45,
     TRUE ~ -45
@@ -520,7 +520,7 @@ if (!is.null(shape)) {
 ```{r}
 #| output: false
 
-orbis::wc_to_ascii(
+wc_to_ascii(
   file = tif_files,
   dir = data_series_dir,
   shape = shape,
@@ -532,58 +532,46 @@ orbis::wc_to_ascii(
   na_flag = -9999
 )
 
-beepr::beep(1)
+beep(1)
 ```
 
-## Adding LICENSE and README Files
+## Add LICENSE and README Files
 
 ```{r}
 for (i in c(data_dir, data_series_dir)) {
-  wc_license() |> readr::write_lines(fs::path(i, "LICENSE.md"))
+  wc_license() |> write_lines(path(i, "LICENSE.md"))
 }
 ```
 
 ```{r}
 download_date <-
-  fs::path(tif_dir, "README.md") |>
-  readr::read_lines() |>
+  path(tif_dir, "README.md") |>
+  read_lines() |>
   paste0(collapse = "\n") |>
-  stringr::str_extract("\\d{4}-\\d{2}-\\d{2}")
+  str_extract("\\d{4}-\\d{2}-\\d{2}")
 
 logoclim_readme(resolution = resolution, download_date = download_date) |>
-  readr::write_lines(fs::path(data_dir, "README.md"))
+  write_lines(path(data_dir, "README.md"))
 
 logoclim_readme(series, resolution, download_date) |>
-  readr::write_lines(fs::path(data_series_dir, "README.md"))
+  write_lines(path(data_series_dir, "README.md"))
 ```
 
-## Deleting Non-ASCII Files (Optional)
+## Delete Non-ASCII Files (Optional)
 
 ```{r}
 #| eval: false
 
 data_series_dir |>
-  fs::dir_ls(
+  dir_ls(
     type = "file",
     regexp = "asc$",
     invert = TRUE
   ) |>
-  fs::file_delete()
+  file_delete()
 ```
 
-## Zipping the Final Files (Optional)
-
-```{r}
-#| eval: false
-
-asc_files <-
-  data_series_dir |>
-  fs::dir_ls(
-    type = "file",
-    regexp = "asc$",
-    recurse = TRUE
-  )
-```
+## Zip the Final Files (Optional)
 
 ```{r}
 #| eval: false
@@ -599,11 +587,11 @@ model <- NULL # "ACCESS-CM2"
 
 zip_file <-
   data_dir |>
-  fs::path(
+  path(
       paste0(
       country_code,
       ifelse(!is.null(country_suffix), paste0("-", country_suffix), ""),
-      paste0("-", stringr::str_replace_all(resolution, "\\.", "\\-")),
+      paste0("-", str_replace_all(resolution, "\\.", "\\-")),
       ifelse(!is.null(series_suffix), paste0("-", series_suffix), ""),
       ifelse(!is.null(model), paste0("-", tolower(model)), ""),
       ".zip"
@@ -620,8 +608,8 @@ zip_file |>
   zip::zip(
     files =
       data_dir |>
-      fs::dir_ls(recurse = TRUE) |>
-      fs::path_rel(data_dir),
+      dir_ls(recurse = TRUE) |>
+      path_rel(data_dir),
     root = data_dir
   )
 ```

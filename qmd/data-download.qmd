@@ -15,7 +15,7 @@ This document provides a step-by-step guide to download the WorldClim 2.1 data f
 This process may take some time to complete. Please be patient.
 :::
 
-## Setting the Environment
+## Set the Environment
 
 ```{r}
 library(beepr)
@@ -31,14 +31,16 @@ library(readr)
 library(rutils) # github.com/danielvartan/rutils
 library(rvest)
 library(stringr)
+library(tidyr)
+library(zip)
 ```
 
 ```{r}
-source(here::here("R", "wc_license.R"))
-source(here::here("R", "wc_readme.R"))
+source(here("R", "wc_license.R"))
+source(here("R", "wc_readme.R"))
 ```
 
-## Setting the Initial Variables
+## Set the Initial Variables
 
 ### `params`
 
@@ -153,52 +155,52 @@ model <- c(
 Check the paths to the directories where the data will be stored.
 
 ```{r}
-raw_data_dir <- here::here("data-raw")
+raw_data_dir <- here("data-raw")
 ```
 
 ```{r}
-wc_raw_data_dir <- fs::path(raw_data_dir, "worldclim")
+raw_data_wc_dir <- path(raw_data_dir, "worldclim")
 ```
 
 ```{r}
-wc_raw_data_series_dir <- fs::path(wc_raw_data_dir, series)
+raw_data_wc_series_dir <- path(raw_data_wc_dir, series)
 ```
 
 ```{r}
-wc_raw_data_series_res_dir <- fs::path(
-  wc_raw_data_dir,
+raw_data_wc_series_res_dir <- path(
+  raw_data_wc_dir,
   series,
-  resolution |> stringr::str_replace_all("\\.", "\\-")
+  resolution |> str_replace_all("\\.", "\\-")
 )
 ```
 
 ```{r}
 dirs <- c(
-  raw_data_dir, wc_raw_data_dir, wc_raw_data_series_dir,
-  wc_raw_data_series_res_dir
+  raw_data_dir, raw_data_wc_dir, raw_data_wc_series_dir,
+  raw_data_wc_series_res_dir
 )
 
 for (i in dirs) {
-  if (!dir.exists(i)) {
-    fs::dir_create(i, recurse = TRUE)
+  if (!dir_exists(i)) {
+    dir_create(i, recurse = TRUE)
   }
 }
 ```
 
-## Scrapping the Source
+## Scrape the Source
 
 ```{r}
 html <-
-  orbis::get_wc_url(series, resolution) |>
-  rvest::read_html()
+  get_wc_url(series, resolution) |>
+  read_html()
 ```
 
 ```{r}
 urls <-
   html |>
-  rvest::html_elements("a") |>
-  rvest::html_attr("href") |>
-  stringr::str_subset("geodata")
+  html_elements("a") |>
+  html_attr("href") |>
+  str_subset("geodata")
 ```
 
 ```{r}
@@ -206,7 +208,7 @@ if (!resolution == "all") {
   urls <-
     urls %>%
     magrittr::extract(
-      stringr::str_detect(
+      str_detect(
         basename(.),
         paste0("(?<=_)", resolution)
       )
@@ -219,7 +221,7 @@ if (!is.null(model)) {
   urls <-
     urls %>%
     magrittr::extract(
-      stringr::str_detect(
+      str_detect(
         basename(.),
         paste0("(?<=_)", model, collapse = "|")
       )
@@ -227,64 +229,64 @@ if (!is.null(model)) {
 }
 ```
 
-## Creating the Metadata
+## Create the Metadata
 
 ```{r}
 sizes <-
   urls |>
-  purrr::map_dbl(
+  map_dbl(
     .f = rutils::get_file_size,
     .progress = TRUE
   ) |>
-  fs::as_fs_bytes()
+  as_fs_bytes()
 
-beepr::beep(1)
+beep(1)
 ```
 
 ```{r}
 metadata <-
-  dplyr::tibble(
+  tibble(
     url = urls,
     file = basename(urls),
     size = sizes
   ) |>
-  dplyr::arrange(size) |>
-  dplyr::mutate(
+  arrange(size) |>
+  mutate(
   size_cum_sum =
       size |>
-      tidyr::replace_na() |>
+      replace_na() |>
       cumsum() |>
-      fs::as_fs_bytes()
+      as_fs_bytes()
   )
 
 metadata
 ```
 
 ```{r}
-metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+metadata |> pull(size_cum_sum) |> last()
 ```
 
 ```{r}
 metadata |>
-  readr::write_rds(
-    fs::path(wc_raw_data_series_res_dir, "metadata.rds")
+  write_rds(
+    path(raw_data_wc_series_res_dir, "metadata.rds")
   )
 ```
 
-## Checking for Errors
+## Check for Errors
 
 ```{r}
 {
-  cli::cli_alert_info(
+  cli_alert_info(
     paste0(
-      "{.strong {cli::col_red(rutils:::count_na(metadata$size))}} ",
+      "{.strong {col_red(count_na(metadata$size))}} ",
       "url requests resulted in error."
     )
   )
 
-  if (rutils::count_na(metadata$size) > 0) {
-    cli::cli_alert_info("Their file names are:")
-    cli::cli_li(metadata$file[is.na(metadata$size)])
+  if (count_na(metadata$size) > 0) {
+    cli_alert_info("Their file names are:")
+    cli_li(metadata$file[is.na(metadata$size)])
   }
 }
 ```
@@ -296,108 +298,109 @@ if (any(is.na(metadata$size))) {
     "\n\n",
     paste(metadata$url[is.na(metadata$size)], collapse = "\n")
   ) |>
-    readr::write_lines(here::here("qmd", "data-download.log"))
+    write_lines(here("qmd", "data-download.log"))
 }
 ```
 
-## Adding LICENSE and README Files
+## Add LICENSE and README Files
 
 ```{r}
 if (series == "future-climate-data") {
-  dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+  dir <- path(raw_data_wc_series_res_dir, "tif")
 } else {
-  dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+  dir <- path(raw_data_wc_series_res_dir, "zip")
 }
 
-if (!dir.exists(dir)) {
-  dir |> fs::dir_create(recurse = TRUE)
+if (!dir_exists(dir)) {
+  dir |> dir_create(recurse = TRUE)
 }
 ```
 
 ```{r}
 dirs <- c(
-  wc_raw_data_dir,
-  wc_raw_data_series_dir,
-  wc_raw_data_series_res_dir,
+  raw_data_wc_dir,
+  raw_data_wc_series_dir,
+  raw_data_wc_series_res_dir,
   dir
 )
 
 for (i in dirs) {
-  wc_license() |> readr::write_lines(fs::path(i, "LICENSE.md"))
+  wc_license() |> write_lines(path(i, "LICENSE.md"))
 }
 ```
 
 ```{r}
 wc_readme() |>
-  readr::write_lines(fs::path(wc_raw_data_dir, "README.md"))
+  write_lines(path(raw_data_wc_dir, "README.md"))
 
 wc_readme(series) |>
-  readr::write_lines(fs::path(wc_raw_data_series_dir, "README.md"))
+  write_lines(path(raw_data_wc_series_dir, "README.md"))
 
 wc_readme(series, resolution) |>
-  readr::write_lines(fs::path(wc_raw_data_series_res_dir, "README.md"))
+  write_lines(path(raw_data_wc_series_res_dir, "README.md"))
 
 wc_readme(series, resolution) |>
-  readr::write_lines(fs::path(dir, "README.md"))
+  write_lines(path(dir, "README.md"))
 ```
 
-## Downloading the Files
+## Download the Files
 
 ```{r}
-broken_links <-
-  metadata |>
-  dplyr::pull(url) |>
+#| output: false
+
+metadata |>
+  pull(url) |>
   rutils::download_file(
     dir = dir,
     broken_links = TRUE
   )
 
-beepr::beep(8)
+beep(8)
 ```
 
 If the download process was interrupted or not all files were downloaded, run the code chunk below to retry downloading only the missing files.
 
 ```{r}
 #| eval: false
+#| include: false
 
-files <- dir |> fs::dir_ls(type = "file")
+files <- dir |> dir_ls(type = "file")
 
-broken_links <-
-  metadata |>
-  dplyr::filter(!file %in% basename(files)) |>
-  dplyr::pull(url) |>
+metadata |>
+  filter(!file %in% basename(files)) |>
+  pull(url) |>
   rutils::download_file(dir = dir, broken_links = TRUE)
 
-beepr::beep(8)
+beep(8)
 ```
 
-## Unzipping the Files (Optional)
+## Unzip the Files (Optional)
 
 ```{r}
 #| eval: false
 
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
-```
-
-```{r}
-#| eval: false
-
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
-
-if (!dir.exists(tif_dir)) tif_dir |> fs::dir_create(recurse = TRUE)
+zip_dir <- path(raw_data_wc_series_res_dir, "zip")
 ```
 
 ```{r}
 #| eval: false
 
-if (dir.exists(zip_dir)) {
+tif_dir <- path(raw_data_wc_series_res_dir, "tif")
+
+if (!dir_exists(tif_dir)) tif_dir |> dir_create(recurse = TRUE)
+```
+
+```{r}
+#| eval: false
+
+if (dir_exists(zip_dir)) {
   accompanying_files <- c("README.md", "LICENSE.md")
 
   for (i in accompanying_files) {
-    if (file.exists(fs::path(zip_dir, i))) {
-      fs::file_copy(
-        fs::path(zip_dir, i),
-        fs::path(tif_dir, i),
+    if (file_exists(path(zip_dir, i))) {
+      file_copy(
+        path(zip_dir, i),
+        path(tif_dir, i),
         overwrite = TRUE
       )
     }
@@ -409,12 +412,12 @@ if (dir.exists(zip_dir)) {
 #| eval: true
 #| output: false
 
-if (dir.exists(zip_dir)) {
+if (dir_exists(zip_dir)) {
   zip_files <-
     zip_dir |>
-    fs::dir_ls(type = "file", regexp = "zip$")
+    dir_ls(type = "file", regexp = "zip$")
 
-  cli::cli_progress_bar(
+  cli_progress_bar(
       name = "Unzipping data",
       total = length(zip_files),
       clear = FALSE
@@ -427,37 +430,37 @@ if (dir.exists(zip_dir)) {
         exdir = tif_dir
       )
 
-    cli::cli_progress_update()
+    cli_progress_update()
   }
 
-  cli::cli_progress_done()
+  cli_progress_done()
 
-  beepr::beep(1)
+  beep(1)
 }
 ```
 
 ```{r}
 #| eval: false
 
-if (dir.exists(zip_dir)) zip_dir |> fs::dir_delete()
+if (dir_exists(zip_dir)) zip_dir |> dir_delete()
 ```
 
-## Zipping the Files (Optional)
+## Zip the Files (Optional)
 
 You need to unzip the files first if you want to zip them again. Use the code chunk above to unzip the files.
 
-### Creating a New Metadata
+### Create a New Metadata
 
 ```{r}
 #| eval: false
 
-tif_dir <- fs::path(wc_raw_data_series_res_dir, "tif")
+tif_dir <- path(raw_data_wc_series_res_dir, "tif")
 ```
 
 ```{r}
 #| eval: false
 
-files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
+files <- tif_dir |> dir_ls(type = "file", regexp = "tif$")
 ```
 
 ```{r}
@@ -465,28 +468,28 @@ files <- tif_dir |> fs::dir_ls(type = "file", regexp = "tif$")
 
 sizes <-
   files |>
-  purrr::map_dbl(
-    .f = rutils::get_file_size,
+  map_dbl(
+    .f = get_file_size,
     .progress = TRUE
   ) |>
-  fs::as_fs_bytes()
+  as_fs_bytes()
 ```
 
 ```{r}
 #| eval: false
 
 metadata <-
-  dplyr::tibble(
+  tibble(
     file = basename(files),
     size = sizes
   ) |>
-  dplyr::arrange(size) |>
-  dplyr::mutate(
+  arrange(size) |>
+  mutate(
   size_cum_sum =
       size |>
-      tidyr::replace_na() |>
+      replace_na() |>
       cumsum() |>
-      fs::as_fs_bytes()
+      as_fs_bytes()
   )
 
 metadata
@@ -495,17 +498,17 @@ metadata
 ```{r}
 #| eval: false
 
-metadata |> dplyr::pull(size_cum_sum) |> dplyr::last()
+metadata |> pull(size_cum_sum) |> last()
 ```
 
-### Zipping the Files
+### Zip the Files
 
 ```{r}
 #| eval: false
 
-zip_dir <- fs::path(wc_raw_data_series_res_dir, "zip")
+zip_dir <- path(raw_data_wc_series_res_dir, "zip")
 
-if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
+if (!dir_exists(zip_dir)) zip_dir |> dir_create(recurse = TRUE)
 ```
 
 ```{r}
@@ -513,7 +516,7 @@ if (!dir.exists(zip_dir)) zip_dir |> fs::dir_create(recurse = TRUE)
 
 climate_variables <-
   metadata |>
-  dplyr::pull(file) |>
+  pull(file) |>
   orbis:::extract_wc_variable() |>
   unique()
 
@@ -525,7 +528,7 @@ climate_variables
 
 models <-
   metadata |>
-  dplyr::pull(file) |>
+  pull(file) |>
   orbis:::extract_wc_gcm() |>
   unique()
 
@@ -558,7 +561,7 @@ For zipping files by climate variable, use:
 ```{r}
 #| eval: false
 
-cli::cli_progress_bar(
+cli_progress_bar(
   name = "Zipping data",
   total = length(climate_variables),
   clear = FALSE
@@ -567,11 +570,11 @@ cli::cli_progress_bar(
 for (i in climate_variables) {
   i_file <-
     metadata |>
-    dplyr::pull(file) |>
-    groomr::zip_files_by_pattern(
+    pull(file) |>
+    zip_files_by_pattern(
       pattern = i,
       prefix = paste0(
-        stringr::str_replace_all(resolution, "\\.", "\\-"),
+        str_replace_all(resolution, "\\.", "\\-"),
         ifelse(
           !is.null(series_suffix),
           paste0("-", series_suffix),
@@ -579,26 +582,26 @@ for (i in climate_variables) {
         ),
         "-"
       ),
-      max_size = fs::fs_bytes("50GB"),
+      max_size = fs_bytes("50GB"),
       appendices = c("LICENSE.md", "README.md"),
       root = tif_dir,
       dir = zip_dir
     )
 
   i_file |>
-      fs::file_move(
-        fs::path(
+      file_move(
+        path(
           zip_dir,
-          stringr::str_to_lower(basename(i_file))
+          str_to_lower(basename(i_file))
         )
       )
 
-  cli::cli_progress_update()
+  cli_progress_update()
 }
 
-cli::cli_progress_done()
+cli_progress_done()
 
-beepr::beep(1)
+beep(1)
 ```
 
 For zipping files by model, use:
@@ -607,7 +610,7 @@ For zipping files by model, use:
 #| eval: false
 
 if (!is.null(model)) {
-  cli::cli_progress_bar(
+  cli_progress_bar(
     name = "Zipping data",
     total = length(model),
     clear = FALSE
@@ -616,11 +619,11 @@ if (!is.null(model)) {
   for (i in model) {
     i_file <-
       metadata |>
-      dplyr::pull(file) |>
-      groomr::zip_files_by_pattern(
+      pull(file) |>
+      zip_files_by_pattern(
         pattern = i,
         prefix = paste0(
-          stringr::str_replace_all(resolution, "\\.", "\\-"),
+          str_replace_all(resolution, "\\.", "\\-"),
           ifelse(
             !is.null(series_suffix),
             paste0("-", series_suffix),
@@ -628,27 +631,27 @@ if (!is.null(model)) {
           ),
           "-"
         ),
-        max_size = fs::fs_bytes("50GB"),
+        max_size = fs_bytes("50GB"),
         appendices = c("LICENSE.md", "README.md"),
         root = tif_dir,
         dir = zip_dir
       )
 
     i_file |>
-      fs::file_move(
-        fs::path(
+      file_move(
+        path(
           zip_dir,
-          stringr::str_to_lower(basename(i_file))
+          str_to_lower(basename(i_file))
         )
       )
 
-    cli::cli_progress_update()
+    cli_progress_update()
   }
 
-  cli::cli_progress_done()
+  cli_progress_done()
 }
 
-beepr::beep(1)
+beep(1)
 ```
 
 For zipping files by model and climate variable, use:
@@ -657,7 +660,7 @@ For zipping files by model and climate variable, use:
 #| eval: false
 
 if (!is.null(model)) {
-  cli::cli_progress_bar(
+  cli_progress_bar(
     name = "Zipping data",
     total = length(model) * length(climate_variables),
     clear = FALSE
@@ -667,11 +670,11 @@ if (!is.null(model)) {
     for (j in climate_variables) {
       i_file <-
         metadata |>
-        dplyr::pull(file) |>
-        groomr::zip_files_by_pattern(
+        pull(file) |>
+        zip_files_by_pattern(
           pattern = paste0(j, "_", i),
           prefix = paste0(
-            stringr::str_replace_all(resolution, "\\.", "\\-"),
+            str_replace_all(resolution, "\\.", "\\-"),
             ifelse(
               !is.null(series_suffix),
               paste0("-", series_suffix),
@@ -679,28 +682,28 @@ if (!is.null(model)) {
             ),
             "-"
           ),
-          max_size = fs::fs_bytes("50GB"),
+          max_size = fs_bytes("50GB"),
           appendices = c("LICENSE.md", "README.md"),
           root = tif_dir,
           dir = zip_dir
         )
 
       i_file |>
-        fs::file_move(
-          fs::path(
+        file_move(
+          path(
             zip_dir,
-            stringr::str_to_lower(basename(i_file))
+            str_to_lower(basename(i_file))
           )
         )
 
-        cli::cli_progress_update()
+        cli_progress_update()
     }
   }
 
-  cli::cli_progress_done()
+  cli_progress_done()
 }
 
-beepr::beep(1)
+beep(1)
 ```
 
 For zipping the entire series, use:
@@ -709,22 +712,22 @@ For zipping the entire series, use:
 #| eval: false
 
 metadata |>
-  dplyr::pull(file) |>
-  groomr::zip_files_by_pattern(
+  pull(file) |>
+  zip_files_by_pattern(
     pattern = ".",
     prefix = paste0(
-      stringr::str_replace_all(resolution, "\\.", "\\-"),
+      str_replace_all(resolution, "\\.", "\\-"),
       ifelse(
         !is.null(series_suffix),
         paste0("-", series_suffix),
         ""
       )
     ),
-    max_size = fs::fs_bytes("50GB"),
+    max_size = fs_bytes("50GB"),
     appendices = c("LICENSE.md", "README.md"),
     root = tif_dir,
     dir = zip_dir
   )
 
-beepr::beep(1)
+beep(1)
 ```
