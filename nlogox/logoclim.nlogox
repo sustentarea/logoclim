@@ -125,9 +125,8 @@ to setup
   reset-ticks
 end
 
-to go [#tick? #wait?]
+to go [#tick?]
   assert-logical #tick?
-  assert-logical #wait?
 
   (ifelse
     (not is-gis? dataset) [
@@ -159,7 +158,7 @@ to go [#tick? #wait?]
   if (#tick? = true) [tick]
 end]]></code>
   <widgets>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.29" fontSize="10" wrappingAllowedY="false" width="624" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="538" showTickCounter="true" patchSize="2.29" fontSize="10" wrappingAllowedY="false" width="620" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
       <choice type="string" value="Historical climate data"></choice>
       <choice type="string" value="Historical monthly weather data"></choice>
@@ -252,8 +251,8 @@ end]]></code>
     </chooser>
     <input x="10" multiline="false" y="465" height="60" variable="start-year" type="number" width="250">1951.0</input>
     <input x="10" multiline="false" y="575" height="60" variable="data-path" type="string" width="250">../data</input>
-    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false false</button>
-    <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true true</button>
+    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false</button>
+    <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true</button>
     <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
   (settings = 0)
   ["NA"]
