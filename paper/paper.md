@@ -51,7 +51,7 @@ affiliations:
   index: 2
 - name: School of Public Health, University of São Paulo, São Paulo, Brazil
   index: 3
-date: 29 July 2025
+date: 22 August 2025
 bibliography: paper.bib
 ---
 
@@ -69,7 +69,7 @@ The model utilizes raster data to represent climate variables such as temperatur
 
 # Statement of need
 
-The lack of reproducibility is a major concern in science [@baker2016], including in computational research [@peng2011]. This challenge is particularly relevant for agent-based models, which are used to simulate complex phenomena [@grimm2006a; @grimm2020]. One effective strategy to address this issue is the development of open, specialized tools that enhance transparency and promote standardization, and reusability among researchers [@ram2019; @barba2022]. This is why `LogoClim` was created.
+The lack of reproducibility is a major concern in science [@baker2016], including in computational research [@peng2011]. This challenge is particularly relevant for agent-based models, which are used to simulate complex phenomena [@grimm2006a; @grimm2020]. One effective strategy to address this issue is the development of open, specialized tools that enhance transparency and promote standardization, and reusability among researchers [@ram2019; @berger2024]. This is why `LogoClim` was created.
 
 The `LogoClim` model was developed for seamless integration with other models through NetLogo's LevelSpace extension [@hjorth2020], which enables parallel execution and data exchange between models. This integration capability makes it particularly valuable for agent-based simulations that incorporate climate data to study ecological, environmental, or social processes affected by climate conditions.
 
@@ -91,26 +91,8 @@ We also provide example datasets for testing and demonstration. These files are 
 
 # Acknowledgements
 
-We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets, which form the foundation of this project.
+We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets. `LogoClim` is an independent project with no affiliation to [WorldClim](https://www.worldclim.org) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://www.worldclim.org/about.html).
 
-We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
-
-We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing global climate model development.
-
-Finally, we acknowledge the [Sustentarea](https://www.fsp.usp.br/sustentarea/) Research and Extension Center at the University of São Paulo ([USP](https://www5.usp.br/)), the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics)) of the [Ministry of Health](https://www.gov.br/saude/en) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0) for their support in the development of this project.
-
-# Author contributions
-
-The roles below were defined based on the Contributor Roles Taxonomy ([CRediT](https://credit.niso.org/)).
-
-[**Daniel Vartanian**](https://orcid.org/0000-0001-7782-759X): Conceptualization, Data curation, Methodology, Project administration, Software, Validation, Visualization, Writing – original draft, and Writing – Review & editing.
-
-[**Leandro Garcia**](https://orcid.org/0000-0001-5947-2617): Validation, Writing – original draft, and Writing - Review & editing.
-
-[**Aline Martins de Carvalho**](https://orcid.org/0000-0002-4900-5609): Conceptualization, Funding acquisition, Project administration, Supervision, Validation, Writing – original draft, and Writing – Review & editing.
-
-# Additional information
-
-`LogoClim` is an independent project with no affiliation to [WorldClim](https://www.worldclim.org) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://www.worldclim.org/about.html).
+We also acknowledge the support of the [Sustentarea](https://www.fsp.usp.br/sustentarea/) Research and Extension Center at the University of São Paulo ([USP](https://www5.usp.br/)), the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics)) of the [Ministry of Health](https://www.gov.br/saude/en) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0) for their support in the development of this project.
 
 # References
