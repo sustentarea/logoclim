@@ -13,6 +13,10 @@ params:
 This document provides a step-by-step guide to transform the WorldClim 2.1 data for NetLogo. It follows the download process outlined in the [LogoClim: WorldClim 2.1 Data Download](data-download.qmd) document. To use it, you must have already downloaded and unzipped the WorldClim 2.1 data files.
 
 ::: {.callout-important}
+Small datasets may contain data gaps (bleeds) in coastal areas after spatial enveloping operations. Test your processed data in `LogoClim` before implementing it in your model to ensure data integrity.
+:::
+
+::: {.callout-important}
 This process may take some time to complete. Please be patient.
 :::
 
