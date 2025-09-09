@@ -1,9 +1,10 @@
-.RData
-.Rhistory
-.Rproj.user
-.Ruserdata
 /.quarto/
 /.data/
 /..data/
 /...data/
 /data-raw/
+
+.RData
+.Rhistory
+.Rproj.user
+.Ruserdata

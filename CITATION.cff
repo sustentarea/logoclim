@@ -6,7 +6,7 @@ type: software
 authors:
   - given-names: Daniel
     family-names: Vartanian
-    email: danvartan@gmail.com
+    email: daniel.azevedo@alumni.usp.br
     affiliation: University of São Paulo
     orcid: 'https://orcid.org/0000-0001-7782-759X'
   - given-names: Leandro
