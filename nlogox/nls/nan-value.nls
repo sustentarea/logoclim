@@ -6,5 +6,13 @@ to-report nan-value [#dataset]
   gis:set-world-envelope envelope
   gis:apply-raster #dataset value
 
-  report item 0 filter is-nan? [value] of patches with [is-number? value]
+  let out 0
+
+  carefully [
+    set out item 0 filter is-nan? [value] of patches with [is-number? value]
+  ] [
+    set out 0
+  ]
+
+  report out
 end
