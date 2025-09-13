@@ -1,0 +1,17 @@
+name: publish.yaml
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Release on GitHub
+        uses: softprops/action-gh-release@v2
