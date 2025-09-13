@@ -67,17 +67,17 @@
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "hi@danielvartan.com",
+    "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
   "maintainer": {
     "@type": "Person",
     "familyName": "Vartanian",
     "givenName": "Daniel",
-    "email": "hi@danielvartan.com",
+    "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
-  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions.",
+  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.",
   "keywords": [
     "Agent-Based Modeling",
     "Climate Change",
@@ -139,7 +139,7 @@
         "name": "Center for Connected Learning and Computer-Based Modeling (CCL), Northwestern University",
         "url": "https://www.netlogo.org"
       },
-      "sameAs": "https://www.netlogo.orgdownload.shtml"
+      "sameAs": "https://www.netlogo.org"
     },
     {
       "name": "NetLogo GIS extension",

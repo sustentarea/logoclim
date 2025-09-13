@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model version="NetLogo 7.0.0-beta2" snapToGrid="true">
+<model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-07-30 2.0.0.9000
+; Version: 2025-09-13 2.0.0.9001
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -158,7 +158,7 @@ to go [#tick?]
   if (#tick? = true) [tick]
 end]]></code>
   <widgets>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="538" showTickCounter="true" patchSize="2.29" fontSize="10" wrappingAllowedY="false" width="620" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
       <choice type="string" value="Historical climate data"></choice>
       <choice type="string" value="Historical monthly weather data"></choice>
@@ -326,6 +326,8 @@ end]]></code>
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
+See the [`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) model for an example of how to integrate `LogoClim` into your model.
+
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 
 ## HOW IT WORKS
@@ -374,11 +376,13 @@ We suggest starting with the 10-minute resolution to verify that the model runs 
 
 #### RUNNING THE MODEL
 
-Once everything is set up, click the `Setup` and `Go` buttons to start exploring!
+Once everything is set up, click `Setup` and then `Go` to start exploring!
 
 ### INTEGRATING WITH OTHER MODELS
 
-`LogoClim` can be integrated with other models using NetLogo's LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension. This extension enables parallel execution and data exchange between models. For an example of integrating `LogoClim` with another model, see the [FoodClim](https://github.com/sustentarea/foodclim) project.
+`LogoClim` was created be integrated with other models using NetLogo's LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension. This extension enables parallel execution and data exchange between models.
+
+We prepared a separate test model called [`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/), to serve as a fun example of how to integrate `LogoClim` into your model.
 
 ### INTERFACE CONTROLS
 
@@ -435,7 +439,6 @@ Once everything is set up, click the `Setup` and `Go` buttons to start exploring
 - Change the starting year and month to observe different historical periods or future projections.
 - Switch between different climate variables to see how each variable evolves over time.
 - Experiment with various global climate models and SSPs to explore a range of future scenarios.
-- Adjust the transition speed to slow down or speed up the simulation for detailed observation or quicker results.
 
 ## HOW TO CITE
 

@@ -38,6 +38,10 @@ source of high-resolution, interpolated climate datasets based on
 weather station observations worldwide ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)).
 
+See the
+[`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/)
+model for an example of how to integrate `LogoClim` into your model.
+
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
@@ -171,12 +175,16 @@ Refer to the `Info` tab in the model for additional details.
 
 ### Integrating with Other Models
 
-`LogoClim` can be integrated with other models using NetLogo's
-LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html))
-extension. This extension enables parallel execution and data exchange
-between models. For an example of integrating `LogoClim` with another
-model, see the [FoodClim](https://github.com/sustentarea/foodclim)
-project.
+`LogoClim` was created to be integrated with other models using
+NetLogo's LevelSpace
+([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension.
+This extension enables parallel execution and data exchange between
+models.
+
+We prepared a separate test model called
+[`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/),
+to serve as a fun example of how to integrate `LogoClim` into your
+model.
 
 ## How to Cite
 

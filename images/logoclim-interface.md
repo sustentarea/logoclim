@@ -74,7 +74,7 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 - India: FCD, 2.5m, 2081-2100, Total precipitation
 - France: HCD, 30s, 1970-2000, Water vapor pressure
 
-```nlogox
+```netlogo
 go true true
 # Clear the command center after
 ```

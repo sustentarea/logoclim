@@ -25,13 +25,6 @@ abstract: >-
   into agent-based models, supporting reproducible research in ecology,
   agriculture, environmental science, and other fields that rely on climate data
   integration.
-
-  The model utilizes raster data to represent climate variables such as
-  temperature and precipitation over time. It incorporates historical data
-  (1951-2024) and future climate projections (2021-2100) derived from global
-  climate models under various Shared Socioeconomic Pathways (SSPs). All climate
-  inputs come from WorldClim 2.1, a widely used source of high-resolution,
-  interpolated climate datasets based on weather station observations worldwide.
 keywords:
   - Agent-Based Modeling
   - Climate Change
