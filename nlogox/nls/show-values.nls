@@ -1,15 +1,21 @@
 to show-values
   ifelse (mouse-inside?) [
     ask (patch mouse-xcor mouse-ycor) [
-      let radius-mean round mean [pcolor] of patches in-radius 3
-      let color-shade radius-mean - (precision radius-mean -1)
-      
-      ifelse (color-shade < 0) [
+      let #radius-mean round mean [pcolor] of patches in-radius 3
+      let #pcolor-brightness item 2 (extract-hsb pcolor)
+      let #radius-mean-brightness item 2 (extract-hsb #radius-mean)
+      let #brightness #radius-mean-brightness
+
+      if (abs (#pcolor-brightness - #radius-mean-brightness) > 50) [
+        set #brightness #pcolor-brightness
+      ]
+
+      ifelse (#brightness > 70) [
         set plabel-color black
       ] [
         set plabel-color white
       ]
-      
+    
       ifelse (not is-nan? value) [
         carefully [
           set plabel precision value 2
