@@ -1,9 +1,9 @@
-# library(beepr)
-# library(cli)
-# library(fs)
-# library(glue)
-# library(here)
-# library(stringr)
+library(beepr)
+library(cli)
+library(fs)
+library(glue)
+library(here)
+library(stringr)
 
 #' @description
 #'
@@ -26,39 +26,39 @@ country_suffix <- NULL # "box" "mainland"
 
 ## Cleaning the Data Directory -----
 
-here::here("data") |>
-  fs::dir_ls(
+here("data") |>
+  dir_ls(
     recurse = TRUE,
     type = "file",
     regexp = "\\.zip$|\\.gitignore$",
     invert = TRUE
   ) |>
-  fs::file_delete()
+  file_delete()
 
-here::here("data") |>
-  fs::dir_ls(
+here("data") |>
+  dir_ls(
     type = "dir",
     regexp = "\\.zip$|\\.gitignore$",
     invert = TRUE
   ) |>
-  fs::dir_delete()
+  dir_delete()
 
 for (i in country_codes) {
   ## Rendering the Data Series -----
 
   for (j in series) {
-    cli::cli_progress_step(
+    cli_progress_step(
       paste0(
-        "Rendering {.strong {cli::col_red('",
+        "Rendering {.strong {col_red('",
         j |>
-          stringr::str_replace_all("-", " ") |>
-          stringr::str_to_title(),
+          str_replace_all("-", " ") |>
+          str_to_title(),
         "')}} series"
       )
     )
 
     system(
-      glue::glue(
+      glue(
         "quarto render qmd/data-munging.qmd", " ",
         "-P series:'{j}'", " ",
         "-P resolution:'{resolution}'", " ",
@@ -76,15 +76,15 @@ for (i in country_codes) {
   ## Storing the Data in OSF -----
 
   data_dirs <-
-    here::here("data") |>
-    fs::dir_ls(type = "dir") |>
+    here("data") |>
+    dir_ls(type = "dir") |>
     basename()
 
   if (all(series %in% data_dirs, na.rm = TRUE)) {
-    cli::cli_progress_step("Storing the data in OSF")
+    cli_progress_step("Storing the data in OSF")
 
     system(
-      glue::glue(
+      glue(
         "quarto render qmd/data-upload.qmd", " ",
         "-P series:'{j}'", " ",
         "-P resolution:'{resolution}'", " ",
@@ -108,63 +108,63 @@ for (i in country_codes) {
   ## Deleting Processed Files -----
 
   zip_file <-
-    here::here("data") |>
-    fs::dir_ls(
+    here("data") |>
+    dir_ls(
       type = "file",
       regexp = paste0(i, ".*\\-", resolution, ".*\\.zip$")
     )
 
   if (!length(zip_file) == 0) {
-    here::here("data") |>
-      fs::dir_ls(
+    here("data") |>
+      dir_ls(
         recurse = TRUE,
         type = "file",
         regexp = "\\.zip$|\\.gitignore$",
         invert = TRUE
       ) |>
-      fs::file_delete()
+      file_delete()
 
-    here::here("data") |>
-      fs::dir_ls(
+    here("data") |>
+      dir_ls(
         type = "dir",
         regexp = "\\.zip$|\\.gitignore$",
         invert = TRUE
       ) |>
-      fs::dir_delete()
+      dir_delete()
   } else {
-    cli::cli_abort(
+    cli_abort(
       paste0(
         "No zip file was found for the ",
-        "{.strong {cli::col_red(stringr::str_to_upper(i))}} ",
+        "{.strong {col_red(str_to_upper(i))}} ",
         " country code."
       )
     )
   }
 
-  beepr::beep(11)
+  beep(11)
 }
 
 ## Cleaning Quarto Output Files -----
 
-cli::cli_progress_step("Cleaning Quarto output files")
+cli_progress_step("Cleaning Quarto output files")
 
-here::here("qmd") |>
-  fs::dir_ls(
+here("qmd") |>
+  dir_ls(
     recurse = TRUE,
     type = "file",
     regexp = "\\.qmd$|\\.gitignore|\\.log$$",
     invert = TRUE
   ) |>
-  fs::file_delete()
+  file_delete()
 
-here::here("qmd") |>
-  fs::dir_ls(
+here("qmd") |>
+  dir_ls(
     type = "dir",
     regexp = "\\.qmd$|\\.gitignore$|\\.log$",
     invert = TRUE
   ) |>
-  fs::dir_delete()
+  dir_delete()
 
-cli::cli_progress_done()
+cli_progress_done()
 
-beepr::beep(8)
+beep(8)

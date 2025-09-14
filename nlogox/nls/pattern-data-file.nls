@@ -7,17 +7,17 @@
 ; globals [data-series]
 
 to-report pattern-data-file
-  let pattern ""
+  let #pattern ""
 
   (ifelse
     (data-series = "Historical Climate Data") [
-      set pattern pattern-hcd-file
+      set #pattern pattern-hcd-file
     ] (data-series = "Historical Monthly Weather Data") [
-      set pattern pattern-hmwd-file
+      set #pattern pattern-hmwd-file
     ] (data-series = "Future Climate Data") [
-      set pattern pattern-fcd-file
+      set #pattern pattern-fcd-file
     ]
   )
 
-  report pattern
+  report #pattern
 end

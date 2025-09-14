@@ -35,7 +35,7 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 ### Historical Monthly Weather Data (HMWD)
 
 - Climate variable: Average Maximum Temperature (°C)
-- Period: 1951 to the end of the series
+- Period: 2024 to the end of the series
 
 ### Future Climate Data (FCD)
 

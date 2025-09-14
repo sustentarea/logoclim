@@ -1,4 +1,4 @@
-# library(rutils) # github.com/danielvartan/rutils
+library(rutils) # github.com/danielvartan/rutils
 
 wc_license <- function() {
   paste0(

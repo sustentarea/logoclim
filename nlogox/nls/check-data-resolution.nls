@@ -2,16 +2,16 @@
 ; globals [data-resolution data-series]
 
 to assert-data-resolution
-  let variables []
+  let #variables []
 
   ifelse (data-series = "Historical Monthly Weather Data") [
-    set variables [
+    set #variables [
       "2.5 Minutes (~21 km2 at the Equator)"
       "5 Minutes (~85 km2 at the Equator)"
       "10 Minutes (~340 km2 at the Equator)"
     ]
   ] [
-    set variables [
+    set #variables [
       "30 Seconds (~1 km2  at the Equator)"
       "2.5 Minutes (~21 km2 at the Equator)"
       "5 Minutes (~85 km2 at the Equator)"
@@ -19,8 +19,8 @@ to assert-data-resolution
     ]
   ]
 
-  if (not member? data-resolution variables) [
-    set variables collapse variables "\n" false
+  if (not member? data-resolution #variables) [
+    set #variables collapse #variables "\n" false
 
     let #message (word
       "The option "
@@ -30,7 +30,7 @@ to assert-data-resolution
       "series. "
       "Use one the following options: "
       "\n"
-      variables
+      #variables
     )
 
     user-message #message

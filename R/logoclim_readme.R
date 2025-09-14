@@ -1,6 +1,6 @@
-# library(checkmate)
-# library(stringr)
-# library(orbis) # github.com/danielvartan/orbis
+library(checkmate)
+library(stringr)
+library(orbis) # github.com/danielvartan/orbis
 
 logoclim_readme <- function(
   series = NULL,
@@ -15,11 +15,11 @@ logoclim_readme <- function(
 
   resolution_choices <- c("10m", "5m", "2.5m", "30s", "all")
 
-  checkmate::assert_string(series, null.ok = TRUE)
-  checkmate::assert_choice(series, series_choices, null.ok = TRUE)
-  checkmate::assert_string(resolution, null.ok = TRUE)
-  checkmate::assert_choice(resolution, resolution_choices, null.ok = TRUE)
-  checkmate::assert_string(
+  assert_string(series, null.ok = TRUE)
+  assert_choice(series, series_choices, null.ok = TRUE)
+  assert_string(resolution, null.ok = TRUE)
+  assert_choice(resolution, resolution_choices, null.ok = TRUE)
+  assert_string(
     download_date,
     pattern = "^\\d{4}-\\d{2}-\\d{2}$",
     null.ok = TRUE
@@ -43,8 +43,8 @@ logoclim_readme <- function(
   if (!is.null(series)) {
     series <-
       series |>
-      stringr::str_replace_all("-", " ") |>
-      stringr::str_to_title()
+      str_replace_all("-", " ") |>
+      str_to_title()
   }
 
   if (!is.null(resolution)) {
@@ -52,8 +52,8 @@ logoclim_readme <- function(
 
     resolution <-
       resolution |>
-      stringr::str_replace_all("m$", " minutes") |>
-      stringr::str_replace("^30s$", "30 seconds")
+      str_replace_all("m$", " minutes") |>
+      str_replace("^30s$", "30 seconds")
   }
 
   paste0(

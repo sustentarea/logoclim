@@ -4,25 +4,21 @@
 ;   "lookup-data-resolution.nls"
 ; ]
 
-; globals [
-;   bioclimatic-variable
-;   climate-variable
-;   data-resolution
-; ]
+; globals [climate-variable]
 
 to-report pattern-hcd-file
-  let pattern ""
+  let #pattern ""
 
   (ifelse
     (climate-variable = "Elevation") [
-      set pattern "_1970-2000"
+      set #pattern "_1970-2000"
     ] (climate-variable = "Bioclimatic Variables") [
-      set pattern (word
+      set #pattern (word
       "_1970-2000_"
       lookup-bioclimatic-variable
       )
     ] [
-      set pattern "_1970-2000-[0-9]{2}"
+      set #pattern "_1970-2000-[0-9]{2}"
     ]
   )
 
@@ -30,7 +26,7 @@ to-report pattern-hcd-file
     "^wc2.1_"
     lookup-data-resolution "_"
     lookup-climate-variable
-    pattern
+    #pattern
     ".asc$"
   )
 end

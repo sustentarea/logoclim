@@ -4,19 +4,15 @@
 ;   "pattern-data-file.nls"
 ; ]
 
-; globals [data-series global-climate-model climate-variable data-resolution]
-
 to-report test-data
-  let path lookup-series-data-path
-  let pattern pattern-data-file
-
-  let test false
+  let #path lookup-series-data-path
+  let #test false
 
   carefully [
-    set test not empty? list-files-by-pattern path pattern
+    set #test not empty? list-files-by-pattern #path pattern-data-file
   ] []
 
-  report test
+  report #test
 end
 
 

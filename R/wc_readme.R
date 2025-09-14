@@ -1,6 +1,6 @@
-# library(checkmate)
-# library(stringr)
-# library(orbis) # github.com/danielvartan/orbis
+library(checkmate)
+library(stringr)
+library(orbis) # github.com/danielvartan/orbis
 
 wc_readme <- function(series = NULL, resolution = NULL) {
   series_choices <- c(
@@ -11,13 +11,13 @@ wc_readme <- function(series = NULL, resolution = NULL) {
 
   resolution_choices <- c("10m", "5m", "2.5m", "30s", "all")
 
-  checkmate::assert_string(series, null.ok = TRUE)
-  checkmate::assert_choice(series, series_choices, null.ok = TRUE)
-  checkmate::assert_string(resolution, null.ok = TRUE)
-  checkmate::assert_choice(resolution, resolution_choices, null.ok = TRUE)
+  assert_string(series, null.ok = TRUE)
+  assert_choice(series, series_choices, null.ok = TRUE)
+  assert_string(resolution, null.ok = TRUE)
+  assert_choice(resolution, resolution_choices, null.ok = TRUE)
 
   if (!is.null(series) && !is.null(resolution) && !resolution == "all") {
-    source <- orbis::get_wc_url(series, resolution)
+    source <- get_wc_url(series, resolution)
   } else {
     source <- "https://www.worldclim.org"
   }
@@ -25,8 +25,8 @@ wc_readme <- function(series = NULL, resolution = NULL) {
   if (!is.null(series)) {
     series <-
       series |>
-      stringr::str_replace_all("-", " ") |>
-      stringr::str_to_title()
+      str_replace_all("-", " ") |>
+      str_to_title()
   }
 
   if (!is.null(resolution)) {
@@ -34,8 +34,8 @@ wc_readme <- function(series = NULL, resolution = NULL) {
 
     resolution <-
       resolution |>
-      stringr::str_replace_all("m$", " minutes") |>
-      stringr::str_replace("^30s$", "30 seconds")
+      str_replace_all("m$", " minutes") |>
+      str_replace("^30s$", "30 seconds")
   }
 
   paste0(

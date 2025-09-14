@@ -12,5 +12,5 @@ to-report collapse [#list #sep #quote?]
 
   if (#quote? = true) [set #list single-quote #list]
 
-  report reduce [[i j] -> (word i #sep j)] #list
+  report reduce [[#i #j] -> (word #i #sep #j)] #list
 end

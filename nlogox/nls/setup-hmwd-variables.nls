@@ -11,30 +11,28 @@
 ; globals [start-month start-year]
 
 to setup-hmwd-variables
-  let path lookup-series-data-path
-  let pattern pattern-hmwd-file
-  
-  set files list-files-by-pattern path pattern
-  
+  let #path lookup-series-data-path
+  set files list-files-by-pattern #path pattern-hmwd-file
+
   set years as-list (str-extract files "[0-9]{4}(?=-[0-9]{2}.asc)")
   set years map read-from-string years
-  
+
   set months as-list (str-extract files "[0-9]{2}(?=.asc)")
   let num-start-month str-to-num-month start-month
-  
-  let dates (map [[i j] -> (word i "-" j "-01")] years months)
-  set dates map [i -> time:create i] dates
-  let start-date time:create (word start-year "-" num-start-month "-01")
+
+  let #dates (map [[i j] -> (word i "-" j "-01")] years months)
+  set #dates map [i -> time:create i] #dates
+  let #start-date time:create (word start-year "-" num-start-month "-01")
 
   set files filter [
-      i -> 
-        (time:is-equal? item (position i files) dates start-date) or
-        (time:is-after? item (position i files) dates start-date)
+      i ->
+        (time:is-equal? item (position i files) #dates #start-date) or
+        (time:is-after? item (position i files) #dates #start-date)
     ] files
-    
+
   set years as-list (str-extract files "[0-9]{4}(?=-[0-9]{2}.asc)")
   set years map read-from-string years
-    
+
   set months as-list (str-extract files "[0-9]{2}(?=.asc)")
   set months map read-from-string months
   set months map num-to-str-month months

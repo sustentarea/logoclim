@@ -5,8 +5,8 @@ to-report list-files-by-pattern [#path #pattern]
   assert-string #path
   assert-string #pattern
 
-  let out pathdir:list #path
-  set out filter [i -> string:rex-match? #pattern i] out
+  let #out pathdir:list #path
+  set #out filter [i -> string:rex-match? #pattern i] #out
 
-  report sort out
+  report sort #out
 end

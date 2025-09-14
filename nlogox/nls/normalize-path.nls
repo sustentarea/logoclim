@@ -9,20 +9,20 @@
 to-report normalize-path [#path]
   assert-atomic #path
 
-  let out as-string #path
-  let sep pathdir:get-separator
+  let #out as-string #path
+  let #sep pathdir:get-separator
 
-  if (is-windows?) [set sep rep-collapse sep 4]
+  if (is-windows?) [set #sep rep-collapse #sep 4]
 
   ; string:rex-replace-all "\\\\" "..\\data" "/"
-  set out string:rex-replace-all "\\\\" out sep
+  set #out string:rex-replace-all "\\\\" #out #sep
 
   ; string:rex-replace-all "/" "../data" "\\\\"
-  set out string:rex-replace-all "/" out sep
+  set #out string:rex-replace-all "/" #out #sep
 
-  while [string:rex-match? (word ".*" sep "$") out] [
-    set out string:rex-replace-first (word sep "$") out ""
+  while [string:rex-match? (word ".*" #sep "$") #out] [
+    set #out string:rex-replace-first (word #sep "$") #out ""
   ]
 
-  report out
+  report #out
 end

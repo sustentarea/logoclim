@@ -2,7 +2,7 @@ to-report as-string [#x]
   (ifelse (is-string? #x) [
     report #x
   ] (is-list? #x) [
-    report map [i -> ifelse-value (is-string? i) [i] [(word i)]] #x
+    report map [#i -> ifelse-value (is-string? #i) [#i] [(word #i)]] #x
   ] [
     report (word #x)
   ])

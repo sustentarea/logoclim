@@ -2,11 +2,11 @@
 ; globals [climate-variable data-series]
 
 to assert-climate-variable
-  let variables []
+  let #variables []
 
   (ifelse
     (data-series = "Historical Climate Data") [
-      set variables [
+      set #variables [
         "Average Minimum Temperature (°C)"
         "Average Maximum Temperature (°C)"
         "Average Temperature (°C)"
@@ -19,14 +19,14 @@ to assert-climate-variable
       ]
    ]
     (data-series = "Historical Monthly Weather Data") [
-      set variables [
+      set #variables [
         "Average Minimum Temperature (°C)"
         "Average Maximum Temperature (°C)"
         "Total Precipitation (mm)"
       ]
     ]
     (data-series = "Future Climate Data") [
-      set variables [
+      set #variables [
         "Average Minimum Temperature (°C)"
         "Average Maximum Temperature (°C)"
         "Total Precipitation (mm)"
@@ -35,8 +35,8 @@ to assert-climate-variable
     ]
   )
 
-  if (not member? climate-variable variables) [
-    set variables collapse variables "\n" false
+  if (not member? climate-variable #variables) [
+    set #variables collapse #variables "\n" false
 
     let #message (word
       "The option "
@@ -46,7 +46,7 @@ to assert-climate-variable
       "series. "
       "Use one the following options: "
       "\n"
-      variables
+      #variables
     )
 
     user-message #message

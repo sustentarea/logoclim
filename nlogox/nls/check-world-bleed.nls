@@ -8,35 +8,35 @@ to-report check-world-bleed [#size]
   assert-numeric #size
   assert-between #size 0 1
 
-  let pxcor-size floor world-width * #size
-  let pxcor-range (range min-pxcor (max-pxcor + 1))
+  let #pxcor-size floor world-width * #size
+  let #pxcor-range (range min-pxcor (max-pxcor + 1))
 
-  let pxcor-check (sentence
-    sublist pxcor-range 0 pxcor-size
-    reverse (sublist (reverse pxcor-range) 0 pxcor-size)
+  let #pxcor-check (sentence
+    sublist #pxcor-range 0 #pxcor-size
+    reverse (sublist (reverse #pxcor-range) 0 #pxcor-size)
   )
 
-  let pycor-size floor world-height * #size
-  let pycor-range (range min-pycor (max-pycor + 1))
+  let #pycor-size floor world-height * #size
+  let #pycor-range (range min-pycor (max-pycor + 1))
 
   let pycor-check (sentence
-    sublist pycor-range 0 pycor-size
-    reverse (sublist (reverse pycor-range) 0 pycor-size)
+    sublist #pycor-range 0 #pycor-size
+    reverse (sublist (reverse #pycor-range) 0 #pycor-size)
   )
 
-  let pxcor-bleed map check-xcor-bleed pxcor-check
-  set pxcor-bleed reduce sentence pxcor-bleed
+  let #pxcor-bleed map check-xcor-bleed #pxcor-check
+  set #pxcor-bleed reduce sentence #pxcor-bleed
 
-  let pycor-bleed map check-ycor-bleed pycor-check
-  set pycor-bleed reduce sentence pycor-bleed
+  let #pycor-bleed map check-ycor-bleed pycor-check
+  set #pycor-bleed reduce sentence #pycor-bleed
 
-  report list pxcor-bleed pycor-bleed
+  report list #pxcor-bleed #pycor-bleed
 end
 
 to-report check-xcor-bleed [#xcor]
-  let patch-values [value] of patches with [pxcor = #xcor]
+  let #patch-values [value] of patches with [pxcor = #xcor]
 
-  ifelse (all-member-or-nan? patch-values (list 0 "NA")) [
+  ifelse (all-member-or-nan? #patch-values (list 0 "NA")) [
     report (list #xcor)
   ] [
     report []
@@ -44,9 +44,9 @@ to-report check-xcor-bleed [#xcor]
 end
 
 to-report check-ycor-bleed [#ycor]
-  let patch-values [value] of patches with [pycor = #ycor]
+  let #patch-values [value] of patches with [pycor = #ycor]
 
-  ifelse (all-member-or-nan? patch-values (list 0 "NA")) [
+  ifelse (all-member-or-nan? #patch-values (list 0 "NA")) [
     report (list #ycor)
   ] [
     report []

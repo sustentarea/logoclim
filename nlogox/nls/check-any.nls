@@ -9,9 +9,9 @@ to-report any-member? [#list #member-list]
   set #list remove-duplicates #list
   set #member-list remove-duplicates #member-list
 
-  let test map [i -> (member? i #member-list)] #list
+  let #test map [#i -> (member? #i #member-list)] #list
 
-  report reduce [[i j] -> i or j] test
+  report reduce [[#i #j] -> #i or #j] #test
 end
 
 to-report list-any? [#list #x]

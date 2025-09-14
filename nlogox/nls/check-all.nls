@@ -9,9 +9,9 @@ to-report all-member? [#list #member-list]
   set #list remove-duplicates #list
   set #member-list remove-duplicates #member-list
 
-  let test map [i -> (member? i #member-list)] #list
+  let #test map [#i -> (member? #i #member-list)] #list
 
-  report reduce [[i j] -> i and j] test
+  report reduce [[#i #j] -> #i and #j] #test
 end
 
 to-report list-all? [#list #x]
@@ -48,9 +48,9 @@ to-report all-member-or-nan? [#list #member-list]
   set #list remove-duplicates #list
   set #member-list remove-duplicates #member-list
 
-  let test map [
-    i -> (member? i #member-list) or (is-nan? i)
+  let #test map [
+    #i -> (member? #i #member-list) or (is-nan? #i)
   ] #list
 
-  report reduce [[i j] -> i and j] test
+  report reduce [[#i #j] -> #i and #j] #test
 end

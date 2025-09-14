@@ -4,7 +4,7 @@ to-report is-gis? [#x]
   let test true
 
   carefully [
-    let dummy gis:type-of #x
+    let #dummy gis:type-of #x
   ] [
     set test false
   ]

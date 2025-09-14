@@ -4,12 +4,12 @@ to-report num-to-str-month [#month-number]
   assert-integer #month-number
   assert-between #month-number -11 12
 
-  let month-choices (list
+  let #month-choices (list
     "January" "February" "March" "April" "May" "June"
     "July" "August" "September" "October" "November" "December"
   )
 
   if (#month-number <= 0) [set #month-number (#month-number + 12)]
 
-  report item (#month-number - 1) month-choices
+  report item (#month-number - 1) #month-choices
 end

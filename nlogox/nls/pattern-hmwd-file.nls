@@ -1,5 +1,4 @@
 ; __includes ["lookup-climate-variable.nls" "lookup-data-resolution.nls"]
-; globals [climate-variable data-resolution]
 
 to-report pattern-hmwd-file
   report (word

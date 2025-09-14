@@ -1,18 +1,18 @@
 to-report nan-value [#dataset]
   assert-gis #dataset
 
-  let envelope gis:envelope-of #dataset
+  let #envelope gis:envelope-of #dataset
 
-  gis:set-world-envelope envelope
+  gis:set-world-envelope #envelope
   gis:apply-raster #dataset value
 
-  let out 0
+  let #out 0
 
   carefully [
-    set out item 0 filter is-nan? [value] of patches with [is-number? value]
+    set #out item 0 filter is-nan? [value] of patches with [is-number? value]
   ] [
-    set out 0
+    set #out 0
   ]
 
-  report out
+  report #out
 end

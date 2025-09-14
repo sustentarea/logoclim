@@ -7,29 +7,29 @@ to-report quartile [#data #stat]
   if (length #data < 4) [
     error "'#data' must contain at least four numeric values."
   ]
-  
+
   set #data sort #data
-  let length-data length #data
-  let quartile-length length-data / 4
+  let #length-data length #data
+  let #quartile-length #length-data / 4
 
   (ifelse
     (#stat = 0)[
       report first #data
     ] (#stat = 1) [
-      report last (sublist #data 0 (quartile-length * 1))
+      report last (sublist #data 0 (#quartile-length * 1))
     ] (#stat = 2) [
-      report last (sublist #data 0 (quartile-length * 2))
+      report last (sublist #data 0 (#quartile-length * 2))
     ] (#stat = 3) [
-      report last (sublist #data 0 (quartile-length * 3))
+      report last (sublist #data 0 (#quartile-length * 3))
     ] (#stat = 4) [
       report last #data
     ] (#stat = "iqr") [
-      let quartile-1 last (sublist #data 0 (quartile-length * 1))
-      let quartile-3 last (sublist #data 0 (quartile-length * 3))
+      let #quartile-1 last (sublist #data 0 (#quartile-length * 1))
+      let #quartile-3 last (sublist #data 0 (#quartile-length * 3))
 
-      report quartile-3 - quartile-1
+      report #quartile-3 - #quartile-1
     ] (#stat = "length") [
-      report quartile-length
+      report #quartile-length
     ] [
       error (word "#stat not found.")
     ]
