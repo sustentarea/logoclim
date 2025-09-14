@@ -162,7 +162,6 @@ to go [#tick?]
   if (#tick? = true) [tick]
 end]]></code>
   <widgets>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
       <choice type="string" value="Historical climate data"></choice>
       <choice type="string" value="Historical monthly weather data"></choice>
@@ -185,7 +184,28 @@ end]]></code>
       <choice type="string" value="Bioclimatic variables"></choice>
       <choice type="string" value="Elevation"></choice>
     </chooser>
-    <chooser x="10" y="205" height="60" variable="global-climate-model" current="5" width="250" display="global-climate-model">
+    <chooser x="10" y="205" height="60" variable="bioclimatic-variable" current="0" width="250" display="bioclimatic-variable">
+      <choice type="string" value="BIO1 - Annual mean temperature"></choice>
+      <choice type="string" value="BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))"></choice>
+      <choice type="string" value="BIO3 - Isothermality (BIO2/BIO7) (×100)"></choice>
+      <choice type="string" value="BIO4 - Temperature seasonality (standard deviation ×100)"></choice>
+      <choice type="string" value="BIO5 - Max temperature of warmest month"></choice>
+      <choice type="string" value="BIO6 - Min temperature of coldest month"></choice>
+      <choice type="string" value="BIO7 - Temperature annual range (BIO5-BIO6)"></choice>
+      <choice type="string" value="BIO8 - Mean temperature of wettest quarter"></choice>
+      <choice type="string" value="BIO9 - Mean temperature of driest quarter"></choice>
+      <choice type="string" value="BIO10 - Mean temperature of warmest quarter"></choice>
+      <choice type="string" value="BIO11 - Mean temperature of coldest quarter"></choice>
+      <choice type="string" value="BIO12 - Annual precipitation"></choice>
+      <choice type="string" value="BIO13 - Precipitation of wettest month"></choice>
+      <choice type="string" value="BIO14 - Precipitation of driest month"></choice>
+      <choice type="string" value="BIO15 - Precipitation seasonality (coefficient of variation)"></choice>
+      <choice type="string" value="BIO16 - Precipitation of wettest quarter"></choice>
+      <choice type="string" value="BIO17 - Precipitation of driest quarter"></choice>
+      <choice type="string" value="BIO18 - Precipitation of warmest quarter"></choice>
+      <choice type="string" value="BIO19 - Precipitation of coldest quarter"></choice>
+    </chooser>
+    <chooser x="10" y="270" height="60" variable="global-climate-model" current="5" width="250" display="global-climate-model">
       <choice type="string" value="ACCESS-CM2"></choice>
       <choice type="string" value="ACCESS-ESM1-5"></choice>
       <choice type="string" value="BCC-CSM2-MR"></choice>
@@ -212,32 +232,11 @@ end]]></code>
       <choice type="string" value="MRI-ESM2-0"></choice>
       <choice type="string" value="UKESM1-0-LL"></choice>
     </chooser>
-    <chooser x="10" y="270" height="60" variable="shared-socioeconomic-pathway" current="3" width="250" display="shared-socioeconomic-pathway">
+    <chooser x="10" y="335" height="60" variable="shared-socioeconomic-pathway" current="3" width="250" display="shared-socioeconomic-pathway">
       <choice type="string" value="SSP-126"></choice>
       <choice type="string" value="SSP-245"></choice>
       <choice type="string" value="SSP-370"></choice>
       <choice type="string" value="SSP-585"></choice>
-    </chooser>
-    <chooser x="10" y="335" height="60" variable="bioclimatic-variable" current="0" width="250" display="bioclimatic-variable">
-      <choice type="string" value="BIO1 - Annual mean temperature"></choice>
-      <choice type="string" value="BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))"></choice>
-      <choice type="string" value="BIO3 - Isothermality (BIO2/BIO7) (×100)"></choice>
-      <choice type="string" value="BIO4 - Temperature seasonality (standard deviation ×100)"></choice>
-      <choice type="string" value="BIO5 - Max temperature of warmest month"></choice>
-      <choice type="string" value="BIO6 - Min temperature of coldest month"></choice>
-      <choice type="string" value="BIO7 - Temperature annual range (BIO5-BIO6)"></choice>
-      <choice type="string" value="BIO8 - Mean temperature of wettest quarter"></choice>
-      <choice type="string" value="BIO9 - Mean temperature of driest quarter"></choice>
-      <choice type="string" value="BIO10 - Mean temperature of warmest quarter"></choice>
-      <choice type="string" value="BIO11 - Mean temperature of coldest quarter"></choice>
-      <choice type="string" value="BIO12 - Annual precipitation"></choice>
-      <choice type="string" value="BIO13 - Precipitation of wettest month"></choice>
-      <choice type="string" value="BIO14 - Precipitation of driest month"></choice>
-      <choice type="string" value="BIO15 - Precipitation seasonality (coefficient of variation)"></choice>
-      <choice type="string" value="BIO16 - Precipitation of wettest quarter"></choice>
-      <choice type="string" value="BIO17 - Precipitation of driest quarter"></choice>
-      <choice type="string" value="BIO18 - Precipitation of warmest quarter"></choice>
-      <choice type="string" value="BIO19 - Precipitation of coldest quarter"></choice>
     </chooser>
     <chooser x="10" y="400" height="60" variable="start-month" current="0" width="250" display="start-month">
       <choice type="string" value="January"></choice>
@@ -254,57 +253,38 @@ end]]></code>
       <choice type="string" value="December"></choice>
     </chooser>
     <input x="10" multiline="false" y="465" height="60" variable="start-year" type="number" width="250">1951.0</input>
-    <input x="10" multiline="false" y="575" height="60" variable="data-path" type="string" width="250">../data</input>
-    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false</button>
+    <input x="10" multiline="false" y="530" height="60" variable="data-path" type="string" width="250">../data</input>
+    <button x="10" y="595" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select data directory">set data-path user-directory</button>
+    <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
     <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true</button>
-    <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic variable">ifelse-value
-  (lookup-climate-variable = "bioc") and (settings != 0)
-  [item 5 settings]
-  ["NA"]</monitor>
+    <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go back">go-back</button>
+    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false</button>
+    <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
+    <input x="265" multiline="false" y="165" height="60" variable="historical-monthly-weather-data-color" type="color" width="250">25.0</input>
+    <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
+    <input x="265" multiline="false" y="295" height="60" variable="background-color" type="color" width="250">9.2</input>
+    <slider x="265" step="1" y="360" max="500" width="250" display="black-value" height="50" min="-500" direction="Horizontal" default="0.0" variable="black-value"></slider>
+    <switch x="265" y="415" height="40" on="false" variable="black-min" width="250" display="black-min"></switch>
+    <slider x="265" step="1" y="460" max="500" width="250" display="white-value" height="50" min="-500" direction="Horizontal" default="50.0" variable="white-value"></slider>
+    <switch x="265" y="515" height="40" on="true" variable="white-max" width="250" display="white-max"></switch>
+    <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show values">show-values</button>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="250" display="Climate variable">ifelse-value
   (settings = 0)
   ["NA"]
   [item 2 settings]</monitor>
-    <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
-    <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go back">go-back</button>
-    <button x="10" y="530" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select data directory">set data-path user-directory</button>
-    <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
-    <slider x="265" step="1" y="360" max="500" width="250" display="black-value" height="50" min="-500" direction="Horizontal" default="0.0" variable="black-value"></slider>
-    <input x="265" multiline="false" y="295" height="60" variable="background-color" type="color" width="250">9.2</input>
-    <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
-    <input x="265" multiline="false" y="165" height="60" variable="historical-monthly-weather-data-color" type="color" width="250">25.0</input>
-    <slider x="265" step="1" y="460" max="500" width="250" display="white-value" height="50" min="-500" direction="Horizontal" default="50.0" variable="white-value"></slider>
-    <switch x="265" y="415" height="40" on="false" variable="black-min" width="250" display="black-min"></switch>
-    <switch x="265" y="515" height="40" on="true" variable="white-max" width="250" display="white-max"></switch>
-    <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show values">show-values</button>
-    <plot x="1415" autoPlotX="true" yMax="6.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
-      <setup></setup>
-      <update>set-plot-x-range 0 max-plot-x</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
-        <setup></setup>
-        <update>ifelse ((start-month = month)) [
-  set-plot-pen-color black
-] [
-  set-plot-pen-color white
-]
-
-plot 0.1</update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Std. Dev." color="-1513240" legend="true">
-        <setup></setup>
-        <update>plot standard-deviation [value] of patches with [not is-nan? value]</update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
-        <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
-  set-plot-pen-color black
-  plot standard-deviation [value-12ma] of patches with [not is-nan? value]
-] [
-  set-plot-pen-color gray + 4
-  plot standard-deviation [value] of patches with [not is-nan? value]
-]]]></update>
-      </pen>
-    </plot>
+    <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
+  ((settings = 0))
+  ["NA"]
+  [month]</monitor>
+    <monitor x="1545" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
+  (settings = 0)
+  ["NA"]
+  [year]</monitor>
+    <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic variable">ifelse-value
+  (lookup-climate-variable = "bioc") and (settings != 0)
+  [item 5 settings]
+  ["NA"]</monitor>
     <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
@@ -335,10 +315,9 @@ plot min-plot-y + 1</update>
       </pen>
     </plot>
     <monitor x="1160" precision="5" y="325" height="60" fontSize="11" width="250" display="Mean">mean [value] of patches with [not is-nan? value]</monitor>
-    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
+    <plot x="1415" autoPlotX="true" yMax="6.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
       <setup></setup>
-      <update>set-plot-x-range 0 max-plot-x
-set-plot-y-range min-plot-y max-plot-y</update>
+      <update>set-plot-x-range 0 max-plot-x</update>
       <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
         <setup></setup>
         <update>ifelse ((start-month = month)) [
@@ -347,26 +326,24 @@ set-plot-y-range min-plot-y max-plot-y</update>
   set-plot-pen-color white
 ]
 
-plot min-plot-y + 1</update>
+plot 0.1</update>
       </pen>
-      <pen interval="1.0" mode="0" display="Max." color="-1513240" legend="true">
+      <pen interval="1.0" mode="0" display="Std. Dev." color="-1513240" legend="true">
         <setup></setup>
-        <update>plot max [value] of patches with [not is-nan? value]</update>
+        <update>plot standard-deviation [value] of patches with [not is-nan? value]</update>
       </pen>
-      <pen interval="1.0" mode="0" display="Max. 12MA" color="-16777216" legend="true">
+      <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
         <setup></setup>
         <update><![CDATA[ifelse (index >= 11) [
   set-plot-pen-color black
-  plot max [value-12ma] of patches with [not is-nan? value]
+  plot standard-deviation [value-12ma] of patches with [not is-nan? value]
 ] [
   set-plot-pen-color gray + 4
-  plot max [value] of patches with [not is-nan? value]
+  plot standard-deviation [value] of patches with [not is-nan? value]
 ]]]></update>
       </pen>
     </plot>
     <monitor x="1415" precision="5" y="325" height="60" fontSize="11" width="250" display="Standard deviation">standard-deviation [value] of patches with [not is-nan? value]</monitor>
-    <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-nan? value]</monitor>
-    <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-nan? value]</monitor>
     <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
@@ -396,14 +373,37 @@ plot min-plot-y + 1</update>
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [month]</monitor>
-    <monitor x="1545" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
-  (settings = 0)
-  ["NA"]
-  [year]</monitor>
+    <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-nan? value]</monitor>
+    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Max." color="-1513240" legend="true">
+        <setup></setup>
+        <update>plot max [value] of patches with [not is-nan? value]</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Max. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot max [value-12ma] of patches with [not is-nan? value]
+] [
+  set-plot-pen-color gray + 4
+  plot max [value] of patches with [not is-nan? value]
+]]]></update>
+      </pen>
+    </plot>
+    <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-nan? value]</monitor>
   </widgets>
   <info><![CDATA[# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
 
