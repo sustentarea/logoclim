@@ -31,16 +31,15 @@ temperature and precipitation over time. It incorporates historical data
 (1951-2024) and future climate projections (2021-2100) derived from
 global climate models under various Shared Socioeconomic Pathways
 ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/),
-[O'Neill et al.,
+[O’Neill et al.,
 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate
 inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used
 source of high-resolution, interpolated climate datasets based on
 weather station observations worldwide ([Fick & Hijmans,
 2017](https://doi.org/10.1002/joc.5086)).
 
-See the
-[`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/)
-model for an example of how to integrate `LogoClim` into your model.
+See the [`Logônia`](https://github.com/sustentarea/logonia) model for an
+example of how to integrate `LogoClim` into your model.
 
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
@@ -154,12 +153,12 @@ with reproducible pipelines for downloading and processing the data.
 These notebooks can be customized to meet specific research needs.
 
 We also provide example datasets for testing and demonstration. These
-files are available in the model's [OSF
+files are available in the model’s [OSF
 repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use
 with `LogoClim`.
 
 After downloading and processing the files, place them in the `data`
-folder within the model's directory. Alternatively, you can use the
+folder within the model’s directory. Alternatively, you can use the
 *Select data directory* button in the model interface to specify the
 location of your data files.
 
@@ -176,7 +175,7 @@ Refer to the `Info` tab in the model for additional details.
 ### Integrating with Other Models
 
 `LogoClim` was created to be integrated with other models using
-NetLogo's LevelSpace
+NetLogo’s LevelSpace
 ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension.
 This extension enables parallel execution and data exchange between
 models.
@@ -201,7 +200,7 @@ helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim:
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}:
 WorldClim in NetLogo* \[Computer software\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
@@ -209,7 +208,7 @@ A BibTeX entry for LaTeX users is:
 
 ``` latex
 @Misc{vartanian2025,
-  title = {LogoClim: WorldClim in NetLogo},
+  title = {{LogoClim}: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -223,11 +222,9 @@ A BibTeX entry for LaTeX users is:
 
 Contributions are welcome! Whether you want to report bugs, suggest
 features, or improve the code or documentation, your input is highly
-valued.
-
-When contributing code, please follow the [tidy design
-principles](https://design.tidyverse.org/) and the [tidyverse style
-guide](https://style.tidyverse.org/) whenever possible.
+valued. Please check the [issues
+tab](https://github.com/sustentarea/logoclim/issues) for existing issues
+or to open a new one.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
@@ -267,7 +264,7 @@ foundation of this project.
 We thank the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
 at the [University of East Anglia](https://www.uea.ac.uk/) and the
-United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for
+United Kingdom’s [Met Office](https://www.metoffice.gov.uk/) for
 developing and providing access to the
 [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/)
 dataset, a vital source of historical climate data.
