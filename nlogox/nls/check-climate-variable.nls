@@ -5,32 +5,32 @@ to assert-climate-variable
   let variables []
 
   (ifelse
-    (data-series = "Historical climate data") [
+    (data-series = "Historical Climate Data") [
       set variables [
-        "Average minimum temperature (°C)"
-        "Average maximum temperature (°C)"
-        "Average temperature (°C)"
-        "Total precipitation (mm)"
-        "Solar radiation (kJ m^-2 day^-1)"
-        "Wind speed (m s^-1)"
-        "Water vapor pressure (kPa)"
-        "Bioclimatic variables"
+        "Average Minimum Temperature (°C)"
+        "Average Maximum Temperature (°C)"
+        "Average Temperature (°C)"
+        "Total Precipitation (mm)"
+        "Solar Radiation (kJ m^-2 day^-1)"
+        "Wind Speed (m s^-1)"
+        "Water Vapor Pressure (kPa)"
+        "Bioclimatic Variables"
         "Elevation"
       ]
    ]
-    (data-series = "Historical monthly weather data") [
+    (data-series = "Historical Monthly Weather Data") [
       set variables [
-        "Average minimum temperature (°C)"
-        "Average maximum temperature (°C)"
-        "Total precipitation (mm)"
+        "Average Minimum Temperature (°C)"
+        "Average Maximum Temperature (°C)"
+        "Total Precipitation (mm)"
       ]
     ]
-    (data-series = "Future climate data") [
+    (data-series = "Future Climate Data") [
       set variables [
-        "Average minimum temperature (°C)"
-        "Average maximum temperature (°C)"
-        "Total precipitation (mm)"
-        "Bioclimatic variables"
+        "Average Minimum Temperature (°C)"
+        "Average Maximum Temperature (°C)"
+        "Total Precipitation (mm)"
+        "Bioclimatic Variables"
       ]
     ]
   )

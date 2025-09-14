@@ -16,7 +16,7 @@
 to-report pattern-fcd-file
   let pattern ""
 
-  ifelse (climate-variable = "Bioclimatic variables") [
+  ifelse (climate-variable = "Bioclimatic Variables") [
     set pattern (word
       "[0-9]{4}-[0-9]{4}" "_"
       lookup-bioclimatic-variable

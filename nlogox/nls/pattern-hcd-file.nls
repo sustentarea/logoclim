@@ -16,7 +16,7 @@ to-report pattern-hcd-file
   (ifelse
     (climate-variable = "Elevation") [
       set pattern "_1970-2000"
-    ] (climate-variable = "Bioclimatic variables") [
+    ] (climate-variable = "Bioclimatic Variables") [
       set pattern (word
       "_1970-2000_"
       lookup-bioclimatic-variable

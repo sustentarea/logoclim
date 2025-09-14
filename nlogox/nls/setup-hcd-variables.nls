@@ -12,7 +12,7 @@
 to setup-hcd-variables
   let path lookup-series-data-path
   let pattern pattern-hcd-file
-  
+
   set files list-files-by-pattern path pattern
   set years n-values (length files) ["1970-2000"]
   set months as-list (str-extract files "[0-9]{2}(?=.asc)")
@@ -20,14 +20,14 @@ to setup-hcd-variables
 
   ifelse (
     climate-variable != "Elevation" and
-    climate-variable != "Bioclimatic variables"
+    climate-variable != "Bioclimatic Variables"
     ) [
     let num-months map read-from-string months
-    
+
     set files filter [
       i -> item (position i files) num-months >= num-start-month
     ] files
-    
+
     set months as-list (str-extract files "[0-9]{2}(?=.asc)")
     set months map read-from-string months
     set months map num-to-str-month months

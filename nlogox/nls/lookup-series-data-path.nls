@@ -2,13 +2,13 @@ to-report lookup-series-data-path
   let normalized-data-path normalize-path data-path
 
   (ifelse
-    (data-series = "Historical climate data") [
+    (data-series = "Historical Climate Data") [
       report file-path normalized-data-path "historical-climate-data"
     ]
-    (data-series = "Historical monthly weather data") [
+    (data-series = "Historical Monthly Weather Data") [
       report file-path normalized-data-path "historical-monthly-weather-data"
     ]
-    (data-series = "Future climate data") [
+    (data-series = "Future Climate Data") [
       report file-path normalized-data-path "future-climate-data"
     ]
     [

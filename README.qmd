@@ -180,13 +180,13 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
 @Misc{vartanian2025,
-  title = {LogoClim: WorldClim in NetLogo},
+  title = {{LogoClim}: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -210,9 +210,7 @@ cat(
 )
 ```
 
-Contributions are welcome! Whether you want to report bugs, suggest features, or improve the code or documentation, your input is highly valued.
-
-When contributing code, please follow the [tidy design principles](https://design.tidyverse.org/) and the [tidyverse style guide](https://style.tidyverse.org/) whenever possible.
+Contributions are welcome! Whether you want to report bugs, suggest features, or improve the code or documentation, your input is highly valued. Please check the [issues tab](https://github.com/sustentarea/logoclim/issues) for existing issues or to open a new one.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 

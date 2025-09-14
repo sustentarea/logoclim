@@ -1,10 +1,10 @@
 to-report lookup-series-color
   (ifelse
-    (data-series = "Historical climate data") [
+    (data-series = "Historical Climate Data") [
       report historical-climate-data-color
-    ] (data-series = "Historical monthly weather data") [
+    ] (data-series = "Historical Monthly Weather Data") [
       report historical-monthly-weather-data-color
-    ] (data-series = "Future climate data") [
+    ] (data-series = "Future Climate Data") [
       report future-climate-data-color
     ] [
       let #message (word

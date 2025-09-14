@@ -8,7 +8,7 @@
 - Added indicators the start of a 12-month cycle in plots.
 - Added 12-month moving average calculations for patches and plots.
 - Removed the `halt` procedure. Now error messages have more descriptive text.
-
+- Changed string parameters and interface text to title case.
 - Revised documentation to reflect updates.
 
 # LogoClim 2.0.0 (NetLogo 7.0.0)
@@ -28,7 +28,7 @@ First stable release. 🎉
 # LogoClim 0.0.0.9015 (Pre-Release) (NetLogo 6.4.0)
 
 - Added variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
-- Fixed an issue with year intervals when using the *Future climate data* series
+- Fixed an issue with year intervals when using the *Future Climate Data* series
 
 # LogoClim 0.0.0.9013 (Pre-Release) (NetLogo 6.4.0)
 

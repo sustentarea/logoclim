@@ -13,8 +13,8 @@ to go-back
     ) [
       stop
     ] (
-      (data-series = "Future climate data") and
-      (climate-variable = "Bioclimatic variables")
+      (data-series = "Future Climate Data") and
+      (climate-variable = "Bioclimatic Variables")
     ) [
       set year item (index - 1) years
       set index index - 2

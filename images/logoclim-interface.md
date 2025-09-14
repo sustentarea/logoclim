@@ -29,17 +29,17 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 
 ### Historical Climate Data (HCD)
 
-- Climate variable: Water vapor pressure (kPa)
+- Climate variable: Water Vapor Pressure (kPa)
 - Period: 1970 to the end of the series
 
 ### Historical Monthly Weather Data (HMWD)
 
-- Climate variable: Average maximum temperature (°C)
+- Climate variable: Average Maximum Temperature (°C)
 - Period: 1951 to the end of the series
 
 ### Future Climate Data (FCD)
 
-- Climate Total precipitation (mm)
+- Climate Total Precipitation (mm)
 - Period: 2021 to the end of the series
 
 ## GIF Settings

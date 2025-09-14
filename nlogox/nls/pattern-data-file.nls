@@ -10,11 +10,11 @@ to-report pattern-data-file
   let pattern ""
 
   (ifelse
-    (data-series = "Historical climate data") [
+    (data-series = "Historical Climate Data") [
       set pattern pattern-hcd-file
-    ] (data-series = "Historical monthly weather data") [
+    ] (data-series = "Historical Monthly Weather Data") [
       set pattern pattern-hmwd-file
-    ] (data-series = "Future climate data") [
+    ] (data-series = "Future Climate Data") [
       set pattern pattern-fcd-file
     ]
   )

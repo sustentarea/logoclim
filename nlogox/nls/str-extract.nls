@@ -17,12 +17,12 @@ to-report str-extract [#x #pattern]
   set #x as-string #x
   set #x as-list #x
 
-  let out map [i -> str-extract-scalar i #pattern] #x
+  let #out map [i -> str-extract-scalar i #pattern] #x
 
-  ifelse (length out = 1) [
-    report first out
+  ifelse (length #out = 1) [
+    report first #out
   ] [
-    report out
+    report #out
   ]
 end
 
@@ -32,16 +32,16 @@ to-report str-extract-scalar [#x #pattern]
 
   set #x as-string #x
 
-  let nonmatches string:rex-split #x #pattern
+  let #nonmatches string:rex-split #x #pattern
 
-  (ifelse (length nonmatches = 1) [
+  (ifelse (length #nonmatches = 1) [
     report "NA"
-  ] (list-all? nonmatches "") [
+  ] (list-all? #nonmatches "") [
     report #x
   ] [
-    set nonmatches sublist nonmatches 0 2
-    set #x string:rex-replace-first (word "^" first nonmatches) #x ""
-    set #x string:rex-replace-first (word last nonmatches ".*$") #x ""
+    set #nonmatches sublist #nonmatches 0 2
+    set #x string:rex-replace-first (word "^" first #nonmatches) #x ""
+    set #x string:rex-replace-first (word last #nonmatches ".*$") #x ""
 
     report #x
   ])

@@ -1,10 +1,10 @@
 to setup-world-bleed
-  let envelope gis:envelope-of dataset
+  let #envelope gis:envelope-of dataset
 
-  ifelse ((item 0 envelope < -150) or (item 1 envelope > 150)) [
-    gis:set-world-envelope-ds envelope
+  ifelse ((item 0 #envelope < -150) or (item 1 #envelope > 150)) [
+    gis:set-world-envelope-ds #envelope
   ] [
-    gis:set-world-envelope envelope
+    gis:set-world-envelope #envelope
   ]
 
   gis:apply-raster dataset value

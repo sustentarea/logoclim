@@ -4,18 +4,18 @@
 to assert-data-resolution
   let variables []
 
-  ifelse (data-series = "Historical monthly weather data") [
+  ifelse (data-series = "Historical Monthly Weather Data") [
     set variables [
-      "2.5 minutes (~21 km2 at the equator)"
-      "5 minutes (~85 km2 at the equator)"
-      "10 minutes (~340 km2 at the equator)"
+      "2.5 Minutes (~21 km2 at the Equator)"
+      "5 Minutes (~85 km2 at the Equator)"
+      "10 Minutes (~340 km2 at the Equator)"
     ]
   ] [
     set variables [
-      "30 seconds (~1 km2  at the equator)"
-      "2.5 minutes (~21 km2 at the equator)"
-      "5 minutes (~85 km2 at the equator)"
-      "10 minutes (~340 km2 at the equator)"
+      "30 Seconds (~1 km2  at the Equator)"
+      "2.5 Minutes (~21 km2 at the Equator)"
+      "5 Minutes (~85 km2 at the Equator)"
+      "10 Minutes (~340 km2 at the Equator)"
     ]
   ]
 

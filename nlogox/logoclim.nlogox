@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model version="NetLogo 7.0.0" snapToGrid="true">
-  <code><![CDATA[; LogoClim: WorldClim in NetLogo
+  <code><![CDATA[; {LogoClim}: WorldClim in NetLogo
 ;
 ; Version: 2025-09-13 2.0.0.9000
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
@@ -142,12 +142,12 @@ to go [#tick?]
       ) or
       (climate-variable = "Elevation") or
       (
-        (data-series = "Historical climate data") and
-        (climate-variable = "Bioclimatic variables")
+        (data-series = "Historical Climate Data") and
+        (climate-variable = "Bioclimatic Variables")
       ) or
       (
-        (data-series = "Future climate data") and
-        (climate-variable = "Bioclimatic variables") and
+        (data-series = "Future Climate Data") and
+        (climate-variable = "Bioclimatic Variables") and
         (year = last years)
       )
     ) [
@@ -162,48 +162,49 @@ to go [#tick?]
   if (#tick? = true) [tick]
 end]]></code>
   <widgets>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
-      <choice type="string" value="Historical climate data"></choice>
-      <choice type="string" value="Historical monthly weather data"></choice>
-      <choice type="string" value="Future climate data"></choice>
+      <choice type="string" value="Historical Climate Data"></choice>
+      <choice type="string" value="Historical Monthly Weather Data"></choice>
+      <choice type="string" value="Future Climate Data"></choice>
     </chooser>
     <chooser x="10" y="75" height="60" variable="data-resolution" current="3" width="250" display="data-resolution">
-      <choice type="string" value="30 seconds (~1 km2  at the equator)"></choice>
-      <choice type="string" value="2.5 minutes (~21 km2 at the equator)"></choice>
-      <choice type="string" value="5 minutes (~85 km2 at the equator)"></choice>
-      <choice type="string" value="10 minutes (~340 km2 at the equator)"></choice>
+      <choice type="string" value="30 Seconds (~1 km2  at the Equator)"></choice>
+      <choice type="string" value="2.5 Minutes (~21 km2 at the Equator)"></choice>
+      <choice type="string" value="5 Minutes (~85 km2 at the Equator)"></choice>
+      <choice type="string" value="10 Minutes (~340 km2 at the Equator)"></choice>
     </chooser>
     <chooser x="10" y="140" height="60" variable="climate-variable" current="1" width="250" display="climate-variable">
-      <choice type="string" value="Average minimum temperature (°C)"></choice>
-      <choice type="string" value="Average maximum temperature (°C)"></choice>
-      <choice type="string" value="Average temperature (°C)"></choice>
-      <choice type="string" value="Total precipitation (mm)"></choice>
-      <choice type="string" value="Solar radiation (kJ m^-2 day^-1)"></choice>
-      <choice type="string" value="Wind speed (m s^-1)"></choice>
-      <choice type="string" value="Water vapor pressure (kPa)"></choice>
-      <choice type="string" value="Bioclimatic variables"></choice>
+      <choice type="string" value="Average Minimum Temperature (°C)"></choice>
+      <choice type="string" value="Average Maximum Temperature (°C)"></choice>
+      <choice type="string" value="Average Temperature (°C)"></choice>
+      <choice type="string" value="Total Precipitation (mm)"></choice>
+      <choice type="string" value="Solar Radiation (kJ m^-2 day^-1)"></choice>
+      <choice type="string" value="Wind Speed (m s^-1)"></choice>
+      <choice type="string" value="Water Vapor Pressure (kPa)"></choice>
+      <choice type="string" value="Bioclimatic Variables"></choice>
       <choice type="string" value="Elevation"></choice>
     </chooser>
     <chooser x="10" y="205" height="60" variable="bioclimatic-variable" current="0" width="250" display="bioclimatic-variable">
-      <choice type="string" value="BIO1 - Annual mean temperature"></choice>
-      <choice type="string" value="BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))"></choice>
-      <choice type="string" value="BIO3 - Isothermality (BIO2/BIO7) (×100)"></choice>
-      <choice type="string" value="BIO4 - Temperature seasonality (standard deviation ×100)"></choice>
-      <choice type="string" value="BIO5 - Max temperature of warmest month"></choice>
-      <choice type="string" value="BIO6 - Min temperature of coldest month"></choice>
-      <choice type="string" value="BIO7 - Temperature annual range (BIO5-BIO6)"></choice>
-      <choice type="string" value="BIO8 - Mean temperature of wettest quarter"></choice>
-      <choice type="string" value="BIO9 - Mean temperature of driest quarter"></choice>
-      <choice type="string" value="BIO10 - Mean temperature of warmest quarter"></choice>
-      <choice type="string" value="BIO11 - Mean temperature of coldest quarter"></choice>
-      <choice type="string" value="BIO12 - Annual precipitation"></choice>
-      <choice type="string" value="BIO13 - Precipitation of wettest month"></choice>
-      <choice type="string" value="BIO14 - Precipitation of driest month"></choice>
-      <choice type="string" value="BIO15 - Precipitation seasonality (coefficient of variation)"></choice>
-      <choice type="string" value="BIO16 - Precipitation of wettest quarter"></choice>
-      <choice type="string" value="BIO17 - Precipitation of driest quarter"></choice>
-      <choice type="string" value="BIO18 - Precipitation of warmest quarter"></choice>
-      <choice type="string" value="BIO19 - Precipitation of coldest quarter"></choice>
+      <choice type="string" value="BIO1 - Annual Mean Temperature"></choice>
+      <choice type="string" value="BIO2 - Mean Diurnal Range (Mean of Monthly (Max Temp - Min Temp))"></choice>
+      <choice type="string" value="BIO3 - Isothermality (BIO2 / BIO7) (×100)"></choice>
+      <choice type="string" value="BIO4 - Temperature Seasonality (Standard Deviation ×100)"></choice>
+      <choice type="string" value="BIO5 - Max Temperature of Warmest Month"></choice>
+      <choice type="string" value="BIO6 - Min Temperature of Coldest Month"></choice>
+      <choice type="string" value="BIO7 - Temperature Annual Range (BIO5 - BIO6)"></choice>
+      <choice type="string" value="BIO8 - Mean Temperature of Wettest Quarter"></choice>
+      <choice type="string" value="BIO9 - Mean Temperature of Driest Quarter"></choice>
+      <choice type="string" value="BIO10 - Mean Temperature of Warmest Quarter"></choice>
+      <choice type="string" value="BIO11 - Mean Temperature of Coldest Quarter"></choice>
+      <choice type="string" value="BIO12 - Annual Precipitation"></choice>
+      <choice type="string" value="BIO13 - Precipitation of Wettest Month"></choice>
+      <choice type="string" value="BIO14 - Precipitation of Driest Month"></choice>
+      <choice type="string" value="BIO15 - Precipitation Seasonality (Coefficient of Variation)"></choice>
+      <choice type="string" value="BIO16 - Precipitation of Wettest Quarter"></choice>
+      <choice type="string" value="BIO17 - Precipitation of Driest Quarter"></choice>
+      <choice type="string" value="BIO18 - Precipitation of Warmest Quarter"></choice>
+      <choice type="string" value="BIO19 - Precipitation of Coldest Quarter"></choice>
     </chooser>
     <chooser x="10" y="270" height="60" variable="global-climate-model" current="5" width="250" display="global-climate-model">
       <choice type="string" value="ACCESS-CM2"></choice>
@@ -254,11 +255,11 @@ end]]></code>
     </chooser>
     <input x="10" multiline="false" y="465" height="60" variable="start-year" type="number" width="250">1951.0</input>
     <input x="10" multiline="false" y="530" height="60" variable="data-path" type="string" width="250">../data</input>
-    <button x="10" y="595" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select data directory">set data-path user-directory</button>
+    <button x="10" y="595" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select Data Directory">set data-path user-directory</button>
     <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
     <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true</button>
-    <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go back">go-back</button>
-    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false</button>
+    <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go Back">go-back</button>
+    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go Forward">go false</button>
     <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
     <input x="265" multiline="false" y="165" height="60" variable="historical-monthly-weather-data-color" type="color" width="250">25.0</input>
     <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
@@ -267,9 +268,8 @@ end]]></code>
     <switch x="265" y="415" height="40" on="false" variable="black-min" width="250" display="black-min"></switch>
     <slider x="265" step="1" y="460" max="500" width="250" display="white-value" height="50" min="-500" direction="Horizontal" default="50.0" variable="white-value"></slider>
     <switch x="265" y="515" height="40" on="true" variable="white-max" width="250" display="white-max"></switch>
-    <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show values">show-values</button>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
-    <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="250" display="Climate variable">ifelse-value
+    <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show Values">show-values</button>
+    <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="250" display="Climate Variable">ifelse-value
   (settings = 0)
   ["NA"]
   [item 2 settings]</monitor>
@@ -281,7 +281,7 @@ end]]></code>
   (settings = 0)
   ["NA"]
   [year]</monitor>
-    <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic variable">ifelse-value
+    <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic Variable">ifelse-value
   (lookup-climate-variable = "bioc") and (settings != 0)
   [item 5 settings]
   ["NA"]</monitor>
@@ -479,12 +479,12 @@ We prepared a separate test model called [`Logônia`](https://www.comses.net/cod
 
 #### CHOOSERS, INPUT BOXES, AND SLIDERS
 
-- **`data-series`**: Chooser for selecting a data series (default: `Historical monthly weather data`).
-- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 minutes (~340 km2 at the equator)`).
-- **`climate-variable`**: Chooser for selecting the climate variable (default: `Average maximum temperature (°C)`).
-- **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future climate data`* is selected (default: `CMCC-ESM2`).
-- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenario. Only useful when *`Future climate data`* is selected (default: `SSP-585`).
-- **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual mean temperature`).
+- **`data-series`**: Chooser for selecting a data series (default: `Historical Monthly Weather Data`).
+- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 Minutes (~340 km2 at the Equator)`).
+- **`climate-variable`**: Chooser for selecting the climate variable (default: `Average Maximum Temperature (°C)`).
+- **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future Climate Data`* is selected (default: `CMCC-ESM2`).
+- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenario. Only useful when *`Future Climate Data`* is selected (default: `SSP-585`).
+- **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual Mean Temperature`).
 - **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
 - **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1951`).
 - **`data-path`**: Input box for setting the path to the data folder. Usually, this does not need to be changed. Use the *`Select data directory`* button to navigate via a dialog window (default: `../data/`).
@@ -521,9 +521,9 @@ We prepared a separate test model called [`Logônia`](https://www.comses.net/cod
 
 ## THINGS TO NOTICE
 
-- Observe the changes in the map as the simulation progresses, particularly how the colors (values) vary over time and space.
+- Observe the changes in the map as the simulation progresses, particularly how the values vary over time and space.
 - Pay attention to the plots and monitors to see trends and variation in the climate variable across different time periods.
-- Notice the differences when switching between historical data and future projections, especially for different SSP scenarios.
+- Notice the differences when switching between historical data and future projections, especially for different Shared Socioeconomic Pathways ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenarios.
 
 ## THINGS TO TRY
 
@@ -539,13 +539,13 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
 @Misc{vartanian2025,
-  title = {LogoClim: WorldClim in NetLogo},
+  title = {{LogoClim}: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -557,7 +557,7 @@ A BibTeX entry for LaTeX users is:
 
 ![Contributor Covenant 2.1 badge](contributor-covenant-2-1-badge)
 
-Contributions are welcome! Whether it's reporting bugs, suggesting features, or improving documentation, your input is valuable.
+Contributions are welcome! Whether you want to report bugs, suggest features, or improve the code or documentation, your input is highly valued. Please check the [issues tab](https://github.com/sustentarea/logoclim/issues) for existing issues or to open a new one.
 
 ![GitHub Sponsor badge](github-sponsor-badge)
 
@@ -578,7 +578,7 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 ```text
 Copyright (C) 2025 Daniel Vartanian
 
-LogoClim is free software: you can redistribute it and/or modify it under the
+{LogoClim} is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.

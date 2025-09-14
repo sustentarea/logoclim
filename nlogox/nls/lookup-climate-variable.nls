@@ -1,22 +1,22 @@
 to-report lookup-climate-variable
   (ifelse
-    (climate-variable = "Average minimum temperature (°C)") [
+    (climate-variable = "Average Minimum Temperature (°C)") [
       report "tmin"
-    ] (climate-variable = "Average maximum temperature (°C)") [
+    ] (climate-variable = "Average Maximum Temperature (°C)") [
       report "tmax"
-    ] (climate-variable = "Average temperature (°C)") [
+    ] (climate-variable = "Average Temperature (°C)") [
       report "tavg"
-    ] (climate-variable = "Total precipitation (mm)") [
+    ] (climate-variable = "Total Precipitation (mm)") [
       report "prec"
-    ] (climate-variable = "Solar radiation (kJ m^-2 day^-1)") [
+    ] (climate-variable = "Solar Radiation (kJ m^-2 day^-1)") [
       report "srad"
-    ] (climate-variable = "Wind speed (m s^-1)") [
+    ] (climate-variable = "Wind Speed (m s^-1)") [
       report "wind"
-    ] (climate-variable = "Wind speed (m s^-1)") [
+    ] (climate-variable = "Wind Speed (m s^-1)") [
       report "wind"
-    ] (climate-variable = "Water vapor pressure (kPa)") [
+    ] (climate-variable = "Water Vapor Pressure (kPa)") [
       report "vapr"
-    ] (climate-variable = "Bioclimatic variables") [
+    ] (climate-variable = "Bioclimatic Variables") [
       report "bioc"
     ] (climate-variable = "Elevation") [
       report "elev"

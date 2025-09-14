@@ -18,13 +18,13 @@ to setup-variables
   set series-data-path lookup-series-data-path
 
   (ifelse
-    (data-series = "Historical climate data") [
+    (data-series = "Historical Climate Data") [
       setup-hcd-variables
     ]
-    (data-series = "Historical monthly weather data") [
+    (data-series = "Historical Monthly Weather Data") [
       setup-hmwd-variables
     ]
-    (data-series = "Future climate data") [
+    (data-series = "Future Climate Data") [
       setup-fcd-variables
     ]
   )

@@ -4,9 +4,6 @@
 ;   "setup-world-bleed.nls"
 ; ]
 
-; extensions [gis]
-; globals [series-data-path patch-px-size]
-
 to setup-world
   adjust-world-size
   adjust-patch-size

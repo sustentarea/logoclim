@@ -1,48 +1,48 @@
 to-report lookup-bioclimatic-variable
   (ifelse
-    (bioclimatic-variable = "BIO1 - Annual mean temperature") [
+    (bioclimatic-variable = "BIO1 - Annual Mean Temperature") [
       report "01"
     ] (bioclimatic-variable = (
-        "BIO2 - Mean diurnal range (mean of monthly (max temp - min temp))"
+        "BIO2 - Mean Diurnal Range (Mean of Monthly (Max Temp - Min Temp))"
       )) [
       report "02"
-    ] (bioclimatic-variable = "BIO3 - Isothermality (BIO2/BIO7) (×100)") [
+    ] (bioclimatic-variable = "BIO3 - Isothermality (BIO2 / BIO7) (×100)") [
       report "03"
     ] (bioclimatic-variable = (word
-        "BIO4 - Temperature seasonality (standard deviation ×100)"
+        "BIO4 - Temperature Seasonality (Standard Deviation ×100)"
       )) [
       report "04"
-    ] (bioclimatic-variable = "BIO5 - Max temperature of warmest month") [
+    ] (bioclimatic-variable = "BIO5 - Max Temperature of Warmest Month") [
       report "05"
-    ] (bioclimatic-variable = "BIO6 - Min temperature of coldest month") [
+    ] (bioclimatic-variable = "BIO6 - Min Temperature of Coldest Month") [
       report "06"
-    ] (bioclimatic-variable = "BIO7 - Temperature annual range (BIO5-BIO6)") [
+    ] (bioclimatic-variable = "BIO7 - Temperature Annual Range (BIO5 - BIO6)") [
       report "07"
-    ] (bioclimatic-variable = "BIO8 - Mean temperature of wettest quarter") [
+    ] (bioclimatic-variable = "BIO8 - Mean Temperature of Wettest Quarter") [
       report "08"
-    ] (bioclimatic-variable = "BIO9 - Mean temperature of driest quarter") [
+    ] (bioclimatic-variable = "BIO9 - Mean Temperature of Driest Quarter") [
       report "09"
-    ] (bioclimatic-variable = "BIO10 - Mean temperature of warmest quarter") [
+    ] (bioclimatic-variable = "BIO10 - Mean Temperature of Warmest Quarter") [
       report "10"
-    ] (bioclimatic-variable = "BIO11 - Mean temperature of coldest quarter") [
+    ] (bioclimatic-variable = "BIO11 - Mean Temperature of Coldest Quarter") [
       report "11"
-    ] (bioclimatic-variable = "BIO12 - Annual precipitation") [
+    ] (bioclimatic-variable = "BIO12 - Annual Precipitation") [
       report "12"
-    ] (bioclimatic-variable = "BIO13 - Precipitation of wettest month") [
+    ] (bioclimatic-variable = "BIO13 - Precipitation of Wettest Month") [
       report "13"
-    ] (bioclimatic-variable = "BIO14 - Precipitation of driest month") [
+    ] (bioclimatic-variable = "BIO14 - Precipitation of Driest Month") [
       report "14"
     ] (bioclimatic-variable = (
-        "BIO15 - Precipitation seasonality (coefficient of variation)"
+        "BIO15 - Precipitation Seasonality (Coefficient of Variation)"
       )) [
       report "15"
-    ] (bioclimatic-variable = "BIO16 - Precipitation of wettest quarter") [
+    ] (bioclimatic-variable = "BIO16 - Precipitation of Wettest Quarter") [
       report "16"
-    ] (bioclimatic-variable = "BIO17 - Precipitation of driest quarter") [
+    ] (bioclimatic-variable = "BIO17 - Precipitation of Driest Quarter") [
       report "17"
-    ] (bioclimatic-variable = "BIO18 - Precipitation of warmest quarter") [
+    ] (bioclimatic-variable = "BIO18 - Precipitation of Warmest Quarter") [
       report "18"
-    ] (bioclimatic-variable = "BIO19 - Precipitation of coldest quarter") [
+    ] (bioclimatic-variable = "BIO19 - Precipitation of Coldest Quarter") [
       report "19"
     ] [
       let #message (word
