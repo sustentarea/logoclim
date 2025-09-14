@@ -1,5 +1,4 @@
 ; __includes [
-;   "halt.nls"
 ;   "list-files-by-pattern.nls"
 ;   "lookup-series-data-path.nls"
 ;   "pattern-data-file.nls"
@@ -10,25 +9,26 @@
 to-report test-data
   let path lookup-series-data-path
   let pattern pattern-data-file
-  
+
   let test false
-  
+
   carefully [
     set test not empty? list-files-by-pattern path pattern
   ] []
-  
+
   report test
 end
 
 
 to assert-data
   if (test-data = false) [
-    user-message (word
+    let #message (word
       "There are no data available to run LogoClim "
       "with the parameters provided. "
       "Please check your settings."
     )
 
-    halt
+    user-message #message
+    error #message
   ]
 end

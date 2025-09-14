@@ -9,11 +9,14 @@ to-report lookup-shared-socioeconomic-pathway
     ] (shared-socioeconomic-pathway = "SSP-585") [
       report "ssp585"
     ] [
-      user-message (word
+      let #message (word
         "The option '" shared-socioeconomic-pathway "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

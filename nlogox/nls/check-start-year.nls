@@ -1,52 +1,60 @@
-; __includes ["check-string.nls" "halt.nls"]
+; __includes ["check-string.nls"]
 ; extensions [string]
 ; globals [start-year data-series]
 
 to assert-start-year
   if (not string:rex-match? "^[0-9]{4}.*" (word start-year)) [
-    error "The year must have 4 digits."
+    let #message "The year must have 4 digits."
+
+    user-message #message
+    error #message
   ]
 
   if (is-string? start-year) [
     set start-year read-from-string start-year
   ]
 
+  let #message ""
+
   (ifelse
     (
       data-series = "Historical climate data" and
       (start-year < 1970 or start-year > 2000)
     ) [
-      user-message (word
+      set #message (word
         "The year for the 'Historical climate data' "
         "series must be between "
         "1970 and 2000."
       )
 
-      halt
+      user-message #message
+      error #message
     ]
     (
       data-series = "Historical monthly weather data" and
       (start-year < 1951 or start-year > 2024)
     ) [
-      user-message (word
+      set #message (word
         "The year for the 'Historical monthly weather data' "
         "series must be between "
         "1951 and 2024."
       )
 
-      halt
+      user-message #message
+      error #message
     ]
     (
       data-series = "Future climate data" and
       (start-year < 2021 or start-year > 2100)
     ) [
-      user-message (word
+      set #message (word
         "The year for the 'Future climate data' "
         "series must be between "
         "2021 and 2100."
       )
 
-      halt
+      user-message #message
+      error #message
     ]
   )
 end

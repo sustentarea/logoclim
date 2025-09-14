@@ -1,4 +1,4 @@
-; __includes ["collapse.nls" "halt.nls"]
+; __includes ["collapse.nls"]
 ; globals [data-resolution data-series]
 
 to assert-data-resolution
@@ -22,7 +22,7 @@ to assert-data-resolution
   if (not member? data-resolution variables) [
     set variables collapse variables "\n" false
 
-    user-message (word
+    let #message (word
       "The option "
       "'" data-resolution "' "
       "cannot be used with "
@@ -33,6 +33,7 @@ to assert-data-resolution
       variables
     )
 
-    halt
+    user-message #message
+    error #message
   ]
 end

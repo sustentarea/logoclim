@@ -11,6 +11,7 @@
 ;   data-series
 ;   series-color
 ;   series-data-path
+;   max-plot-x
 ; ]
 
 to setup-variables
@@ -30,10 +31,11 @@ to setup-variables
 
   set index 0
   set dataset gis:load-dataset file-path series-data-path (item index files)
-  set year item index years
   set month item index months
-  set nan nan-value dataset
+  set year item index years
   set series-color lookup-series-color
+  set max-plot-x 2 ; ticks + 1 (setup value)
+  set nan nan-value dataset
 
   set settings (list
     data-series

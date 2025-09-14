@@ -12,11 +12,14 @@ to-report lookup-series-data-path
       report file-path normalized-data-path "future-climate-data"
     ]
     [
-      user-message (word
+      let #message (word
         "The option '" data-series "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

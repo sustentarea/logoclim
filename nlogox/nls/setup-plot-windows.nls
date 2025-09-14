@@ -1,0 +1,32 @@
+; __includes ["quartile.nls"]
+; globals [min-plot-y max-plot-y]
+
+to setup-plot-windows
+  let #values-12 reduce sentence ([value-12] of patches with [not is-nan? value])
+  let #pattern ".*isothermality.*|.*temperature.*|.*temp.*"
+  let #current-min-plot-y 0
+  
+  if (
+    (string:rex-match? #pattern climate-variable) or
+    (
+      (climate-variable = "Bioclimatic variables") and
+      (string:rex-match? #pattern bioclimatic-variable)
+    )
+  ) [
+    set #current-min-plot-y floor (
+      (min #values-12) - (1.5 * (quartile #values-12 "iqr"))
+    )
+  ]
+  
+  let #current-max-plot-y ceiling (
+    (max #values-12) + (1.5 * (quartile #values-12 "iqr"))
+  )
+  
+  ifelse (index = 0) [
+    set min-plot-y #current-min-plot-y
+    set max-plot-y #current-max-plot-y
+  ] [
+    if (#current-min-plot-y < min-plot-y) [set min-plot-y #current-min-plot-y]
+    if (#current-max-plot-y > max-plot-y) [set max-plot-y #current-max-plot-y]
+  ]
+end

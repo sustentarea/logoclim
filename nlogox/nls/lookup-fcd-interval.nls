@@ -9,11 +9,14 @@ to-report lookup-fcd-interval
     ] ((start-year >= 2081) and (start-year <= 2100)) [
       report [2081 2100]
     ] [
-      user-message (word
+      let #message (word
         "The option '" start-year "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

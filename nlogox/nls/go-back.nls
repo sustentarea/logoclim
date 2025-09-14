@@ -7,8 +7,8 @@ to go-back
     ] (
       (climate-variable = "Elevation") or
       (
-        (year = first years) and
-        ((month = start-month) or (month = "NA"))
+        ((month = start-month) or (month = "NA")) and
+        (year = first years)
       )
     ) [
       stop

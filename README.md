@@ -186,6 +186,10 @@ We prepared a separate test model called
 to serve as a fun example of how to integrate `LogoClim` into your
 model.
 
+<p align="center">
+  <img src="images/logonia-evolution.svg" height=125px />
+</p>
+
 ## How to Cite
 
 > [!IMPORTANT]

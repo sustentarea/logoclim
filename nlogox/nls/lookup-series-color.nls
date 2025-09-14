@@ -7,11 +7,14 @@ to-report lookup-series-color
     ] (data-series = "Future climate data") [
       report future-climate-data-color
     ] [
-      user-message (word
+      let #message (word
         "The option '" data-series "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

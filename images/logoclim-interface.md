@@ -7,63 +7,42 @@ Interface snapshot settings.
 - Theme: Light
 - Screen resolution: 1920x1080
 
-- Turn off Night Light mode!
-- Resize the window (see GIF Settings)
+- **Turn off Night Light mode**!
+- Resize the window (see *Window Size* settings)
 - No scrollbars (horizontal or vertical)
 - Command center: closed
 - No `nls` script visible
-- “View updates” checkbox checked
-- Default widget settings
+- *View updates* enabled
 - Maintain default settings
 
-## Historical Climate Data (HCD)
+## Window Size
 
-- Climate variable: Water vapor pressure (kPa)
-- Period: 1970 to the end of the series
-
-## Historical Monthly Weather Data (HMWD)
-
-- Climate variable: Average maximum temperature (°C)
-- Period: 2024 to the end of the series
-
-## Future Climate Data (FCD)
-
-- Climate Total precipitation (mm)
-- Period: 2021 to the end of the series
-
-## GIF Settings
-
-### Window Size
-
-Install `wmctrl` to manage windows (if not already installed).
-
-Use the following for *Ubuntu* Linux:
-
-```bash
-sudo apt-get install wmctrl
-```
-
-For *Arch* Linux or *Manjaro*:
-
-```bash
-sudo pacman -S wmctrl
-```
-
-List and identify the window to be included in the GIF with:
-
-```bash
-# wmctrl -l
-wmctrl -lG
-```
-
-Resize the window to `1696`x`807` pixels using with:
-
-> If there are two windows with the same name, use the `-i` option to specify the window ID.
+1. Install `wmctrl` to manage windows (if not already installed).
+2. Run:
 
 ```bash
 #gravity,x,y,width,height
 wmctrl -r NetLogo -e 0,112,75,1696,807
 ```
+
+## Screenshots
+
+### Historical Climate Data (HCD)
+
+- Climate variable: Water vapor pressure (kPa)
+- Period: 1970 to the end of the series
+
+### Historical Monthly Weather Data (HMWD)
+
+- Climate variable: Average maximum temperature (°C)
+- Period: 1951 to the end of the series
+
+### Future Climate Data (FCD)
+
+- Climate Total precipitation (mm)
+- Period: 2021 to the end of the series
+
+## GIF Settings
 
 ### Sequence (12 months)
 
@@ -81,23 +60,9 @@ go true true
 
 ### Render
 
-Install `ImageMagick` (if not already installed) to convert the PNG files to a GIF.
-
-Use the following for *Ubuntu* Linux:
-
-```bash
-sudo apt-get install imagemagick
-```
-
-For *Arch* Linux or *Manjaro*:
+1. Install `ImageMagick` (if not already installed).
+2. Run:
 
 ```bash
-sudo pacman -S imagemagick
-```
-
-Use the following for the conversion:
-
-```bash
-# sudo apt-get install imagemagick
 magick -delay 60 -loop 0 *.png output.gif
 ```

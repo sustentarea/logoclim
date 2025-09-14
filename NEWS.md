@@ -1,9 +1,15 @@
 # LogoClim 2.0.0.9000 (development version) (NetLogo 7.0.0)
 
-- Removed `#wait` parameters from `go` procedure, as it is no longer necessary.
 - Updated Quarto notebooks.
+- Removed `#wait` parameters from `go` procedure, as it is no longer necessary.
 - Greatly improved the contrast of patch labels in the `show-value` procedure.
 - Added the [`Logônia`](https://github.com/sustentarea/logonia) model as reference for `LogoClim` integration.
+- Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
+- Added indicators the start of a 12-month cycle in plots.
+- Added 12-month moving average calculations for patches and plots.
+- Removed the `halt` procedure. Now error messages have more descriptive text.
+
+- Revised documentation to reflect updates.
 
 # LogoClim 2.0.0 (NetLogo 7.0.0)
 

@@ -1,4 +1,4 @@
-; __includes ["collapse.nls" "halt.nls"]
+; __includes ["collapse.nls"]
 ; globals [climate-variable data-series]
 
 to assert-climate-variable
@@ -38,7 +38,7 @@ to assert-climate-variable
   if (not member? climate-variable variables) [
     set variables collapse variables "\n" false
 
-    user-message (word
+    let #message (word
       "The option "
       "'" climate-variable "' "
       "cannot be used with "
@@ -49,6 +49,7 @@ to assert-climate-variable
       variables
     )
 
-    halt
+    user-message #message
+    error #message
   ]
 end

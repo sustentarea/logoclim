@@ -163,6 +163,12 @@ Refer to the `Info` tab in the model for additional details.
 
 We prepared a separate test model called [`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/), to serve as a fun example of how to integrate `LogoClim` into your model.
 
+```{=html}
+<p align="center">
+  <img src="images/logonia-evolution.svg" height=125px />
+</p>
+```
+
 ## How to Cite
 
 ```{=gfm}

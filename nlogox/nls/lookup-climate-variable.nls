@@ -21,11 +21,14 @@ to-report lookup-climate-variable
     ] (climate-variable = "Elevation") [
       report "elev"
     ] [
-      user-message (word
+      let #message (word
         "The option '" climate-variable "'' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

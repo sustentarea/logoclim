@@ -17,7 +17,7 @@ to remove-world-bleed [#size #mode]
   let ycor-world-bleed item 1 test
 
  (ifelse (#mode = 0) [
-    resize-world 
+    resize-world
       match-pcor min-pxcor xcor-world-bleed
       match-pcor max-pxcor xcor-world-bleed
       match-pcor min-pycor ycor-world-bleed
@@ -32,19 +32,22 @@ to remove-world-bleed [#size #mode]
       set value replacement
     ]
   ] [
-    user-message (word
+    let #message (word
       "Mode "
       single-quote #mode
       " is not a valid option. "
       "Please check your settings."
     )
+
+    user-message #message
+    error #message
   ])
 end
 
 to-report match-pcor [#x #list]
   assert-numeric #x
   assert-list #list
-  
+
   ifelse (empty? #list) [
     report #x
   ] [
@@ -57,7 +60,7 @@ to-report match-pcor [#x #list]
         i -> set #x ifelse-value (#x = i) [#x - 1] [#x]
       ]
     ]
-    
+
     report #x
   ]
 end

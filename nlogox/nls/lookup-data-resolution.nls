@@ -9,11 +9,14 @@ to-report lookup-data-resolution
     ] (data-resolution = "10 minutes (~340 km2 at the equator)") [
       report "10m"
     ] [
-      user-message (word
+      let #message (word
         "The option '" data-resolution "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end

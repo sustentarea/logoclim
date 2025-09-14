@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2025-09-13 2.0.0.9001
+; Version: 2025-09-13 2.0.0.9000
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -39,7 +39,6 @@ __includes [
   "nls/collapse.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
-  "nls/halt.nls"
   "nls/list-files-by-pattern.nls"
   "nls/lookup-bioclimatic-variable.nls"
   "nls/lookup-climate-variable.nls"
@@ -62,7 +61,7 @@ __includes [
   "nls/setup-hmwd-variables.nls"
   "nls/setup-fcd-variables.nls"
   "nls/setup-map.nls"
-  "nls/setup-stats.nls"
+  "nls/setup-plot-windows.nls"
   "nls/setup-variables.nls"
   "nls/setup-world.nls"
   "nls/setup-world-bleed.nls"
@@ -82,35 +81,40 @@ extensions [
 ]
 
 globals [
+  index
   dataset
   files
-  index
-  max-pcolor-value
-  max-plot-y
-  max-value
-  min-pcolor-value
-  min-plot-y
-  min-value
   month
   months
-  nan
-  plot-x-max-range
-  series-color
-  series-data-path
-  settings
-  world-bleed
   year
   years
+  series-color
+  series-data-path
+  max-plot-x
+  min-plot-y
+  max-plot-y
+  world-bleed
+  headless?
+  nan
+  settings
 ]
 
 patches-own [
   latitude
   longitude
   value
+  value-12
+  value-12ma
 ]
 
-to setup
+to setup [#headless?]
   clear-all
+
+  ifelse (#headless?) [
+    set headless? true
+  ] [
+    set headless? false
+  ]
 
   assert-climate-variable
   assert-data-resolution
@@ -120,7 +124,7 @@ to setup
   setup-variables
   setup-world
   setup-map
-  setup-stats
+  if (not headless?) [setup-plot-windows]
 
   reset-ticks
 end
@@ -133,8 +137,8 @@ to go [#tick?]
       stop
     ] (
       (
-        (year = last years) and
-        (month = "December")
+        (month = "December") and
+        (year = last years)
       ) or
       (climate-variable = "Elevation") or
       (
@@ -253,14 +257,6 @@ end]]></code>
     <input x="10" multiline="false" y="575" height="60" variable="data-path" type="string" width="250">../data</input>
     <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go forward">go false</button>
     <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true</button>
-    <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
-  (settings = 0)
-  ["NA"]
-  [year]</monitor>
-    <monitor x="1540" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [month]</monitor>
     <monitor x="1160" precision="0" y="75" height="60" fontSize="11" width="505" display="Bioclimatic variable">ifelse-value
   (lookup-climate-variable = "bioc") and (settings != 0)
   [item 5 settings]
@@ -269,7 +265,7 @@ end]]></code>
   (settings = 0)
   ["NA"]
   [item 2 settings]</monitor>
-    <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup</button>
+    <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
     <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go back">go-back</button>
     <button x="10" y="530" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select data directory">set data-path user-directory</button>
     <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
@@ -281,42 +277,133 @@ end]]></code>
     <switch x="265" y="415" height="40" on="false" variable="black-min" width="250" display="black-min"></switch>
     <switch x="265" y="515" height="40" on="true" variable="white-max" width="250" display="white-max"></switch>
     <button x="265" y="560" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="250" display="Show values">show-values</button>
-    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
-      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+    <plot x="1415" autoPlotX="true" yMax="6.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot 0.1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Std. Dev." color="-1513240" legend="true">
         <setup></setup>
         <update>plot standard-deviation [value] of patches with [not is-nan? value]</update>
       </pen>
+      <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot standard-deviation [value-12ma] of patches with [not is-nan? value]
+] [
+  set-plot-pen-color gray + 4
+  plot standard-deviation [value] of patches with [not is-nan? value]
+]]]></update>
+      </pen>
     </plot>
-    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
-      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Mean" color="-1513240" legend="true">
         <setup></setup>
         <update>plot mean [value] of patches with [not is-nan? value]</update>
       </pen>
+      <pen interval="1.0" mode="0" display="Mean 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot mean [value-12ma] of patches with [not is-nan? value]
+] [
+  set-plot-pen-color gray + 4
+  plot mean [value] of patches with [not is-nan? value]
+]]]></update>
+      </pen>
     </plot>
     <monitor x="1160" precision="5" y="325" height="60" fontSize="11" width="250" display="Mean">mean [value] of patches with [not is-nan? value]</monitor>
-    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
-      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+    <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Max." color="-1513240" legend="true">
         <setup></setup>
         <update>plot max [value] of patches with [not is-nan? value]</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Max. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot max [value-12ma] of patches with [not is-nan? value]
+] [
+  set-plot-pen-color gray + 4
+  plot max [value] of patches with [not is-nan? value]
+]]]></update>
       </pen>
     </plot>
     <monitor x="1415" precision="5" y="325" height="60" fontSize="11" width="250" display="Standard deviation">standard-deviation [value] of patches with [not is-nan? value]</monitor>
     <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-nan? value]</monitor>
     <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-nan? value]</monitor>
-    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="false" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
-      <setup>set-plot-y-range min-plot-y max-plot-y</setup>
-      <update>set-plot-x-range 0 plot-x-max-range</update>
-      <pen interval="1.0" mode="0" display="default" color="-16777216" legend="true">
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+        <setup></setup>
+        <update>ifelse ((start-month = month)) [
+  set-plot-pen-color black
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 1</update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Min." color="-1513240" legend="true">
         <setup></setup>
         <update>plot min [value] of patches with [not is-nan? value]</update>
       </pen>
+      <pen interval="1.0" mode="0" display="Min. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse (index >= 11) [
+  set-plot-pen-color black
+  plot min [value-12ma] of patches with [not is-nan? value]
+] [
+  set-plot-pen-color gray + 4
+  plot min [value] of patches with [not is-nan? value]
+]]]></update>
+      </pen>
     </plot>
+    <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
+  ((settings = 0))
+  ["NA"]
+  [month]</monitor>
+    <monitor x="1545" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
+  (settings = 0)
+  ["NA"]
+  [year]</monitor>
   </widgets>
   <info><![CDATA[# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
 
@@ -383,6 +470,10 @@ Once everything is set up, click `Setup` and then `Go` to start exploring!
 `LogoClim` was created be integrated with other models using NetLogo's LevelSpace ([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension. This extension enables parallel execution and data exchange between models.
 
 We prepared a separate test model called [`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/), to serve as a fun example of how to integrate `LogoClim` into your model.
+
+<p align="center">
+  <img src="logonia-evolution" />
+</p>
 
 ### INTERFACE CONTROLS
 
@@ -536,805 +627,6 @@ O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman,
         <point x="260" y="250"></point>
       </polygon>
     </shape>
-    <shape name="airplane" rotatable="true" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="0"></point>
-        <point x="135" y="15"></point>
-        <point x="120" y="60"></point>
-        <point x="120" y="105"></point>
-        <point x="15" y="165"></point>
-        <point x="15" y="195"></point>
-        <point x="120" y="180"></point>
-        <point x="135" y="240"></point>
-        <point x="105" y="270"></point>
-        <point x="120" y="285"></point>
-        <point x="150" y="270"></point>
-        <point x="180" y="285"></point>
-        <point x="210" y="270"></point>
-        <point x="165" y="240"></point>
-        <point x="180" y="180"></point>
-        <point x="285" y="195"></point>
-        <point x="285" y="165"></point>
-        <point x="180" y="105"></point>
-        <point x="180" y="60"></point>
-        <point x="165" y="15"></point>
-      </polygon>
-    </shape>
-    <shape name="arrow" rotatable="true" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="0"></point>
-        <point x="0" y="150"></point>
-        <point x="105" y="150"></point>
-        <point x="105" y="293"></point>
-        <point x="195" y="293"></point>
-        <point x="195" y="150"></point>
-        <point x="300" y="150"></point>
-      </polygon>
-    </shape>
-    <shape name="box" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="285"></point>
-        <point x="285" y="225"></point>
-        <point x="285" y="75"></point>
-        <point x="150" y="135"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="135"></point>
-        <point x="15" y="75"></point>
-        <point x="150" y="15"></point>
-        <point x="285" y="75"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="15" y="75"></point>
-        <point x="15" y="225"></point>
-        <point x="150" y="285"></point>
-        <point x="150" y="135"></point>
-      </polygon>
-      <line endX="150" startY="285" marked="false" color="255" endY="135" startX="150"></line>
-      <line endX="15" startY="135" marked="false" color="255" endY="75" startX="150"></line>
-      <line endX="285" startY="135" marked="false" color="255" endY="75" startX="150"></line>
-    </shape>
-    <shape name="bug" rotatable="true" editableColorIndex="0">
-      <circle x="96" y="182" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
-      <circle x="110" y="127" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
-      <circle x="110" y="75" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
-      <line endX="80" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
-      <line endX="220" startY="100" marked="true" color="-1920102913" endY="30" startX="150"></line>
-    </shape>
-    <shape name="butterfly" rotatable="true" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="165"></point>
-        <point x="209" y="199"></point>
-        <point x="225" y="225"></point>
-        <point x="225" y="255"></point>
-        <point x="195" y="270"></point>
-        <point x="165" y="255"></point>
-        <point x="150" y="240"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="165"></point>
-        <point x="89" y="198"></point>
-        <point x="75" y="225"></point>
-        <point x="75" y="255"></point>
-        <point x="105" y="270"></point>
-        <point x="135" y="255"></point>
-        <point x="150" y="240"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="139" y="148"></point>
-        <point x="100" y="105"></point>
-        <point x="55" y="90"></point>
-        <point x="25" y="90"></point>
-        <point x="10" y="105"></point>
-        <point x="10" y="135"></point>
-        <point x="25" y="180"></point>
-        <point x="40" y="195"></point>
-        <point x="85" y="194"></point>
-        <point x="139" y="163"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="162" y="150"></point>
-        <point x="200" y="105"></point>
-        <point x="245" y="90"></point>
-        <point x="275" y="90"></point>
-        <point x="290" y="105"></point>
-        <point x="290" y="135"></point>
-        <point x="275" y="180"></point>
-        <point x="260" y="195"></point>
-        <point x="215" y="195"></point>
-        <point x="162" y="165"></point>
-      </polygon>
-      <polygon color="255" filled="true" marked="false">
-        <point x="150" y="255"></point>
-        <point x="135" y="225"></point>
-        <point x="120" y="150"></point>
-        <point x="135" y="120"></point>
-        <point x="150" y="105"></point>
-        <point x="165" y="120"></point>
-        <point x="180" y="150"></point>
-        <point x="165" y="225"></point>
-      </polygon>
-      <circle x="135" y="90" marked="false" color="255" diameter="30" filled="true"></circle>
-      <line endX="195" startY="105" marked="false" color="255" endY="60" startX="150"></line>
-      <line endX="105" startY="105" marked="false" color="255" endY="60" startX="150"></line>
-    </shape>
-    <shape name="car" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="300" y="180"></point>
-        <point x="279" y="164"></point>
-        <point x="261" y="144"></point>
-        <point x="240" y="135"></point>
-        <point x="226" y="132"></point>
-        <point x="213" y="106"></point>
-        <point x="203" y="84"></point>
-        <point x="185" y="63"></point>
-        <point x="159" y="50"></point>
-        <point x="135" y="50"></point>
-        <point x="75" y="60"></point>
-        <point x="0" y="150"></point>
-        <point x="0" y="165"></point>
-        <point x="0" y="225"></point>
-        <point x="300" y="225"></point>
-        <point x="300" y="180"></point>
-      </polygon>
-      <circle x="180" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
-      <circle x="30" y="180" marked="false" color="255" diameter="90" filled="true"></circle>
-      <polygon color="255" filled="true" marked="false">
-        <point x="162" y="80"></point>
-        <point x="132" y="78"></point>
-        <point x="134" y="135"></point>
-        <point x="209" y="135"></point>
-        <point x="194" y="105"></point>
-        <point x="189" y="96"></point>
-        <point x="180" y="89"></point>
-      </polygon>
-      <circle x="47" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
-      <circle x="195" y="195" marked="true" color="-1920102913" diameter="58" filled="true"></circle>
-    </shape>
-    <shape name="circle" rotatable="false" editableColorIndex="0">
-      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
-    </shape>
-    <shape name="circle 2" rotatable="false" editableColorIndex="0">
-      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
-      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
-    </shape>
-    <shape name="cow" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="200" y="193"></point>
-        <point x="197" y="249"></point>
-        <point x="179" y="249"></point>
-        <point x="177" y="196"></point>
-        <point x="166" y="187"></point>
-        <point x="140" y="189"></point>
-        <point x="93" y="191"></point>
-        <point x="78" y="179"></point>
-        <point x="72" y="211"></point>
-        <point x="49" y="209"></point>
-        <point x="48" y="181"></point>
-        <point x="37" y="149"></point>
-        <point x="25" y="120"></point>
-        <point x="25" y="89"></point>
-        <point x="45" y="72"></point>
-        <point x="103" y="84"></point>
-        <point x="179" y="75"></point>
-        <point x="198" y="76"></point>
-        <point x="252" y="64"></point>
-        <point x="272" y="81"></point>
-        <point x="293" y="103"></point>
-        <point x="285" y="121"></point>
-        <point x="255" y="121"></point>
-        <point x="242" y="118"></point>
-        <point x="224" y="167"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="73" y="210"></point>
-        <point x="86" y="251"></point>
-        <point x="62" y="249"></point>
-        <point x="48" y="208"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="25" y="114"></point>
-        <point x="16" y="195"></point>
-        <point x="9" y="204"></point>
-        <point x="23" y="213"></point>
-        <point x="25" y="200"></point>
-        <point x="39" y="123"></point>
-      </polygon>
-    </shape>
-    <shape name="cylinder" rotatable="false" editableColorIndex="0">
-      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
-    </shape>
-    <shape name="dot" rotatable="false" editableColorIndex="0">
-      <circle x="90" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
-    </shape>
-    <shape name="face happy" rotatable="false" editableColorIndex="0">
-      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
-      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <polygon color="255" filled="true" marked="false">
-        <point x="150" y="255"></point>
-        <point x="90" y="239"></point>
-        <point x="62" y="213"></point>
-        <point x="47" y="191"></point>
-        <point x="67" y="179"></point>
-        <point x="90" y="203"></point>
-        <point x="109" y="218"></point>
-        <point x="150" y="225"></point>
-        <point x="192" y="218"></point>
-        <point x="210" y="203"></point>
-        <point x="227" y="181"></point>
-        <point x="251" y="194"></point>
-        <point x="236" y="217"></point>
-        <point x="212" y="240"></point>
-      </polygon>
-    </shape>
-    <shape name="face neutral" rotatable="false" editableColorIndex="0">
-      <circle x="8" y="7" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
-      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <rectangle endX="240" startY="195" marked="false" color="255" endY="225" startX="60" filled="true"></rectangle>
-    </shape>
-    <shape name="face sad" rotatable="false" editableColorIndex="0">
-      <circle x="8" y="8" marked="true" color="-1920102913" diameter="285" filled="true"></circle>
-      <circle x="60" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <circle x="180" y="75" marked="false" color="255" diameter="60" filled="true"></circle>
-      <polygon color="255" filled="true" marked="false">
-        <point x="150" y="168"></point>
-        <point x="90" y="184"></point>
-        <point x="62" y="210"></point>
-        <point x="47" y="232"></point>
-        <point x="67" y="244"></point>
-        <point x="90" y="220"></point>
-        <point x="109" y="205"></point>
-        <point x="150" y="198"></point>
-        <point x="192" y="205"></point>
-        <point x="210" y="220"></point>
-        <point x="227" y="242"></point>
-        <point x="251" y="229"></point>
-        <point x="236" y="206"></point>
-        <point x="212" y="183"></point>
-      </polygon>
-    </shape>
-    <shape name="fish" rotatable="false" editableColorIndex="0">
-      <polygon color="-1" filled="true" marked="false">
-        <point x="44" y="131"></point>
-        <point x="21" y="87"></point>
-        <point x="15" y="86"></point>
-        <point x="0" y="120"></point>
-        <point x="15" y="150"></point>
-        <point x="0" y="180"></point>
-        <point x="13" y="214"></point>
-        <point x="20" y="212"></point>
-        <point x="45" y="166"></point>
-      </polygon>
-      <polygon color="-1" filled="true" marked="false">
-        <point x="135" y="195"></point>
-        <point x="119" y="235"></point>
-        <point x="95" y="218"></point>
-        <point x="76" y="210"></point>
-        <point x="46" y="204"></point>
-        <point x="60" y="165"></point>
-      </polygon>
-      <polygon color="-1" filled="true" marked="false">
-        <point x="75" y="45"></point>
-        <point x="83" y="77"></point>
-        <point x="71" y="103"></point>
-        <point x="86" y="114"></point>
-        <point x="166" y="78"></point>
-        <point x="135" y="60"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="30" y="136"></point>
-        <point x="151" y="77"></point>
-        <point x="226" y="81"></point>
-        <point x="280" y="119"></point>
-        <point x="292" y="146"></point>
-        <point x="292" y="160"></point>
-        <point x="287" y="170"></point>
-        <point x="270" y="195"></point>
-        <point x="195" y="210"></point>
-        <point x="151" y="212"></point>
-        <point x="30" y="166"></point>
-      </polygon>
-      <circle x="215" y="106" marked="false" color="255" diameter="30" filled="true"></circle>
-    </shape>
-    <shape name="flag" rotatable="false" editableColorIndex="0">
-      <rectangle endX="75" startY="15" marked="true" color="-1920102913" endY="300" startX="60" filled="true"></rectangle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="90" y="150"></point>
-        <point x="270" y="90"></point>
-        <point x="90" y="30"></point>
-      </polygon>
-      <line endX="90" startY="135" marked="true" color="-1920102913" endY="135" startX="75"></line>
-      <line endX="90" startY="45" marked="true" color="-1920102913" endY="45" startX="75"></line>
-    </shape>
-    <shape name="flower" rotatable="false" editableColorIndex="0">
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="135" y="120"></point>
-        <point x="165" y="165"></point>
-        <point x="180" y="210"></point>
-        <point x="180" y="240"></point>
-        <point x="150" y="300"></point>
-        <point x="165" y="300"></point>
-        <point x="195" y="240"></point>
-        <point x="195" y="195"></point>
-        <point x="165" y="135"></point>
-      </polygon>
-      <circle x="85" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="130" y="147" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="192" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="85" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="177" y="40" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="177" y="132" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="70" y="85" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="130" y="25" marked="true" color="-1920102913" diameter="38" filled="true"></circle>
-      <circle x="96" y="51" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
-      <circle x="113" y="68" marked="false" color="255" diameter="74" filled="true"></circle>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="189" y="233"></point>
-        <point x="219" y="188"></point>
-        <point x="249" y="173"></point>
-        <point x="279" y="188"></point>
-        <point x="234" y="218"></point>
-      </polygon>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="180" y="255"></point>
-        <point x="150" y="210"></point>
-        <point x="105" y="210"></point>
-        <point x="75" y="240"></point>
-        <point x="135" y="240"></point>
-      </polygon>
-    </shape>
-    <shape name="house" rotatable="false" editableColorIndex="0">
-      <rectangle endX="255" startY="120" marked="true" color="-1920102913" endY="285" startX="45" filled="true"></rectangle>
-      <rectangle endX="180" startY="210" marked="false" color="255" endY="285" startX="120" filled="true"></rectangle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="15" y="120"></point>
-        <point x="150" y="15"></point>
-        <point x="285" y="120"></point>
-      </polygon>
-      <line endX="270" startY="120" marked="false" color="255" endY="120" startX="30"></line>
-    </shape>
-    <shape name="leaf" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="210"></point>
-        <point x="135" y="195"></point>
-        <point x="120" y="210"></point>
-        <point x="60" y="210"></point>
-        <point x="30" y="195"></point>
-        <point x="60" y="180"></point>
-        <point x="60" y="165"></point>
-        <point x="15" y="135"></point>
-        <point x="30" y="120"></point>
-        <point x="15" y="105"></point>
-        <point x="40" y="104"></point>
-        <point x="45" y="90"></point>
-        <point x="60" y="90"></point>
-        <point x="90" y="105"></point>
-        <point x="105" y="120"></point>
-        <point x="120" y="120"></point>
-        <point x="105" y="60"></point>
-        <point x="120" y="60"></point>
-        <point x="135" y="30"></point>
-        <point x="150" y="15"></point>
-        <point x="165" y="30"></point>
-        <point x="180" y="60"></point>
-        <point x="195" y="60"></point>
-        <point x="180" y="120"></point>
-        <point x="195" y="120"></point>
-        <point x="210" y="105"></point>
-        <point x="240" y="90"></point>
-        <point x="255" y="90"></point>
-        <point x="263" y="104"></point>
-        <point x="285" y="105"></point>
-        <point x="270" y="120"></point>
-        <point x="285" y="135"></point>
-        <point x="240" y="165"></point>
-        <point x="240" y="180"></point>
-        <point x="270" y="195"></point>
-        <point x="240" y="210"></point>
-        <point x="180" y="210"></point>
-        <point x="165" y="195"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="135" y="195"></point>
-        <point x="135" y="240"></point>
-        <point x="120" y="255"></point>
-        <point x="105" y="255"></point>
-        <point x="105" y="285"></point>
-        <point x="135" y="285"></point>
-        <point x="165" y="240"></point>
-        <point x="165" y="195"></point>
-      </polygon>
-    </shape>
-    <shape name="line" rotatable="true" editableColorIndex="0">
-      <line endX="150" startY="0" marked="true" color="-1920102913" endY="300" startX="150"></line>
-    </shape>
-    <shape name="line half" rotatable="true" editableColorIndex="0">
-      <line endX="150" startY="0" marked="true" color="-1920102913" endY="150" startX="150"></line>
-    </shape>
-    <shape name="pentagon" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="15"></point>
-        <point x="15" y="120"></point>
-        <point x="60" y="285"></point>
-        <point x="240" y="285"></point>
-        <point x="285" y="120"></point>
-      </polygon>
-    </shape>
-    <shape name="person" rotatable="false" editableColorIndex="0">
-      <circle x="110" y="5" marked="true" color="-1920102913" diameter="80" filled="true"></circle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="105" y="90"></point>
-        <point x="120" y="195"></point>
-        <point x="90" y="285"></point>
-        <point x="105" y="300"></point>
-        <point x="135" y="300"></point>
-        <point x="150" y="225"></point>
-        <point x="165" y="300"></point>
-        <point x="195" y="300"></point>
-        <point x="210" y="285"></point>
-        <point x="180" y="195"></point>
-        <point x="195" y="90"></point>
-      </polygon>
-      <rectangle endX="172" startY="79" marked="true" color="-1920102913" endY="94" startX="127" filled="true"></rectangle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="195" y="90"></point>
-        <point x="240" y="150"></point>
-        <point x="225" y="180"></point>
-        <point x="165" y="105"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="105" y="90"></point>
-        <point x="60" y="150"></point>
-        <point x="75" y="180"></point>
-        <point x="135" y="105"></point>
-      </polygon>
-    </shape>
-    <shape name="plant" rotatable="false" editableColorIndex="0">
-      <rectangle endX="165" startY="90" marked="true" color="-1920102913" endY="300" startX="135" filled="true"></rectangle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="135" y="255"></point>
-        <point x="90" y="210"></point>
-        <point x="45" y="195"></point>
-        <point x="75" y="255"></point>
-        <point x="135" y="285"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="165" y="255"></point>
-        <point x="210" y="210"></point>
-        <point x="255" y="195"></point>
-        <point x="225" y="255"></point>
-        <point x="165" y="285"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="135" y="180"></point>
-        <point x="90" y="135"></point>
-        <point x="45" y="120"></point>
-        <point x="75" y="180"></point>
-        <point x="135" y="210"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="165" y="180"></point>
-        <point x="165" y="210"></point>
-        <point x="225" y="180"></point>
-        <point x="255" y="120"></point>
-        <point x="210" y="135"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="135" y="105"></point>
-        <point x="90" y="60"></point>
-        <point x="45" y="45"></point>
-        <point x="75" y="105"></point>
-        <point x="135" y="135"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="165" y="105"></point>
-        <point x="165" y="135"></point>
-        <point x="225" y="105"></point>
-        <point x="255" y="45"></point>
-        <point x="210" y="60"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="135" y="90"></point>
-        <point x="120" y="45"></point>
-        <point x="150" y="15"></point>
-        <point x="180" y="45"></point>
-        <point x="165" y="90"></point>
-      </polygon>
-    </shape>
-    <shape name="sheep" rotatable="false" editableColorIndex="15">
-      <circle x="203" y="65" marked="true" color="-1" diameter="88" filled="true"></circle>
-      <circle x="70" y="65" marked="true" color="-1" diameter="162" filled="true"></circle>
-      <circle x="150" y="105" marked="true" color="-1" diameter="120" filled="true"></circle>
-      <polygon color="-1920102913" filled="true" marked="false">
-        <point x="218" y="120"></point>
-        <point x="240" y="165"></point>
-        <point x="255" y="165"></point>
-        <point x="278" y="120"></point>
-      </polygon>
-      <circle x="214" y="72" marked="false" color="-1920102913" diameter="67" filled="true"></circle>
-      <rectangle endX="179" startY="223" marked="true" color="-1" endY="298" startX="164" filled="true"></rectangle>
-      <polygon color="-1" filled="true" marked="true">
-        <point x="45" y="285"></point>
-        <point x="30" y="285"></point>
-        <point x="30" y="240"></point>
-        <point x="15" y="195"></point>
-        <point x="45" y="210"></point>
-      </polygon>
-      <circle x="3" y="83" marked="true" color="-1" diameter="150" filled="true"></circle>
-      <rectangle endX="80" startY="221" marked="true" color="-1" endY="296" startX="65" filled="true"></rectangle>
-      <polygon color="-1" filled="true" marked="true">
-        <point x="195" y="285"></point>
-        <point x="210" y="285"></point>
-        <point x="210" y="240"></point>
-        <point x="240" y="210"></point>
-        <point x="195" y="210"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="false">
-        <point x="276" y="85"></point>
-        <point x="285" y="105"></point>
-        <point x="302" y="99"></point>
-        <point x="294" y="83"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="false">
-        <point x="219" y="85"></point>
-        <point x="210" y="105"></point>
-        <point x="193" y="99"></point>
-        <point x="201" y="83"></point>
-      </polygon>
-    </shape>
-    <shape name="square" rotatable="false" editableColorIndex="0">
-      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
-    </shape>
-    <shape name="square 2" rotatable="false" editableColorIndex="0">
-      <rectangle endX="270" startY="30" marked="true" color="-1920102913" endY="270" startX="30" filled="true"></rectangle>
-      <rectangle endX="240" startY="60" marked="false" color="255" endY="240" startX="60" filled="true"></rectangle>
-    </shape>
-    <shape name="star" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="151" y="1"></point>
-        <point x="185" y="108"></point>
-        <point x="298" y="108"></point>
-        <point x="207" y="175"></point>
-        <point x="242" y="282"></point>
-        <point x="151" y="216"></point>
-        <point x="59" y="282"></point>
-        <point x="94" y="175"></point>
-        <point x="3" y="108"></point>
-        <point x="116" y="108"></point>
-      </polygon>
-    </shape>
-    <shape name="target" rotatable="false" editableColorIndex="0">
-      <circle x="0" y="0" marked="true" color="-1920102913" diameter="300" filled="true"></circle>
-      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
-      <circle x="60" y="60" marked="true" color="-1920102913" diameter="180" filled="true"></circle>
-      <circle x="90" y="90" marked="false" color="255" diameter="120" filled="true"></circle>
-      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
-    </shape>
-    <shape name="tree" rotatable="false" editableColorIndex="0">
-      <circle x="118" y="3" marked="true" color="-1920102913" diameter="94" filled="true"></circle>
-      <rectangle endX="180" startY="195" marked="false" color="-1653716737" endY="300" startX="120" filled="true"></rectangle>
-      <circle x="65" y="21" marked="true" color="-1920102913" diameter="108" filled="true"></circle>
-      <circle x="116" y="41" marked="true" color="-1920102913" diameter="127" filled="true"></circle>
-      <circle x="45" y="90" marked="true" color="-1920102913" diameter="120" filled="true"></circle>
-      <circle x="104" y="74" marked="true" color="-1920102913" diameter="152" filled="true"></circle>
-    </shape>
-    <shape name="triangle" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="30"></point>
-        <point x="15" y="255"></point>
-        <point x="285" y="255"></point>
-      </polygon>
-    </shape>
-    <shape name="triangle 2" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="150" y="30"></point>
-        <point x="15" y="255"></point>
-        <point x="285" y="255"></point>
-      </polygon>
-      <polygon color="255" filled="true" marked="false">
-        <point x="151" y="99"></point>
-        <point x="225" y="223"></point>
-        <point x="75" y="224"></point>
-      </polygon>
-    </shape>
-    <shape name="truck" rotatable="false" editableColorIndex="0">
-      <rectangle endX="195" startY="45" marked="true" color="-1920102913" endY="187" startX="4" filled="true"></rectangle>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="296" y="193"></point>
-        <point x="296" y="150"></point>
-        <point x="259" y="134"></point>
-        <point x="244" y="104"></point>
-        <point x="208" y="104"></point>
-        <point x="207" y="194"></point>
-      </polygon>
-      <rectangle endX="195" startY="60" marked="false" color="-1" endY="105" startX="195" filled="true"></rectangle>
-      <polygon color="255" filled="true" marked="false">
-        <point x="238" y="112"></point>
-        <point x="252" y="141"></point>
-        <point x="219" y="141"></point>
-        <point x="218" y="112"></point>
-      </polygon>
-      <circle x="234" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
-      <rectangle endX="214" startY="185" marked="true" color="-1920102913" endY="194" startX="181" filled="true"></rectangle>
-      <circle x="144" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
-      <circle x="24" y="174" marked="false" color="255" diameter="42" filled="true"></circle>
-      <circle x="24" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
-      <circle x="144" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
-      <circle x="234" y="174" marked="true" color="-1920102913" diameter="42" filled="false"></circle>
-    </shape>
-    <shape name="turtle" rotatable="true" editableColorIndex="0">
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="215" y="204"></point>
-        <point x="240" y="233"></point>
-        <point x="246" y="254"></point>
-        <point x="228" y="266"></point>
-        <point x="215" y="252"></point>
-        <point x="193" y="210"></point>
-      </polygon>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="195" y="90"></point>
-        <point x="225" y="75"></point>
-        <point x="245" y="75"></point>
-        <point x="260" y="89"></point>
-        <point x="269" y="108"></point>
-        <point x="261" y="124"></point>
-        <point x="240" y="105"></point>
-        <point x="225" y="105"></point>
-        <point x="210" y="105"></point>
-      </polygon>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="105" y="90"></point>
-        <point x="75" y="75"></point>
-        <point x="55" y="75"></point>
-        <point x="40" y="89"></point>
-        <point x="31" y="108"></point>
-        <point x="39" y="124"></point>
-        <point x="60" y="105"></point>
-        <point x="75" y="105"></point>
-        <point x="90" y="105"></point>
-      </polygon>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="132" y="85"></point>
-        <point x="134" y="64"></point>
-        <point x="107" y="51"></point>
-        <point x="108" y="17"></point>
-        <point x="150" y="2"></point>
-        <point x="192" y="18"></point>
-        <point x="192" y="52"></point>
-        <point x="169" y="65"></point>
-        <point x="172" y="87"></point>
-      </polygon>
-      <polygon color="1504722175" filled="true" marked="false">
-        <point x="85" y="204"></point>
-        <point x="60" y="233"></point>
-        <point x="54" y="254"></point>
-        <point x="72" y="266"></point>
-        <point x="85" y="252"></point>
-        <point x="107" y="210"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="119" y="75"></point>
-        <point x="179" y="75"></point>
-        <point x="209" y="101"></point>
-        <point x="224" y="135"></point>
-        <point x="220" y="225"></point>
-        <point x="175" y="261"></point>
-        <point x="128" y="261"></point>
-        <point x="81" y="224"></point>
-        <point x="74" y="135"></point>
-        <point x="88" y="99"></point>
-      </polygon>
-    </shape>
-    <shape name="wheel" rotatable="false" editableColorIndex="0">
-      <circle x="3" y="3" marked="true" color="-1920102913" diameter="294" filled="true"></circle>
-      <circle x="30" y="30" marked="false" color="255" diameter="240" filled="true"></circle>
-      <line endX="150" startY="285" marked="true" color="-1920102913" endY="15" startX="150"></line>
-      <line endX="285" startY="150" marked="true" color="-1920102913" endY="150" startX="15"></line>
-      <circle x="120" y="120" marked="true" color="-1920102913" diameter="60" filled="true"></circle>
-      <line endX="79" startY="40" marked="true" color="-1920102913" endY="269" startX="216"></line>
-      <line endX="269" startY="84" marked="true" color="-1920102913" endY="221" startX="40"></line>
-      <line endX="269" startY="216" marked="true" color="-1920102913" endY="79" startX="40"></line>
-      <line endX="221" startY="40" marked="true" color="-1920102913" endY="269" startX="84"></line>
-    </shape>
-    <shape name="wolf" rotatable="false" editableColorIndex="0">
-      <polygon color="255" filled="true" marked="false">
-        <point x="253" y="133"></point>
-        <point x="245" y="131"></point>
-        <point x="245" y="133"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="2" y="194"></point>
-        <point x="13" y="197"></point>
-        <point x="30" y="191"></point>
-        <point x="38" y="193"></point>
-        <point x="38" y="205"></point>
-        <point x="20" y="226"></point>
-        <point x="20" y="257"></point>
-        <point x="27" y="265"></point>
-        <point x="38" y="266"></point>
-        <point x="40" y="260"></point>
-        <point x="31" y="253"></point>
-        <point x="31" y="230"></point>
-        <point x="60" y="206"></point>
-        <point x="68" y="198"></point>
-        <point x="75" y="209"></point>
-        <point x="66" y="228"></point>
-        <point x="65" y="243"></point>
-        <point x="82" y="261"></point>
-        <point x="84" y="268"></point>
-        <point x="100" y="267"></point>
-        <point x="103" y="261"></point>
-        <point x="77" y="239"></point>
-        <point x="79" y="231"></point>
-        <point x="100" y="207"></point>
-        <point x="98" y="196"></point>
-        <point x="119" y="201"></point>
-        <point x="143" y="202"></point>
-        <point x="160" y="195"></point>
-        <point x="166" y="210"></point>
-        <point x="172" y="213"></point>
-        <point x="173" y="238"></point>
-        <point x="167" y="251"></point>
-        <point x="160" y="248"></point>
-        <point x="154" y="265"></point>
-        <point x="169" y="264"></point>
-        <point x="178" y="247"></point>
-        <point x="186" y="240"></point>
-        <point x="198" y="260"></point>
-        <point x="200" y="271"></point>
-        <point x="217" y="271"></point>
-        <point x="219" y="262"></point>
-        <point x="207" y="258"></point>
-        <point x="195" y="230"></point>
-        <point x="192" y="198"></point>
-        <point x="210" y="184"></point>
-        <point x="227" y="164"></point>
-        <point x="242" y="144"></point>
-        <point x="259" y="145"></point>
-        <point x="284" y="151"></point>
-        <point x="277" y="141"></point>
-        <point x="293" y="140"></point>
-        <point x="299" y="134"></point>
-        <point x="297" y="127"></point>
-        <point x="273" y="119"></point>
-        <point x="270" y="105"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="-1" y="195"></point>
-        <point x="14" y="180"></point>
-        <point x="36" y="166"></point>
-        <point x="40" y="153"></point>
-        <point x="53" y="140"></point>
-        <point x="82" y="131"></point>
-        <point x="134" y="133"></point>
-        <point x="159" y="126"></point>
-        <point x="188" y="115"></point>
-        <point x="227" y="108"></point>
-        <point x="236" y="102"></point>
-        <point x="238" y="98"></point>
-        <point x="268" y="86"></point>
-        <point x="269" y="92"></point>
-        <point x="281" y="87"></point>
-        <point x="269" y="103"></point>
-        <point x="269" y="113"></point>
-      </polygon>
-    </shape>
-    <shape name="x" rotatable="false" editableColorIndex="0">
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="270" y="75"></point>
-        <point x="225" y="30"></point>
-        <point x="30" y="225"></point>
-        <point x="75" y="270"></point>
-      </polygon>
-      <polygon color="-1920102913" filled="true" marked="true">
-        <point x="30" y="75"></point>
-        <point x="75" y="30"></point>
-        <point x="270" y="225"></point>
-        <point x="225" y="270"></point>
-      </polygon>
-    </shape>
   </turtleShapes>
   <linkShapes>
     <shape name="default" curviness="0.0">
@@ -1362,10 +654,11 @@ O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman,
   </linkShapes>
   <previewCommands>setup repeat 75 [ go ]</previewCommands>
   <resources>
-    <resource name="cnpq-logo" extension="png">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</resource>
+    <resource name="logonia-evolution" extension="png">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</resource>
     <resource name="contributor-covenant-2-1-badge" extension="png">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</resource>
     <resource name="github-sponsor-badge" extension="png">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</resource>
-    <resource name="sustentarea-logo" extension="png">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</resource>
     <resource name="gplv3-license-badge" extension="png">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</resource>
+    <resource name="sustentarea-logo" extension="png">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</resource>
+    <resource name="cnpq-logo" extension="png">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</resource>
   </resources>
 </model>

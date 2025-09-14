@@ -45,11 +45,14 @@ to-report lookup-bioclimatic-variable
     ] (bioclimatic-variable = "BIO19 - Precipitation of coldest quarter") [
       report "19"
     ] [
-      user-message (word
+      let #message (word
         "The option '" bioclimatic-variable "' "
         "is not found among the valid options. "
         "Please check your settings."
       )
+
+      user-message #message
+      error #message
     ]
   )
 end
