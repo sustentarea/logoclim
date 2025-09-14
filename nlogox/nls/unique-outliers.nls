@@ -23,8 +23,8 @@ to-report unique-outliers [#list #n-iqr]
     report (sentence
       filter [
         i -> (
-          (i < quartile-1 - (#n-iqr * #iqr)) or
-          (i > quartile-3 + (#n-iqr * #iqr))
+          (i < #quartile-1 - (#n-iqr * #iqr)) or
+          (i > #quartile-3 + (#n-iqr * #iqr))
         )
       ] #unique-values
     )
