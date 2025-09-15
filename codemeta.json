@@ -77,7 +77,7 @@
     "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
-  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data integration.",
+  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.",
   "keywords": [
     "Agent-Based Modeling",
     "Climate Change",

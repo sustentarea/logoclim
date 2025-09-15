@@ -24,7 +24,7 @@ GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.o
 and visualizing global climate conditions. It allows researchers to
 integrate high-resolution climate data into agent-based models,
 supporting reproducible research in ecology, agriculture, environmental
-science, and other fields that rely on climate data integration.
+sciences, and other fields that rely on climate data.
 
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
@@ -45,10 +45,10 @@ example of how to integrate `LogoClim` into your model.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
+![LogoClim Interface](images/logoclim-interface.gif)
+
 > [!IMPORTANT]
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
-
-![LogoClim Interface](images/logoclim-interface.gif)
 
 ## How It Works
 
@@ -59,35 +59,22 @@ colors based on the data values. The results can be visualized on a map,
 accompanied by plots that display the mean, minimum, maximum, and
 standard deviation of the selected variable over time.
 
-### Color Scale
-
-The model uses a color scale ranging from black (representing the lowest
-value) to white (representing the highest value). Users can adjust the
-thresholds for these colors using the **`black-value`** and
-**`white-value`** sliders. Alternatively, users can set the black or
-white color to automatically represent the minimum or maximum value of
-the current data by toggling the **`black-min`** and **`white-max`**
-switches. By default, the black threshold is set to 0, and the white
-threshold corresponds to the maximum value of the current data.
-
 ### Data Series
 
-In addition to latitude and longitude data points, `LogoClim` supports
-simulation with all three climate data series provided by [WorldClim
-2.1](https://worldclim.org/): long-term historical climate averages,
-historical monthly weather, and future climate projections. Each series
-is available at multiple spatial resolutions (from 10 minutes (~340 km²
-at the equator) to 30 seconds (~1 km² at the equator)) and can be
-selected within the model interface to fit your research needs. More
-information about each series can be found in the WorldClim website.
+The model supports simulation with all three climate data series
+provided by [WorldClim 2.1](https://worldclim.org/). Each series is
+available at multiple spatial resolutions (from 10 minutes (~340 km² at
+the equator) to 30 seconds (~1 km² at the equator)) and can be selected
+within the model interface to fit your research needs. More information
+about each series can be found in the WorldClim website.
 
 #### Historical Climate Data
 
 This series includes only 12 monthly data points representing long-term
 average climate conditions for the period 1970-2000. It provides
 averages on minimum, mean, and maximum temperature, precipitation, solar
-radiation, wind speed, vapor pressure, elevation, and on bioclimatic
-variables.
+radiation, wind speed, vapor pressure, elevation, and on [bioclimatic
+variables](https://www.worldclim.org/data/bioclim.html).
 
 #### Historical Monthly Weather Data
 
@@ -112,7 +99,9 @@ projections cover four
 [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/):
 126, 245, 370, and 585, with data available for average minimum
 temperature, average maximum temperature, total precipitation, and
-bioclimatic variables.
+[bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+
+Refer to the `Info` tab in the model for additional details.
 
 ## How to Use It
 
@@ -144,7 +133,8 @@ obtaining and preparing the data.
 
 `LogoClim` relies on raster data to represent climate variables. The
 datasets are available for download from [WorldClim
-2.1](https://worldclim.org/), but must be converted to ASCII format for
+2.1](https://worldclim.org/), but must be converted to
+[ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for
 compatibility with NetLogo. To simplify this workflow, we provide
 [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder
 with reproducible pipelines for downloading and processing the data.
@@ -157,7 +147,7 @@ with `LogoClim`.
 
 After downloading and processing the files, place them in the `data`
 folder within the model’s directory. Alternatively, you can use the
-*Select data directory* button in the model interface to specify the
+*Select Data Directory* button in the model interface to specify the
 location of your data files.
 
 We suggest starting with the 10-minute resolution to verify that the
@@ -173,13 +163,12 @@ Refer to the `Info` tab in the model for additional details.
 ### Integrating with Other Models
 
 `LogoClim` was created to be integrated with other models using
-NetLogo’s LevelSpace
-([`ls`](https://ccl.northwestern.edu/netlogo/docs/ls.html)) extension.
-This extension enables parallel execution and data exchange between
-models.
+NetLogo’s
+[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
+extension. This extension enables parallel execution and data exchange
+between models.
 
-We prepared a separate test model called
-[`Logônia`](https://github.com/sustentarea/logonia), to serve as a fun
+See the [`Logônia`](https://github.com/sustentarea/logonia) model for an
 example of how to integrate `LogoClim` into your model.
 
 <p align="center">
@@ -255,8 +244,7 @@ We gratefully acknowledge [Stephen E.
 Fick](https://orcid.org/0000-0002-3548-6966), [Robert J.
 Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire
 [WorldClim](https://worldclim.org/) team for their outstanding work in
-creating and maintaining the WorldClim datasets, which form the
-foundation of this project.
+creating and maintaining the WorldClim datasets.
 
 We thank the [Climatic Research
 Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)

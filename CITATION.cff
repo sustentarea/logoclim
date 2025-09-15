@@ -23,8 +23,7 @@ abstract: >-
   {LogoClim} is a NetLogo model for simulating and visualizing global climate
   conditions. It allows researchers to integrate high-resolution climate data
   into agent-based models, supporting reproducible research in ecology,
-  agriculture, environmental sciences, and other fields that rely on climate data
-  integration.
+  agriculture, environmental sciences, and other fields that rely on climate data.
 keywords:
   - Agent-Based Modeling
   - Climate Change
