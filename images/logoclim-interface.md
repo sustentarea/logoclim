@@ -35,7 +35,7 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 ### Historical Monthly Weather Data (HMWD)
 
 - Climate variable: Average Maximum Temperature (°C)
-- Period: 2024 to the end of the series
+- Period: 1951 + 10 years
 
 ### Future Climate Data (FCD)
 
@@ -44,18 +44,17 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 
 ## GIF Settings
 
-### Sequence (12 months)
+### Sequence (12 months, HCD | 10 years + 1, HMWD | whole series, FCD)
 
-- Brazil: HMWD, 10m, 1951, Average maximum temperature
-- China: FCD, 10m, 2021-2040, Total precipitation
-- UK: HCD, 30s, 1970-2000, Water vapor pressure
-- Australia: HMWD, 10m, 2010, Average maximum temperature
-- India: FCD, 2.5m, 2081-2100, Total precipitation
-- France: HCD, 30s, 1970-2000, Water vapor pressure
+> Disable *View updates* to speed up the process. Don´t forget to enable it again afterwards.
+> Use the *Go Forward* button to advance one tick at a time.
 
-```netlogo
-go
-```
+- BRA: HMWD, 10m, Average maximum temperature, 1951
+- CHN: FCD, 10m, Total precipitation, 2021-2040
+- GBR: HCD, 30s, Water vapor pressure, 1970-2000
+- AUS: HMWD, 10m, Average maximum temperature, 2010
+- IND: FCD, 2.5m, Total precipitation, 2021-2040
+- FRA: HCD, 30s, Water vapor pressure, 1970-2000
 
 ### Render
 
