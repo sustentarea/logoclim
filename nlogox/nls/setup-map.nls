@@ -2,10 +2,11 @@
 ; extensions [gis]
 
 ; globals [
-;   background-color
-;   black-value
 ;   data-series
 ;   series-color
+;   background-color
+;   black-min
+;   black-value
 ;   white-max
 ;   white-value
 ; ]
@@ -65,16 +66,16 @@ to setup-map
         scale-color series-color value #min-pcolor-value #max-pcolor-value
       )
 
-      (ifelse (index = 0) [
+      (ifelse ((index = 0) or (value-12 = "NA")) [
         set value-12 (list value)
         set value-12ma "NA"
-      ] (index <= 11) [
+      ] ((length value-12) < 12) [
         set value-12 lput value value-12
       ] [
         set value-12 but-first (lput value value-12)
       ])
 
-      if (index >= 11) [
+      if ((length value-12) = 12) [
         set value-12ma mean value-12
       ]
     ] [

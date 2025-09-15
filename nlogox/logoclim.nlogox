@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {LogoClim}: WorldClim in NetLogo
 ;
-; Version: 2025-09-13 2.0.0.9000
+; Version: v2.0.0.9000 (2025-09-13)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -61,7 +61,7 @@ __includes [
   "nls/setup-hmwd-variables.nls"
   "nls/setup-fcd-variables.nls"
   "nls/setup-map.nls"
-  "nls/setup-plot-windows.nls"
+  "nls/setup-plot-window.nls"
   "nls/setup-variables.nls"
   "nls/setup-world.nls"
   "nls/setup-world-bleed.nls"
@@ -100,38 +100,30 @@ globals [
 ]
 
 patches-own [
-  latitude
-  longitude
   value
   value-12
   value-12ma
+  latitude
+  longitude
 ]
 
 to setup [#headless?]
   clear-all
-
-  ifelse (#headless?) [
-    set headless? true
-  ] [
-    set headless? false
-  ]
 
   assert-climate-variable
   assert-data-resolution
   assert-start-year
   assert-data
 
-  setup-variables
+  setup-variables #headless?
   setup-world
   setup-map
-  if (not headless?) [setup-plot-windows]
+  if (not headless?) [setup-plot-window]
 
   reset-ticks
 end
 
-to go [#tick?]
-  assert-logical #tick?
-
+to go
   (ifelse
     (not is-gis? dataset) [
       stop
@@ -159,7 +151,7 @@ to go [#tick?]
 
   walk index
 
-  if (#tick? = true) [tick]
+  tick
 end]]></code>
   <widgets>
     <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="542" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
@@ -257,9 +249,9 @@ end]]></code>
     <input x="10" multiline="false" y="530" height="60" variable="data-path" type="string" width="250">../data</input>
     <button x="10" y="595" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select Data Directory">set data-path user-directory</button>
     <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
-    <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go true</button>
+    <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
     <button x="265" actionKey="A" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Go Back">go-back</button>
-    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go Forward">go false</button>
+    <button x="395" actionKey="D" y="55" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="120" display="Go Forward">go</button>
     <input x="265" multiline="false" y="100" height="60" variable="historical-climate-data-color" type="color" width="250">105.0</input>
     <input x="265" multiline="false" y="165" height="60" variable="historical-monthly-weather-data-color" type="color" width="250">25.0</input>
     <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
@@ -289,28 +281,41 @@ end]]></code>
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
 set-plot-y-range min-plot-y max-plot-y</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month)) [
-  set-plot-pen-color black
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
+  set-plot-pen-color red
 ] [
   set-plot-pen-color white
 ]
 
-plot min-plot-y + 1</update>
+plot min-plot-y + 0.1]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Mean" color="-1513240" legend="true">
         <setup></setup>
-        <update>plot mean [value] of patches with [not is-nan? value]</update>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot mean [value] of patches with [not is-nan? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Mean 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
-  set-plot-pen-color black
-  plot mean [value-12ma] of patches with [not is-nan? value]
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
 ] [
-  set-plot-pen-color gray + 4
-  plot mean [value] of patches with [not is-nan? value]
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-nan? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot mean [value-12ma] of patches with [not is-nan? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot mean [value] of patches with [not is-nan? value]
+  ]
 ]]]></update>
       </pen>
     </plot>
@@ -318,28 +323,41 @@ plot min-plot-y + 1</update>
     <plot x="1415" autoPlotX="true" yMax="6.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month)) [
-  set-plot-pen-color black
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) >= 12)) [
+  set-plot-pen-color red
 ] [
   set-plot-pen-color white
 ]
 
-plot 0.1</update>
+plot 0.1]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Std. Dev." color="-1513240" legend="true">
         <setup></setup>
-        <update>plot standard-deviation [value] of patches with [not is-nan? value]</update>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot standard-deviation [value] of patches with [not is-nan? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
-  set-plot-pen-color black
-  plot standard-deviation [value-12ma] of patches with [not is-nan? value]
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
 ] [
-  set-plot-pen-color gray + 4
-  plot standard-deviation [value] of patches with [not is-nan? value]
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-nan? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot standard-deviation [value-12ma] of patches with [not is-nan? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot standard-deviation [value] of patches with [not is-nan? value]
+  ]
 ]]]></update>
       </pen>
     </plot>
@@ -348,28 +366,41 @@ plot 0.1</update>
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
 set-plot-y-range min-plot-y max-plot-y</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month)) [
-  set-plot-pen-color black
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
+  set-plot-pen-color red
 ] [
   set-plot-pen-color white
 ]
 
-plot min-plot-y + 1</update>
+plot min-plot-y + 0.1]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Min." color="-1513240" legend="true">
         <setup></setup>
-        <update>plot min [value] of patches with [not is-nan? value]</update>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot min [value] of patches with [not is-nan? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Min. 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
-  set-plot-pen-color black
-  plot min [value-12ma] of patches with [not is-nan? value]
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
 ] [
-  set-plot-pen-color gray + 4
-  plot min [value] of patches with [not is-nan? value]
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-nan? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot min [value-12ma] of patches with [not is-nan? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot min [value] of patches with [not is-nan? value]
+  ]
 ]]]></update>
       </pen>
     </plot>
@@ -378,28 +409,41 @@ plot min-plot-y + 1</update>
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
 set-plot-y-range min-plot-y max-plot-y</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-16777216" legend="false">
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
         <setup></setup>
-        <update>ifelse ((start-month = month)) [
-  set-plot-pen-color black
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) >= 12)) [
+  set-plot-pen-color red
 ] [
   set-plot-pen-color white
 ]
 
-plot min-plot-y + 1</update>
+plot min-plot-y + 0.1]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Max." color="-1513240" legend="true">
         <setup></setup>
-        <update>plot max [value] of patches with [not is-nan? value]</update>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot max [value] of patches with [not is-nan? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Max. 12MA" color="-16777216" legend="true">
         <setup></setup>
-        <update><![CDATA[ifelse (index >= 11) [
-  set-plot-pen-color black
-  plot max [value-12ma] of patches with [not is-nan? value]
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
 ] [
-  set-plot-pen-color gray + 4
-  plot max [value] of patches with [not is-nan? value]
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-nan? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot max [value-12ma] of patches with [not is-nan? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot max [value] of patches with [not is-nan? value]
+  ]
 ]]]></update>
       </pen>
     </plot>
@@ -409,7 +453,7 @@ plot min-plot-y + 1</update>
 
 ## WHAT IS IT?
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data integration.
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
@@ -447,7 +491,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 `LogoClim` was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
 
-The model relies on the GIS ([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir ([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String ([`string`](https://github.com/NetLogo/String-Extension)), and Time ([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo extensions. These are automatically installed when the model is run for the first time.
+The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html) NetLogo extensions. These are automatically installed when the model is run for the first time.
 
 To run the model, make sure to download all files in the repository `nlogox` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 
@@ -565,8 +609,8 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 
 ## IMPORTANT LINKS
 
-- OSF repository: https://doi.org/10.17605/OSF.IO/EAPZU
 - Code repository: https://github.com/sustentarea/logoclim
+- OSF repository: https://doi.org/10.17605/OSF.IO/EAPZU
 - Latest release: https://github.com/sustentarea/logoclim/releases/latest
 - Data repository: https://doi.org/10.17605/OSF.IO/RE95Z
 - Support development: https://github.com/sponsors/danielvartan

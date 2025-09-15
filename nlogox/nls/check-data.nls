@@ -15,7 +15,6 @@ to-report test-data
   report #test
 end
 
-
 to assert-data
   if (test-data = false) [
     let #message (word

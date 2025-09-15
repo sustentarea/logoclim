@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "LogoClim: WorldClim in NetLogo"
+title: "{LogoClim}: WorldClim in NetLogo"
 message: >-
   If you use this software, please cite it using the metadata from this file.
 type: software
@@ -23,25 +23,23 @@ abstract: >-
   {LogoClim} is a NetLogo model for simulating and visualizing global climate
   conditions. It allows researchers to integrate high-resolution climate data
   into agent-based models, supporting reproducible research in ecology,
-  agriculture, environmental science, and other fields that rely on climate data
+  agriculture, environmental sciences, and other fields that rely on climate data
   integration.
 keywords:
   - Agent-Based Modeling
   - Climate Change
   - Climate Data Visualization
-  - Climate Model Integration
   - Climate Projections
-  - Climate Simulation
-  - Cmip6
+  - Climate Simulations
+  - CMIP6
   - Complex Systems
   - Complexity Science
-  - Data Interoperability
   - Environmental Sciences
-  - Environmental Simulation
   - Future Climate Scenarios
   - Geospatial Analysis
   - Historical Climate Data
   - LevelSpace
+  - Logônia
   - Models
   - NetLogo
   - Parallel Execution
@@ -50,7 +48,6 @@ keywords:
   - Shared Socioeconomic Pathways
   - Simulations
   - Spatial Analysis
-  - Spatial Resolution
   - SSPs
   - Time Series
   - WorldClim

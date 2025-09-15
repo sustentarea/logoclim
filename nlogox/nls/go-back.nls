@@ -24,5 +24,13 @@ to go-back
     ]
   )
 
-  go false
+  go
+
+  reset-ticks
+  clear-all-plots
+
+  ask patches [
+    set value-12 (list value)
+    set value-12ma "NA"
+  ]
 end

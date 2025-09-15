@@ -1,3 +1,6 @@
+; globals [dataset]
+; patches-own [value]
+
 to setup-world-bleed
   let #envelope gis:envelope-of dataset
 

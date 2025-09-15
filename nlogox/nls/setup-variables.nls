@@ -14,7 +14,15 @@
 ;   max-plot-x
 ; ]
 
-to setup-variables
+to setup-variables [#headless?]
+  assert-logical #headless?
+
+  ifelse (#headless?) [
+    set headless? true
+  ] [
+    set headless? false
+  ]
+
   set series-data-path lookup-series-data-path
 
   (ifelse
@@ -34,16 +42,16 @@ to setup-variables
   set month item index months
   set year item index years
   set series-color lookup-series-color
-  set max-plot-x 2 ; ticks + 1 (setup value)
+  set max-plot-x 2
   set nan nan-value dataset
 
   set settings (list
     data-series
     data-resolution
     climate-variable
+    bioclimatic-variable
     global-climate-model
     shared-socioeconomic-pathway
-    bioclimatic-variable
     start-month
     start-year
   )

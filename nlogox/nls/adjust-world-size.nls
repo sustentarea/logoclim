@@ -1,3 +1,5 @@
+; globals [dataset]
+
 to adjust-world-size
   let #max-xcor floor (gis:width-of dataset / 2)
   let #min-xcor (- 1) * #max-xcor

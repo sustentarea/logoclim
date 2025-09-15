@@ -122,13 +122,11 @@ To get started, ensure you have [NetLogo](https://www.netlogo.org)
 installed. This model was developed using NetLogo 7.0.0, so it is
 recommended to use this version or later.
 
-The model relies on the GIS
-([`gis`](https://github.com/NetLogo/GIS-Extension)), Pathdir
-([`pathdir`](https://github.com/cstaelin/Pathdir-Extension)), String
-([`string`](https://github.com/NetLogo/String-Extension)), and Time
-([`time`](https://github.com/NetLogo/Time-Extension/)) NetLogo
-extensions. These are automatically installed when the model is run for
-the first time.
+The model relies on the [`GIS`](https://docs.netlogo.org/gis.html),
+[`Pathdir`](https://github.com/cstaelin/Pathdir-Extension),
+[`String`](https://github.com/NetLogo/String-Extension), and
+[`Time`](https://docs.netlogo.org/time.html) NetLogo extensions. These
+are automatically installed when the model is run for the first time.
 
 #### Downloading the Model
 
@@ -181,9 +179,8 @@ This extension enables parallel execution and data exchange between
 models.
 
 We prepared a separate test model called
-[`Logônia`](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/),
-to serve as a fun example of how to integrate `LogoClim` into your
-model.
+[`Logônia`](https://github.com/sustentarea/logonia), to serve as a fun
+example of how to integrate `LogoClim` into your model.
 
 <p align="center">
   <img src="images/logonia-evolution.svg" height=125px />

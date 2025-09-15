@@ -3,9 +3,9 @@
   "@type": "SoftwareSourceCode",
   "identifier": "LogoClim",
   "dateCreated": "2024-08-20",
-  "applicationCategory": "Agent-based modeling",
-  "applicationSubCategory": "Climate modeling",
-  "name": "LogoClim: WorldClim in NetLogo",
+  "applicationCategory": "Agent-Based Modeling",
+  "applicationSubCategory": "Climate Simulations",
+  "name": "{LogoClim}: WorldClim in NetLogo",
   "author": [
     {
       "@type": "Person",
@@ -77,24 +77,22 @@
     "email": "daniel.azevedo@alumni.usp.br",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
-  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.",
+  "description": "{LogoClim} is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data integration.",
   "keywords": [
     "Agent-Based Modeling",
     "Climate Change",
     "Climate Data Visualization",
-    "Climate Model Integration",
     "Climate Projections",
-    "Climate Simulation",
+    "Climate Simulations",
     "CMIP6",
     "Complex Systems",
     "Complexity Science",
-    "Data Interoperability",
     "Environmental Sciences",
-    "Environmental Simulation",
     "Future Climate Scenarios",
     "Geospatial Analysis",
     "Historical Climate Data",
     "LevelSpace",
+    "Logônia",
     "Models",
     "NetLogo",
     "Parallel Execution",
@@ -103,7 +101,6 @@
     "Shared Socioeconomic Pathways",
     "Simulations",
     "Spatial Analysis",
-    "Spatial Resolution",
     "SSPs",
     "Time Series",
     "WorldClim"
@@ -154,12 +151,12 @@
     },
     {
       "name": "NetLogo Pathdir extension",
-      "version": ">= 5.0.0",
+      "version": ">= 5.2.0",
       "provider": {
         "@type": "Person",
         "name": "Charles Staelin"
       },
-      "sameAs": "https://github.com/cstaelin/Pathdir-Extension/releases/latest/"
+      "sameAs": "https://github.com/cstaelin/Pathdir-Extension/"
     },
     {
       "name": "NetLogo String extension",

@@ -1,17 +1,18 @@
 ## v2.0.0.9000 (Development Version)
 
-- Updated Quarto notebooks.
-- Removed `#wait` parameters from `go` procedure, as it is no longer necessary.
-- Greatly improved the contrast of patch labels in the `show-value` procedure.
-- Added the [`Logônia`](https://github.com/sustentarea/logonia) model as reference for `LogoClim` integration.
 - Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
-- Added indicators the start of a 12-month cycle in plots.
-- Added 12-month moving average calculations for patches and plots.
-- Removed the `halt` procedure. Now error messages have more descriptive text.
-- Changed string parameters and interface text to title case.
-- Revised documentation to reflect updates.
+- Removed the `#tick` and `#wait` parameters from the `go` procedure; it now has no parameters, simplifying execution.
+- Updated the `go-back` procedure to reset ticks and clear all plots.
+- Converted string parameters and interface text to title case.
+- Improved the `show-value` procedure to provide better contrast for patch labels.
+- Added a 12-month moving average for patches. Patches now have two additional attributes: `value-12` (last 12 months of values) and `value-12ma` (12-month moving average).
+- Updated plot behaviors: added a 12-month moving average pen, added indicators for the start of each 12-month cycle, and y-axis now dynamically adjusts based on the minimum, maximum, and interquartile range of the 12-month data window.
+- Removed the `halt` procedure; error messages now provide more descriptive text.
+- Added the [`Logônia`](https://github.com/sustentarea/logonia) model as a reference for `LogoClim` integration.
+- Updated Quarto notebooks.
+- Updated documentation to reflect all changes.
 
-## v2.0.0
+## v2.0.0 (2025-07-29)
 
 - **Breaking change**: Updated the model for compatibility with **NetLogo 7.0.0**.
 
@@ -22,16 +23,16 @@
 - Introduced the global variable `plot-max-y-range` to optimize computations.
 - Revised documentation to reflect updates.
 
-## v1.0.0
+## v1.0.0 (2025-07-03)
 
 First stable release. 🎉
 
-## v0.0.0.9015 (Pre-Release)
+## v0.0.0.9015 (2025-07-02) (Pre-Release)
 
 - Added variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
 - Fixed an issue with year intervals when using the *Future Climate Data* series
 
-## v0.0.0.9013 (Pre-Release)
+## v0.0.0.9013 (2025-06-24) (Pre-Release)
 
 - Improved the documentation.
 - Removed all dependencies on the `R` programming language and its packages.
@@ -47,12 +48,12 @@ First stable release. 🎉
 - Removed unnecessary dependencies and refactored code structure for improved
   maintainability.
 
-## v0.0.0.9010 (Pre-Release)
+## v0.0.0.9010 (2025-06-09) (Pre-Release)
 
 - Fixed an issue with Windows file paths for improved cross-platform
 compatibility.
 
-## v0.0.0.9009 (Pre-Release)
+## v0.0.0.9009 (2025-06-09) (Pre-Release)
 
 - Enhanced Quarto notebooks for improved readability and clarity.
 - Refactored codebase to increase modularity and maintainability.
@@ -60,14 +61,14 @@ compatibility.
 - Updated charts to display whole numbers.
 - Expanded documentation.
 
-## v 0.0.0.9064 (Pre-Release)
+## v 0.0.0.9006 (2025-04-15) (Pre-Release)
 
 - Improved internal mechanisms for better performance and reliability.
 
-## v 0.0.0.9004 (Pre-Release)
+## v 0.0.0.9004 (2024-09-14) (Pre-Release)
 
 First pre-release. 🎉
 
-## v0.0.0.9000
+## v0.0.0.9000 (2024-09-14)
 
 - Added a `NEWS.md` file to track changes to the model.
