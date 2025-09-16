@@ -12,7 +12,7 @@
 - Updated plot behaviors: added a 12-month moving average pen, added indicators for the start of each 12-month cycle, and y-axis now dynamically adjusts based on the minimum, maximum, and interquartile range of the 12-month data window.
 - Removed the `halt` procedure; error messages now provide more descriptive text.
 - Added the [`Logônia`](https://github.com/sustentarea/logonia) model as a reference for `LogoClim` integration.
-- Updated Quarto notebooks.
+- Updated [Quarto](https://quarto.org/) notebooks.
 - Updated documentation to reflect all changes.
 
 ## v2.0.0 (2025-07-29)

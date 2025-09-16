@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "LogoClim",
   "dateCreated": "2024-08-20",
-  "applicationCategory": "Agent-Based Modeling",
+  "applicationCategory": "Computational Model",
   "applicationSubCategory": "Climate Simulations",
   "name": "{LogoClim}: WorldClim in NetLogo",
   "author": [

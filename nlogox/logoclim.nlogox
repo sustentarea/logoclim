@@ -457,7 +457,7 @@ plot max [value] of patches with [not is-false? value]]]></update>
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
-See the [`Logônia`](https://github.com/sustentarea/logonia) model for an example of how to integrate `LogoClim` into your model.
+See the [`Logônia`](https://github.com/sustentarea/logonia) model ([Vartanian et al., 2025](https://github.com/sustentarea/logonia)) for an example of how to integrate `LogoClim` into your model.
 
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 
@@ -671,7 +671,9 @@ Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution c
 
 Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. https://doi.org/10.1038/s41597-020-0453-3
 
-O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. https://doi.org/10.1016/j.gloenvcha.2015.01.004]]></info>
+O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. https://doi.org/10.1016/j.gloenvcha.2015.01.004
+
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Plant growth response model in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/TPY7S]]></info>
   <turtleShapes>
     <shape name="default" rotatable="true" editableColorIndex="0">
       <polygon color="-1920102913" filled="true" marked="true">
