@@ -11,7 +11,7 @@ library(stringr)
 #' `data-upload.qmd` Quarto notebooks in a loop, enabling batch processing of
 #' multiple data series and countries.
 
-# Setting Initial Parameters -----
+# Set Initial Parameters -----
 
 series <- c(
   "historical-climate-data",
@@ -24,7 +24,7 @@ model <- NULL
 country_codes <- "nor" # "europe" "usa"
 country_suffix <- NULL # "box" "mainland"
 
-## Cleaning the Data Directory -----
+## Clean the Data Directory -----
 
 here("data") |>
   dir_ls(
@@ -73,7 +73,7 @@ for (i in country_codes) {
     )
   }
 
-  ## Storing the Data in OSF -----
+  ## Store the Data in OSF -----
 
   data_dirs <-
     here("data") |>
@@ -105,7 +105,7 @@ for (i in country_codes) {
     )
   }
 
-  ## Deleting Processed Files -----
+  ## Delete Processed Files -----
 
   zip_file <-
     here("data") |>
@@ -144,7 +144,7 @@ for (i in country_codes) {
   beep(11)
 }
 
-## Cleaning Quarto Output Files -----
+## Clean Quarto Output Files -----
 
 cli_progress_step("Cleaning Quarto output files")
 

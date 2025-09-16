@@ -120,7 +120,7 @@ are automatically installed when the model is run for the first time.
 #### Downloading the Model
 
 You can download the latest release of the model from its [GitHub
-Releases page](https://github.com/sustentarea/logoclim/releases/latest).
+releases page](https://github.com/sustentarea/logoclim/releases/latest).
 For the development version, you can clone or download its [GitHub
 repository](https://github.com/sustentarea/logoclim/) directly.
 

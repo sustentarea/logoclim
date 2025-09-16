@@ -2,6 +2,10 @@ library(checkmate)
 library(stringr)
 library(orbis) # github.com/danielvartan/orbis
 
+# # Helpers -----
+#
+# wc_readme() |> cat()
+
 wc_readme <- function(series = NULL, resolution = NULL) {
   series_choices <- c(
     "historical-climate-data",
@@ -41,12 +45,12 @@ wc_readme <- function(series = NULL, resolution = NULL) {
   paste0(
     "# WorldClim 2.1",
     "\n\n",
-    ifelse(!is.null(series), paste0("- Series: ", series, "\n"), ""),
+    ifelse(!is.null(series), paste0("- Series: ", series, ".", "\n"), ""),
     ifelse(
-      !is.null(resolution), paste0("- Resolution: ", resolution, "\n"), ""
+      !is.null(resolution), paste0("- Resolution: ", resolution, ".", "\n"), ""
     ),
-    ifelse(!is.null(source), paste0("- Source: <", source, ">", "\n"), ""),
-    "- Note: Downloaded on ", Sys.Date(),
+    ifelse(!is.null(source), paste0("- Source: <", source, ">", ".", "\n"), ""),
+    "- Note: Downloaded on ", Sys.Date(), ".",
     "\n\n",
     "> This dataset is licensed under the WorldClim 2.1 Terms of Use, ",
     "available at: <https://worldclim.org/about.html>."

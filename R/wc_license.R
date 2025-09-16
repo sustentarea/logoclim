@@ -1,5 +1,9 @@
 library(rutils) # github.com/danielvartan/rutils
 
+# # Helpers -----
+#
+# wc_license() |> cat()
+
 wc_license <- function() {
   paste0(
     "# WorldClim 2.1",

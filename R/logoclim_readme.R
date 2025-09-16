@@ -2,6 +2,10 @@ library(checkmate)
 library(stringr)
 library(orbis) # github.com/danielvartan/orbis
 
+# # Helpers -----
+#
+# logoclim_readme() |> cat()
+
 logoclim_readme <- function(
   series = NULL,
   resolution = NULL,
@@ -59,13 +63,13 @@ logoclim_readme <- function(
   paste0(
     "# LogoClim",
     "\n\n",
-    ifelse(!is.null(series), paste0("- Series: ", series, "\n"), ""),
+    ifelse(!is.null(series), paste0("- Series: ", series, ".", "\n"), ""),
     ifelse(
-      !is.null(resolution), paste0("- Resolution: ", resolution, "\n"), ""
+      !is.null(resolution), paste0("- Resolution: ", resolution, ".", "\n"), ""
     ),
-    ifelse(!is.null(source), paste0("- Source: ", source, "\n"), ""),
+    ifelse(!is.null(source), paste0("- Source: ", source, ".", "\n"), ""),
     "- Note: For details on data processing, see: ",
-    "<https://github.com/sustentarea/logoclim>",
+    "<https://github.com/sustentarea/logoclim>.",
     "\n\n",
     "> This dataset is licensed under the WorldClim 2.1 Terms of Use, ",
     "available at: <https://worldclim.org/about.html>."

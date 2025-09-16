@@ -135,7 +135,7 @@ The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](
 
 #### Downloading the Model
 
-You can download the latest release of the model from its [GitHub Releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
+You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
 
 To run the model, make sure to download all files in the `nlogox` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 
