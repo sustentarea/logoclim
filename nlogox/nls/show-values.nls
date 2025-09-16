@@ -15,15 +15,15 @@ to show-values
       ] [
         set plabel-color white
       ]
-    
-      ifelse (not is-nan? value) [
+
+      ifelse (not is-false? value) [
         carefully [
           set plabel precision value 2
         ] [
           set plabel value
         ]
       ] [
-        set plabel "NaN"
+        set plabel "NA"
       ]
     ]
 

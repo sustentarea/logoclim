@@ -7,7 +7,7 @@ to go-back
     ] (
       (climate-variable = "Elevation") or
       (
-        ((month = start-month) or (month = "NA")) and
+        ((month = start-month) or (month = false)) and
         (year = first years)
       )
     ) [
@@ -31,6 +31,6 @@ to go-back
 
   ask patches [
     set value-12 (list value)
-    set value-12ma "NA"
+    set value-12ma false ; `false` = `NA` (Not Available)
   ]
 end

@@ -1,8 +1,11 @@
 ## v2.0.0.9000 (Development Version)
 
+## v2.1.0 (2025-09-15)
+
 - Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
 - Removed the `#tick` and `#wait` parameters from the `go` procedure; it now has no parameters, simplifying execution.
 - Updated the `go-back` procedure to reset ticks and clear all plots.
+- Converted `NaN` values produced by the [GIS extension](https://docs.netlogo.org/gis.html) (used to represent missing data) into `false`, following [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554). This fixes problems with primitives such as `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
 - Converted string parameters and interface text to title case.
 - Improved the `show-value` procedure to provide better contrast for patch labels.
 - Added a 12-month moving average for patches. Patches now have two additional attributes: `value-12` (last 12 months of values) and `value-12ma` (12-month moving average).

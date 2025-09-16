@@ -36,7 +36,7 @@ end
 to-report check-xcor-bleed [#xcor]
   let #patch-values [value] of patches with [pxcor = #xcor]
 
-  ifelse (all-member-or-nan? #patch-values (list 0 "NA")) [
+  ifelse (all-member? #patch-values (list 0 false)) [
     report (list #xcor)
   ] [
     report []
@@ -46,7 +46,7 @@ end
 to-report check-ycor-bleed [#ycor]
   let #patch-values [value] of patches with [pycor = #ycor]
 
-  ifelse (all-member-or-nan? #patch-values (list 0 "NA")) [
+  ifelse (all-member? #patch-values (list 0 false)) [
     report (list #ycor)
   ] [
     report []

@@ -1,7 +1,15 @@
+; __includes ["check-all.nls"]
 ; `is-number?` is a NetLogo base function.
 
 to-report is-numeric? [#x]
   report is-number? #x
+  (ifelse (is-number? #x) [
+    report true
+  ] (is-list? #x) [
+    report all-true? map [#i -> is-number? #i] #x
+  ] [
+    report false
+  ])
 end
 
 to-report test-number [#x]

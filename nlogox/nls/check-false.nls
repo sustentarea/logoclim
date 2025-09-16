@@ -1,0 +1,21 @@
+to-report is-false? [#x]
+  report #x = false
+end
+
+to-report test-false [#x]
+  report is-false? #x
+end
+
+to-report check-false [#x]
+  ifelse (is-false? #x) [
+    report true
+  ] [
+    report "The value is not `false`."
+  ]
+end
+
+to assert-false [#x]
+  if (not is-false? #x) [
+    error check-false #x
+  ]
+end

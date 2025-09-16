@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.0" snapToGrid="true">
   <code><![CDATA[; {LogoClim}: WorldClim in NetLogo
 ;
-; Version: v2.0.0.9000 (2025-09-13)
+; Version: v2.1.0 (2025-09-15)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -18,7 +18,6 @@ __includes [
   "nls/adjust-world-size.nls"
   "nls/check-abs.nls"
   "nls/check-all.nls"
-  "nls/check-any.nls"
   "nls/check-atomic.nls"
   "nls/check-between.nls"
   "nls/check-choice.nls"
@@ -26,6 +25,7 @@ __includes [
   "nls/check-data-resolution.nls"
   "nls/check-data.nls"
   "nls/check-empty.nls"
+  "nls/check-false.nls"
   "nls/check-gis.nls"
   "nls/check-integer.nls"
   "nls/check-list.nls"
@@ -47,7 +47,6 @@ __includes [
   "nls/lookup-series-color.nls"
   "nls/lookup-series-data-path.nls"
   "nls/lookup-shared-socioeconomic-pathway.nls"
-  "nls/nan-value.nls"
   "nls/normalize-path.nls"
   "nls/num-to-str-month.nls"
   "nls/pattern-data-file.nls"
@@ -95,7 +94,6 @@ globals [
   max-plot-y
   world-bleed
   headless?
-  nan
   settings
 ]
 
@@ -124,30 +122,23 @@ to setup [#headless?]
 end
 
 to go
-  (ifelse
-    (not is-gis? dataset) [
-      stop
-    ] (
-      (
-        (month = "December") and
-        (year = last years)
-      ) or
-      (climate-variable = "Elevation") or
-      (
-        (data-series = "Historical Climate Data") and
-        (climate-variable = "Bioclimatic Variables")
-      ) or
-      (
-        (data-series = "Future Climate Data") and
-        (climate-variable = "Bioclimatic Variables") and
-        (year = last years)
-      )
-    ) [
-      stop
-    ] [
-      set index index + 1
-    ]
-  )
+  ifelse (
+    ((month = "December") and (year = last years)) or
+    (climate-variable = "Elevation") or
+    (
+      (data-series = "Historical Climate Data") and
+      (climate-variable = "Bioclimatic Variables")
+    ) or
+    (
+      (data-series = "Future Climate Data") and
+      (climate-variable = "Bioclimatic Variables") and
+      (year = last years)
+    )
+  ) [
+    stop
+  ] [
+    set index index + 1
+  ]
 
   walk index
 
@@ -295,7 +286,7 @@ plot min-plot-y + 0.1]]></update>
         <setup></setup>
         <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
 
-plot mean [value] of patches with [not is-nan? value]]]></update>
+plot mean [value] of patches with [not is-false? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Mean 12MA" color="-16777216" legend="true">
         <setup></setup>
@@ -306,23 +297,23 @@ plot mean [value] of patches with [not is-nan? value]]]></update>
   plot-pen-down
 
   let #value-12-length length (
-    first ([value-12] of patches with [not is-nan? value])
+    first ([value-12] of patches with [not is-false? value])
   )
 
   ifelse (#value-12-length = 12) [
     set-plot-pen-color black
-    plot mean [value-12ma] of patches with [not is-nan? value]
+    plot mean [value-12ma] of patches with [not is-false? value]
   ] [
     set-plot-pen-color gray + 4
-    plot mean [value] of patches with [not is-nan? value]
+    plot mean [value] of patches with [not is-false? value]
   ]
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1160" precision="5" y="325" height="60" fontSize="11" width="250" display="Mean">mean [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1160" precision="5" y="325" height="60" fontSize="11" width="250" display="Mean">mean [value] of patches with [not is-false? value]</monitor>
     <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="140" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
       <setup></setup>
-      <update><![CDATA[let #sd standard-deviation [value] of patches with [not is-nan? value]
+      <update><![CDATA[let #sd standard-deviation [value] of patches with [not is-false? value]
 let #y-max-candidate ceiling (#sd * 1.25)
 let #max-plot-y plot-y-max
 
@@ -346,7 +337,7 @@ plot 0.1]]></update>
         <setup></setup>
         <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
 
-plot standard-deviation [value] of patches with [not is-nan? value]]]></update>
+plot standard-deviation [value] of patches with [not is-false? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
         <setup></setup>
@@ -357,20 +348,20 @@ plot standard-deviation [value] of patches with [not is-nan? value]]]></update>
   plot-pen-down
 
   let #value-12-length length (
-    first ([value-12] of patches with [not is-nan? value])
+    first ([value-12] of patches with [not is-false? value])
   )
 
   ifelse (#value-12-length = 12) [
     set-plot-pen-color black
-    plot standard-deviation [value-12ma] of patches with [not is-nan? value]
+    plot standard-deviation [value-12ma] of patches with [not is-false? value]
   ] [
     set-plot-pen-color gray + 4
-    plot standard-deviation [value] of patches with [not is-nan? value]
+    plot standard-deviation [value] of patches with [not is-false? value]
   ]
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1415" precision="5" y="325" height="60" fontSize="11" width="250" display="Standard Deviation">standard-deviation [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1415" precision="5" y="325" height="60" fontSize="11" width="250" display="Standard Deviation">standard-deviation [value] of patches with [not is-false? value]</monitor>
     <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
@@ -389,7 +380,7 @@ plot min-plot-y + 0.1]]></update>
         <setup></setup>
         <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
 
-plot min [value] of patches with [not is-nan? value]]]></update>
+plot min [value] of patches with [not is-false? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Min. 12MA" color="-16777216" legend="true">
         <setup></setup>
@@ -400,20 +391,20 @@ plot min [value] of patches with [not is-nan? value]]]></update>
   plot-pen-down
 
   let #value-12-length length (
-    first ([value-12] of patches with [not is-nan? value])
+    first ([value-12] of patches with [not is-false? value])
   )
 
   ifelse (#value-12-length = 12) [
     set-plot-pen-color black
-    plot min [value-12ma] of patches with [not is-nan? value]
+    plot min [value-12ma] of patches with [not is-false? value]
   ] [
     set-plot-pen-color gray + 4
-    plot min [value] of patches with [not is-nan? value]
+    plot min [value] of patches with [not is-false? value]
   ]
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1160" precision="5" y="575" height="60" fontSize="11" width="250" display="Minimum">min [value] of patches with [not is-false? value]</monitor>
     <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="390" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
@@ -432,7 +423,7 @@ plot min-plot-y + 0.1]]></update>
         <setup></setup>
         <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
 
-plot max [value] of patches with [not is-nan? value]]]></update>
+plot max [value] of patches with [not is-false? value]]]></update>
       </pen>
       <pen interval="1.0" mode="0" display="Max. 12MA" color="-16777216" legend="true">
         <setup></setup>
@@ -443,20 +434,20 @@ plot max [value] of patches with [not is-nan? value]]]></update>
   plot-pen-down
 
   let #value-12-length length (
-    first ([value-12] of patches with [not is-nan? value])
+    first ([value-12] of patches with [not is-false? value])
   )
 
   ifelse (#value-12-length = 12) [
     set-plot-pen-color black
-    plot max [value-12ma] of patches with [not is-nan? value]
+    plot max [value-12ma] of patches with [not is-false? value]
   ] [
     set-plot-pen-color gray + 4
-    plot max [value] of patches with [not is-nan? value]
+    plot max [value] of patches with [not is-false? value]
   ]
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-nan? value]</monitor>
+    <monitor x="1415" precision="5" y="575" height="60" fontSize="11" width="250" display="Maximum">max [value] of patches with [not is-false? value]</monitor>
   </widgets>
   <info><![CDATA[# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
 

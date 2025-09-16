@@ -30,6 +30,6 @@ to setup-hcd-variables
     set months map read-from-string months
     set months map num-to-str-month months
   ] [
-    set months ["NA"]
+    set months [false] ; `false` = `NA` (Not Available)
   ]
 end

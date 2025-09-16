@@ -1,17 +1,32 @@
 ; __includes [
 ;   "file-path.nls"
 ;   "lookup-series-data-path.nls"
-;   "nan-value.nls"
 ;   "setup-fcd-variables.nls"
 ;   "setup-hcd-variables.nls"
 ;   "setup-hmwd-variables.nls"
 ; ]
 
 ; globals [
-;   data-series
+;   index
+;   dataset
+;   files
+;   month
+;   months
+;   year
+;   years
 ;   series-color
 ;   series-data-path
 ;   max-plot-x
+;   headless?
+;   settings
+;   data-series
+;   data-resolution
+;   climate-variable
+;   bioclimatic-variable
+;   global-climate-model
+;   shared-socioeconomic-pathway
+;   start-month
+;   start-year
 ; ]
 
 to setup-variables [#headless?]
@@ -43,7 +58,6 @@ to setup-variables [#headless?]
   set year item index years
   set series-color lookup-series-color
   set max-plot-x 2
-  set nan nan-value dataset
 
   set settings (list
     data-series

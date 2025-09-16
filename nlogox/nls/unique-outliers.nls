@@ -1,5 +1,6 @@
 ; __includes [
 ;   "check-abs.nls"
+;   "check-empty.nls"
 ;   "check-list.nls"
 ;   "check-number.nls"
 ;   "quartile.nls"
@@ -7,11 +8,12 @@
 
 to-report unique-outliers [#list #n-iqr]
   assert-list #list
+  assert-not-empty #list
+  assert-number #list
   assert-number #n-iqr
   assert-abs #n-iqr
 
   let #unique-values remove-duplicates #list
-  set #unique-values filter [x -> is-number? x and not is-nan? x] #unique-values
 
   ifelse (length #unique-values < 4) [
     report []

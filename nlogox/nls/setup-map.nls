@@ -24,25 +24,26 @@ to setup-map
 
   gis:apply-raster dataset value
 
-  if (reduce [[i j] -> not-empty? i or not-empty? j] world-bleed) [
+  ; Convert `NaN` values to `false`.
+  ask patches [set value ifelse-value (is-nan? value) [false] [value]]
+
+  if (reduce [[#i #j] -> not-empty? #i or not-empty? #j] world-bleed) [
     remove-world-bleed 0.25 1
   ]
 
-  let #max-value max [value] of patches with [not is-nan? value]
-  let #min-value min [value] of patches with [not is-nan? value]
+  let #max-value max [value] of patches with [not is-false? value]
+  let #min-value min [value] of patches with [not is-false? value]
 
-  ; Correct inflated values
+  ; Correct inflated values.
   if ((#max-value - #min-value) > (10 ^ 6)) [
-    let #extreme-values unique-outliers (
-      [value] of patches with [not is-nan? value]
-    ) 10
+    let #extreme-values unique-outliers
+      [value] of patches with [not is-false? value]
+      10
 
-    ask patches with [member? value #extreme-values] [
-      set value nan
-    ]
+    ask patches with [member? value #extreme-values] [set value false]
 
-    set #max-value max [value] of patches with [not is-nan? value]
-    set #min-value min [value] of patches with [not is-nan? value]
+    set #max-value max [value] of patches with [not is-false? value]
+    set #min-value min [value] of patches with [not is-false? value]
   ]
 
   let #min-pcolor-value 0
@@ -61,14 +62,14 @@ to setup-map
   ]
 
   ask (patches) [
-    ifelse (not is-nan? value) [
+    ifelse (not is-false? value) [
       set pcolor (
         scale-color series-color value #min-pcolor-value #max-pcolor-value
       )
 
-      (ifelse ((index = 0) or (value-12 = "NA")) [
+      (ifelse ((index = 0) or (is-false? value-12)) [
         set value-12 (list value)
-        set value-12ma "NA"
+        set value-12ma false
       ] ((length value-12) < 12) [
         set value-12 lput value value-12
       ] [
@@ -80,8 +81,8 @@ to setup-map
       ]
     ] [
       set pcolor background-color
-      set value-12 "NA"
-      set value-12ma "NA"
+      set value-12 false
+      set value-12ma false
     ]
 
     let #patch-envelope gis:envelope-of self

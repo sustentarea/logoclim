@@ -23,7 +23,7 @@ to remove-world-bleed [#size #mode]
       match-pcor min-pycor #ycor-world-bleed
       match-pcor max-pycor #ycor-world-bleed
   ] (#mode = 1) [
-    let #replacement nan
+    let #replacement false ; `false` == `NA` (Not Available)
 
     ask patches with [
       (member? pxcor #xcor-world-bleed) or

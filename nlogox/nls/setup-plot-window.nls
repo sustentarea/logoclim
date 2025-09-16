@@ -3,7 +3,7 @@
 
 to setup-plot-window
   let #values-12 reduce sentence (
-    [value-12] of patches with [not is-nan? value]
+    [value-12] of patches with [not is-false? value]
   )
 
   let #current-min-plot-y floor (

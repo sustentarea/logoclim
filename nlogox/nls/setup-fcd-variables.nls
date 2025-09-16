@@ -54,6 +54,6 @@ to setup-fcd-variables
     ] files
 
     set years as-list (str-extract files "[0-9]{4}-[0-9]{4}")
-    set months n-values (length files) ["NA"]
+    set months n-values (length files) [false] ; `false` = `NA` (Not Available)
   ]
 end
