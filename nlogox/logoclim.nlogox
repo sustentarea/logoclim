@@ -569,6 +569,10 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 
 The `setup` procedure comes with a `headless?` parameter to improve the model's performance when running in headless mode. When `headless?` is set to `true`, the model skips all code related to the interface, which can significantly speed up simulations. This is particularly useful when integrating `LogoClim` with other models using the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
 
+## DEVELOPER NOTES
+
+- Based on [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554), this model represents missing values as `false`. This resolves issues with primitives like `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
+
 ## THINGS TO NOTICE
 
 - Observe how the map changes as the simulation progresses, paying attention to how values vary over time and across space.
