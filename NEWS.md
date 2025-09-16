@@ -1,6 +1,6 @@
 ## v2.0.0.9000 (Development Version)
 
-## v2.1.0 (2025-09-15)
+## v2.1.0 (2025-09-16)
 
 - Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
 - Removed the `#tick` and `#wait` parameters from the `go` procedure; it now has no parameters, simplifying execution.
