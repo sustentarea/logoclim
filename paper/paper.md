@@ -70,7 +70,7 @@ The lack of reproducibility is a major concern in science [@baker2016], includin
 
 The `LogoClim` model was developed for seamless integration with other models through NetLogo's [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html)  extension [@hjorth2020], which enables parallel execution and data exchange between models. This integration capability makes it particularly valuable for agent-based simulations that incorporate climate data to study ecological, environmental, or social processes affected by climate conditions.
 
-While other programming languages, such as [R](https://www.r-project.org/), offer tools like the `geodata` package [@hijmans2024], there are currently no equivalent tools providing this functionality for NetLogo.
+While other programming languages, such as [R](https://www.r-project.org/), offer tools like the [`geodata`](https://CRAN.R-project.org/package=geodata) package [@hijmans2024], there are currently no equivalent tools providing this functionality for NetLogo.
 
 # Motivation
 
