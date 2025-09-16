@@ -1,0 +1,64 @@
+meta:
+  name:
+    short: "{LogoClim}"
+    long: "{LogoClim}: WorldClim in NetLogo"
+  link:
+    home: https://sustentarea.github.io/logoclim
+    github: https://github.com/sustentarea/logoclim
+  description: |
+    {LogoClim} is a NetLogo model for simulating and visualizing global climate
+    conditions. It allows researchers to integrate high-resolution climate data
+    into agent-based models, supporting reproducible research in ecology,
+    agriculture, environmental sciences, and other fields that rely on climate
+    data.
+
+logo:
+  images:
+    logo:
+      path: images/logo.png
+      alt: "Logo"
+    og-image:
+      path: images/og-image.png
+      alt: "Open Graph Image"
+  small: logo
+  medium: logo
+  large: logo
+
+color:
+  palette:
+    blue: "#345da9" # NetLogo: blue (105)
+    orange: "#f16a15" # NetLogo: orange (25)
+    light-orange: "#ffb6a4" # colorspace::lighten("#f16a15", 0.5)
+    red: "#d73229" # NetLogo: red (15)
+    black: "#000000" # NetLogo: black (0)
+    gray: "#ededed" # NetLogo: gray + 4 (9)
+    white: "#ffffff" # NetLogo: white (9.9)
+  background: white
+  primary: blue
+  secondary: orange
+  tertiary: red
+  success: blue
+  info: blue
+  warning: orange
+  danger: red
+  light: white
+  dark: black
+
+typography:
+  fonts:
+    - family: Noto Sans
+      source: google
+    - family: Noto Sans Mono
+      source: google
+  base:
+    family: Noto Sans
+    line-height: 1.5
+    weight: normal
+  headings:
+    color: blue
+    family: Noto Sans
+    weight: 700
+  link:
+    color: green
+    decoration: underline
+  monospace: Noto Sans Mono

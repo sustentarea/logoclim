@@ -1,4 +1,4 @@
-# LogoClim
+# LogoClim <img src="images/logo.png" align="right" width="120" />
 
 <!-- Quarto render -->
 
