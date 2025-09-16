@@ -145,7 +145,7 @@ to go
   tick
 end]]></code>
   <widgets>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="533" showTickCounter="true" patchSize="2.309963099630996" fontSize="10" wrappingAllowedY="false" width="614" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="543" showTickCounter="true" patchSize="2.3542435424354244" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
       <choice type="string" value="Historical Climate Data"></choice>
       <choice type="string" value="Historical Monthly Weather Data"></choice>
