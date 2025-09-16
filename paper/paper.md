@@ -1,22 +1,20 @@
 ---
-title: "LogoClim: WorldClim in NetLogo"
+title: "{LogoClim}: WorldClim in NetLogo"
 tags:
   - Agent-Based Modeling
   - Climate Change
   - Climate Data Visualization
-  - Climate Model Integration
   - Climate Projections
-  - Climate Simulation
+  - Climate Simulations
   - CMIP6
   - Complex Systems
   - Complexity Science
-  - Data Interoperability
   - Environmental Sciences
-  - Environmental Simulation
   - Future Climate Scenarios
   - Geospatial Analysis
   - Historical Climate Data
   - LevelSpace
+  - Logônia
   - Models
   - NetLogo
   - Parallel Execution
@@ -25,10 +23,9 @@ tags:
   - Shared Socioeconomic Pathways
   - Simulations
   - Spatial Analysis
-  - Spatial Resolution
   - SSPs
   - Time Series
-  - Worldclim
+  - WorldClim
 authors:
   - given-names: Daniel
     surname: Vartanian
@@ -51,17 +48,17 @@ affiliations:
   index: 2
 - name: School of Public Health, University of São Paulo, São Paulo, Brazil
   index: 3
-date: 22 August 2025
+date: 16 September 2025
 bibliography: paper.bib
 ---
 
 # Summary
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental science, and other fields that rely on climate data integration.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) [@oneill2017]. All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide [@fick2017a], available for academic and other non-commercial use.
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) [@oneill2017]. All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide [@fick2017], available for academic and other non-commercial use.
 
-`LogoClim` follows the FAIR Principles for Research Software [@barker2022] and is openly available on the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) and [GitHub](https://github.com/sustentarea/logoclim). \autoref{fig:logoclim-interface-1} and \autoref{fig:logoclim-interface-2} illustrate the model's interface and functionality.
+`LogoClim` follows the FAIR Principles for Research Software [@barker2022] and is openly available on the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) and [GitHub](https://github.com/sustentarea/logoclim).\autoref{fig:logoclim-interface-1} and \autoref{fig:logoclim-interface-2} illustrate the model's interface and functionality. See the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2025g] for an example of its integration into a full NetLogo simulation.
 
 ![LogoClim Graphical User Interface — Brazil.\label{fig:logoclim-interface-1}](images/logoclim-interface-bra-10m-hmwd.png){width=100%}
 
@@ -71,7 +68,9 @@ The model utilizes raster data to represent climate variables such as temperatur
 
 The lack of reproducibility is a major concern in science [@baker2016], including in computational research [@peng2011]. This challenge is particularly relevant for agent-based models, which are used to simulate complex phenomena [@grimm2006a; @grimm2020]. One effective strategy to address this issue is the development of open, specialized tools that enhance transparency and promote standardization, and reusability among researchers [@ram2019; @berger2024]. This is why `LogoClim` was created.
 
-The `LogoClim` model was developed for seamless integration with other models through NetLogo's LevelSpace extension [@hjorth2020], which enables parallel execution and data exchange between models. This integration capability makes it particularly valuable for agent-based simulations that incorporate climate data to study ecological, environmental, or social processes affected by climate conditions.
+The `LogoClim` model was developed for seamless integration with other models through NetLogo's [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html)  extension [@hjorth2020], which enables parallel execution and data exchange between models. This integration capability makes it particularly valuable for agent-based simulations that incorporate climate data to study ecological, environmental, or social processes affected by climate conditions.
+
+While other programming languages, such as [R](https://www.r-project.org/), offer tools like the `geodata` package [@hijmans2024], there are currently no equivalent tools providing this functionality for NetLogo.
 
 # Motivation
 
@@ -83,9 +82,9 @@ The model was originally developed as part of a project by the [Sustentarea](htt
 
 The model supports all three climate data series from [WorldClim 2.1](https://worldclim.org/): long-term historical climate averages (1970–2000), historical monthly weather (1951–2024), and future climate projections (2021–2100). Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)), which can be selected within the model interface. Further details about each series are available on the WorldClim website.
 
-The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to ASCII format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
+The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
 
-We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`.
+We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. To illustrate how `LogoClim` can be used in practice, we also developed the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2025g], which showcases its integration into a full NetLogo simulation.
 
 ![LogoClim Graphical User Interface — United Kingdom.\label{fig:logoclim-interface-2}](images/logoclim-interface-gbr-30s-hcd.png){width=100%}
 
