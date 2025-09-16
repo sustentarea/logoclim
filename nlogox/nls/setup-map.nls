@@ -86,7 +86,7 @@ to setup-map
     ]
 
     let #patch-envelope gis:envelope-of self
-    set latitude sublist #patch-envelope 0 2
-    set longitude sublist #patch-envelope 2 4
+    set latitude sublist #patch-envelope 2 4
+    set longitude sublist #patch-envelope 0 2
   ]
 end

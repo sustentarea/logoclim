@@ -1,5 +1,7 @@
 ## v2.1.0.9000 (Development Version)
 
+- **Hotfix**: Fix inversion of latitude/longitude values.
+
 ## v2.1.0 (2025-09-16)
 
 - Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
