@@ -1,7 +1,7 @@
 {
   "@context": "https://w3id.org/codemeta/3.0",
   "@type": "SoftwareSourceCode",
-  "identifier": "LogoClim",
+  "identifier": "{LogoClim}",
   "dateCreated": "2024-08-20",
   "applicationCategory": "Computational Model",
   "applicationSubCategory": "Climate Simulations",
@@ -184,7 +184,5 @@
   "developmentStatus": "active",
   "readme": "https://github.com/sustentarea/logoclim/blob/main/README.md",
   "releaseNotes": "https://github.com/sustentarea/logoclim/blob/main/NEWS.md",
-  "version": "2.1.0",
-  "datePublished":"2025-09-16",
-  "downloadUrl": "https://github.com/sustentarea/logoclim/archive/refs/tags/v2.1.0.zip"
+  "version": "2.1.0.9000"
 }
