@@ -49,16 +49,19 @@ to setup-map
   let #min-pcolor-value 0
   let #max-pcolor-value 0
 
-  ifelse (white-max = true) [
-    set #max-pcolor-value #max-value
-  ] [
-    set #max-pcolor-value white-value
-  ]
+  if (black-value >= white-value) [set white-value black-value + 50]
+  if (white-value <= black-value) [set black-value white-value - 50]
 
   ifelse (black-min = true) [
     set #min-pcolor-value #min-value
   ] [
     set #min-pcolor-value black-value
+  ]
+
+  ifelse (white-max = true) [
+    set #max-pcolor-value #max-value
+  ] [
+    set #max-pcolor-value white-value
   ]
 
   ask (patches) [
