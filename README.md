@@ -186,7 +186,7 @@ helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}:
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim:
 WorldClim in NetLogo* \[Computer software\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
@@ -194,7 +194,7 @@ A BibTeX entry for LaTeX users is:
 
 ``` latex
 @Misc{vartanian2025,
-  title = {{LogoClim}: WorldClim in NetLogo},
+  title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -225,7 +225,7 @@ a donation. Please mention `LogoClim` in your donation message.
 ``` text
 Copyright (C) 2025 Daniel Vartanian
 
-{LogoClim} is free software: you can redistribute it and/or modify it under the
+LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.

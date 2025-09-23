@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "{LogoClim}: WorldClim in NetLogo"
+title: "LogoClim: WorldClim in NetLogo"
 message: >-
   If you use this software, please cite it using the metadata from this file.
 type: software
@@ -20,7 +20,7 @@ authors:
     affiliation: University of São Paulo
     orcid: 'https://orcid.org/0000-0002-4900-5609'
 abstract: >-
-  {LogoClim} is a NetLogo model for simulating and visualizing global climate
+  LogoClim is a NetLogo model for simulating and visualizing global climate
   conditions. It allows researchers to integrate high-resolution climate data
   into agent-based models, supporting reproducible research in ecology,
   agriculture, environmental sciences, and other fields that rely on climate data.

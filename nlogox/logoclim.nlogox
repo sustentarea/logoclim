@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model version="NetLogo 7.0.0" snapToGrid="true">
-  <code><![CDATA[; {LogoClim}: WorldClim in NetLogo
+  <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: v2.1.0.9000 (2025-09-16)
+; Version: v2.1.0.9000 (Development Version)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -145,7 +145,7 @@ to go
   tick
 end]]></code>
   <widgets>
-    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-117" height="543" showTickCounter="true" patchSize="2.3542435424354244" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="117" updateMode="0" maxPxcor="135" minPxcor="-135"></view>
+    <view x="525" wrappingAllowedX="false" y="10" frameRate="30.0" minPycor="-162" height="338" showTickCounter="true" patchSize="1.0580431177446104" fontSize="10" wrappingAllowedY="false" width="625" tickCounterLabel="Months" maxPycor="162" updateMode="0" maxPxcor="301" minPxcor="-301"></view>
     <chooser x="10" y="10" height="60" variable="data-series" current="1" width="250" display="data-series">
       <choice type="string" value="Historical Climate Data"></choice>
       <choice type="string" value="Historical Monthly Weather Data"></choice>
@@ -237,7 +237,7 @@ end]]></code>
       <choice type="string" value="December"></choice>
     </chooser>
     <input x="10" multiline="false" y="465" height="60" variable="start-year" type="number" width="250">1951.0</input>
-    <input x="10" multiline="false" y="530" height="60" variable="data-path" type="string" width="250">../data</input>
+    <input x="10" multiline="false" y="530" height="60" variable="data-path" type="string" width="250">../.data/europe-10m</input>
     <button x="10" y="595" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="250" display="Select Data Directory">set data-path user-directory</button>
     <button x="265" actionKey="S" y="10" height="40" disableUntilTicks="false" forever="false" kind="Observer" width="125" display="Setup">setup false</button>
     <button x="395" actionKey="G" y="10" height="40" disableUntilTicks="false" forever="true" kind="Observer" width="120" display="Go">go</button>
@@ -593,13 +593,13 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
 @Misc{vartanian2025,
-  title = {{LogoClim}: WorldClim in NetLogo},
+  title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -632,7 +632,7 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 ```text
 Copyright (C) 2025 Daniel Vartanian
 
-{LogoClim} is free software: you can redistribute it and/or modify it under the
+LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.
@@ -673,7 +673,7 @@ Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU 
 
 O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. https://doi.org/10.1016/j.gloenvcha.2015.01.004
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{Logônia}: Plant growth response model in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/TPY7S]]></info>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth response model in NetLogo* \[Computer software\]. https://doi.org/10.17605/OSF.IO/TPY7S]]></info>
   <turtleShapes>
     <shape name="default" rotatable="true" editableColorIndex="0">
       <polygon color="-1920102913" filled="true" marked="true">

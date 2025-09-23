@@ -30,8 +30,8 @@ cat(
     "https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480",
     ")"
   ),
-  badger::badge_repostatus("active"),
-  badger::badge_custom(
+  badge_repostatus("active"),
+  badge_custom(
     x = "CoMSES Network",
     y = "2.1.0",
     color = "1284C5",
@@ -40,7 +40,7 @@ cat(
       "bccd451f-76a4-408a-85fd-c5024359ba9a/"
     )
   ),
-  badger::badge_custom(
+  badge_custom(
     x = "OSF DOI",
     y = "10.17605/OSF.IO/EAPZU",
     color = "1284C5",
@@ -71,12 +71,12 @@ cat(
     "https://fair-software.eu",
     ")"
   ),
-  badger::badge_license(
+  badge_license(
     license = "GPLv3",
     color = "bd0000",
     url = "https://www.gnu.org/licenses/gpl-3.0"
   ),
-  badger::badge_custom(
+  badge_custom(
     x = "Contributor%20Covenant",
     y = "2.1",
     color = "4baaaa",
@@ -178,13 +178,13 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *{LogoClim}: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
 @Misc{vartanian2025,
-  title = {{LogoClim}: WorldClim in NetLogo},
+  title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2025},
   doi = {10.17605/OSF.IO/EAPZU},
@@ -199,7 +199,7 @@ A BibTeX entry for LaTeX users is:
 #| output: asis
 
 cat(
-  badger::badge_custom(
+  badge_custom(
     x = "Contributor%20Covenant",
     y = "2.1",
     color = "4baaaa",
@@ -221,7 +221,7 @@ You can also support the development of `LogoClim` by becoming a sponsor. Click 
 #| output: asis
 
 cat(
-  badger::badge_license(
+  badge_license(
     license = "GPLv3",
     color = "bd0000",
     url = "https://www.gnu.org/licenses/gpl-3.0"
@@ -232,7 +232,7 @@ cat(
 ```text
 Copyright (C) 2025 Daniel Vartanian
 
-{LogoClim} is free software: you can redistribute it and/or modify it under the
+LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
 version.

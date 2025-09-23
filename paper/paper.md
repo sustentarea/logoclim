@@ -1,5 +1,5 @@
 ---
-title: "{LogoClim}: WorldClim in NetLogo"
+title: "LogoClim: WorldClim in NetLogo"
 tags:
   - Agent-Based Modeling
   - Climate Change
