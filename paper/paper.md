@@ -48,7 +48,7 @@ affiliations:
   index: 2
 - name: School of Public Health, University of São Paulo, São Paulo, Brazil
   index: 3
-date: 16 September 2025
+date: 23 September 2025
 bibliography: paper.bib
 ---
 
@@ -70,11 +70,9 @@ The lack of reproducibility is a major concern in science [@baker2016], includin
 
 The `LogoClim` model was developed for seamless integration with other models through NetLogo's [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html)  extension [@hjorth2020], which enables parallel execution and data exchange between models. This integration capability makes it particularly valuable for agent-based simulations that incorporate climate data to study ecological, environmental, or social processes affected by climate conditions.
 
+The model was originally developed as part of a project by the [Sustentarea](https://www.fsp.usp.br/sustentarea/) Research and Extension Center, aimed at evaluating the impact of climate change on the health and nutrition of Brazilian children under five years old [@carvalho2023a]. Over the course of its development, however, we realized that its applications extend well beyond the scope of that study.
+
 While other programming languages, such as [R](https://www.r-project.org/), offer tools like the [`geodata`](https://CRAN.R-project.org/package=geodata) package [@hijmans2024], there are currently no equivalent tools providing this functionality for NetLogo.
-
-# Motivation
-
-The model was originally developed as part of a project by the [Sustentarea](https://www.fsp.usp.br/sustentarea/) Research and Extension Center, aimed at evaluating the impact of climate change on the health and nutrition of Brazilian children under five years old [@carvalho2023a]. During development, however, we recognized that the model had broader potential beyond the scope of our study. `LogoClim` can now be used as a submodel within agent-based models designed to help researchers, policymakers, and practitioners explore the potential impacts of climate change across different contexts and geographical areas.
 
 # How it works
 
