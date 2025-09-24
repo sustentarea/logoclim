@@ -92,4 +92,8 @@ to setup-map
     set latitude sublist #patch-envelope 2 4
     set longitude sublist #patch-envelope 0 2
   ]
+
+  if (not headless?) [
+    plot-color-bar color-bar-bins #min-pcolor-value #max-pcolor-value
+  ]
 end

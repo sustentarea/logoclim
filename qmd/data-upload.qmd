@@ -1,12 +1,3 @@
----
-params:
-  series: "historical-climate-data"
-  resolution: "10m"
-  model: NULL
-  country_code: "bra"
-  country_suffix: NULL
----
-
 # LogoClim: WorldClim 2.1 Data Download
 
 ## Overview

@@ -96,7 +96,11 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface.gif)
+```{=html}
+<p align="center">
+  <img src="images/logoclim-interface.gif" />
+</p>
+```
 
 ```{=gfm}
 > `r "[!IMPORTANT]"`

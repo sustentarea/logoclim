@@ -2,6 +2,11 @@
 
 - **Hotfix**: Fix inversion of latitude/longitude values.
 
+- Adjusted slider limits and added value validation for black/white settings.
+- Removed the *Bioclimatic Variable* monitor. Now it is displayed directly on the *Climate Variable* monitor.
+- Added a color bar to the interface for better visualization of patch values.
+- Added the slider `color-bar-bins` to control the number of bins in the color bar.
+
 ## v2.1.0 (2025-09-16)
 
 - Added a `#headless?` parameter to the `setup` procedure for improved headless execution.

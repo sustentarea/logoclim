@@ -1,0 +1,61 @@
+; globals [series-color]
+
+to plot-color-bar [#bins #min-color-value #max-color-value]
+  assert-number #bins
+  assert-number #min-color-value
+  assert-number #max-color-value
+
+  set #min-color-value precision #min-color-value 5
+  set #max-color-value precision #max-color-value 5
+
+  set-current-plot "Color Bar"
+  clear-plot
+  set-plot-x-range #min-color-value #max-color-value
+  set-plot-y-range 0 1
+
+  let #pen (range 1 (#bins + 1))
+  let #pen-length length #pen
+  let #pen-interval
+    (#max-color-value - #min-color-value) * (1 / #pen-length)
+
+  let #pen-range map [
+    #i -> #min-color-value + (#pen-interval * (#i - 1))
+  ] (range 1 (#bins + 2))
+  set #pen-range replace-item (#pen-length) #pen-range #max-color-value
+  set #pen-range (map [
+    [#i #j] -> (list #i #j)
+  ] (but-last #pen-range) (but-first #pen-range))
+
+  let #pen-colors map [#i -> mean #i] #pen-range
+  set #pen-colors replace-item 0 #pen-colors #min-color-value
+  set #pen-colors replace-item (#pen-length - 1) #pen-colors #max-color-value
+  set #pen-colors map [
+    #i -> scale-color series-color #i #min-color-value #max-color-value
+  ] #pen-colors
+
+  let #line-step 0
+  let #line-step-size 0.01
+
+  (foreach #pen #pen-colors #pen-range [
+    [#i #j #k] ->
+      create-temporary-plot-pen (word #i "-bar")
+      set-plot-pen-mode 1
+      set-plot-pen-interval #pen-interval
+      set-plot-pen-color #j
+      plotxy (first #k)  1
+
+      create-temporary-plot-pen (word #i "-line")
+      set-plot-pen-mode 0
+      set-plot-pen-interval #pen-interval
+      set-plot-pen-color #j
+
+      while [#line-step < 1] [
+        plotxy (first #k) #line-step
+        plotxy (last #k) #line-step
+
+        set #line-step #line-step + #line-step-size
+      ]
+
+      set #line-step 0
+  ])
+end

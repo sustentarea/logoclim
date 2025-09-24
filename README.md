@@ -45,7 +45,9 @@ example of how to integrate `LogoClim` into your model.
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
-![LogoClim Interface](images/logoclim-interface.gif)
+<p align="center">
+  <img src="images/logoclim-interface.gif" />
+</p>
 
 > [!IMPORTANT]
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
