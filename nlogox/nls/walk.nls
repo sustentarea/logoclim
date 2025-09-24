@@ -23,5 +23,9 @@ to walk [#index]
   set max-plot-x ceiling ((ticks + 1) * 1.25)
 
   setup-map
-  if (not headless?) [setup-plot-window]
+
+  if (not headless?) [
+    setup-plot-window
+    setup-statistics
+  ]
 end

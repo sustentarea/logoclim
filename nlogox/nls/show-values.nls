@@ -23,7 +23,7 @@ to show-values
           set plabel value
         ]
       ] [
-        set plabel "NA"
+        set plabel "N/A"
       ]
     ]
 

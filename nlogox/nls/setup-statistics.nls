@@ -1,0 +1,12 @@
+to setup-statistics
+  ifelse (not (settings = 0)) [
+    set statistics (list
+      mean [value] of patches with [not is-false? value]
+      standard-deviation [value] of patches with [not is-false? value]
+      min [value] of patches with [not is-false? value]
+      max [value] of patches with [not is-false? value]
+    )
+  ] [
+    set statistics n-values 5 ["N/A"]
+  ]
+end

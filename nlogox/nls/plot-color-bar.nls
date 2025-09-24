@@ -15,8 +15,7 @@ to plot-color-bar [#bins #min-color-value #max-color-value]
 
   let #pen (range 1 (#bins + 1))
   let #pen-length length #pen
-  let #pen-interval
-    (#max-color-value - #min-color-value) * (1 / #pen-length)
+  let #pen-interval (#max-color-value - #min-color-value) * (1 / #pen-length)
 
   let #pen-range map [
     #i -> #min-color-value + (#pen-interval * (#i - 1))
@@ -38,14 +37,7 @@ to plot-color-bar [#bins #min-color-value #max-color-value]
 
   (foreach #pen #pen-colors #pen-range [
     [#i #j #k] ->
-      create-temporary-plot-pen (word #i "-bar")
-      set-plot-pen-mode 1
-      set-plot-pen-interval #pen-interval
-      set-plot-pen-color #j
-      plotxy (first #k)  1
-
-      create-temporary-plot-pen (word #i "-line")
-      set-plot-pen-mode 0
+      create-temporary-plot-pen (word #i)
       set-plot-pen-interval #pen-interval
       set-plot-pen-color #j
 

@@ -62,6 +62,7 @@ __includes [
   "nls/setup-fcd-variables.nls"
   "nls/setup-map.nls"
   "nls/setup-plot-window.nls"
+  "nls/setup-statistics.nls"
   "nls/setup-variables.nls"
   "nls/setup-world.nls"
   "nls/setup-world-bleed.nls"
@@ -93,6 +94,7 @@ globals [
   max-plot-x
   min-plot-y
   max-plot-y
+  statistics
   world-bleed
   headless?
   settings
@@ -117,13 +119,18 @@ to setup [#headless?]
   setup-variables #headless?
   setup-world
   setup-map
-  if (not headless?) [setup-plot-window]
+
+  if (not headless?) [
+    setup-plot-window
+    setup-statistics
+  ]
 
   reset-ticks
 end
 
 to go
   ifelse (
+    (settings = 0) or
     ((month = "December") and (year = last years)) or
     (climate-variable = "Elevation") or
     (
@@ -249,7 +256,7 @@ end]]></code>
     <input x="265" multiline="false" y="230" height="60" variable="future-climate-data-color" type="color" width="250">15.0</input>
     <input x="265" multiline="false" y="295" height="60" variable="background-color" type="color" width="250">9.0</input>
     <monitor x="1160" precision="0" y="10" height="60" fontSize="11" width="250" display="Climate Variable">(ifelse-value (settings = 0) [
-  "NA"
+  "N/A"
 ] (climate-variable = "Bioclimatic Variables") [
   item 3 settings
 ] [
@@ -257,11 +264,11 @@ end]]></code>
 ])</monitor>
     <monitor x="1415" precision="0" y="10" height="60" fontSize="11" width="125" display="Month">ifelse-value
   ((settings = 0))
-  ["NA"]
+  ["N/A"]
   [month]</monitor>
     <monitor x="1545" precision="0" y="10" height="60" fontSize="11" width="120" display="Year">ifelse-value
   (settings = 0)
-  ["NA"]
+  ["N/A"]
   [year]</monitor>
     <slider x="265" step="1" y="360" max="30" width="250" display="color-bar-bins" height="50" min="1" direction="Horizontal" default="15.0" variable="color-bar-bins"></slider>
     <slider x="265" step="1" y="415" max="500" width="250" display="black-value" height="50" min="-100" direction="Horizontal" default="0.0" variable="black-value"></slider>
@@ -273,52 +280,7 @@ end]]></code>
       <setup></setup>
       <update></update>
     </plot>
-    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="200" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
-      <setup></setup>
-      <update>set-plot-x-range 0 max-plot-x
-set-plot-y-range min-plot-y max-plot-y</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
-        <setup></setup>
-        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
-  set-plot-pen-color series-color
-] [
-  set-plot-pen-color white
-]
-
-plot min-plot-y + 0.1]]></update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Mean" color="-1513240" legend="true">
-        <setup></setup>
-        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
-
-plot mean [value] of patches with [not is-false? value]]]></update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Mean 12MA" color="-16777216" legend="true">
-        <setup></setup>
-        <update><![CDATA[ifelse ((length files) <= 12) [
-  plot-pen-up
-  set-plot-pen-color white
-] [
-  plot-pen-down
-
-  let #value-12-length length (
-    first ([value-12] of patches with [not is-false? value])
-  )
-
-  ifelse (#value-12-length = 12) [
-    set-plot-pen-color black
-    plot mean [value-12ma] of patches with [not is-false? value]
-  ] [
-    set-plot-pen-color gray + 4
-    plot mean [value] of patches with [not is-false? value]
-  ]
-]]]></update>
-      </pen>
-    </plot>
-    <monitor x="1415" precision="5" y="635" height="60" fontSize="11" width="250" display="Maximum">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [max [value] of patches with [not is-false? value]]</monitor>
+    <monitor x="1415" precision="5" y="635" height="60" fontSize="11" width="250" display="Maximum">item 3 statistics</monitor>
     <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="450" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Maximum">
       <setup></setup>
       <update>set-plot-x-range 0 max-plot-x
@@ -361,56 +323,7 @@ plot max [value] of patches with [not is-false? value]]]></update>
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1160" precision="5" y="635" height="60" fontSize="11" width="250" display="Minimum">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [min [value] of patches with [not is-false? value]]</monitor>
-    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="450" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
-      <setup></setup>
-      <update>set-plot-x-range 0 max-plot-x
-set-plot-y-range min-plot-y max-plot-y</update>
-      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
-        <setup></setup>
-        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
-  set-plot-pen-color red
-] [
-  set-plot-pen-color white
-]
-
-plot min-plot-y + 0.1]]></update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Min." color="-1513240" legend="true">
-        <setup></setup>
-        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
-
-plot min [value] of patches with [not is-false? value]]]></update>
-      </pen>
-      <pen interval="1.0" mode="0" display="Min. 12MA" color="-16777216" legend="true">
-        <setup></setup>
-        <update><![CDATA[ifelse ((length files) <= 12) [
-  plot-pen-up
-  set-plot-pen-color white
-] [
-  plot-pen-down
-
-  let #value-12-length length (
-    first ([value-12] of patches with [not is-false? value])
-  )
-
-  ifelse (#value-12-length = 12) [
-    set-plot-pen-color black
-    plot min [value-12ma] of patches with [not is-false? value]
-  ] [
-    set-plot-pen-color gray + 4
-    plot min [value] of patches with [not is-false? value]
-  ]
-]]]></update>
-      </pen>
-    </plot>
-    <monitor x="1415" precision="5" y="385" height="60" fontSize="11" width="250" display="Standard Deviation">ifelse-value
-  ((settings = 0))
-  ["NA"]
-  [standard-deviation [value] of patches with [not is-false? value]]</monitor>
+    <monitor x="1415" precision="5" y="385" height="60" fontSize="11" width="250" display="Standard Deviation">item 1 statistics</monitor>
     <plot x="1415" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="200" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Standard Deviation">
       <setup></setup>
       <update><![CDATA[let #sd standard-deviation [value] of patches with [not is-false? value]
@@ -461,10 +374,92 @@ plot standard-deviation [value] of patches with [not is-false? value]]]></update
 ]]]></update>
       </pen>
     </plot>
-    <monitor x="1160" precision="5" y="385" height="60" fontSize="11" width="250" display="Mean">ifelse-value
-  (ticks = 0)
-  ["NA"]
-  [mean [value] of patches with [not is-false? value]]</monitor>
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="200" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Mean">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
+        <setup></setup>
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
+  set-plot-pen-color series-color
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 0.1]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Mean" color="-1513240" legend="true">
+        <setup></setup>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot mean [value] of patches with [not is-false? value]]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Mean 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
+] [
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-false? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot mean [value-12ma] of patches with [not is-false? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot mean [value] of patches with [not is-false? value]
+  ]
+]]]></update>
+      </pen>
+    </plot>
+    <monitor x="1160" precision="5" y="385" height="60" fontSize="11" width="250" display="Mean">item 0 statistics</monitor>
+    <plot x="1160" autoPlotX="true" yMax="0.0" autoPlotY="true" yAxis="Value" y="450" xMin="0.0" height="180" legend="true" xMax="0.0" yMin="0.0" width="250" xAxis="Months" display="Minimum">
+      <setup></setup>
+      <update>set-plot-x-range 0 max-plot-x
+set-plot-y-range min-plot-y max-plot-y</update>
+      <pen interval="1.0" mode="0" display="(Cycle Indicator)" color="-2674135" legend="false">
+        <setup></setup>
+        <update><![CDATA[ifelse ((start-month = month) and ((length files) > 12)) [
+  set-plot-pen-color red
+] [
+  set-plot-pen-color white
+]
+
+plot min-plot-y + 0.1]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Min." color="-1513240" legend="true">
+        <setup></setup>
+        <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
+
+plot min [value] of patches with [not is-false? value]]]></update>
+      </pen>
+      <pen interval="1.0" mode="0" display="Min. 12MA" color="-16777216" legend="true">
+        <setup></setup>
+        <update><![CDATA[ifelse ((length files) <= 12) [
+  plot-pen-up
+  set-plot-pen-color white
+] [
+  plot-pen-down
+
+  let #value-12-length length (
+    first ([value-12] of patches with [not is-false? value])
+  )
+
+  ifelse (#value-12-length = 12) [
+    set-plot-pen-color black
+    plot min [value-12ma] of patches with [not is-false? value]
+  ] [
+    set-plot-pen-color gray + 4
+    plot min [value] of patches with [not is-false? value]
+  ]
+]]]></update>
+      </pen>
+    </plot>
+    <monitor x="1160" precision="5" y="635" height="60" fontSize="11" width="250" display="Minimum">item 2 statistics</monitor>
   </widgets>
   <info><![CDATA[# LOGOCLIM: WORLDCLIM 2.1 IN NETLOGO
 
