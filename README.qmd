@@ -78,9 +78,9 @@ cat(
   ),
   badge_custom(
     x = "Contributor%20Covenant",
-    y = "2.1",
+    y = "3.0",
     color = "4baaaa",
-    url = "CODE_OF_CONDUCT.md"
+    url = "https://www.contributor-covenant.org/version/3/0/code_of_conduct/"
   )
 )
 ```
@@ -205,9 +205,9 @@ A BibTeX entry for LaTeX users is:
 cat(
   badge_custom(
     x = "Contributor%20Covenant",
-    y = "2.1",
+    y = "3.0",
     color = "4baaaa",
-    url = "CODE_OF_CONDUCT.md"
+    url = "https://www.contributor-covenant.org/version/3/0/code_of_conduct/"
   )
 )
 ```
