@@ -165,16 +165,16 @@ end]]></code>
       <choice type="string" value="2.5 Minutes (~21 km2 at the Equator)"></choice>
       <choice type="string" value="30 Seconds (~1 km2  at the Equator)"></choice>
     </chooser>
-    <chooser x="10" y="140" height="60" variable="climate-variable" current="1" width="250" display="climate-variable">
-      <choice type="string" value="Average Minimum Temperature (°C)"></choice>
+    <chooser x="10" y="140" height="60" variable="climate-variable" current="0" width="250" display="climate-variable">
       <choice type="string" value="Average Maximum Temperature (°C)"></choice>
+      <choice type="string" value="Average Minimum Temperature (°C)"></choice>
       <choice type="string" value="Average Temperature (°C)"></choice>
-      <choice type="string" value="Total Precipitation (mm)"></choice>
-      <choice type="string" value="Solar Radiation (kJ m^-2 day^-1)"></choice>
-      <choice type="string" value="Wind Speed (m s^-1)"></choice>
-      <choice type="string" value="Water Vapor Pressure (kPa)"></choice>
       <choice type="string" value="Bioclimatic Variables"></choice>
       <choice type="string" value="Elevation"></choice>
+      <choice type="string" value="Solar Radiation (kJ m^-2 day^-1)"></choice>
+      <choice type="string" value="Total Precipitation (mm)"></choice>
+      <choice type="string" value="Water Vapor Pressure (kPa)"></choice>
+      <choice type="string" value="Wind Speed (m s^-1)"></choice>
     </chooser>
     <chooser x="10" y="205" height="60" variable="bioclimatic-variable" current="0" width="250" display="bioclimatic-variable">
       <choice type="string" value="BIO1 - Annual Mean Temperature"></choice>
