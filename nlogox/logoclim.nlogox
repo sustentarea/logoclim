@@ -159,11 +159,11 @@ end]]></code>
       <choice type="string" value="Historical Monthly Weather Data"></choice>
       <choice type="string" value="Future Climate Data"></choice>
     </chooser>
-    <chooser x="10" y="75" height="60" variable="data-resolution" current="3" width="250" display="data-resolution">
-      <choice type="string" value="30 Seconds (~1 km2  at the Equator)"></choice>
-      <choice type="string" value="2.5 Minutes (~21 km2 at the Equator)"></choice>
-      <choice type="string" value="5 Minutes (~85 km2 at the Equator)"></choice>
+    <chooser x="10" y="75" height="60" variable="data-resolution" current="0" width="250" display="data-resolution">
       <choice type="string" value="10 Minutes (~340 km2 at the Equator)"></choice>
+      <choice type="string" value="5 Minutes (~85 km2 at the Equator)"></choice>
+      <choice type="string" value="2.5 Minutes (~21 km2 at the Equator)"></choice>
+      <choice type="string" value="30 Seconds (~1 km2  at the Equator)"></choice>
     </chooser>
     <chooser x="10" y="140" height="60" variable="climate-variable" current="1" width="250" display="climate-variable">
       <choice type="string" value="Average Minimum Temperature (°C)"></choice>
