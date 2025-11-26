@@ -1,0 +1,20 @@
+*.nls linguist-detectable
+*.nlogo linguist-detectable
+*.nlogo3d linguist-detectable
+*.nlogox linguist-detectable
+*.nlogox3d linguist-detectable
+*.qmd linguist-detectable
+
+*.nls linguist-language=NetLogo
+*.nlogo linguist-language=NetLogo
+*.nlogo3d linguist-language=NetLogo
+*.nlogox linguist-language=NetLogo
+*.nlogox3d linguist-language=NetLogo
+*.qmd linguist-language=R
+
+images/* linguist-documentation
+paper/* linguist-documentation
+ttf/* linguist-documentation
+
+.data/* linguist-generated
+data/* linguist-generated
