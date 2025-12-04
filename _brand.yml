@@ -28,11 +28,42 @@ color:
   palette:
     blue: "#345da9" # NetLogo: blue (105)
     orange: "#f16a15" # NetLogo: orange (25)
-    light-orange: "#ffb6a4" # colorspace::lighten("#f16a15", 0.5)
     red: "#d73229" # NetLogo: red (15)
     black: "#000000" # NetLogo: black (0)
     gray: "#ededed" # NetLogo: gray + 4 (9)
     white: "#ffffff" # NetLogo: white (9.9)
+    blue-l50: "#8daaf5" # colorspace::lighten("#345da9", 0.5)
+    orange-l50: "#ffb6a4" # colorspace::lighten("#f16a15", 0.5)
+    color-swatch-gray: "#8d8d8d" # Based on NetLogo 7.0.0
+    light-theme-blue: "#0670ed"
+    light-theme-light-blue: "#cfe5ff"
+    light-theme-gray: "#d7d7d7"
+    light-theme-light-gray: "#eeeeee"
+    light-theme-dark-gray: "#cccccc"
+    light-theme-white: "#ffffff"
+    light-theme-black: "#000000"
+    dark-theme-blue: "#0670ed"
+    dark-theme-dark-blue: "#003675"
+    dark-theme-gray: "#4f4f4f"
+    dark-theme-light-gray: "#cccccc"
+    dark-theme-dark-gray-1: "#46464c"
+    dark-theme-dark-gray-2: "#2d2d36"
+    dark-theme-dark-gray-3: "#161616"
+    dark-theme-white: "#ffffff"
+    dark-theme-black: "#000000"
+    color-swatch-red: "#d73229"
+    color-swatch-orange: "#f16a15"
+    color-swatch-brown: "#9d6e48"
+    color-swatch-yellow: "#ecec29"
+    color-swatch-green: "#59b03c"
+    color-swatch-lime: "#2cd13b"
+    color-swatch-turquoise: "#1d9f78"
+    color-swatch-cyan: "#54c4c4"
+    color-swatch-sky: "#2d8dbe"
+    color-swatch-blue: "#345da9"
+    color-swatch-violet: "#7c50a4"
+    color-swatch-magenta: "#a71b6a"
+    color-swatch-pink: "#d9637f"
   background: white
   primary: blue
   secondary: orange
@@ -46,19 +77,28 @@ color:
 
 typography:
   fonts:
-    - family: Noto Sans
+    - family: Inter # Used on NetLogo Website
       source: google
-    - family: Noto Sans Mono
+    - family: Source Code Pro # Not official!
       source: google
   base:
-    family: Noto Sans
-    line-height: 1.5
+    family: Inter
+    line-height: 1.6 # 1.6em
     weight: normal
   headings:
-    color: blue
-    family: Noto Sans
+    color: black
+    family: Inter
     weight: 700
   link:
-    color: green
-    decoration: underline
-  monospace: Noto Sans Mono
+    color: light-theme-blue
+    decoration: none
+  monospace:
+    family: Source Code Pro
+    size: 1em
+  monospace-inline:
+    family: Source Code Pro
+    color: purple
+    background-color: light-theme-light-gray
+  monospace-block:
+    family: Source Code Pro
+    background-color: light-theme-light-gray
