@@ -8,6 +8,8 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![NetLogo Check
+Badge](https://github.com/sustentarea/logoclim/workflows/NetLogo%20Check/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![CoMSES Network
 Badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![OSF DOI

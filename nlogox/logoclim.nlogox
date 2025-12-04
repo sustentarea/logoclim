@@ -722,6 +722,92 @@ Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth res
   </linkShapes>
   <previewCommands>setup repeat 75 [ go ]</previewCommands>
   <experiments>
+    <experiment name="NetLogo Check (Historical Climate Data)" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
+      <setup>setup true</setup>
+      <go>go</go>
+      <metrics>
+        <metric>month</metric>
+        <metric>year</metric>
+        <metric>mean [value] of patches with [not is-false? value]</metric>
+      </metrics>
+      <constants>
+        <enumeratedValueSet variable="data-series">
+          <value value="&quot;Historical Climate Data&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="data-resolution">
+          <value value="&quot;10 Minutes (~340 km2 at the Equator)&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="climate-variable">
+          <value value="&quot;Average Maximum Temperature (°C)&quot;"></value>
+          <value value="&quot;Average Minimum Temperature (°C)&quot;"></value>
+          <value value="&quot;Average Temperature (°C)&quot;"></value>
+          <value value="&quot;Elevation&quot;"></value>
+          <value value="&quot;Solar Radiation (kJ m^-2 day^-1)&quot;"></value>
+          <value value="&quot;Total Precipitation (mm)&quot;"></value>
+          <value value="&quot;Water Vapor Pressure (kPa)&quot;"></value>
+          <value value="&quot;Wind Speed (m s^-1)&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="start-month">
+          <value value="&quot;January&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="start-year">
+          <value value="1970"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="data-path">
+          <value value="&quot;../data&quot;"></value>
+        </enumeratedValueSet>
+      </constants>
+    </experiment>
+    <experiment name="NetLogo Check (Historical Climate Data) (Bioclimatic Variables)" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
+      <setup>setup true</setup>
+      <go>go</go>
+      <metrics>
+        <metric>month</metric>
+        <metric>year</metric>
+        <metric>mean [value] of patches with [not is-false? value]</metric>
+      </metrics>
+      <constants>
+        <enumeratedValueSet variable="data-series">
+          <value value="&quot;Historical Climate Data&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="data-resolution">
+          <value value="&quot;10 Minutes (~340 km2 at the Equator)&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="climate-variable">
+          <value value="&quot;Bioclimatic Variables&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="bioclimatic-variable">
+          <value value="&quot;BIO1 - Annual Mean Temperature&quot;"></value>
+          <value value="&quot;BIO2 - Mean Diurnal Range (Mean of Monthly (Max Temp - Min Temp))&quot;"></value>
+          <value value="&quot;BIO3 - Isothermality (BIO2 / BIO7) (×100)&quot;"></value>
+          <value value="&quot;BIO4 - Temperature Seasonality (Standard Deviation ×100)&quot;"></value>
+          <value value="&quot;BIO5 - Max Temperature of Warmest Month&quot;"></value>
+          <value value="&quot;BIO6 - Min Temperature of Coldest Month&quot;"></value>
+          <value value="&quot;BIO7 - Temperature Annual Range (BIO5 - BIO6)&quot;"></value>
+          <value value="&quot;BIO8 - Mean Temperature of Wettest Quarter&quot;"></value>
+          <value value="&quot;BIO9 - Mean Temperature of Driest Quarter&quot;"></value>
+          <value value="&quot;BIO10 - Mean Temperature of Warmest Quarter&quot;"></value>
+          <value value="&quot;BIO11 - Mean Temperature of Coldest Quarter&quot;"></value>
+          <value value="&quot;BIO12 - Annual Precipitation&quot;"></value>
+          <value value="&quot;BIO13 - Precipitation of Wettest Month&quot;"></value>
+          <value value="&quot;BIO14 - Precipitation of Driest Month&quot;"></value>
+          <value value="&quot;BIO15 - Precipitation Seasonality (Coefficient of Variation)&quot;"></value>
+          <value value="&quot;BIO16 - Precipitation of Wettest Quarter&quot;"></value>
+          <value value="&quot;BIO17 - Precipitation of Driest Quarter&quot;"></value>
+          <value value="&quot;BIO18 - Precipitation of Warmest Quarter&quot;"></value>
+          <value value="&quot;BIO19 - Precipitation of Coldest Quarter&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="start-month">
+          <value value="&quot;January&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="start-year">
+          <value value="1970"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="data-path">
+          <value value="&quot;../data&quot;"></value>
+        </enumeratedValueSet>
+      </constants>
+    </experiment>
     <experiment name="NetLogo Check (Historical Monthly Weather Data)" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
       <setup>setup true</setup>
       <go>go</go>
@@ -739,6 +825,8 @@ Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth res
         </enumeratedValueSet>
         <enumeratedValueSet variable="climate-variable">
           <value value="&quot;Average Maximum Temperature (°C)&quot;"></value>
+          <value value="&quot;Average Maximum Temperature (°C)&quot;"></value>
+          <value value="&quot;Average Minimum Temperature (°C)&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="start-month">
           <value value="&quot;January&quot;"></value>
@@ -767,13 +855,28 @@ Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth res
           <value value="&quot;10 Minutes (~340 km2 at the Equator)&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="climate-variable">
+          <value value="&quot;Average Maximum Temperature (°C)&quot;"></value>
+          <value value="&quot;Average Minimum Temperature (°C)&quot;"></value>
           <value value="&quot;Total Precipitation (mm)&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="global-climate-model">
+          <value value="&quot;ACCESS-CM2&quot;"></value>
+          <value value="&quot;BCC-CSM2-MR&quot;"></value>
           <value value="&quot;CMCC-ESM2&quot;"></value>
+          <value value="&quot;EC-Earth3-Veg&quot;"></value>
+          <value value="&quot;FIO-ESM-2-0&quot;"></value>
+          <value value="&quot;GFDL-ESM4&quot;"></value>
+          <value value="&quot;GISS-E2-1-G&quot;"></value>
+          <value value="&quot;HadGEM3-GC31-LL&quot;"></value>
+          <value value="&quot;INM-CM5-0&quot;"></value>
+          <value value="&quot;IPSL-CM6A-LR&quot;"></value>
+          <value value="&quot;MIROC6&quot;"></value>
+          <value value="&quot;MPI-ESM1-2-HR&quot;"></value>
+          <value value="&quot;MRI-ESM2-0&quot;"></value>
+          <value value="&quot;UKESM1-0-LL&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="shared-socioeconomic-pathway">
-          <value value="&quot;SSP-585&quot;"></value>
+          <value value="&quot;SSP-126&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="start-month">
           <value value="&quot;January&quot;"></value>
@@ -786,7 +889,7 @@ Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth res
         </enumeratedValueSet>
       </constants>
     </experiment>
-    <experiment name="NetLogo Check (Historical Climate Data)" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
+    <experiment name="NetLogo Check (Future Climate Data) (Bioclimatic Variables)" repetitions="1" sequentialRunOrder="true" runMetricsEveryStep="true">
       <setup>setup true</setup>
       <go>go</go>
       <metrics>
@@ -796,19 +899,59 @@ Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth res
       </metrics>
       <constants>
         <enumeratedValueSet variable="data-series">
-          <value value="&quot;Historical Climate Data&quot;"></value>
+          <value value="&quot;Future Climate Data&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="data-resolution">
           <value value="&quot;10 Minutes (~340 km2 at the Equator)&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="climate-variable">
-          <value value="&quot;Water Vapor Pressure (kPa)&quot;"></value>
+          <value value="&quot;Bioclimatic Variables&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="global-climate-model">
+          <value value="&quot;ACCESS-CM2&quot;"></value>
+          <value value="&quot;BCC-CSM2-MR&quot;"></value>
+          <value value="&quot;CMCC-ESM2&quot;"></value>
+          <value value="&quot;EC-Earth3-Veg&quot;"></value>
+          <value value="&quot;FIO-ESM-2-0&quot;"></value>
+          <value value="&quot;GFDL-ESM4&quot;"></value>
+          <value value="&quot;GISS-E2-1-G&quot;"></value>
+          <value value="&quot;HadGEM3-GC31-LL&quot;"></value>
+          <value value="&quot;INM-CM5-0&quot;"></value>
+          <value value="&quot;IPSL-CM6A-LR&quot;"></value>
+          <value value="&quot;MIROC6&quot;"></value>
+          <value value="&quot;MPI-ESM1-2-HR&quot;"></value>
+          <value value="&quot;MRI-ESM2-0&quot;"></value>
+          <value value="&quot;UKESM1-0-LL&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="shared-socioeconomic-pathway">
+          <value value="&quot;SSP-126&quot;"></value>
+        </enumeratedValueSet>
+        <enumeratedValueSet variable="bioclimatic-variable">
+          <value value="&quot;BIO1 - Annual Mean Temperature&quot;"></value>
+          <value value="&quot;BIO2 - Mean Diurnal Range (Mean of Monthly (Max Temp - Min Temp))&quot;"></value>
+          <value value="&quot;BIO3 - Isothermality (BIO2 / BIO7) (×100)&quot;"></value>
+          <value value="&quot;BIO4 - Temperature Seasonality (Standard Deviation ×100)&quot;"></value>
+          <value value="&quot;BIO5 - Max Temperature of Warmest Month&quot;"></value>
+          <value value="&quot;BIO6 - Min Temperature of Coldest Month&quot;"></value>
+          <value value="&quot;BIO7 - Temperature Annual Range (BIO5 - BIO6)&quot;"></value>
+          <value value="&quot;BIO8 - Mean Temperature of Wettest Quarter&quot;"></value>
+          <value value="&quot;BIO9 - Mean Temperature of Driest Quarter&quot;"></value>
+          <value value="&quot;BIO10 - Mean Temperature of Warmest Quarter&quot;"></value>
+          <value value="&quot;BIO11 - Mean Temperature of Coldest Quarter&quot;"></value>
+          <value value="&quot;BIO12 - Annual Precipitation&quot;"></value>
+          <value value="&quot;BIO13 - Precipitation of Wettest Month&quot;"></value>
+          <value value="&quot;BIO14 - Precipitation of Driest Month&quot;"></value>
+          <value value="&quot;BIO15 - Precipitation Seasonality (Coefficient of Variation)&quot;"></value>
+          <value value="&quot;BIO16 - Precipitation of Wettest Quarter&quot;"></value>
+          <value value="&quot;BIO17 - Precipitation of Driest Quarter&quot;"></value>
+          <value value="&quot;BIO18 - Precipitation of Warmest Quarter&quot;"></value>
+          <value value="&quot;BIO19 - Precipitation of Coldest Quarter&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="start-month">
           <value value="&quot;January&quot;"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="start-year">
-          <value value="1970"></value>
+          <value value="2021"></value>
         </enumeratedValueSet>
         <enumeratedValueSet variable="data-path">
           <value value="&quot;../data&quot;"></value>

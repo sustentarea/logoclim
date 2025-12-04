@@ -9,7 +9,7 @@ permissions: read-all
 jobs:
   check-netlogo:
     runs-on: ubuntu-latest
-    name: Check NetLogo Models
+    name: Run Parameter Sweep (10m)
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -36,7 +36,8 @@ jobs:
           file="bra-10m.zip"
           url="https://osf.io/download/5a6y2/"
 
-          wget ${url} -O "${file}" || \
+          wget \
+            ${url} -O "${file}" || \
             { echo "Error: Data download failed"; exit 1; }
 
           echo "file=${file}" >> "${GITHUB_OUTPUT}"

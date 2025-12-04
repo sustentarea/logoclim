@@ -2,13 +2,15 @@
 
 <!-- Change style to match Tidyverse guidelines for NEWS files. -->
 
-### Hotfix
+### Fixes
 
-- Fix inversion of latitude/longitude values.
+- Fixed latitude/longitude values inversion.
+- Fixed bioclimatic variables 13–18 not working when future climate data was selected.
+- Adjusted slider limits and added value validation for blank/empty settings.
 
 ### New Features and Improvements
 
-- Slider limits were adjusted and now have value validation for black/white settings.
+- The model now includes automated unit tests for most allowed configurations, based on the [`check-netlogo`](https://github.com/danielvartan/netlogo-actions) action from the `NetLogo-Actions` project. Only 10m resolution settings are tested due to computational constraints. Only SSP-126 is tested for future climate data due to limited availability of other SSPs across GCMs. [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
 - The *Bioclimatic Variable* monitor was removed. Now it is displayed directly on the *Climate Variable* monitor.
 - The interface now have a new color bar widget for better visualization of patch values.
 - A `color-bar-bins` slider was added to control the number of bins in the color bar.
