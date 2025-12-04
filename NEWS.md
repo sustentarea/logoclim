@@ -1,11 +1,19 @@
 ## v2.1.0.9000 (Development Version)
 
-- **Hotfix**: Fix inversion of latitude/longitude values.
+<!-- Change style to match Tidyverse guidelines for NEWS files. -->
 
-- Adjusted slider limits and added value validation for black/white settings.
-- Removed the *Bioclimatic Variable* monitor. Now it is displayed directly on the *Climate Variable* monitor.
-- Added a color bar to the interface for better visualization of patch values.
-- Added the slider `color-bar-bins` to control the number of bins in the color bar.
+### Hotfix
+
+- Fix inversion of latitude/longitude values.
+
+### New Features and Improvements
+
+- Slider limits were adjusted and now have value validation for black/white settings.
+- The *Bioclimatic Variable* monitor was removed. Now it is displayed directly on the *Climate Variable* monitor.
+- The interface now have a new color bar widget for better visualization of patch values.
+- A `color-bar-bins` slider was added to control the number of bins in the color bar.
+- The Code of Conduct to [Contributor Covenant 3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct/) was update to version 3.0.
+- Updated documentation to reflect all changes.
 
 ## v2.1.0 (2025-09-16)
 

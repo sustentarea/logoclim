@@ -10,23 +10,26 @@ set.seed(2025)
 file <- here("images", "logo.png")
 
 plot <-
-  data.frame(x = rbeta(10000, 2, 1), y = rbeta(10000, 1, 2)) |>
-    ggplot(aes(x, y)) +
-    geom_bin_2d(bins = 10) +
-    coord_fixed() +
-    scale_fill_gradientn(
-      colors = c(
-        get_brand_color("blue"),
-        get_brand_color("orange") |> lighten(0.2),
-        get_brand_color("orange") |> lighten(0.75),
-        get_brand_color("orange") |> lighten(1)
-        # get_brand_color("red")  |> lighten(0.25)
-      ),
-    ) +
-    xlim(0, 1) +
-    ylim(0, 1) +
-    theme_void() +
-    theme(legend.position = "none")
+  data.frame(
+    x = rbeta(10000, 2, 1),
+    y = rbeta(10000, 1, 2)
+  ) |>
+  ggplot(aes(x, y)) +
+  geom_bin_2d(bins = 10) +
+  coord_fixed() +
+  scale_fill_gradientn(
+    colors = c(
+      get_brand_color("blue"),
+      get_brand_color("orange") |> lighten(0.2),
+      get_brand_color("orange") |> lighten(0.75),
+      get_brand_color("orange") |> lighten(1)
+      # get_brand_color("red")  |> lighten(0.25)
+    ),
+  ) +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  theme_void() +
+  theme(legend.position = "none")
 
 print(plot) |> suppressWarnings()
 

@@ -8,14 +8,17 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
-[![](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![CoMSES Network
+Badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![OSF DOI
+Badge](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
-[![License:
-GPLv3](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
+[![GNU GPLv3
+License](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Contributor Covenant 3.0 Code of Conduct
+Badge](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 <!-- badges: end -->
 
 ## Overview
@@ -44,6 +47,11 @@ example of how to integrate `LogoClim` into your model.
 > If you find this project useful, please consider giving it a star!  
 > [![GitHub repo
 > stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
+
+> The continuous development of `LogoClim` depends on community support.
+> If you find this project useful, and can afford to do so, please
+> consider becoming a sponsor.  
+> [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 <p align="center">
   <img src="images/logoclim-interface.gif" />
@@ -208,17 +216,21 @@ A BibTeX entry for LaTeX users is:
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 
-Contributions are welcome! Whether you want to report bugs, suggest
-features, or improve the code or documentation, your input is highly
-valued. Please check the [issues
-tab](https://github.com/sustentarea/logoclim/issues) for existing issues
-or to open a new one.
+Contributions are always welcome! Whether you want to report bugs,
+suggest new features, or help improve the code or documentation, your
+input makes a difference.
+
+Before opening a new issue, please check the [issues
+tab](https://github.com/sustentarea/logoclim/issues) to see if your
+topic has already been reported.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 You can also support the development of `LogoClim` by becoming a
-sponsor. Click [here](https://github.com/sponsors/danielvartan) to make
-a donation. Please mention `LogoClim` in your donation message.
+sponsor.
+
+Click [here](https://github.com/sponsors/danielvartan) to make a
+donation. Please mention `LogoClim` in your donation message.
 
 ## License
 
@@ -269,17 +281,18 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
-    <td width="30%">
+    <td width="30%" valign="middle">
       <br/>
       <br/>
       <p align="center">
         <a href="https://www.fsp.usp.br/sustentarea/">
-          <img src="images/sustentarea-logo.svg" width="125"/>
+          <img src="images/sustentarea-logo.svg" width="115" alt="Sustentarea Logo"/>
         </a>
       </p>
       <br/>
+      <br/>
     </td>
-    <td width="70%">
+    <td width="70%" valign="middle">
       <p>
         This work was developed with support from the 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
@@ -291,16 +304,40 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
-    <td width="30%">
+    <td width="30%" valign="middle">
+      <br/>
       <br/>
       <p align="center">
-        <a href="https://www.gov.br/cnpq/">
-          <img src="images/cnpq-logo.svg" width="150"/>
+        <a href="https://resiclima.com.br/">
+          <img src="images/resiclima-logo.svg" width="115" alt="RESICLIMA Network Logo"/>
         </a>
       </p>
       <br/>
+      <br/>
     </td>
-    <td width="70%">
+    <td width="70%" valign="middle">
+      <p>
+        This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and 
+        interdisciplinary study of global climate change.
+      </p>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td width="30%" valign="middle">
+      <br/>
+      <br/>
+      <p align="center">
+        <a href="https://www.gov.br/cnpq/">
+          <img src="images/cnpq-logo.svg" width="150" alt="CNPq Logo"/>
+        </a>
+      </p>
+      <br/>
+      <br/>
+    </td>
+    <td width="70%" valign="middle">
       <p>
         This work was supported by the Department of Science and 
         Technology of the Secretariat of Science, Technology, and Innovation 
