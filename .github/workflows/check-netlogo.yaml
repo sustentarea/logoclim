@@ -1,0 +1,61 @@
+on:
+  push:
+    branches: [main, master]
+
+name: "NetLogo Check"
+
+permissions: read-all
+
+jobs:
+  check-netlogo:
+    runs-on: ubuntu-latest
+    name: Check NetLogo Models
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Restore LogoClim test data cache
+        id: logoclim-data-cache
+        uses: actions/cache@v4
+        with:
+          path: "data"
+          key: "logoclim-data"
+
+      - name: Install dependencies
+        run: |
+          # Install dependencies
+          sudo apt-get update -qq >/dev/null
+          sudo apt-get install -y -qq unzip >/dev/null
+        shell: bash
+
+      - name: Download LogoClim test data
+        id: download-logoclim
+        if: steps.logoclim-data-cache.outputs.cache-hit != 'true'
+        run: |
+          # Download LogoClim test data
+          file="bra-10m.zip"
+          url="https://osf.io/download/5a6y2/"
+
+          wget ${url} -O "${file}" || \
+            { echo "Error: Data download failed"; exit 1; }
+
+          echo "file=${file}" >> "${GITHUB_OUTPUT}"
+        shell: bash
+
+      - name: Unzip LogoClim test data
+        if: steps.logoclim-data-cache.outputs.cache-hit != 'true'
+        run: |
+          # Unzip LogoClim test data
+          file="${{steps.download-logoclim.outputs.file}}"
+          dir="data"
+
+          unzip ${file} -d ${dir}
+
+          rm -f "${file}"
+        shell: bash
+
+      - name: Set up NetLogo
+        uses: danielvartan/netlogo-actions/setup-netlogo@v1
+
+      - name: Check NetLogo models
+        uses: danielvartan/netlogo-actions/check-netlogo@v1
