@@ -18,15 +18,15 @@ to setup-fcd-variables
   let #start-years as-list (str-extract years "^[0-9]{4}")
   set #start-years map read-from-string #start-years
 
-  set months as-list (str-extract files "[0-9]{2}(?=.asc)")
-  let #num-start-month str-to-num-month start-month
-
-  let #start-dates (map [[i j] -> (word i "-" j "-01")] #start-years months)
-  set #start-dates map [i -> time:create i] #start-dates
-
   let #fcd-interval lookup-fcd-interval
 
   ifelse (climate-variable != "Bioclimatic Variables") [
+    set months as-list (str-extract files "[0-9]{2}(?=.asc)")
+    let #num-start-month str-to-num-month start-month
+
+    let #start-dates (map [[i j] -> (word i "-" j "-01")] #start-years months)
+    set #start-dates map [i -> time:create i] #start-dates
+
     let start-date time:create (word
       (item 0 #fcd-interval) "-"
       #num-start-month
