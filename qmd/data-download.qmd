@@ -35,14 +35,6 @@ source(here("R", "wc_readme.R"))
 
 ## Set the Initial Variables
 
-### `params`
-
-This code chunk is only used when the document is rendered from the command line. See `quarto-loop.R` in the `R` directory for more details.
-
-```{r}
-if (exists("params")) params |> list2env(envir = environment())
-```
-
 ### Options
 
 ```{r}

@@ -1,0 +1,680 @@
+# LogoClim: Unit Tests
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+source(here("R", "_setup.R"))
+```
+
+## Overview
+
+This document contains unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) [NetLogo](https://www.netlogo.org/) model. The tests aim to cover error tolerances related to [WorldClim](https://www.worldclim.org/) data loading and procedures output validation.
+
+## Set the Environment
+
+The tests are implemented using [NetLogo](https://www.netlogo.org/) 7.0, [OpenJDK 25](https://openjdk.org/), [`pynetlogo`](https://pynetlogo.readthedocs.io/en/latest/) Python package, the [`logolink`](https://danielvartan.github.io/logolink/) R package and several other R packages.
+
+### NetLogo
+
+To install NetLogo 7.0, download the installer from the [NetLogo](https://www.netlogo.org/downloads/linux/) website and follow the installation instructions.
+
+### OpenJDK
+
+Depending on your system, you may already have OpenJDK installed. To check if you have it installed, run the following in a terminal:
+
+```bash
+java -version
+```
+
+If you don´t have Java installed, you can download it from the [OpenJDK](https://openjdk.org/) website.
+
+### `pynetlogo`
+
+To install the `pynetlogo` Python package, you will need to have Python installed. You can install Python from the [Python](https://www.python.org/downloads/) website.
+
+It is good practice to create a virtual environment to manage your Python packages. To create a virtual environment, run the following commands in a terminal:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+To install `pynetlogo`, run the following command in a terminal:
+
+```bash
+pip install pynetlogo
+```
+
+### `logolink` and other R Packages
+
+To install `logolink`, you will need to have R installed. You can install R from the [CRAN](https://cran.r-project.org/) website.
+
+R comes with a package manager that you can use to install packages from CRAN. To install `logolink` and other packages, run the following command in an R console:
+
+```r
+install.packages(
+  c(
+    "checkmate",
+    "dplyr",
+    "glue",
+    "here",
+    "readr",
+    "remotes"
+    "stringr",
+    "testthat",
+    "terra"
+  )
+)
+```
+
+If the package is only available on GitHub, install the `remotes` package and then use:
+
+```r
+# install.packages("remotes")
+remotes::install_github("USERNAME/REPOSITORY")
+# remotes::install_github("danielvartan/orbis")
+```
+
+```r
+remotes::install_github("danielvartan/logolink")
+remotes::install_github("danielvartan/orbis")
+```
+
+### Environmental Variables
+
+The tests also require the configuration of the `JAVA_HOME`, `NETLOGO_HOME` and `NETLOGO_EXE` environment variables. This is typically done in your shell configuration file (e.g., `.bashrc`, `.zshrc`, etc.). Example:
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/default
+export NETLOGO_HOME=/opt/netlogo-7-0-0
+```
+
+### Load Libraries
+
+After all is set are installed, load them with:
+
+```{r}
+library(brandr)
+library(checkmate)
+library(cli)
+library(downlit)
+library(dplyr)
+library(fs)
+library(geodata)
+library(ggplot2)
+library(here)
+library(knitr)
+library(logolink)
+library(magrittr)
+library(moments)
+library(orbis) # github.com/danielvartan/orbis
+library(patchwork)
+library(purrr)
+library(ragg)
+library(reticulate)
+library(showtext)
+library(stats)
+library(stringr)
+library(sysfonts)
+library(terra)
+library(testthat)
+library(tidyr)
+library(tidyterra)
+library(xml2)
+```
+
+```{python}
+import pynetlogo
+```
+
+### Load R Scripts
+
+```{r}
+source(here("R", "plot_comparison.R"))
+source(here("R", "statistics_comparison.R"))
+source(here("R", "tidy_logoclim_data.R"))
+```
+
+### Variables
+
+Finally, set some variables:
+
+```{r}
+model_path <- here("nlogox", "logoclim.nlogox")
+```
+
+### Tolerance Level
+
+This pipeline uses [`all.equal`](https://stat.ethz.ch/R-manual/R-patched/library/base/html/all.equal.html) and `testthat::expect_equal` to perform *near equality* tests. Both uses *relative tolerance*. The comparison is done between the original file (GeoTIFF) and the NetLogo output (i.e., the post-processed/final data).
+
+Since the transformation from GeoTIFF to ASCII, along with the NetLogo import, can introduce small discrepancies, a small tolerance is required
+
+```{r}
+tolerance <- 0.01
+```
+
+A relative tolerance is proportional to the value of the quantity being measured or calculated. The idea is that larger values can tolerate larger absolute errors. That's why small countries may have a lower precision when dealing with this kind of transformation.
+
+Given $x$ and $y$, the relative tolerance can be expressed as:
+
+$$
+|x - y| \leq \text{tolerance} \times \text{max}(|x|, |y|)
+$$
+
+or
+
+$$
+\text{tolerance} \geq \frac{|x - y|}{\text{max}(|x|, |y|)}
+$$
+
+Where:
+
+- $x$ and $y$ are the values being compared
+- $\text{tolerance}$ is the relative tolerance level
+- $\text{max}(|x|, |y|)$ is the maximum absolute value of $x$ and $y$
+
+For example:
+
+When comparing `x = 5` and `y = 5.1`, we have:
+
+```{r}
+x <- 5
+y <- 5.1
+tolerance <- 0.1
+
+all.equal(x, y, tolerance = tolerance)
+```
+
+Which is equal to:
+
+```{r}
+abs(x - y) <= tolerance * max(abs(x), abs(y))
+```
+
+With a tolerance of:
+
+```{r}
+tolerance * max(abs(x), abs(y))
+```
+
+## WorldClim
+
+We test the values of the WorldClim data loaded in LogoClim against the original WorldClim dataset. The originals are in GeoTIFF format, while LogoClim uses Esri ASCII. Because GeoTIFF stores values with higher precision, small discrepancies are expected, so the tests allow up to 1% difference.
+
+Each test selects a random variable for a random month or year. Elevation, bioclimatic variables, and the models `FIO-ESM-2-0`, `GFDL-ESM4`, and `HadGEM3-GC31-LL` are excluded due to data limitations.
+
+Since WorldClim datasets can be very large, the tests use a list of small countries at the *10 minutes (~340 km² at the Equator)* resolution, with one country randomly chosen for each run.
+
+### Global Settings
+
+```{r}
+country_choices <- c(
+  "BRA", # Brazil
+  "USA", # United States of America
+  "AUS" # Australia
+)
+```
+
+```{r}
+small_countries <- c(
+  "CUB", # Cuba
+  "ECU", # Ecuador
+  "FRA", # France
+  "GBR", # United Kingdom
+  "KOR", # South Korea
+  "MDG", # Madagascar
+  "PNG", # Papua New Guinea
+  "SEN", # Senegal
+  "URY", # Uruguay
+  "VNM" # Vietnam
+)
+```
+
+### Historical Climate Data
+
+#### Download Country Shape
+
+```{r}
+country <- country_choices |> sample(1)
+
+country
+```
+
+```{r}
+shape <- gadm(country, level = 0, path = file.path(tempdir(), "gadm"))
+```
+
+#### Download a Randomly Selected WorldClim Dataset
+
+```{r}
+setup <- worldclim_random("hcd")
+
+while (setup$variable %in% c("bioc", "elev")) {
+  setup <- worldclim_random("hcd")
+}
+
+setup
+```
+
+```{r}
+tif_files <- worldclim_download(
+  series = setup$series,
+  resolution = setup$resolution,
+  variable = setup$variable,
+  model = setup$model,
+  ssp = setup$ssp,
+  year = names(setup$year),
+  dir = tempdir()
+)
+```
+
+#### Transform the Dataset to ASCII (Just for `LogoClim`)
+
+```{r}
+if (setup$series == "hcd") {
+  tif_file <-
+    tif_files |>
+    str_subset(
+      paste0(
+        "(?<=_)",
+        setup$variable |> unname(),
+        "_",
+        str_pad(setup$month, width = 2, pad = "0")
+      )
+    )
+} else if (setup$series == "hmwd") {
+  tif_file <-
+    tif_files |>
+    str_subset(paste0("(?<=-)", str_pad(setup$month, width = 2, pad = "0")))
+} else {
+  tif_file <-
+    tif_files |>
+    str_subset(
+      paste0(
+        "(?<=_)",
+        setup$variable |> unname(),
+        "_",
+        str_pad(setup$month, width = 2, pad = "0")
+      )
+    )
+}
+
+asc_file <- tif_file |> worldclim_to_ascii(shape = shape)
+```
+
+#### Run the Dataset in `LogoClim`
+
+```{r}
+setup_file <- create_experiment(
+  name = paste0("WorldClim", ": ", names(setup$series)),
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'month',
+    'year',
+    'statistics',
+    '[pxcor] of patches',
+    '[pycor] of patches',
+    '[value] of patches',
+    '[mean latitude] of patches',
+    '[mean longitude] of patches'
+  ),
+  constants = list(
+    "data-series" = names(setup$series),
+    "data-resolution" = names(setup$resolution),
+    "climate-variable" = names(setup$variable),
+    "start-month" = names(setup$month),
+    "start-year" = setup$year,
+    "data-path" = tempdir()
+  )
+)
+```
+
+```{r}
+output <- run_experiment(
+  model_path = model_path,
+  setup_file = setup_file
+)
+
+output |> glimpse()
+```
+
+#### Diagnostics
+
+```{r}
+plot_comparison(
+  tif_file = tif_file,
+  shape = shape,
+  output = output,
+  viridis = FALSE
+)
+```
+
+```{r}
+statistics <- compare_statistics(
+  tif_file = tif_file,
+  shape = shape,
+  output = output,
+  tolerance = tolerance
+)
+
+tolerance
+```
+
+```{r}
+statistics |> print(n = Inf)
+```
+
+#### Near Equality Tests (`testthat`)
+
+Starting from the mean (index 4).
+
+```{r}
+for (i in seq(4, nrow(statistics))) {
+  cli_progress_step(statistics$statistic[i])
+
+  statistics$logoclim[i] |>
+    expect_equal(statistics$worldclim[i], tolerance = tolerance)
+}
+
+cli_progress_done()
+```
+
+### Historical Monthly Weather Data
+
+```{r}
+series <- "hmwd"
+
+setup <-
+  worldclim_random(series) |>
+  magrittr::inset2("resolution", resolution)
+
+setup
+```
+
+```{r}
+# orbis::wc_download()
+```
+
+```{r}
+file <- here(
+  "data",
+  setup$series,
+  paste0(
+    "wc2.1",
+    "_",
+    "cruts4.09",
+    "_",
+    setup$resolution,
+    "_",
+    setup$variable,
+    "_",
+    setup$year,
+    "-",
+    str_pad(setup$month, width = 2, pad = "0"),
+    ".asc"
+  )
+)
+
+assert_file_exists(file)
+
+file |> remove_unique_outliers(10)
+
+file
+```
+
+```{r}
+setup_file <- create_experiment(
+  name = paste0("WorldClim", ": ", names(setup$series)),
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'month',
+    'year',
+    'statistics',
+    '[(list pxcor pycor value latitude longitude)] of patches'
+  ),
+  constants = list(
+    "data-series" = names(setup$series),
+    "data-resolution" = names(setup$resolution),
+    "climate-variable" = names(setup$variable),
+    "start-month" = names(setup$month),
+    "start-year" = setup$year
+  )
+)
+
+# setup_file |> inspect_experiment_file()
+```
+
+```{r}
+output <- run_experiment(
+  netlogo_path = netlogo_exe,
+  model_path = model_path,
+  setup_file = setup_file
+)
+
+output |> glimpse()
+```
+
+```{r}
+raster <- file |> rast()
+```
+
+```{r}
+wc_rast |> plot()
+```
+
+```{r}
+# wc_rast |> summary()
+wc_data <- wc_rast |> values(mat = FALSE)
+
+wc_mean <- wc_data |> mean(na.rm = TRUE)
+wc_sd <- wc_data |> sd(na.rm = TRUE)
+wc_min <- wc_data |> min(na.rm = TRUE)
+wc_max <- wc_data |> max(na.rm = TRUE)
+```
+
+```{r}
+logoclim_stats <- output$statistics |> extract2(1)
+
+logoclim_mean <- logoclim_stats |> magrittr::extract(1)
+logoclim_sd <- logoclim_stats |> magrittr::extract(2)
+logoclim_min <- logoclim_stats |> magrittr::extract(3)
+logoclim_max <- logoclim_stats |> magrittr::extract(4)
+```
+
+```{r}
+tibble(
+  metric = c("mean", "sd", "min", "max"),
+  logoclim = c(logoclim_mean, logoclim_sd, logoclim_min, logoclim_max),
+  worldclim = c(wc_mean, wc_sd, wc_min, wc_max)
+)
+```
+
+```{r}
+logoclim_mean |> expect_equal(wc_mean, tolerance = tolerance)
+logoclim_sd |> expect_equal(wc_sd, tolerance = tolerance)
+logoclim_min |> expect_equal(wc_min, tolerance = tolerance)
+logoclim_max |> expect_equal(wc_max, tolerance = tolerance)
+```
+
+### Future Climate Data
+
+```{r}
+series <- "fcd"
+setup <- worldclim_random(series)
+
+while (
+  (setup$variable == "bioc") ||
+    (setup$model %in% c("FIO-ESM-2-0", "GFDL-ESM4", "HadGEM3-GC31-LL"))
+) {
+  setup <- worldclim_random(series)
+}
+
+setup <- setup |> magrittr::inset2("resolution", resolution)
+
+setup
+```
+
+```{r}
+# orbis::wc_download()
+```
+
+```{r}
+file <- here(
+  "data",
+  setup$series,
+  paste0(
+    "wc2.1",
+    "_",
+    setup$resolution,
+    "_",
+    setup$variable,
+    "_",
+    setup$model,
+    "_",
+    setup$ssp,
+    "_",
+    names(setup$year),
+    "-",
+    str_pad(setup$month, width = 2, pad = "0"),
+    ".asc"
+  )
+)
+
+assert_file_exists(file)
+
+file |> remove_unique_outliers(10)
+
+file
+```
+
+```{r}
+setup_file <- create_experiment(
+  name = paste0("WorldClim", ": ", setup$series),
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'month',
+    'year',
+    'statistics',
+    '[(list pxcor pycor value latitude longitude)] of patches'
+  ),
+  constants = list(
+    "data-series" = names(setup$series),
+    "data-resolution" = names(resolution),
+    "climate-variable" = names(setup$variable),
+    "global-climate-model" = setup$model,
+    "shared-socioeconomic-pathway" = names(setup$ssp),
+    "start-month" = names(setup$month),
+    "start-year" = setup$year
+  )
+)
+```
+
+```{r}
+output <- run_experiment(
+  netlogo_path = netlogo_exe,
+  model_path = model_path,
+  setup_file = setup_file
+)
+
+output |> glimpse()
+```
+
+```{r}
+wc_rast <- file |> rast()
+```
+
+```{r}
+wc_rast |> plot()
+```
+
+```{r}
+# wc_rast |> summary()
+wc_data <- wc_rast |> values(mat = FALSE)
+
+wc_mean <- wc_data |> mean(na.rm = TRUE)
+wc_sd <- wc_data |> sd(na.rm = TRUE)
+wc_min <- wc_data |> min(na.rm = TRUE)
+wc_max <- wc_data |> max(na.rm = TRUE)
+```
+
+```{r}
+logoclim_stats <- output$statistics |> extract2(1)
+
+logoclim_mean <- logoclim_stats |> magrittr::extract(1)
+logoclim_sd <- logoclim_stats |> magrittr::extract(2)
+logoclim_min <- logoclim_stats |> magrittr::extract(3)
+logoclim_max <- logoclim_stats |> magrittr::extract(4)
+```
+
+```{r}
+tibble(
+  metric = c("mean", "sd", "min", "max"),
+  logoclim = c(logoclim_mean, logoclim_sd, logoclim_min, logoclim_max),
+  worldclim = c(wc_mean, wc_sd, wc_min, wc_max)
+)
+```
+
+```{r}
+# Verify `tolerance` argument documentation
+logoclim_mean |> expect_equal(wc_mean, tolerance = tolerance)
+logoclim_sd |> expect_equal(wc_sd, tolerance = tolerance)
+logoclim_min |> expect_equal(wc_min, tolerance = tolerance)
+logoclim_max |> expect_equal(wc_max, tolerance = tolerance)
+```
+
+## Procedures
+
+### `single-quote`
+
+```{r}
+setup_file <- create_experiment(
+  name = "`single-quote`",
+  setup = "setup false",
+  metrics = c('single-quote 1', 'single-quote [1 2 3]')
+)
+
+read_lines(setup_file) |> paste(collapse = "\n") |> cat()
+```
+
+```{r}
+output <- run_experiment(
+  netlogo_path = netlogo_path,
+  model_path = model_path,
+  setup_file = setup_file
+)
+
+output |> glimpse()
+```
+
+```{r}
+output$single_quote_1 |> expect_equal(paste0("'", 1, "'"))
+output$single_quote_1_2_3[[1]] |> expect_equal(paste0("'", c(1, 2, 3), "'"))
+```
+
+### Test
+
+```{r}
+setup_file <- create_experiment(
+  name = "`test`",
+  setup = "setup false",
+  metrics = c(x)
+)
+
+read_lines(setup_file) |> paste(collapse = "\n") |> cat()
+```
+
+```{r}
+output <- run_experiment(
+  netlogo_path = netlogo_path,
+  model_path = model_path,
+  setup_file = setup_file
+)
+
+output |> glimpse()
+```

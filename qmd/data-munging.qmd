@@ -525,7 +525,7 @@ wc_to_ascii(
   aggregate = NULL,
   overwrite = TRUE,
   dx = dx,
-  na_flag = -9999
+  na_flag = -99
 )
 
 beep(1)
