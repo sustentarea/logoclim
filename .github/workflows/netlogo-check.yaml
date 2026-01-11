@@ -66,9 +66,11 @@ jobs:
           if [[ "$RUNNER_OS" == "Windows" ]]; then
             powershell \
             -Command "Expand-Archive -Path $file -DestinationPath $dir"
-            del "$file"
+
+            rm -f "$file"
           else
             unzip "$file" -d "$dir"
+
             rm -f "$file"
           fi
         shell: bash
