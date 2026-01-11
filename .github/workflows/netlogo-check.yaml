@@ -2,7 +2,7 @@ on:
   push:
     branches: [main, master]
 
-name: NetLogo Check
+name: NetLogo check
 permissions: read-all
 
 jobs:
@@ -14,8 +14,8 @@ jobs:
           - {os: windows-latest, version: 'release'}
           - {os: macos-latest, version: 'release'}
           - {os: ubuntu-latest, version: 'release'}
-    name: "${{matrix.config.os}} (${{matrix.config.version}})"
-    runs-on: ${{matrix.config.os}}
+    name: "${{ matrix.config.os }} (${{ matrix.config.version }})"
+    runs-on: ${{ matrix.config.os }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions: read-all
@@ -34,6 +34,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           # Install dependencies
+
           sudo apt-get update -qq >/dev/null
           sudo apt-get install -y -qq unzip >/dev/null
         shell: bash
@@ -47,15 +48,9 @@ jobs:
           file="bra-10m.zip"
           url="https://osf.io/download/5a6y2/"
 
-          if [["$RUNNER_OS"== "Windows"]]; then
-            curl \
-              -L -o "$file" "$url" || \\
-              (echo "Error: Data download failed" && exit 1)
-          else
-           wget \
-            ${url} -O "${file}" || \
+          curl \
+            -L -o "$file" "$url" || \
             { echo "Error: Data download failed"; exit 1; }
-          fi
 
           echo "file=$file" >> "$GITHUB_OUTPUT"
         shell: bash
@@ -65,7 +60,7 @@ jobs:
         run: |
           # Unzip LogoClim test data
 
-          file="${{steps.download-logoclim.outputs.file}}"
+          file="${{ steps.download-logoclim.outputs.file }}"
           dir="data"
 
           if [[ "$RUNNER_OS" == "Windows" ]]; then
@@ -81,7 +76,7 @@ jobs:
       - name: Set up NetLogo
         uses: danielvartan/netlogo-actions/setup-netlogo@v1
         with:
-          version: ${{matrix.config.version}}
+          version: ${{ matrix.config.version }}
           cache: 'true'
 
       - name: Check NetLogo models
