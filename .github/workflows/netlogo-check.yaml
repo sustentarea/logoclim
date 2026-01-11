@@ -2,14 +2,23 @@ on:
   push:
     branches: [main, master]
 
-name: "NetLogo Check"
-
+name: NetLogo Check
 permissions: read-all
 
 jobs:
   check-netlogo:
-    runs-on: ubuntu-latest
-    name: Run Parameter Sweep (10m)
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, version: 'release'}
+          - {os: macos-latest, version: 'release'}
+          - {os: ubuntu-latest, version: 'release'}
+    name: "${{matrix.config.os}} (${{matrix.config.version}})"
+    runs-on: ${{matrix.config.os}}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions: read-all
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -21,7 +30,8 @@ jobs:
           path: "data"
           key: "logoclim-data"
 
-      - name: Install dependencies
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
         run: |
           # Install dependencies
           sudo apt-get update -qq >/dev/null
@@ -33,30 +43,46 @@ jobs:
         if: steps.logoclim-data-cache.outputs.cache-hit != 'true'
         run: |
           # Download LogoClim test data
+
           file="bra-10m.zip"
           url="https://osf.io/download/5a6y2/"
 
-          wget \
+          if [["$RUNNER_OS"== "Windows"]]; then
+            curl \
+              -L -o "$file" "$url" || \\
+              (echo "Error: Data download failed" && exit 1)
+          else
+           wget \
             ${url} -O "${file}" || \
             { echo "Error: Data download failed"; exit 1; }
+          fi
 
-          echo "file=${file}" >> "${GITHUB_OUTPUT}"
+          echo "file=$file" >> "$GITHUB_OUTPUT"
         shell: bash
 
       - name: Unzip LogoClim test data
         if: steps.logoclim-data-cache.outputs.cache-hit != 'true'
         run: |
           # Unzip LogoClim test data
+
           file="${{steps.download-logoclim.outputs.file}}"
           dir="data"
 
-          unzip ${file} -d ${dir}
-
-          rm -f "${file}"
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            powershell \
+            -Command "Expand-Archive -Path $file -DestinationPath $dir"
+            del "$file"
+          else
+            unzip "$file" -d "$dir"
+            rm -f "$file"
+          fi
         shell: bash
 
       - name: Set up NetLogo
         uses: danielvartan/netlogo-actions/setup-netlogo@v1
+        with:
+          version: ${{matrix.config.version}}
+          cache: 'true'
 
       - name: Check NetLogo models
         uses: danielvartan/netlogo-actions/check-netlogo@v1
