@@ -729,3 +729,216 @@ for (i in seq(4, nrow(statistics))) {
 
 cli_progress_done()
 ```
+
+## Test Future Climate Data
+
+::: {.callout-note}
+This section performs near-equality tests using WorldClim's [Future Climate Data](https://www.worldclim.org/data/cmip6/cmip6climate.html) series.
+:::
+
+### Select Random WorldClim Dataset
+
+```{r}
+#| label: Test Future Climate Data
+
+setup <- worldclim_random("fcd")
+```
+
+```{r}
+while (setup$model %in% c("FIO-ESM-2-0", "GFDL-ESM4", "HadGEM3-GC31-LL")) {
+  setup <- worldclim_random("fcd")
+}
+```
+
+```{r}
+setup <-
+  setup |>
+  inset2(
+    "resolution",
+    case_when(
+      shape_area / 340 >= 1000 ~
+        c("10 Minutes (~340 km2 at the Equator)" = "10m"),
+      shape_area / 85 >= 1000 ~
+        c("5 Minutes (~85 km2 at the Equator)" = "5m"),
+      shape_area / 21 >= 1000 ~
+        c("2.5 Minutes (~21 km2 at the Equator)" = "2.5m"),
+      TRUE ~
+        c("30 Seconds (~1 km2  at the Equator)" = "30s")
+    )
+  )
+```
+
+```{r}
+setup
+```
+
+### Download Dataset
+
+```{r}
+tif_file <- worldclim_download(
+  series = setup$series,
+  resolution = setup$resolution,
+  variable = setup$variable,
+  model = setup$model,
+  ssp = setup$ssp,
+  year = names(setup$year),
+  dir = tempdir()
+)
+```
+
+### Transform Data to Esri ASCII Format
+
+::: {.callout-note}
+The `dx` parameter specifies the degree and direction of data rotation. Negative values rotate the data to the left, while positive values rotate it to the right. This adjustment is applied only for countries crossing the [International Date Line](https://en.wikipedia.org/wiki/International_Date_Line).
+:::
+
+```{r}
+asc_file <-
+  tif_file |>
+  worldclim_to_ascii(
+    shape = country_shape,
+    dx = if_else(country == "USA", 30, -45)
+  )
+```
+
+```{r}
+asc_file <-
+  asc_file |>
+  str_subset(
+    paste0(
+      names(setup$year),
+      "[_-]",
+      ifelse(
+        setup$variable == "bioc",
+        str_pad(setup$bioclimatic_variable, width = 2, pad = "0"),
+        str_pad(setup$month, width = 2, pad = "0")
+      )
+    ),
+  )
+```
+
+### Run Data in `LogoClim`
+
+```{r}
+setup_file <- create_experiment(
+  name = paste0("WorldClim", ": ", names(setup$series)),
+  setup = 'setup false',
+  metrics = c(
+    'month',
+    'year',
+    'world-width',
+    'world-height',
+    'cell-size',
+    '[first latitude] of patches',
+    '[first longitude] of patches',
+    '[value] of patches'
+  ),
+  constants = list(
+    "data-series" = names(setup$series),
+    "data-resolution" = names(setup$resolution),
+    "climate-variable" = names(setup$variable),
+    "bioclimatic-variable" = names(setup$bioclimatic_variable),
+    "global-climate-model" = setup$model,
+    "shared-socioeconomic-pathway" = names(setup$ssp),
+    "start-month" = names(setup$month),
+    "start-year" = setup$year,
+    "data-path" = tempdir()
+  )
+)
+```
+
+```{r}
+#| eval: false
+#| include: false
+
+setup_file |> inspect_experiment()
+```
+
+```{r}
+#| output: false
+
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file,
+    output = c("table", "lists")
+  )
+```
+
+```{r}
+results |> glimpse()
+```
+
+### Compare Plots
+
+::: {.callout-note}
+In some cases, `LogoClim` plots may appear striped. This happens because no data interpolation is applied to compensate for geodesic distortions. There is nothing wrong with the data itself.
+:::
+
+```{r}
+compare_plots(
+  tif_file = tif_file,
+  shape = country_shape,
+  results = results,
+  setup = setup,
+  dx = if_else(country == "USA", 30, -45),
+  layer = ifelse(
+    setup$variable == "bioc",
+    paste0("bio", setup$bioclimatic_variable),
+    setup$variable |>
+      paste0(str_pad(setup$month, width = 2, pad = "0"))
+  ),
+  viridis = FALSE
+)
+```
+
+### Compare Statistics
+
+```{r}
+statistics <- compare_statistics(
+  tif_file = tif_file,
+  shape = country_shape,
+  results = results,
+  layer = ifelse(
+    setup$variable == "bioc",
+    paste0("bio", setup$bioclimatic_variable),
+    setup$variable |>
+      paste0(str_pad(setup$month, width = 2, pad = "0"))
+  ),
+  tolerance = tolerance
+)
+```
+
+```{r}
+statistics
+```
+
+```{r}
+#| eval: false
+#| include: false
+
+statistics |> print(n = Inf)
+```
+
+### Test Near-Equality
+
+```{r}
+for (i in seq(4, nrow(statistics))) {
+  statistics |>
+    pull(statistic) |>
+    magrittr::extract(i) |>
+    cli_progress_step()
+
+  statistics |>
+    pull(logoclim) |>
+    magrittr::extract(i) |>
+    expect_equal(
+      statistics |>
+        pull(worldclim) |>
+        magrittr::extract(i),
+      tolerance = tolerance
+    )
+}
+
+cli_progress_done()
+```
