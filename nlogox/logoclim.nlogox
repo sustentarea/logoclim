@@ -2,13 +2,13 @@
 <model version="NetLogo 7.0.2" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: v2.1.0.9000 (Development Version)
+; Version: 2.1.0.9000 (Development Version)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
 ; Repository: <https://github.com/sustentarea/logoclim>
 ;
-; Require: NetLogo >= 7.0.0
+; Require: NetLogo >= 7.0.3
 ; Required NetLogo extensions: `gis`, `pathdir`, `string`, and `time`
 
 __includes [
@@ -37,6 +37,7 @@ __includes [
   "nls/check-windows.nls"
   "nls/check-world-bleed.nls"
   "nls/collapse.nls"
+  "nls/distance-between.nls"
   "nls/file-path.nls"
   "nls/go-back.nls"
   "nls/list-files-by-pattern.nls"
@@ -94,6 +95,7 @@ globals [
   max-plot-x
   min-plot-y
   max-plot-y
+  cell-size
   statistics
   world-bleed
   headless?
@@ -507,7 +509,7 @@ The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](
 
 To run the model, make sure to download all files in the repository `nlogox` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 
-#### DOWNLOADING THE DATA
+### DOWNLOADING THE DATA
 
 `LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
 
@@ -517,7 +519,7 @@ After downloading and processing the files, place them in the `data` folder with
 
 We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
 
-#### RUNNING THE MODEL
+### RUNNING THE MODEL
 
 Once everything is set up, click `Setup` and then `Go` to start exploring!
 

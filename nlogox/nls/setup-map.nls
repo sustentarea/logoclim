@@ -93,6 +93,12 @@ to setup-map
     set longitude sublist #patch-envelope 0 2
   ]
 
+  set cell-size
+    mean
+    remove-duplicates
+    map [i -> distance-between (first i) (last i)]
+    [longitude] of patches with [not is-false? value]
+
   if (not headless?) [
     plot-color-bar color-bar-bins #min-pcolor-value #max-pcolor-value
   ]

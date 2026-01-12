@@ -1,0 +1,3 @@
+to-report distance-between [#x #y]
+  report (max list #x #y) - (min list #x #y)
+end

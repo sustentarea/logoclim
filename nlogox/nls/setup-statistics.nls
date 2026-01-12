@@ -7,6 +7,6 @@ to setup-statistics
       max [value] of patches with [not is-false? value]
     )
   ] [
-    set statistics n-values 5 ["N/A"]
+    set statistics n-values 5 [false]
   ]
 end

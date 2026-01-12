@@ -4,39 +4,47 @@ library(magrittr)
 library(stats)
 library(terra)
 
-source(here("R", "tidy_logoclim_data.R"))
-
-compare_statistics <- function(tif_file, shape, output, tolerance = 1e-8) {
+compare_statistics <- function(
+  tif_file,
+  shape,
+  results,
+  tolerance = 1e-8
+) {
   assert_string(tif_file)
   assert_file_exists(tif_file, extension = ".tif")
   assert_class(shape, "SpatVector")
-  assert_tibble(output)
+  assert_list(results)
   assert_number(tolerance, lower = 0)
 
-  data_worldclim <-
+  worldclim_cell_values <-
     tif_file |>
     rast() |>
     crop(
       shape,
-      snap = "near",
+      snap = "out",
       mask = TRUE,
       touches = TRUE,
       extend = TRUE
     ) |>
-     values(mat = FALSE)
+    values(mat = FALSE)
 
-  data_logoclim <-
-    output |>
-    tidy_logoclim_data() |>
-    pull("value")
+  logoclim_patch_values <-
+    results |>
+    extract2("lists") |>
+    mutate(
+      value_of_patches = value_of_patches |>
+        map_chr(\(x) na_if(x, "false")) |>
+        as.numeric()
+    ) |>
+    pull(value_of_patches)
 
-  out <- data_logoclim |>
+  worldclim_cell_values |>
     stats_summary(na_rm = TRUE) |>
-    rename(logoclim = value) |>
+    rename(worldclim = value) |>
     left_join(
-      data_worldclim |>
+      logoclim_patch_values |>
         stats_summary(na_rm = TRUE) |>
-        rename(worldclim = value),
+        rename(logoclim = value),
       by = "name"
     ) |>
     rename(statistic = name) |>
@@ -45,7 +53,7 @@ compare_statistics <- function(tif_file, shape, output, tolerance = 1e-8) {
       all.equal = map2_lgl(
         .x = logoclim,
         .y = worldclim,
-        .f  = \(x, y) all.equal(x, y, tolerance = tolerance) |> isTRUE()
+        .f = \(x, y) all.equal(x, y, tolerance = tolerance) |> isTRUE()
       ),
       tol_used = tolerance,
       min_tol = abs(logoclim - worldclim) / max(abs(logoclim), abs(worldclim))
@@ -57,7 +65,12 @@ library(moments)
 library(stats)
 library(tidyr)
 
-stats_summary <- function(x, na_rm = FALSE, iqr_mult = 1.5, as_list = FALSE) {
+stats_summary <- function(
+  x,
+  na_rm = FALSE,
+  iqr_mult = 1.5,
+  as_list = FALSE
+) {
   assert_numeric(x)
   assert_flag(na_rm)
   assert_number(iqr_mult, lower = 1)

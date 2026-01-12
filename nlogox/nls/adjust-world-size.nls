@@ -1,19 +1,28 @@
 ; globals [dataset]
 
 to adjust-world-size
-  let #max-xcor floor (gis:width-of dataset / 2)
-  let #min-xcor (- 1) * #max-xcor
+  ; print (word
+  ;   "Raster dimensions: "
+  ;   gis:width-of dataset
+  ;   " x "
+  ;   gis:height-of dataset
+  ; )
 
-  if ((gis:width-of dataset / 2) mod 2 = 0) [
-    set #max-xcor #max-xcor + 1
-  ]
+  let #width gis:width-of dataset
+  let #height gis:height-of dataset
 
-  let #max-ycor floor (gis:height-of dataset / 2)
-  let #min-ycor -1 * #max-ycor
+  let #max-xcor floor (#width / 2)
+  let #min-xcor #max-xcor - #width + 1
 
-  if ((gis:height-of dataset / 2) mod 2 = 0) [
-    set #max-ycor #max-ycor + 1
-  ]
+  let #max-ycor floor (#height / 2)
+  let #min-ycor #max-ycor - #height + 1
 
   resize-world #min-xcor #max-xcor #min-ycor #max-ycor
+
+  ; print (word
+  ;   "World dimensions: "
+  ;   world-width
+  ;   " x "
+  ;   world-height
+  ; )
 end
