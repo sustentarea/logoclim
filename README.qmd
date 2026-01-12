@@ -104,7 +104,7 @@ cat(
 
 `LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), [O'Neill et al., 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
+The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from [global climate models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models) under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), [O'Neill et al., 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
 See the [`Logônia`](https://github.com/sustentarea/logonia) model for an example of how to integrate `LogoClim` into your model.
 
@@ -157,8 +157,6 @@ The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](
 
 You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the [`nlogox`](nlogox) folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
-
 #### Downloading the Data
 
 `LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
@@ -187,7 +185,33 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 </p>
 ```
 
+## User Manual
+
+`LogoClim`'s user manual was developed using the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package was used to manage and restore the R environment.
+
+To render the manual and reproduce the analyses, install the four dependencies mentioned above and follow these steps:
+
+1. **Clone** this repository to your local machine.
+2. **Open** the project in your preferred [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
+3. **Restore the R environment** by running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) in the R console. This will install all required software dependencies.
+4. **Open** the Quarto notebook files (`.qmd`) and run the code as described.
+
 ## Citation
+
+```{r}
+#| echo: false
+#| output: asis
+
+cat(
+  badge_custom(
+    x = "doi",
+    y = "10.17605/OSF.IO/EAPZU",
+    color = "1284C5",
+    url = "https://doi.org/10.17605/OSF.IO/EAPZU",
+    alt = "OSF DOI badge"
+  )
+)
+```
 
 ```{=gfm}
 > [!IMPORTANT]
@@ -198,15 +222,15 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
 ```latex
-@Misc{vartanian2025,
+@Misc{vartanian2026,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
-  year = {2025},
+  year = {2026},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {Computer software}
 }
@@ -273,7 +297,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 ## Acknowledgments
 
-We gratefully acknowledge [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets.
+We gratefully acknowledge [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets.
 
 We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
 

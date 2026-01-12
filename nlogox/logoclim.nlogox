@@ -471,6 +471,8 @@ plot min [value] of patches with [not is-false? value]]]></update>
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), O'Neill et al. ([2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004))). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
 
+For a deep look into the model's structure and implementation, refer to the [LogoClim's User Manual](https://sustentarea.github.io/logoclim/).
+
 See the [`Logônia`](https://github.com/sustentarea/logonia) model ([Vartanian et al., 2025](https://github.com/sustentarea/logonia)) for an example of how to integrate `LogoClim` into your model.
 
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
@@ -578,14 +580,6 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 - **`value-12ma`**: A number representing the 12-month moving average of the climate variable (`mean value-12`).
 - **`latitude`**: A `list` containing two numbers indicating the minimum and maximum latitude of the patch point.
 - **`longitude`**: A `list` containing two numbers indicating the minimum and maximum longitude of the patch point.
-
-### HEADLESS CONFIGURATION
-
-The `setup` procedure comes with a `headless?` parameter to improve the model's performance when running in headless mode. When `headless?` is set to `true`, the model skips all code related to the interface, which can significantly speed up simulations. This is particularly useful when integrating `LogoClim` with other models using the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
-
-## DEVELOPER NOTES
-
-- Based on [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554), this model represents missing values as `false`. This resolves issues with primitives like `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
 
 ## THINGS TO NOTICE
 

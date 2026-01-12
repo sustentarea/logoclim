@@ -1,10 +1,12 @@
 editor: source
 
-project:
-  render: [README.qmd]
-  post-render: "R/_post-render.R"
+execute:
+  cache: false # "Danger Will Robinson!"
+  freeze: false # If you plan to use it, remember to disable it afterward!
 
-format:
-  gfm:
-    html-table-processing: none
-    default-image-extension: ""
+# quarto render --profile html
+
+profile:
+  group:
+    - [gfm, html]
+  default: gfm

@@ -34,7 +34,9 @@ sciences, and other fields that rely on climate data.
 The model utilizes raster data to represent climate variables such as
 temperature and precipitation over time. It incorporates historical data
 (1951-2024) and future climate projections (2021-2100) derived from
-global climate models under various Shared Socioeconomic Pathways
+[global climate
+models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models)
+under various Shared Socioeconomic Pathways
 ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/),
 [O’Neill et al.,
 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate
@@ -136,11 +138,6 @@ releases page](https://github.com/sustentarea/logoclim/releases/latest).
 For the development version, you can clone or download its [GitHub
 repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the `nlogox`
-folder. Note that climate data from WorldClim is required but not
-included in this repository; see the next section for instructions on
-obtaining and preparing the data.
-
 #### Downloading the Data
 
 `LogoClim` relies on raster data to represent climate variables. The
@@ -168,7 +165,7 @@ model runs smoothly on your system before trying higher resolutions.
 #### Running the Model
 
 Once everything is set, open the `logoclim.nlogox` file located in the
-`nlogox` folder to start exploring!
+[`nlogox`](nlogox) folder to start exploring!
 
 Refer to the `Info` tab in the model for additional details.
 
@@ -187,7 +184,31 @@ example of how to integrate `LogoClim` into your model.
   <img src="images/logonia-evolution.svg" height=125px />
 </p>
 
+## User Manual
+
+`LogoClim`’s user manual was developed using the
+[Quarto](https://quarto.org/) publishing system, the
+[NetLogo](https://www.netlogo.org/) environment, and the
+[R](https://www.r-project.org/) programming language. To ensure
+consistent results, the [`renv`](https://rstudio.github.io/renv/)
+package was used to manage and restore the R environment.
+
+To render the manual and reproduce the analyses, install the four
+dependencies mentioned above and follow these steps:
+
+1.  **Clone** this repository to your local machine.
+2.  **Open** the project in your preferred
+    [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
+3.  **Restore the R environment** by running
+    [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html)
+    in the R console. This will install all required software
+    dependencies.
+4.  **Open** the Quarto notebook files (`.qmd`) and run the code as
+    described.
+
 ## Citation
+
+[![](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 
 > [!IMPORTANT]
 > When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
@@ -198,17 +219,17 @@ helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim:
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim:
 WorldClim in NetLogo* \[Computer software\].
 <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
 ``` latex
-@Misc{vartanian2025,
+@Misc{vartanian2026,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
-  year = {2025},
+  year = {2026},
   doi = {10.17605/OSF.IO/EAPZU},
   note = {Computer software}
 }
@@ -256,9 +277,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 ## Acknowledgments
 
-We gratefully acknowledge [Stephen E.
-Fick](https://orcid.org/0000-0002-3548-6966), [Robert J.
-Hijmans](https://orcid.org/0000-0001-5872-2872), and the entire
+We gratefully acknowledge [Robert J.
+Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E.
+Fick](https://orcid.org/0000-0002-3548-6966), and the entire
 [WorldClim](https://worldclim.org/) team for their outstanding work in
 creating and maintaining the WorldClim datasets.
 
@@ -279,7 +300,9 @@ global climate model development.
 We are grateful to the climate modeling groups for producing and sharing
 their model outputs, the Earth System Grid Federation
 ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to
-the data, and the many funding agencies that support CMIP6 and ESGF.
+the data, and the many funding agencies that support
+[CMIP6](https://pcmdi.llnl.gov/CMIP6/) and
+[ESGF](https://esgf.llnl.gov/).
 
 <table>
   <tr>

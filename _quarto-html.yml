@@ -1,0 +1,94 @@
+# quarto render --profile html
+brand: false
+
+project:
+  type: book
+  output-dir: docs
+  pre-render: "R/.pre-render.R"
+  post-render: "R/.post-render.R"
+
+book:
+  title: "⛅ LogoClim User Manual"
+  author: "Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho"
+  keyword: >
+    Agent-Based Modeling, Climate Change, Climate Data Visualization,
+    Climate Projections, Climate Simulations, CMIP6, Complex Systems,
+    Complexity Science, Environmental Sciences, Future Climate Scenarios,
+    Geospatial Analysis, Historical Climate Data, LevelSpace, Logônia,
+    Models, NetLogo, Parallel Execution, Raster Data, Reproducible Research,
+    Shared Socioeconomic Pathways, Simulations, Spatial Analysis, SSPs,
+    Time Series, WorldClim
+  date: today
+  date-format: "long"
+  # cover-image: images/logo.svg
+  license: >
+    Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+    (CC BY-NC-SA 4.0)
+  language: en
+  favicon: images/logo.svg
+  open-graph:
+    image: images/og-image.png
+    image-width: 2400
+    image-height: 1600
+    image-alt: "⛅ LogoClim: WorldClim in NetLogo"
+  url: https://sustentarea.github.io/logoclim/
+  site-url: https://sustentarea.github.io/logoclim/
+  repo-url: https://github.com/sustentarea/logoclim/
+  issue-url: https://github.com/sustentarea/logoclim/issues/
+  repo-branch: main
+  repo-actions: [edit, issue]
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - part: "How to Use"
+      chapters:
+        - qmd/what-is-it.qmd
+        - qmd/how-it-works.qmd
+        - qmd/how-to-use-it.qmd
+    - part: "Data and Files"
+      chapters:
+        - qmd/worldclim.qmd
+        - qmd/data-download.qmd
+        - qmd/data-processing.qmd
+    - part: "Variables and Attributes"
+      chapters:
+        - qmd/global-variables.qmd
+        - qmd/patch-attributes.qmd
+    - part: "LevelSpace Integration"
+      chapters:
+        - qmd/levelspace-overview.qmd
+        - qmd/setting-up-levelspace.qmd
+        - qmd/logonia.qmd
+    - qmd/references.qmd
+  appendices:
+    # - qmd/use-cases.qmd
+    - qmd/developer-notes.qmd
+    - qmd/near-equality-tests.qmd
+    - qmd/procedure-behavior-tests.qmd
+
+format:
+  html:
+    locale: en
+    language: en-us
+    code-fold: false
+    code-link: true
+    df-print: paged
+    cap-location: top
+    fig-align: center
+    fig-width: 7
+    fig-height: 5.25
+    callout-appearance: simple
+    csl: csl/english-apa-author-date.csl
+    repo-actions: true
+    link-external-icon: false
+    link-external-newwindow: false
+    lightbox: true
+    theme: [cosmo, scss/styles.scss]
+
+citation:
+  type: book
+  publisher-place: "São Paulo, SP, Brazil"
+  url: "https://sustentarea.github.io/logoclim/"
+
+google-scholar: true
+bibliography: references.bib

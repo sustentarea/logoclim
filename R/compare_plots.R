@@ -13,6 +13,7 @@ compare_plots <- function(
   results,
   setup,
   dx = -45,
+  layer = NULL,
   viridis = FALSE
 ) {
   assert_string(tif_file)
@@ -21,6 +22,7 @@ compare_plots <- function(
   assert_list(results, len = 3)
   assert_list(setup, min.len = 1)
   assert_number(dx, finite = TRUE)
+  assert_string(layer, null.ok = TRUE)
   assert_flag(viridis)
 
   cell_size <-
@@ -64,6 +66,7 @@ compare_plots <- function(
       patch_values = patch_values,
       subtitle = subtitle,
       dx = dx,
+      layer = layer,
       viridis = viridis
     )
 
@@ -100,6 +103,7 @@ plot_worldclim <- function(
   patch_values,
   subtitle,
   dx = -45,
+  layer = NULL,
   viridis = FALSE
 ) {
   assert_string(tif_file)
@@ -108,11 +112,16 @@ plot_worldclim <- function(
   assert_numeric(patch_values)
   assert_string(subtitle)
   assert_number(dx, finite = TRUE)
+  assert_string(layer, null.ok = TRUE)
   assert_flag(viridis)
 
   worldclim_data <-
     tif_file |>
     rast()
+
+  if (terra::nlyr(worldclim_data) > 1) {
+    worldclim_data <- worldclim_data |> subset(layer)
+  }
 
   if (orbis:::test_date_line(shape)) {
     cli::cli_progress_step("Applying date line fix")

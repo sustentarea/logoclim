@@ -1,0 +1,114 @@
+# Procedure Behavior Tests {#sec-sm-procedure-behavior-tests}
+
+```{r}
+#| label: Setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+This document provides unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The tests validate [procedure](https://docs.netlogo.org/programming.html#procedures) behavior and arguments to ensure correct model functionality.
+
+## Problem
+
+[Procedures](https://docs.netlogo.org/programming.html#procedures) can produce unexpected results and have side effects that may not be captured during the development process. This document addresses these challenges by providing pre-defined expectations for each procedure's behavior.
+
+## Methods
+
+### NetLogo Integration
+
+Integration with [NetLogo](https://www.netlogo.org/) [@wilensky1999a] is facilitated by the [`logolink`](https://danielvartan.github.io/logolink/) R package [@vartanian2026]. This package enables the execution of [BehaviorSpace](https://docs.netlogo.org/behaviorspace.html) experiments directly from R.
+
+Outputs were extracted in [Table](https://docs.netlogo.org/behaviorspace.html#table-output) and [Lists](https://docs.netlogo.org/behaviorspace.html#lists-output) format, along with metadata about the model's settings.
+
+No [Java](https://www.java.com/en/) dependencies are required. NetLogo bundles its own Java Runtime Environment (JRE), ensuring independent operation regardless of the system's Java installation.
+
+### Continuous Integration
+
+These tests use the latest release of [NetLogo](https://www.netlogo.org/) and are automated using [GitHub Actions](https://github.com/features/actions) provided by the [`LogoActions`](https://github.com/danielvartan/logoactions) project [@vartanian2026b]. Each commit to the code repository triggers test execution, ensuring that errors are caught early in the development process.
+
+### Expectation Tests
+
+Expectations were validated using the [`testthat`](https://testthat.r-lib.org/) and [`checkmate`](https://mllg.github.io/checkmate/) [@lang2017] R packages.
+
+### Code Style
+
+The Tidyverse [Tidy Tools Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html) [@wickham2023c], [code style guide](https://style.tidyverse.org/) [@wickhamb] and [design principles](https://design.tidyverse.org/) [@wickhamc] were followed to ensure consistency and enhance readability.
+
+### Reproducibility
+
+The pipeline is fully reproducible and can be run again at any time. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package [@ushey2025] was used to manage and restore the R environment. See the [README](https://github.com/sustentarea/logoclim/blob/main/README.md) file in the code repository to learn how to run it.
+
+## Set the Environment
+
+### Load Packages
+
+```{r}
+#| label: Set the Environment
+
+library(cli)
+library(dplyr)
+library(here)
+library(logolink)
+library(magrittr)
+library(testthat)
+```
+
+### Set Initial Variables
+
+::: {.callout-note}
+Setting the `JAVA_TOOL_OPTIONS` is optional, but recommended to avoid unnecessary messages from the Java Media Framework.
+:::
+
+```{r}
+Sys.setenv(JAVA_TOOL_OPTIONS = "-Dcom.sun.media.jai.disableMediaLib=true")
+```
+
+```{r}
+model_path <- here("nlogox", "logoclim.nlogox")
+```
+
+## `single-quote`
+
+```{r}
+#| label: single-quote
+
+setup_file <- create_experiment(
+  name = "single-quote",
+  setup = "setup false",
+  metrics = c(
+    'single-quote 1',
+    'single-quote [1 2 3]'
+  )
+)
+```
+
+```{r}
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file
+  )
+```
+
+```{r}
+results |>
+  extract2("table") |>
+  pull(single_quote_1) |>
+  expect_equal("'1'")
+```
+
+```{r}
+results |>
+  extract2("table") |>
+  pull(single_quote_1_2_3) |>
+  expect_equal("['1' '2' '3']")
+```

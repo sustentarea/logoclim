@@ -1,0 +1,18 @@
+# Global Variables {#sec-global-variables}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+

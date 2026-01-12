@@ -1,0 +1,96 @@
+# How to Use It {#sec-how-to-use-it}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+To get started using `LogoClim`, ensure you have [NetLogo](https://www.netlogo.org) installed. The current version of the model was developed using NetLogo 7.0.3, so it is recommended to use this version or later.
+
+`LogoClim` also relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html) NetLogo extensions. You don't need to install them, these are automatically installed when the model is run for the first time.
+
+## Downloading the Model
+
+You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) or at its [GitHub releases page](https://github.com/sustentarea/logoclim/releases/latest).
+
+For the development version, you can clone or download the [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
+
+## Opening the Model
+
+After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. This file is located in the [`nlogox`](nlogox) folder.
+
+## Preparing the Data
+
+Climate data from [WorldClim](https://www.worldclim.org/) is required but not included with the model. To use `LogoClim` you will need to prepare the data that suits your research. We prepared functions that do this job for you. See the [WorldClim](#sec-worldclim) section to learn more.
+
+We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Use them as a starting point.
+
+With files at hand, use the *Select Data Directory* button in the model interface to specify their location.
+
+## Running the Model
+
+See the section below for details on the interface controls.
+
+Once everything is set, click `Setup` and then `Go` buttons to start the simulation.
+
+### Interface Controls
+
+#### Choosers, Input Boxes, Sliders, And Switches
+
+- **`data-series`**: Chooser for selecting a data series (default: `Historical Monthly Weather Data`).
+- **`data-resolution`**: Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (default: `10 Minutes (~340 km2 at the Equator)`).
+- **`climate-variable`**: Chooser for selecting the climate variable (default: `Average Maximum Temperature (°C)`).
+- **`bioclimatic-variable`**: Chooser for selecting a [bioclimatic variable](https://worldclim.org/data/bioclim.html). Only useful when *`climate-variable`* is set to *`bioclimatic-variables`* (default: `BIO1 - Annual Mean Temperature`).
+- **`start-month`**: Chooser for selecting the simulation's starting month (default: `January`).
+- **`global-climate-model`**: Chooser for selecting a global climate model. Only useful when *`Future Climate Data`* is selected (default: `CMCC-ESM2`).
+- **`shared-socioeconomic-pathway`**: Chooser for selecting a Shared Socioeconomic Pathway ([SSP](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) scenario. Only useful when *`Future Climate Data`* is selected (default: `SSP-585`).
+- **`start-year`**: Input box for setting the simulation's start year in `YYYY` format (default: `1951`).
+- **`data-path`**: Input box for setting the path to the data folder. Usually, this does not need to be changed. Use the *`Select Data Directory`* button to navigate via a dialog window (default: `../data/`).
+- **`historical-climate-color`**: Input box for setting the color used to represent the *Historical Climate Data* series (default: `105 (blue)`).
+- **`historical-monthly-weather-color`**: Input box for setting the color used to represent the *Historical Monthly Weather Data* series (default: `25 (orange)`).
+- **`future-climate-color`**: Input box for setting the color used to represent the *Future Climate Data* series (default: `15 red)`).
+- **`color-bar-bins`**: Slider for setting the number of bins in the *Color Bar* plot (default: `15`).
+- **`black-value`**: Slider for setting the lower threshold for the black color on the world map (default: `0`).
+- **`black-min`**: Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, `black-value` will be ignored (default: `On`).
+- **`white-value`**: Slider for setting the upper threshold for the white color on the world map (default: `50`).
+- **`white-max`**: Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, `white-value` will be ignored (default: `On`).
+
+#### Buttons
+
+- **`Setup`**: Initializes the simulation with the selected parameters.
+- **`Go`**: Starts or resumes the simulation.
+- **`Go Back`**: Steps the simulation backward in time. This also reset ticks and clear all the plots.
+- **`Go Forward`**: Steps the simulation forward in time.
+- **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
+- **`Show Values`**: Displays patch values when hovering the mouse over them.
+
+### Monitors And Plots
+
+- **`Climate Variable`**: Displays the climate variable being used. If `climate-variable` is set to *Bioclimatic Variables*, it instead shows the variable selected in the `bioclimatic-variable` chooser.
+- **`Month`**, **`Year`**: Displays the current month and year being simulated.
+- **`Color Bar`**: A plot showing the color scale used on the world map, with black representing the lowest value and white representing the highest value. The color scale is divided into bins, which can be adjusted using the `color-bar-bins` slider.
+- **`Minimum`**, **`Maximum`**, **`Mean`**, **`Standard Deviation`**: Monitors and plots showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches. If more than 12 months of data are available, a line matching the series color marks the start of each 12-month cycle, and a 12-month moving average (12MA) is added to highlight trends.
+
+## Integrating with Other Models
+
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
+
+Find more information about this in the [LevelSpace Overview](#sec-levelspace-overview) section.
+
+See the [`Logônia`](https://github.com/sustentarea/logonia) model for a practical example of `LogoClim` use.
+
+```{=html}
+<p align="center">
+  <img src="images/logonia-evolution.svg" height=125px />
+</p>
+```

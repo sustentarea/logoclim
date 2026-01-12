@@ -1,718 +1,95 @@
-# LogoClim: WorldClim 2.1 Data Download
-
-## Overview
-
-This document provides a step-by-step guide to download the WorldClim 2.1 data from the [WorldClim website](https://worldclim.org/data/monthlywth.html).
-
-::: {.callout-important}
-This process may take some time to complete. Please be patient.
-:::
-
-## Set the Environment
+# Data Download {#sec-data-download}
 
 ```{r}
-library(beepr)
-library(cli)
-library(dplyr)
-library(fs)
-library(groomr) # github.com/danielvartan/groomr
-library(here)
-library(magrittr)
-library(orbis) # github.com/danielvartan/orbis
-library(purrr)
-library(readr)
-library(rutils) # github.com/danielvartan/rutils
-library(rvest)
-library(stringr)
-library(tidyr)
-library(zip)
-```
-
-```{r}
-source(here("R", "wc_license.R"))
-source(here("R", "wc_readme.R"))
-```
-
-## Set the Initial Variables
-
-### Options
-
-```{r}
-options(cli.progress_show_after = 0)
-```
-
-### Series
-
-Pick **one** of the following.
-
-```{r}
-#| eval: false
-
-series <- "historical-climate-data"
-```
-
-```{r}
-#| eval: false
-
-series <- "historical-monthly-weather-data"
-```
-
-```{r}
-#| eval: false
-
-series <- "future-climate-data"
-```
-
-### Resolution
-
-Pick **one** of the following.
-
-```{r}
-#| eval: false
-
-resolution <- "10m"
-```
-
-```{r}
-#| eval: false
-
-resolution <- "5m"
-```
-
-```{r}
-#| eval: false
-
-resolution <- "2.5m"
-```
-
-```{r}
-#| eval: false
-
-resolution <- "30s"
-```
-
-```{r}
-#| eval: false
-
-resolution <- "all"
-```
-
-### Global Climate Model
-
-::: {.callout-note}
-This is only useful when dealing with future climate data. Here you can specify the model(s) you want to download. If you want to download all models, set `model <- NULL`.
-
-Run `model <- NULL` when downloading other series.
-:::
-
-Pick **one** of the following.
-
-```{r}
-#| eval: false
-
-model <- NULL
-```
-
-```{r}
-#| eval: false
-
-model <- c(
-  "ACCESS-CM2", "BCC-CSM2-MR", "CMCC-ESM2", "EC-Earth3-Veg", "FIO-ESM-2-0",
-  "GFDL-ESM4", "GISS-E2-1-G", "HadGEM3-GC31-LL", "INM-CM5-0", "IPSL-CM6A-LR",
-  "MIROC6", "MPI-ESM1-2-HR", "MRI-ESM2-0", "UKESM1-0-LL"
-)
-```
-
-Below is the complete list of models available for the *Future Climate Data* series. You can find them via a link at the bottom of the data series webpage. Click [here](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=are%20variations%20available-,here.,-Historical%20climate%20data) to view the link location.
-
-```{r}
-model <- c(
-  "ACCESS-CM2", "ACCESS-ESM1-5", "BCC-CSM2-MR", "CanESM5", "CanESM5-CanOE",
-  "CMCC-ESM2", "CNRM-CM6-1", "CNRM-CM6-1-HR", "CNRM-ESM2-1", "EC-Earth3-Veg",
-  "EC-Earth3-Veg-LR", "FIO-ESM-2-0", "GFDL-ESM4", "GISS-E2-1-G", "GISS-E2-1-H",
-  "HadGEM3-GC31-LL", "INM-CM4-8", "INM-CM5-0", "IPSL-CM6A-LR", "MIROC-ES2L",
-  "MIROC6", "MPI-ESM1-2-HR", "MPI-ESM1-2-LR", "MRI-ESM2-0", "UKESM1-0-LL"
-)
-```
-
-### Directories
-
-Check the paths to the directories where the data will be stored.
-
-```{r}
-raw_data_dir <- here("data-raw")
-```
-
-```{r}
-raw_data_wc_dir <- path(raw_data_dir, "worldclim")
-```
-
-```{r}
-raw_data_wc_series_dir <- path(raw_data_wc_dir, series)
-```
-
-```{r}
-raw_data_wc_series_res_dir <- path(
-  raw_data_wc_dir,
-  series,
-  resolution |> str_replace_all("\\.", "\\-")
-)
-```
-
-```{r}
-dirs <- c(
-  raw_data_dir, raw_data_wc_dir, raw_data_wc_series_dir,
-  raw_data_wc_series_res_dir
-)
-
-for (i in dirs) {
-  if (!dir_exists(i)) {
-    dir_create(i, recurse = TRUE)
-  }
-}
-```
-
-## Scrape the Source
-
-```{r}
-html <-
-  get_wc_url(series, resolution) |>
-  read_html()
-```
-
-```{r}
-urls <-
-  html |>
-  html_elements("a") |>
-  html_attr("href") |>
-  str_subset("geodata")
-```
-
-```{r}
-if (!resolution == "all") {
-  urls <-
-    urls %>%
-    magrittr::extract(
-      str_detect(
-        basename(.),
-        paste0("(?<=_)", resolution)
-      )
-    )
-}
-```
-
-```{r}
-if (!is.null(model)) {
-  urls <-
-    urls %>%
-    magrittr::extract(
-      str_detect(
-        basename(.),
-        paste0("(?<=_)", model, collapse = "|")
-      )
-    )
-}
-```
-
-## Create the Metadata
-
-```{r}
-sizes <-
-  urls |>
-  map_dbl(
-    .f = rutils::get_file_size,
-    .progress = TRUE
-  ) |>
-  as_fs_bytes()
-
-beep(1)
-```
-
-```{r}
-metadata <-
-  tibble(
-    url = urls,
-    file = basename(urls),
-    size = sizes
-  ) |>
-  arrange(size) |>
-  mutate(
-  size_cum_sum =
-      size |>
-      replace_na() |>
-      cumsum() |>
-      as_fs_bytes()
-  )
-
-metadata
-```
-
-```{r}
-metadata |> pull(size_cum_sum) |> last()
-```
-
-```{r}
-metadata |>
-  write_rds(
-    path(raw_data_wc_series_res_dir, "metadata.rds")
-  )
-```
-
-## Check for Errors
-
-```{r}
-{
-  cli_alert_info(
-    paste0(
-      "{.strong {col_red(count_na(metadata$size))}} ",
-      "url requests resulted in error."
-    )
-  )
-
-  if (count_na(metadata$size) > 0) {
-    cli_alert_info("Their file names are:")
-    cli_li(metadata$file[is.na(metadata$size)])
-  }
-}
-```
-
-```{r}
-if (any(is.na(metadata$size))) {
-  paste0(
-    "The following url requests resulted in error.",
-    "\n\n",
-    paste(metadata$url[is.na(metadata$size)], collapse = "\n")
-  ) |>
-    write_lines(here("qmd", "data-download.log"))
-}
-```
-
-## Add LICENSE and README Files
-
-```{r}
-if (series == "future-climate-data") {
-  dir <- path(raw_data_wc_series_res_dir, "tif")
-} else {
-  dir <- path(raw_data_wc_series_res_dir, "zip")
-}
-
-if (!dir_exists(dir)) {
-  dir |> dir_create(recurse = TRUE)
-}
-```
-
-```{r}
-dirs <- c(
-  raw_data_wc_dir,
-  raw_data_wc_series_dir,
-  raw_data_wc_series_res_dir,
-  dir
-)
-
-for (i in dirs) {
-  wc_license() |> write_lines(path(i, "LICENSE.md"))
-}
-```
-
-```{r}
-wc_readme() |>
-  write_lines(path(raw_data_wc_dir, "README.md"))
-
-wc_readme(series) |>
-  write_lines(path(raw_data_wc_series_dir, "README.md"))
-
-wc_readme(series, resolution) |>
-  write_lines(path(raw_data_wc_series_res_dir, "README.md"))
-
-wc_readme(series, resolution) |>
-  write_lines(path(dir, "README.md"))
-```
-
-## Download the Files
-
-```{r}
-#| output: false
-
-metadata |>
-  pull(url) |>
-  rutils::download_file(
-    dir = dir,
-    broken_links = TRUE
-  )
-
-beep(8)
-```
-
-If the download process was interrupted or not all files were downloaded, run the code chunk below to retry downloading only the missing files.
-
-```{r}
-#| eval: false
+#| label: setup
 #| include: false
 
-files <- dir |> dir_ls(type = "file")
+library(here)
 
-metadata |>
-  filter(!file %in% basename(files)) |>
-  pull(url) |>
-  rutils::download_file(dir = dir, broken_links = TRUE)
-
-beep(8)
+here("R", ".setup.R") |> source()
 ```
 
-## Unzip the Files (Optional)
+::: {.callout-important}
+This manual is still under development and may be subject to change.
 
-```{r}
-#| eval: false
+This warning will be removed once the manual is finalized.
+:::
 
-zip_dir <- path(raw_data_wc_series_res_dir, "zip")
-```
+To simplify the process of downloading WorldClim data, we developed the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function along with the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a]. This function takes the job of accessing the WorldClim website, scraping the data, and organizing it for you just the way `LogoClim` needs it.
 
-```{r}
-#| eval: false
+Here is a parameter overview:
 
-tif_dir <- path(raw_data_wc_series_res_dir, "tif")
-
-if (!dir_exists(tif_dir)) tif_dir |> dir_create(recurse = TRUE)
-```
-
-```{r}
-#| eval: false
-
-if (dir_exists(zip_dir)) {
-  accompanying_files <- c("README.md", "LICENSE.md")
-
-  for (i in accompanying_files) {
-    if (file_exists(path(zip_dir, i))) {
-      file_copy(
-        path(zip_dir, i),
-        path(tif_dir, i),
-        overwrite = TRUE
-      )
-    }
-  }
-}
-```
-
-```{r}
-#| eval: true
-#| output: false
-
-if (dir_exists(zip_dir)) {
-  zip_files <-
-    zip_dir |>
-    dir_ls(type = "file", regexp = "zip$")
-
-  cli_progress_bar(
-      name = "Unzipping data",
-      total = length(zip_files),
-      clear = FALSE
-    )
-
-  for (i in zip_files) {
-    i |>
-      zip::unzip(
-        overwrite = TRUE,
-        exdir = tif_dir
-      )
-
-    cli_progress_update()
-  }
-
-  cli_progress_done()
-
-  beep(1)
-}
-```
-
-```{r}
-#| eval: false
-
-if (dir_exists(zip_dir)) zip_dir |> dir_delete()
-```
-
-## Zip the Files (Optional)
-
-You need to unzip the files first if you want to zip them again. Use the code chunk above to unzip the files.
-
-### Create a New Metadata
-
-```{r}
-#| eval: false
-
-tif_dir <- path(raw_data_wc_series_res_dir, "tif")
-```
-
-```{r}
-#| eval: false
-
-files <- tif_dir |> dir_ls(type = "file", regexp = "tif$")
-```
-
-```{r}
-#| eval: false
-
-sizes <-
-  files |>
-  map_dbl(
-    .f = get_file_size,
-    .progress = TRUE
-  ) |>
-  as_fs_bytes()
-```
-
-```{r}
-#| eval: false
-
-metadata <-
-  tibble(
-    file = basename(files),
-    size = sizes
-  ) |>
-  arrange(size) |>
-  mutate(
-  size_cum_sum =
-      size |>
-      replace_na() |>
-      cumsum() |>
-      as_fs_bytes()
-  )
-
-metadata
-```
-
-```{r}
-#| eval: false
-
-metadata |> pull(size_cum_sum) |> last()
-```
-
-### Zip the Files
-
-```{r}
-#| eval: false
-
-zip_dir <- path(raw_data_wc_series_res_dir, "zip")
-
-if (!dir_exists(zip_dir)) zip_dir |> dir_create(recurse = TRUE)
-```
-
-```{r}
-#| eval: false
-
-climate_variables <-
-  metadata |>
-  pull(file) |>
-  orbis:::extract_wc_variable() |>
-  unique()
-
-climate_variables
-```
-
-```{r}
-#| eval: false
-
-models <-
-  metadata |>
-  pull(file) |>
-  orbis:::extract_wc_gcm() |>
-  unique()
-
-models
-```
-
-```{r}
-#| eval: false
-
-if (length(series) == 1) {
-  switch(
-    series,
-    "historical-climate-data" = {
-      series_suffix <- "hcd"
-    },
-    "historical-monthly-weather-data" = {
-      series_suffix <- "hmwd"
-    },
-    "future-climate-data" = {
-      series_suffix <- "fcd"
-    }
-  )
-} else {
-  series_suffix <- NULL
-}
-```
-
-For zipping files by climate variable, use:
-
-```{r}
-#| eval: false
-
-cli_progress_bar(
-  name = "Zipping data",
-  total = length(climate_variables),
-  clear = FALSE
+```r
+worldclim_download(
+  series,
+  resolution = NULL,
+  variable = NULL,
+  model = NULL,
+  ssp = NULL,
+  year = NULL,
+  dir = here::here("data")
 )
-
-for (i in climate_variables) {
-  i_file <-
-    metadata |>
-    pull(file) |>
-    zip_files_by_pattern(
-      pattern = i,
-      prefix = paste0(
-        str_replace_all(resolution, "\\.", "\\-"),
-        ifelse(
-          !is.null(series_suffix),
-          paste0("-", series_suffix),
-          ""
-        ),
-        "-"
-      ),
-      max_size = fs_bytes("50GB"),
-      appendices = c("LICENSE.md", "README.md"),
-      root = tif_dir,
-      dir = zip_dir
-    )
-
-  i_file |>
-      file_move(
-        path(
-          zip_dir,
-          str_to_lower(basename(i_file))
-        )
-      )
-
-  cli_progress_update()
-}
-
-cli_progress_done()
-
-beep(1)
 ```
 
-For zipping files by model, use:
+The first thing you need to do is explore the [WorldClim](https://www.worldclim.org/) website to select the appropriate data for your needs. With this information, you simply specify the parameters for the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function.
 
-```{r}
-#| eval: false
+::: {.callout-caution}
+For small areas, increase the data resolution to minimize losses from the conversion process. We perform tests using 1% relative tolerance for areas with at least 1,000 cells. We recommend following this guideline and using areas with at least 1,000 cells. See the [Near-Equality Tests](#sec-sm-near-equality-tests) to learn more.
+:::
 
-if (!is.null(model)) {
-  cli_progress_bar(
-    name = "Zipping data",
-    total = length(model),
-    clear = FALSE
-  )
+For example, to download precipitation data from the [Historical Monthly Weather](https://www.worldclim.org/data/monthlywth.html) data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
 
-  for (i in model) {
-    i_file <-
-      metadata |>
-      pull(file) |>
-      zip_files_by_pattern(
-        pattern = i,
-        prefix = paste0(
-          str_replace_all(resolution, "\\.", "\\-"),
-          ifelse(
-            !is.null(series_suffix),
-            paste0("-", series_suffix),
-            ""
-          ),
-          "-"
-        ),
-        max_size = fs_bytes("50GB"),
-        appendices = c("LICENSE.md", "README.md"),
-        root = tif_dir,
-        dir = zip_dir
-      )
-
-    i_file |>
-      file_move(
-        path(
-          zip_dir,
-          str_to_lower(basename(i_file))
-        )
-      )
-
-    cli_progress_update()
-  }
-
-  cli_progress_done()
-}
-
-beep(1)
+```r
+files <- worldclim_download(
+  series = "hmwd",
+  resolution = "10m",
+  variable = "prec",
+  year = "2020-2024"
+)
 ```
 
-For zipping files by model and climate variable, use:
+Refer to [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) documentation to learn more.
 
-```{r}
-#| eval: false
+## File Structure
 
-if (!is.null(model)) {
-  cli_progress_bar(
-    name = "Zipping data",
-    total = length(model) * length(climate_variables),
-    clear = FALSE
-  )
+The function downloads and organizes files into a structure required by `LogoClim`, so it is essential to preserve this structure. The organization follows this hierarchy:
 
-  for (i in model) {
-    for (j in climate_variables) {
-      i_file <-
-        metadata |>
-        pull(file) |>
-        zip_files_by_pattern(
-          pattern = paste0(j, "_", i),
-          prefix = paste0(
-            str_replace_all(resolution, "\\.", "\\-"),
-            ifelse(
-              !is.null(series_suffix),
-              paste0("-", series_suffix),
-              ""
-            ),
-            "-"
-          ),
-          max_size = fs_bytes("50GB"),
-          appendices = c("LICENSE.md", "README.md"),
-          root = tif_dir,
-          dir = zip_dir
-        )
-
-      i_file |>
-        file_move(
-          path(
-            zip_dir,
-            str_to_lower(basename(i_file))
-          )
-        )
-
-        cli_progress_update()
-    }
-  }
-
-  cli_progress_done()
-}
-
-beep(1)
+```text
+data
+├── historical-climate-data
+├── historical-monthly-weather-data
+├── future-climate-data
 ```
 
-For zipping the entire series, use:
+The structure above assumes that the data will be stored in a directory named `data`, but you can store it in any other directory as well. You will just need to configure the data path in the model settings accordingly.
 
-```{r}
-#| eval: false
+The data files inside the folders also follows naming patterns that must be respected. Each series has its own naming convention:
 
-metadata |>
-  pull(file) |>
-  zip_files_by_pattern(
-    pattern = ".",
-    prefix = paste0(
-      str_replace_all(resolution, "\\.", "\\-"),
-      ifelse(
-        !is.null(series_suffix),
-        paste0("-", series_suffix),
-        ""
-      )
-    ),
-    max_size = fs_bytes("50GB"),
-    appendices = c("LICENSE.md", "README.md"),
-    root = tif_dir,
-    dir = zip_dir
-  )
+- Historical Climate Data:
 
-beep(1)
+```test
+    wc2.1  _  10m  _  tmin  _  1970-2000  -  01  .asc
+    _____     ___     _____    _________    ____
+      |        |        |          |          |
+   Prefix  Resolution  Variable  Period     Month
 ```
+
+- Historical Monthly Weather Data:
+
+```test
+    wc2.1  _  cruts4.09  _  10m  _  prec  _  1951  -  01  .asc
+    ______    __________    ____    _____    _____    ___
+      |            |         |          |        |     |
+   Prefix   CRU-TS Version  Resolution  Variable Year  Month
+```
+
+- Future climate data:
+
+```test
+    wc2.1  _  10m  _  bioc  _  ACCESS-CM2  _  ssp126  _  2021-2040  _  01.  asc
+    ______    ____    _____    __________     ______     ________      ___
+      |       |        |           |            |           |           |
+   Prefix  Resolution  Variable  Model         SSP        Period      Month
+```
+
+Note the separators. They can change from `_` to `-` depending on the data series and its specific requirements.

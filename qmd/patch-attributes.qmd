@@ -1,0 +1,24 @@
+# Patch Attributes {#sec-patch-attributes}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+Each patch in the model has the following attributes:
+
+- **`value`**: A number representing the value of the climate variable.
+- **`value-12`**: A `list` containing the current value of the climate variable with the previous 11 values. These values are ordered chronologically, with the most recent value at the end of the list.
+- **`value-12ma`**: A number representing the 12-month moving average of the climate variable (`mean value-12`).
+- **`latitude`**: A `list` containing two numbers indicating the minimum and maximum latitude of the patch point.
+- **`longitude`**: A `list` containing two numbers indicating the minimum and maximum longitude of the patch point.

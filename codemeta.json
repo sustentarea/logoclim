@@ -64,11 +64,9 @@
     "url": "https://www.fsp.usp.br/sustentarea/"
   },
   "copyrightHolder": {
-    "@type": "Person",
-    "familyName": "Vartanian",
-    "givenName": "Daniel",
-    "email": "danielvartan@proton.me",
-    "@id": "https://orcid.org/0000-0001-7782-759X"
+    "@type": "Organization",
+    "name": "Sustentarea",
+    "url": "https://www.fsp.usp.br/sustentarea/"
   },
   "maintainer": {
     "@type": "Person",
@@ -116,10 +114,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "NetLogo",
-    "version": "7.0.0",
+    "version": "7.0.3",
     "url": "https://www.netlogo.org"
   },
-  "runtimePlatform": "NetLogo version 7.0.0 (2025)",
+  "runtimePlatform": "NetLogo version 7.0.3 (2025)",
   "operatingSystem": [
     "Linux",
     "macOS",

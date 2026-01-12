@@ -1,24 +1,32 @@
 library(checkmate)
 library(here)
 library(magrittr)
-library(stats)
 library(terra)
 
 compare_statistics <- function(
   tif_file,
   shape,
   results,
+  layer = NULL,
   tolerance = 1e-8
 ) {
   assert_string(tif_file)
   assert_file_exists(tif_file, extension = ".tif")
   assert_class(shape, "SpatVector")
   assert_list(results)
+  assert_string(layer, null.ok = TRUE)
   assert_number(tolerance, lower = 0)
 
-  worldclim_cell_values <-
+  worldclim_data <-
     tif_file |>
-    rast() |>
+    rast()
+
+  if (terra::nlyr(worldclim_data) > 1) {
+    worldclim_data <- worldclim_data |> subset(layer)
+  }
+
+  worldclim_cell_values <-
+    worldclim_data |>
     crop(
       shape,
       snap = "out",
@@ -62,7 +70,6 @@ compare_statistics <- function(
 
 library(checkmate)
 library(moments)
-library(stats)
 library(tidyr)
 
 stats_summary <- function(

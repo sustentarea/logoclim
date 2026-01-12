@@ -7,8 +7,6 @@ library(hexSticker)
 
 set.seed(2025)
 
-file <- here("images", "logo.png")
-
 plot <-
   data.frame(
     x = rbeta(10000, 2, 1),
@@ -33,22 +31,31 @@ plot <-
 
 print(plot) |> suppressWarnings()
 
-sticker(
-  subplot = plot,
-  s_x = 1,
-  s_y = 1,
-  s_width = 2.8,
-  s_height = 2.8,
-  package = NULL,
-  h_size = 0,
-  h_fill = "white",
-  h_color = "white",
-  white_around_sticker = TRUE,
-  filename = file,
-  dpi = 300
+files <- c(
+  # here("images", "logo.svg"),
+  here("images", "logo.png")
 )
 
+for (i in files) {
+  sticker(
+    subplot = plot,
+    s_x = 1,
+    s_y = 1,
+    s_width = 2.8,
+    s_height = 2.8,
+    package = NULL,
+    h_size = 0,
+    h_fill = "white",
+    h_color = "white",
+    white_around_sticker = TRUE,
+    filename = i,
+    dpi = 300
+  )
+}
+
+file_png <- files |> grep("\\.png$", x = _, value = TRUE)
+
 hex_crop(
-  images = file,
-  to = file
+  images = file_png,
+  to = file_png
 )

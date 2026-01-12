@@ -1,0 +1,86 @@
+# WorldClim {#sec-worldclim}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+[WorldClim](https://www.worldclim.org/) is a project created by [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), and colleagues that provides high-resolution global climate data for spatial mapping and modeling [@fick2017]. These datasets include historical series [downscaled](https://www.gfdl.noaa.gov/climate-model-downscaling/) from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), containing data interpolated from thousands of weather stations, as well as future projections derived from Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://wcrp-cmip.org/cmip-phases/cmip6/)) models.
+
+In agent-based models, WorldClim data can help simulate the effects of climate change on species distributions, ecosystem dynamics, and human-environment interactions, adding [structural realism](https://doi.org/10.1126/science.1116681) and complexity to simulations.
+
+## Data Series
+
+`LogoClim` supports simulation with all three climate data series provided by [WorldClim 2.1](https://worldclim.org/). Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)).
+
+### Historical Climate Data
+
+This [series](https://www.worldclim.org/data/worldclim21.html) includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+
+### Historical Monthly Weather Data
+
+This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+
+### Future Climate Data
+
+This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+
+## WorldClim Data with `LogoClim`
+
+`LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with [NetLogo](www.netlogo.org/).
+
+To simplify this workflow, we developed two functions in the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a] to streamline the process of data extraction and processing:
+
+- [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html): Download WorldClim data
+- [`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html): Convert WorldClim GeoTIFF files to Esri ASCII Grid
+
+Using these functions effectively requires a basic understanding of the [R](https://www.r-project.org/) programming language and its ecosystem. This manual and the package documentations provides instructions for their use. For additional guidance on R, consider exploring Garrett Grolemund's [-@grolemund2014] [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) or Hadley Wickham's [-@wickham2023e] [R for Data Science](https://r4ds.hadley.nz/).
+
+If you're already familiar to WorldClim, you can skip this section and proceed to the the [Data Download](#sec-data-download) section.
+
+## WorldClim License
+
+It's important to note that WorldClim data is freely available only for **non-commercial use**. If you wish to use the data for commercial purposes, you must obtain permission from the WorldClim team.
+
+Here is a summary of the licensing terms:
+
+```text
+The data are freely available for academic use and other non-commercial use.
+Redistribution or commercial use is not allowed without prior permission.
+Using the data to create maps for publishing of academic research articles is
+allowed. Thus you can use the maps you made with WorldClim data for figures in
+articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are
+allowed (but not required) to publish these articles (and the maps they
+contain) under an open license such as CC-BY as is the case with PLoS
+journals and may be the case with other open access articles.
+```
+
+You can find more about the WorldClim licensing terms [here](https://www.worldclim.org/about.html).
+
+## WorldClim Literature
+
+Each dataset is accompanied by literature detailing its creation, methodology, and potential applications. Always refer to the WorldClim website for proper citation guidelines and to access the most current and relevant references for your work.
+
+The main references are the ones below:
+
+<!-- @fick2017 -->
+
+Fick, S. E., & Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. *International Journal of Climatology*, *37*(12), 4302–4315. <https://doi.org/10.1002/joc.5086>
+
+<!-- @harris2020a -->
+
+Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. *Scientific Data*, *7*(1), 109. <https://doi.org/10.1038/s41597-020-0453-3>
+
+<!-- @eyring2016a -->
+
+Eyring, V., Bony, S., Meehl, G. A., Senior, C. A., Stevens, B., Stouffer, R. J., & Taylor, K. E. (2016). Overview of the Coupled Model Intercomparison Project Phase 6 (CMIP6) experimental design and organization. *Geoscientific Model Development*, *9*(5), 1937–1958. <https://doi.org/10.5194/gmd-9-1937-2016>

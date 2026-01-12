@@ -1,94 +1,87 @@
-## v2.1.0.9000 (Development Version)
+# v2.1.0.9000 (development version)
 
-<!-- Change style to match Tidyverse guidelines for NEWS files. -->
+- A first draft of `LogoClim` User Manual is now available in the `docs/` folder and online at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
+- A `color-bar-bins` slider was added to control the number of bins in the color bar.
+- The interface now has a new color bar widget for better visualization of patch values.
+- The *Bioclimatic Variable* monitor was removed. Now it is displayed directly on the *Climate Variable* monitor.
+- Automated unit tests now cover most supported configurations using the [`check-netlogo`](https://github.com/danielvartan/netlogo-actions) action from the `LogoActions` project. Tests run on Windows, macOS, and Linux with the latest NetLogo release. Due to computational constraints, only 10m resolution settings are tested. For future climate data, only SSP-126 is included because other SSPs are not consistently available across GCMs. [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
+- A new global variable `cell-size` was added to store the size of each patch in degrees.
+- Slider limits were adjusted and value validation for blank/empty settings was added.
+- The issue with `bioclimatic variables` 13–18 not working when future climate data was selected was fixed.
+- `latitude`/`longitude` inversion issue was fixed.
+- Code of Conduct updated to [Contributor Covenant 3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct/).
+- The documentation was updated to reflect all changes.
 
-### Fixes
+# v2.1.0 (2025-09-16)
 
-- Fixed latitude/longitude values inversion.
-- Fixed bioclimatic variables 13–18 not working when future climate data was selected.
-- Adjusted slider limits and added value validation for blank/empty settings.
+- A `#headless?` parameter was added to the `setup` procedure for improved headless execution.
+- The `#tick` and `#wait` parameters were removed from the `go` procedure; it now has no parameters, simplifying execution.
+- The `go-back` procedure now resets ticks and clears all plots.
+- `NaN` values produced by the [GIS extension](https://docs.netlogo.org/gis.html) are now converted to `false`, following [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554). This fixes problems with primitives such as `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
+- String parameters and interface text were converted to title case.
+- The `show-value` procedure was improved to provide better contrast for patch labels.
+- Patches now have two additional attributes: `value-12` (last 12 months of values) and `value-12ma` (12-month moving average).
+- The plot behaviors were updated. A 12-month moving average pen was added, indicators for the start of each 12-month cycle were added, and the y-axis now dynamically adjusts based on the minimum, maximum, and interquartile range of the 12-month data window.
+- The `halt` procedure was removed; error messages now provide more descriptive text.
+- The [`Logônia`](https://github.com/sustentarea/logonia) model was added as a reference for `LogoClim` integration.
+- [Quarto](https://quarto.org/) notebooks were updated.
+- The documentation was updated to reflect all changes.
+
+# v2.0.0 (2025-07-29)
+
+### Breaking Changes
+
+- The model now requires **NetLogo 7.0.1*- or later.
 
 ### New Features and Improvements
 
-- The model now includes automated unit tests for most allowed configurations, based on the [`check-netlogo`](https://github.com/danielvartan/netlogo-actions) action from the `NetLogo-Actions` project. Only 10m resolution settings are tested due to computational constraints. Only SSP-126 is tested for future climate data due to limited availability of other SSPs across GCMs. [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
-- The *Bioclimatic Variable* monitor was removed. Now it is displayed directly on the *Climate Variable* monitor.
-- The interface now have a new color bar widget for better visualization of patch values.
-- A `color-bar-bins` slider was added to control the number of bins in the color bar.
-- The Code of Conduct to [Contributor Covenant 3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct/) was update to version 3.0.
-- Updated documentation to reflect all changes.
+- Interface widgets were resized to match the new NetLogo standard dimensions.
+- The model's license was changed from [MIT](https://opensource.org/license/mit) to [GPLv3](https://opensource.org/license/gpl-3-0).
+- The `transition-seconds` slider was removed, as it is no longer necessary.
+- The `adjust-world-size?` slider was removed; world size adjustment is now always enabled by default.
+- A global variable named `plot-max-y-range` was introduced to optimize computations.
 
-## v2.1.0 (2025-09-16)
+# v1.0.0 (2025-07-03)
 
-- Added a `#headless?` parameter to the `setup` procedure for improved headless execution.
-- Removed the `#tick` and `#wait` parameters from the `go` procedure; it now has no parameters, simplifying execution.
-- Updated the `go-back` procedure to reset ticks and clear all plots.
-- Converted `NaN` values produced by the [GIS extension](https://docs.netlogo.org/gis.html) (used to represent missing data) into `false`, following [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554). This fixes problems with primitives such as `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
-- Converted string parameters and interface text to title case.
-- Improved the `show-value` procedure to provide better contrast for patch labels.
-- Added a 12-month moving average for patches. Patches now have two additional attributes: `value-12` (last 12 months of values) and `value-12ma` (12-month moving average).
-- Updated plot behaviors: added a 12-month moving average pen, added indicators for the start of each 12-month cycle, and y-axis now dynamically adjusts based on the minimum, maximum, and interquartile range of the 12-month data window.
-- Removed the `halt` procedure; error messages now provide more descriptive text.
-- Added the [`Logônia`](https://github.com/sustentarea/logonia) model as a reference for `LogoClim` integration.
-- Updated [Quarto](https://quarto.org/) notebooks.
-- Updated documentation to reflect all changes.
+First stable release! 🎉
 
-## v2.0.0 (2025-07-29)
+# v0.0.0.9015 (2025-07-02) (Pre-Release)
 
-- **Breaking change**: Updated the model for compatibility with **NetLogo 7.0.0**.
+- Variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) were added as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
+- The year interval issue when using the *Future Climate Data- series was fixed.
 
-- Resized interface widgets to match the new NetLogo standard dimensions.
-- Changed the `LogoClim` license from MIT to GPLv3.
-- Removed the `transition-seconds` slider, as it is no longer necessary.
-- Removed the `adjust-world-size?` slider; world size adjustment is now always enabled by default.
-- Introduced the global variable `plot-max-y-range` to optimize computations.
-- Revised documentation to reflect updates.
+# v0.0.0.9013 (2025-06-24) (Pre-Release)
 
-## v1.0.0 (2025-07-03)
-
-First stable release. 🎉
-
-## v0.0.0.9015 (2025-07-02) (Pre-Release)
-
-- Added variations (e.g., ACCESS-ESM1-5) and additional (e.g., CanESM5) Global Climate Models (GCMs) as selectable options in `global-climate-model`. WorldClim provides a dedicated webpage for this data, available [here](https://www.worldclim.org/data/cmip6_all/cmip6_clim2.5m.html).
-- Fixed an issue with year intervals when using the *Future Climate Data* series
-
-## v0.0.0.9013 (2025-06-24) (Pre-Release)
-
-- Improved the documentation.
-- Removed all dependencies on the `R` programming language and its packages.
-- Improved `setup-world` to address bleeding issues.
+- All dependencies on the [R](https://www.r-project.org/) programming language and its packages were removed.
+- `setup-world` was improved to address bleeding issues.
 - Persistent world bleeding is now converted to `NaN` values.
-- Enhanced Quarto notebooks to fix dateline issues.
-- Automated the generation of README and LICENSE files in the
-  Quarto notebooks.
-- Removed `patch-px-size` slider and added `adjust-world-size?` slider for
-  automatic world size adjustment.
-- Removed automatic adjustment of `start-year`. An error is now raised if
-  `start-year` is not set to a valid value.
-- Removed unnecessary dependencies and refactored code structure for improved
-  maintainability.
+- Quarto notebooks were enhanced to fix dateline issues.
+- Generation of README and LICENSE files in Quarto notebooks was automated.
+- `patch-px-size` slider was removed and `adjust-world-size?` slider was added for automatic world size adjustment.
+- The automatic adjustment of `start-year` was removed. An error is now raised if `start-year` is not set to a valid value.
+- Unnecessary dependencies were removed and code structure was refactored for improved maintainability.
+- The documentation was updated to reflect all changes.
 
-## v0.0.0.9010 (2025-06-09) (Pre-Release)
+# v0.0.0.9010 (2025-06-09) (Pre-Release)
 
-- Fixed an issue with Windows file paths for improved cross-platform
-compatibility.
+- The windows file path issue was fixed for improved cross-platform compatibility.
 
-## v0.0.0.9009 (2025-06-09) (Pre-Release)
+# v0.0.0.9009 (2025-06-09) (Pre-Release)
 
-- Enhanced Quarto notebooks for improved readability and clarity.
-- Refactored codebase to increase modularity and maintainability.
-- Fixed world bleeding issues at higher resolutions.
-- Updated charts to display whole numbers.
-- Expanded documentation.
+- Quarto notebooks were enhanced for improved readability and clarity.
+- The codebase was refactored to increase modularity and maintainability.
+- World bleeding issues at higher resolutions were fixed.
+- Charts were updated to display whole numbers.
+- The documentation was updated to reflect all changes.
 
-## v 0.0.0.9006 (2025-04-15) (Pre-Release)
+# v 0.0.0.9006 (2025-04-15) (Pre-Release)
 
-- Improved internal mechanisms for better performance and reliability.
+- Internal mechanisms were improved for better performance and reliability.
 
-## v 0.0.0.9004 (2024-09-14) (Pre-Release)
+# v 0.0.0.9004 (2024-09-14) (Pre-Release)
 
-First pre-release. 🎉
+First pre-release! 🎉
 
-## v0.0.0.9000 (2024-09-14)
+# v0.0.0.9000 (2024-09-14)
 
 - Added a `NEWS.md` file to track changes to the model.

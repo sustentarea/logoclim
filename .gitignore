@@ -1,11 +1,11 @@
+**/*.quarto_ipynb
 .RData
 .Rhistory
 .Rproj.user
 .Ruserdata
-.venv
-**/*.quarto_ipynb
 /...data/
 /..data/
+/.data-raw/
 /.data/
 /.quarto/
 /data-raw/

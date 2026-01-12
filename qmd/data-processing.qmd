@@ -1,0 +1,66 @@
+# Data Processing {#sec-data-processing}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-important}
+This manual is still under development and may be subject to change.
+
+This warning will be removed once the manual is finalized.
+:::
+
+We also developed the [`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) in the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a] to do the job of converting the WorldClim GeoTIFF files to Esri ASCII Grid format. Like `worldclim_download()`, this function is very straightforward to use.
+
+Here is a parameter overview:
+
+```r
+worldclim_to_ascii(
+  file,
+  shape = NULL,
+  box = NULL,
+  shift_longitude = TRUE,
+  dx = -45,
+  extreme_outlier_fix = TRUE,
+  overwrite = TRUE,
+  na_flag = -99,
+  dir = dirname(file[1])
+)
+```
+
+[`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) allow you not only convert the [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) files to [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid) format, but also crop the data to a specific region of interest. This is done using the `shape` or `box` parameters.
+
+The first parameter, `shape`, expects a spatial object (e.g., an `sf` object) that defines the area to crop. The second parameter, `box`, allows you to specify a bounding box using numeric coordinates.
+
+To obtain shapes of countries and their administrative boundaries, we recommend using the [`geodata`](https://rspatial.github.io/geodata/) R package [@hijmans2024], which provides access to and downloads shapes from the [GADM](https://gadm.org) database [@hijmansa].
+
+```r
+# install.packages("geodata")
+library(geodata)
+```
+
+The [`gadm`](https://rspatial.github.io/geodata/reference/gadm.html) function identifies countries based on the [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) standard. Click here to see its [documentation](https://rspatial.github.io/geodata/reference/gadm.html).
+
+```r
+country_shape <- country |> gadm("FRA")
+```
+
+For example, if you want to crop WorldClim data to the boundaries of France, you could use the following code:
+
+```r
+worldclim_to_ascii(
+  file = "path/to/the/files/you/download/with/worldclim_download",
+  shape = country_shape
+)
+```
+
+The function default values already takes care of possible distortions caused by geographic projection or rotating issues (e.g., shapes that cross the [International Date Line](https://en.wikipedia.org/wiki/International_Date_Line)). It also removes unique outliers from the data. All these features can be adjusted using the function parameters.
+
+After processing the data, you just need to point at its directory using the model interface, or by setting its path in the global variable `data-path`, to start using `LogoClim`.
+
+See the [function documentation](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) for more details.

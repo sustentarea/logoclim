@@ -28,8 +28,6 @@ options(
 
 # Set Variables -----
 
-set.seed(2025)
-
 # Set `knitr`` -----
 
 clean_cache() |> suppressWarnings()
