@@ -1,4 +1,4 @@
-# LogoClim <img src="images/logo.png" align="right" width="120" />
+# LogoClim <img src="images/logo.svg" align="right" width="120" />
 
 <!-- Quarto render -->
 
@@ -14,7 +14,7 @@ library(here)
 library(htmltools)
 library(knitr)
 
-source(here("R", "_setup.R"))
+source(here("R", ".setup.R"))
 ```
 
 <!-- badges: start -->
@@ -38,8 +38,8 @@ cat(
   badge_repostatus("active"),
   badge_github_actions(
     ref = "sustentarea/logoclim",
-    action = "NetLogo Check",
-    alt = "NetLogo Check Badge"
+    action = "NetLogo check",
+    alt = "NetLogo check badge"
   ),
   badge_custom(
     x = "CoMSES Network",
@@ -49,14 +49,14 @@ cat(
       "https://www.comses.net/codebases/",
       "bccd451f-76a4-408a-85fd-c5024359ba9a/"
     ),
-    alt = "CoMSES Network Badge"
+    alt = "CoMSES Network badge"
   ),
   badge_custom(
-    x = "OSF DOI",
+    x = "doi",
     y = "10.17605/OSF.IO/EAPZU",
     color = "1284C5",
     url = "https://doi.org/10.17605/OSF.IO/EAPZU",
-    alt = "OSF DOI Badge"
+    alt = "OSF DOI badge"
   ),
   paste0(
     "[![",
@@ -87,14 +87,14 @@ cat(
     license = "GPLv3",
     color = "bd0000",
     url = "https://www.gnu.org/licenses/gpl-3.0",
-    alt = "GNU GPLv3 License"
+    alt = "GNU GPLv3 license"
   ),
   badge_custom(
     x = "Contributor%20Covenant",
     y = "3.0",
     color = "4baaaa",
     url = "https://www.contributor-covenant.org/version/3/0/code_of_conduct/",
-    alt = "Contributor Covenant 3.0 Code of Conduct Badge"
+    alt = "Contributor Covenant 3.0 code of conduct badge"
   )
 )
 ```
@@ -157,7 +157,7 @@ The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](
 
 You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
 
-To run the model, make sure to download all files in the `nlogox` folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
+To run the model, make sure to download all files in the [`nlogox`](nlogox) folder. Note that climate data from WorldClim is required but not included in this repository; see the next section for instructions on obtaining and preparing the data.
 
 #### Downloading the Data
 
@@ -171,7 +171,7 @@ We suggest starting with the 10-minute resolution to verify that the model runs 
 
 #### Running the Model
 
-Once everything is set, open the `logoclim.nlogox` file located in the `nlogox` folder to start exploring!
+Once everything is set, open the `logoclim.nlogox` file located in the [`nlogox`](nlogox) folder to start exploring!
 
 Refer to the `Info` tab in the model for additional details.
 
@@ -187,7 +187,7 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 </p>
 ```
 
-## How to Cite
+## Citation
 
 ```{=gfm}
 > [!IMPORTANT]
@@ -198,7 +198,7 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibTeX entry for LaTeX users is:
 
@@ -212,7 +212,7 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
-## How to Contribute
+## Contributing
 
 ```{r}
 #| echo: false
@@ -224,7 +224,7 @@ cat(
     y = "3.0",
     color = "4baaaa",
     url = "https://www.contributor-covenant.org/version/3/0/code_of_conduct/",
-    alt = "Contributor Covenant 3.0 Code of Conduct"
+    alt = "Contributor Covenant 3.0 code of conduct badge"
   )
 )
 ```
@@ -250,13 +250,13 @@ cat(
     license = "GPLv3",
     color = "bd0000",
     url = "https://www.gnu.org/licenses/gpl-3.0",
-    alt = "GNU GPLv3 License"
+    alt = "GNU GPLv3 license"
   )
 )
 ```
 
 ```text
-Copyright (C) 2025 Daniel Vartanian
+Copyright (C) 2025 Sustentarea Research and Extension Center
 
 LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -279,7 +279,7 @@ We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/c
 
 We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing global climate model development.
 
-We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support CMIP6 and ESGF.
+We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support [CMIP6](https://pcmdi.llnl.gov/CMIP6/) and [ESGF](https://esgf.llnl.gov/).
 
 ```{r}
 #| echo: false
@@ -288,8 +288,6 @@ We are grateful to the climate modeling groups for producing and sharing their m
 tags$table(
   tags$tr(
     tags$td(
-      tags$br(),
-      tags$br(),
       tags$p(
         tags$a(
           tags$img(
@@ -302,10 +300,8 @@ tags$table(
         ),
         align = "center"
       ),
-      tags$br(),
-      tags$br(),
       width = "30%",
-      valign = "middle"
+      valign = "center"
     ),
     tags$td(
       tags$p(
@@ -323,7 +319,7 @@ tags$table(
         ")."
       ),
       width = "70%",
-      valign = "middle"
+      valign = "center"
     )
   )
 ) |>
@@ -332,8 +328,6 @@ tags$table(
 tags$table(
   tags$tr(
     tags$td(
-      tags$br(),
-      tags$br(),
       tags$p(
         tags$a(
           tags$img(
@@ -346,10 +340,8 @@ tags$table(
         ),
         align = "center"
       ),
-      tags$br(),
-      tags$br(),
       width = "30%",
-      valign = "middle"
+      valign = "center"
     ),
     tags$td(
       tags$p(
@@ -362,7 +354,7 @@ tags$table(
         ", an international collaboration for the multidimensional and ","interdisciplinary study of global climate change."
       ),
       width = "70%",
-      valign = "middle"
+      valign = "center"
     )
   )
 ) |>
@@ -371,8 +363,6 @@ tags$table(
 tags$table(
   tags$tr(
     tags$td(
-      tags$br(),
-      tags$br(),
       tags$p(
         tags$a(
           tags$img(
@@ -385,10 +375,8 @@ tags$table(
         ),
         align = "center"
       ),
-      tags$br(),
-      tags$br(),
       width = "30%",
-      valign = "middle"
+      valign = "center"
     ),
     tags$td(
       tags$p(

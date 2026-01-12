@@ -1,4 +1,4 @@
-# LogoClim <img src="images/logo.png" align="right" width="120" />
+# LogoClim <img src="images/logo.svg" align="right" width="120" />
 
 <!-- Quarto render -->
 
@@ -8,19 +8,19 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![NetLogo Check
-Badge](https://github.com/sustentarea/logoclim/workflows/NetLogo%20Check/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![NetLogo check
+badge](https://github.com/sustentarea/logoclim/workflows/NetLogo%20check/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![CoMSES Network
-Badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![OSF DOI
-Badge](https://img.shields.io/badge/OSF%20DOI-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+badge](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![GNU GPLv3
-License](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Contributor Covenant 3.0 Code of Conduct
-Badge](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
+license](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Contributor Covenant 3.0 code of conduct
+badge](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 <!-- badges: end -->
 
 ## Overview
@@ -187,7 +187,7 @@ example of how to integrate `LogoClim` into your model.
   <img src="images/logonia-evolution.svg" height=125px />
 </p>
 
-## How to Cite
+## Citation
 
 > [!IMPORTANT]
 > When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
@@ -214,7 +214,7 @@ A BibTeX entry for LaTeX users is:
 }
 ```
 
-## How to Contribute
+## Contributing
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 
@@ -239,7 +239,7 @@ donation. Please mention `LogoClim` in your donation message.
 [![](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ``` text
-Copyright (C) 2025 Daniel Vartanian
+Copyright (C) 2025 Sustentarea Research and Extension Center
 
 LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -283,18 +283,14 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
-    <td width="30%" valign="middle">
-      <br/>
-      <br/>
+    <td width="30%" valign="center">
       <p align="center">
         <a href="https://www.fsp.usp.br/sustentarea/">
           <img src="images/sustentarea-logo.svg" width="115" alt="Sustentarea Logo"/>
         </a>
       </p>
-      <br/>
-      <br/>
     </td>
-    <td width="70%" valign="middle">
+    <td width="70%" valign="center">
       <p>
         This work was developed with support from the 
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
@@ -306,18 +302,14 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
-    <td width="30%" valign="middle">
-      <br/>
-      <br/>
+    <td width="30%" valign="center">
       <p align="center">
         <a href="https://resiclima.com.br/">
           <img src="images/resiclima-logo.svg" width="115" alt="RESICLIMA Network Logo"/>
         </a>
       </p>
-      <br/>
-      <br/>
     </td>
-    <td width="70%" valign="middle">
+    <td width="70%" valign="center">
       <p>
         This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and 
         interdisciplinary study of global climate change.
@@ -328,16 +320,12 @@ the data, and the many funding agencies that support CMIP6 and ESGF.
 
 <table>
   <tr>
-    <td width="30%" valign="middle">
-      <br/>
-      <br/>
+    <td width="30%" valign="center">
       <p align="center">
         <a href="https://www.gov.br/cnpq/">
           <img src="images/cnpq-logo.svg" width="150" alt="CNPq Logo"/>
         </a>
       </p>
-      <br/>
-      <br/>
     </td>
     <td width="70%" valign="middle">
       <p>
