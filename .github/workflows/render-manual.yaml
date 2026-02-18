@@ -32,8 +32,10 @@ jobs:
             libcairo2-dev \
             libcurl4-openssl-dev \
             libfontconfig1-dev \
+            libfribidi-dev
             libgdal-dev \
             libgit2-dev \
+            libharfbuzz-dev \
             libmagick++-dev \
             libudunits2-dev \
             libx11-dev \
