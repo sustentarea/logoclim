@@ -28,10 +28,13 @@ jobs:
           sudo apt-get install -y -qq \
             cmake \
             gdal-bin \
+            gsfonts \
+            libcairo2-dev \
             libcurl4-openssl-dev \
             libfontconfig1-dev \
             libgdal-dev \
             libgit2-dev \
+            libmagick++-dev \
             libudunits2-dev \
             libx11-dev \
             pandoc
