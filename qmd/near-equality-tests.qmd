@@ -413,9 +413,10 @@ tif_files <- worldclim_download(
   ssp = setup$ssp,
   year = names(setup$year),
   dir = tempdir(),
-  timeout = 100,
+  connection_timeout = 60,
   max_tries = 3,
-  retry_on_failure = TRUE
+  retry_on_failure = TRUE,
+  backoff = \(attempt) 5^attempt
 )
 ```
 
@@ -612,9 +613,10 @@ tif_files <- worldclim_download(
   ssp = setup$ssp,
   year = names(setup$year),
   dir = tempdir(),
-  timeout = 100,
+  connection_timeout = 60,
   max_tries = 3,
-  retry_on_failure = TRUE
+  retry_on_failure = TRUE,
+  backoff = \(attempt) 5^attempt
 )
 ```
 
@@ -814,9 +816,10 @@ tif_file <- worldclim_download(
   ssp = setup$ssp,
   year = names(setup$year),
   dir = tempdir(),
-  timeout = 100,
+  connection_timeout = 60,
   max_tries = 3,
-  retry_on_failure = TRUE
+  retry_on_failure = TRUE,
+  backoff = \(attempt) 5^attempt
 )
 ```
 

@@ -1,6 +1,7 @@
 # Load Packages -----
 
 library(beepr)
+library(fs)
 library(groomr) # github.com/danielvartan/groomr
 library(here)
 library(quartor) # github.com/danielvartan/quartor
@@ -11,16 +12,15 @@ here("README.md") |> remove_blank_line_dups()
 
 # Delete Unnecessary Files and Folders -----
 
-dir_list <-
-  c(".temp", "index_cache", "index_files", "site_libs") |>
-  append(x = _, list.dirs(here("qmd"))[-1])
-
 clean_quarto_render(
   file = c(".luarc.json"),
-  # fmt: skip
-  dir =
-    c(".temp", "index_cache", "index_files", "site_libs") |>
-    append(x = _, list.dirs("qmd")[-1]),
+  dir = c(
+    ".temp",
+    "index_cache",
+    "index_files",
+    "site_libs",
+    dir_ls("qmd", type = "dir")
+  ),
   # fmt: skip
   ext = c(
     "aux", "bbx", "bcf-SAVE-ERROR", "cbx", "dbx", "fdb_latexmk", "lbx", "loa",

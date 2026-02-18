@@ -94,15 +94,15 @@ results <-
 ```
 
 ```{r}
-results |>
-  extract2("table") |>
-  pull(single_quote_1) |>
-  expect_equal("'1'")
-```
+testthat::test_that("single-quote", {
+  results |>
+    extract2("table") |>
+    pull(single_quote_1) |>
+    expect_equal("'1'")
 
-```{r}
-results |>
-  extract2("table") |>
-  pull(single_quote_1_2_3) |>
-  expect_equal("['1' '2' '3']")
+  results |>
+    extract2("table") |>
+    pull(single_quote_1_2_3) |>
+    expect_equal("['1' '2' '3']")
+})
 ```
