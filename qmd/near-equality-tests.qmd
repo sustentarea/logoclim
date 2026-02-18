@@ -12,11 +12,7 @@ here("R", ".setup.R") |> source()
 This document provides unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The tests perform near-equality comparisons to validate tolerance expectations during the processing of [WorldClim](https://www.worldclim.org/) data in NetLogo.
 
 ::: {.callout-note}
-This pipeline requires access to [WorldClim](https://www.worldclim.org/) and [GADM](https://gadm.org/) data. Tests may fail if their servers are unavailable or if data structures change.
-:::
-
-::: {.callout-tip}
-[UCDavis](https://www.ucdavis.edu) servers, that host [WorldClim](https://www.worldclim.org/) data, may experience downtime. If you encounter issues with data access, consider connecting to a [VPN](https://en.wikipedia.org/wiki/Virtual_private_network) server located in Australia, as the data is probably mirrored there.
+This pipeline requires access to [WorldClim](https://www.worldclim.org/) and [GADM](https://gadm.org/) data. Tests may fail if their servers are unavailable.
 :::
 
 ## Problem
