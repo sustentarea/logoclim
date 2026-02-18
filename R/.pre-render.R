@@ -4,6 +4,7 @@ library(checkmate)
 library(fs)
 library(here)
 library(quartor) # github.com/danielvartan/quartor
+library(magrittr)
 library(readr)
 library(rbbt)
 library(stringr)
@@ -37,10 +38,10 @@ start_pattern_index <- str_which(lines, start_pattern)
 end_pattern_index <- str_which(lines, end_pattern)
 
 c(
-  lines |> extract(seq(1, start_pattern_index)),
+  lines |> magrittr::extract(seq(1, start_pattern_index)),
   '``` {.txt filename="NEWS.md"}',
   here("NEWS.md") |> read_lines(),
   '```',
-  lines |> extract(seq(end_pattern_index, length(lines)))
+  lines |> magrittr::extract(seq(end_pattern_index, length(lines)))
 ) |>
   write_lines(here("qmd", "developer-notes.qmd"))
