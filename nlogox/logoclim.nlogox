@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model version="NetLogo 7.0.2" snapToGrid="true">
+<model version="NetLogo 7.0.3" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
 ; Version: 2.1.0.9000 (Development Version)
@@ -601,17 +601,16 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *LogoClim: WorldClim in NetLogo* [Computer software]. [https://doi.org/10.17605/OSF.IO/EAPZU](https://doi.org/10.17605/OSF.IO/EAPZU)
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
-A BibTeX entry for LaTeX users is:
+A BibLaTeX entry for LaTeX users is:
 
 ```latex
-@Misc{vartanian2025,
+@software{vartanian2026,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
-  year = {2025},
-  doi = {10.17605/OSF.IO/EAPZU},
-  note = {Computer software}
+  year = {2026},
+  doi = {10.17605/OSF.IO/EAPZU}
 }
 ```
 

@@ -152,6 +152,7 @@
     "ragg",
     "rast",
     "rbbt",
+    "rcoreteam",
     "rcoreteama",
     "readr",
     "renv",
@@ -186,6 +187,7 @@
     "stringr",
     "sublist",
     "submodel",
+    "subsetting",
     "sustentarea",
     "svglite",
     "sysfonts",
@@ -211,6 +213,7 @@
     "Vuuren",
     "WCRP",
     "wickham",
+    "wickhama",
     "wickhamb",
     "wickhamc",
     "wilensky",
@@ -221,6 +224,7 @@
     "xlim",
     "ycor",
     "ylim",
+    "Zenodo",
     "Zotero"
   ]
 }

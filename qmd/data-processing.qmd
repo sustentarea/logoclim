@@ -53,6 +53,12 @@ country_shape <- country |> gadm("FRA")
 For example, if you want to crop WorldClim data to the boundaries of France, you could use the following code:
 
 ```r
+# install.packages("remotes")
+# remotes::install_github("danielvartan/orbis")
+library(orbis)
+```
+
+```r
 worldclim_to_ascii(
   file = "path/to/the/files/you/download/with/worldclim_download",
   shape = country_shape

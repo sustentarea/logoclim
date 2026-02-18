@@ -1,7 +1,7 @@
 editor: source
 
 execute:
-  cache: false # "Danger Will Robinson!"
+  cache: false # "Danger, Will Robinson!"
   freeze: false # If you plan to use it, remember to disable it afterward!
 
 # quarto render --profile html

@@ -40,6 +40,12 @@ For small areas, increase the data resolution to minimize losses from the conver
 For example, to download precipitation data from the [Historical Monthly Weather](https://www.worldclim.org/data/monthlywth.html) data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
 
 ```r
+# install.packages("remotes")
+# remotes::install_github("danielvartan/orbis")
+library(orbis)
+```
+
+```r
 files <- worldclim_download(
   series = "hmwd",
   resolution = "10m",
@@ -91,5 +97,7 @@ The data files inside the folders also follows naming patterns that must be resp
       |       |        |           |            |           |           |
    Prefix  Resolution  Variable  Model         SSP        Period      Month
 ```
+
+This naming pattern closely resembles the one used by [WorldClim](https://www.worldclim.org/), but there are slight differences that must be accounted for to ensure compatibility with `LogoClim`.
 
 Note the separators. They can change from `_` to `-` depending on the data series and its specific requirements.

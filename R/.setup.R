@@ -26,8 +26,6 @@ options(
   width = 77 # 80 - 3 for #> comment
 )
 
-# Set Variables -----
-
 # Set `knitr`` -----
 
 clean_cache() |> suppressWarnings()

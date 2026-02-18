@@ -9,17 +9,11 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-::: {.callout-important}
-This manual is still under development and may be subject to change.
-
-This warning will be removed once the manual is finalized.
-:::
-
 This document provides unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The tests validate [procedure](https://docs.netlogo.org/programming.html#procedures) behavior and arguments to ensure correct model functionality.
 
 ## Problem
 
-[Procedures](https://docs.netlogo.org/programming.html#procedures) can produce unexpected results and have side effects that may not be captured during the development process. This document addresses these challenges by providing pre-defined expectations for each procedure's behavior.
+[Procedures](https://docs.netlogo.org/programming.html#procedures) can produce unexpected results and have side effects that may not be captured during the development process. This document addresses these challenges by providing pre-defined expectations for procedure behaviors.
 
 ## Methods
 
@@ -37,11 +31,11 @@ These tests use the latest release of [NetLogo](https://www.netlogo.org/) and ar
 
 ### Expectation Tests
 
-Expectations were validated using the [`testthat`](https://testthat.r-lib.org/) and [`checkmate`](https://mllg.github.io/checkmate/) [@lang2017] R packages.
+Expectations are validated using the [`testthat`](https://testthat.r-lib.org/) [@wickham2011] and [`checkmate`](https://mllg.github.io/checkmate/) [@lang2017] R packages.
 
 ### Code Style
 
-The Tidyverse [Tidy Tools Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html) [@wickham2023c], [code style guide](https://style.tidyverse.org/) [@wickhamb] and [design principles](https://design.tidyverse.org/) [@wickhamc] were followed to ensure consistency and enhance readability.
+The Tidyverse [Tidy Tools Manifesto](https://tidyverse.tidyverse.org/articles/manifesto.html) [@wickham2023c], [code style guide](https://style.tidyverse.org/) [@wickhama] and [design principles](https://design.tidyverse.org/) [@wickhamc] were followed to ensure consistency and enhance readability.
 
 ### Reproducibility
 

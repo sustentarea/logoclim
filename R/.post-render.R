@@ -15,7 +15,7 @@ dir_list <-
   c(".temp", "index_cache", "index_files", "site_libs") |>
   append(x = _, list.dirs(here("qmd"))[-1])
 
-quartor:::clean_quarto_mess(
+clean_quarto_render(
   file = c(".luarc.json"),
   # fmt: skip
   dir =

@@ -20,7 +20,7 @@ This warning will be removed once the manual is finalized.
 
 This manual provides a comprehensive overview of the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The documentation includes detailed descriptions of the model's components, usage instructions, and examples to help users get started.
 
-If you feel you still need more help, please open a discussion in the model's [Discussion tab](https://github.com/danielvartan/orbis/discussions) on GitHub. While we can't guarantee immediate assistance, the community is here to help.
+If you feel you still need more help, please open a discussion in the model's [Discussion tab](https://github.com/danielvartan/orbis/discussions) on GitHub. While we can't guarantee immediate assistance, the community may offer support and guidance.
 
 ## Citation
 
@@ -49,15 +49,14 @@ To cite `LogoClim` in publications please use the following format:
 
 Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
-A BibTeX entry for LaTeX users is:
+A BibLaTeX entry for LaTeX users is:
 
 ```latex
-@Misc{vartanian2026,
+@software{vartanian2026,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
-  doi = {10.17605/OSF.IO/EAPZU},
-  note = {Computer software}
+  doi = {10.17605/OSF.IO/EAPZU}
 }
 ```
 
@@ -82,7 +81,7 @@ Contributions are always welcome! Whether you want to report bugs, suggest new f
 
 Before opening a new issue, please check the model's [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
+[![](https://img.shields.io/badge/Sponsor-%E2%9D%A4-%23ea857e?logo=github&logoColor=white.png)](https://github.com/sponsors/danielvartan)
 
 You can also support the development of `LogoClim` by becoming a sponsor.
 
@@ -104,7 +103,7 @@ cat(
 )
 ```
 
-This manual is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You can share and adapt the material for non-commercial purposes, as long as you provide appropriate credit, link to the license, and indicate if changes were made.
+This manual is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You can share and adapt the material for non-commercial purposes, as long as you provide appropriate credit, use the same license, and indicate if changes were made.
 
 ## Acknowledgments
 
@@ -116,131 +115,31 @@ We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcr
 
 We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support [CMIP6](https://pcmdi.llnl.gov/CMIP6/) and [ESGF](https://esgf.llnl.gov/).
 
-```{r}
-#| echo: false
-#| output: asis
 
-tags$table(
-  tags$tr(
-    tags$td(
-      tags$p(
-        tags$a(
-          tags$img(
-            # Don't use `here()` here.
-            src = "images/sustentarea-logo.svg",
-            width = 115
-          ),
-          href = "https://www.fsp.usp.br/sustentarea/"
-        ),
-        align = "center"
-      ),
-      width = "30%",
-      valign = "middle"
-    ),
-    tags$td(
-      tags$p(
-        "This work was developed with support from the ",
-        tags$a(
-          "Sustentarea",
-          href = "https://www.fsp.usp.br/sustentarea/"
-        ),
-        " Research and Extension Center at the University of São Paulo (",
-        tags$a(
-          "USP",
-          href = "https://www5.usp.br/",
-          .noWS = "outside"
-        ),
-        ")."
-      ),
-      width = "70%",
-      valign = "middle"
-    )
-  )
-) |>
-  raw_html()
+:::: {.columns style="display: flex; align-items: center; margin: 1em; padding-top: 1em;"}
+::: {.column style="width: 30%; text-align: center;"}
+[![](images/sustentarea-logo.svg){width="115"}](https://www.fsp.usp.br/sustentarea/)
+:::
+::: {.column style="width: 70%; display: flex; align-items: center;"}
+This work was developed with support from the [Sustentarea](https://www.fsp.usp.br/sustentarea/) Research and Extension Center at the University of São Paulo ([USP](https://www5.usp.br/)).
+:::
+::::
 
-tags$table(
-  tags$tr(
-    tags$td(
-      tags$p(
-        tags$a(
-          tags$img(
-            # Don't use `here()` here.
-            src = "images/resiclima-logo.svg",
-            width = 115
-          ),
-          href = "https://resiclima.com.br/"
-        ),
-        align = "center"
-      ),
-      width = "30%",
-      valign = "middle"
-    ),
-    tags$td(
-      tags$p(
-        "This work was developed with support from the ",
-        tags$a(
-          "Resiclima Network",
-          href = "https://resiclima.com.br/",
-          .noWS = "outside"
-        ),
-        ", an international collaboration for the multidimensional and ",
-        "interdisciplinary study of global climate change."
-      ),
-      width = "70%",
-      valign = "middle"
-    )
-  )
-) |>
-  raw_html()
+:::: {.columns style="display: flex; align-items: center; margin: 1em;"}
+::: {.column style="width: 30%; text-align: center;"}
+[![](images/resiclima-logo.svg){width="115"}](https://resiclima.com.br/)
+:::
+::: {.column style="width: 70%; display: flex; align-items: center;"}
+This work was developed with support from the [Resiclima Network](https://resiclima.com.br/), an international collaboration for the multidimensional and interdisciplinary study of global climate change.
+:::
+::::
 
-tags$table(
-  tags$tr(
-    tags$td(
-      tags$p(
-        tags$a(
-          tags$img(
-            # Don't use `here()` here.
-            src = "images/cnpq-logo.svg",
-            width = 150
-          ),
-          href = "https://www.gov.br/cnpq/"
-        ),
-        align = "center"
-      ),
-      width = "30%",
-      valign = "middle"
-    ),
-    tags$td(
-      tags$p(
-        "This work was supported by the Department of Science and ",
-        "Technology of the Secretariat of Science, Technology, and Innovation ",
-        "and of the Health Economic-Industrial Complex (",
-        tags$a(
-          "SECTICS",
-          href = "https://www.gov.br/saude/pt-br/composicao/sectics/",
-          .noWS = "outside"
-        ),
-        ")  of the ",
-        tags$a(
-          "Ministry of Health",
-          href = "https://www.gov.br/saude/pt-br/composicao/sectics/",
-          .noWS = "outside"
-        ),
-        " ",
-        "of Brazil, and the National Council for Scientific and ",
-        "Technological Development (",
-        tags$a(
-          "CNPq",
-          href = "https://www.gov.br/cnpq/",
-          .noWS = "outside"
-        ),
-        ") (grant no. 444588/2023-0)."
-      ),
-      width = "70%",
-      valign = "middle"
-    )
-  )
-) |>
-  raw_html()
-```
+:::: {.columns style="display: flex; align-items: center; margin: 1em;"}
+::: {.column style="width: 30%; text-align: center;"}
+[![](images/cnpq-logo.svg){width="150"}](https://www.gov.br/cnpq/)
+:::
+::: {.column style="width: 70%; display: flex; align-items: center;"}
+This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics/)) of the [Ministry of Health](https://www.gov.br/saude/pt-br/composicao/sectics/) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0).
+:::
+::::
+
