@@ -35,7 +35,14 @@ jobs:
           sudo apt-get update -qq
 
           sudo apt-get install -y -qq \
+            cmake \
+            gdal-bin \
+            libcurl4-openssl-dev \
             libfontconfig1-dev \
+            libgdal-dev \
+            libgit2-dev \
+            libudunits2-dev \
+            libx11-dev \
             pandoc
         shell: bash
 
