@@ -10,10 +10,10 @@ here("R", ".setup.R") |> source()
 ```
 
 ::: {.callout-note}
-`LogoClim` integrates [WorldClim](https://www.worldclim.org/) data into [NetLogo](https://www.netlogo.org/) models through a multi-step conversion process that can introduce minor discrepancies between the original data and the values used in the model. We recommend verifying data accuracy by running the [Near-Equality Tests](#sec-sm-near-equality-tests) notebook before proceeding with your analysis.
+`LogoClim` integrates [WorldClim](https://www.worldclim.org/) data into [NetLogo](https://www.netlogo.org/) models through a multi-step conversion process that can introduce minor discrepancies between the original data and the values used in the model. We recommend verifying data accuracy by running the [Near-Equality Tests](@sec-sm-near-equality-tests) notebook before proceeding with your analysis.
 :::
 
-To make downloading WorldClim data easier, we developed the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function as part of the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a]. It takes care of accessing the [WorldClim](https://www.worldclim.org/) website, fetching the data, and organizing everything the way `LogoClim` needs it. Here is a overview of its main parameters:
+To make downloading WorldClim data easier, we developed the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function as part of the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a]. It takes care of accessing the [WorldClim](https://www.worldclim.org/) website, fetching the data, and organizing everything the way `LogoClim` needs it. Here is an overview of its main parameters:
 
 ```r
 worldclim_download(
@@ -46,7 +46,7 @@ install_github("danielvartan/orbis")
 
 The first thing you need to do is explore the [WorldClim website](https://www.worldclim.org/) to select the appropriate data for your needs. With this information, you simply specify the parameters for the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function.
 
-For example, to download total precipitation data from the [Historical Monthly Weather](https://www.worldclim.org/data/monthlywth.html) data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
+For example, to download total precipitation data from the [Historical Monthly Weather Data(https://www.worldclim.org/data/monthlywth.html) series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
 
 ```r
 library(orbis)
@@ -68,6 +68,8 @@ files <- worldclim_download(
 #> ✔ Downloading Files [10.3s]                          
 #> ✔ Unzipping Files [11ms]
 ```
+
+Keep in mind that depending on your settings, the data can take up quite a bit of storage space. Make sure you have enough room before downloading.
 
 ## File Structure
 
