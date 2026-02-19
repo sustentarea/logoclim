@@ -378,11 +378,11 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><code>LogoClim</code> integrates <a href="https://www.worldclim.org/">WorldClim</a> data into <a href="https://www.netlogo.org/">NetLogo</a> models through a multi-step conversion process that can introduce minor discrepancies between the original data and the values used in the model. We recommend verifying data accuracy by running the <a href="near-equality-tests.html">Near-Equality Tests</a> notebook before proceeding with your analysis.</p>
+<p><code>LogoClim</code> integrates <a href="https://www.worldclim.org/">WorldClim</a> data into <a href="https://www.netlogo.org/">NetLogo</a> models through a multi-step conversion process that can introduce minor discrepancies between the original data and the values used in the model. We recommend verifying data accuracy by running the <a href="@sec-sm-near-equality-tests">Near-Equality Tests</a> notebook before proceeding with your analysis.</p>
 </div>
 </div>
 </div>
-<p>To make downloading WorldClim data easier, we developed the <a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html"><code>worldclim_download()</code></a> function as part of the <a href="https://danielvartan.github.io/orbis/index.html"><code>orbis</code></a> R package <span class="citation" data-cites="vartanian2026a">(<a href="references.html#ref-vartanian2026a" role="doc-biblioref">Vartanian, 2026</a>)</span>. It takes care of accessing the <a href="https://www.worldclim.org/">WorldClim</a> website, fetching the data, and organizing everything the way <code>LogoClim</code> needs it. Here is a overview of its main parameters:</p>
+<p>To make downloading WorldClim data easier, we developed the <a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html"><code>worldclim_download()</code></a> function as part of the <a href="https://danielvartan.github.io/orbis/index.html"><code>orbis</code></a> R package <span class="citation" data-cites="vartanian2026a">(<a href="references.html#ref-vartanian2026a" role="doc-biblioref">Vartanian, 2026</a>)</span>. It takes care of accessing the <a href="https://www.worldclim.org/">WorldClim</a> website, fetching the data, and organizing everything the way <code>LogoClim</code> needs it. Here is an overview of its main parameters:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">worldclim_download</span><span class="op">(</span></span>
 <span>  <span class="va">series</span>,</span>
 <span>  resolution <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -399,7 +399,7 @@ div.csl-indent {
 <section id="data-selection" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="data-selection">
 <span class="header-section-number">4.1</span> Data Selection</h2>
 <p>The first thing you need to do is explore the <a href="https://www.worldclim.org/">WorldClim website</a> to select the appropriate data for your needs. With this information, you simply specify the parameters for the <a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html"><code>worldclim_download()</code></a> function.</p>
-<p>For example, to download total precipitation data from the <a href="https://www.worldclim.org/data/monthlywth.html">Historical Monthly Weather</a> data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:</p>
+<p>For example, to download total precipitation data from the [Historical Monthly Weather Data(https://www.worldclim.org/data/monthlywth.html) series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/orbis/">orbis</a></span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html">worldclim_download</a></span><span class="op">(</span></span>
 <span>  series <span class="op">=</span> <span class="st">"hmwd"</span>,</span>
@@ -415,6 +415,7 @@ div.csl-indent {
 <span><span class="co">#&gt; ℹ Downloading 1 file to path/to/your/data/directory/historical-monthly-weather-data</span></span>
 <span><span class="co">#&gt; ✔ Downloading Files [10.3s]                          </span></span>
 <span><span class="co">#&gt; ✔ Unzipping Files [11ms]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Keep in mind that depending on your settings, the data can take up quite a bit of storage space. Make sure you have enough room before downloading.</p>
 </section><section id="file-structure" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="file-structure">
 <span class="header-section-number">4.2</span> File Structure</h2>
 <p><a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html"><code>worldclim_download()</code></a> downloads and organizes files into a structure required by <code>LogoClim</code>. The organization follows this hierarchy:</p>
