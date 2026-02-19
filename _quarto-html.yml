@@ -1,5 +1,3 @@
-brand: false
-
 project:
   type: book
   output-dir: docs
@@ -7,7 +5,7 @@ project:
   post-render: "R/.post-render.R"
 
 book:
-  title: "⛅ LogoClim User Manual"
+  title: "LogoClim User Manual"
   author: "Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho"
   keyword: >
     Agent-Based Modeling, Climate Change, Climate Data Visualization,
@@ -19,7 +17,7 @@ book:
     Time Series, WorldClim
   date: today
   date-format: "long"
-  # cover-image: images/logo.svg
+  cover-image: images/logo.svg
   license: >
     Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
     (CC BY-NC-SA 4.0)
@@ -29,7 +27,7 @@ book:
     image: images/og-image.png
     image-width: 2400
     image-height: 1600
-    image-alt: "⛅ LogoClim: WorldClim in NetLogo"
+    image-alt: "LogoClim: WorldClim in NetLogo"
   url: https://sustentarea.github.io/logoclim/
   site-url: https://sustentarea.github.io/logoclim/
   repo-url: https://github.com/sustentarea/logoclim/
@@ -41,7 +39,6 @@ book:
     - index.qmd
     - part: "Introduction"
       chapters:
-        - qmd/what-is-it.qmd
         - qmd/how-it-works.qmd
         - qmd/how-to-use-it.qmd
     - part: "Data and Files"
@@ -49,19 +46,19 @@ book:
         - qmd/worldclim.qmd
         - qmd/data-download.qmd
         - qmd/data-processing.qmd
-    - part: "Variables and Attributes"
-      chapters:
-        - qmd/global-variables.qmd
-        - qmd/patch-attributes.qmd
     - part: "LevelSpace Integration"
       chapters:
-        - qmd/levelspace-overview.qmd
-        - qmd/setting-up-levelspace.qmd
+        - qmd/levelspace.qmd
         - qmd/logonia.qmd
+        - qmd/interface.qmd
+        - qmd/global-variables.qmd
+        - qmd/patch-attributes.qmd
+        - qmd/setup-procedure.qmd
+        - qmd/go-procedure.qmd
     - qmd/references.qmd
   appendices:
     # - qmd/use-cases.qmd
-    - qmd/developer-notes.qmd
+    - qmd/release-notes.qmd
     - qmd/near-equality-tests.qmd
     - qmd/procedure-behavior-tests.qmd
 
@@ -72,7 +69,7 @@ format:
     code-fold: false
     code-link: true
     df-print: paged
-    cap-location: top
+    # cap-location: bottom
     fig-align: center
     fig-width: 7
     fig-height: 5.25
@@ -82,7 +79,7 @@ format:
     link-external-icon: false
     link-external-newwindow: false
     lightbox: true
-    theme: [cosmo, scss/styles.scss]
+    theme: [cosmo, scss/styles.scss, brand]
 
 citation:
   type: book

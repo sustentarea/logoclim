@@ -12,15 +12,20 @@ library(knitr)
 here("R", ".setup.R") |> source()
 ```
 
-::: {.callout-important}
-This manual is still under development and may be subject to change.
+## Welcome
 
-This warning will be removed once the manual is finalized.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
+
+This manual walks you through everything you need to get started: an overview of the model's structure, a breakdown of its core components, step-by-step usage instructions, and practical examples showing how to configure and run simulations. Whether you're new to NetLogo or already familiar with agent-based modeling, the goal here is to give you a clear path from setup to results.
+
+If something is still unclear after reading through, feel free to open a discussion in the project's [discussion tab](https://github.com/sustentarea/logoclim/discussions/categories/q-a) on GitHub. The community is there to help, though response times may vary.
+
+
+::: {#fig-welcome-logoclim-interface}
+![](images/logoclim-interface.gif){fig-align="center" style="width: 100%; padding-top: 0px;"}
+
+`LogoClim`'s interface. Click on the image to enlarge it.
 :::
-
-This manual provides a comprehensive overview of the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The documentation includes detailed descriptions of the model's components, usage instructions, and examples to help users get started.
-
-If you feel you still need more help, please open a discussion in the model's [Discussion tab](https://github.com/danielvartan/orbis/discussions) on GitHub. While we can't guarantee immediate assistance, the community may offer support and guidance.
 
 ## Citation
 
@@ -39,8 +44,10 @@ cat(
 )
 ```
 
-::: {.callout-important}
-When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+::: {.callout-note}
+When using WorldClim data, you must also cite the original data sources.
+
+The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 :::
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
@@ -81,11 +88,7 @@ Contributions are always welcome! Whether you want to report bugs, suggest new f
 
 Before opening a new issue, please check the model's [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 
-[![](https://img.shields.io/badge/Sponsor-%E2%9D%A4-%23ea857e?logo=github&logoColor=white.png)](https://github.com/sponsors/danielvartan)
-
-You can also support the development of `LogoClim` by becoming a sponsor.
-
-Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
+You can also support the development of `LogoClim` by becoming a sponsor. Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
 
 ## License
 
@@ -116,7 +119,7 @@ We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcr
 We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support [CMIP6](https://pcmdi.llnl.gov/CMIP6/) and [ESGF](https://esgf.llnl.gov/).
 
 
-:::: {.columns style="display: flex; align-items: center; margin: 1em; padding-top: 1em;"}
+:::: {.columns style="display: flex; align-items: center; margin: 1em; padding-top: 2em;"}
 ::: {.column style="width: 30%; text-align: center;"}
 [![](images/sustentarea-logo.svg){width="115"}](https://www.fsp.usp.br/sustentarea/)
 :::

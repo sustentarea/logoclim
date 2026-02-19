@@ -1,0 +1,14 @@
+# Interface {#sec-interface}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-warning}
+This chapter is a work in progress. The content may be incomplete, inconsistent, or subject to significant revision. Reader discretion is advised.
+:::

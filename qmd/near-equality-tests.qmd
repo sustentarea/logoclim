@@ -19,10 +19,10 @@ This pipeline requires access to [WorldClim](https://www.worldclim.org/) and [GA
 
 `LogoClim` integrates [WorldClim](https://www.worldclim.org/) data into [NetLogo](https://www.netlogo.org/) models through a multi-step conversion process. [WorldClim](https://worldclim.org/) provides raster data in [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) format, a high-precision binary format for geospatial data. However, [NetLogo's GIS extension](https://docs.netlogo.org/gis.html) requires [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid) format, a text-based format that stores values with limited decimal precision.
 
-This format conversion introduces several sources of numerical differences:
+This format conversion can introduce several sources of numerical differences:
 
-1. **Decimal precision loss**: Esri ASCII files store values as text with a fixed number of decimal places, rounding continuous values from the original GeoTIFF.
-2. **Spatial interpolation**: When NetLogo's patch grid doesn't perfectly align with the raster resolution, the GIS extension applies interpolation that may alter cell values.
+1. **Decimal precision loss**: [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid) files store values as text with a fixed number of decimal places, rounding continuous values from the original [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF).
+2. **Spatial interpolation**: When NetLogo's patch grid doesn't perfectly align with the raster resolution, the [GIS extension](https://docs.netlogo.org/gis.html) applies interpolation that may alter cell values.
 
 These discrepancies propagate to summary statistics (mean, variance, etc.) when comparing the original [WorldClim](https://www.worldclim.org/) GeoTIFF data with values extracted from `LogoClim` patches. The unit tests in this document verify that such differences remain within acceptable tolerance levels, ensuring the reliability of downstream simulations and analyses.
 

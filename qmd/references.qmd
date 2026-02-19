@@ -9,7 +9,7 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-In accordance with the [American Psychological Association (APA) Style](https://apastyle.apa.org/), 7th edition.
+In accordance with the American Psychological Association ([APA](https://apastyle.apa.org/)) Style, 7th edition.
 
 ::: {#refs}
 :::

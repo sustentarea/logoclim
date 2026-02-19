@@ -9,19 +9,25 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-This document provides unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The tests validate [procedure](https://docs.netlogo.org/programming.html#procedures) behavior and arguments to ensure correct model functionality.
+This document provides unit tests for the [`LogoClim`](https://github.com/sustentarea/logoclim) NetLogo model. The tests validate [procedure](https://docs.netlogo.org/programming.html#procedures) behavior to ensure correct functionality.
 
 ## Problem
 
-[Procedures](https://docs.netlogo.org/programming.html#procedures) can produce unexpected results and have side effects that may not be captured during the development process. This document addresses these challenges by providing pre-defined expectations for procedure behaviors.
+NetLogo [procedures](https://docs.netlogo.org/programming.html#procedures) can produce unexpected results and exhibit side effects that may go undetected during development. The unit tests in this document validate procedure behavior through [expectation tests](https://testthat.r-lib.org/reference/equality-expectations.html), ensuring they function as intended and produce reliable results.
 
 ## Methods
+
+### Data munging
+
+All processes were made using the [Quarto](https://quarto.org/) publishing system [@allaire], the [NetLogo](https://www.netlogo.org/) environment, the [R](https://www.r-project.org/) programming language [@rcoreteam], and several R packages.
+
+For data manipulation and workflow, priority was given to packages from the [Tidyverse](https://www.tidyverse.org/), [rOpenSci](https://ropensci.org/) and [rspatial](https://rspatial.org) ecosystems, as well as other packages adhering to the tidy tools manifesto [@wickham2023c].
 
 ### NetLogo Integration
 
 Integration with [NetLogo](https://www.netlogo.org/) [@wilensky1999a] is facilitated by the [`logolink`](https://danielvartan.github.io/logolink/) R package [@vartanian2026]. This package enables the execution of [BehaviorSpace](https://docs.netlogo.org/behaviorspace.html) experiments directly from R.
 
-Outputs were extracted in [Table](https://docs.netlogo.org/behaviorspace.html#table-output) and [Lists](https://docs.netlogo.org/behaviorspace.html#lists-output) format, along with metadata about the model's settings.
+Output is extracted in [Table](https://docs.netlogo.org/behaviorspace.html#table-output) or [Lists](https://docs.netlogo.org/behaviorspace.html#lists-output) format, depending on the experiment configuration.
 
 No [Java](https://www.java.com/en/) dependencies are required. NetLogo bundles its own Java Runtime Environment (JRE), ensuring independent operation regardless of the system's Java installation.
 
@@ -53,6 +59,7 @@ library(dplyr)
 library(here)
 library(logolink)
 library(magrittr)
+library(purrr)
 library(testthat)
 ```
 
@@ -70,6 +77,182 @@ Sys.setenv(JAVA_TOOL_OPTIONS = "-Dcom.sun.media.jai.disableMediaLib=true")
 model_path <- here("nlogox", "logoclim.nlogox")
 ```
 
+## `as-list`
+
+```{r}
+#| label: as-list
+
+setup_file <- create_experiment(
+  name = "as-list",
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'as-list "a"',
+    'as-list 1',
+    'as-list true',
+    'as-list [1 2 3]'
+  )
+)
+```
+
+```{r}
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file
+  )
+```
+
+```{r}
+results |>
+  pluck("table") |>
+  glimpse()
+```
+
+```{r}
+testthat::test_that("as-list", {
+  results |>
+    extract2("table") |>
+    pull(as_list_a) |>
+    expect_equal("[a]")
+
+  results |>
+    extract2("table") |>
+    pull(as_list_1) |>
+    expect_equal("[1]")
+
+  results |>
+    extract2("table") |>
+    pull(as_list_true) |>
+    expect_equal("[true]")
+
+  results |>
+    extract2("table") |>
+    pull(as_list_1_2_3) |>
+    expect_equal("[1 2 3]")
+})
+```
+
+## `quartile`
+
+```{r}
+#| label: quartile
+
+setup_file <- create_experiment(
+  name = "quartile",
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'quartile [0 1 2 3 4] 0',
+    'quartile [0 1 2 3 4] 1',
+    'quartile [0 1 2 3 4] 2',
+    'quartile [0 1 2 3 4] 3',
+    'quartile [0 1 2 3 4] 4',
+    'quartile [0 1 2 3 4] "iqr"',
+    'quartile [0 1 2 3 4] "length"',
+    'quartile [0 1 2 3 4 5] 0',
+    'quartile [0 1 2 3 4 5] 1',
+    'quartile [0 1 2 3 4 5] 2',
+    'quartile [0 1 2 3 4 5] 3',
+    'quartile [0 1 2 3 4 5] 4',
+    'quartile [0 1 2 3 4 5] "iqr"',
+    'quartile [0 1 2 3 4 5] "length"'
+  )
+)
+```
+
+```{r}
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file
+  )
+```
+
+```{r}
+results |>
+  pluck("table") |>
+  glimpse()
+```
+
+```{r}
+testthat::test_that("quartile [0 1 2 3 4]", {
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_0) |>
+    expect_equal(0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_1) |>
+    expect_equal(0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_2) |>
+    expect_equal(1)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_3) |>
+    expect_equal(2)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_4) |>
+    expect_equal(4)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_iqr) |>
+    expect_equal(2 - 0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_length) |>
+    expect_equal(5 / 4)
+})
+```
+
+```{r}
+testthat::test_that("quartile [0 1 2 3 4 5]", {
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_0) |>
+    expect_equal(0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_1) |>
+    expect_equal(0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_2) |>
+    expect_equal(2)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_3) |>
+    expect_equal(3)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_4) |>
+    expect_equal(5)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_iqr) |>
+    expect_equal(3 - 0)
+
+  results |>
+    extract2("table") |>
+    pull(quartile_0_1_2_3_4_5_length) |>
+    expect_equal(6 / 4)
+})
+```
+
 ## `single-quote`
 
 ```{r}
@@ -78,6 +261,7 @@ model_path <- here("nlogox", "logoclim.nlogox")
 setup_file <- create_experiment(
   name = "single-quote",
   setup = "setup false",
+  go = NULL,
   metrics = c(
     'single-quote 1',
     'single-quote [1 2 3]'
@@ -94,6 +278,12 @@ results <-
 ```
 
 ```{r}
+results |>
+  pluck("table") |>
+  glimpse()
+```
+
+```{r}
 testthat::test_that("single-quote", {
   results |>
     extract2("table") |>
@@ -104,5 +294,99 @@ testthat::test_that("single-quote", {
     extract2("table") |>
     pull(single_quote_1_2_3) |>
     expect_equal("['1' '2' '3']")
+})
+```
+
+## `str-to-num-month`
+
+```{r}
+#| label: str-to-num-month
+
+setup_file <- create_experiment(
+  name = "str-to-num-month",
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'str-to-num-month "January"',
+    'str-to-num-month "July"',
+    'str-to-num-month "December"'
+  )
+)
+```
+
+```{r}
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file
+  )
+```
+
+```{r}
+results |>
+  pluck("table") |>
+  glimpse()
+```
+
+```{r}
+testthat::test_that("str-to-num-month", {
+  results |>
+    extract2("table") |>
+    pull(str_to_num_month_january) |>
+    expect_equal(1)
+
+  results |>
+    extract2("table") |>
+    pull(str_to_num_month_july) |>
+    expect_equal(7)
+
+  results |>
+    extract2("table") |>
+    pull(str_to_num_month_december) |>
+    expect_equal(12)
+})
+```
+
+## `unique-outliers`
+
+```{r}
+#| label: unique-outliers
+
+setup_file <- create_experiment(
+  name = "unique-outliers",
+  setup = "setup false",
+  go = NULL,
+  metrics = c(
+    'unique-outliers [1 2 3 4 100 100 500 500] 1.5',
+    'unique-outliers [1 2 3] 3'
+  )
+)
+```
+
+```{r}
+results <-
+  model_path |>
+  run_experiment(
+    setup_file = setup_file
+  )
+```
+
+```{r}
+results |>
+  pluck("table") |>
+  glimpse()
+```
+
+```{r}
+testthat::test_that("unique-outliers", {
+  results |>
+    extract2("table") |>
+    pull(unique_outliers_1_2_3_4_100_100_500_500_1_5) |>
+    expect_equal("[100 500]")
+
+  results |>
+    extract2("table") |>
+    pull(unique_outliers_1_2_3_3) |>
+    expect_equal("[]")
 })
 ```

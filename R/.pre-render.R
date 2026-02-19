@@ -27,12 +27,12 @@ for (i in dir_ls(here("images"), type = "file")) {
   )
 }
 
-# Update `NEWS.md` File in `developer-notes.qmd` -----
+# Update `NEWS.md` File in `release-notes.qmd` -----
 
 start_pattern <- "%:::% NEWS.md begin %:::%"
 end_pattern <- "%:::% NEWS.md end %:::%"
 
-lines <- here("qmd", "developer-notes.qmd") |> read_lines()
+lines <- here("qmd", "release-notes.qmd") |> read_lines()
 
 start_pattern_index <- str_which(lines, start_pattern)
 end_pattern_index <- str_which(lines, end_pattern)
@@ -44,4 +44,4 @@ c(
   '```',
   lines |> magrittr::extract(seq(end_pattern_index, length(lines)))
 ) |>
-  write_lines(here("qmd", "developer-notes.qmd"))
+  write_lines(here("qmd", "release-notes.qmd"))

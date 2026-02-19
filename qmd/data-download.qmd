@@ -9,15 +9,11 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-::: {.callout-important}
-This manual is still under development and may be subject to change.
-
-This warning will be removed once the manual is finalized.
+::: {.callout-note}
+`LogoClim` integrates [WorldClim](https://www.worldclim.org/) data into [NetLogo](https://www.netlogo.org/) models through a multi-step conversion process that can introduce minor discrepancies between the original data and the values used in the model. We recommend verifying data accuracy by running the [Near-Equality Tests](#sec-sm-near-equality-tests) notebook before proceeding with your analysis.
 :::
 
-To simplify the process of downloading WorldClim data, we developed the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function along with the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a]. This function takes the job of accessing the WorldClim website, scraping the data, and organizing it for you just the way `LogoClim` needs it.
-
-Here is a parameter overview:
+To make downloading WorldClim data easier, we developed the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function as part of the [`orbis`](https://danielvartan.github.io/orbis/index.html) R package [@vartanian2026a]. It takes care of accessing the [WorldClim](https://www.worldclim.org/) website, fetching the data, and organizing everything the way `LogoClim` needs it. Here is a overview of its main parameters:
 
 ```r
 worldclim_download(
@@ -26,22 +22,33 @@ worldclim_download(
   variable = NULL,
   model = NULL,
   ssp = NULL,
-  year = NULL,
-  dir = here::here("data")
+  year = NULL
 )
 ```
 
-The first thing you need to do is explore the [WorldClim](https://www.worldclim.org/) website to select the appropriate data for your needs. With this information, you simply specify the parameters for the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function.
-
-::: {.callout-caution}
-For small areas, increase the data resolution to minimize losses from the conversion process. We perform tests using 1% relative tolerance for areas with at least 1,000 cells. We recommend following this guideline and using areas with at least 1,000 cells. See the [Near-Equality Tests](#sec-sm-near-equality-tests) to learn more.
-:::
-
-For example, to download precipitation data from the [Historical Monthly Weather](https://www.worldclim.org/data/monthlywth.html) data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
+You can install the `orbis` package in R using the `remotes` package. If you don't have `remotes` installed, you can install it with:
 
 ```r
-# install.packages("remotes")
-# remotes::install_github("danielvartan/orbis")
+install.packages("remotes")
+```
+
+After that, install `orbis` directly from [GitHub](https://github.com/danielvartan/orbis) with:
+
+```r
+library(remotes)
+```
+
+```r
+install_github("danielvartan/orbis")
+```
+
+## Data Selection
+
+The first thing you need to do is explore the [WorldClim website](https://www.worldclim.org/) to select the appropriate data for your needs. With this information, you simply specify the parameters for the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) function.
+
+For example, to download total precipitation data from the [Historical Monthly Weather](https://www.worldclim.org/data/monthlywth.html) data series, between the years 2020 and 2024, at the 10-minute resolution, you could use the following code:
+
+```r
 library(orbis)
 ```
 
@@ -50,15 +57,21 @@ files <- worldclim_download(
   series = "hmwd",
   resolution = "10m",
   variable = "prec",
-  year = "2020-2024"
+  year = "2020-2024",
+  dir = "path/to/your/data/directory"
 )
+#> ✔ Scraping WorldClim Website [569ms]
+#> ℹ Total download size (compressed): 104M.
+#> ✔ Calculating File Sizes [698ms]
+#> ✔ Creating LICENSE and README Files [12ms]
+#> ℹ Downloading 1 file to path/to/your/data/directory/historical-monthly-weather-data
+#> ✔ Downloading Files [10.3s]                          
+#> ✔ Unzipping Files [11ms]
 ```
-
-Refer to [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) documentation to learn more.
 
 ## File Structure
 
-The function downloads and organizes files into a structure required by `LogoClim`, so it is essential to preserve this structure. The organization follows this hierarchy:
+[`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) downloads and organizes files into a structure required by `LogoClim`. The organization follows this hierarchy:
 
 ```text
 data
@@ -67,7 +80,7 @@ data
 ├── future-climate-data
 ```
 
-The structure above assumes that the data will be stored in a directory named `data`, but you can store it in any other directory as well. You will just need to configure the data path in the model settings accordingly.
+The structure above assumes that the data will be stored in a directory named `data`, but you can store it in any other directory as well. You just need to configure the data path in the model settings accordingly.
 
 The data files inside the folders also follows naming patterns that must be respected. Each series has its own naming convention:
 
@@ -100,4 +113,12 @@ The data files inside the folders also follows naming patterns that must be resp
 
 This naming pattern closely resembles the one used by [WorldClim](https://www.worldclim.org/), but there are slight differences that must be accounted for to ensure compatibility with `LogoClim`.
 
+::: {.callout-note}
 Note the separators. They can change from `_` to `-` depending on the data series and its specific requirements.
+:::
+
+## Conversion
+
+After downloading the data, one final step remains before the files are ready for use in the model: converting them from [GeoTIFF](https://en.wikipedia.org/wiki/GeoTIFF) format to [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid) format. This conversion is handled by the [`worldclim_to_ascii()`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) function, which is covered in the next section.
+
+For more details on available parameters and downloading different datasets, refer to the [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html) documentation.

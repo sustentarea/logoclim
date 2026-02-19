@@ -1,0 +1,89 @@
+# Setup Procedure {#sec-setup-procedure}
+
+```{r}
+#| label: setup
+#| include: false
+
+library(here)
+
+here("R", ".setup.R") |> source()
+```
+
+::: {.callout-warning}
+This chapter is a work in progress. The content may be incomplete, inconsistent, or subject to significant revision. Reader discretion is advised.
+:::
+
+The `setup` procedure is responsible for initializing the model's state, including setting up the world, variables, and patches.
+
+The code below show the `setup` procedure of the `Logonia` model. `LogoClim` insertions are denoted with `; LogoClim` at the end of the line to make it easier to identify which parts of the code are specific to `LogoClim` and which are related to `Logônia`.
+
+```
+to setup
+  clear-all
+
+  assert-start-year ; LogoClim
+
+  if (test-start-year = false) [stop] ; LogoClim
+
+  ls:reset ; LogoClim
+
+  setup-logoclim ; LogoClim
+  setup-world ; LogoClim
+  setup-variables ; LogoClim
+  setup-patches ; LogoClim
+```
+
+## `setup-logoclim`
+
+```netlogo
+to setup-logoclim
+  let #logoclim-path "../logoclim/nlogox/logoclim.nlogox"
+  let #data-path "../../data/" ; Relative to LogoClim `.nlogox` file.
+  let #data-series "Historical Monthly Weather Data"
+  let #data-resolution "10 Minutes (~340 km2 at the Equator)"
+
+  ls:create-models 3 #logoclim-path
+
+  set tmin-ls-model 0
+  set tmax-ls-model 1
+  set prec-ls-model 2
+
+  ls:let $data-path #data-path
+  ls:let $data-series #data-series
+  ls:let $data-resolution #data-resolution
+  ls:let $month start-month
+  ls:let $year start-year
+
+  ls:ask ls:models [
+    set data-path $data-path
+    set data-series $data-series
+    set data-resolution $data-resolution
+    set start-month $month
+    set start-year $year
+  ]
+
+  ls:ask tmin-ls-model [
+    set climate-variable "Average Minimum Temperature (°C)"
+  ]
+
+  ls:ask tmax-ls-model [
+    set climate-variable "Average Maximum Temperature (°C)"
+  ]
+
+  ls:ask prec-ls-model [
+    set climate-variable "Total Precipitation (mm)"
+  ]
+
+  ls:ask ls:models [setup true]
+end
+```
+
+`LogoClim`'s `setup` procedure comes with a `headless?` parameter to improve the model's performance when running in headless mode. NetLogo already shut down some interface elements when in headless mode, such as monitors and plots, but it cannot disable internal model procedures. When `headless?` is set to `true`, the model skips all code related to `LogoClim` interface, which can significantly speed up simulations.
+
+This is why when `ls:ask ls:models [setup true]` is called, the setup procedure is executed with `headless?` set to `true`. If you want to run the model in interactive mode, you can call `ls:ask ls:models [setup false]` instead.
+
+## `setup-world`
+
+## `setup-variables`
+
+## `setup-patches`

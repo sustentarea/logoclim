@@ -3,15 +3,115 @@
 $content-padding-top: 1.25rem;
 
 $callout-color-note: #345da9;
-$callout-color-tip: #345da9;
+$callout-color-tip: #f16a15;
 $callout-color-caution: #d73229;
-$callout-color-warning: #f16a15;
+$callout-color-warning: #d73229;
 $callout-color-important: #d73229;
 
 /*-- scss:rules --*/
 
+/* Google Fonts ----- */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 /* Body ----- */
 
-// body {
-//   color: $brand-black;
-// }
+body {
+  color: $brand-black;
+}
+
+/* Cover ----- */
+
+#title-block-header.quarto-title-block.default .quarto-title .title {
+	margin-bottom: 0.5em;
+}
+
+#welcome h1 {
+  display: none;
+}
+
+#title-block-header.quarto-title-block.default .quarto-title-meta {
+	display: none;
+}
+
+.quarto-cover-image {
+	max-width: 15%;
+	float: right;
+	margin-left: 30px;
+}
+
+/* Headers ----- */
+
+.header-section-number {
+	color: $brand-black;
+  display: none;
+}
+
+/* Breadcrumbs ----- */
+
+.quarto-title-breadcrumbs .breadcrumb li a {
+	color: #6c757d;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+	color: #6c757d;
+}
+
+/* Callouts ----- */
+
+.callout:not(.callout-titled) .callout-body > :last-child,
+.callout:not(.callout-titled) .callout-body > div > :last-child {
+  margin-bottom: 0.5rem;
+}
+
+/* Captions ----- */
+
+.panel-caption, .figure-caption, .subfigure-caption, .table-caption, figcaption, caption {
+	font-size: .9rem;
+	color: #46464c
+}
+
+pre {
+	background-color: #eee !important; 
+	padding: .5rem !important;
+}
+
+/* Colors ----- */
+
+.brand-blue {
+  color: $brand-blue;
+}
+
+.brand-orange {
+  color: $brand-orange;
+}
+
+.brand-red {
+  color: $brand-red;
+}
+
+.brand-gray {
+  color: $brand-gray;
+}
+
+.brand-black {
+  color: $brand-black;
+}
+
+/* Font Formatting ----- */
+
+.semi-bold {
+  font-weight: 600;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bold-extra {
+  font-weight: 800;
+}
+
+.bold-black {
+  font-weight: 900;
+}

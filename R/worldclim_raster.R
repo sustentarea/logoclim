@@ -61,7 +61,7 @@ worldclim_raster <- function(
     data <- data |> subset(layer)
   }
 
-  if (orbis:::test_date_line(country_shape)) {
+  if (test_date_line(country_shape)) {
     cli_progress_step("Applying date line fix")
 
     country_shape <- country_shape |> shift_and_rotate(dx = dx)

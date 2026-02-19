@@ -9,15 +9,9 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-::: {.callout-important}
-This manual is still under development and may be subject to change.
-
-This warning will be removed once the manual is finalized.
-:::
-
 ## Notes
 
-- Based on [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554), `LogoClim` represents missing values as `false`. This resolves issues with primitives like `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
+- Based on Seth Tisue's [suggestion](https://github.com/NetLogo/NetLogo/issues/2554), `LogoClim` represents missing values as `false`. This resolves issues with primitives like `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
 
 ## Changelog
 

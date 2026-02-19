@@ -12,20 +12,20 @@ meta:
     agriculture, environmental sciences, and other fields that rely on climate
     data.
 
-logo:
-  images:
-    logo:
-      path: images/logo.png
-      alt: "Logo"
-    og-image:
-      path: images/og-image.png
-      alt: "Open Graph Image"
-  small: logo
-  medium: logo
-  large: logo
+# logo:
+#   images:
+#     logo:
+#       path: images/logo.png
+#       alt: "Logo"
+#     og-image:
+#       path: images/og-image.png
+#       alt: "Open Graph Image"
+#   small: logo
+#   medium: logo
+#   large: logo
 
 color:
-  palette:
+  palette: # Based on NetLogo 7.0.0
     blue: "#345da9" # NetLogo: blue (105)
     orange: "#f16a15" # NetLogo: orange (25)
     red: "#d73229" # NetLogo: red (15)
@@ -34,7 +34,6 @@ color:
     white: "#ffffff" # NetLogo: white (9.9)
     blue-l50: "#8daaf5" # colorspace::lighten("#345da9", 0.5)
     orange-l50: "#ffb6a4" # colorspace::lighten("#f16a15", 0.5)
-    color-swatch-gray: "#8d8d8d" # Based on NetLogo 7.0.0
     light-theme-blue: "#0670ed"
     light-theme-light-blue: "#cfe5ff"
     light-theme-gray: "#d7d7d7"
@@ -51,6 +50,9 @@ color:
     dark-theme-dark-gray-3: "#161616"
     dark-theme-white: "#ffffff"
     dark-theme-black: "#000000"
+    color-swatch-black: "#000000"
+    color-swatch-white: "#ffffff"
+    color-swatch-gray: "#8d8d8d"
     color-swatch-red: "#d73229"
     color-swatch-orange: "#f16a15"
     color-swatch-brown: "#9d6e48"
@@ -83,6 +85,7 @@ typography:
       source: google
   base:
     family: Inter
+    size: 0.9em
     line-height: 1.6 # 1.6em
     weight: normal
   headings:
@@ -97,7 +100,7 @@ typography:
     size: 1em
   monospace-inline:
     family: Source Code Pro
-    color: purple
+    color: orange
     background-color: light-theme-light-gray
   monospace-block:
     family: Source Code Pro

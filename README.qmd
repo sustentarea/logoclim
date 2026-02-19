@@ -1,6 +1,6 @@
 # LogoClim <img src="images/logo.svg" align="right" width="120" />
 
-<!-- Quarto render -->
+<!-- quarto render -->
 
 ```{r}
 #| label: setup
@@ -119,7 +119,7 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 ```
 
 ```{=gfm}
-> [!IMPORTANT]
+> [!NOTE]
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 ```
 
@@ -222,8 +222,10 @@ cat(
 ```
 
 ```{=gfm}
-> [!IMPORTANT]
-> When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+> [!NOTE]
+> When using WorldClim data, you must also cite the original data sources.
+> 
+> The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 ```
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
