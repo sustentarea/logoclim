@@ -38,8 +38,13 @@ cat(
   badge_repostatus("active"),
   badge_github_actions(
     ref = "sustentarea/logoclim",
-    action = "NetLogo check",
-    alt = "NetLogo check badge"
+    action = "check-netlogo.yaml",
+    alt = "Check NetLogo workflow badge"
+  ),
+  badge_github_actions(
+    ref = "sustentarea/logoclim",
+    action = "render-manual.yaml",
+    alt = "Render manual workflow badge"
   ),
   badge_custom(
     x = "CoMSES Network",

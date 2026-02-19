@@ -1,6 +1,6 @@
 # LogoClim <img src="images/logo.svg" align="right" width="120" />
 
-<!-- Quarto render -->
+<!-- quarto render -->
 
 <!-- badges: start -->
 [![JOSS journal
@@ -8,8 +8,10 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![NetLogo check
-badge](https://github.com/sustentarea/logoclim/workflows/NetLogo%20check/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![Check NetLogo workflow
+badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![Render manual workflow
+badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![CoMSES Network
 badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![OSF DOI
@@ -61,7 +63,7 @@ example of how to integrate `LogoClim` into your model.
   <img src="images/logoclim-interface.gif" />
 </p>
 
-> [!IMPORTANT]
+> [!NOTE]
 > `LogoClim` is an independent project with no affiliation to [WorldClim](https://worldclim.org/) or its developers. Users should be aware that WorldClim datasets are freely available for academic and other non-commercial use only. Any use of WorldClim data within `LogoClim` must comply with [WorldClim's licensing terms](https://worldclim.org/about.html).
 
 ## How It Works
@@ -222,8 +224,10 @@ depending on your machine. Once complete, the
 
 [![](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
 
-> [!IMPORTANT]
-> When using WorldClim data, you must also cite the original data sources. The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+> [!NOTE]
+> When using WorldClim data, you must also cite the original data sources.
+> 
+> The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
 If you use this model in your research, please cite it to acknowledge
 the effort invested in its development and maintenance. Your citation

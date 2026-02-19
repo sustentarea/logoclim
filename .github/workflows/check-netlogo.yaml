@@ -2,7 +2,7 @@ on:
   push:
     branches: [main, master]
 
-name: NetLogo check
+name: check-netlogo.yaml
 permissions: read-all
 
 jobs:
