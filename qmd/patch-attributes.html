@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>8&nbsp; Patch Attributes – ⛅ LogoClim User Manual</title>
+<title>10&nbsp; Patch Attributes – LogoClim User Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../qmd/levelspace-overview.html" rel="next">
+<link href="../qmd/setup-procedure.html" rel="next">
 <link href="../qmd/global-variables.html" rel="prev">
 <link href="../images/logo.svg" rel="icon" type="image/svg+xml">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -36,10 +36,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7f6c78d74bb938728e1d5ef88acfd284.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f8729338d687b7c5c2abece8966c305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -67,14 +74,14 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="8&nbsp; Patch Attributes – ⛅ LogoClim User Manual">
+<meta property="og:title" content="10&nbsp; Patch Attributes – LogoClim User Manual">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://sustentarea.github.io/logoclim/qmd/images/og-image.png">
-<meta property="og:site_name" content="⛅ LogoClim User Manual">
-<meta property="og:image:alt" content="⛅ LogoClim: WorldClim in NetLogo">
+<meta property="og:site_name" content="LogoClim User Manual">
+<meta property="og:image:alt" content="LogoClim: WorldClim in NetLogo">
 <meta property="og:image:height" content="1600">
 <meta property="og:image:width" content="2400">
-<meta name="citation_title" content="[[8]{.chapter-number}&nbsp; [Patch Attributes]{.chapter-title}]{#sec-patch-attributes .quarto-section-identifier}">
+<meta name="citation_title" content="[[10]{.chapter-number}&nbsp; [Patch Attributes]{.chapter-title}]{#sec-patch-attributes .quarto-section-identifier}">
 <meta name="citation_fulltext_html_url" content="https://sustentarea.github.io/logoclim/">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Quarto;,citation_abstract=Quarto is an open-source scientific and technical publishing system built on Pandoc.;,citation_author=J. J. Allaire;,citation_author=Charles Teague;,citation_author=Yihui Xie;,citation_author=Christophe Dervieux;,citation_doi=10.5281/ZENODO.5960048;,citation_publisher=Zenodo;">
@@ -85,6 +92,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="citation_reference" content="citation_title=geodata: Download geographic data;,citation_abstract=Functions for downloading of geographic data for use in spatial analysis and mapping. The package facilitates access to climate, crops, elevation, land use, soil, species occurrence, accessibility, administrative boundaries and other data.;,citation_author=Robert J. Hijmans;,citation_author=Márcia Barbosa;,citation_author=Aniruddha Ghosh;,citation_author=Alex Mandel;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_doi=10.32614/CRAN.package.geodata;">
 <meta name="citation_reference" content="citation_title=terra: Spatial Data Analysis;,citation_abstract=Methods for spatial data analysis with vector (points, lines, polygons) and raster (grid) data. Methods for vector data include geometric operations such as intersect and buffer. Raster methods include local, focal, global, zonal and geometric operations. The predict and interpolate methods facilitate the use of regression type (interpolation, machine learning) models for spatial prediction, including with satellite remote sensing data. Processing of very large files is supported. See the manual and tutorials on $&amp;amp;amp;lt;$https://rspatial.org/$&amp;gt;$ to get started.;,citation_author=Robert J. Hijmans;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.32614/CRAN.package.terra;">
 <meta name="citation_reference" content="citation_title=GADM: Database of global administrative areas;,citation_abstract=GADM wants to map the administrative areas of all countries, at all levels of sub-division. We provide data at high spatial resolutions that includes an extensive set of attributes. This is a never ending project, but we are happy to share what we have.;,citation_author=Robert J. Hijmans;,citation_fulltext_html_url=https://gadm.org;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=LevelSpace: A NetLogo extension for multi-level agent-based modeling;,citation_abstract=Multi-Level Agent-Based Modeling (ML-ABM) has been receiving increasing attention in recent years. In this paper we present LevelSpace, an extension that allows modelers to easily build ML-ABMs in the popular and widely used NetLogo language. We present the LevelSpace framework and its associated programming primitives. Based on three common use-cases of ML-ABM – coupling of heterogenous models, dynamic adaptation of detail, and cross-level interaction - we show how easy it is to build ML-ABMs with LevelSpace. We argue that it is important to have a unified conceptual language for describing LevelSpace models, and present six dimensions along which models can differ, and discuss how these can be combined into a variety of ML-ABM types in LevelSpace. Finally, we argue that future work should explore the relationships between these six dimensions, and how different configurations of them might be more or less appropriate for particular modeling tasks.;,citation_author=Arthur Hjorth;,citation_author=Bryan Head;,citation_author=Corey Brady;,citation_author=Uri Wilensky;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_issue=1;,citation_doi=10.18564/jasss.4130;,citation_issn=1460-7425;,citation_volume=23;,citation_language=en-US;,citation_journal_title=Journal of Artificial Societies and Social Simulation;,citation_journal_abbrev=JASSS;">
 <meta name="citation_reference" content="citation_title=ISOcodes: Selected ISO codes;,citation_abstract=ISO language, territory, currency, script and character codes. Provides ISO 639 language codes, ISO 3166 territory codes, ISO 4217 currency codes, ISO 15924 script codes, and the ISO 8859 character codes as well as the UN M.49 area codes.;,citation_author=Kurt Hornik;,citation_author=Christian Buchta;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.ISOcodes;">
 <meta name="citation_reference" content="citation_title=checkmate: Fast argument checks for defensive R programming;,citation_abstract=Dynamically typed programming languages like R allow programmers to write generic, flexible and concise code and to interact with the language using an interactive Read-eval-print-loop (REPL). However, this flexibility has its price: As the R interpreter has no information about the expected variable type, many base functions automatically convert the input instead of raising an exception. Unfortunately, this frequently leads to runtime errors deeper down the call stack which obfuscates the original problem and renders debugging challenging. Even worse, unwanted conversions can remain undetected and skew or invalidate the results of a statistical analysis. As a resort, assertions can be employed to detect unexpected input during runtime and to signal understandable and traceable errors. The package checkmate provides a plethora of functions to check the type and related properties of the most frequently used R objects and variable types. The package is mostly written in C to avoid any unnecessary performance overhead. Thus, the programmer can conveniently write concise, well-tested assertions which outperforms custom R code for many applications. Furthermore, checkmate simplifies writing unit tests using the framework testthat (Wickham 2011) by extending it with plenty of additional expectation functions, and registered C routines are available for package developers to perform assertions on arbitrary SEXPs (internal data structure for R objects implemented as struct in C) in compiled code.;,citation_author=Michel Lang;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=1;,citation_doi=10.32614/RJ-2017-028;,citation_volume=9;,citation_language=en-US;,citation_journal_title=The R Journal;">
 <meta name="citation_reference" content="citation_title=here: A simpler way to find your files;,citation_abstract=Constructs paths to your project’s files. Declare the relative path of a file within your project with ’i_am()’. Use the ’here()’ function as a drop-in replacement for ’file.path()’, it will always locate the files relative to your project root.;,citation_author=Kirill Müller;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.here;">
@@ -96,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="citation_reference" content="citation_title=LogoActions: GitHub Actions for the NetLogo community;,citation_abstract=LogoActions is a collection of GitHub Actions designed to facilitate the setup and execution of NetLogo models within GitHub workflows. These actions enable researchers and developers to automate the installation of NetLogo, run and test simulations, and integrate NetLogo with other tools and platforms, such as Quarto, logolink and pyNetLogo.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.5281/zenodo.18102378;">
 <meta name="citation_reference" content="citation_title=Testthat: Get started with testing;,citation_abstract=Software testing is important, but many of us don’t do it because it is frustrating and boring. testthat is a new testing framework for R that is easy learn and use, and integrates with your existing workflow. This paper shows how, with illustrations from existing packages.;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_issue=1;,citation_doi=10.32614/RJ-2011-002;,citation_issn=2073-4859;,citation_volume=3;,citation_language=en-US;,citation_journal_title=The R Journal;,citation_journal_abbrev=The R Journal;">
 <meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
-<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverse collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The tidyverse style guide;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://style.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Tidy design principles;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://design.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=NetLogo;,citation_author=Uri Wilensky;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_fulltext_html_url=http://ccl.northwestern.edu/netlogo/;,citation_publisher=Center for Connected Learning; Computer-Based Modeling, Northwestern University;">
@@ -108,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/global-variables.html">Variables and Attributes</a></li><li class="breadcrumb-item"><a href="../qmd/patch-attributes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/levelspace.html">LevelSpace Integration</a></li><li class="breadcrumb-item"><a href="../qmd/patch-attributes.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">⛅ LogoClim User Manual</a> 
+      <a href="../">LogoClim User Manual</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sustentarea/logoclim/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -154,20 +162,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/what-is-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is It</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../qmd/how-it-works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/how-to-use-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
   </div>
 </li>
       </ul>
@@ -184,19 +186,19 @@ ul.task-list li input[type="checkbox"] {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/worldclim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Variables and Attributes</span></a>
+ <span class="menu-text">LevelSpace Integration</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,43 +214,44 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">LevelSpace Integration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/levelspace-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">LevelSpace Overview</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/setting-up-levelspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setting Up LevelSpace</span></span></a>
+  <a href="../qmd/levelspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/logonia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/interface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Interface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/setup-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Procedure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/go-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Go Procedure</span></span></a>
   </div>
 </li>
       </ul>
@@ -261,16 +264,16 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/developer-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/release-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Developer Notes</span></span></a>
   </div>
 </li>
@@ -293,11 +296,16 @@ ul.task-list li input[type="checkbox"] {
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/patch-attributes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#logoclim-global-variables" id="toc-logoclim-global-variables" class="nav-link active" data-scroll-target="#logoclim-global-variables"><span class="header-section-number">10.1</span> <code>LogoClim</code> Global Variables</a></li>
+  <li><a href="#log%C3%B4nia-patch-attributes" id="toc-logônia-patch-attributes" class="nav-link" data-scroll-target="#log%C3%B4nia-patch-attributes"><span class="header-section-number">10.2</span> Logônia Patch Attributes</a></li>
+  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/patch-attributes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/global-variables.html">Variables and Attributes</a></li><li class="breadcrumb-item"><a href="../qmd/patch-attributes.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-patch-attributes" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/levelspace.html">LevelSpace Integration</a></li><li class="breadcrumb-item"><a href="../qmd/patch-attributes.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-patch-attributes" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></h1>
 </div>
 
 
@@ -311,34 +319,71 @@ ul.task-list li input[type="checkbox"] {
   
 
 
-</header><div class="callout callout-style-simple callout-important">
+</header><div class="callout callout-style-simple callout-warning">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>This manual is still under development and may be subject to change.</p>
-<p>This warning will be removed once the manual is finalized.</p>
+<p>This chapter is a work in progress. The content may be incomplete, inconsistent, or subject to significant revision. Reader discretion is advised.</p>
 </div>
 </div>
 </div>
-<p>Each patch in the model has the following attributes:</p>
+<p>Patch attributes store information about each patch in the model. Some are standard NetLogo attributes, like <code>pxcor</code> and <code>pycor</code> for the patch coordinates, while others are specific to <code>LogoClim</code>. These store climate data for each patch along with its latitude and longitude, and are what allow the model to represent spatial variations in climate conditions across the world.</p>
+<section id="logoclim-global-variables" class="level2" data-number="10.1"><h2 data-number="10.1" class="anchored" data-anchor-id="logoclim-global-variables">
+<span class="header-section-number">10.1</span> <code>LogoClim</code> Global Variables</h2>
+<p>Each patch in the <code>LogoClim</code> model has the following attributes:</p>
 <ul>
 <li>
-<strong><code>value</code></strong>: A number representing the value of the climate variable.</li>
+<strong><code>value</code></strong>: A <code>number</code> representing the value of the climate variable.</li>
 <li>
-<strong><code>value-12</code></strong>: A <code>list</code> containing the current value of the climate variable with the previous 11 values. These values are ordered chronologically, with the most recent value at the end of the list.</li>
+<strong><code>value-12</code></strong>: A <code>list</code> containing the current value of the climate variable along with the previous 11 values. These values are ordered chronologically, with the most recent value (stored in <code>value</code>) at the end of the list.</li>
 <li>
-<strong><code>value-12ma</code></strong>: A number representing the 12-month moving average of the climate variable (<code>mean value-12</code>).</li>
+<strong><code>value-12ma</code></strong>: A <code>number</code> representing the 12-month moving average of the climate variable, i.e., the mean of the values in the <code>value-12</code> list. This attribute is used to smooth out short-term fluctuations in the climate data and highlight longer-term trends.</li>
 <li>
 <strong><code>latitude</code></strong>: A <code>list</code> containing two numbers indicating the minimum and maximum latitude of the patch point.</li>
 <li>
 <strong><code>longitude</code></strong>: A <code>list</code> containing two numbers indicating the minimum and maximum longitude of the patch point.</li>
 </ul>
+<div id="fig-patch-attributes-logoclim-monitor" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-patch-attributes-logoclim-monitor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logoclim-patch-monitor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;10.1: LogoClim patch monitor during a simulation. Click on the image to enlarge it."><img src="images/logoclim-patch-monitor.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-patch-attributes-logoclim-monitor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: <code>LogoClim</code> patch monitor during a simulation. Click on the image to enlarge it.
+</figcaption></figure>
+</div>
+</section><section id="logônia-patch-attributes" class="level2" data-number="10.2"><h2 data-number="10.2" class="anchored" data-anchor-id="logônia-patch-attributes">
+<span class="header-section-number">10.2</span> Logônia Patch Attributes</h2>
+<p>The code below shows the patch attributes configuration of the <code>Logônia</code> model. <code>LogoClim</code> insertions are denoted with <code>; LogoClim</code> at the end of the line to make it easier to identify which parts of the code are specific to <code>LogoClim</code> and which are related to <code>Logônia</code>.</p>
+<pre class="netlogo"><code>patches-own [
+  growth-probability
+  ever-occupied?
+  tmin ; LogoClim
+  tmin-12 ; LogoClim
+  tmin-12ma ; LogoClim
+  tmax ; LogoClim
+  tmax-12 ; LogoClim
+  tmax-12ma ; LogoClim
+  prec ; LogoClim
+  prec-12 ; LogoClim
+  prec-12ma ; LogoClim
+  latitude ; LogoClim
+  longitude ; LogoClim
+]</code></pre>
+<div id="fig-patch-attributes-logonia-monitor" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-patch-attributes-logonia-monitor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logonia-patch-monitor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;10.2: LogoClim patch monitor during a simulation. Click on the image to enlarge it."><img src="images/logonia-patch-monitor.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-patch-attributes-logonia-monitor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: <code>LogoClim</code> patch monitor during a simulation. Click on the image to enlarge it.
+</figcaption></figure>
+</div>
+<p><code>latitude</code> and <code>longitude</code> attributes are used to store the coordinates of the patches in <code>Logônia</code> that correspond to the climate data in <code>LogoClim</code>, but the mapping between the two models is done using the <code>pxcor</code> and <code>pycor</code> attributes of the patches in both models.</p>
+<p><code>tmin</code>, <code>tmax</code>, and <code>prec</code> attributes store the current values of the minimum temperature, maximum temperature, and precipitation for each patch, respectively. The <code>tmin-12</code>, <code>tmax-12</code>, and <code>prec-12</code> attributes store the current value along with the previous 11 values for each climate variable, while the <code>tmin-12ma</code>, <code>tmax-12ma</code>, and <code>prec-12ma</code> attributes store the 12-month moving average for each climate variable. These are directly extracted from the three instances of <code>LogoClim</code> running in parallel, which feed their corresponding climate variable into <code>Logônia</code> at each tick.</p>
 
 
-
-</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -739,17 +784,48 @@ ul.task-list li input[type="checkbox"] {
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../qmd/global-variables.html" class="pagination-link" aria-label="Global Variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Global Variables</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Global Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../qmd/levelspace-overview.html" class="pagination-link" aria-label="LevelSpace Overview">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">LevelSpace Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../qmd/setup-procedure.html" class="pagination-link" aria-label="Setup Procedure">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Procedure</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/patch-attributes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/patch-attributes.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

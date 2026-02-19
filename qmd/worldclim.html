@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>4&nbsp; WorldClim – ⛅ LogoClim User Manual</title>
+<title>3&nbsp; WorldClim – LogoClim User Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -56,10 +56,17 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7f6c78d74bb938728e1d5ef88acfd284.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f8729338d687b7c5c2abece8966c305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -87,14 +94,14 @@ div.csl-indent {
   }
 }</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="4&nbsp; WorldClim – ⛅ LogoClim User Manual">
+<meta property="og:title" content="3&nbsp; WorldClim – LogoClim User Manual">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://sustentarea.github.io/logoclim/qmd/images/og-image.png">
-<meta property="og:site_name" content="⛅ LogoClim User Manual">
-<meta property="og:image:alt" content="⛅ LogoClim: WorldClim in NetLogo">
+<meta property="og:site_name" content="LogoClim User Manual">
+<meta property="og:image:alt" content="LogoClim: WorldClim in NetLogo">
 <meta property="og:image:height" content="1600">
 <meta property="og:image:width" content="2400">
-<meta name="citation_title" content="[[4]{.chapter-number}&nbsp; [WorldClim]{.chapter-title}]{#sec-worldclim .quarto-section-identifier}">
+<meta name="citation_title" content="[[3]{.chapter-number}&nbsp; [WorldClim]{.chapter-title}]{#sec-worldclim .quarto-section-identifier}">
 <meta name="citation_fulltext_html_url" content="https://sustentarea.github.io/logoclim/">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Quarto;,citation_abstract=Quarto is an open-source scientific and technical publishing system built on Pandoc.;,citation_author=J. J. Allaire;,citation_author=Charles Teague;,citation_author=Yihui Xie;,citation_author=Christophe Dervieux;,citation_doi=10.5281/ZENODO.5960048;,citation_publisher=Zenodo;">
@@ -105,6 +112,7 @@ div.csl-indent {
 <meta name="citation_reference" content="citation_title=geodata: Download geographic data;,citation_abstract=Functions for downloading of geographic data for use in spatial analysis and mapping. The package facilitates access to climate, crops, elevation, land use, soil, species occurrence, accessibility, administrative boundaries and other data.;,citation_author=Robert J. Hijmans;,citation_author=Márcia Barbosa;,citation_author=Aniruddha Ghosh;,citation_author=Alex Mandel;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_doi=10.32614/CRAN.package.geodata;">
 <meta name="citation_reference" content="citation_title=terra: Spatial Data Analysis;,citation_abstract=Methods for spatial data analysis with vector (points, lines, polygons) and raster (grid) data. Methods for vector data include geometric operations such as intersect and buffer. Raster methods include local, focal, global, zonal and geometric operations. The predict and interpolate methods facilitate the use of regression type (interpolation, machine learning) models for spatial prediction, including with satellite remote sensing data. Processing of very large files is supported. See the manual and tutorials on $&amp;amp;amp;lt;$https://rspatial.org/$&amp;gt;$ to get started.;,citation_author=Robert J. Hijmans;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.32614/CRAN.package.terra;">
 <meta name="citation_reference" content="citation_title=GADM: Database of global administrative areas;,citation_abstract=GADM wants to map the administrative areas of all countries, at all levels of sub-division. We provide data at high spatial resolutions that includes an extensive set of attributes. This is a never ending project, but we are happy to share what we have.;,citation_author=Robert J. Hijmans;,citation_fulltext_html_url=https://gadm.org;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=LevelSpace: A NetLogo extension for multi-level agent-based modeling;,citation_abstract=Multi-Level Agent-Based Modeling (ML-ABM) has been receiving increasing attention in recent years. In this paper we present LevelSpace, an extension that allows modelers to easily build ML-ABMs in the popular and widely used NetLogo language. We present the LevelSpace framework and its associated programming primitives. Based on three common use-cases of ML-ABM – coupling of heterogenous models, dynamic adaptation of detail, and cross-level interaction - we show how easy it is to build ML-ABMs with LevelSpace. We argue that it is important to have a unified conceptual language for describing LevelSpace models, and present six dimensions along which models can differ, and discuss how these can be combined into a variety of ML-ABM types in LevelSpace. Finally, we argue that future work should explore the relationships between these six dimensions, and how different configurations of them might be more or less appropriate for particular modeling tasks.;,citation_author=Arthur Hjorth;,citation_author=Bryan Head;,citation_author=Corey Brady;,citation_author=Uri Wilensky;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_issue=1;,citation_doi=10.18564/jasss.4130;,citation_issn=1460-7425;,citation_volume=23;,citation_language=en-US;,citation_journal_title=Journal of Artificial Societies and Social Simulation;,citation_journal_abbrev=JASSS;">
 <meta name="citation_reference" content="citation_title=ISOcodes: Selected ISO codes;,citation_abstract=ISO language, territory, currency, script and character codes. Provides ISO 639 language codes, ISO 3166 territory codes, ISO 4217 currency codes, ISO 15924 script codes, and the ISO 8859 character codes as well as the UN M.49 area codes.;,citation_author=Kurt Hornik;,citation_author=Christian Buchta;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.ISOcodes;">
 <meta name="citation_reference" content="citation_title=checkmate: Fast argument checks for defensive R programming;,citation_abstract=Dynamically typed programming languages like R allow programmers to write generic, flexible and concise code and to interact with the language using an interactive Read-eval-print-loop (REPL). However, this flexibility has its price: As the R interpreter has no information about the expected variable type, many base functions automatically convert the input instead of raising an exception. Unfortunately, this frequently leads to runtime errors deeper down the call stack which obfuscates the original problem and renders debugging challenging. Even worse, unwanted conversions can remain undetected and skew or invalidate the results of a statistical analysis. As a resort, assertions can be employed to detect unexpected input during runtime and to signal understandable and traceable errors. The package checkmate provides a plethora of functions to check the type and related properties of the most frequently used R objects and variable types. The package is mostly written in C to avoid any unnecessary performance overhead. Thus, the programmer can conveniently write concise, well-tested assertions which outperforms custom R code for many applications. Furthermore, checkmate simplifies writing unit tests using the framework testthat (Wickham 2011) by extending it with plenty of additional expectation functions, and registered C routines are available for package developers to perform assertions on arbitrary SEXPs (internal data structure for R objects implemented as struct in C) in compiled code.;,citation_author=Michel Lang;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=1;,citation_doi=10.32614/RJ-2017-028;,citation_volume=9;,citation_language=en-US;,citation_journal_title=The R Journal;">
 <meta name="citation_reference" content="citation_title=here: A simpler way to find your files;,citation_abstract=Constructs paths to your project’s files. Declare the relative path of a file within your project with ’i_am()’. Use the ’here()’ function as a drop-in replacement for ’file.path()’, it will always locate the files relative to your project root.;,citation_author=Kirill Müller;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.here;">
@@ -116,7 +124,7 @@ div.csl-indent {
 <meta name="citation_reference" content="citation_title=LogoActions: GitHub Actions for the NetLogo community;,citation_abstract=LogoActions is a collection of GitHub Actions designed to facilitate the setup and execution of NetLogo models within GitHub workflows. These actions enable researchers and developers to automate the installation of NetLogo, run and test simulations, and integrate NetLogo with other tools and platforms, such as Quarto, logolink and pyNetLogo.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.5281/zenodo.18102378;">
 <meta name="citation_reference" content="citation_title=Testthat: Get started with testing;,citation_abstract=Software testing is important, but many of us don’t do it because it is frustrating and boring. testthat is a new testing framework for R that is easy learn and use, and integrates with your existing workflow. This paper shows how, with illustrations from existing packages.;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_issue=1;,citation_doi=10.32614/RJ-2011-002;,citation_issn=2073-4859;,citation_volume=3;,citation_language=en-US;,citation_journal_title=The R Journal;,citation_journal_abbrev=The R Journal;">
 <meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
-<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverse collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The tidyverse style guide;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://style.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Tidy design principles;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://design.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=NetLogo;,citation_author=Uri Wilensky;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_fulltext_html_url=http://ccl.northwestern.edu/netlogo/;,citation_publisher=Center for Connected Learning; Computer-Based Modeling, Northwestern University;">
@@ -128,7 +136,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/worldclim.html">Data and Files</a></li><li class="breadcrumb-item"><a href="../qmd/worldclim.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/worldclim.html">Data and Files</a></li><li class="breadcrumb-item"><a href="../qmd/worldclim.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,7 +147,7 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">⛅ LogoClim User Manual</a> 
+      <a href="../">LogoClim User Manual</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sustentarea/logoclim/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -174,20 +182,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/what-is-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is It</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../qmd/how-it-works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/how-to-use-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,19 +206,19 @@ div.csl-indent {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/worldclim.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +226,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Variables and Attributes</span></a>
+ <span class="menu-text">LevelSpace Integration</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -232,43 +234,44 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">LevelSpace Integration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/levelspace-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">LevelSpace Overview</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/setting-up-levelspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setting Up LevelSpace</span></span></a>
+  <a href="../qmd/levelspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/logonia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/interface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Interface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/setup-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Procedure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/go-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Go Procedure</span></span></a>
   </div>
 </li>
       </ul>
@@ -281,16 +284,16 @@ div.csl-indent {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/developer-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/release-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Developer Notes</span></span></a>
   </div>
 </li>
@@ -317,21 +320,21 @@ div.csl-indent {
    
   <ul>
 <li>
-<a href="#data-series" id="toc-data-series" class="nav-link active" data-scroll-target="#data-series"><span class="header-section-number">4.1</span> Data Series</a>
+<a href="#data-series" id="toc-data-series" class="nav-link active" data-scroll-target="#data-series"><span class="header-section-number">3.1</span> Data Series</a>
   <ul class="collapse">
-<li><a href="#historical-climate-data" id="toc-historical-climate-data" class="nav-link" data-scroll-target="#historical-climate-data"><span class="header-section-number">4.1.1</span> Historical Climate Data</a></li>
-  <li><a href="#historical-monthly-weather-data" id="toc-historical-monthly-weather-data" class="nav-link" data-scroll-target="#historical-monthly-weather-data"><span class="header-section-number">4.1.2</span> Historical Monthly Weather Data</a></li>
-  <li><a href="#future-climate-data" id="toc-future-climate-data" class="nav-link" data-scroll-target="#future-climate-data"><span class="header-section-number">4.1.3</span> Future Climate Data</a></li>
+<li><a href="#historical-climate-data" id="toc-historical-climate-data" class="nav-link" data-scroll-target="#historical-climate-data"><span class="header-section-number">3.1.1</span> Historical Climate Data</a></li>
+  <li><a href="#historical-monthly-weather-data" id="toc-historical-monthly-weather-data" class="nav-link" data-scroll-target="#historical-monthly-weather-data"><span class="header-section-number">3.1.2</span> Historical Monthly Weather Data</a></li>
+  <li><a href="#future-climate-data" id="toc-future-climate-data" class="nav-link" data-scroll-target="#future-climate-data"><span class="header-section-number">3.1.3</span> Future Climate Data</a></li>
   </ul>
 </li>
-  <li><a href="#worldclim-data-with-logoclim" id="toc-worldclim-data-with-logoclim" class="nav-link" data-scroll-target="#worldclim-data-with-logoclim"><span class="header-section-number">4.2</span> WorldClim Data with <code>LogoClim</code></a></li>
-  <li><a href="#worldclim-license" id="toc-worldclim-license" class="nav-link" data-scroll-target="#worldclim-license"><span class="header-section-number">4.3</span> WorldClim License</a></li>
-  <li><a href="#worldclim-literature" id="toc-worldclim-literature" class="nav-link" data-scroll-target="#worldclim-literature"><span class="header-section-number">4.4</span> WorldClim Literature</a></li>
+  <li><a href="#logoclim-data" id="toc-logoclim-data" class="nav-link" data-scroll-target="#logoclim-data"><span class="header-section-number">3.2</span> LogoClim Data</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license"><span class="header-section-number">3.3</span> License</a></li>
+  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature"><span class="header-section-number">3.4</span> Literature</a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/worldclim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/worldclim.html">Data and Files</a></li><li class="breadcrumb-item"><a href="../qmd/worldclim.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></a></li></ol></nav><div class="quarto-title">
-<h1 class="title"><span id="sec-worldclim" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/worldclim.html">Data and Files</a></li><li class="breadcrumb-item"><a href="../qmd/worldclim.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-worldclim" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></span></h1>
 </div>
 
 
@@ -345,60 +348,73 @@ div.csl-indent {
   
 
 
-</header><div class="callout callout-style-simple callout-important">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This manual is still under development and may be subject to change.</p>
-<p>This warning will be removed once the manual is finalized.</p>
-</div>
-</div>
-</div>
-<p><a href="https://www.worldclim.org/">WorldClim</a> is a project created by <a href="https://orcid.org/0000-0001-5872-2872">Robert J. Hijmans</a>, <a href="https://orcid.org/0000-0002-3548-6966">Stephen E. Fick</a>, and colleagues that provides high-resolution global climate data for spatial mapping and modeling <span class="citation" data-cites="fick2017">(<a href="references.html#ref-fick2017" role="doc-biblioref">Fick &amp; Hijmans, 2017</a>)</span>. These datasets include historical series <a href="https://www.gfdl.noaa.gov/climate-model-downscaling/">downscaled</a> from <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/">CRU-TS-4.09</a>, containing data interpolated from thousands of weather stations, as well as future projections derived from Coupled Model Intercomparison Project Phase 6 (<a href="https://wcrp-cmip.org/cmip-phases/cmip6/">CMIP6</a>) models.</p>
-<p>In agent-based models, WorldClim data can help simulate the effects of climate change on species distributions, ecosystem dynamics, and human-environment interactions, adding <a href="https://doi.org/10.1126/science.1116681">structural realism</a> and complexity to simulations.</p>
-<section id="data-series" class="level2" data-number="4.1"><h2 data-number="4.1" class="anchored" data-anchor-id="data-series">
-<span class="header-section-number">4.1</span> Data Series</h2>
-<p><code>LogoClim</code> supports simulation with all three climate data series provided by <a href="https://worldclim.org/">WorldClim 2.1</a>. Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)).</p>
-<section id="historical-climate-data" class="level3" data-number="4.1.1"><h3 data-number="4.1.1" class="anchored" data-anchor-id="historical-climate-data">
-<span class="header-section-number">4.1.1</span> Historical Climate Data</h3>
+</header><p>WorldClim is a project created by <a href="https://orcid.org/0000-0001-5872-2872">Robert J. Hijmans</a>, <a href="https://orcid.org/0000-0002-3548-6966">Stephen E. Fick</a>, and colleagues that provides high-resolution global climate data for spatial mapping and modeling <span class="citation" data-cites="fick2017">(<a href="references.html#ref-fick2017" role="doc-biblioref">Fick &amp; Hijmans, 2017</a>)</span>. These datasets include historical series <a href="https://www.gfdl.noaa.gov/climate-model-downscaling/">downscaled</a> from <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/">CRU-TS-4.09</a>, containing data interpolated from thousands of weather stations, as well as future projections derived from Coupled Model Intercomparison Project Phase 6 (<a href="https://wcrp-cmip.org/cmip-phases/cmip6/">CMIP6</a>) models.</p>
+<p>When used with agent-based models, <a href="https://www.worldclim.org/">WorldClim</a> data can help simulate the effects of climate change on species distributions, ecosystem dynamics, and human-environment interactions, adding <a href="https://doi.org/10.1126/science.1116681">structural realism</a> and complexity to simulations. <code>LogoClim</code> does the heavy lifting of integrating these datasets into NetLogo, allowing you to focus on your research questions and model design.</p>
+<section id="data-series" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="data-series">
+<span class="header-section-number">3.1</span> Data Series</h2>
+<p><code>LogoClim</code> supports simulation with all three climate data series provided by <a href="https://worldclim.org/">WorldClim 2.1</a>. Each series is available at multiple spatial resolutions, from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator).</p>
+<section id="historical-climate-data" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="historical-climate-data">
+<span class="header-section-number">3.1.1</span> Historical Climate Data</h3>
 <p>This <a href="https://www.worldclim.org/data/worldclim21.html">series</a> includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on <a href="https://www.worldclim.org/data/bioclim.html">bioclimatic variables</a>.</p>
-</section><section id="historical-monthly-weather-data" class="level3" data-number="4.1.2"><h3 data-number="4.1.2" class="anchored" data-anchor-id="historical-monthly-weather-data">
-<span class="header-section-number">4.1.2</span> Historical Monthly Weather Data</h3>
+<div id="fig-how-it-works-hcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-hcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logoclim-interface-gbr-30s-hcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Historical Climate Data series at 30-second resolution (~1 km2 at the equator), displaying the Water Vapor Pressure (kPa) for the United Kingdom in December, averaged over the 1970–2000 period. Click on the image to enlarge it."><img src="images/logoclim-interface-gbr-30s-hcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-how-it-works-hcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: <em>Historical Climate Data</em> series at 30-second resolution (~1 km<sup>2</sup> at the equator), displaying the <em>Water Vapor Pressure (kPa)</em> for the United Kingdom in December, averaged over the 1970–2000 period. Click on the image to enlarge it.
+</figcaption></figure>
+</div>
+</section><section id="historical-monthly-weather-data" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="historical-monthly-weather-data">
+<span class="header-section-number">3.1.2</span> Historical Monthly Weather Data</h3>
 <p>This <a href="https://www.worldclim.org/data/monthlywth.html">series</a> includes 12 monthly data points for each year from 1951 to 2024, based on <a href="https://worldclim.org/data/downscaling.html">downscaled</a> data from <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/">CRU-TS-4.09</a>, developed by the <a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">Climatic Research Unit</a> at the <a href="https://www.uea.ac.uk/">University of East Anglia</a>. It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.</p>
-</section><section id="future-climate-data" class="level3" data-number="4.1.3"><h3 data-number="4.1.3" class="anchored" data-anchor-id="future-climate-data">
-<span class="header-section-number">4.1.3</span> Future Climate Data</h3>
+<div id="fig-how-it-works-hmwd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-hmwd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logoclim-interface-bra-10m-hmwd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.2: Historical Monthly Weather Data series at 10-minute resolution (~340 km2 at the equator), displaying the Average Maximum Temperature (°C) for Brazil in December 1960. Click on the image to enlarge it."><img src="images/logoclim-interface-bra-10m-hmwd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-how-it-works-hmwd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: <em>Historical Monthly Weather Data</em> series at 10-minute resolution (~340 km<sup>2</sup> at the equator), displaying the <em>Average Maximum Temperature (°C)</em> for Brazil in December 1960. Click on the image to enlarge it.
+</figcaption></figure>
+</div>
+</section><section id="future-climate-data" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="future-climate-data">
+<span class="header-section-number">3.1.3</span> Future Climate Data</h3>
 <p>This <a href="https://www.worldclim.org/data/cmip6/cmip6climate.html">series</a> includes 12 monthly data points from <a href="https://worldclim.org/data/downscaling.html">downscaled</a> climate projections derived from <a href="https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6">CMIP6</a> models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four <a href="https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/">SSPs</a>: 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and <a href="https://www.worldclim.org/data/bioclim.html">bioclimatic variables</a>.</p>
-</section></section><section id="worldclim-data-with-logoclim" class="level2" data-number="4.2"><h2 data-number="4.2" class="anchored" data-anchor-id="worldclim-data-with-logoclim">
-<span class="header-section-number">4.2</span> WorldClim Data with <code>LogoClim</code>
-</h2>
-<p><code>LogoClim</code> relies on raster data to represent climate variables. The datasets are available for download from <a href="https://worldclim.org/">WorldClim 2.1</a>, but must be converted to <a href="https://en.wikipedia.org/wiki/Esri_grid#ASCII">ASCII</a> format for compatibility with <a href="www.netlogo.org/">NetLogo</a>.</p>
-<p>To simplify this workflow, we developed two functions in the <a href="https://danielvartan.github.io/orbis/index.html"><code>orbis</code></a> R package <span class="citation" data-cites="vartanian2026a">(<a href="references.html#ref-vartanian2026a" role="doc-biblioref">Vartanian, 2026</a>)</span> to streamline the process of data extraction and processing:</p>
+<div id="fig-how-it-works-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logoclim-interface-cnh-10m-fcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3.3: Future Climate Data series at 10-minute resolution (~340 km2 at the equator), displaying the Total Precipitation (mm) variable for China in December 2081–2100 under the SSP-585 scenario, as estimated by the CMCC-ESM2 global climate model. Click on the image to enlarge it."><img src="images/logoclim-interface-cnh-10m-fcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-how-it-works-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: <em>Future Climate Data</em> series at 10-minute resolution (~340 km<sup>2</sup> at the equator), displaying the <em>Total Precipitation (mm)</em> variable for China in December 2081–2100 under the <a href="https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/">SSP-585</a> scenario, as estimated by the <a href="https://www.cmcc.it/models/cmcc-esm-earth-system-model">CMCC-ESM2</a> global climate model. Click on the image to enlarge it.
+</figcaption></figure>
+</div>
+</section></section><section id="logoclim-data" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="logoclim-data">
+<span class="header-section-number">3.2</span> LogoClim Data</h2>
+<p><code>LogoClim</code> uses <a href="https://en.wikipedia.org/wiki/Raster_graphics">raster data</a> to represent climate variables. Datasets come from <a href="https://worldclim.org/">WorldClim 2.1</a>, but need to be converted to <a href="https://en.wikipedia.org/wiki/Esri_grid#ASCII">Esri ASCII</a> format before NetLogo can read them. To take care of that, we developed two functions in the <a href="https://danielvartan.github.io/orbis/index.html"><code>orbis</code></a> <a href="https://www.r-project.org/">R</a> package <span class="citation" data-cites="vartanian2026a">(<a href="references.html#ref-vartanian2026a" role="doc-biblioref">Vartanian, 2026</a>)</span> that handle the extraction and conversion for you:</p>
 <ul>
 <li>
 <a href="https://danielvartan.github.io/orbis/reference/worldclim_download.html"><code>worldclim_download()</code></a>: Download WorldClim data</li>
 <li>
 <a href="https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html"><code>worldclim_to_ascii</code></a>: Convert WorldClim GeoTIFF files to Esri ASCII Grid</li>
 </ul>
-<p>Using these functions effectively requires a basic understanding of the <a href="https://www.r-project.org/">R</a> programming language and its ecosystem. This manual and the package documentations provides instructions for their use. For additional guidance on R, consider exploring Garrett Grolemund’s <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> <a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> or Hadley Wickham’s <span class="citation" data-cites="wickham2023e">(<a href="references.html#ref-wickham2023e" role="doc-biblioref">2023</a>)</span> <a href="https://r4ds.hadley.nz/">R for Data Science</a>.</p>
-<p>If you’re already familiar to WorldClim, you can skip this section and proceed to the the <a href="data-download.html">Data Download</a> section.</p>
-</section><section id="worldclim-license" class="level2" data-number="4.3"><h2 data-number="4.3" class="anchored" data-anchor-id="worldclim-license">
-<span class="header-section-number">4.3</span> WorldClim License</h2>
-<p>It’s important to note that WorldClim data is freely available only for <strong>non-commercial use</strong>. If you wish to use the data for commercial purposes, you must obtain permission from the WorldClim team.</p>
+<p>Using these functions requires some familiarity with <a href="https://www.r-project.org/">R</a> programming language and its ecosystem. The next sections walk you through how to use them. If you are new to R, Hadley Wickham’s <span class="citation" data-cites="wickham2023e">(<a href="references.html#ref-wickham2023e" role="doc-biblioref">2023</a>)</span> <a href="https://r4ds.hadley.nz/">R for Data Science</a> and Garrett Grolemund’s <span class="citation" data-cites="grolemund2014">(<a href="references.html#ref-grolemund2014" role="doc-biblioref">2014</a>)</span> <a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a> are both great free resources to get you started.</p>
+<p>We also plan to bring similar functionality to <a href="https://www.python.org">Python</a> down the road. If you are interested in contributing to this effort, feel free to reach out through the project’s <a href="https://github.com/sustentarea/logoclim">GitHub repository</a>.</p>
+</section><section id="license" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="license">
+<span class="header-section-number">3.3</span> License</h2>
+<p>It’s important to note that WorldClim data is freely available only for <span class="brand-red"><strong>non-commercial use</strong></span>. If you wish to use the data in commercial settings, you must obtain permission from the WorldClim team.</p>
 <p>Here is a summary of the licensing terms:</p>
 <pre class="text"><code>The data are freely available for academic use and other non-commercial use.
-Redistribution or commercial use is not allowed without prior permission.
+Redistribution or commercial use is not allowed without prior permission. 
 Using the data to create maps for publishing of academic research articles is
 allowed. Thus you can use the maps you made with WorldClim data for figures in
-articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are
-allowed (but not required) to publish these articles (and the maps they
-contain) under an open license such as CC-BY as is the case with PLoS
-journals and may be the case with other open access articles.</code></pre>
-<p>You can find more about the WorldClim licensing terms <a href="https://www.worldclim.org/about.html">here</a>.</p>
-</section><section id="worldclim-literature" class="level2" data-number="4.4"><h2 data-number="4.4" class="anchored" data-anchor-id="worldclim-literature">
-<span class="header-section-number">4.4</span> WorldClim Literature</h2>
-<p>Each dataset is accompanied by literature detailing its creation, methodology, and potential applications. Always refer to the WorldClim website for proper citation guidelines and to access the most current and relevant references for your work.</p>
+articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are 
+allowed (but not required) to publish these articles (and the maps they contain)
+under an open license such as CC-BY as is the case with PLoS journals and may be
+the case with other open access articles. 
+
+Please send your questions to info@worldclim.org</code></pre>
+<p>Find more about the WorldClim licensing terms <a href="https://www.worldclim.org/about.html">here</a>.</p>
+</section><section id="literature" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="literature">
+<span class="header-section-number">3.4</span> Literature</h2>
+<p>Each dataset is accompanied by literature detailing its creation, methodology, and potential applications. Always refer to the <a href="https://www.worldclim.org">WorldClim website</a> for proper citation guidelines and to access the most current and relevant references for your work.</p>
 <p>The main references are the ones below:</p>
 <!-- @fick2017 -->
 <p>Fick, S. E., &amp; Hijmans, R. J. (2017). WorldClim 2: New 1-km spatial resolution climate surfaces for global land areas. <em>International Journal of Climatology</em>, <em>37</em>(12), 4302–4315. <a href="https://doi.org/10.1002/joc.5086" class="uri">https://doi.org/10.1002/joc.5086</a></p>
@@ -823,17 +839,48 @@ Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data s
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="../qmd/how-to-use-it.html" class="pagination-link" aria-label="How to Use It">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">How to Use It</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to Use It</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../qmd/data-download.html" class="pagination-link" aria-label="Data Download">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Download</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Download</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/worldclim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
-
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/worldclim.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

@@ -4,9 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho">
-<meta name="dcterms.date" content="2026-02-19">
-<title>LogoClim User Manual</title>
+<title>6&nbsp; LevelSpace – LogoClim User Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,70 +17,56 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./qmd/how-it-works.html" rel="next">
-<link href="./images/logo.svg" rel="icon" type="image/svg+xml">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7f6c78d74bb938728e1d5ef88acfd284.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../qmd/logonia.html" rel="next">
+<link href="../qmd/data-processing.html" rel="prev">
+<link href="../images/logo.svg" rel="icon" type="image/svg+xml">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7f6c78d74bb938728e1d5ef88acfd284.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -108,20 +92,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="LogoClim User Manual">
-<meta property="og:image" content="https://sustentarea.github.io/logoclim/images/og-image.png">
+}</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<meta property="og:title" content="6&nbsp; LevelSpace – LogoClim User Manual">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://sustentarea.github.io/logoclim/qmd/images/og-image.png">
 <meta property="og:site_name" content="LogoClim User Manual">
 <meta property="og:image:alt" content="LogoClim: WorldClim in NetLogo">
 <meta property="og:image:height" content="1600">
 <meta property="og:image:width" content="2400">
-<meta name="citation_title" content="LogoClim User Manual">
-<meta name="citation_author" content="Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho">
-<meta name="citation_publication_date" content="2026-02-19">
-<meta name="citation_cover_date" content="2026-02-19">
-<meta name="citation_year" content="2026">
-<meta name="citation_online_date" content="2026-02-19">
+<meta name="citation_title" content="[[6]{.chapter-number}&nbsp; [LevelSpace]{.chapter-title}]{#sec-levelspace-overview .quarto-section-identifier}">
 <meta name="citation_fulltext_html_url" content="https://sustentarea.github.io/logoclim/">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Quarto;,citation_abstract=Quarto is an open-source scientific and technical publishing system built on Pandoc.;,citation_author=J. J. Allaire;,citation_author=Charles Teague;,citation_author=Yihui Xie;,citation_author=Christophe Dervieux;,citation_doi=10.5281/ZENODO.5960048;,citation_publisher=Zenodo;">
@@ -156,7 +136,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/levelspace.html">LevelSpace Integration</a></li><li class="breadcrumb-item"><a href="../qmd/levelspace.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +147,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">LogoClim User Manual</a> 
+      <a href="../">LogoClim User Manual</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sustentarea/logoclim/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -187,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome</span></a>
   </div>
 </li>
@@ -202,13 +182,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/how-it-works.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/how-it-works.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/how-to-use-it.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/how-to-use-it.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
   </div>
 </li>
@@ -225,19 +205,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/worldclim.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/worldclim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/data-download.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/data-download.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/data-processing.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/data-processing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
   </div>
 </li>
@@ -254,43 +234,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/levelspace.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/levelspace.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/logonia.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/logonia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/interface.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/interface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Interface</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/global-variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/setup-procedure.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/setup-procedure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Procedure</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/go-procedure.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/go-procedure.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Go Procedure</span></span></a>
   </div>
 </li>
@@ -298,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -313,19 +293,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/release-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/release-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Developer Notes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/near-equality-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/near-equality-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Near Equality Tests</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./qmd/procedure-behavior-tests.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/procedure-behavior-tests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Procedure Behavior Tests</span></span></a>
   </div>
 </li>
@@ -336,123 +316,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-<li>
-<a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a>
-  <ul class="collapse">
-<li><a href="#welcome-1" id="toc-welcome-1" class="nav-link" data-scroll-target="#welcome-1">Welcome</a></li>
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
-  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
-  </ul>
-</li>
-  </ul><div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
-    </div>
+        
+    <div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/levelspace.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">LogoClim User Manual</h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/levelspace.html">LevelSpace Integration</a></li><li class="breadcrumb-item"><a href="../qmd/levelspace.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></a></li></ol></nav><div class="quarto-title">
+<h1 class="title"><span id="sec-levelspace-overview" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 19, 2026</p>
-    </div>
-  </div>
   
     
   </div>
   
 
 
-</header>
-<section id="welcome" class="level1 unnumbered"><h1 class="unnumbered">Welcome</h1><p><img src="images/logo.svg" title="LogoClim User Manual" class="quarto-cover-image nolightbox img-fluid"></p>
-<section id="welcome-1" class="level2"><h2 class="anchored" data-anchor-id="welcome-1">Welcome</h2>
-<p><code>LogoClim</code> is a <a href="https://www.netlogo.org">NetLogo</a> model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.</p>
-<p>This manual walks you through everything you need to get started: an overview of the model’s structure, a breakdown of its core components, step-by-step usage instructions, and practical examples showing how to configure and run simulations. Whether you’re new to NetLogo or already familiar with agent-based modeling, the goal here is to give you a clear path from setup to results.</p>
-<p>If something is still unclear after reading through, feel free to open a discussion in the project’s <a href="https://github.com/sustentarea/logoclim/discussions/categories/q-a">discussion tab</a> on GitHub. The community is there to help, though response times may vary.</p>
-<div id="fig-welcome-logoclim-interface" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-welcome-logoclim-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/logoclim-interface.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: LogoClim’s interface. Click on the image to enlarge it."><img src="images/logoclim-interface.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
+</header><p><a href="https://docs.netlogo.org/ls"><code>LevelSpace</code></a> <span class="citation" data-cites="hjorth2020">(<a href="references.html#ref-hjorth2020" role="doc-biblioref">Hjorth et al., 2020</a>)</span> is a <a href="https://www.netlogo.org/">NetLogo</a> extension that allows users to run multiple NetLogo models simultaneously and enable communication between them. This is particularly useful for complex simulations that require interactions between different systems or scales, such as coupling a global climate model with a local ecosystem model.</p>
+<p>Here, <a href="https://docs.netlogo.org/ls"><code>LevelSpace</code></a> is used to integrate climate data from <code>LogoClim</code> (child) into another NetLogo model (parent). This allows for dynamic interactions where the parent model can access and respond to climate variables provided by the child model.</p>
+<div id="fig-how-to-use-it-logonia-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-to-use-it-logonia-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/logonia-interface-prec.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;6.1: Logônia model interface showing total precipitation data imported from LogoClim via the LevelSpace extension. Click on the image to enlarge it."><img src="images/logonia-interface-prec.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-welcome-logoclim-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: <code>LogoClim</code>’s interface. Click on the image to enlarge it.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-how-to-use-it-logonia-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: <a href="https://github.com/sustentarea/logonia"><code>Logônia</code></a> model interface showing total precipitation data imported from <code>LogoClim</code> via the <a href="https://docs.netlogo.org/ls"><code>LevelSpace</code></a> extension. Click on the image to enlarge it.
 </figcaption></figure>
 </div>
-</section><section id="citation" class="level2"><h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<p><a href="https://doi.org/10.17605/OSF.IO/EAPZU"><img src="https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg" class="img-fluid"></a></p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>When using WorldClim data, you must also cite the original data sources.</p>
-<p>The appropriate citation depends on the specific dataset utilized. Please refer to the <a href="https://www.worldclim.org/data/index.html#citation">WorldClim website</a> for up-to-date citation guidelines and dataset references.</p>
-</div>
-</div>
-</div>
-<p>If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.</p>
-<p>To cite <code>LogoClim</code> in publications please use the following format:</p>
-<p>Vartanian, D., Garcia, L., &amp; Carvalho, A. M. (2026). <em>LogoClim: WorldClim in NetLogo</em> [Computer software]. <a href="https://doi.org/10.17605/OSF.IO/EAPZU" class="uri">https://doi.org/10.17605/OSF.IO/EAPZU</a></p>
-<p>A BibLaTeX entry for LaTeX users is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode latex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>@software{vartanian2026,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  title = {LogoClim: WorldClim in NetLogo},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  year = {2026},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  doi = {10.17605/OSF.IO/EAPZU}</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section><section id="contributing" class="level2"><h2 class="anchored" data-anchor-id="contributing">Contributing</h2>
-<p><a href="https://www.contributor-covenant.org/version/3/0/code_of_conduct/"><img src="https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg" class="img-fluid"></a></p>
-<p>Contributions are always welcome! Whether you want to report bugs, suggest new features, or help improve the code or documentation (including this manual), your input makes a difference.</p>
-<p>Before opening a new issue, please check the model’s <a href="https://github.com/sustentarea/logoclim/issues">issues tab</a> to see if your topic has already been reported.</p>
-<p>You can also support the development of <code>LogoClim</code> by becoming a sponsor. Click <a href="https://github.com/sponsors/danielvartan">here</a> to make a donation. Please mention <code>LogoClim</code> in your donation message.</p>
-</section><section id="license" class="level2"><h2 class="anchored" data-anchor-id="license">License</h2>
-<p><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/license-CC%20BY--NC--SA-lightgrey.svg" class="img-fluid"></a></p>
-<p>This manual is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. You can share and adapt the material for non-commercial purposes, as long as you provide appropriate credit, use the same license, and indicate if changes were made.</p>
-</section><section id="acknowledgments" class="level2"><h2 class="anchored" data-anchor-id="acknowledgments">Acknowledgments</h2>
-<p>We gratefully acknowledge <a href="https://orcid.org/0000-0001-5872-2872">Robert J. Hijmans</a>, <a href="https://orcid.org/0000-0002-3548-6966">Stephen E. Fick</a>, and the entire <a href="https://worldclim.org/">WorldClim</a> team for their outstanding work in creating and maintaining the WorldClim datasets.</p>
-<p>We thank the <a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">Climatic Research Unit</a> at the <a href="https://www.uea.ac.uk/">University of East Anglia</a> and the United Kingdom’s <a href="https://www.metoffice.gov.uk/">Met Office</a> for developing and providing access to the <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/">CRU-TS-4.09</a> dataset, a vital source of historical climate data.</p>
-<p>We also acknowledge the World Climate Research Programme (<a href="https://www.wcrp-climate.org/">WCRP</a>), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 (<a href="https://pcmdi.llnl.gov/CMIP6/">CMIP6</a>) for coordinating and advancing global climate model development.</p>
-<p>We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation (<a href="https://esgf.llnl.gov/">ESGF</a>) for archiving and providing access to the data, and the many funding agencies that support <a href="https://pcmdi.llnl.gov/CMIP6/">CMIP6</a> and <a href="https://esgf.llnl.gov/">ESGF</a>.</p>
-<div class="columns" style="display: flex; align-items: center; margin: 1em; padding-top: 2em;">
-<div class="column" style="width: 30%; text-align: center;">
-<p><a href="https://www.fsp.usp.br/sustentarea/"><img src="images/sustentarea-logo.svg" class="img-fluid" width="115"></a></p>
-</div><div class="column" style="width: 70%; display: flex; align-items: center;">
-<p>This work was developed with support from the <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a> Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).</p>
-</div>
-</div>
-<div class="columns" style="display: flex; align-items: center; margin: 1em;">
-<div class="column" style="width: 30%; text-align: center;">
-<p><a href="https://resiclima.com.br/"><img src="images/resiclima-logo.svg" class="img-fluid" width="115"></a></p>
-</div><div class="column" style="width: 70%; display: flex; align-items: center;">
-<p>This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and interdisciplinary study of global climate change.</p>
-</div>
-</div>
-<div class="columns" style="display: flex; align-items: center; margin: 1em;">
-<div class="column" style="width: 30%; text-align: center;">
-<p><a href="https://www.gov.br/cnpq/"><img src="images/cnpq-logo.svg" class="img-fluid" width="150"></a></p>
-</div><div class="column" style="width: 70%; display: flex; align-items: center;">
-<p>This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>) of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> of Brazil, and the National Council for Scientific and Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).</p>
+<p>The integration of <code>LogoClim</code> requires some familiarity with NetLogo and <code>LevelSpace</code> concepts. The following sections will provide an overview of these concepts and guide you through the process of setting up <code>LevelSpace</code> for your simulations.</p>
+<p>For a detailed introduction to <code>LevelSpace</code>, please refer to the <a href="https://docs.netlogo.org/ls"><code>LevelSpace</code> documentation</a>.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-hjorth2020" class="csl-entry" role="listitem">
+Hjorth, A., Head, B., Brady, C., &amp; Wilensky, U. (2020). <span>LevelSpace</span>: <span>A NetLogo</span> extension for multi-level agent-based modeling. <em>Journal of Artificial Societies and Social Simulation</em>, <em>23</em>(1), 4. <a href="https://doi.org/10.18564/jasss.4130">https://doi.org/10.18564/jasss.4130</a>
 </div>
 </div>
 
-
-</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -852,15 +754,18 @@ Figure&nbsp;1: <code>LogoClim</code>’s interface. Click on the image to enlarg
     }
   });
   </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="../qmd/data-processing.html" class="pagination-link" aria-label="Data Processing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Processing</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./qmd/how-it-works.html" class="pagination-link" aria-label="How It Works">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How It Works</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../qmd/logonia.html" class="pagination-link" aria-label="Logônia">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Logônia</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/levelspace.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

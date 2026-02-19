@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.8.27">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Appendix C — Procedure Behavior Tests – ⛅ LogoClim User Manual</title>
+<title>Appendix C — Procedure Behavior Tests – LogoClim User Manual</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -90,10 +90,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-7f6c78d74bb938728e1d5ef88acfd284.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6f8729338d687b7c5c2abece8966c305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -121,11 +125,11 @@ div.csl-indent {
   }
 }</script><link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<meta property="og:title" content="Appendix C — Procedure Behavior Tests – ⛅ LogoClim User Manual">
+<meta property="og:title" content="Appendix C — Procedure Behavior Tests – LogoClim User Manual">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://sustentarea.github.io/logoclim/qmd/images/og-image.png">
-<meta property="og:site_name" content="⛅ LogoClim User Manual">
-<meta property="og:image:alt" content="⛅ LogoClim: WorldClim in NetLogo">
+<meta property="og:site_name" content="LogoClim User Manual">
+<meta property="og:image:alt" content="LogoClim: WorldClim in NetLogo">
 <meta property="og:image:height" content="1600">
 <meta property="og:image:width" content="2400">
 <meta name="citation_title" content="[Appendix C — Procedure Behavior Tests]{#sec-sm-procedure-behavior-tests .quarto-section-identifier}">
@@ -139,6 +143,7 @@ div.csl-indent {
 <meta name="citation_reference" content="citation_title=geodata: Download geographic data;,citation_abstract=Functions for downloading of geographic data for use in spatial analysis and mapping. The package facilitates access to climate, crops, elevation, land use, soil, species occurrence, accessibility, administrative boundaries and other data.;,citation_author=Robert J. Hijmans;,citation_author=Márcia Barbosa;,citation_author=Aniruddha Ghosh;,citation_author=Alex Mandel;,citation_publication_date=2024;,citation_cover_date=2024;,citation_year=2024;,citation_doi=10.32614/CRAN.package.geodata;">
 <meta name="citation_reference" content="citation_title=terra: Spatial Data Analysis;,citation_abstract=Methods for spatial data analysis with vector (points, lines, polygons) and raster (grid) data. Methods for vector data include geometric operations such as intersect and buffer. Raster methods include local, focal, global, zonal and geometric operations. The predict and interpolate methods facilitate the use of regression type (interpolation, machine learning) models for spatial prediction, including with satellite remote sensing data. Processing of very large files is supported. See the manual and tutorials on $&amp;amp;amp;lt;$https://rspatial.org/$&amp;gt;$ to get started.;,citation_author=Robert J. Hijmans;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.32614/CRAN.package.terra;">
 <meta name="citation_reference" content="citation_title=GADM: Database of global administrative areas;,citation_abstract=GADM wants to map the administrative areas of all countries, at all levels of sub-division. We provide data at high spatial resolutions that includes an extensive set of attributes. This is a never ending project, but we are happy to share what we have.;,citation_author=Robert J. Hijmans;,citation_fulltext_html_url=https://gadm.org;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=LevelSpace: A NetLogo extension for multi-level agent-based modeling;,citation_abstract=Multi-Level Agent-Based Modeling (ML-ABM) has been receiving increasing attention in recent years. In this paper we present LevelSpace, an extension that allows modelers to easily build ML-ABMs in the popular and widely used NetLogo language. We present the LevelSpace framework and its associated programming primitives. Based on three common use-cases of ML-ABM – coupling of heterogenous models, dynamic adaptation of detail, and cross-level interaction - we show how easy it is to build ML-ABMs with LevelSpace. We argue that it is important to have a unified conceptual language for describing LevelSpace models, and present six dimensions along which models can differ, and discuss how these can be combined into a variety of ML-ABM types in LevelSpace. Finally, we argue that future work should explore the relationships between these six dimensions, and how different configurations of them might be more or less appropriate for particular modeling tasks.;,citation_author=Arthur Hjorth;,citation_author=Bryan Head;,citation_author=Corey Brady;,citation_author=Uri Wilensky;,citation_publication_date=2020;,citation_cover_date=2020;,citation_year=2020;,citation_issue=1;,citation_doi=10.18564/jasss.4130;,citation_issn=1460-7425;,citation_volume=23;,citation_language=en-US;,citation_journal_title=Journal of Artificial Societies and Social Simulation;,citation_journal_abbrev=JASSS;">
 <meta name="citation_reference" content="citation_title=ISOcodes: Selected ISO codes;,citation_abstract=ISO language, territory, currency, script and character codes. Provides ISO 639 language codes, ISO 3166 territory codes, ISO 4217 currency codes, ISO 15924 script codes, and the ISO 8859 character codes as well as the UN M.49 area codes.;,citation_author=Kurt Hornik;,citation_author=Christian Buchta;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.ISOcodes;">
 <meta name="citation_reference" content="citation_title=checkmate: Fast argument checks for defensive R programming;,citation_abstract=Dynamically typed programming languages like R allow programmers to write generic, flexible and concise code and to interact with the language using an interactive Read-eval-print-loop (REPL). However, this flexibility has its price: As the R interpreter has no information about the expected variable type, many base functions automatically convert the input instead of raising an exception. Unfortunately, this frequently leads to runtime errors deeper down the call stack which obfuscates the original problem and renders debugging challenging. Even worse, unwanted conversions can remain undetected and skew or invalidate the results of a statistical analysis. As a resort, assertions can be employed to detect unexpected input during runtime and to signal understandable and traceable errors. The package checkmate provides a plethora of functions to check the type and related properties of the most frequently used R objects and variable types. The package is mostly written in C to avoid any unnecessary performance overhead. Thus, the programmer can conveniently write concise, well-tested assertions which outperforms custom R code for many applications. Furthermore, checkmate simplifies writing unit tests using the framework testthat (Wickham 2011) by extending it with plenty of additional expectation functions, and registered C routines are available for package developers to perform assertions on arbitrary SEXPs (internal data structure for R objects implemented as struct in C) in compiled code.;,citation_author=Michel Lang;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=1;,citation_doi=10.32614/RJ-2017-028;,citation_volume=9;,citation_language=en-US;,citation_journal_title=The R Journal;">
 <meta name="citation_reference" content="citation_title=here: A simpler way to find your files;,citation_abstract=Constructs paths to your project’s files. Declare the relative path of a file within your project with ’i_am()’. Use the ’here()’ function as a drop-in replacement for ’file.path()’, it will always locate the files relative to your project root.;,citation_author=Kirill Müller;,citation_publication_date=2025;,citation_cover_date=2025;,citation_year=2025;,citation_doi=10.32614/CRAN.package.here;">
@@ -150,7 +155,7 @@ div.csl-indent {
 <meta name="citation_reference" content="citation_title=LogoActions: GitHub Actions for the NetLogo community;,citation_abstract=LogoActions is a collection of GitHub Actions designed to facilitate the setup and execution of NetLogo models within GitHub workflows. These actions enable researchers and developers to automate the installation of NetLogo, run and test simulations, and integrate NetLogo with other tools and platforms, such as Quarto, logolink and pyNetLogo.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.5281/zenodo.18102378;">
 <meta name="citation_reference" content="citation_title=Testthat: Get started with testing;,citation_abstract=Software testing is important, but many of us don’t do it because it is frustrating and boring. testthat is a new testing framework for R that is easy learn and use, and integrates with your existing workflow. This paper shows how, with illustrations from existing packages.;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_issue=1;,citation_doi=10.32614/RJ-2011-002;,citation_issn=2073-4859;,citation_volume=3;,citation_language=en-US;,citation_journal_title=The R Journal;,citation_journal_abbrev=The R Journal;">
 <meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
-<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverseâ??a collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
+<meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverse collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=The tidyverse style guide;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://style.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=Tidy design principles;,citation_author=Hadley Wickham;,citation_fulltext_html_url=https://design.tidyverse.org;,citation_language=en-US;">
 <meta name="citation_reference" content="citation_title=NetLogo;,citation_author=Uri Wilensky;,citation_publication_date=1999;,citation_cover_date=1999;,citation_year=1999;,citation_fulltext_html_url=http://ccl.northwestern.edu/netlogo/;,citation_publisher=Center for Connected Learning; Computer-Based Modeling, Northwestern University;">
@@ -162,7 +167,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/developer-notes.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/procedure-behavior-tests.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Procedure Behavior Tests</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/release-notes.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/procedure-behavior-tests.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Procedure Behavior Tests</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,7 +178,7 @@ div.csl-indent {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">⛅ LogoClim User Manual</a> 
+      <a href="../">LogoClim User Manual</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/sustentarea/logoclim/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -208,20 +213,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/what-is-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What Is It</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../qmd/how-it-works.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">How It Works</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/how-to-use-it.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How to Use It</span></span></a>
   </div>
 </li>
       </ul>
@@ -238,19 +237,19 @@ div.csl-indent {
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/worldclim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">WorldClim</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-download.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Download</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/data-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Processing</span></span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +257,7 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Variables and Attributes</span></a>
+ <span class="menu-text">LevelSpace Integration</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -266,43 +265,44 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
-  </div>
-</li>
-      </ul>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">LevelSpace Integration</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
-<li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/levelspace-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">LevelSpace Overview</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../qmd/setting-up-levelspace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Setting Up LevelSpace</span></span></a>
+  <a href="../qmd/levelspace.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">LevelSpace</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../qmd/logonia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Logônia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/interface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Interface</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/global-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Global Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/patch-attributes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Patch Attributes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/setup-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Setup Procedure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../qmd/go-procedure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Go Procedure</span></span></a>
   </div>
 </li>
       </ul>
@@ -315,16 +315,16 @@ div.csl-indent {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
 <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../qmd/developer-notes.html" class="sidebar-item-text sidebar-link">
+  <a href="../qmd/release-notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Developer Notes</span></span></a>
   </div>
 </li>
@@ -354,11 +354,12 @@ div.csl-indent {
   <li>
 <a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">C.2</span> Methods</a>
   <ul class="collapse">
-<li><a href="#netlogo-integration" id="toc-netlogo-integration" class="nav-link" data-scroll-target="#netlogo-integration"><span class="header-section-number">C.2.1</span> NetLogo Integration</a></li>
-  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">C.2.2</span> Continuous Integration</a></li>
-  <li><a href="#expectation-tests" id="toc-expectation-tests" class="nav-link" data-scroll-target="#expectation-tests"><span class="header-section-number">C.2.3</span> Expectation Tests</a></li>
-  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style"><span class="header-section-number">C.2.4</span> Code Style</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">C.2.5</span> Reproducibility</a></li>
+<li><a href="#data-munging" id="toc-data-munging" class="nav-link" data-scroll-target="#data-munging"><span class="header-section-number">C.2.1</span> Data munging</a></li>
+  <li><a href="#netlogo-integration" id="toc-netlogo-integration" class="nav-link" data-scroll-target="#netlogo-integration"><span class="header-section-number">C.2.2</span> NetLogo Integration</a></li>
+  <li><a href="#continuous-integration" id="toc-continuous-integration" class="nav-link" data-scroll-target="#continuous-integration"><span class="header-section-number">C.2.3</span> Continuous Integration</a></li>
+  <li><a href="#expectation-tests" id="toc-expectation-tests" class="nav-link" data-scroll-target="#expectation-tests"><span class="header-section-number">C.2.4</span> Expectation Tests</a></li>
+  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style"><span class="header-section-number">C.2.5</span> Code Style</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">C.2.6</span> Reproducibility</a></li>
   </ul>
 </li>
   <li>
@@ -368,11 +369,15 @@ div.csl-indent {
   <li><a href="#set-initial-variables" id="toc-set-initial-variables" class="nav-link" data-scroll-target="#set-initial-variables"><span class="header-section-number">C.3.2</span> Set Initial Variables</a></li>
   </ul>
 </li>
-  <li><a href="#single-quote" id="toc-single-quote" class="nav-link" data-scroll-target="#single-quote"><span class="header-section-number">C.4</span> <code>single-quote</code></a></li>
+  <li><a href="#as-list" id="toc-as-list" class="nav-link" data-scroll-target="#as-list"><span class="header-section-number">C.4</span> <code>as-list</code></a></li>
+  <li><a href="#quartile" id="toc-quartile" class="nav-link" data-scroll-target="#quartile"><span class="header-section-number">C.5</span> <code>quartile</code></a></li>
+  <li><a href="#single-quote" id="toc-single-quote" class="nav-link" data-scroll-target="#single-quote"><span class="header-section-number">C.6</span> <code>single-quote</code></a></li>
+  <li><a href="#str-to-num-month" id="toc-str-to-num-month" class="nav-link" data-scroll-target="#str-to-num-month"><span class="header-section-number">C.7</span> <code>str-to-num-month</code></a></li>
+  <li><a href="#unique-outliers" id="toc-unique-outliers" class="nav-link" data-scroll-target="#unique-outliers"><span class="header-section-number">C.8</span> <code>unique-outliers</code></a></li>
   </ul><div class="toc-actions"><ul><li><a href="https://github.com/sustentarea/logoclim/edit/main/qmd/procedure-behavior-tests.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/sustentarea/logoclim/issues/" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/developer-notes.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/procedure-behavior-tests.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Procedure Behavior Tests</span></a></li></ol></nav><div class="quarto-title">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../qmd/release-notes.html">Appendices</a></li><li class="breadcrumb-item"><a href="../qmd/procedure-behavior-tests.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Procedure Behavior Tests</span></a></li></ol></nav><div class="quarto-title">
 <h1 class="title"><span id="sec-sm-procedure-behavior-tests" class="quarto-section-identifier">Appendix C — Procedure Behavior Tests</span></h1>
 </div>
 
@@ -387,28 +392,32 @@ div.csl-indent {
   
 
 
-</header><p>This document provides unit tests for the <a href="https://github.com/sustentarea/logoclim"><code>LogoClim</code></a> NetLogo model. The tests validate <a href="https://docs.netlogo.org/programming.html#procedures">procedure</a> behavior and arguments to ensure correct model functionality.</p>
+</header><p>This document provides unit tests for the <a href="https://github.com/sustentarea/logoclim"><code>LogoClim</code></a> NetLogo model. The tests validate <a href="https://docs.netlogo.org/programming.html#procedures">procedure</a> behavior to ensure correct functionality.</p>
 <section id="problem" class="level2" data-number="C.1"><h2 data-number="C.1" class="anchored" data-anchor-id="problem">
 <span class="header-section-number">C.1</span> Problem</h2>
-<p><a href="https://docs.netlogo.org/programming.html#procedures">Procedures</a> can produce unexpected results and have side effects that may not be captured during the development process. This document addresses these challenges by providing pre-defined expectations for procedure behaviors.</p>
+<p>NetLogo <a href="https://docs.netlogo.org/programming.html#procedures">procedures</a> can produce unexpected results and exhibit side effects that may go undetected during development. The unit tests in this document validate procedure behavior through <a href="https://testthat.r-lib.org/reference/equality-expectations.html">expectation tests</a>, ensuring they function as intended and produce reliable results.</p>
 </section><section id="methods" class="level2" data-number="C.2"><h2 data-number="C.2" class="anchored" data-anchor-id="methods">
 <span class="header-section-number">C.2</span> Methods</h2>
-<section id="netlogo-integration" class="level3" data-number="C.2.1"><h3 data-number="C.2.1" class="anchored" data-anchor-id="netlogo-integration">
-<span class="header-section-number">C.2.1</span> NetLogo Integration</h3>
+<section id="data-munging" class="level3" data-number="C.2.1"><h3 data-number="C.2.1" class="anchored" data-anchor-id="data-munging">
+<span class="header-section-number">C.2.1</span> Data munging</h3>
+<p>All processes were made using the <a href="https://quarto.org/">Quarto</a> publishing system <span class="citation" data-cites="allaire">(<a href="references.html#ref-allaire" role="doc-biblioref">Allaire et al., n.d.</a>)</span>, the <a href="https://www.netlogo.org/">NetLogo</a> environment, the <a href="https://www.r-project.org/">R</a> programming language <span class="citation" data-cites="rcoreteam">(<a href="references.html#ref-rcoreteam" role="doc-biblioref">R Core Team, n.d.</a>)</span>, and several R packages.</p>
+<p>For data manipulation and workflow, priority was given to packages from the <a href="https://www.tidyverse.org/">Tidyverse</a>, <a href="https://ropensci.org/">rOpenSci</a> and <a href="https://rspatial.org">rspatial</a> ecosystems, as well as other packages adhering to the tidy tools manifesto <span class="citation" data-cites="wickham2023c">(<a href="references.html#ref-wickham2023c" role="doc-biblioref">Wickham, 2023</a>)</span>.</p>
+</section><section id="netlogo-integration" class="level3" data-number="C.2.2"><h3 data-number="C.2.2" class="anchored" data-anchor-id="netlogo-integration">
+<span class="header-section-number">C.2.2</span> NetLogo Integration</h3>
 <p>Integration with <a href="https://www.netlogo.org/">NetLogo</a> <span class="citation" data-cites="wilensky1999a">(<a href="references.html#ref-wilensky1999a" role="doc-biblioref">Wilensky, 1999</a>)</span> is facilitated by the <a href="https://danielvartan.github.io/logolink/"><code>logolink</code></a> R package <span class="citation" data-cites="vartanian2026">(<a href="references.html#ref-vartanian2026" role="doc-biblioref">Vartanian, 2026b</a>)</span>. This package enables the execution of <a href="https://docs.netlogo.org/behaviorspace.html">BehaviorSpace</a> experiments directly from R.</p>
-<p>Outputs were extracted in <a href="https://docs.netlogo.org/behaviorspace.html#table-output">Table</a> and <a href="https://docs.netlogo.org/behaviorspace.html#lists-output">Lists</a> format, along with metadata about the model’s settings.</p>
+<p>Output is extracted in <a href="https://docs.netlogo.org/behaviorspace.html#table-output">Table</a> or <a href="https://docs.netlogo.org/behaviorspace.html#lists-output">Lists</a> format, depending on the experiment configuration.</p>
 <p>No <a href="https://www.java.com/en/">Java</a> dependencies are required. NetLogo bundles its own Java Runtime Environment (JRE), ensuring independent operation regardless of the system’s Java installation.</p>
-</section><section id="continuous-integration" class="level3" data-number="C.2.2"><h3 data-number="C.2.2" class="anchored" data-anchor-id="continuous-integration">
-<span class="header-section-number">C.2.2</span> Continuous Integration</h3>
+</section><section id="continuous-integration" class="level3" data-number="C.2.3"><h3 data-number="C.2.3" class="anchored" data-anchor-id="continuous-integration">
+<span class="header-section-number">C.2.3</span> Continuous Integration</h3>
 <p>These tests use the latest release of <a href="https://www.netlogo.org/">NetLogo</a> and are automated using <a href="https://github.com/features/actions">GitHub Actions</a> provided by the <a href="https://github.com/danielvartan/logoactions"><code>LogoActions</code></a> project <span class="citation" data-cites="vartanian2026b">(<a href="references.html#ref-vartanian2026b" role="doc-biblioref">Vartanian, 2026a</a>)</span>. Each commit to the code repository triggers test execution, ensuring that errors are caught early in the development process.</p>
-</section><section id="expectation-tests" class="level3" data-number="C.2.3"><h3 data-number="C.2.3" class="anchored" data-anchor-id="expectation-tests">
-<span class="header-section-number">C.2.3</span> Expectation Tests</h3>
+</section><section id="expectation-tests" class="level3" data-number="C.2.4"><h3 data-number="C.2.4" class="anchored" data-anchor-id="expectation-tests">
+<span class="header-section-number">C.2.4</span> Expectation Tests</h3>
 <p>Expectations are validated using the <a href="https://testthat.r-lib.org/"><code>testthat</code></a> <span class="citation" data-cites="wickham2011">(<a href="references.html#ref-wickham2011" role="doc-biblioref">Wickham, 2011</a>)</span> and <a href="https://mllg.github.io/checkmate/"><code>checkmate</code></a> <span class="citation" data-cites="lang2017">(<a href="references.html#ref-lang2017" role="doc-biblioref">Lang, 2017</a>)</span> R packages.</p>
-</section><section id="code-style" class="level3" data-number="C.2.4"><h3 data-number="C.2.4" class="anchored" data-anchor-id="code-style">
-<span class="header-section-number">C.2.4</span> Code Style</h3>
+</section><section id="code-style" class="level3" data-number="C.2.5"><h3 data-number="C.2.5" class="anchored" data-anchor-id="code-style">
+<span class="header-section-number">C.2.5</span> Code Style</h3>
 <p>The Tidyverse <a href="https://tidyverse.tidyverse.org/articles/manifesto.html">Tidy Tools Manifesto</a> <span class="citation" data-cites="wickham2023c">(<a href="references.html#ref-wickham2023c" role="doc-biblioref">Wickham, 2023</a>)</span>, <a href="https://style.tidyverse.org/">code style guide</a> <span class="citation" data-cites="wickhama">(<a href="references.html#ref-wickhama" role="doc-biblioref">Wickham, n.d.-a</a>)</span> and <a href="https://design.tidyverse.org/">design principles</a> <span class="citation" data-cites="wickhamc">(<a href="references.html#ref-wickhamc" role="doc-biblioref">Wickham, n.d.-b</a>)</span> were followed to ensure consistency and enhance readability.</p>
-</section><section id="reproducibility" class="level3" data-number="C.2.5"><h3 data-number="C.2.5" class="anchored" data-anchor-id="reproducibility">
-<span class="header-section-number">C.2.5</span> Reproducibility</h3>
+</section><section id="reproducibility" class="level3" data-number="C.2.6"><h3 data-number="C.2.6" class="anchored" data-anchor-id="reproducibility">
+<span class="header-section-number">C.2.6</span> Reproducibility</h3>
 <p>The pipeline is fully reproducible and can be run again at any time. To ensure consistent results, the <a href="https://rstudio.github.io/renv/"><code>renv</code></a> package <span class="citation" data-cites="ushey2025">(<a href="references.html#ref-ushey2025" role="doc-biblioref">Ushey &amp; Wickham, 2025</a>)</span> was used to manage and restore the R environment. See the <a href="https://github.com/sustentarea/logoclim/blob/main/README.md">README</a> file in the code repository to learn how to run it.</p>
 </section></section><section id="set-the-environment" class="level2" data-number="C.3"><h2 data-number="C.3" class="anchored" data-anchor-id="set-the-environment">
 <span class="header-section-number">C.3</span> Set the Environment</h2>
@@ -428,6 +437,12 @@ div.csl-indent {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/">here</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://danielvartan.github.io/logolink/">logolink</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/">purrr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'purrr'</span></span>
+<span><span class="co">#&gt; The following object is masked from 'package:magrittr':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     set_names</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org">testthat</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Attaching package: 'testthat'</span></span>
@@ -453,16 +468,19 @@ div.csl-indent {
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">model_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op">(</span><span class="st">"nlogox"</span>, <span class="st">"logoclim.nlogox"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section></section><section id="single-quote" class="level2" data-number="C.4"><h2 data-number="C.4" class="anchored" data-anchor-id="single-quote">
-<span class="header-section-number">C.4</span> <code>single-quote</code>
+</section></section><section id="as-list" class="level2" data-number="C.4"><h2 data-number="C.4" class="anchored" data-anchor-id="as-list">
+<span class="header-section-number">C.4</span> <code>as-list</code>
 </h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/create_experiment.html">create_experiment</a></span><span class="op">(</span></span>
-<span>  name <span class="op">=</span> <span class="st">"single-quote"</span>,</span>
+<span>  name <span class="op">=</span> <span class="st">"as-list"</span>,</span>
 <span>  setup <span class="op">=</span> <span class="st">"setup false"</span>,</span>
+<span>  go <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
-<span>    <span class="st">'single-quote 1'</span>,</span>
-<span>    <span class="st">'single-quote [1 2 3]'</span></span>
+<span>    <span class="st">'as-list "a"'</span>,</span>
+<span>    <span class="st">'as-list 1'</span>,</span>
+<span>    <span class="st">'as-list true'</span>,</span>
+<span>    <span class="st">'as-list [1 2 3]'</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -473,20 +491,247 @@ div.csl-indent {
 <span>    setup_file <span class="op">=</span> <span class="va">setup_file</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; ℹ Running model</span></span>
-<span><span class="co">#&gt; ✔ Running model [5.9s]</span></span>
+<span><span class="co">#&gt; ✔ Running model [5.6s]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Gathering metadata</span></span>
-<span><span class="co">#&gt; ✔ Gathering metadata [30ms]</span></span>
+<span><span class="co">#&gt; ✔ Gathering metadata [23ms]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ Processing table output</span></span>
-<span><span class="co">#&gt; ✔ Processing table output [20ms]</span></span>
+<span><span class="co">#&gt; ✔ Processing table output [15ms]</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ℹ The experiment run produced the following messages:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Picked up JAVA_TOOL_OPTIONS: -Dcom.sun.media.jai.disableMediaLib=true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"single-quote"</span>, <span class="op">{</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 6</span></span>
+<span><span class="co">#&gt; $ run_number    &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ step          &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ as_list_a     &lt;chr&gt; "[a]"</span></span>
+<span><span class="co">#&gt; $ as_list_1     &lt;chr&gt; "[1]"</span></span>
+<span><span class="co">#&gt; $ as_list_true  &lt;chr&gt; "[true]"</span></span>
+<span><span class="co">#&gt; $ as_list_1_2_3 &lt;chr&gt; "[1 2 3]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"as-list"</span>, <span class="op">{</span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">as_list_a</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[a]"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">as_list_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[1]"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">as_list_true</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[true]"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">as_list_1_2_3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[1 2 3]"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Test passed with 4 successes 😸.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="quartile" class="level2" data-number="C.5"><h2 data-number="C.5" class="anchored" data-anchor-id="quartile">
+<span class="header-section-number">C.5</span> <code>quartile</code>
+</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/create_experiment.html">create_experiment</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="st">"quartile"</span>,</span>
+<span>  setup <span class="op">=</span> <span class="st">"setup false"</span>,</span>
+<span>  go <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">'quartile [0 1 2 3 4] 0'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] 1'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] 2'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] 3'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] 4'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] "iqr"'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4] "length"'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] 0'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] 1'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] 2'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] 3'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] 4'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] "iqr"'</span>,</span>
+<span>    <span class="st">'quartile [0 1 2 3 4 5] "length"'</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">model_path</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/run_experiment.html">run_experiment</a></span><span class="op">(</span></span>
+<span>    setup_file <span class="op">=</span> <span class="va">setup_file</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Running model</span></span>
+<span><span class="co">#&gt; ✔ Running model [5.9s]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Gathering metadata</span></span>
+<span><span class="co">#&gt; ✔ Gathering metadata [9ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Processing table output</span></span>
+<span><span class="co">#&gt; ✔ Processing table output [8ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ The experiment run produced the following messages:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Picked up JAVA_TOOL_OPTIONS: -Dcom.sun.media.jai.disableMediaLib=true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 16</span></span>
+<span><span class="co">#&gt; $ run_number                  &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ step                        &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_0        &lt;dbl&gt; 0</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_1        &lt;dbl&gt; 0</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_2        &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_3        &lt;dbl&gt; 2</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_4        &lt;dbl&gt; 4</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_iqr      &lt;dbl&gt; 2</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_length   &lt;dbl&gt; 1.25</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_0      &lt;dbl&gt; 0</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_1      &lt;dbl&gt; 0</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_2      &lt;dbl&gt; 2</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_3      &lt;dbl&gt; 3</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_4      &lt;dbl&gt; 5</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_iqr    &lt;dbl&gt; 3</span></span>
+<span><span class="co">#&gt; $ quartile_0_1_2_3_4_5_length &lt;dbl&gt; 1.5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"quartile [0 1 2 3 4]"</span>, <span class="op">{</span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_iqr</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_length</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">5</span> <span class="op">/</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Test passed with 7 successes 🎊.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"quartile [0 1 2 3 4 5]"</span>, <span class="op">{</span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_0</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_2</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_4</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_iqr</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">3</span> <span class="op">-</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">quartile_0_1_2_3_4_5_length</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">6</span> <span class="op">/</span> <span class="fl">4</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Test passed with 7 successes 🥳.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="single-quote" class="level2" data-number="C.6"><h2 data-number="C.6" class="anchored" data-anchor-id="single-quote">
+<span class="header-section-number">C.6</span> <code>single-quote</code>
+</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/create_experiment.html">create_experiment</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="st">"single-quote"</span>,</span>
+<span>  setup <span class="op">=</span> <span class="st">"setup false"</span>,</span>
+<span>  go <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">'single-quote 1'</span>,</span>
+<span>    <span class="st">'single-quote [1 2 3]'</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">model_path</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/run_experiment.html">run_experiment</a></span><span class="op">(</span></span>
+<span>    setup_file <span class="op">=</span> <span class="va">setup_file</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Running model</span></span>
+<span><span class="co">#&gt; ✔ Running model [5.7s]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Gathering metadata</span></span>
+<span><span class="co">#&gt; ✔ Gathering metadata [9ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Processing table output</span></span>
+<span><span class="co">#&gt; ✔ Processing table output [8ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ The experiment run produced the following messages:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Picked up JAVA_TOOL_OPTIONS: -Dcom.sun.media.jai.disableMediaLib=true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 4</span></span>
+<span><span class="co">#&gt; $ run_number         &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ step               &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ single_quote_1     &lt;chr&gt; "'1'"</span></span>
+<span><span class="co">#&gt; $ single_quote_1_2_3 &lt;chr&gt; "['1' '2' '3']"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"single-quote"</span>, <span class="op">{</span></span>
 <span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">single_quote_1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -497,13 +742,142 @@ div.csl-indent {
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">single_quote_1_2_3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"['1' '2' '3']"</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Test passed with 2 successes 🥇.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span><span class="co">#&gt; Test passed with 2 successes 🥳.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="str-to-num-month" class="level2" data-number="C.7"><h2 data-number="C.7" class="anchored" data-anchor-id="str-to-num-month">
+<span class="header-section-number">C.7</span> <code>str-to-num-month</code>
+</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/create_experiment.html">create_experiment</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="st">"str-to-num-month"</span>,</span>
+<span>  setup <span class="op">=</span> <span class="st">"setup false"</span>,</span>
+<span>  go <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">'str-to-num-month "January"'</span>,</span>
+<span>    <span class="st">'str-to-num-month "July"'</span>,</span>
+<span>    <span class="st">'str-to-num-month "December"'</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">model_path</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/run_experiment.html">run_experiment</a></span><span class="op">(</span></span>
+<span>    setup_file <span class="op">=</span> <span class="va">setup_file</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Running model</span></span>
+<span><span class="co">#&gt; ✔ Running model [5.5s]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Gathering metadata</span></span>
+<span><span class="co">#&gt; ✔ Gathering metadata [10ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Processing table output</span></span>
+<span><span class="co">#&gt; ✔ Processing table output [9ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ The experiment run produced the following messages:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Picked up JAVA_TOOL_OPTIONS: -Dcom.sun.media.jai.disableMediaLib=true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 5</span></span>
+<span><span class="co">#&gt; $ run_number                &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ step                      &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ str_to_num_month_january  &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ str_to_num_month_july     &lt;dbl&gt; 7</span></span>
+<span><span class="co">#&gt; $ str_to_num_month_december &lt;dbl&gt; 12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"str-to-num-month"</span>, <span class="op">{</span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">str_to_num_month_january</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">str_to_num_month_july</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">str_to_num_month_december</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Test passed with 3 successes 🎊.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section><section id="unique-outliers" class="level2" data-number="C.8"><h2 data-number="C.8" class="anchored" data-anchor-id="unique-outliers">
+<span class="header-section-number">C.8</span> <code>unique-outliers</code>
+</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">setup_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/create_experiment.html">create_experiment</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="st">"unique-outliers"</span>,</span>
+<span>  setup <span class="op">=</span> <span class="st">"setup false"</span>,</span>
+<span>  go <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  metrics <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">'unique-outliers [1 2 3 4 100 100 500 500] 1.5'</span>,</span>
+<span>    <span class="st">'unique-outliers [1 2 3] 3'</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span></span>
+<span>  <span class="va">model_path</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://danielvartan.github.io/logolink/reference/run_experiment.html">run_experiment</a></span><span class="op">(</span></span>
+<span>    setup_file <span class="op">=</span> <span class="va">setup_file</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="co">#&gt; ℹ Running model</span></span>
+<span><span class="co">#&gt; ✔ Running model [5.5s]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Gathering metadata</span></span>
+<span><span class="co">#&gt; ✔ Gathering metadata [9ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ Processing table output</span></span>
+<span><span class="co">#&gt; ✔ Processing table output [9ms]</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ℹ The experiment run produced the following messages:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Picked up JAVA_TOOL_OPTIONS: -Dcom.sun.media.jai.disableMediaLib=true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://purrr.tidyverse.org/reference/pluck.html">pluck</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Rows: 1</span></span>
+<span><span class="co">#&gt; Columns: 4</span></span>
+<span><span class="co">#&gt; $ run_number                                  &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ step                                        &lt;dbl&gt; 1</span></span>
+<span><span class="co">#&gt; $ unique_outliers_1_2_3_4_100_100_500_500_1_5 &lt;chr&gt; "[100 500]"</span></span>
+<span><span class="co">#&gt; $ unique_outliers_1_2_3_3                     &lt;chr&gt; "[]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">testthat</span><span class="fu">::</span><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"unique-outliers"</span>, <span class="op">{</span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">unique_outliers_1_2_3_4_100_100_500_500_1_5</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[100 500]"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="va">results</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://magrittr.tidyverse.org/reference/aliases.html">extract2</a></span><span class="op">(</span><span class="st">"table"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">unique_outliers_1_2_3_3</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://testthat.r-lib.org/reference/equality-expectations.html">expect_equal</a></span><span class="op">(</span><span class="st">"[]"</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Test passed with 2 successes 🎊.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-allaire" class="csl-entry" role="listitem">
+Allaire, J. J., Teague, C., Xie, Y., &amp; Dervieux, C. (n.d.). <em>Quarto</em> [Computer software]. Zenodo. <a href="https://doi.org/10.5281/ZENODO.5960048">https://doi.org/10.5281/ZENODO.5960048</a>
+</div>
 <div id="ref-lang2017" class="csl-entry" role="listitem">
 Lang, M. (2017). <span class="nocase">checkmate</span>: <span>Fast</span> argument checks for defensive <span>R</span> programming. <em>The R Journal</em>, <em>9</em>(1). <a href="https://doi.org/10.32614/RJ-2017-028">https://doi.org/10.32614/RJ-2017-028</a>
+</div>
+<div id="ref-rcoreteam" class="csl-entry" role="listitem">
+R Core Team. (n.d.). <em>R: <span>A</span> language and environment for statistical computing</em> [Computer software]. R Foundation for Statistical Computing. <a href="https://www.r-project.org">https://www.r-project.org</a>
 </div>
 <div id="ref-ushey2025" class="csl-entry" role="listitem">
 Ushey, K., &amp; Wickham, H. (2025). <em><span class="nocase">renv</span>: <span>Project</span> environments</em> [Computer software]. <a href="https://doi.org/10.32614/CRAN.package.renv">https://doi.org/10.32614/CRAN.package.renv</a>
