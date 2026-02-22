@@ -53,6 +53,7 @@ The pipeline is fully reproducible and can be run again at any time. To ensure c
 
 ```{r}
 #| label: Set the Environment
+#| output: false
 
 library(cli)
 library(dplyr)
@@ -110,7 +111,7 @@ results |>
 ```
 
 ```{r}
-testthat::test_that("as-list", {
+test_that("as-list", {
   results |>
     extract2("table") |>
     pull(as_list_a) |>
@@ -176,7 +177,7 @@ results |>
 ```
 
 ```{r}
-testthat::test_that("quartile [0 1 2 3 4]", {
+test_that("quartile [0 1 2 3 4]", {
   results |>
     extract2("table") |>
     pull(quartile_0_1_2_3_4_0) |>
@@ -215,7 +216,7 @@ testthat::test_that("quartile [0 1 2 3 4]", {
 ```
 
 ```{r}
-testthat::test_that("quartile [0 1 2 3 4 5]", {
+test_that("quartile [0 1 2 3 4 5]", {
   results |>
     extract2("table") |>
     pull(quartile_0_1_2_3_4_5_0) |>
@@ -284,7 +285,7 @@ results |>
 ```
 
 ```{r}
-testthat::test_that("single-quote", {
+test_that("single-quote", {
   results |>
     extract2("table") |>
     pull(single_quote_1) |>
@@ -329,7 +330,7 @@ results |>
 ```
 
 ```{r}
-testthat::test_that("str-to-num-month", {
+test_that("str-to-num-month", {
   results |>
     extract2("table") |>
     pull(str_to_num_month_january) |>
@@ -378,7 +379,7 @@ results |>
 ```
 
 ```{r}
-testthat::test_that("unique-outliers", {
+test_that("unique-outliers", {
   results |>
     extract2("table") |>
     pull(unique_outliers_1_2_3_4_100_100_500_500_1_5) |>

@@ -8,17 +8,17 @@ badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Check NetLogo workflow
-badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
-[![Render manual workflow
-badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![CoMSES Network
 badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![OSF DOI
 badge](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
+[![Check NetLogo workflow
+badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![Render manual workflow
+badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![FAIR checklist
 badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
-[![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
 [![GNU GPLv3
 license](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Contributor Covenant 3.0 code of conduct
@@ -119,7 +119,7 @@ temperature, average maximum temperature, total precipitation, and
 
 Refer to the `Info` tab in the model for additional details.
 
-## How to Use It
+## Usage
 
 ### Setup
 
@@ -188,12 +188,12 @@ example of how to integrate `LogoClim` into your model.
 
 ## User Manual
 
-`LogoClim`’s user manual was developed using the latest versions of the
+`LogoClim`’s user manual is developed using the latest versions of the
 [Quarto](https://quarto.org/) publishing system, the
 [NetLogo](https://www.netlogo.org/) environment, and the
 [R](https://www.r-project.org/) programming language. To ensure
 consistent results, the [`renv`](https://rstudio.github.io/renv/)
-package was used to manage and restore the R environment.
+package is used to manage and restore the R environment.
 
 To reproduce the analyses in the manual, install the four dependencies
 mentioned above and follow these steps:
@@ -203,22 +203,47 @@ mentioned above and follow these steps:
     [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
 3.  **Restore the R environment** by running
     [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html)
-    in the R console. This will install all required software
+    in the R console. This will install all required package
     dependencies.
 4.  **Open** the Quarto notebook files (`.qmd`) and run the code as
     described.
 
-If you want to render the entire manual, you can use the `quarto render`
-command in the terminal:
+Avoid using VPNs, corporate proxies, or other network-routing tools
+while processing the data, as these can interfere with the downloads.
+
+If you run into issues with `renv`, use
+[`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html)
+to remove the environment completely.
+
+To render the entire manual, run the following command in the terminal:
 
 ``` bash
 quarto render
 ```
 
-This will start the rendering process, which may take some time
-depending on your machine. Once complete, the
-[Quarto](https://quarto.org/) book will be available in the
-[`docs`](docs) folder.
+The rendering process may take some time depending on your machine. Once
+complete, the [Quarto](https://quarto.org/) book will be available in
+the [`docs`](docs) folder.
+
+## Contributing
+
+[![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
+
+Contributions are always welcome! Whether you want to report bugs,
+suggest new features, or help improve the code or documentation, your
+input makes a difference.
+
+Before opening a new issue, please check the [issues
+tab](https://github.com/sustentarea/logoclim/issues) to see if your
+topic has already been reported.
+
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
+
+You can also support the development of `LogoClim` by becoming a
+sponsor.
+
+Click [here](https://github.com/sponsors/danielvartan) to make a
+donation. Please mention `LogoClim` in your donation message.
 
 ## Citation
 
@@ -226,7 +251,7 @@ depending on your machine. Once complete, the
 
 > [!NOTE]
 > When using WorldClim data, you must also cite the original data sources.
-> 
+>
 > The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
 If you use this model in your research, please cite it to acknowledge
@@ -250,32 +275,12 @@ A BibLaTeX entry for LaTeX users is:
 }
 ```
 
-## Contributing
-
-[![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
-
-Contributions are always welcome! Whether you want to report bugs,
-suggest new features, or help improve the code or documentation, your
-input makes a difference.
-
-Before opening a new issue, please check the [issues
-tab](https://github.com/sustentarea/logoclim/issues) to see if your
-topic has already been reported.
-
-[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
-
-You can also support the development of `LogoClim` by becoming a
-sponsor.
-
-Click [here](https://github.com/sponsors/danielvartan) to make a
-donation. Please mention `LogoClim` in your donation message.
-
 ## License
 
 [![](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ``` text
-Copyright (C) 2025 Sustentarea Research and Extension Center
+Copyright (C) 2026 Sustentarea Research and Extension Center
 
 LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software

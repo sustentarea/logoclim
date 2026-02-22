@@ -3,7 +3,6 @@
 library(checkmate)
 library(fs)
 library(here)
-library(knitr)
 library(quartor) # github.com/danielvartan/quartor
 library(magrittr)
 library(readr)
@@ -30,8 +29,6 @@ for (i in dir_ls(here("images"), type = "file")) {
 
 # Update `NEWS.md` File in `release-notes.qmd` -----
 
-library(knitr)
-
 start_pattern <- "%:::% NEWS.md begin %:::%"
 end_pattern <- "%:::% NEWS.md end %:::%"
 
@@ -45,12 +42,9 @@ c(
     magrittr::extract(
       seq(1, start_pattern_index)
     ),
-  '``` {.txt filename="NEWS.md"}',
   here("NEWS.md") |>
     read_lines() |>
-    wrap_rmd(text = _) |>
-    strwrap(width = 80),
-  '```',
+    str_replace_all("# ", "### "),
   lines |>
     magrittr::extract(
       seq(end_pattern_index, length(lines))

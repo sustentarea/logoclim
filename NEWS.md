@@ -1,6 +1,6 @@
 # v2.1.0.9000 (development version)
 
-- A first draft of `LogoClim` User Manual is now available in the `docs/` folder and online at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
+- A first draft of `LogoClim` User Manual is now available in the `docs` folder and online at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
 - Automated unit tests on near-equality comparisons between WorldClim original files and `LogoClim` patch values, as well as procedure behavior tests, are now included in the user manual and rendered at each commit.
 - A `color-bar-bins` slider was added to control the number of bins in the color bar.
 - The interface now has a new color bar widget for better visualization of patch values.
@@ -30,11 +30,11 @@
 
 # v2.0.0 (2025-07-29)
 
-### Breaking Changes
+## Breaking Changes
 
 - The model now requires **NetLogo 7.0.1*- or later.
 
-### New Features and Improvements
+## New Features and Improvements
 
 - Interface widgets were resized to match the new NetLogo standard dimensions.
 - The model's license was changed from [MIT](https://opensource.org/license/mit) to [GPLv3](https://opensource.org/license/gpl-3-0).

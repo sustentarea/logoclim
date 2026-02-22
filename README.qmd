@@ -14,7 +14,7 @@ library(here)
 library(htmltools)
 library(knitr)
 
-source(here("R", ".setup.R"))
+here("R", ".setup.R") |> source()
 ```
 
 <!-- badges: start -->
@@ -36,16 +36,6 @@ cat(
     ")"
   ),
   badge_repostatus("active"),
-  badge_github_actions(
-    ref = "sustentarea/logoclim",
-    action = "check-netlogo.yaml",
-    alt = "Check NetLogo workflow badge"
-  ),
-  badge_github_actions(
-    ref = "sustentarea/logoclim",
-    action = "render-manual.yaml",
-    alt = "Render manual workflow badge"
-  ),
   badge_custom(
     x = "CoMSES Network",
     y = "2.1.0",
@@ -63,17 +53,15 @@ cat(
     url = "https://doi.org/10.17605/OSF.IO/EAPZU",
     alt = "OSF DOI badge"
   ),
-  paste0(
-    "[![",
-    "FAIR checklist badge",
-    "](",
-    "https://img.shields.io/badge/",
-    "fairsoftwarechecklist.net", "-",
-    "-",
-    "00a7d9",
-    ")](",
-    "https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123",
-    ")"
+  badge_github_actions(
+    ref = "sustentarea/logoclim",
+    action = "check-netlogo.yaml",
+    alt = "Check NetLogo workflow badge"
+  ),
+  badge_github_actions(
+    ref = "sustentarea/logoclim",
+    action = "render-manual.yaml",
+    alt = "Render manual workflow badge"
   ),
   paste0(
     "[![",
@@ -86,6 +74,18 @@ cat(
     "green",
     ")](",
     "https://fair-software.eu",
+    ")"
+  ),
+  paste0(
+    "[![",
+    "FAIR checklist badge",
+    "](",
+    "https://img.shields.io/badge/",
+    "fairsoftwarechecklist.net", "-",
+    "-",
+    "00a7d9",
+    ")](",
+    "https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123",
     ")"
   ),
   badge_license(
@@ -150,7 +150,7 @@ This series includes 12 monthly data points from [downscaled](https://worldclim.
 
 Refer to the `Info` tab in the model for additional details.
 
-## How to Use It
+## Usage
 
 ### Setup
 
@@ -192,63 +192,26 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 
 ## User Manual
 
-`LogoClim`'s user manual was developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package was used to manage and restore the R environment.
+`LogoClim`'s user manual is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
 
 To reproduce the analyses in the manual, install the four dependencies mentioned above and follow these steps:
 
 1. **Clone** this repository to your local machine.
 2. **Open** the project in your preferred [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
-3. **Restore the R environment** by running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) in the R console. This will install all required software dependencies.
+3. **Restore the R environment** by running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) in the R console. This will install all required package dependencies.
 4. **Open** the Quarto notebook files (`.qmd`) and run the code as described.
 
-If you want to render the entire manual, you can use the `quarto render` command in the terminal:
+Avoid using VPNs, corporate proxies, or other network-routing tools while processing the data, as these can interfere with the downloads.
+
+If you run into issues with `renv`, use [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html) to remove the environment completely.
+
+To render the entire manual, run the following command in the terminal:
 
 ```bash
 quarto render
 ```
 
-This will start the rendering process, which may take some time depending on your machine. Once complete, the [Quarto](https://quarto.org/) book will be available in the [`docs`](docs) folder.
-
-## Citation
-
-```{r}
-#| echo: false
-#| output: asis
-
-cat(
-  badge_custom(
-    x = "doi",
-    y = "10.17605/OSF.IO/EAPZU",
-    color = "1284C5",
-    url = "https://doi.org/10.17605/OSF.IO/EAPZU",
-    alt = "OSF DOI badge"
-  )
-)
-```
-
-```{=gfm}
-> [!NOTE]
-> When using WorldClim data, you must also cite the original data sources.
-> 
-> The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
-```
-
-If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
-
-To cite `LogoClim` in publications please use the following format:
-
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
-
-A BibLaTeX entry for LaTeX users is:
-
-```latex
-@software{vartanian2026,
-  title = {LogoClim: WorldClim in NetLogo},
-  author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
-  year = {2026},
-  doi = {10.17605/OSF.IO/EAPZU}
-}
-```
+The rendering process may take some time depending on your machine. Once complete, the [Quarto](https://quarto.org/) book will be available in the [`docs`](docs) folder.
 
 ## Contributing
 
@@ -277,6 +240,47 @@ You can also support the development of `LogoClim` by becoming a sponsor.
 
 Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
 
+## Citation
+
+```{r}
+#| echo: false
+#| output: asis
+
+cat(
+  badge_custom(
+    x = "doi",
+    y = "10.17605/OSF.IO/EAPZU",
+    color = "1284C5",
+    url = "https://doi.org/10.17605/OSF.IO/EAPZU",
+    alt = "OSF DOI badge"
+  )
+)
+```
+
+```{=gfm}
+> [!NOTE]
+> When using WorldClim data, you must also cite the original data sources.
+>
+> The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
+```
+
+If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
+
+To cite `LogoClim` in publications please use the following format:
+
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. <https://doi.org/10.17605/OSF.IO/EAPZU>
+
+A BibLaTeX entry for LaTeX users is:
+
+```latex
+@software{vartanian2026,
+  title = {LogoClim: WorldClim in NetLogo},
+  author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
+  year = {2026},
+  doi = {10.17605/OSF.IO/EAPZU}
+}
+```
+
 ## License
 
 ```{r}
@@ -294,7 +298,7 @@ cat(
 ```
 
 ```text
-Copyright (C) 2025 Sustentarea Research and Extension Center
+Copyright (C) 2026 Sustentarea Research and Extension Center
 
 LogoClim is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
