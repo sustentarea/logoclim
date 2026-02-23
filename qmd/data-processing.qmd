@@ -51,6 +51,7 @@ With `geodata` loaded, use the [`gadm()`](https://rspatial.github.io/geodata/ref
 For example, if you want to crop [WorldClim](https://www.worldclim.org/) data to the boundaries of Brazil, you could use the following code:
 
 ```{r}
+#| label: Download country shape
 #| output: false
 
 country_shape <- gadm("BRA", level = 0)
@@ -59,6 +60,7 @@ country_shape <- gadm("BRA", level = 0)
 This code will download the shape of Brazil and store it in the `country_shape` variable, which can then be passed to the `shape` parameter of the [`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) function for cropping.
 
 ```{r}
+#| label: Plot country shape
 #| code-fold: true
 
 library(leaflet)
@@ -104,6 +106,7 @@ box <- c(-24.534, 34.625, 50.601, 71.181)
 ```
 
 ```{r}
+#| label: Plot bounding box
 #| code-fold: true
 
 library(leaflet)
@@ -149,7 +152,7 @@ files <- worldclim_download(
 #> ✔ Calculating file sizes [614ms]
 #> ✔ Creating LICENSE and README files [291ms]
 #> ℹ Downloading 1 file to /path/to/your/data/directory/historical-climate-data
-#> ✔ Downloading files [37.3s]                          
+#> ✔ Downloading files [37.3s]
 #> ✔ Unzipping files [14ms]
 ```
 
