@@ -7,6 +7,7 @@
 ; extensions [gis]
 
 ; globals [
+;   index
 ;   dataset
 ;   files
 ;   month
@@ -14,12 +15,10 @@
 ;   year
 ; ]
 
-to walk [#index]
-  assert-integer #index
-
-  set dataset gis:load-dataset file-path series-data-path (item #index files)
-  set month item #index months
-  set year item #index years
+to walk
+  set dataset gis:load-dataset file-path series-data-path (item index files)
+  set month item index months
+  set year item index years
   set max-plot-x ceiling ((ticks + 1) * 1.25)
 
   setup-map

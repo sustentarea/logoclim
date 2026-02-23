@@ -7,8 +7,16 @@ permissions: read-all
 
 jobs:
   render-manual:
-    name: Render user manual
-    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip render-manual]')"
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, version: 'release'}
+          - {os: macos-latest, version: 'release'}
+          - {os: ubuntu-latest, version: 'release'}
+    name: "${{ matrix.config.os }} (${{ matrix.config.version }})"
+    runs-on: ${{ matrix.config.os }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions:
@@ -99,6 +107,7 @@ jobs:
         shell: bash
 
       - name: Deploy to GitHub Pages
+        if: runner.os == 'Linux'
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           clean: false
