@@ -1,11 +1,11 @@
 ; __include [
 ;   "check-all.nls"
 ;   "check-between.nls"
-;   "check-numeric.nls"
+;   "check-number.nls"
 ; ]
 
 to-report check-world-bleed [#size]
-  assert-numeric #size
+  assert-number #size
   assert-between #size 0 1
 
   let #pxcor-size floor world-width * #size

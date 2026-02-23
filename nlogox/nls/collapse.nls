@@ -1,14 +1,14 @@
 ; __includes [
 ;   "check-list.nls"
 ;   "check-string.nls"
-;   "check-logical.nls"
+;   "check-boolean.nls"
 ;   "single-quote.nls"
 ; ]
 
 to-report collapse [#list #sep #quote?]
   assert-list #list
   assert-string #sep
-  assert-logical #quote?
+  assert-boolean #quote?
 
   if (#quote? = true) [set #list single-quote #list]
 

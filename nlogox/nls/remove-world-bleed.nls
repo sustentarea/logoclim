@@ -2,12 +2,12 @@
 ;   "check-integer.nls"
 ;   "check-between.nls"
 ;   "check-list.nls"
-;   "check-numeric.nls"
+;   "check-number.nls"
 ;   "check-world-bleed.nls"
 ; ]
 
 to remove-world-bleed [#size #mode]
-  assert-numeric #size
+  assert-number #size
   assert-between #size 0 1
   assert-integer #mode
   assert-choice #mode [0 1]
@@ -45,7 +45,7 @@ to remove-world-bleed [#size #mode]
 end
 
 to-report match-pcor [#x #list]
-  assert-numeric #x
+  assert-number #x
   assert-list #list
 
   ifelse (empty? #list) [

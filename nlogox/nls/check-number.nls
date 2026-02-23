@@ -15,10 +15,6 @@ to-report test-number [#x]
   report is-numeric? #x
 end
 
-to-report test-numeric [#x]
-  report is-numeric? #x
-end
-
 to-report check-number [#x]
   ifelse (is-numeric? #x) [
     report true
@@ -27,16 +23,8 @@ to-report check-number [#x]
   ]
 end
 
-to-report check-numeric [#x]
-  report check-number #x
-end
-
 to assert-number [#x]
   if (not is-numeric? #x) [
     error check-number #x
   ]
-end
-
-to assert-numeric [#x]
-  assert-number #x
 end

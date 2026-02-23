@@ -35,7 +35,7 @@ to-report str-extract-scalar [#x #pattern]
   let #nonmatches string:rex-split #x #pattern
 
   (ifelse (length #nonmatches = 1) [
-    report false ; `false` = `NA` (Not Available)
+    report false ; `false` == `N/A` (Not Available)
   ] (list-all? #nonmatches "") [
     report #x
   ] [

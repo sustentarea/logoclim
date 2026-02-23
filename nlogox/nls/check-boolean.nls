@@ -1,0 +1,17 @@
+to-report test-boolean [#x]
+  report is-boolean? #x
+end
+
+to-report check-boolean [#x]
+  ifelse (is-boolean? #x) [
+    report true
+  ] [
+    report "The value is not logical/boolean (`true`/`false`)."
+  ]
+end
+
+to assert-boolean [#x]
+  if (not is-boolean? #x) [
+    error check-boolean #x
+  ]
+end

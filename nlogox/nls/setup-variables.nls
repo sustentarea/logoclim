@@ -1,4 +1,5 @@
 ; __includes [
+;   "check-boolean.nls"
 ;   "file-path.nls"
 ;   "lookup-series-data-path.nls"
 ;   "setup-fcd-variables.nls"
@@ -30,7 +31,7 @@
 ; ]
 
 to setup-variables [#headless?]
-  assert-logical #headless?
+  assert-boolean #headless?
 
   ifelse (#headless?) [
     set headless? true

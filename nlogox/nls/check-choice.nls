@@ -8,9 +8,6 @@ to-report test-choice [#x #choices]
 end
 
 to-report check-choice [#x #choices]
-  assert-atomic #x
-  assert-list #choices
-
   ifelse (test-choice #x #choices) [
     report true
   ] [
