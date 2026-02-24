@@ -5,26 +5,6 @@
       {
         "Name": "CRAN",
         "URL": "https://vps.fmvz.usp.br/CRAN"
-      },
-      {
-        "Name": "BioCsoft",
-        "URL": "https://bioconductor.org/packages/3.22/bioc"
-      },
-      {
-        "Name": "BioCann",
-        "URL": "https://bioconductor.org/packages/3.22/data/annotation"
-      },
-      {
-        "Name": "BioCexp",
-        "URL": "https://bioconductor.org/packages/3.22/data/experiment"
-      },
-      {
-        "Name": "BioCworkflows",
-        "URL": "https://bioconductor.org/packages/3.22/workflows"
-      },
-      {
-        "Name": "BioCbooks",
-        "URL": "https://bioconductor.org/packages/3.22/books"
       }
     ]
   },
@@ -517,54 +497,48 @@
     },
     "brandr": {
       "Package": "brandr",
-      "Version": "0.1.0.9000",
-      "Source": "GitHub",
+      "Version": "0.1.0",
+      "Source": "Repository",
       "Title": "Brand Identity Management Using brand.yml Standard",
       "Authors@R": "c( person( given = \"Daniel\", family = \"Vartanian\", role = c(\"aut\", \"cre\", \"ccp\", \"cph\"), email = \"danvartan@gmail.com\", comment = c(ORCID = \"0000-0001-7782-759X\") ) )",
       "Description": "A system to facilitate brand identity management using the brand.yml standard, providing functions to consistently access and apply brand colors, typography, and other visual elements across your R projects.",
-      "License": "GPL (>= 3)",
+      "License": "MIT + file LICENSE",
       "URL": "https://danielvartan.github.io/brandr/, https://github.com/danielvartan/brandr/",
       "BugReports": "https://github.com/danielvartan/brandr/issues/",
       "Depends": [
-        "R (>= 4.4)"
+        "R (>= 4.3)"
       ],
       "Imports": [
-        "checkmate (>= 2.3.3)",
-        "cli (>= 3.6.5)",
+        "checkmate (>= 2.3.2)",
+        "cli (>= 3.6.3)",
         "colorspace (>= 2.1.1)",
         "dplyr (>= 1.1.4)",
-        "here (>= 1.0.2)",
+        "here (>= 1.0.1)",
         "lifecycle (>= 1.0.4)",
-        "ggplot2 (>= 4.0.0)",
-        "grDevices (>= 4.4)",
+        "ggplot2 (>= 3.5.1)",
+        "grDevices (>= 4.3.0)",
         "yaml (>= 2.3.10)"
       ],
       "Suggests": [
         "bslib (>= 0.9.0)",
         "covr (>= 3.6.4)",
         "hexbin (>= 1.28.5)",
-        "knitr (>= 1.50)",
-        "magrittr (>= 2.0.4)",
+        "knitr (>= 1.49)",
+        "magrittr (>= 2.0.3)",
         "palmerpenguins (>= 0.1.1)",
         "rmarkdown (>= 2.29)",
-        "spelling (>= 2.3.2)",
-        "testthat (>= 3.2.3)",
+        "spelling (>= 2.3.1)",
+        "testthat (>= 3.2.2)",
         "tidyr (>= 1.3.1)"
       ],
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
       "Language": "en-US",
-      "Roxygen": "list(markdown = TRUE)",
-      "RoxygenNote": "7.3.3",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "brandr",
-      "RemoteUsername": "danielvartan",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "261623c2503a3f0b73304ef92379ad1dbe2ee1e4",
+      "RoxygenNote": "7.3.2",
       "NeedsCompilation": "no",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>"
+      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (<https://orcid.org/0000-0001-7782-759X>)",
+      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>",
+      "Repository": "CRAN"
     },
     "brio": {
       "Package": "brio",
@@ -1594,24 +1568,6 @@
       "Maintainer": "Winston Chang <winston@posit.co>",
       "Repository": "CRAN"
     },
-    "fastmatch": {
-      "Package": "fastmatch",
-      "Version": "1.1-8",
-      "Source": "Repository",
-      "Title": "Fast 'match()' Function",
-      "Author": "Simon Urbanek [aut, cre, cph] (https://urbanek.nz, ORCID: <https://orcid.org/0000-0003-2297-1732>)",
-      "Authors@R": "person(\"Simon\", \"Urbanek\", role=c(\"aut\",\"cre\",\"cph\"), email=\"Simon.Urbanek@r-project.org\", comment=c(\"https://urbanek.nz\", ORCID=\"0000-0003-2297-1732\"))",
-      "Maintainer": "Simon Urbanek <Simon.Urbanek@r-project.org>",
-      "Description": "Package providing a fast match() replacement for cases that require repeated look-ups. It is slightly faster that R's built-in match() function on first match against a table, but extremely fast on any subsequent lookup as it keeps the hash table in memory.",
-      "License": "GPL-2",
-      "Depends": [
-        "R (>= 2.3.0)"
-      ],
-      "URL": "https://www.rforge.net/fastmatch",
-      "BugReports": "https://github.com/s-u/fastmatch/issues/",
-      "NeedsCompilation": "yes",
-      "Repository": "CRAN"
-    },
     "fontBitstreamVera": {
       "Package": "fontBitstreamVera",
       "Version": "0.1.1",
@@ -2352,11 +2308,11 @@
     },
     "groomr": {
       "Package": "groomr",
-      "Version": "0.1.0.9001",
+      "Version": "0.1.0.9000",
       "Source": "GitHub",
       "Title": "Tidy Tools",
       "Authors@R": "c( person( given = \"Daniel\", family = \"Vartanian\", role = c(\"aut\", \"cre\", \"ccp\", \"cph\"), email = \"danvartan@gmail.com\", comment = c(ORCID = \"0000-0001-7782-759X\") ) )",
-      "Description": "A set of tools to help you tidy and organize R objects and files efficiently. It provides a set of functions for cleaning, renaming, splitting, and managing files and data, making your workflows more streamlined and reproducible.",
+      "Description": "A set of tools for tidying and organizing R objects and files. It provides functions for cleaning, renaming, splitting, and managing files and data, making workflows more efficient and reproducible.",
       "License": "GPL (>=3)",
       "URL": "https://danielvartan.github.io/groomr/, https://github.com/danielvartan/groomr/",
       "BugReports": "https://github.com/danielvartan/groomr/issues/",
@@ -2364,48 +2320,46 @@
         "R (>= 4.4)"
       ],
       "Imports": [
-        "checkmate (>= 2.3.3)",
+        "checkmate (>= 2.3.4)",
         "cli (>= 3.6.5)",
         "clipr (>= 0.8.0)",
-        "dplyr (>= 1.1.4)",
+        "dplyr (>= 1.2.0)",
         "fs (>= 1.6.6)",
-        "fpeek (>= 0.1.2)",
+        "fpeek (>= 0.2.0)",
         "hms (>= 1.1.4)",
-        "lifecycle (>= 1.0.4)",
+        "lifecycle (>= 1.0.5)",
         "magrittr (>= 2.0.4)",
-        "prettycheck",
-        "purrr (>= 1.2.0)",
-        "readr (>= 2.1.6)",
+        "purrr (>= 1.2.1)",
+        "readr (>= 2.2.0)",
         "rvest (>= 1.0.5)",
-        "stringdist (>= 0.9.15)",
+        "stringdist (>= 0.9.17)",
         "stringr (>= 1.6.0)",
         "zip (>= 2.3.3)"
       ],
       "Suggests": [
+        "brand.yml (>= 0.1.0)",
         "covr (>= 3.6.5)",
         "datasets (>= 4.4)",
-        "gtsummary (>= 2.4.0)",
-        "knitr (>= 1.50)",
+        "gtsummary (>= 2.5.0)",
+        "knitr (>= 1.51)",
         "mockr (>= 0.2.2)",
         "spelling (>= 2.3.2)",
-        "testthat (>= 3.3.0)"
+        "testthat (>= 3.3.2)"
       ],
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
       "Language": "en-US",
-      "LazyData": "true",
-      "LazyDataCompression": "bzip2",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.3",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "danielvartan",
       "RemoteRepo": "groomr",
-      "RemoteRef": "main",
-      "RemoteSha": "63e1091eeb51d93679a8aec369591c7be5928ebd",
-      "Remotes": "github::danielvartan/prettycheck"
+      "RemoteUsername": "danielvartan",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "d0ae820fe3e9809282247b2ba5a8c516bc47682a",
+      "NeedsCompilation": "no",
+      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
+      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>"
     },
     "gtable": {
       "Package": "gtable",
@@ -3660,15 +3614,15 @@
       "Language": "en-US",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.3",
-      "LazyData": "true",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danielvartan@proton.me>",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "danielvartan",
       "RemoteRepo": "orbis",
-      "RemoteRef": "main",
-      "RemoteSha": "e90da03966661eb5de83dfd21356d30c1a9b5fde"
+      "RemoteUsername": "danielvartan",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "e90da03966661eb5de83dfd21356d30c1a9b5fde",
+      "NeedsCompilation": "no",
+      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
+      "Maintainer": "Daniel Vartanian <danielvartan@proton.me>"
     },
     "parsnip": {
       "Package": "parsnip",
@@ -3995,62 +3949,6 @@
       "Collate": "'adjective.R' 'adverb.R' 'exclamation.R' 'verb.R' 'rpackage.R' 'package.R'",
       "NeedsCompilation": "no",
       "Repository": "CRAN"
-    },
-    "prettycheck": {
-      "Package": "prettycheck",
-      "Version": "0.0.0.9000",
-      "Source": "GitHub",
-      "Title": "Pretty assertive programming",
-      "Authors@R": "c( person( given = \"Daniel\", family = \"Vartanian\", role = c(\"aut\", \"cre\", \"ccp\", \"cph\"), email = \"danvartan@gmail.com\", comment = c(ORCID = \"0000-0001-7782-759X\") ) )",
-      "Description": "Provides a set of functions that produce pretty and informative error messages.",
-      "License": "MIT + file LICENSE",
-      "URL": "https://danielvartan.github.io/prettycheck/, https://github.com/danielvartan/prettycheck/",
-      "BugReports": "https://github.com/danielvartan/prettycheck/issues/",
-      "Depends": [
-        "R (>= 4.3)"
-      ],
-      "Imports": [
-        "checkmate (>= 2.3.2)",
-        "cli (>= 3.6.3)",
-        "curl (>= 6.2.1)",
-        "data.table (>= 1.17.0)",
-        "fastmatch (>= 1.1.6)",
-        "glue (>= 1.8.0)",
-        "grDevices (>= 4.3.0)",
-        "hms (>= 1.1.3)",
-        "lifecycle (>= 1.0.4)",
-        "lubridate (>= 1.9.4)",
-        "magrittr (>= 2.0.3)",
-        "R6 (>= 2.5.1)",
-        "stringr (>= 1.5.1)",
-        "tibble (>= 3.2.1)",
-        "utils (>= 4.3)"
-      ],
-      "Suggests": [
-        "covr (>= 3.6.4)",
-        "knitr (>= 1.49)",
-        "latex2exp (>= 0.9.6)",
-        "mockr (>= 0.2.1)",
-        "rlang (>= 1.1.4)",
-        "testthat (>= 3.2.2)",
-        "spelling (>= 2.3.1)"
-      ],
-      "Config/testthat/edition": "3",
-      "Encoding": "UTF-8",
-      "Language": "en-US",
-      "LazyData": "true",
-      "LazyDataCompression": "bzip2",
-      "Roxygen": "list(markdown = TRUE)",
-      "RoxygenNote": "7.3.2",
-      "Collate": "'make_check.R' 'a_collate.R' 'access.R' 'any.R' 'array.R' 'atomic.R' 'boolean.R' 'character.R' 'choice.R' 'class.R' 'color.R' 'complex.R' 'count.R' 'data.R' 'data_frame.R' 'data_table.R' 'date.R' 'directory.R' 'directory_exists.R' 'disjunct.R' 'double.R' 'duration.R' 'length.R' 'empty.R' 'environment.R' 'factor.R' 'false.R' 'file.R' 'file_exists.R' 'finite.R' 'flag.R' 'formula.R' 'function.R' 'ggplot.R' 'hms.R' 'identical.R' 'infinite.R' 'int.R' 'integer.R' 'integer_number.R' 'integerish.R' 'interactive.R' 'internet.R' 'interval.R' 'less_or_equal_than.R' 'list.R' 'logical.R' 'matrix.R' 'na.R' 'named.R' 'names.R' 'namespace.R' 'nan.R' 'not_empty.R' 'null.R' 'number.R' 'numeric.R' 'os.R' 'path_for_output.R' 'period.R' 'permutation.R' 'pick.R' 'posixct.R' 'posixt.R' 'prettycheck-package.R' 'r6.R' 'r7.R' 'raw.R' 's3.R' 's4.R' 'scalar.R' 'scientific_notation.R' 'set_equal.R' 'string.R' 'subset.R' 'temporal.R' 'tibble.R' 'true.R' 'utils-mocks.R' 'utils.R' 'vector.R' 'zzz.R'",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "danielvartan",
-      "RemoteRepo": "prettycheck",
-      "RemoteRef": "main",
-      "RemoteSha": "eff89163db1d3b5ac603acbcb0220c255af2f9da"
     },
     "prettyunits": {
       "Package": "prettyunits",
@@ -4890,14 +4788,13 @@
     "s2": {
       "Package": "s2",
       "Version": "1.1.9",
-      "Source": "GitHub",
+      "Source": "Repository",
       "Title": "Spherical Geometry Operators Using the S2 Geometry Library",
       "Authors@R": "c( person(given = \"Dewey\", family = \"Dunnington\", role = c(\"aut\"), email = \"dewey@fishandwhistle.net\", comment = c(ORCID = \"0000-0002-9415-4582\")), person(given = \"Edzer\", family = \"Pebesma\", role = c(\"aut\", \"cre\"), email = \"edzer.pebesma@uni-muenster.de\", comment = c(ORCID = \"0000-0001-8049-7069\")), person(\"Ege\", \"Rubak\", email=\"rubak@math.aau.dk\", role = c(\"aut\")), person(\"Jeroen\", \"Ooms\", , \"jeroen.ooms@stat.ucla.edu\", role = \"ctb\", comment = \"configure script\"), person(family = \"Google, Inc.\", role = \"cph\", comment = \"Original s2geometry.io source code\") )",
       "Description": "Provides R bindings for Google's s2 library for geometric calculations on the sphere. High-performance constructors and exporters provide high compatibility with existing spatial packages, transformers construct new geometries from existing geometries, predicates provide a means to select geometries based on spatial relationships, and accessors extract information about geometries.",
       "License": "Apache License (== 2.0)",
       "Encoding": "UTF-8",
       "LazyData": "true",
-      "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.2",
       "SystemRequirements": "cmake, OpenSSL >= 1.0.1, Abseil >= 20230802.0",
       "LinkingTo": [
@@ -4919,15 +4816,10 @@
         "R (>= 3.0.0)"
       ],
       "Config/testthat/edition": "3",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "s2",
-      "RemoteUsername": "r-spatial",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "ad09e15f8f37a244dd4b108b094d476fe871ca0f",
       "NeedsCompilation": "yes",
       "Author": "Dewey Dunnington [aut] (ORCID: <https://orcid.org/0000-0002-9415-4582>), Edzer Pebesma [aut, cre] (ORCID: <https://orcid.org/0000-0001-8049-7069>), Ege Rubak [aut], Jeroen Ooms [ctb] (configure script), Google, Inc. [cph] (Original s2geometry.io source code)",
-      "Maintainer": "Edzer Pebesma <edzer.pebesma@uni-muenster.de>"
+      "Maintainer": "Edzer Pebesma <edzer.pebesma@uni-muenster.de>",
+      "Repository": "CRAN"
     },
     "sass": {
       "Package": "sass",

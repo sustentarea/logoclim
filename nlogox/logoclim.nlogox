@@ -348,13 +348,13 @@ set-plot-x-range 0 max-plot-x]]></update>
 
 plot 0.1]]></update>
       </pen>
-      <pen interval="1.0" mode="0" display="Std. Dev." color="-1513240" legend="true">
+      <pen interval="1.0" mode="0" display="Stdev." color="-1513240" legend="true">
         <setup></setup>
         <update><![CDATA[if ((length files) <= 12) [set-plot-pen-color black]
 
 plot standard-deviation [value] of patches with [not is-false? value]]]></update>
       </pen>
-      <pen interval="1.0" mode="0" display="Std. Dev. 12MA" color="-16777216" legend="true">
+      <pen interval="1.0" mode="0" display="Stdev. 12MA" color="-16777216" legend="true">
         <setup></setup>
         <update><![CDATA[ifelse ((length files) <= 12) [
   plot-pen-up
