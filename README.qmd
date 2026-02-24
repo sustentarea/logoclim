@@ -107,15 +107,11 @@ cat(
 
 ## Overview
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
 
-The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from [global climate models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models) under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), [O'Neill et al., 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)). All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution, interpolated climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)).
-
-See the [`Logônia`](https://github.com/sustentarea/logonia) model for an example of how to integrate `LogoClim` into your model.
+Learn more about the model in the [user manual](https://sustentarea.github.io/logoclim/).
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
-
-> The continuous development of `LogoClim` depends on community support. If you find this project useful, and can afford to do so, please consider becoming a sponsor. &nbsp; [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 ```{=html}
 <p align="center">
@@ -130,59 +126,68 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 
 ## How It Works
 
-`LogoClim` operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
+`LogoClim` uses raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from [global climate models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models) under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), [O'Neill et al., 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)).
 
-### Data Series
+The model operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
-The model supports simulation with all three climate data series provided by [WorldClim 2.1](https://worldclim.org/). Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)) and can be selected within the model interface to fit your research needs. More information about each series can be found in the WorldClim website.
+All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
 
-#### Historical Climate Data
+### Historical Climate Data
 
-This series includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/worldclim21.html) includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
-#### Historical Monthly Weather Data
+### Historical Monthly Weather Data
 
-This series includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
-#### Future Climate Data
+### Future Climate Data
 
-This series includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
-Refer to the `Info` tab in the model for additional details.
+Learn more about the data series in the [WorldClim](https://www.worldclim.org) website.
 
 ## Usage
 
-### Setup
+To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) version 7 or later installed. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
 
-To get started, ensure you have [NetLogo](https://www.netlogo.org) installed. This model was developed using NetLogo 7.0.0, so it is recommended to use this version or later.
+The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
 
-The model relies on the [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html) NetLogo extensions. These are automatically installed when the model is run for the first time.
+```{=gfm}
+> [!NOTE]
+> Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
+```
 
-#### Downloading the Model
+With NetLogo ready, follow these 5 steps to get `LogoClim` up and running.
 
-You can download the latest release of the model from its [GitHub releases page](https://github.com/sustentarea/logoclim/releases/latest). For the development version, you can clone or download its [GitHub repository](https://github.com/sustentarea/logoclim/) directly.
+### A. Downloading the Model
 
-#### Downloading the Data
+You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/). This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.
 
-`LogoClim` relies on raster data to represent climate variables. The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. To simplify this workflow, we provide [Quarto](https://quarto.org/) notebooks in the repository `qmd` folder with reproducible pipelines for downloading and processing the data. These notebooks can be customized to meet specific research needs.
+For the development version, you can clone or download the model GitHub code repository directly.
 
-We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`.
+### B. Opening the Model
 
-After downloading and processing the files, place them in the `data` folder within the model's directory. Alternatively, you can use the *Select Data Directory* button in the model interface to specify the location of your data files.
+After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-We suggest starting with the 10-minute resolution to verify that the model runs smoothly on your system before trying higher resolutions.
+### C. Preparing the Data
 
-#### Running the Model
+The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
-Once everything is set, open the `logoclim.nlogox` file located in the [`nlogox`](nlogox) folder to start exploring!
+We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-Refer to the `Info` tab in the model for additional details.
+### D. Running the Model
 
-### Integrating with Other Models
+With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
 
-`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
+Once everything is set, click `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
-See the [`Logônia`](https://github.com/sustentarea/logonia) model for an example of how to integrate `LogoClim` into your model.
+Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click `Setup` and then `Go` to run the model with it.
+
+### E. Integrating with Other Models
+
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
+
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
 
 ```{=html}
 <p align="center">
@@ -192,7 +197,7 @@ See the [`Logônia`](https://github.com/sustentarea/logonia) model for an exampl
 
 ## User Manual
 
-`LogoClim`'s user manual is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
+`LogoClim`'s [user manual](https://sustentarea.github.io/logoclim/) is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
 
 To reproduce the analyses in the manual, install the four dependencies mentioned above and follow these steps:
 
