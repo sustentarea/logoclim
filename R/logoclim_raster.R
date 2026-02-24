@@ -80,6 +80,7 @@ logoclim_raster <- function(
     pluck("lists") |>
     mutate(
       value_of_patches = value_of_patches |>
+        as.character() |>
         map_chr(\(x) na_if(x, "false")) |>
         as.numeric(),
       first_longitude_of_patches = first_longitude_of_patches |>
