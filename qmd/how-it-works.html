@@ -335,8 +335,7 @@ div.csl-indent {
 
 
 </header><p><code>LogoClim</code> uses raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from <a href="https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models">global climate models</a> under various Shared Socioeconomic Pathways (<a href="https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/">SSPs</a>) <span class="citation" data-cites="oneill2017">(<a href="references.html#ref-oneill2017" role="doc-biblioref">O’Neill et al., 2017</a>)</span>.</p>
-<p>All climate inputs come from <a href="https://worldclim.org/">WorldClim 2.1</a>, a widely used source of high-resolution climate datasets based on weather station observations worldwide <span class="citation" data-cites="fick2017">(<a href="references.html#ref-fick2017" role="doc-biblioref">Fick &amp; Hijmans, 2017</a>)</span>.</p>
-<div id="fig-how-it-works-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<div id="fig-how-it-works-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface-fra-30s-hcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1.1: Historical Climate Data series at 30-second resolution (~1 km2 at the equator), displaying the Water Vapor Pressure (kPa) for France in December, averaged over the 1970–2000 period. Click on the image to enlarge it."><img src="images/logoclim-interface-fra-30s-hcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
@@ -345,8 +344,8 @@ Figure&nbsp;1.1: <em>Historical Climate Data</em> series at 30-second resolution
 </figcaption></figure>
 </div>
 <p>The model operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.</p>
-<p>The model allows simulations using all three climate data series from <a href="https://worldclim.org/">WorldClim 2.1</a>. These series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface to suit your research requirements.</p>
-<p>You can learn more about the data series in the <a href="@sec-worldclim">WorldClim</a> section.</p>
+<p>All climate inputs come from <a href="https://worldclim.org/">WorldClim 2.1</a>, a widely used source of high-resolution climate datasets based on weather station observations worldwide <span class="citation" data-cites="fick2017">(<a href="references.html#ref-fick2017" role="doc-biblioref">Fick &amp; Hijmans, 2017</a>)</span>. These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.</p>
+<p>Learn more about the data series in the <a href="@sec-worldclim">WorldClim</a> section.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
