@@ -199,12 +199,14 @@ To reproduce the analyses in the manual, install the four dependencies
 mentioned above and follow these steps:
 
 1.  **Clone** this repository to your local machine.
-2.  **Open** the project in your preferred
+2.  **Open** the project in the terminal or in your preferred
     [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
-3.  **Restore the R environment** by running
+3.  **Install package dependencies** by running
+    `Rscript -e "renv::restore()"` in the terminal or
     [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html)
-    in the R console. This will install all required package
-    dependencies.
+    in an R console. Make sure R is installed and available in your
+    system’s [PATH](https://en.wikipedia.org/wiki/PATH_(variable))
+    before running this command.
 4.  **Open** the Quarto notebook files (`.qmd`) and run the code as
     described.
 
@@ -218,7 +220,7 @@ to remove the environment completely.
 To render the entire manual, run the following command in the terminal:
 
 ``` bash
-quarto render
+quarto render --profile html
 ```
 
 The rendering process may take some time depending on your machine. Once
