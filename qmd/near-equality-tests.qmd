@@ -178,6 +178,7 @@ The source code for the functions below can be found in the [R directory](https:
 ```{r}
 here("R", "worldclim_raster.R") |> source()
 here("R", "logoclim_raster.R") |> source()
+here("R", "print_setup.R") |> source()
 here("R", "compare_plots.R") |> source()
 here("R", "plot_difference.R") |> source()
 here("R", "compare_statistics.R") |> source()
@@ -399,7 +400,7 @@ setup <-
 ```
 
 ```{r}
-setup
+setup |> print_setup()
 ```
 
 ### Download Dataset
@@ -599,7 +600,7 @@ setup <-
 ```
 
 ```{r}
-setup
+setup |> print_setup()
 ```
 
 ### Download Dataset
@@ -802,7 +803,7 @@ setup <-
 ```
 
 ```{r}
-setup
+setup |> print_setup()
 ```
 
 ### Download Dataset
