@@ -25,17 +25,15 @@ print_setup <- function(setup, title = "Selected WorldClim dataset") {
   assert_list(setup, min.len = 1)
   assert_string(title)
 
-  message <- paste0(title, ":\n\n")
-
-  cli::cli_alert_info(message)
+  cli_alert_info(paste0(title, ":\n\n"))
 
   for (i in names(setup)) {
     value <- setup[[i]]
     label <- names(value)
     value <- unname(value)
 
-    cli_alert(
-      paste0("{.field {i}}: {.val {value}} ({label})")
+    cli_bullets(
+      c("*" = paste0("{.field {i}}: {.val {value}} ({label})"))
     )
   }
 

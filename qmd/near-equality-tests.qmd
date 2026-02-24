@@ -400,6 +400,13 @@ setup <-
 ```
 
 ```{r}
+setup
+```
+
+```{r}
+#| include: false
+#| message: NA
+
 setup |> print_setup()
 ```
 
@@ -600,6 +607,13 @@ setup <-
 ```
 
 ```{r}
+setup
+```
+
+```{r}
+#| include: false
+#| message: NA
+
 setup |> print_setup()
 ```
 
@@ -803,6 +817,13 @@ setup <-
 ```
 
 ```{r}
+setup
+```
+
+```{r}
+#| include: false
+#| message: NA
+
 setup |> print_setup()
 ```
 
