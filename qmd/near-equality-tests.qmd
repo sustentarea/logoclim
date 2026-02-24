@@ -512,6 +512,15 @@ results <-
 results |> glimpse()
 ```
 
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Experiment results:\n\n")
+
+results |> glimpse()
+```
+
 ### Compare Plots
 
 ::: {.callout-note}
@@ -711,6 +720,15 @@ results <-
 ```
 
 ```{r}
+results |> glimpse()
+```
+
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Experiment results:\n\n")
+
 results |> glimpse()
 ```
 
@@ -927,6 +945,15 @@ results <-
 ```
 
 ```{r}
+results |> glimpse()
+```
+
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Experiment results:\n\n")
+
 results |> glimpse()
 ```
 
