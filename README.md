@@ -209,7 +209,7 @@ and its code repository is available on
 [GitHub](https://github.com/sustentarea/logonia).
 
 <p align="center">
-  <img src="images/logonia-evolution.svg" height=125px />
+  <img src="images/logonia-interface.gif" />
 </p>
 
 ## User Manual

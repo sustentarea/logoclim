@@ -485,7 +485,7 @@ setup_file <- create_experiment(
     "climate-variable" = names(setup$variable),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> normalizePath("/")
+    "data-path" = tempdir() |> path_norm()
   )
 )
 ```
@@ -700,7 +700,7 @@ setup_file <- create_experiment(
     "climate-variable" = names(setup$variable),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> normalizePath("/")
+    "data-path" = tempdir() |> path_norm()
   )
 )
 ```
@@ -929,7 +929,7 @@ setup_file <- create_experiment(
     "shared-socioeconomic-pathway" = names(setup$ssp),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> normalizePath("/")
+    "data-path" = tempdir() |> path_norm()
   )
 )
 ```
