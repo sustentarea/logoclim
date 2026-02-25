@@ -41,9 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-96cf71f8a821045f18cdd15ab4f392a5.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-9bbb26fb9097b72c2de197714c6a15dc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-08e86c98711ad474f99550f571108f07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-738da4fdd4e4124ce7060ab548834a9f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5c887883b021688028070646b78aa489.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-738da4fdd4e4124ce7060ab548834a9f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
@@ -357,7 +357,7 @@ ul.task-list li input[type="checkbox"] {
 <p>With files at hand, use the <em>Select Data Directory</em> button in the model interface to specify their location. This will set the <code>data-path</code> global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.</p>
 <p>The sections below go through the model interface, explaining the function of each control and how to use it. Once everything is set, click <code>Setup</code> and then <code>Go</code> buttons to start the simulation.</p>
 <p>Note that the example dataset included in the <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network release</a> is intentionally small to keep downloads fast and easy. The model’s default configuration already points to this dataset, so you can simply click <code>Setup</code> and then <code>Go</code> to run the model with it.</p>
-<div id="fig-how-to-use-it-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
+<div id="fig-how-to-use-it-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-to-use-it-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface-ind-2-5m-fcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;2.1: Future Climate Data series at 2.5-minute resolution (~21 km2 at the equator), displaying the Total Precipitation (mm) variable for India in December 2081–2100 under the SSP-585 scenario, as estimated by the CMCC-ESM2 global climate model. Click on the image to enlarge it."><img src="images/logoclim-interface-ind-2-5m-fcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
@@ -434,7 +434,7 @@ Figure&nbsp;2.1: <em>Future Climate Data</em> series at 2.5-minute resolution (~
 <span class="header-section-number">2.5</span> E. Integrating with Other Models</h2>
 <p><code>LogoClim</code> was created to be integrated with other models using NetLogo’s <a href="https://ccl.northwestern.edu/netlogo/docs/ls.html">LevelSpace</a> extension. This extension enables parallel execution and data exchange between models. The following sections of this manual provide guidance on how to integrate <code>LogoClim</code> with other models using LevelSpace.</p>
 <p>To facilitate this integration, we created the <a href="https://github.com/sustentarea/logonia"><code>Logônia</code></a> model, a fictional plant-growth model providing a practical example of how to integrate <code>LogoClim</code> with other models. It is also available on the <a href="https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/">CoMSES Network</a> and its code repository is available on <a href="https://github.com/sustentarea/logonia">GitHub</a>.</p>
-<div id="fig-how-to-use-it-logonia-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
+<div id="fig-how-to-use-it-logonia-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-to-use-it-logonia-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logonia-interface.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2.2: Logônia’s interface. Click on the image to enlarge it."><img src="images/logonia-interface.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
