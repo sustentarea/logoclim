@@ -733,7 +733,11 @@ results |> glimpse()
 
 cli_alert_info("Experiment results:\n\n")
 
-results |> glimpse()
+results |>
+  glimpse() |>
+  capture.output() |>
+  paste(collapse = "\n") |>
+  cli_alert_info()
 ```
 
 ### Compare Plots
@@ -958,7 +962,11 @@ results |> glimpse()
 
 cli_alert_info("Experiment results:\n\n")
 
-results |> glimpse()
+results |>
+  glimpse() |>
+  capture.output() |>
+  paste(collapse = "\n") |>
+  cli_alert_info()
 ```
 
 ### Compare Plots

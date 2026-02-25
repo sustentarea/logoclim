@@ -221,8 +221,10 @@ and the [R](https://www.r-project.org/) programming language. To ensure
 consistent results, the [`renv`](https://rstudio.github.io/renv/)
 package is used to manage and restore the R environment.
 
-To reproduce the analyses in the manual, install the four dependencies
-mentioned above and follow these steps:
+To render the manual or reproduce its analyses locally, install the four
+dependencies listed above and follow the steps below. **You do not need
+any of this to use `LogoClim`**, this is only relevant if you want to
+contribute to its development or run the unit tests yourself.
 
 1.  **Clone** this repository to your local machine.
 2.  **Open** the project in the terminal or in your preferred
@@ -236,12 +238,31 @@ mentioned above and follow these steps:
 4.  **Open** the Quarto notebook files (`.qmd`) and run the code as
     described.
 
-Avoid using VPNs, corporate proxies, or other network-routing tools
-while processing the data, as these can interfere with the downloads.
+We do not recommend using external environments such as
+[Anaconda](https://www.anaconda.com/), as these can cause issues with R
+package installation and management. This project relies on several
+system dependencies like [GDAL](https://gdal.org/), all of which are
+automatically installed via the Comprehensive R Archive Network
+([CRAN](https://cran.r-project.org/)).
+
+If you have trouble installing R, we recommend using the installers
+provided by the [R Project](https://www.r-project.org/) or the
+[`rig`](https://github.com/r-lib/rig) installation manager from
+[`r-lib`](https://github.com/r-lib). If you are using an
+[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)
+with no built-in R console, we also recommend installing the
+[`radian`](https://github.com/randy3k/radian) console for a better
+experience.
+
+Avoid using
+[VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate
+proxies, or other network-routing tools while processing the data, as
+these can interfere with the downloads.
 
 If you run into issues with `renv`, use
 [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html)
-to remove the environment completely.
+to remove the environment completely. It can be [a bit of a
+pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes.
 
 To render the entire manual, run the following command in the terminal:
 
