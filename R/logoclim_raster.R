@@ -49,10 +49,14 @@ logoclim_raster <- function(
   assert_tibble(results$table)
   assert_tibble(results$lists)
   assert_subset(results_vars, names(results$table))
+  assert_subset(results_vars[-1], names(results$list))
   assert_list(setup, min.len = 1)
   assert_number(dx, finite = TRUE)
   assert_string(layer_pattern, null.ok = TRUE)
   assert_flag(remove_extreme_outliers)
+
+  # Test. Remove after.
+  cli::cli_alert_info(names(results$list))
 
   worldclim_data <-
     tif_file |>
