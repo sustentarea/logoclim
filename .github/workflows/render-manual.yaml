@@ -26,6 +26,45 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          # Install system dependencies (macOS)
+
+          brew install pkg-config
+
+          brew install \
+            gdal \
+            proj \
+            geos
+
+          echo "PROJ_LIB=/opt/homebrew/share/proj" >> "${GITHUB_ENV}"
+        shell: bash
+
+      - name: Install system dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          # Install system dependencies (Linux)
+
+          sudo apt-get update -qq
+
+          sudo apt-get install -y -qq \
+            cmake \
+            gdal-bin \
+            gsfonts \
+            libcairo2-dev \
+            libcurl4-openssl-dev \
+            libfontconfig1-dev \
+            libfribidi-dev \
+            libgdal-dev \
+            libgit2-dev \
+            libharfbuzz-dev \
+            libmagick++-dev \
+            libudunits2-dev \
+            libx11-dev \
+            pandoc
+        shell: bash
+
       - name: Set up NetLogo
         uses: danielvartan/logoactions/setup-netlogo@v1
 
@@ -38,7 +77,7 @@ jobs:
       - name: Set up renv
         uses: r-lib/actions/setup-renv@v2
         with:
-          cache-version: 0 # 1
+          cache-version: 1 # default: 1
 
       - name: Render Quarto
         run: |

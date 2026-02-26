@@ -7,7 +7,7 @@
     "Depends",
     "LinkingTo"
   ],
-  "ppm.enabled": true,
+  "ppm.enabled": null,
   "ppm.ignored.urls": [],
   "r.version": null,
   "snapshot.dev": false,
