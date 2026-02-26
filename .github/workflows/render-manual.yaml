@@ -37,6 +37,8 @@ jobs:
 
       - name: Set up renv
         uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 0 # 1
 
       - name: Render Quarto
         run: |

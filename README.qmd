@@ -212,6 +212,8 @@ If you have trouble installing R, we recommend using the installers provided by 
 
 Avoid using [VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate proxies, or other network-routing tools while processing the data, as these can interfere with the downloads.
 
+<!-- Remember to set the key `ppm.enabled` to `true` in `renv/settings.json`. -->
+
 If you run into issues with `renv`, use [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html) to remove the environment completely. It can be [a bit of a pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes.
 
 To render the entire manual, run the following command in the terminal:
