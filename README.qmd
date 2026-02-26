@@ -153,7 +153,7 @@ To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org
 The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
 
 ```{=gfm}
-> [!NOTE]
+> [!TIP]
 > Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
 ```
 

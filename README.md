@@ -128,7 +128,7 @@ The model also depends on four NetLogo extensions:
 required since they are automatically installed the first time the model
 runs.
 
-> [!NOTE]
+> [!TIP]
 > Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
 
 With NetLogo ready, follow these 5 steps to get `LogoClim` up and
