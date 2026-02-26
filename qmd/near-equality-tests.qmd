@@ -316,20 +316,20 @@ This adjustment applies only for visualizing countries on [`leaflet`](https://rs
 :::
 
 ```{r}
-idl_countries <- c(
-  "FJI",
-  "KIR",
-  "NZL",
-  "RUS",
-  "USA"
+idl_countries <- list(
+  "FJI" = list(left = FALSE),
+  "KIR" = list(left = TRUE),
+  "NZL" = list(left = FALSE),
+  "RUS" = list(left = FALSE),
+  "USA" = list(left = TRUE)
 )
 ```
 
 ```{r}
-if (country %in% idl_countries) {
+if (country %in% names(idl_countries)) {
   country_shape_leaflet <-
     country_shape |>
-    rotate()
+    rotate(left = idl_countries[[country]]$left)
 } else {
   country_shape_leaflet <- country_shape
 }
@@ -357,7 +357,7 @@ leaflet() |>
       unname()
   ) |>
   addPolygons(
-    data = country_shape,
+    data = country_shape_leaflet,
     fillColor = "transparent",
     color = "blue",
     weight = 2,
