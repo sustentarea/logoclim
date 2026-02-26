@@ -192,16 +192,18 @@ The [`here`](https://here.r-lib.org/) R package [@muller2025] is used to constru
 :::
 
 ::: {.callout-note}
-A local temporary data directory is need due to directory permissions limitations on GitHub Actions macOS runners.
+A local temporary directory is used here to help with debugging and to avoid access privilege issues that can arise when writing outside the project directory. This is particularly relevant for GitHub Actions macOS runners.
 :::
 
 ```{r}
-data_dir <- here(".data-temp")
+data_dir <- here(".data-temp") |> path_norm()
 ```
 
 ```{r}
 if (!dir_exists(data_dir)) {
-  dir_create(data_dir, recurse = TRUE)
+  dir_create(data_dir)
+} else {
+  dir_ls(data_dir) |> file_delete()
 }
 ```
 
@@ -467,6 +469,17 @@ asc_file <-
 ### Run Data in `LogoClim`
 
 ```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
+```{r}
 setup_file <- create_experiment(
   name = paste0("WorldClim", ": ", names(setup$series)),
   setup = 'setup false',
@@ -527,6 +540,17 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
+```
+
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
 ```
 
 ### Compare Plots
@@ -682,6 +706,17 @@ asc_file <-
 ### Run Data in `LogoClim`
 
 ```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
+```{r}
 setup_file <- create_experiment(
   name = paste0("WorldClim", ": ", names(setup$series)),
   setup = 'setup false',
@@ -742,6 +777,17 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
+```
+
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
 ```
 
 ### Compare Plots
@@ -909,6 +955,17 @@ asc_file <-
 ### Run Data in `LogoClim`
 
 ```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
+```{r}
 setup_file <- create_experiment(
   name = paste0("WorldClim", ": ", names(setup$series)),
   setup = 'setup false',
@@ -971,6 +1028,17 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
+```
+
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
 ```
 
 ### Compare Plots
