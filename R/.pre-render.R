@@ -9,12 +9,6 @@ library(readr)
 library(rbbt)
 library(stringr)
 
-## Check `renv` Status
-
-library(renv)
-
-renv::status()
-
 # Copy Images Folder to `qmd` Directory -----
 
 ## Solve issues related to relative paths

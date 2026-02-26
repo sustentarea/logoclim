@@ -509,7 +509,12 @@ setup_file <- create_experiment(
 #| include: false
 #| message: NA
 
-setup_file |> inspect_experiment()
+cli_alert_info("Experiment setup:\n\n")
+
+setup_file |>
+  readLines() |>
+  paste0(collapse = "\n") |>
+  cli_alert()
 ```
 
 ```{r}
@@ -732,10 +737,15 @@ setup_file <- create_experiment(
 ```
 
 ```{r}
-#| message: NA
 #| include: false
+#| message: NA
 
-setup_file |> inspect_experiment()
+cli_alert_info("Experiment setup:\n\n")
+
+setup_file |>
+  readLines() |>
+  paste0(collapse = "\n") |>
+  cli_alert()
 ```
 
 ```{r}
@@ -972,10 +982,15 @@ setup_file <- create_experiment(
 ```
 
 ```{r}
-#| message: NA
 #| include: false
+#| message: NA
 
-setup_file |> inspect_experiment()
+cli_alert_info("Experiment setup:\n\n")
+
+setup_file |>
+  readLines() |>
+  paste0(collapse = "\n") |>
+  cli_alert()
 ```
 
 ```{r}
