@@ -432,6 +432,17 @@ tif_files <- worldclim_download(
 )
 ```
 
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
 ### Transform Data to Esri ASCII Format
 
 ```{r}
@@ -465,17 +476,6 @@ asc_file <-
 ```
 
 ### Run Data in `LogoClim`
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
-```
 
 ```{r}
 setup_file <- create_experiment(
@@ -538,17 +538,6 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
-```
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
 ```
 
 ### Compare Plots
@@ -674,6 +663,17 @@ tif_files <- worldclim_download(
 )
 ```
 
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
 ### Transform Data to Esri ASCII Format
 
 ```{r}
@@ -702,17 +702,6 @@ asc_file <-
 ```
 
 ### Run Data in `LogoClim`
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
-```
 
 ```{r}
 setup_file <- create_experiment(
@@ -775,17 +764,6 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
-```
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
 ```
 
 ### Compare Plots
@@ -919,6 +897,17 @@ tif_file <- worldclim_download(
 )
 ```
 
+```{r}
+#| include: false
+#| message: NA
+
+cli_alert_info("Data folder contents:\n\n")
+
+data_dir |>
+  dir_ls() |>
+  cli_bullets()
+```
+
 ### Transform Data to Esri ASCII Format
 
 ::: {.callout-note}
@@ -951,17 +940,6 @@ asc_file <-
 ```
 
 ### Run Data in `LogoClim`
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
-```
 
 ```{r}
 setup_file <- create_experiment(
@@ -1026,17 +1004,6 @@ results |>
   capture.output() |>
   paste(collapse = "\n") |>
   cli_alert_info()
-```
-
-```{r}
-#| include: false
-#| message: NA
-
-cli_alert_info("Data folder contents:\n\n")
-
-data_dir |>
-  dir_ls() |>
-  cli_bullets()
 ```
 
 ### Compare Plots
