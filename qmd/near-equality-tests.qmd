@@ -506,8 +506,8 @@ setup_file <- create_experiment(
 ```
 
 ```{r}
-#| eval: false
 #| include: false
+#| message: NA
 
 setup_file |> inspect_experiment()
 ```
@@ -732,7 +732,7 @@ setup_file <- create_experiment(
 ```
 
 ```{r}
-#| eval: false
+#| message: NA
 #| include: false
 
 setup_file |> inspect_experiment()
@@ -972,7 +972,7 @@ setup_file <- create_experiment(
 ```
 
 ```{r}
-#| eval: false
+#| message: NA
 #| include: false
 
 setup_file |> inspect_experiment()
