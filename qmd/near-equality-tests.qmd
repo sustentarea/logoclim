@@ -192,7 +192,7 @@ The [`here`](https://here.r-lib.org/) R package [@muller2025] is used to constru
 :::
 
 ::: {.callout-note}
-A local temporary directory is used here to help with debugging and to avoid access privilege issues that can arise when writing outside the project directory. This is particularly relevant for GitHub Actions macOS runners.
+A local temporary directory is used to support debugging and to avoid permission issues that can occur when writing outside the project directory. This is especially relevant when running GitHub Actions on macOS runners.
 :::
 
 ```{r}
