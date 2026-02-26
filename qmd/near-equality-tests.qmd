@@ -191,8 +191,12 @@ here("R", "test_near_equality.R") |> source()
 The [`here`](https://here.r-lib.org/) R package [@muller2025] is used to construct file paths relative to the project root directory, ensuring portability across different systems.
 :::
 
+::: {.callout-note}
+A local temporary data directory is need due to directory permissions limitations on GitHub Actions macOS runners.
+:::
+
 ```{r}
-data_dir <- here("data")
+data_dir <- here(".data-temp")
 ```
 
 ```{r}
@@ -420,7 +424,7 @@ tif_files <- worldclim_download(
   model = setup$model,
   ssp = setup$ssp,
   year = names(setup$year),
-  dir = tempdir(),
+  dir = data_dir,
   connection_timeout = 60,
   max_tries = 3,
   retry_on_failure = TRUE,
@@ -485,7 +489,7 @@ setup_file <- create_experiment(
     "climate-variable" = names(setup$variable),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> path_norm()
+    "data-path" = data_dir
   )
 )
 ```
@@ -640,7 +644,7 @@ tif_files <- worldclim_download(
   model = setup$model,
   ssp = setup$ssp,
   year = names(setup$year),
-  dir = tempdir(),
+  dir = data_dir,
   connection_timeout = 60,
   max_tries = 3,
   retry_on_failure = TRUE,
@@ -700,7 +704,7 @@ setup_file <- create_experiment(
     "climate-variable" = names(setup$variable),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> path_norm()
+    "data-path" = data_dir
   )
 )
 ```
@@ -863,7 +867,7 @@ tif_file <- worldclim_download(
   model = setup$model,
   ssp = setup$ssp,
   year = names(setup$year),
-  dir = tempdir(),
+  dir = data_dir,
   connection_timeout = 60,
   max_tries = 3,
   retry_on_failure = TRUE,
@@ -929,7 +933,7 @@ setup_file <- create_experiment(
     "shared-socioeconomic-pathway" = names(setup$ssp),
     "start-month" = names(setup$month),
     "start-year" = setup$year,
-    "data-path" = tempdir() |> path_norm()
+    "data-path" = data_dir
   )
 )
 ```

@@ -1,7 +1,5 @@
 meta:
-  name:
-    short: "LogoClim"
-    long: "LogoClim: WorldClim in NetLogo"
+  name: "LogoClim: WorldClim in NetLogo"
   link:
     home: https://sustentarea.github.io/logoclim
     github: https://github.com/sustentarea/logoclim

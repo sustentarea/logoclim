@@ -3,9 +3,9 @@
 .Rproj.user
 .Ruserdata
 **/*.quarto_ipynb
-/...data/
-/..data/
+/.data-bkp/
 /.data-raw/
+/.data-temp/
 /.data/
 /.quarto/
 /data-raw/
