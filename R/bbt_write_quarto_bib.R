@@ -27,3 +27,10 @@ bbt_write_quarto_bib(
   pattern = "\\.qmd$",
   wd = here()
 )
+
+bbt_write_quarto_bib(
+  bib_file = here("paper", "paper.bib"),
+  dir = "paper",
+  pattern = "\\.md$",
+  wd = here()
+)
