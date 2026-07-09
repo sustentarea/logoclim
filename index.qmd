@@ -63,6 +63,7 @@ A BibLaTeX entry for LaTeX users is:
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
+  publisher = {OSF},
   doi = {10.17605/OSF.IO/EAPZU}
 }
 ```
@@ -142,7 +143,7 @@ This work was developed with support from the [Resiclima Network](https://resicl
 [![](images/cnpq-logo.svg){width="150"}](https://www.gov.br/cnpq/)
 :::
 ::: {.column style="width: 70%; display: flex; align-items: center;"}
-This work was supported by the Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics/)) of the [Ministry of Health](https://www.gov.br/saude/pt-br/composicao/sectics/) of Brazil, and the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) (grant no. 444588/2023-0).
+This work was supported by the National Council for Scientific and Technological Development ([CNPq](https://www.gov.br/cnpq/)) of the Ministry of Science, Technology and Innovation ([MCTI](https://www.gov.br/mcti/)) of Brazil and by the Department of Science and Technology ([DECIT](https://www.gov.br/saude/pt-br/composicao/sectics/decit/)) of the Secretariat of Science, Technology, Innovation and Strategic Health Inputs ([SECTICS](https://www.gov.br/saude/pt-br/composicao/sectics/)) of the Ministry of Health ([MS](https://www.gov.br/saude/)) of Brazil, through Call [CNPq/DECIT/SECTICS/MS No. 18/2023](https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2023/chamada-ndeg-18-2023/chamada-publica-cnpq-decit-sectics-ms-ndeg-18-2023-ciencia-de-dados-mudancas-climaticas-e-impactos-para-a-saude) (No. 444588/2023-0).
 :::
 ::::
 

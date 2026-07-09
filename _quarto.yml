@@ -4,9 +4,90 @@ execute:
   cache: false # "Danger, Will Robinson!"
   freeze: false # If you plan to use it, remember to disable it afterward!
 
-# quarto render --profile html
+project:
+  type: book
+  output-dir: docs
+  pre-render: "R/.pre-render.R"
+  post-render: "R/.post-render.R"
 
-profile:
-  group:
-    - [gfm, html]
-  default: gfm
+book:
+  title: "LogoClim User Manual"
+  author: "Daniel Vartanian, Leandro Garcia, and Aline Martins Carvalho"
+  keyword: >
+    Agent-Based Models, WorldClim, Climate Change, Reproducible Research
+    Raster Data, CMIP6, Historical Climate Data, Future Climate Scenarios
+    Shared Socioeconomic Pathways, NetLogo, LevelSpace, Complex Systems
+    Complexity Science, Simulations, Climate Simulations, Environmental Sciences
+  date: "today"
+  date-format: "long"
+  cover-image: 'images/logo.svg'
+  license: >
+    Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+    (CC BY-NC-SA 4.0)
+  language: en
+  favicon: 'images/logo.svg'
+  open-graph:
+    image: 'images/og-image.png'
+    image-width: 2400
+    image-height: 1600
+    image-alt: "LogoClim: WorldClim in NetLogo"
+  url: 'https://sustentarea.github.io/logoclim/'
+  site-url: 'https://sustentarea.github.io/logoclim/'
+  repo-url: 'https://github.com/sustentarea/logoclim/'
+  issue-url: 'https://github.com/sustentarea/logoclim/issues/'
+  repo-branch: main
+  repo-actions: [edit, issue]
+  reader-mode: true
+  chapters:
+    - index.qmd
+    - part: "Introduction"
+      chapters:
+        - qmd/how-it-works.qmd
+        - qmd/how-to-use-it.qmd
+    - part: "Data and Files"
+      chapters:
+        - qmd/worldclim.qmd
+        - qmd/data-download.qmd
+        - qmd/data-processing.qmd
+    - part: "LevelSpace Integration"
+      chapters:
+        - qmd/levelspace.qmd
+        - qmd/logonia.qmd
+        - qmd/interface.qmd
+        - qmd/global-variables.qmd
+        - qmd/patch-attributes.qmd
+        - qmd/setup-procedure.qmd
+        - qmd/go-procedure.qmd
+    - qmd/references.qmd
+  appendices:
+    # - qmd/use-cases.qmd
+    - qmd/release-notes.qmd
+    - qmd/near-equality-tests.qmd
+    - qmd/procedure-behavior-tests.qmd
+
+format:
+  html:
+    locale: en
+    language: en-us
+    code-fold: false
+    code-link: true
+    df-print: paged
+    # cap-location: bottom
+    fig-align: center
+    fig-width: 7
+    fig-height: 5.25
+    callout-appearance: simple
+    csl: csl/english-apa-author-date.csl
+    repo-actions: true
+    link-external-icon: false
+    link-external-newwindow: false
+    lightbox: true
+    theme: [cosmo, scss/styles.scss, brand]
+
+citation:
+  type: book
+  publisher-place: "São Paulo, SP, Brazil"
+  url: 'https://doi.org/10.17605/OSF.IO/EAPZU'
+
+google-scholar: true
+bibliography: references.bib

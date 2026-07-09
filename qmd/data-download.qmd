@@ -65,7 +65,7 @@ files <- worldclim_download(
 #> ✔ Calculating File Sizes [698ms]
 #> ✔ Creating LICENSE and README Files [12ms]
 #> ℹ Downloading 1 file to path/to/your/data/directory/historical-monthly-weather-data
-#> ✔ Downloading Files [10.3s]                          
+#> ✔ Downloading Files [10.3s]
 #> ✔ Unzipping Files [11ms]
 ```
 
@@ -107,7 +107,7 @@ The data files inside the folders also follows naming patterns that must be resp
 - Future climate data:
 
 ```test
-    wc2.1  _  10m  _  bioc  _  ACCESS-CM2  _  ssp126  _  2021-2040  _  01.  asc
+    wc2.1  _  10m  _  bioc  _  ACCESS-CM2  _  ssp126  _  2021-2040  -  01.  asc
     ______    ____    _____    __________     ______     ________      ___
       |       |        |           |            |           |           |
    Prefix  Resolution  Variable  Model         SSP        Period      Month

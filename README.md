@@ -1,44 +1,24 @@
 # LogoClim <img src="images/logo.svg" align="right" width="120" />
 
-<!-- quarto render -->
-
 <!-- badges: start -->
-[![JOSS journal
-badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
-[![Project Status: Active - The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CoMSES Network
-badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
-[![OSF DOI
-badge](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-[![Check NetLogo workflow
-badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
-[![Render manual workflow
-badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![JOSS journal badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![Check NetLogo workflow badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![Render manual workflow badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
+[![FAIR checklist badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
 [![fair-software.eu](https://img.shields.io/badge/fair--software.eu-%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F%20%20%E2%97%8F-green)](https://fair-software.eu)
-[![FAIR checklist
-badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
-[![GNU GPLv3
-license](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Contributor Covenant 3.0 code of conduct
-badge](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
+[![GNU GPLv3 license](https://img.shields.io/badge/license-GPLv3-bd0000.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Contributor Covenant 3.0 code of conduct badge](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 <!-- badges: end -->
 
 ## Overview
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to
-simulate and visualize global climate conditions. It allows researchers
-to pull high-resolution climate data directly into agent-based models,
-making it easier to study how climate variables interact with complex
-systems over time.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
 
-Learn more about the model in the [user
-manual](https://sustentarea.github.io/logoclim/).
+Learn more about the model in the [user manual](https://sustentarea.github.io/logoclim/).
 
-> If you find this project useful, please consider giving it a star!  
-> [![GitHub repo
-> stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
+> If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
 <p align="center">
   <img src="images/logoclim-interface.gif" />
@@ -49,164 +29,66 @@ manual](https://sustentarea.github.io/logoclim/).
 
 ## How It Works
 
-`LogoClim` uses raster data to represent climate variables such as
-temperature and precipitation over time. It incorporates historical data
-(1951-2024) and future climate projections (2021-2100) derived from
-[global climate
-models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models)
-under various Shared Socioeconomic Pathways
-([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/),
-[O’Neill et al.,
-2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)).
+`LogoClim` uses raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from [global climate models](https://www.climatehubs.usda.gov/hubs/northwest/topic/basics-global-climate-models) under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/), [O'Neill et al., 2017](https://doi.org/10.1016/j.gloenvcha.2015.01.004)).
 
-The model operates on a grid of patches, where each patch represents a
-geographical area and stores values for latitude, longitude, and
-selected climate variables. During the simulation, patches update their
-colors based on the data values. The results can be visualized on a map,
-accompanied by plots that display the mean, minimum, maximum, and
-standard deviation of the selected variable over time.
+The model operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
-All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a
-widely used source of high-resolution climate datasets based on weather
-station observations worldwide ([Fick & Hijmans,
-2017](https://doi.org/10.1002/joc.5086)). These data series are offered
-at various spatial resolutions, ranging from 10 minutes (~340 km² at the
-equator) to 30 seconds (~1 km² at the equator), and can be chosen within
-the model interface.
+All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
 
 ### Historical Climate Data
 
-This [series](https://www.worldclim.org/data/worldclim21.html) includes
-only 12 monthly data points representing long-term average climate
-conditions for the period 1970-2000. It provides averages on minimum,
-mean, and maximum temperature, precipitation, solar radiation, wind
-speed, vapor pressure, elevation, and on [bioclimatic
-variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/worldclim21.html) includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
 ### Historical Monthly Weather Data
 
-This [series](https://www.worldclim.org/data/monthlywth.html) includes
-12 monthly data points for each year from 1951 to 2024, based on
-[downscaled](https://worldclim.org/data/downscaling.html) data from
-[CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/),
-developed by the [Climatic Research
-Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
-at the [University of East Anglia](https://www.uea.ac.uk/). It provides
-monthly averages for minimum temperature, maximum temperature, and total
-precipitation.
+This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 ### Future Climate Data
 
-This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html)
-includes 12 monthly data points from
-[downscaled](https://worldclim.org/data/downscaling.html) climate
-projections derived from
-[CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for
-four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The
-projections cover four
-[SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/):
-126, 245, 370, and 585, with data available for average minimum
-temperature, average maximum temperature, total precipitation, and
-[bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
-Learn more about the data series in the
-[WorldClim](https://www.worldclim.org) website.
+Learn more about the data series in the [WorldClim](https://www.worldclim.org) website.
 
 ## Usage
 
-To get started using `LogoClim`, you must have
-[NetLogo](https://www.netlogo.org) version 7 or later installed. The
-NetLogo [website](https://www.netlogo.org) provides easy installers for
-Windows, macOS, and Linux, along with detailed instructions for
-installation.
+To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) version 7 or later installed. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
 
-The model also depends on four NetLogo extensions:
-[`GIS`](https://docs.netlogo.org/gis.html),
-[`Pathdir`](https://github.com/cstaelin/Pathdir-Extension),
-[`String`](https://github.com/NetLogo/String-Extension), and
-[`Time`](https://docs.netlogo.org/time.html). No manual installation is
-required since they are automatically installed the first time the model
-runs.
+The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
 
 > [!TIP]
 > Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
 
-With NetLogo ready, follow these 5 steps to get `LogoClim` up and
-running.
+With NetLogo ready, follow these 5 steps to get `LogoClim` up and running.
 
 ### A. Downloading the Model
 
-You can download the latest release of the model from the [CoMSES
-Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/).
-This is the recommended option for most users, as it provides a stable
-version of the model that has been tested and documented.
+You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/). This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.
 
-For the development version, you can clone or download the model GitHub
-code repository directly.
+For the development version, you can clone or download the model GitHub code repository directly.
 
 ### B. Opening the Model
 
-After downloading and uncompressing the model files, open the
-`logoclim.nlogox` file in NetLogo. You can find this file in the `code`
-directory when using the [CoMSES
-Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
-release or in the `nlogox` folder when using the development version.
+After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
 ### C. Preparing the Data
 
-The [CoMSES Network
-release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
-includes an example dataset that is ready to use with `LogoClim`. You
-can use it as a starting point. But, ideally you should prepare your own
-data to suit your research needs. The [user
-manual](https://sustentarea.github.io/logoclim/) will guide you through
-the process of downloading and preparing
-[WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
+The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
-We also provide other example datasets for testing and demonstration.
-These files are available in the model’s [OSF
-repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use
-with `LogoClim`. Please note that these datasets are for demonstration
-purposes only and are not be suitable for research applications. Always
-verify the suitability of the data for your specific research questions
-and objectives.
+We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
 ### D. Running the Model
 
-With files at hand, use the *Select Data Directory* button in the model
-interface to specify their location. This will set the `data-path`
-global variable to the correct path, allowing the model to access the
-data. After that, you can configure the other parameters as needed and
-start the simulation.
+With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
 
-Once everything is set, click `Setup` and then `Go` buttons to start the
-simulation. Learn more about the model interface and parameters in the
-[user
-manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
+Once everything is set, click `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
-Note that the example dataset included in the [CoMSES Network
-release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
-is intentionally small to keep downloads fast and easy. The model’s
-default configuration already points to this dataset, so you can simply
-click `Setup` and then `Go` to run the model with it.
+Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click `Setup` and then `Go` to run the model with it.
 
 ### E. Integrating with Other Models
 
-`LogoClim` was created to be integrated with other models using
-NetLogo’s
-[LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html)
-extension. This extension enables parallel execution and data exchange
-between models. See the [user
-manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for
-integration instructions.
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
 
-To facilitate this integration, we created the
-[`Logônia`](https://github.com/sustentarea/logonia) model, a fictional
-plant-growth model providing a practical example of how to integrate
-`LogoClim` with other models. It is also available on the [CoMSES
-Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/)
-and its code repository is available on
-[GitHub](https://github.com/sustentarea/logonia).
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
 
 <p align="center">
   <img src="images/logonia-interface.gif" />
@@ -217,93 +99,46 @@ and its code repository is available on
 > [!NOTE]
 > This section describes the technical setup required to render the user manual locally. You do not need any of this to simply use `LogoClim`.
 
-`LogoClim`’s [user manual](https://sustentarea.github.io/logoclim/) is
-developed using the latest versions of the [Quarto](https://quarto.org/)
-publishing system, the [NetLogo](https://www.netlogo.org/) environment,
-and the [R](https://www.r-project.org/) programming language. To ensure
-consistent results, the [`renv`](https://rstudio.github.io/renv/)
-package is used to manage and restore the R environment.
+`LogoClim`'s [user manual](https://sustentarea.github.io/logoclim/) is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
 
-To render the manual or reproduce its analyses locally, install the four
-dependencies listed above and follow the steps below.
+To render the manual or reproduce its analyses locally, install the four dependencies listed above and follow the steps below.
 
-1.  **Clone** this repository to your local machine.
-2.  **Open** the project in the terminal or in your preferred
-    [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
-3.  **Install package dependencies** by running
-    `Rscript -e "renv::restore()"` in the terminal or
-    [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html)
-    in an R console. Make sure R is installed and available in your
-    system’s [PATH](https://en.wikipedia.org/wiki/PATH_(variable))
-    before running this command.
-4.  **Open** the Quarto notebook files (`.qmd`) and run the code as
-    described.
+1. **Clone** this repository to your local machine.
+2. **Open** the project in the terminal or in your preferred [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
+3. **Install package dependencies** by running `Rscript -e "renv::restore()"` in the terminal or [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) in an R console. Make sure R is installed and available in your system's [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) before running this command.
+4. **Open** the Quarto notebook files (`.qmd`) and run the code as described.
 
-When running
-[`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html),
-check the output for any missing system dependencies like
-[GDAL](https://gdal.org/). They are usually installed automatically via
-your OS package manager, but if something fails, you may need to handle
-them manually. See
-[`render-manual.yaml`](.github/workflows/render-manual.yaml) for a list
-of system dependencies required for your operating system.
+When running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html), check the output for any missing system dependencies like [GDAL](https://gdal.org/). They are usually installed automatically via your OS package manager, but if something fails, you may need to handle them manually. See [`render-manual.yaml`](.github/workflows/render-manual.yaml) for a list of system dependencies required for your operating system.
 
-We do not recommend using external environments such as
-[Anaconda](https://www.anaconda.com/), as these can cause issues with R
-package installation and management. This project relies on several
-system dependencies, all of which are automatically installed via the
-Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/)).
+We do not recommend using external environments such as [Anaconda](https://www.anaconda.com/), as these can cause issues with R package installation and management. This project relies on several system dependencies, all of which are automatically installed via the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/)).
 
-We recommend using the installers provided by the [R
-Project](https://www.r-project.org/) or the
-[`rig`](https://github.com/r-lib/rig) installation manager from
-[`r-lib`](https://github.com/r-lib) when installing R. If your
-[IDE](https://en.wikipedia.org/wiki/Integrated_development_environment)
-lacks a built-in R console, consider installing
-[`radian`](https://github.com/randy3k/radian) for a better experience.
+We recommend using the installers provided by the [R Project](https://www.r-project.org/) or the [`rig`](https://github.com/r-lib/rig) installation manager from [`r-lib`](https://github.com/r-lib) when installing R. If your [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) lacks a built-in R console, consider installing [`radian`](https://github.com/randy3k/radian) for a better experience.
 
-Avoid using
-[VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate
-proxies, or other network-routing tools while processing the data, as
-these can interfere with the downloads.
+Avoid using [VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate proxies, or other network-routing tools while processing the data, as these can interfere with the downloads.
 
-If you run into issues with [`renv`](https://rstudio.github.io/renv/)
-(it can be [a bit of a
-pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes), you
-can use
-[`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html)
-to remove the environment completely. In that case, you will need to
-install all required packages manually.
+If you run into issues with [`renv`](https://rstudio.github.io/renv/) (it can be [a bit of a pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes), you can use [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html) to remove the environment completely. In that case, you will need to install all required packages manually.
 
 To render the entire manual, run the following command in the terminal:
 
-``` bash
+```bash
 quarto render --profile html
 ```
 
-The rendering process may take some time depending on your machine. Once
-complete, the [Quarto](https://quarto.org/) book will be available in
-the [`docs`](docs) folder.
+The rendering process may take some time depending on your machine. Once complete, the [Quarto](https://quarto.org/) book will be available in the [`docs`](docs) folder.
 
 ## Contributing
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 
-Contributions are always welcome! Whether you want to report bugs,
-suggest new features, or help improve the code or documentation, your
-input makes a difference.
+Contributions are always welcome! Whether you want to report bugs, suggest new features, or help improve the code or documentation, your input makes a difference.
 
-Before opening a new issue, please check the [issues
-tab](https://github.com/sustentarea/logoclim/issues) to see if your
-topic has already been reported.
+Before opening a new issue, please check the [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 
 [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
-You can also support the development of `LogoClim` by becoming a
-sponsor.
+You can also support the development of `LogoClim` by becoming a sponsor.
 
-Click [here](https://github.com/sponsors/danielvartan) to make a
-donation. Please mention `LogoClim` in your donation message.
+Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
 
 ## Citation
 
@@ -314,23 +149,20 @@ donation. Please mention `LogoClim` in your donation message.
 >
 > The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
-If you use this model in your research, please cite it to acknowledge
-the effort invested in its development and maintenance. Your citation
-helps support the ongoing improvement of the model.
+If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim:
-WorldClim in NetLogo* \[Computer software\].
-<https://doi.org/10.17605/OSF.IO/EAPZU>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. OSF. <https://doi.org/10.17605/OSF.IO/EAPZU>
 
 A BibLaTeX entry for LaTeX users is:
 
-``` latex
+```latex
 @software{vartanian2026,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
+  publisher = {OSF},
   doi = {10.17605/OSF.IO/EAPZU}
 }
 ```
@@ -357,32 +189,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 ## Acknowledgments
 
-We gratefully acknowledge [Robert J.
-Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E.
-Fick](https://orcid.org/0000-0002-3548-6966), and the entire
-[WorldClim](https://worldclim.org/) team for their outstanding work in
-creating and maintaining the WorldClim datasets.
+We gratefully acknowledge [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), and the entire [WorldClim](https://worldclim.org/) team for their outstanding work in creating and maintaining the WorldClim datasets.
 
-We thank the [Climatic Research
-Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit)
-at the [University of East Anglia](https://www.uea.ac.uk/) and the
-United Kingdom’s [Met Office](https://www.metoffice.gov.uk/) for
-developing and providing access to the
-[CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/)
-dataset, a vital source of historical climate data.
+We thank the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) and the United Kingdom's [Met Office](https://www.metoffice.gov.uk/) for developing and providing access to the [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) dataset, a vital source of historical climate data.
 
-We also acknowledge the World Climate Research Programme
-([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled
-Modelling, and the Coupled Model Intercomparison Project Phase 6
-([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing
-global climate model development.
+We also acknowledge the World Climate Research Programme ([WCRP](https://www.wcrp-climate.org/)), its Working Group on Coupled Modelling, and the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://pcmdi.llnl.gov/CMIP6/)) for coordinating and advancing global climate model development.
 
-We are grateful to the climate modeling groups for producing and sharing
-their model outputs, the Earth System Grid Federation
-([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to
-the data, and the many funding agencies that support
-[CMIP6](https://pcmdi.llnl.gov/CMIP6/) and
-[ESGF](https://esgf.llnl.gov/).
+We are grateful to the climate modeling groups for producing and sharing their model outputs, the Earth System Grid Federation ([ESGF](https://esgf.llnl.gov/)) for archiving and providing access to the data, and the many funding agencies that support [CMIP6](https://pcmdi.llnl.gov/CMIP6/) and [ESGF](https://esgf.llnl.gov/).
 
 <table>
   <tr>
@@ -395,7 +208,7 @@ the data, and the many funding agencies that support
     </td>
     <td width="70%" valign="center">
       <p>
-        This work was developed with support from the 
+        This work was developed with support from the
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -414,7 +227,7 @@ the data, and the many funding agencies that support
     </td>
     <td width="70%" valign="center">
       <p>
-        This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and 
+        This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and
         interdisciplinary study of global climate change.
       </p>
     </td>
@@ -432,11 +245,7 @@ the data, and the many funding agencies that support
     </td>
     <td width="70%" valign="middle">
       <p>
-        This work was supported by the Department of Science and 
-        Technology of the Secretariat of Science, Technology, and Innovation 
-        and of the Health Economic-Industrial Complex (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>)  of the <a href="https://www.gov.br/saude/pt-br/composicao/sectics/">Ministry of Health</a> 
-        of Brazil, and the National Council for Scientific and 
-        Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) (grant no. 444588/2023-0).
+        This work was supported by the National Council for Scientific and Technological Development (<a href="https://www.gov.br/cnpq/">CNPq</a>) of the Ministry of Science, Technology and Innovation (<a href="https://www.gov.br/mcti/">MCTI</a>) of Brazil and by the Department of Science and Technology (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/decit/">DECIT</a>) of the Secretariat of Science, Technology, Innovation and Strategic Health Inputs (<a href="https://www.gov.br/saude/pt-br/composicao/sectics/">SECTICS</a>) of the Ministry of Health (<a href="https://www.gov.br/saude/">MS</a>) of Brazil, through Call <a href="https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2023/chamada-ndeg-18-2023/chamada-publica-cnpq-decit-sectics-ms-ndeg-18-2023-ciencia-de-dados-mudancas-climaticas-e-impactos-para-a-saude">CNPq/DECIT/SECTICS/MS No. 18/2023</a> (No. 444588/2023-0).
       </p>
     </td>
   </tr>

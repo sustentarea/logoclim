@@ -1,4 +1,4 @@
-# Load Packages -----
+# Load packages -----
 
 library(here)
 library(quartor) # github.com/danielvartan/quartor

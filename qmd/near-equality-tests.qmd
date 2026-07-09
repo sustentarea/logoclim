@@ -251,7 +251,8 @@ country_shape <-
   country |>
   gadm(
     level = 0,
-    path = path(data_dir)
+    path = path(data_dir),
+    resolution = 1
   )
 ```
 
@@ -276,7 +277,8 @@ while (!(shape_area / 21 >= 1000)) {
     country |>
     gadm(
       level = 0,
-      path = path(data_dir)
+      path = path(data_dir),
+      resolution = 1
     )
 
   shape_area <-

@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "LogoClim",
   "dateCreated": "2024-08-20",
-  "applicationCategory": "Computational Model",
+  "applicationCategory": "Computational Models",
   "applicationSubCategory": "Climate Simulations",
   "name": "LogoClim: WorldClim in NetLogo",
   "author": [
@@ -47,18 +47,17 @@
   "funder": [
     {
       "@type": "Organization",
-      "name": "Department of Science and Technology of the Secretariat of Science, Technology, and Innovation and of the Health Economic-Industrial Complex (SECTICS) of the Ministry of Health of Brazil",
-      "@id": "https://www.gov.br/saude/pt-br/composicao/sectics/"
+      "name": "National Council for Scientific and Technological Development (CNPq) of the Ministry of Science, Technology and Innovation (MCTI) of Brazil",
+      "@id": "https://www.gov.br/cnpq/"
     },
     {
       "@type": "Organization",
-      "name": "Conselho Nacional de Desenvolvimento Científico e Tecnológico - Brazil (CNPq)",
-      "@id": "https://www.gov.br/cnpq/"
+      "name": "Department of Science and Technology (DECIT) of the Secretariat of Science, Technology, Innovation and Strategic Health Inputs (SECTICS) of the Ministry of Health (MS) of Brazil",
+      "@id": "https://www.gov.br/saude/pt-br/composicao/sectics/decit/"
     }
   ],
-  "funding": "CNPq 444588/2023-0",
+  "funding": "CNPq/DECIT/SECTICS/MS No. 444588/2023-0",
   "provider": {
-    "@id": "https://www.fsp.usp.br/sustentarea/",
     "@type": "Organization",
     "name": "Sustentarea",
     "url": "https://www.fsp.usp.br/sustentarea/"
@@ -77,57 +76,48 @@
   },
   "description": "LogoClim is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.",
   "keywords": [
-    "Agent-Based Modeling",
+    "Agent-Based Models",
+    "WorldClim",
     "Climate Change",
-    "Climate Data Visualization",
-    "Climate Projections",
-    "Climate Simulations",
+    "Reproducible Research",
+    "Raster Data",
     "CMIP6",
+    "Historical Climate Data",
+    "Future Climate Scenarios",
+    "Shared Socioeconomic Pathways",
+    "NetLogo",
+    "LevelSpace",
     "Complex Systems",
     "Complexity Science",
-    "Environmental Sciences",
-    "Future Climate Scenarios",
-    "Geospatial Analysis",
-    "Historical Climate Data",
-    "LevelSpace",
-    "Logônia",
-    "Models",
-    "NetLogo",
-    "Parallel Execution",
-    "Raster Data",
-    "Reproducible Research",
-    "Shared Socioeconomic Pathways",
     "Simulations",
-    "Spatial Analysis",
-    "SSPs",
-    "Time Series",
-    "WorldClim"
+    "Climate Simulations",
+    "Environmental Sciences"
   ],
   "license": "https://www.gnu.org/licenses/gpl-3.0",
   "codeRepository": "https://github.com/sustentarea/logoclim",
   "issueTracker": "https://github.com/sustentarea/logoclim/issues",
   "relatedLink": [
+    "https://github.com/sponsors/danielvartan",
     "https://doi.org/10.17605/OSF.IO/EAPZU",
-    "https://doi.org/10.17605/OSF.IO/RE95Z",
-    "https://github.com/sponsors/danielvartan"
+    "https://doi.org/10.17605/OSF.IO/RE95Z"
   ],
-  "programmingLanguage": {
-    "@type": "ComputerLanguage",
-    "name": "NetLogo",
-    "version": "7.0.3",
-    "url": "https://www.netlogo.org"
-  },
-  "runtimePlatform": "NetLogo version 7.0.3 (2025)",
+  "runtimePlatform": "NetLogo version 7.0.4",
   "operatingSystem": [
     "Linux",
     "macOS",
     "Windows"
   ],
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "NetLogo",
+    "version": "7.0.4",
+    "url": "https://www.netlogo.org"
+  },
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
       "name": "NetLogo",
-      "version": ">= 7.0.0",
+      "version": ">= 7.0.4",
       "provider": {
         "@id": "https://www.netlogo.org",
         "@type": "Organization",
@@ -138,7 +128,7 @@
     },
     {
       "name": "NetLogo GIS extension",
-      "version": ">= 1.4.0",
+      "version": ">= 1.4.2",
       "provider": {
         "@id": "https://www.netlogo.org",
         "@type": "Organization",
@@ -169,7 +159,7 @@
     },
     {
       "name": "NetLogo Time extension",
-      "version": ">= 3.1.0",
+      "version": ">= 3.1.2",
       "provider": {
         "@id": "https://www.netlogo.org",
         "@type": "Organization",

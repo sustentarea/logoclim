@@ -1,31 +1,22 @@
 ---
 title: "LogoClim: WorldClim in NetLogo"
 tags:
-  - Agent-Based Modeling
+  - Agent-Based Models
+  - WorldClim
   - Climate Change
-  - Climate Data Visualization
-  - Climate Projections
-  - Climate Simulations
+  - Reproducible Research
+  - Raster Data
   - CMIP6
+  - Historical Climate Data
+  - Future Climate Scenarios
+  - Shared Socioeconomic Pathways
+  - NetLogo
+  - LevelSpace
   - Complex Systems
   - Complexity Science
-  - Environmental Sciences
-  - Future Climate Scenarios
-  - Geospatial Analysis
-  - Historical Climate Data
-  - LevelSpace
-  - Logônia
-  - Models
-  - NetLogo
-  - Parallel Execution
-  - Raster Data
-  - Reproducible Research
-  - Shared Socioeconomic Pathways
   - Simulations
-  - Spatial Analysis
-  - SSPs
-  - Time Series
-  - WorldClim
+  - Climate Simulations
+  - Environmental Sciences
 authors:
   - given-names: Daniel
     surname: Vartanian
@@ -48,7 +39,7 @@ affiliations:
   index: 2
 - name: School of Public Health, University of São Paulo, São Paulo, Brazil
   index: 3
-date: 23 September 2025
+date: 9 July 2026
 bibliography: paper.bib
 ---
 

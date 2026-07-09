@@ -26,60 +26,33 @@ abstract: >-
   agriculture, environmental sciences, and other fields that rely on climate
   data.
 keywords:
-  - Agent-Based Modeling
+  - Agent-Based Models
+  - WorldClim
   - Climate Change
-  - Climate Data Visualization
-  - Climate Projections
-  - Climate Simulations
+  - Reproducible Research
+  - Raster Data
   - CMIP6
+  - Historical Climate Data
+  - Future Climate Scenarios
+  - Shared Socioeconomic Pathways
+  - NetLogo
+  - LevelSpace
   - Complex Systems
   - Complexity Science
-  - Environmental Sciences
-  - Future Climate Scenarios
-  - Geospatial Analysis
-  - Historical Climate Data
-  - LevelSpace
-  - Logônia
-  - Models
-  - NetLogo
-  - Parallel Execution
-  - Raster Data
-  - Reproducible Research
-  - Shared Socioeconomic Pathways
   - Simulations
-  - Spatial Analysis
-  - SSPs
-  - Time Series
-  - WorldClim
-preferred-citation:
-  type: software
-  title: "LogoClim: WorldClim in NetLogo"
-  authors:
-    - given-names: Daniel
-      family-names: Vartanian
-      email: danielvartan@proton.me
-      affiliation: University of São Paulo
-      orcid: https://orcid.org/0000-0001-7782-759X
-    - given-names: Leandro
-      family-names: Garcia
-      email: l.garcia@qub.ac.uk
-      affiliation: Queen's University Belfast
-      orcid: https://orcid.org/0000-0001-5947-2617
-    - given-names: Aline Martins
-      family-names: Carvalho
-      email: alinenutri@usp.br
-      affiliation: University of São Paulo
-      orcid: https://orcid.org/0000-0002-4900-5609
-  doi: 10.17605/OSF.IO/EAPZU
+  - Climate Simulations
+  - Environmental Sciences
 identifiers:
-  - type: doi
-    value: 10.17605/OSF.IO/EAPZU
-    description: OSF Research Compendium
+  - type: url
+    value: https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a
+    description: CoMSES Registry
   - type: url
     value: https://github.com/danielvartan/logoclim
     description: GitHub Code Repository
+  - type: doi
+    value: 10.17605/OSF.IO/EAPZU
+    description: OSF Repository
 repository-code: https://github.com/sustentarea/logoclim
-repository: https://doi.org/10.17605/OSF.IO/EAPZU
 repository-artifact: https://doi.org/10.17605/OSF.IO/RE95Z
 license: GPL-3.0-or-later
 version: 2.1.0.9000

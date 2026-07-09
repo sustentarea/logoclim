@@ -19,7 +19,7 @@ here("R", ".setup.R") |> source()
 ### v2.1.0.9000 (development version)
 
 - A first draft of `LogoClim` User Manual is now available in the `docs` folder and online at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
-- Automated unit tests on near-equality comparisons between WorldClim original files and `LogoClim` patch values, as well as procedure behavior tests, are now included in the user manual and rendered at each commit.
+- Automated unit tests on near-equality comparisons between WorldClim original files and `LogoClim` patch values, as well as procedure behavior tests, are now included in the user manual and rendered at each commit. Tests run on Windows, macOS, and Linux with the latest NetLogo release.
 - A `color-bar-bins` slider was added to control the number of bins in the color bar.
 - The interface now has a new color bar widget for better visualization of patch values.
 - The *Bioclimatic Variable* monitor was removed. Now it is displayed directly on the *Climate Variable* monitor.

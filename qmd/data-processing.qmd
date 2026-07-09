@@ -54,7 +54,7 @@ For example, if you want to crop [WorldClim](https://www.worldclim.org/) data to
 #| label: Download country shape
 #| output: false
 
-country_shape <- gadm("BRA", level = 0)
+country_shape <- gadm("BRA", path = "data", level = 0)
 ```
 
 This code will download the shape of Brazil and store it in the `country_shape` variable, which can then be passed to the `shape` parameter of the [`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html) function for cropping.
@@ -110,7 +110,6 @@ box <- c(-24.534, 34.625, 50.601, 71.181)
 #| code-fold: true
 
 library(leaflet)
-library(sf)
 
 leaflet() |>
   addProviderTiles(providers$Esri.WorldStreetMap) |>

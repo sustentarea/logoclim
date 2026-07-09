@@ -7,8 +7,7 @@ library(here)
 library(knitr)
 library(magrittr)
 library(ragg)
-library(showtext)
-library(sysfonts)
+library(systemfonts)
 library(xml2)
 
 # Set General Options -----
@@ -18,7 +17,6 @@ options(
   dplyr.print_max = 6,
   pillar.max_footer_lines = 2,
   pillar.min_chars = 15,
-  pillar.sigfig = 5,
   scipen = 10,
   digits = 10,
   stringr.view_n = 6,
@@ -34,9 +32,7 @@ opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   root.dir = here(),
-  dev = "ragg_png",
-  dev.args = list(bg = "transparent"),
-  fig.showtext = TRUE
+  dev = "ragg_png"
 )
 
 # Set `brandr` -----
@@ -44,7 +40,9 @@ opts_chunk$set(
 options(BRANDR_BRAND_YML = here("_brand.yml"))
 
 brandr_options <- list(
-  "BRANDR_COLOR_SEQUENTIAL" = get_brand_color(c("primary", "secondary")),
+  "BRANDR_COLOR_SEQUENTIAL" = get_brand_color(
+    c("primary", "secondary")
+  ),
   "BRANDR_COLOR_DIVERGING" = get_brand_color(c(
     "blue",
     "blue-l50",
@@ -63,20 +61,19 @@ for (i in seq_along(brandr_options)) {
   options(brandr_options[i])
 }
 
-# Set `showtext` -----
+# Set `systemfonts` -----
 
-font_paths(here("ttf"))
+clear_registry()
 
-font_add(
-  family = "inter",
-  regular = here("ttf", "inter-24pt-regular.ttf"),
-  bold = here("ttf", "inter-24pt-bold.ttf"),
-  italic = here("ttf", "inter-24pt-italic.ttf"),
-  bolditalic = here("ttf", "inter-24pt-bolditalic.ttf"),
-  symbol = NULL
+register_font(
+  name = "inter",
+  plain = here("fonts", "inter-24pt-regular.ttf"),
+  bold = here("fonts", "inter-24pt-bold.ttf"),
+  italic = here("fonts", "inter-24pt-italic.ttf"),
+  bolditalic = here("fonts", "inter-24pt-bolditalic.ttf")
 )
 
-showtext_auto()
+registry_fonts()
 
 # Set `ggplot2` -----
 

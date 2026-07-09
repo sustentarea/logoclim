@@ -55,9 +55,6 @@ logoclim_raster <- function(
   assert_string(layer_pattern, null.ok = TRUE)
   assert_flag(remove_extreme_outliers)
 
-  # Test. Remove after.
-  cli::cli_alert_info(names(results$list))
-
   worldclim_data <-
     tif_file |>
     worldclim_raster(

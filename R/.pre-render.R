@@ -1,4 +1,4 @@
-## Load Packages -----
+## Load packages -----
 
 library(checkmate)
 library(fs)
@@ -9,9 +9,9 @@ library(readr)
 library(rbbt)
 library(stringr)
 
-# Copy Images Folder to `qmd` Directory -----
+# Copy images folder to `qmd` directory -----
 
-## Solve issues related to relative paths
+## This solve issues related to relative paths
 
 qmd_dir <- here("qmd", "images")
 
@@ -27,7 +27,7 @@ for (i in dir_ls(here("images"), type = "file")) {
   )
 }
 
-# Update `NEWS.md` File in `release-notes.qmd` -----
+# Update `NEWS.md` file in `release-notes.qmd` -----
 
 start_pattern <- "%:::% NEWS.md begin %:::%"
 end_pattern <- "%:::% NEWS.md end %:::%"

@@ -1,4 +1,4 @@
-# Load Packages -----
+# Load packages -----
 
 library(beepr)
 library(fs)
@@ -6,11 +6,11 @@ library(groomr) # github.com/danielvartan/groomr
 library(here)
 library(quartor) # github.com/danielvartan/quartor
 
-# Remove Empty Lines from `README.md` -----
+# Remove empty lines from `README.md` -----
 
 here("README.md") |> remove_blank_line_dups()
 
-# Delete Unnecessary Files and Folders -----
+# Delete unnecessary files and folders -----
 
 clean_quarto_render(
   file = c(".luarc.json"),
@@ -30,7 +30,7 @@ clean_quarto_render(
   wd = here()
 )
 
-# Check If the Script Ran Successfully -----
+# Check if the script ran successfully -----
 
 beep(1)
 
