@@ -5,6 +5,26 @@
       {
         "Name": "CRAN",
         "URL": "https://vps.fmvz.usp.br/CRAN"
+      },
+      {
+        "Name": "BioCsoft",
+        "URL": "https://bioconductor.org/packages/3.23/bioc"
+      },
+      {
+        "Name": "BioCann",
+        "URL": "https://bioconductor.org/packages/3.23/data/annotation"
+      },
+      {
+        "Name": "BioCexp",
+        "URL": "https://bioconductor.org/packages/3.23/data/experiment"
+      },
+      {
+        "Name": "BioCworkflows",
+        "URL": "https://bioconductor.org/packages/3.23/workflows"
+      },
+      {
+        "Name": "BioCbooks",
+        "URL": "https://bioconductor.org/packages/3.23/books"
       }
     ]
   },
@@ -2362,17 +2382,18 @@
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
       "Language": "en-US",
+      "LazyData": "true",
+      "LazyDataCompression": "bzip2",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.3",
+      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
+      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "groomr",
       "RemoteUsername": "danielvartan",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "d0ae820fe3e9809282247b2ba5a8c516bc47682a",
-      "NeedsCompilation": "no",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>"
+      "RemoteRepo": "groomr",
+      "RemoteRef": "main",
+      "RemoteSha": "d0ae820fe3e9809282247b2ba5a8c516bc47682a"
     },
     "gtable": {
       "Package": "gtable",
@@ -3631,15 +3652,15 @@
       "Language": "en-US",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.3",
+      "LazyData": "true",
+      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
+      "Maintainer": "Daniel Vartanian <danielvartan@proton.me>",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "orbis",
       "RemoteUsername": "danielvartan",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "604294f1724678f6ac80b1ddf569bccb9746626f",
-      "NeedsCompilation": "no",
-      "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danielvartan@proton.me>"
+      "RemoteRepo": "orbis",
+      "RemoteRef": "main",
+      "RemoteSha": "604294f1724678f6ac80b1ddf569bccb9746626f"
     },
     "otel": {
       "Package": "otel",
@@ -4321,21 +4342,21 @@
         "spelling (>= 2.3.2)",
         "testthat (>= 3.3.2)"
       ],
-      "Remotes": "github::wmoldham/rbbt",
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
       "Language": "en-US",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.3",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "quartor",
-      "RemoteUsername": "danielvartan",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "9e90f9819a1cbf3e158050ce58efe5b39126102f",
-      "NeedsCompilation": "no",
+      "LazyData": "true",
       "Author": "Daniel Vartanian [aut, cre, ccp, cph] (ORCID: <https://orcid.org/0000-0001-7782-759X>)",
-      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>"
+      "Maintainer": "Daniel Vartanian <danvartan@gmail.com>",
+      "RemoteType": "github",
+      "Remotes": "github::wmoldham/rbbt",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "danielvartan",
+      "RemoteRepo": "quartor",
+      "RemoteRef": "main",
+      "RemoteSha": "9e90f9819a1cbf3e158050ce58efe5b39126102f"
     },
     "ragg": {
       "Package": "ragg",
@@ -4459,6 +4480,7 @@
       ],
       "License": "GPL-3",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "RoxygenNote": "7.2.3",
       "Imports": [
         "httr",
@@ -4476,15 +4498,14 @@
       "Suggests": [
         "testthat"
       ],
+      "Author": "Dewey Dunnington [aut, cre], Brenton M. Wiernik [aut]",
+      "Maintainer": "Dewey Dunnington <dewey@fishandwhistle.net>",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "rbbt",
       "RemoteUsername": "wmoldham",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "8d64efcf46468c9388580d037530b58434592196",
-      "NeedsCompilation": "no",
-      "Author": "Dewey Dunnington [aut, cre], Brenton M. Wiernik [aut]",
-      "Maintainer": "Dewey Dunnington <dewey@fishandwhistle.net>"
+      "RemoteRepo": "rbbt",
+      "RemoteRef": "master",
+      "RemoteSha": "8d64efcf46468c9388580d037530b58434592196"
     },
     "readr": {
       "Package": "readr",
