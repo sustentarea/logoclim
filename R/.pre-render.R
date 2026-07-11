@@ -1,6 +1,7 @@
 ## Load packages -----
 
 library(checkmate)
+library(dplyr)
 library(fs)
 library(here)
 library(quartor) # github.com/danielvartan/quartor
@@ -27,24 +28,29 @@ for (i in dir_ls(here("images"), type = "file")) {
   )
 }
 
-# Update `NEWS.md` file in `release-notes.qmd` -----
+# Update `CHANGELOG.md` file in `release-notes.qmd` -----
 
-start_pattern <- "%:::% NEWS.md begin %:::%"
-end_pattern <- "%:::% NEWS.md end %:::%"
+start_pattern <- "%:::% CHANGELOG.md begin %:::%"
+end_pattern <- "%:::% CHANGELOG.md end %:::%"
 
 lines <- here("qmd", "release-notes.qmd") |> read_lines()
 
-start_pattern_index <- str_which(lines, start_pattern)
-end_pattern_index <- str_which(lines, end_pattern)
+start_pattern_index <- lines |> str_which(start_pattern)
+end_pattern_index <- lines |> str_which(end_pattern)
 
 c(
   lines |>
     magrittr::extract(
       seq(1, start_pattern_index)
     ),
-  here("NEWS.md") |>
-    read_lines() |>
-    str_replace_all("# ", "### "),
+  here("CHANGELOG.md") |>
+    read_lines() %>%
+    magrittr::extract(
+      seq(5, length(.))
+      # seq(str_which(., "^## ") |> first(), length(.))
+    ) |>
+    str_replace_all("^### ", "#### ") |>
+    str_replace_all("^## ", "### "),
   lines |>
     magrittr::extract(
       seq(end_pattern_index, length(lines))

@@ -20,11 +20,13 @@
   },
   "peacock.color": "#006909",
   "cSpell.ignorePaths": [
-    "references.bib",
+    "/.github/**",
+    "/.vscode/**",
     "/csl/**",
     "/paper/paper.bib",
     "/R/**",
     "/scss/**",
+    "references.bib",
   ],
   "cSpell.words": [
     "allaire",
