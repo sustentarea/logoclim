@@ -1,4 +1,9 @@
-; __includes ["check-atomic.nls" "check-list.nls" "single-quote.nls"]
+; __includes [
+;   "check-atomic.nls"
+;   "check-list.nls"
+;   "collapse.nls"
+;   "single-quote.nls"
+; ]
 
 to-report test-choice [#x #choices]
   assert-atomic #x

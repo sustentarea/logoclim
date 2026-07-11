@@ -10,18 +10,6 @@ meta:
     agriculture, environmental sciences, and other fields that rely on climate
     data.
 
-# logo:
-#   images:
-#     logo:
-#       path: images/logo.png
-#       alt: "Logo"
-#     og-image:
-#       path: images/og-image.png
-#       alt: "Open Graph Image"
-#   small: logo
-#   medium: logo
-#   large: logo
-
 color:
   palette: # Based on NetLogo 7.0.0
     blue: "#345da9" # NetLogo: blue (105)

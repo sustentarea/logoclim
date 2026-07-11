@@ -97,9 +97,9 @@
   "codeRepository": "https://github.com/sustentarea/logoclim",
   "issueTracker": "https://github.com/sustentarea/logoclim/issues",
   "relatedLink": [
-    "https://github.com/sponsors/danielvartan",
     "https://doi.org/10.17605/OSF.IO/EAPZU",
-    "https://doi.org/10.17605/OSF.IO/RE95Z"
+    "https://doi.org/10.17605/OSF.IO/RE95Z",
+    "https://github.com/sponsors/danielvartan"
   ],
   "runtimePlatform": "NetLogo version 7.0.4",
   "operatingSystem": [

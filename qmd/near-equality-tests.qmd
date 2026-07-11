@@ -208,11 +208,19 @@ if (!dir_exists(data_dir)) {
 ### Set Initial Variables
 
 ::: {.callout-note}
-Setting the `JAVA_TOOL_OPTIONS` is optional, but recommended to avoid unnecessary messages from the Java Media Framework.
+Setting the `JAVA_TOOL_OPTIONS` environment variable is optional, but recommended to avoid unnecessary messages from the Java Media Framework.
 :::
 
 ```{r}
 Sys.setenv(JAVA_TOOL_OPTIONS = "-Dcom.sun.media.jai.disableMediaLib=true")
+```
+
+::: {.callout-note}
+Setting `ZIP_PROGRESS` environment variable is required by the [`zip`](https://r-lib.github.io/zip/) R package to display progress bars when unzipping data.
+:::
+
+```{r}
+Sys.setenv(ZIP_PROGRESS = "true")
 ```
 
 ```{r}

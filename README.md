@@ -55,28 +55,25 @@ To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org
 
 The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
 
-> [!TIP]
-> Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
+With NetLogo ready, follow these steps to get `LogoClim` up and running.
 
-With NetLogo ready, follow these 5 steps to get `LogoClim` up and running.
-
-### A. Downloading the Model
+### A. Download the Model
 
 You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/). This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.
 
-For the development version, you can clone or download the model GitHub code repository directly.
+For the development version, you can clone or download the model [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
 
-### B. Opening the Model
+### B. Open the Model
 
 After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-### C. Preparing the Data
+### C. Prepare the Data
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
 We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-### D. Running the Model
+### D. Run the Model
 
 With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
 
@@ -84,11 +81,11 @@ Once everything is set, click `Setup` and then `Go` buttons to start the simulat
 
 Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click `Setup` and then `Go` to run the model with it.
 
-### E. Integrating with Other Models
+## Integration with Other Models
 
-`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
 
-To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
 
 <p align="center">
   <img src="images/logonia-interface.gif" />
@@ -101,36 +98,34 @@ To facilitate this integration, we created the [`Logônia`](https://github.com/s
 
 `LogoClim`'s [user manual](https://sustentarea.github.io/logoclim/) is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
 
-To render the manual or reproduce its analyses locally, install the four dependencies listed above and follow the steps below.
+To render the manual or reproduce its analyses locally, install the dependencies listed above and follow the steps below.
 
 1. **Clone** this repository to your local machine.
 2. **Open** the project in the terminal or in your preferred [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment).
 3. **Install package dependencies** by running `Rscript -e "renv::restore()"` in the terminal or [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html) in an R console. Make sure R is installed and available in your system's [PATH](https://en.wikipedia.org/wiki/PATH_(variable)) before running this command.
 4. **Open** the Quarto notebook files (`.qmd`) and run the code as described.
 
-When running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html), check the output for any missing system dependencies like [GDAL](https://gdal.org/). They are usually installed automatically via your OS package manager, but if something fails, you may need to handle them manually. See [`render-manual.yaml`](.github/workflows/render-manual.yaml) for a list of system dependencies required for your operating system.
-
-We do not recommend using external environments such as [Anaconda](https://www.anaconda.com/), as these can cause issues with R package installation and management. This project relies on several system dependencies, all of which are automatically installed via the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/)).
-
-We recommend using the installers provided by the [R Project](https://www.r-project.org/) or the [`rig`](https://github.com/r-lib/rig) installation manager from [`r-lib`](https://github.com/r-lib) when installing R. If your [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) lacks a built-in R console, consider installing [`radian`](https://github.com/randy3k/radian) for a better experience.
-
-Avoid using [VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate proxies, or other network-routing tools while processing the data, as these can interfere with the downloads.
-
-If you run into issues with [`renv`](https://rstudio.github.io/renv/) (it can be [a bit of a pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes), you can use [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html) to remove the environment completely. In that case, you will need to install all required packages manually.
-
 To render the entire manual, run the following command in the terminal:
 
 ```bash
-quarto render --profile html
+quarto render
 ```
 
 The rendering process may take some time depending on your machine. Once complete, the [Quarto](https://quarto.org/) book will be available in the [`docs`](docs) folder.
+
+### Notes
+
+- When running [`renv::restore()`](https://rstudio.github.io/renv/reference/restore.html), check the output for any missing system dependencies like [GDAL](https://gdal.org/). These are usually installed automatically via your OS package manager, but if something fails, you may need to handle them manually. See [`render-manual.yaml`](.github/workflows/render-manual.yaml) for a list of system dependencies required for your operating system.
+- We do not recommend using external environments such as [Anaconda](https://www.anaconda.com/), as these can cause issues with R package installation and management. This project relies on several system dependencies, all of which are automatically installed via the Comprehensive R Archive Network ([CRAN](https://cran.r-project.org/)).
+- We recommend using the installers provided by the [R Project](https://www.r-project.org/) or the [`rig`](https://github.com/r-lib/rig) installation manager from [`r-lib`](https://github.com/r-lib) when installing R. If your [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) lacks a built-in R console, consider installing [`arf`](https://github.com/eitsupi/arf) for a better experience.
+- Avoid using [VPNs](https://en.wikipedia.org/wiki/Virtual_private_network), corporate proxies, or other network-routing tools while processing the data, as these can interfere with the downloads.
+- If you run into issues with [`renv`](https://rstudio.github.io/renv/) (it can be [a bit of a pain](https://youtu.be/l01u7Ue9pIQ?si=S44LlHVSufGJ4zdq) sometimes), you can use [`renv::deactivate(clean = TRUE)`](https://rstudio.github.io/renv/reference/activate.html) to remove the environment completely. In that case, you will need to install all required packages manually.
 
 ## Contributing
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 
-Contributions are always welcome! Whether you want to report bugs, suggest new features, or help improve the code or documentation, your input makes a difference.
+Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or docs.
 
 Before opening a new issue, please check the [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 
@@ -142,8 +137,6 @@ Click [here](https://github.com/sponsors/danielvartan) to make a donation. Pleas
 
 ## Citation
 
-[![](https://img.shields.io/badge/doi-10.17605/OSF.IO/EAPZU-1284C5.svg)](https://doi.org/10.17605/OSF.IO/EAPZU)
-
 > [!NOTE]
 > When using WorldClim data, you must also cite the original data sources.
 >
@@ -153,7 +146,7 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. OSF. <https://doi.org/10.17605/OSF.IO/EAPZU>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. GitHub. <https://github.com/danielvartan/logoclim>
 
 A BibLaTeX entry for LaTeX users is:
 
@@ -162,8 +155,8 @@ A BibLaTeX entry for LaTeX users is:
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
-  publisher = {OSF},
-  doi = {10.17605/OSF.IO/EAPZU}
+  publisher = {GitHub},
+  url = {https://github.com/danielvartan/logoclim}
 }
 ```
 
@@ -208,7 +201,7 @@ We are grateful to the climate modeling groups for producing and sharing their m
     </td>
     <td width="70%" valign="center">
       <p>
-        This work was developed with support from the
+        This work was supported by the
         <a href="https://www.fsp.usp.br/sustentarea/">Sustentarea</a>
          Research and Extension Center at the University of São Paulo (<a href="https://www5.usp.br/">USP</a>).
       </p>
@@ -227,7 +220,7 @@ We are grateful to the climate modeling groups for producing and sharing their m
     </td>
     <td width="70%" valign="center">
       <p>
-        This work was developed with support from the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and
+        This work was supported by the <a href="https://resiclima.com.br/">Resiclima Network</a>, an international collaboration for the multidimensional and
         interdisciplinary study of global climate change.
       </p>
     </td>

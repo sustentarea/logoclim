@@ -1,4 +1,4 @@
-; __include ["check-choice.nls" "check-list.nls"]
+; __includes ["check-choice.nls" "check-list.nls"]
 
 to-report quartile [#data #stat]
   assert-list #data

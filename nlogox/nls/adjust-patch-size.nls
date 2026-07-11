@@ -1,6 +1,6 @@
 to adjust-patch-size
   let #patch-size-width 638 / world-width
-  let #patch-size-height 638 / world-height
+  let #patch-size-height 700 / world-height
 
   set-patch-size min (list #patch-size-width #patch-size-height)
 end

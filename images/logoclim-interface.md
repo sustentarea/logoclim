@@ -22,7 +22,7 @@ Interface snapshot settings.
 
 ```bash
 #gravity,x,y,width,height
-wmctrl -r NetLogo -e 0,112,75,1696,807
+wmctrl -r NetLogo -e 0,112,75,1696,865
 ```
 
 ## Screenshots
@@ -46,8 +46,11 @@ wmctrl -r NetLogo -e 0,112,75,1696,807
 
 ### Sequence (12 months, HCD | 10 years + 1, HMWD | whole series, FCD)
 
+> Run 1 year before taking the shots, in order to show the plot development.
 > Disable *View updates* to speed up the process. Don´t forget to enable it again afterwards.
 > Use the *Go Forward* button to advance one tick at a time.
+> Enable `black-min` and `white-max` for maximum contrast.
+> Mantain the following order.
 
 - BRA: HMWD, 10m, Average maximum temperature, 1951
 - CHN: FCD, 10m, Total precipitation, 2021-2040

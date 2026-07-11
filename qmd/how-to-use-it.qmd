@@ -17,25 +17,25 @@ The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.
 Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
 :::
 
-With NetLogo ready, follow these 5 steps to get `LogoClim` up and running.
+With NetLogo ready, follow these steps to get `LogoClim` up and running.
 
-## A. Downloading the Model
+## A. Download the Model
 
 You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/). This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.
 
 For the development version, you can clone or download the model [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
 
-## B. Opening the Model
+## B. Open the Model
 
 After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release.
 
-## C. Preparing the Data
+## C. Prepare the Data
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The next sections of this manual will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
 We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-## D. Running the Model
+## D. Run the Model
 
 With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
 
@@ -65,6 +65,7 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 - **`historical-climate-color`** (`number`): Input box for setting the color used to represent the *Historical Climate Data* series.
 - **`historical-monthly-weather-color`** (`number`): Input box for setting the color used to represent the *Historical Monthly Weather Data* series.
 - **`future-climate-color`** (`number`): Input box for setting the color used to represent the *Future Climate Data* series.
+- **`background-color`** (`number`): Input box for setting the color used for the background of the world map.
 - **`color-bar-bins`** (`number`): Slider for setting the number of bins in the *Color Bar* plot.
 - **`black-value`** (`number`): Slider for setting the lower threshold on the world map.
 - **`black-min`** (`boolean`): Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, `black-value` will be ignored.
@@ -85,9 +86,9 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 - **`Climate Variable`**: Displays the climate variable being used. If `climate-variable` is set to *Bioclimatic Variables*, it instead shows the variable selected in the `bioclimatic-variable` chooser.
 - **`Month`**, **`Year`**: Displays the current month and year being simulated.
 - **`Color Bar`**: A plot showing the color scale used on the world map, with black representing the lowest value and white representing the highest value. The color scale is divided into bins, which can be adjusted using the `color-bar-bins` slider.
-- **`Minimum`**, **`Maximum`**, **`Mean`**, **`Standard Deviation`**: Monitors and plots showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches. If more than 12 months of data are available, a line matching the series color marks the start of each 12-month cycle, and a 12-month [moving average](https://en.wikipedia.org/wiki/Moving_average) (12MA) is added to highlight trends.
+- **`Mean`**, **`Standard Deviation`**, **`Minimum`**, **`Maximum`**: Monitors and plots showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches. If more than 12 months of data are available, a line matching the series color marks the start of each 12-month cycle, and a 12-month [moving average](https://en.wikipedia.org/wiki/Moving_average) (12MA) is added to highlight trends.
 
-## E. Integrating with Other Models
+## Integrating with Other Models
 
 `LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. The following sections of this manual provide guidance on how to integrate `LogoClim` with other models using LevelSpace.
 
