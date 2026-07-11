@@ -49,7 +49,7 @@ bibliography: paper.bib
 
 The model utilizes raster data to represent climate variables such as temperature and precipitation over time. It incorporates historical data (1951-2024) and future climate projections (2021-2100) derived from global climate models under various Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)) [@oneill2017]. All climate inputs come from the [WorldClim 2.1](https://worldclim.org/) project, a widely used source of high-resolution climate datasets [@fick2017], available for academic and other non-commercial use.
 
-`LogoClim` follows the FAIR Principles for Research Software [@barker2022] and is openly available on the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) and [GitHub](https://github.com/sustentarea/logoclim).\autoref{fig:logoclim-interface-1} and \autoref{fig:logoclim-interface-2} illustrate the model's interface and functionality. See the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2025g] for an example of its integration into a full NetLogo simulation.
+`LogoClim` follows the FAIR Principles for Research Software [@barker2022] and is openly available on the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) and [GitHub](https://github.com/sustentarea/logoclim).\autoref{fig:logoclim-interface-1} and \autoref{fig:logoclim-interface-2} illustrate the model's interface and functionality. See the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2026g] for an example of its integration into a full NetLogo simulation.
 
 ![LogoClim Graphical User Interface — Brazil.\label{fig:logoclim-interface-1}](images/logoclim-interface-bra-10m-hmwd.png){width=100%}
 
@@ -73,7 +73,7 @@ The model supports all three climate data series from [WorldClim 2.1](https://wo
 
 The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. We provide tools to automate and simplify the conversion process, which are described in the model's [user manual](https://sustentarea.github.io/logoclim/).
 
-We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. To illustrate how `LogoClim` can be used in practice, we also developed the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2025g], which showcases its integration into a full NetLogo simulation.
+We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. To illustrate how `LogoClim` can be used in practice, we also developed the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2026g], which showcases its integration into a full NetLogo simulation.
 
 ![LogoClim Graphical User Interface — United Kingdom.\label{fig:logoclim-interface-2}](images/logoclim-interface-gbr-30s-hcd.png){width=100%}
 

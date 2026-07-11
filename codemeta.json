@@ -59,12 +59,12 @@
   "funding": "CNPq/DECIT/SECTICS/MS No. 444588/2023-0",
   "provider": {
     "@type": "Organization",
-    "name": "Sustentarea",
+    "name": "Sustentarea Research and Extension Center",
     "url": "https://www.fsp.usp.br/sustentarea/"
   },
   "copyrightHolder": {
     "@type": "Organization",
-    "name": "Sustentarea",
+    "name": "Sustentarea Research and Extension Center",
     "url": "https://www.fsp.usp.br/sustentarea/"
   },
   "maintainer": {
@@ -97,6 +97,7 @@
   "codeRepository": "https://github.com/sustentarea/logoclim",
   "issueTracker": "https://github.com/sustentarea/logoclim/issues",
   "relatedLink": [
+    "https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a",
     "https://doi.org/10.17605/OSF.IO/EAPZU",
     "https://doi.org/10.17605/OSF.IO/RE95Z",
     "https://github.com/sponsors/danielvartan"

@@ -67,8 +67,10 @@ typography:
   fonts:
     - family: Inter # Used on NetLogo Website
       source: google
+      weight: [100, 200, 300, 400, 500, 600, 700, 800, 900]
     - family: Source Code Pro # Not official!
       source: google
+      weight: [200, 300, 400, 500, 600, 700, 800, 900]
   base:
     family: Inter
     size: 0.9em

@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.4" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2.1.0.9000 (Development Version)
+; Version: 2.1.0.9000 (development version)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -519,9 +519,14 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 
 ## INTERFACE
 
-### COLOR SCALE
+### BUTTONS
 
-`LogoClim` uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches. By default, black corresponds to the minimum and white to the maximum.
+- **`Setup`**: Initializes the simulation with the selected parameters.
+- **`Go`**: Starts or resumes the simulation.
+- **`Go Back`**: Steps the simulation backward in time. This also reset ticks and clear all the plots.
+- **`Go Forward`**: Steps the simulation forward in time.
+- **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
+- **`Show Values`**: Displays patch values when hovering the mouse over them.
 
 ### CHOOSERS, INPUT BOXES, SLIDERS, AND SWITCHES
 
@@ -544,21 +549,16 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 - **`white-value`** (`number`): Slider for setting the upper threshold on the world map.
 - **`white-max`** (`boolean`): Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, `white-value` will be ignored.
 
-### BUTTONS
-
-- **`Setup`**: Initializes the simulation with the selected parameters.
-- **`Go`**: Starts or resumes the simulation.
-- **`Go Back`**: Steps the simulation backward in time. This also reset ticks and clear all the plots.
-- **`Go Forward`**: Steps the simulation forward in time.
-- **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
-- **`Show Values`**: Displays patch values when hovering the mouse over them.
-
 ### MONITORS AND PLOTS
 
 - **`Climate Variable`**: Displays the climate variable being used. If `climate-variable` is set to *Bioclimatic Variables*, it instead shows the variable selected in the `bioclimatic-variable` chooser.
 - **`Month`**, **`Year`**: Displays the current month and year being simulated.
 - **`Color Bar`**: A plot showing the color scale used on the world map, with black representing the lowest value and white representing the highest value. The color scale is divided into bins, which can be adjusted using the `color-bar-bins` slider.
 - **`Mean`**, **`Standard Deviation`**, **`Minimum`**, **`Maximum`**: Monitors and plots showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches. If more than 12 months of data are available, a line matching the series color marks the start of each 12-month cycle, and a 12-month [moving average](https://en.wikipedia.org/wiki/Moving_average) (12MA) is added to highlight trends.
+
+### COLOR SCALE
+
+`LogoClim` uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches. By default, black corresponds to the minimum and white to the maximum.
 
 ## INTEGRATION WITH OTHER MODELS
 
@@ -681,7 +681,7 @@ Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU 
 
 O'Neill, B. C., Kriegler, E., Ebi, K. L., Kemp-Benedict, E., Riahi, K., Rothman, D. S., van Ruijven, B. J., van Vuuren, D. P., Birkmann, J., Kok, K., Levy, M., & Solecki, W. (2017). The roads ahead: Narratives for shared socioeconomic pathways describing world futures in the 21st century. *Global Environmental Change*, *42*, 169-180. <https://doi.org/10.1016/j.gloenvcha.2015.01.004>
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2025). *Logônia: Plant growth response model in NetLogo* \[Computer software\]. GitHub. https://github.com/sustentarea/logonia]]></info>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *Logônia: Plant growth response model in NetLogo* \[Computer software\]. GitHub. <https://github.com/sustentarea/logonia>]]></info>
   <turtleShapes>
     <shape name="default" rotatable="true" editableColorIndex="0">
       <polygon color="-1920102913" filled="true" marked="true">

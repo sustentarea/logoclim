@@ -23,6 +23,8 @@
     "/.github/**",
     "/.vscode/**",
     "/csl/**",
+    "/fonts**",
+    "/nlogox/nls/**",
     "/paper/paper.bib",
     "/R/**",
     "/scss/**",
