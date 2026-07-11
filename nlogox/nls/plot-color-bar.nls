@@ -1,3 +1,4 @@
+; __includes ["assert-number.nls"]
 ; globals [series-color]
 
 to plot-color-bar [#bins #min-color-value #max-color-value]
@@ -7,6 +8,10 @@ to plot-color-bar [#bins #min-color-value #max-color-value]
 
   set #min-color-value precision #min-color-value 5
   set #max-color-value precision #max-color-value 5
+
+  if (#min-color-value = #max-color-value) [
+    set #max-color-value #min-color-value + 0.001
+  ]
 
   set-current-plot "Color Bar"
   clear-plot
