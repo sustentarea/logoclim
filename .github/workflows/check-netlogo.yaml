@@ -2,6 +2,7 @@ on:
   push:
     paths:
       - nlogox/**
+      - .github/workflows/check-netlogo.yaml
 
 name: check-netlogo.yaml
 permissions: read-all
@@ -18,6 +19,7 @@ jobs:
           - {os: ubuntu-latest, version: 'release'}
     name: "${{ matrix.config.os }} (${{ matrix.config.version }})"
     runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 60
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     permissions: read-all
