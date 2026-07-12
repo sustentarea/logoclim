@@ -5,7 +5,10 @@ to assert-start-year
   if (not string:rex-match? "^[0-9]{4}.*" (word start-year)) [
     let #message "The year must have 4 digits."
 
-    user-message #message
+    if (not headless?) [
+      user-message #message
+    ]
+
     error #message
   ]
 
@@ -24,7 +27,10 @@ to assert-start-year
         "1970 and 2000."
       )
 
-      user-message #message
+      if (not headless?) [
+        user-message #message
+      ]
+
       error #message
     ]
     (
@@ -37,7 +43,10 @@ to assert-start-year
         "1951 and 2024."
       )
 
-      user-message #message
+      if (not headless?) [
+        user-message #message
+      ]
+
       error #message
     ]
     (
@@ -50,7 +59,10 @@ to assert-start-year
         "2021 and 2100."
       )
 
-      user-message #message
+      if (not headless?) [
+        user-message #message
+      ]
+
       error #message
     ]
   )

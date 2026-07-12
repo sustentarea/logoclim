@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [main, master]
+    branches: main
 
 name: render-manual.yaml
 permissions: read-all

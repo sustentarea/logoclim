@@ -12,15 +12,17 @@
 *.nlogox3d linguist-language=NetLogo
 *.qmd linguist-language=R
 
-docs/* linguist-documentation
+docs/** linguist-documentation
 fonts/** linguist-documentation
 images/** linguist-documentation
 paper/** linguist-documentation
-scss/* linguist-documentation
+scss/** linguist-documentation
 
-.vscode/* linguist-generated
+.vscode/** linguist-generated
 .data/** linguist-generated
 data/** linguist-generated
 *.bib linguist-generated
 
-csl/* linguist-vendored
+csl/** linguist-vendored
+nlogox/string/** linguist-vendored
+nlogox/pathdir/** linguist-vendored

@@ -15,7 +15,10 @@ to-report lookup-fcd-interval
         "Please check your settings."
       )
 
-      user-message #message
+      if (not headless?) [
+        user-message #message
+      ]
+
       error #message
     ]
   )

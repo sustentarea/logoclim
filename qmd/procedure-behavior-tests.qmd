@@ -47,12 +47,12 @@ The Tidyverse [Tidy Tools Manifesto](https://tidyverse.tidyverse.org/articles/ma
 
 The pipeline is fully reproducible and can be run again at any time. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package [@ushey2025] was used to manage and restore the R environment. See the [README](https://github.com/sustentarea/logoclim/blob/main/README.md) file in the code repository to learn how to run it.
 
-## Set the Environment
+## Set Environment
 
 ### Load Packages
 
 ```{r}
-#| label: Set the Environment
+#| label: Set Environment
 #| output: false
 
 library(cli)

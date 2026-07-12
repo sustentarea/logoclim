@@ -18,7 +18,10 @@ to-report lookup-series-data-path
         "Please check your settings."
       )
 
-      user-message #message
+      if (not headless?) [
+        user-message #message
+      ]
+
       error #message
     ]
   )

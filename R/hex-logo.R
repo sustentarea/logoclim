@@ -5,7 +5,7 @@ library(ggplot2)
 library(here)
 library(hexSticker)
 
-set.seed(2025)
+set.seed(2026)
 
 plot <-
   data.frame(

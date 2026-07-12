@@ -3,7 +3,7 @@ library(colorspace)
 library(ggplot2)
 library(here)
 
-set.seed(2025)
+set.seed(2026)
 
 file <- here("images", "og-image.png")
 

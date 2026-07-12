@@ -16,7 +16,7 @@
 
 `LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
 
-Learn more about the model in the [user manual](https://sustentarea.github.io/logoclim/).
+For a deep look into the model's structure and implementation, see the [user manual](https://sustentarea.github.io/logoclim/).
 
 > If you find this project useful, please consider giving it a star! &nbsp; [![GitHub repo stars](https://img.shields.io/github/stars/sustentarea/logoclim)](https://github.com/sustentarea/logoclim/)
 
@@ -33,7 +33,7 @@ Learn more about the model in the [user manual](https://sustentarea.github.io/lo
 
 The model operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
-All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets based on weather station observations worldwide ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
+All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
 
 ### Historical Climate Data
 
