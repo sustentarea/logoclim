@@ -71,9 +71,9 @@ We also provide other example datasets for testing and demonstration. These file
 
 ### C. Run the Model
 
-With files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
+With the files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
+Use the **Select Data Directory** button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
 Once everything is set, click on the `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the model's *Info Tab* and the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
@@ -121,7 +121,7 @@ The rendering process may take some time depending on your machine. Once complet
 
 [![](https://img.shields.io/badge/Contributor%20Covenant-3.0-4baaaa.svg)](https://www.contributor-covenant.org/version/3/0/code_of_conduct/)
 
-Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or docs.
+Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or documentation.
 
 Before opening a new issue, please check the [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 

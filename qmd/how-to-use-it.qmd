@@ -19,23 +19,25 @@ Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/
 
 With NetLogo ready, follow these steps to get `LogoClim` up and running.
 
-## A. Download the Model
+## Steps
+
+### A. Download the Model
 
 You can download the latest release of the model from the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/). This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.
 
 For the development version, you can clone or download the model [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
 
-## B. Prepare the Data
+### B. Prepare the Data
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
 We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-## C. Run the Model
+### C. Run the Model
 
-With files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
+With the files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
+Use the **Select Data Directory** button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
 Once everything is set, click on the `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the model's *Info Tab* and the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
@@ -86,9 +88,13 @@ Here is a brief overview of the model interface and its controls.
 - **`Color Bar`**: A plot showing the color scale used on the world map, with black representing the lowest value and white representing the highest value. The color scale is divided into bins, which can be adjusted using the `color-bar-bins` slider.
 - **`Mean`**, **`Standard Deviation`**, **`Minimum`**, **`Maximum`**: Monitors and plots showing the minimum, maximum, mean, and standard deviation values for the climate variable across the patches. If more than 12 months of data are available, a line matching the series color marks the start of each 12-month cycle, and a 12-month [moving average](https://en.wikipedia.org/wiki/Moving_average) (12MA) is added to highlight trends.
 
+### Color Scale
+
+`LogoClim` uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches.
+
 ## Integrating with Other Models
 
-`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. The following sections of this manual provide guidance on how to integrate `LogoClim` with other models using LevelSpace.
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. The following chapters of this manual provide guidance on how to integrate `LogoClim` with other model.
 
 To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
 

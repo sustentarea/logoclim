@@ -501,7 +501,7 @@ Learn more about the data series in the [WorldClim](https://www.worldclim.org) w
 
 The model also depends on the NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). These extensions are installed automatically when the model is run for the first time.
 
-Note that climate data from [WorldClim](https://www.worldclim.org/) is required but not included with the model. See the next section for instructions on obtaining and preparing the data.
+Note that climate data from [WorldClim](https://www.worldclim.org/) are required but not included with the model. See the next section for instructions on obtaining and preparing the data.
 
 ### DOWNLOADING THE DATA
 
@@ -511,7 +511,7 @@ We also provide other example datasets for testing and demonstration. These file
 
 ### RUNNING THE MODEL
 
-With files at hand, use the **Select Data Directory** button in the model interface to specify their location. This will set the **`data-path`** global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
+With the files at hand, use the **Select Data Directory** button in the model interface to specify their location. This will set the **`data-path`** global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
 Once everything is set, click on the **`Setup`** and then **`Go`** buttons to start the simulation.
 
@@ -558,7 +558,7 @@ Here is a brief overview of the model interface and its controls.
 
 ### COLOR SCALE
 
-`LogoClim` uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches. By default, black corresponds to the minimum and white to the maximum.
+`LogoClim` uses a color scale ranging from black (representing the lowest value) to white (representing the highest value). Users can adjust the thresholds for these colors using the **`black-value`** and **`white-value`** sliders. Alternatively, users can set the black or white color to automatically represent the minimum or maximum value of the current data by toggling the **`black-min`** and **`white-max`** switches.
 
 ## INTEGRATION WITH OTHER MODELS
 
@@ -586,7 +586,7 @@ To facilitate this integration, we created the [`Logônia`](https://github.com/s
 
 ![Contributor Covenant 3.0 badge](contributor-covenant-3-0-badge)
 
-Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or docs.
+Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or documentation.
 
 Before opening a new issue, please check the [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
 
@@ -598,10 +598,9 @@ Click [here](https://github.com/sponsors/danielvartan) to make a donation. Pleas
 
 ## IMPORTANT LINKS
 
+- CoMSES repository: <https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a>
 - Code repository: <https://github.com/sustentarea/logoclim>
 - Data repository: <https://doi.org/10.17605/OSF.IO/RE95Z>
-- Latest release: <https://github.com/sustentarea/logoclim/releases/latest>
-- CoMSES repository: <https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a>
 - OSF repository: <https://doi.org/10.17605/OSF.IO/EAPZU>
 - Support: <https://github.com/sponsors/danielvartan>
 
