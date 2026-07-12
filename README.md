@@ -67,17 +67,15 @@ For the development version, you can clone or download the model [GitHub code re
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
-We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
+We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
 ### C. Run the Model
 
 With files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
+Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
-Once everything is set, click `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
-
-Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click `Setup` and then `Go` to run the model with it.
+Once everything is set, click on the `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the model's *Info Tab* and the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
 ## Integration with Other Models
 
@@ -92,9 +90,9 @@ To facilitate this integration, we created the [`Logônia`](https://github.com/s
 ## User Manual
 
 > [!NOTE]
-> This section describes the technical setup required to render the user manual locally. You do not need any of this to simply use `LogoClim`.
+> This section describes the technical setup required to render the user manual locally. You do not need any of this to use `LogoClim`.
 
-`LogoClim`'s [user manual](https://sustentarea.github.io/logoclim/) is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) package is used to manage and restore the R environment.
+`LogoClim`'s [user manual](https://sustentarea.github.io/logoclim/) is developed using the latest versions of the [Quarto](https://quarto.org/) publishing system, the [NetLogo](https://www.netlogo.org/) environment, and the [R](https://www.r-project.org/) programming language. To ensure consistent results, the [`renv`](https://rstudio.github.io/renv/) R package is used to manage and restore the R environment.
 
 To render the manual or reproduce its analyses locally, install the dependencies listed above and follow the steps below.
 

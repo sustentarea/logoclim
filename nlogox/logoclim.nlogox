@@ -507,15 +507,13 @@ Note that climate data from [WorldClim](https://www.worldclim.org/) is required 
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
-We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
+We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
 ### RUNNING THE MODEL
 
-With files at hand, use the **Select Data Directory** button in the model interface to specify their location. This will set the **`data-path`** global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
+With files at hand, use the **Select Data Directory** button in the model interface to specify their location. This will set the **`data-path`** global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
-Once everything is set, click **`Setup`** and then **`Go`** buttons to start the simulation.
-
-Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click **`Setup`** and then **`Go`** to run the model with it.
+Once everything is set, click on the **`Setup`** and then **`Go`** buttons to start the simulation.
 
 ## INTERFACE
 
