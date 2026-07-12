@@ -25,21 +25,19 @@ You can download the latest release of the model from the [CoMSES Network](https
 
 For the development version, you can clone or download the model [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
 
-## B. Open the Model
+## B. Prepare the Data
 
-After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release.
-
-## C. Prepare the Data
-
-The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The next sections of this manual will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
+The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
 We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-## D. Run the Model
+## C. Run the Model
 
-With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
+With files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
 
-The sections below go through the model interface, explaining the function of each control and how to use it. Once everything is set, click `Setup` and then `Go` buttons to start the simulation.
+Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
+
+Once everything is set, click `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
 Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click `Setup` and then `Go` to run the model with it.
 
@@ -49,9 +47,20 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 *Future Climate Data* series at 2.5-minute resolution (~21 km^2^ at the equator), displaying the  *Total Precipitation (mm)* variable for India in December 2081–2100 under the [SSP-585](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/) scenario, as estimated by the [CMCC-ESM2](https://www.cmcc.it/models/cmcc-esm-earth-system-model) global climate model. Click on the image to enlarge it.
 :::
 
-### Interface Controls
+## Interface
 
-#### Choosers, Input Boxes, Sliders, And Switches
+Here is a brief overview of the model interface and its controls.
+
+### Buttons
+
+- **`Setup`**: Initializes the simulation with the selected parameters.
+- **`Go`**: Starts or resumes the simulation.
+- **`Go Back`**: Steps the simulation backward in time. This also reset ticks and clear all the plots.
+- **`Go Forward`**: Steps the simulation forward in time.
+- **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
+- **`Show Values`**: Displays patch values when hovering the mouse over them.
+
+### Choosers, Input Boxes, Sliders, And Switches
 
 - **`data-series`** (`string`): Chooser for selecting a data series (e.g., `"Future Climate Data"`).
 - **`data-resolution`** (`string`): Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (e.g., `"5 Minutes (~85 km2 at the Equator)"`).
@@ -71,15 +80,6 @@ Note that the example dataset included in the [CoMSES Network release](https://w
 - **`black-min`** (`boolean`): Switch for setting the black color threshold to the minimum value of the current dataset. If it is set to *`On`*, `black-value` will be ignored.
 - **`white-value`** (`number`): Slider for setting the upper threshold on the world map.
 - **`white-max`** (`boolean`): Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, `white-value` will be ignored.
-
-#### Buttons
-
-- **`Setup`**: Initializes the simulation with the selected parameters.
-- **`Go`**: Starts or resumes the simulation.
-- **`Go Back`**: Steps the simulation backward in time. This also reset ticks and clear all the plots.
-- **`Go Forward`**: Steps the simulation forward in time.
-- **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
-- **`Show Values`**: Displays patch values when hovering the mouse over them.
 
 ### Monitors And Plots
 

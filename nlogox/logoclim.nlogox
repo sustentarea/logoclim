@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.4" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2.1.0.9000 (development version)
+; Version: 2.2.0.9000 (development version)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
@@ -497,9 +497,9 @@ Learn more about the data series in the [WorldClim](https://www.worldclim.org) w
 
 ## HOW TO USE IT
 
-`LogoClim` was developed using [NetLogo](https://www.netlogo.org) 7, so it is recommended to use this version or later.
+`LogoClim` was developed with NetLogo 7.0.4. Use this version or newer for best compatibility.
 
-The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
+The model also depends on the NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). These extensions are installed automatically when the model is run for the first time.
 
 Note that climate data from [WorldClim](https://www.worldclim.org/) is required but not included with the model. See the next section for instructions on obtaining and preparing the data.
 
@@ -518,6 +518,8 @@ Once everything is set, click **`Setup`** and then **`Go`** buttons to start the
 Note that the example dataset included in the [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) is intentionally small to keep downloads fast and easy. The model's default configuration already points to this dataset, so you can simply click **`Setup`** and then **`Go`** to run the model with it.
 
 ## INTERFACE
+
+Here is a brief overview of the model interface and its controls.
 
 ### BUTTONS
 

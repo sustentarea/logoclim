@@ -51,9 +51,9 @@ Learn more about the data series in the [WorldClim](https://www.worldclim.org) w
 
 ## Usage
 
-To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) version 7 or later installed. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
+To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) installed. The model was developed with NetLogo 7.0.4. Use this version or newer for best compatibility. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
 
-The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
+The model also depends on the NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). These extensions are installed automatically when the model is run for the first time.
 
 With NetLogo ready, follow these steps to get `LogoClim` up and running.
 
@@ -63,19 +63,17 @@ You can download the latest release of the model from the [CoMSES Network](https
 
 For the development version, you can clone or download the model [GitHub code repository](https://github.com/sustentarea/logoclim/) directly.
 
-### B. Open the Model
-
-After downloading and uncompressing the model files, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
-
-### C. Prepare the Data
+### B. Prepare the Data
 
 The [CoMSES Network release](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) includes an example dataset that is ready to use with `LogoClim`. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The [user manual](https://sustentarea.github.io/logoclim/) will guide you through the process of downloading and preparing [WorldClim](https://www.worldclim.org/) data for use with `LogoClim`.
 
 We also provide other example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.
 
-### D. Run the Model
+### C. Run the Model
 
-With files at hand, use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
+With files at hand, open the `logoclim.nlogox` file in NetLogo. You can find this file in the `code` directory when using the [CoMSES Network](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/) release or in the `nlogox` folder when using the development version.
+
+Use the *Select Data Directory* button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.
 
 Once everything is set, click `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
 
