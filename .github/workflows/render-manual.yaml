@@ -24,7 +24,7 @@ jobs:
       pages: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install system dependencies (macOS)
         if: runner.os == 'macOS'
@@ -86,7 +86,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: runner.os == 'Linux'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           clean: false
           branch: gh-pages
