@@ -302,13 +302,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
 <li><a href="#a.-download-the-model" id="toc-a.-download-the-model" class="nav-link active" data-scroll-target="#a.-download-the-model"><span class="header-section-number">2.1</span> A. Download the Model</a></li>
-  <li><a href="#b.-open-the-model" id="toc-b.-open-the-model" class="nav-link" data-scroll-target="#b.-open-the-model"><span class="header-section-number">2.2</span> B. Open the Model</a></li>
-  <li><a href="#c.-prepare-the-data" id="toc-c.-prepare-the-data" class="nav-link" data-scroll-target="#c.-prepare-the-data"><span class="header-section-number">2.3</span> C. Prepare the Data</a></li>
+  <li><a href="#b.-prepare-the-data" id="toc-b.-prepare-the-data" class="nav-link" data-scroll-target="#b.-prepare-the-data"><span class="header-section-number">2.2</span> B. Prepare the Data</a></li>
+  <li><a href="#c.-run-the-model" id="toc-c.-run-the-model" class="nav-link" data-scroll-target="#c.-run-the-model"><span class="header-section-number">2.3</span> C. Run the Model</a></li>
   <li>
-<a href="#d.-run-the-model" id="toc-d.-run-the-model" class="nav-link" data-scroll-target="#d.-run-the-model"><span class="header-section-number">2.4</span> D. Run the Model</a>
+<a href="#interface" id="toc-interface" class="nav-link" data-scroll-target="#interface"><span class="header-section-number">2.4</span> Interface</a>
   <ul class="collapse">
-<li><a href="#interface-controls" id="toc-interface-controls" class="nav-link" data-scroll-target="#interface-controls"><span class="header-section-number">2.4.1</span> Interface Controls</a></li>
-  <li><a href="#monitors-and-plots" id="toc-monitors-and-plots" class="nav-link" data-scroll-target="#monitors-and-plots"><span class="header-section-number">2.4.2</span> Monitors And Plots</a></li>
+<li><a href="#buttons" id="toc-buttons" class="nav-link" data-scroll-target="#buttons"><span class="header-section-number">2.4.1</span> Buttons</a></li>
+  <li><a href="#choosers-input-boxes-sliders-and-switches" id="toc-choosers-input-boxes-sliders-and-switches" class="nav-link" data-scroll-target="#choosers-input-boxes-sliders-and-switches"><span class="header-section-number">2.4.2</span> Choosers, Input Boxes, Sliders, And Switches</a></li>
+  <li><a href="#monitors-and-plots" id="toc-monitors-and-plots" class="nav-link" data-scroll-target="#monitors-and-plots"><span class="header-section-number">2.4.3</span> Monitors And Plots</a></li>
   </ul>
 </li>
   <li><a href="#integrating-with-other-models" id="toc-integrating-with-other-models" class="nav-link" data-scroll-target="#integrating-with-other-models"><span class="header-section-number">2.5</span> Integrating with Other Models</a></li>
@@ -347,17 +348,15 @@ ul.task-list li input[type="checkbox"] {
 <span class="header-section-number">2.1</span> A. Download the Model</h2>
 <p>You can download the latest release of the model from the <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network</a>. This is the recommended option for most users, as it provides a stable version of the model that has been tested and documented.</p>
 <p>For the development version, you can clone or download the model <a href="https://github.com/sustentarea/logoclim/">GitHub code repository</a> directly.</p>
-</section><section id="b.-open-the-model" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="b.-open-the-model">
-<span class="header-section-number">2.2</span> B. Open the Model</h2>
-<p>After downloading and uncompressing the model files, open the <code>logoclim.nlogox</code> file in NetLogo. You can find this file in the <code>code</code> directory when using the <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network</a> release.</p>
-</section><section id="c.-prepare-the-data" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="c.-prepare-the-data">
-<span class="header-section-number">2.3</span> C. Prepare the Data</h2>
-<p>The <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network release</a> includes an example dataset that is ready to use with <code>LogoClim</code>. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The next sections of this manual will guide you through the process of downloading and preparing <a href="https://www.worldclim.org/">WorldClim</a> data for use with <code>LogoClim</code>.</p>
+</section><section id="b.-prepare-the-data" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="b.-prepare-the-data">
+<span class="header-section-number">2.2</span> B. Prepare the Data</h2>
+<p>The <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network release</a> includes an example dataset that is ready to use with <code>LogoClim</code>. You can use it as a starting point. But, ideally you should prepare your own data to suit your research needs. The <a href="https://sustentarea.github.io/logoclim/">user manual</a> will guide you through the process of downloading and preparing <a href="https://www.worldclim.org/">WorldClim</a> data for use with <code>LogoClim</code>.</p>
 <p>We also provide other example datasets for testing and demonstration. These files are available in the model’s <a href="https://doi.org/10.17605/OSF.IO/RE95Z">OSF repository</a> and are ready to use with <code>LogoClim</code>. Please note that these datasets are for demonstration purposes only and are not be suitable for research applications. Always verify the suitability of the data for your specific research questions and objectives.</p>
-</section><section id="d.-run-the-model" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="d.-run-the-model">
-<span class="header-section-number">2.4</span> D. Run the Model</h2>
-<p>With files at hand, use the <em>Select Data Directory</em> button in the model interface to specify their location. This will set the <code>data-path</code> global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.</p>
-<p>The sections below go through the model interface, explaining the function of each control and how to use it. Once everything is set, click <code>Setup</code> and then <code>Go</code> buttons to start the simulation.</p>
+</section><section id="c.-run-the-model" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="c.-run-the-model">
+<span class="header-section-number">2.3</span> C. Run the Model</h2>
+<p>With files at hand, open the <code>logoclim.nlogox</code> file in NetLogo. You can find this file in the <code>code</code> directory when using the <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network</a> release or in the <code>nlogox</code> folder when using the development version.</p>
+<p>Use the <em>Select Data Directory</em> button in the model interface to specify their location. This will set the <code>data-path</code> global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed and start the simulation.</p>
+<p>Once everything is set, click <code>Setup</code> and then <code>Go</code> buttons to start the simulation. Learn more about the model interface and parameters in the <a href="https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls">user manual</a>.</p>
 <p>Note that the example dataset included in the <a href="https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/">CoMSES Network release</a> is intentionally small to keep downloads fast and easy. The model’s default configuration already points to this dataset, so you can simply click <code>Setup</code> and then <code>Go</code> to run the model with it.</p>
 <div id="fig-how-to-use-it-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-to-use-it-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -367,10 +366,26 @@ ul.task-list li input[type="checkbox"] {
 Figure&nbsp;2.1: <em>Future Climate Data</em> series at 2.5-minute resolution (~21 km<sup>2</sup> at the equator), displaying the <em>Total Precipitation (mm)</em> variable for India in December 2081–2100 under the <a href="https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/">SSP-585</a> scenario, as estimated by the <a href="https://www.cmcc.it/models/cmcc-esm-earth-system-model">CMCC-ESM2</a> global climate model. Click on the image to enlarge it.
 </figcaption></figure>
 </div>
-<section id="interface-controls" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="interface-controls">
-<span class="header-section-number">2.4.1</span> Interface Controls</h3>
-<section id="choosers-input-boxes-sliders-and-switches" class="level4" data-number="2.4.1.1"><h4 data-number="2.4.1.1" class="anchored" data-anchor-id="choosers-input-boxes-sliders-and-switches">
-<span class="header-section-number">2.4.1.1</span> Choosers, Input Boxes, Sliders, And Switches</h4>
+</section><section id="interface" class="level2" data-number="2.4"><h2 data-number="2.4" class="anchored" data-anchor-id="interface">
+<span class="header-section-number">2.4</span> Interface</h2>
+<p>Here is a brief overview of the model interface and its controls.</p>
+<section id="buttons" class="level3" data-number="2.4.1"><h3 data-number="2.4.1" class="anchored" data-anchor-id="buttons">
+<span class="header-section-number">2.4.1</span> Buttons</h3>
+<ul>
+<li>
+<strong><code>Setup</code></strong>: Initializes the simulation with the selected parameters.</li>
+<li>
+<strong><code>Go</code></strong>: Starts or resumes the simulation.</li>
+<li>
+<strong><code>Go Back</code></strong>: Steps the simulation backward in time. This also reset ticks and clear all the plots.</li>
+<li>
+<strong><code>Go Forward</code></strong>: Steps the simulation forward in time.</li>
+<li>
+<strong><code>Select Data Directory</code></strong>: Opens a dialog window, allowing the user to indicate the data directory.</li>
+<li>
+<strong><code>Show Values</code></strong>: Displays patch values when hovering the mouse over them.</li>
+</ul></section><section id="choosers-input-boxes-sliders-and-switches" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="choosers-input-boxes-sliders-and-switches">
+<span class="header-section-number">2.4.2</span> Choosers, Input Boxes, Sliders, And Switches</h3>
 <ul>
 <li>
 <strong><code>data-series</code></strong> (<code>string</code>): Chooser for selecting a data series (e.g., <code>"Future Climate Data"</code>).</li>
@@ -408,23 +423,8 @@ Figure&nbsp;2.1: <em>Future Climate Data</em> series at 2.5-minute resolution (~
 <strong><code>white-value</code></strong> (<code>number</code>): Slider for setting the upper threshold on the world map.</li>
 <li>
 <strong><code>white-max</code></strong> (<code>boolean</code>): Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to <em><code>On</code></em>, <code>white-value</code> will be ignored.</li>
-</ul></section><section id="buttons" class="level4" data-number="2.4.1.2"><h4 data-number="2.4.1.2" class="anchored" data-anchor-id="buttons">
-<span class="header-section-number">2.4.1.2</span> Buttons</h4>
-<ul>
-<li>
-<strong><code>Setup</code></strong>: Initializes the simulation with the selected parameters.</li>
-<li>
-<strong><code>Go</code></strong>: Starts or resumes the simulation.</li>
-<li>
-<strong><code>Go Back</code></strong>: Steps the simulation backward in time. This also reset ticks and clear all the plots.</li>
-<li>
-<strong><code>Go Forward</code></strong>: Steps the simulation forward in time.</li>
-<li>
-<strong><code>Select Data Directory</code></strong>: Opens a dialog window, allowing the user to indicate the data directory.</li>
-<li>
-<strong><code>Show Values</code></strong>: Displays patch values when hovering the mouse over them.</li>
-</ul></section></section><section id="monitors-and-plots" class="level3" data-number="2.4.2"><h3 data-number="2.4.2" class="anchored" data-anchor-id="monitors-and-plots">
-<span class="header-section-number">2.4.2</span> Monitors And Plots</h3>
+</ul></section><section id="monitors-and-plots" class="level3" data-number="2.4.3"><h3 data-number="2.4.3" class="anchored" data-anchor-id="monitors-and-plots">
+<span class="header-section-number">2.4.3</span> Monitors And Plots</h3>
 <ul>
 <li>
 <strong><code>Climate Variable</code></strong>: Displays the climate variable being used. If <code>climate-variable</code> is set to <em>Bioclimatic Variables</em>, it instead shows the variable selected in the <code>bioclimatic-variable</code> chooser.</li>
