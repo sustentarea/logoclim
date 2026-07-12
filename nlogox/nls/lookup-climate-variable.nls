@@ -27,10 +27,7 @@ to-report lookup-climate-variable
         "Please check your settings."
       )
 
-      if (not headless?) [
-        user-message #message
-      ]
-
+      user-message #message
       error #message
     ]
   )

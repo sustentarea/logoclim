@@ -33,10 +33,7 @@ to assert-data-resolution
       #variables
     )
 
-    if (not headless?) [
-      user-message #message
-    ]
-
+    user-message #message
     error #message
   ]
 end

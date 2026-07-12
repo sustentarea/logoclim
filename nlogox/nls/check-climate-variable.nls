@@ -49,10 +49,7 @@ to assert-climate-variable
       #variables
     )
 
-    if (not headless?) [
-      user-message #message
-    ]
-
+    user-message #message
     error #message
   ]
 end

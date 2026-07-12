@@ -11,7 +11,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - A first draft of `LogoClim` User Manual, now available at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
 - A new color bar widget for better visualization of patch values.
 - A new global variable `cell-size` to store the size of each patch in degrees.
-- `headless?` checks when using `user-message`.
 - Automated unit tests covering most supported configurations using the [`check-netlogo`](https://github.com/danielvartan/netlogo-actions) action from the [`LogoActions`](https://github.com/danielvartan/logoactions) project. Tests run on Windows, macOS, and Linux with the latest NetLogo release at each commit. Due to computational constraints, only `10m` resolution settings are tested. For future climate data, only SSP-126 is included because other SSPs are not consistently available across the Global Climate Models (GCMs). [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
 - Automated unit tests on near-equality comparisons between WorldClim original files and `LogoClim` patch values, as well as procedure behavior tests, now included in the user manual and rendered at each commit. Tests run on Windows, macOS, and Linux with the latest NetLogo release.
 

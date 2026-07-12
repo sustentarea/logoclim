@@ -39,10 +39,7 @@ to remove-world-bleed [#size #mode]
       "Please check your settings."
     )
 
-    if (not headless?) [
-      user-message #message
-    ]
-
+    user-message #message
     error #message
   ])
 end

@@ -22,10 +22,7 @@ to assert-data
       "parameters provided. Please check your settings."
     )
 
-    if (not headless?) [
-      user-message #message
-    ]
-
+    user-message #message
     error #message
   ]
 end

@@ -15,10 +15,7 @@ to-report lookup-data-resolution
         "Please check your settings."
       )
 
-      if (not headless?) [
-        user-message #message
-      ]
-
+      user-message #message
       error #message
     ]
   )
