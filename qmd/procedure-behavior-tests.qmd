@@ -113,22 +113,22 @@ results |>
 ```{r}
 test_that("as-list", {
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(as_list_a) |>
     expect_equal("[a]")
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(as_list_1) |>
     expect_equal("[1]")
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(as_list_true) |>
     expect_equal("[true]")
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(as_list_1_2_3) |>
     expect_equal("[1 2 3]")
 })
@@ -179,37 +179,37 @@ results |>
 ```{r}
 test_that("quartile [0 1 2 3 4]", {
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_0) |>
     expect_equal(0)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_1) |>
     expect_equal(0)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_2) |>
     expect_equal(1)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_3) |>
     expect_equal(2)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_4) |>
     expect_equal(4)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_iqr) |>
     expect_equal(2 - 0)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(quartile_0_1_2_3_4_length) |>
     expect_equal(5 / 4)
 })
@@ -287,12 +287,12 @@ results |>
 ```{r}
 test_that("single-quote", {
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(single_quote_1) |>
     expect_equal("'1'")
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(single_quote_1_2_3) |>
     expect_equal("['1' '2' '3']")
 })
@@ -332,17 +332,17 @@ results |>
 ```{r}
 test_that("str-to-num-month", {
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(str_to_num_month_january) |>
     expect_equal(1)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(str_to_num_month_july) |>
     expect_equal(7)
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(str_to_num_month_december) |>
     expect_equal(12)
 })
@@ -381,12 +381,12 @@ results |>
 ```{r}
 test_that("unique-outliers", {
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(unique_outliers_1_2_3_4_100_100_500_500_1_5) |>
     expect_equal("[100 500]")
 
   results |>
-    extract2("table") |>
+    pluck("table") |>
     pull(unique_outliers_1_2_3_3) |>
     expect_equal("[]")
 })

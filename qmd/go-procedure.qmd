@@ -15,11 +15,13 @@ This chapter is a work in progress. The content may be incomplete, inconsistent,
 
 The `go` procedure is responsible for advancing the model's state at each tick.
 
-The code below show the `go` procedure of the `Logonia` model. `LogoClim` insertions are denoted with `; LogoClim` at the end of the line to make it easier to identify which parts of the code are specific to `LogoClim` and which are related to `Logônia`.
+The code below show the `go` procedure of the `Logônia` model. `LogoClim` insertions are denoted with `; LogoClim` at the end of the line to make it easier to identify which parts of the code are specific to `LogoClim` and which are related to `Logônia`.
 
 ```netlogo
 to go
-  if ((month = "December") and (year = 2024)) [stop] ; LogoClim
+  if ((month = "December") and (year = 2024)) [ ; LogoClim
+    stop
+  ]
 
   ls:ask ls:models [go] ; LogoClim
 
@@ -29,40 +31,5 @@ to go
 
   update-climate-variables ; LogoClim
 
-  set max-plot-x ceiling ((ticks + 1) * 1.25)
-
-  ifelse (inspect-var? = true) [ ; LogoClim
-    inspect-climate-variables
-  ] [
-    ask logonias [show-turtle]
-  ]
-
-  ask patches [
-    set growth-probability compute-growth-probability self
-  ]
-
-  ask logonias [
-    grow
-    reproduce
-    senesce
-
-    if ((energy <= 0) or (age >= 100)) [die]
-  ]
-
-  if (inspect-var? = false) [
-    ask patches [
-      ifelse (ever-occupied? = true) [
-        set pcolor brown + 3
-      ] [
-        set pcolor gray + 4
-      ]
-    ]
-  ]
-
-  update-moving-average
-
-  if (not any? logonias) [stop]
-
-  tick
-end
+  ; ...
 ```

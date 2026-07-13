@@ -11,7 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - A first draft of `LogoClim` User Manual, now available at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
 - A new color bar widget for better visualization of patch values.
 - A new global variable `cell-size` to store the size of each patch in degrees.
-- Automated unit tests covering most supported configurations using the [`check-netlogo`](https://github.com/danielvartan/netlogo-actions) action from the [`LogoActions`](https://github.com/danielvartan/logoactions) project. Tests run on Windows, macOS, and Linux with the latest NetLogo release at each commit. Due to computational constraints, only `10m` resolution settings are tested. For future climate data, only SSP-126 is included because other SSPs are not consistently available across the Global Climate Models (GCMs). [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
+- Automated unit tests covering most supported configurations using the [`check-netlogo`](https://github.com/danielvartan/logoactions#check-netlogo-models) action from the [`LogoActions`](https://github.com/danielvartan/logoactions) project. Tests run on Windows, macOS, and Linux with the latest NetLogo release at each commit. Due to computational constraints, only `10m` resolution settings are tested. For future climate data, only SSP-126 is included because other SSPs are not consistently available across the Global Climate Models (GCMs). [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
 - Automated unit tests on near-equality comparisons between WorldClim original files and `LogoClim` patch values, as well as procedure behavior tests, now included in the user manual and rendered at each commit. Tests run on Windows, macOS, and Linux with the latest NetLogo release.
 
 ### Changed
@@ -50,7 +50,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - `NaN` values produced by the [GIS extension](https://docs.netlogo.org/gis.html) are now converted to `false`, following [Seth Tisue's suggestion](https://github.com/NetLogo/NetLogo/issues/2554). This fixes problems with primitives such as `export-world` and `import-world` (see [GIS Known Issues](https://docs.netlogo.org/gis.html#known-issues)).
 
-## [2.0.0] - 2025-07-29
+## v2.0.0 (2025-07-29)
 
 ### Added
 
@@ -70,11 +70,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - The model now requires **NetLogo 7.0.1** or later.
 
-## [1.0.0] - 2025-07-03
+## v1.0.0 (2025-07-03)
 
 First stable release! 🎉
 
-## [0.0.0.9015] - 2025-07-02 (Pre-Release)
+## v0.0.0.9015 (2025-07-02) (pre-release)
 
 ### Added
 
@@ -84,7 +84,7 @@ First stable release! 🎉
 
 - The year interval issue when using the *Future Climate Data* series.
 
-## [0.0.0.9013] - 2025-06-24 (Pre-Release)
+## v0.0.0.9013 (2025-06-24) (pre-release)
 
 ### Added
 
@@ -108,13 +108,13 @@ First stable release! 🎉
 
 - Persistent world bleeding is now converted to `NaN` values.
 
-## [0.0.0.9010] - 2025-06-09 (Pre-Release)
+## v0.0.0.9010 (2025-06-09) (pre-release)
 
 ### Fixed
 
 - The Windows file path issue, for improved cross-platform compatibility.
 
-## [0.0.0.9009] - 2025-06-09 (Pre-Release)
+## v0.0.0.9009 (2025-06-09) (pre-release)
 
 ### Changed
 

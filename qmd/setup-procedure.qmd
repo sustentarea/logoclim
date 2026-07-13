@@ -13,9 +13,11 @@ here("R", ".setup.R") |> source()
 This chapter is a work in progress. The content may be incomplete, inconsistent, or subject to significant revision. Reader discretion is advised.
 :::
 
-The `setup` procedure is responsible for initializing the model's state, including setting up the world, variables, and patches.
+The `setup` procedure is responsible for initializing the model state, including setting up the world, variables, and patches.
 
-The code below show the `setup` procedure of the `Logonia` model. `LogoClim` insertions are denoted with `; LogoClim` at the end of the line to make it easier to identify which parts of the code are specific to `LogoClim` and which are related to `Logônia`.
+The code below show the `setup` procedure of the `Logônia` model. `LogoClim` insertions are denoted with `; LogoClim` at the end of the line to make it easier to identify which parts of the code are specific to `LogoClim` and which are related to `Logônia`.
+
+## `setup`
 
 ```
 to setup
@@ -23,7 +25,9 @@ to setup
 
   assert-start-year ; LogoClim
 
-  if (test-start-year = false) [stop] ; LogoClim
+  if (test-start-year = false) [ ; LogoClim
+    stop
+  ]
 
   ls:reset ; LogoClim
 
@@ -31,6 +35,8 @@ to setup
   setup-world ; LogoClim
   setup-variables ; LogoClim
   setup-patches ; LogoClim
+
+  ; ...
 ```
 
 ## `setup-logoclim`
