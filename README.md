@@ -15,7 +15,7 @@
 
 ## Overview
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension ([Hjorth et al., 2020](https://doi.org/10.18564/jasss.4130)), providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://docs.netlogo.org/ls) extension ([Hjorth et al., 2020](https://doi.org/10.18564/jasss.4130)), providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
 
 The model simplifies and standardizes the integration of climate data into NetLogo, allowing researchers to focus their efforts on the model itself with the assurance of using reliable and widely recognized data. Although its main use is as a component of larger simulations, `LogoClim` also has its own graphical interface for monitoring and checking the datasets.
 
@@ -82,7 +82,7 @@ Once everything is set, click on the `Setup` and then `Go` buttons to start the 
 
 ## Integration with Other Models
 
-`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
+`LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://docs.netlogo.org/ls) extension. This extension enables parallel execution and data exchange between models.
 
 To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model ([Vartanian et al., 2026](https://github.com/sustentarea/logonia)), a fictional plant-growth model providing a practical example of how to integrate `LogoClim`. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
 

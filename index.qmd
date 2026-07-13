@@ -14,7 +14,7 @@ here("R", ".setup.R") |> source()
 
 ## Welcome
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension [@hjorth2020], providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://docs.netlogo.org/ls) extension [@hjorth2020], providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
 
 The model simplifies and standardizes the integration of climate data into NetLogo, allowing researchers to focus their efforts on the model itself with the assurance of using reliable and widely recognized data. Although its main use is as a component of larger simulations, `LogoClim` also has its own graphical interface for monitoring and checking the datasets.
 
