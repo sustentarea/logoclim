@@ -57,7 +57,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
@@ -144,6 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="citation_reference" content="citation_title=logolink: An interface for running NetLogo simulations from r;,citation_abstract=logolink is an R package that simplifies setting up and running NetLogo simulations from R. It provides a modern, intuitive interface that follows tidyverse principles and integrates seamlessly with the tidyverse ecosystem. The package is designed to work with NetLogo 7.0.1 and above. Earlier versions are not supported. See NetLogo’s Transition Guide to upgrade your models if needed.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.32614/CRAN.package.logolink;">
 <meta name="citation_reference" content="citation_title=orbis: Spatial data analysis tools;,citation_abstract=orbis provides tools for spatial data analysis in R. It follows tidyverse principles and is designed to work with the r-spatial collection of packages.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_fulltext_html_url=https://danielvartan.github.io/orbis;,citation_publisher=GitHub;">
 <meta name="citation_reference" content="citation_title=LogoActions: GitHub actions for the NetLogo community;,citation_abstract=LogoActions is a collection of GitHub Actions designed to facilitate the setup and execution of NetLogo models within GitHub workflows. These actions enable researchers and developers to automate the installation of NetLogo, run and test simulations, and integrate NetLogo with other tools and platforms, such as Quarto, logolink and pyNetLogo.;,citation_author=Daniel Vartanian;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.5281/zenodo.18102378;,citation_publisher=GitHub;">
+<meta name="citation_reference" content="citation_title=Logônia: Plant growth response model in NetLogo;,citation_abstract=Logônia is a NetLogo model that simulates the growth response of a fictional plant, Logônia, under different climatic conditions. The model uses climate data from WorldClim 2.1 and demonstrates how to integrate the LogoClim model through the LevelSpace extension.;,citation_author=Daniel Vartanian;,citation_author=Leandro Garcia;,citation_author=Aline Martins Carvalho;,citation_publication_date=2026;,citation_cover_date=2026;,citation_year=2026;,citation_doi=10.5281/zenodo.21332539;,citation_publisher=Zenodo;">
 <meta name="citation_reference" content="citation_title=testthat: Get started with testing;,citation_abstract=Software testing is important, but many of us don’t do it because it is frustrating and boring. testthat is a new testing framework for R that is easy learn and use, and integrates with your existing workflow. This paper shows how, with illustrations from existing packages.;,citation_author=Hadley Wickham;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_issue=1;,citation_doi=10.32614/RJ-2011-002;,citation_issn=2073-4859;,citation_volume=3;,citation_language=en-US;,citation_journal_title=The R Journal;,citation_journal_abbrev=The R Journal;">
 <meta name="citation_reference" content="citation_title=The tidy tools manifesto;,citation_abstract=tidyverse;,citation_author=Hadley Wickham;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://tidyverse.tidyverse.org/articles/manifesto.html;,citation_language=en-US;,citation_publisher=Tidyverse;">
 <meta name="citation_reference" content="citation_title=R for data science: Import, tidy, transform, visualize, and model data;,citation_abstract=Use R to turn data into insight, knowledge, and understanding. With this practical book, aspiring data scientists will learn how to do data science with R and RStudio, along with the tidyverse collection of R packages designed to work together to make data science fast, fluent, and fun. Even if you have no programming experience, this updated edition will have you doing data science quickly. You’ll learn how to import, transform, and visualize your data and communicate the results. And you’ll get a complete, big-picture understanding of the data science cycle and the basic tools you need to manage the details. Updated for the latest tidyverse features and best practices, new chapters show you how to get data from spreadsheets, databases, and websites. Exercises help you practice what you’ve learned along the way.;,citation_author=Hadley Wickham;,citation_author=Mine Çetinkaya-Rundel;,citation_author=Garrett Grolemund;,citation_publication_date=2023;,citation_cover_date=2023;,citation_year=2023;,citation_fulltext_html_url=https://r4ds.hadley.nz;,citation_isbn=978-1-4920-9740-2;,citation_language=en-US;">
@@ -384,10 +405,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 <section id="welcome" class="level1 unnumbered"><h1 class="unnumbered">Welcome</h1><p><img src="images/logo.svg" title="LogoClim User Manual" class="quarto-cover-image nolightbox img-fluid"></p>
 <section id="welcome-1" class="level2"><h2 class="anchored" data-anchor-id="welcome-1">Welcome</h2>
-<p><code>LogoClim</code> is a <a href="https://www.netlogo.org">NetLogo</a> model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.</p>
+<p><code>LogoClim</code> is a <a href="https://www.netlogo.org">NetLogo</a> model designed to be integrated into other simulations through the <a href="https://ccl.northwestern.edu/netlogo/docs/ls.html">LevelSpace</a> extension <span class="citation" data-cites="hjorth2020">(<a href="qmd/references.html#ref-hjorth2020" role="doc-biblioref">Hjorth et al., 2020</a>)</span>, providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change (<a href="https://www.ipcc.ch/">IPCC</a>).</p>
+<p>The model simplifies and standardizes the integration of climate data into NetLogo, allowing researchers to focus their efforts on the model itself with the assurance of using reliable and widely recognized data. Although its main use is as a component of larger simulations, <code>LogoClim</code> also has its own graphical interface for monitoring and checking the datasets.</p>
 <p>This manual walks you through everything you need to get started: an overview of the model’s structure, a breakdown of its core components, step-by-step usage instructions, and practical examples showing how to configure and run simulations. Whether you’re new to NetLogo or already familiar with agent-based modeling, the goal here is to give you a clear path from setup to results.</p>
 <p>If something is still unclear after reading through, feel free to open a discussion in the project’s <a href="https://github.com/sustentarea/logoclim/discussions/categories/q-a">discussion tab</a> on GitHub. The community is there to help, though response times may vary.</p>
-<div id="fig-welcome-logoclim-interface" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<div id="fig-welcome-logoclim-interface" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-welcome-logoclim-interface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: LogoClim interface. Click on the image to enlarge it."><img src="images/logoclim-interface.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
@@ -413,6 +435,7 @@ Figure&nbsp;1: <code>LogoClim</code> interface. Click on the image to enlarge it
 </div>
 </div>
 </div>
+<p><a href="https://doi.org/10.5281/zenodo.21330590"><img src="https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg" class="img-fluid"></a></p>
 <p>If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.</p>
 <p>To cite <code>LogoClim</code> in publications please use the following format:</p>
 <p>Vartanian, D., Garcia, L., &amp; Carvalho, A. M. (2026). <em>LogoClim: WorldClim in NetLogo</em> [Computer software]. GitHub. <a href="https://github.com/danielvartan/logoclim" class="uri">https://github.com/danielvartan/logoclim</a></p>
@@ -455,6 +478,11 @@ Figure&nbsp;1: <code>LogoClim</code> interface. Click on the image to enlarge it
 </div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list" style="display: none">
+<div id="ref-hjorth2020" class="csl-entry" role="listitem">
+Hjorth, A., Head, B., Brady, C., &amp; Wilensky, U. (2020). LevelSpace: A NetLogo extension for multi-level agent-based modeling. <em>Journal of Artificial Societies and Social Simulation</em>, <em>23</em>(1), 4. <a href="https://doi.org/10.18564/jasss.4130">https://doi.org/10.18564/jasss.4130</a>
+</div>
+</div>
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
