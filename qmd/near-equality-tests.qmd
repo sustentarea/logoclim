@@ -240,7 +240,7 @@ The list of countries is based on the [ISO 3166-1 alpha-3](https://en.wikipedia.
 
 country <-
   country_names("alpha 3") |>
-  str_subset("ATA", negate = TRUE) |>
+  str_subset("ATA|MLI|TZA", negate = TRUE) |>
   sample(1)
 ```
 
