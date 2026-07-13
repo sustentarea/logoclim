@@ -2,7 +2,7 @@
 <model version="NetLogo 7.0.4" snapToGrid="true">
   <code><![CDATA[; LogoClim: WorldClim in NetLogo
 ;
-; Version: 2.2.0.9000 (development version)
+; Version: 2.2.0 (2026-07-13)
 ; Authors: Daniel Vartanian, Leandro Garcia, & Aline M. de Carvalho
 ; Maintainer: Daniel Vartanian <https://github.com/danielvartan>
 ; License: GPLv3 <https://www.gnu.org/licenses/gpl-3.0>
