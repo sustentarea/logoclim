@@ -79,7 +79,7 @@ If you use this model in your research, please cite it to acknowledge the effort
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. GitHub. <https://github.com/danielvartan/logoclim>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. Zenodo. <https://doi.org/10.5281/zenodo.21330590>
 
 A BibLaTeX entry for LaTeX users is:
 
@@ -88,8 +88,8 @@ A BibLaTeX entry for LaTeX users is:
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
-  publisher = {GitHub},
-  url = {https://github.com/danielvartan/logoclim}
+  doi = {10.5281/zenodo.21330590},
+  publisher = {Zenodo}
 }
 ```
 
