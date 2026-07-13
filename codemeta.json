@@ -74,7 +74,7 @@
     "email": "danielvartan@proton.me",
     "@id": "https://orcid.org/0000-0001-7782-759X"
   },
-  "description": "LogoClim is a NetLogo model for simulating and visualizing global climate conditions. It allows researchers to integrate high-resolution climate data into agent-based models, supporting reproducible research in ecology, agriculture, environmental sciences, and other fields that rely on climate data.",
+  "description": "LogoClim is a NetLogo model designed to be integrated into other simulations through the LevelSpace extension, providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change (IPCC).",
   "keywords": [
     "Agent-Based Models",
     "WorldClim",
@@ -97,9 +97,11 @@
   "codeRepository": "https://github.com/sustentarea/logoclim",
   "issueTracker": "https://github.com/sustentarea/logoclim/issues",
   "relatedLink": [
+    "https:/doi.org/10.5281/zenodo.21330590",
     "https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a",
     "https://doi.org/10.17605/OSF.IO/EAPZU",
     "https://doi.org/10.17605/OSF.IO/RE95Z",
+    "https://doi.org/10.5281/zenodo.21332539",
     "https://github.com/sponsors/danielvartan"
   ],
   "runtimePlatform": "NetLogo version 7.0.4",
@@ -173,5 +175,5 @@
   "developmentStatus": "active",
   "readme": "https://github.com/sustentarea/logoclim/blob/main/README.md",
   "releaseNotes": "https://github.com/sustentarea/logoclim/blob/main/CHANGELOG.md",
-  "version": "2.2.0"
+  "version": "2.2.1"
 }

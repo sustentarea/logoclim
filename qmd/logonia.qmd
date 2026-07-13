@@ -9,7 +9,7 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-`Logônia` is a [NetLogo](https://www.netlogo.org) model that simulates the growth response of a fictional plant, logônia, under different climatic conditions. The model uses climate data from [WorldClim 2.1](https://worldclim.org/) and demonstrates how to integrate the [`LogoClim`](https://github.com/sustentarea/logoclim) model through the [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
+`Logônia` [@vartanian2026g] is a [NetLogo](https://www.netlogo.org) model that simulates the growth response of a fictional plant, Logônia, under different climatic conditions. The model uses climate data from [WorldClim 2.1](https://worldclim.org/) and demonstrates how to integrate the [`LogoClim`](https://github.com/sustentarea/logoclim) model through the [`LevelSpace`](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension.
 
 The model can be downloaded from the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) or accessed on [GitHub](https://github.com/sustentarea/logonia).
 

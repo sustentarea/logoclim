@@ -29,7 +29,7 @@ This [series](https://www.worldclim.org/data/worldclim21.html) includes only 12 
 
 ### Historical Monthly Weather Data
 
-This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) [@harris2020]. It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 ::: {#fig-how-it-works-hmwd-1}
 ![](images/logoclim-interface-bra-10m-hmwd.png){fig-align="center" style="width: 100%; padding-top: 0px;"}
@@ -39,7 +39,7 @@ This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthl
 
 ### Future Climate Data
 
-This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6)) [@eyring2016] for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
 ::: {#fig-how-it-works-fcd-1}
 ![](images/logoclim-interface-chn-10m-fcd.png){fig-align="center" style="width: 100%; padding-top: 0px;"}

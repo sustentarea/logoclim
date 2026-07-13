@@ -4,11 +4,21 @@ All notable changes to this project will be documented below.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/). The project also follows [Semantic Versioning](https://semver.org/) and [Conventional Commits](https://www.conventionalcommits.org/).
 
+## v2.2.1 (2026-07-13)
+
+### Added
+
+- A [Zenodo](https://zenodo.org/) DOI was created for this and future releases of the project.
+
+### Changed
+
+- The documentation was updated.
+
 ## v2.2.0 (2026-07-13)
 
 ### Added
 
-- A first draft of `LogoClim` User Manual, now available at [https://sustentarea.github.io/logoclim/](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
+- A first draft of `LogoClim` User Manual, now available at [https://sustentarea.github.io/logoclim](https://sustentarea.github.io/logoclim/). The manual is a work in progress and will be continuously updated.
 - A new color bar widget for better visualization of patch values.
 - A new global variable `cell-size` to store the size of each patch in degrees.
 - Automated unit tests covering most supported configurations using the [`check-netlogo`](https://github.com/danielvartan/logoactions#check-netlogo-models) action from the [`LogoActions`](https://github.com/danielvartan/logoactions) project. Tests run on Windows, macOS, and Linux with the latest NetLogo release at each commit. Due to computational constraints, only `10m` resolution settings are tested. For future climate data, only SSP-126 is included because other SSPs are not consistently available across the Global Climate Models (GCMs). [GCM variations](https://www.worldclim.org/data/cmip6/cmip6_clim10m.html#:~:text=GCMs%20there%20are-,variations,-available%20here.) are not tested.
@@ -20,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/). The proj
 - Slider limits were adjusted and value validation for blank/empty settings was added.
 - Code of Conduct updated to [Contributor Covenant 3.0](https://www.contributor-covenant.org/version/3/0/code_of_conduct/).
 - All dependencies were updated to their latest versions.
-- Documentation updated to reflect all changes.
+- The documentation was updated to reflect all changes.
 
 ### Fixed
 

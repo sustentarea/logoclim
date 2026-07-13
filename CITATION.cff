@@ -20,11 +20,10 @@ authors:
     affiliation: University of São Paulo
     orcid: https://orcid.org/0000-0002-4900-5609
 abstract: >-
-  LogoClim is a NetLogo model for simulating and visualizing global climate
-  conditions. It allows researchers to integrate high-resolution climate data
-  into agent-based models, supporting reproducible research in ecology,
-  agriculture, environmental sciences, and other fields that rely on climate
-  data.
+  LogoClim is a NetLogo model designed to be integrated into other simulations
+  through the LevelSpace extension, providing high resolution climate data from
+  sources validated and used by the Intergovernmental Panel on Climate Change
+  (IPCC).
 keywords:
   - Agent-Based Models
   - WorldClim
@@ -43,16 +42,19 @@ keywords:
   - Climate Simulations
   - Environmental Sciences
 identifiers:
-  - type: url
-    value: https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a
-    description: CoMSES Registry
+  - type: doi
+    value: 10.5281/zenodo.21330590
+    description: Zenodo Registry
   - type: url
     value: https://github.com/danielvartan/logoclim
     description: GitHub Code Repository
+  - type: url
+    value: https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a
+    description: CoMSES Registry
   - type: doi
     value: 10.17605/OSF.IO/EAPZU
     description: OSF Repository
 repository-code: https://github.com/sustentarea/logoclim
 repository-artifact: https://doi.org/10.17605/OSF.IO/RE95Z
 license: GPL-3.0-or-later
-version: 2.2.0
+version: 2.2.1

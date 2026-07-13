@@ -1,14 +1,16 @@
 meta:
   name: "LogoClim: WorldClim in NetLogo"
   link:
-    home: https://sustentarea.github.io/logoclim
-    github: https://github.com/sustentarea/logoclim
+    home: "https://sustentarea.github.io/logoclim"
+    github: "https://github.com/sustentarea/logoclim"
+    zenodo: "https://doi.org/10.5281/zenodo.21330590"
+    comses: "https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a"
+    osf: "https://doi.org/10.17605/OSF.IO/EAPZU"
   description: |
-    LogoClim is a NetLogo model for simulating and visualizing global climate
-    conditions. It allows researchers to integrate high-resolution climate data
-    into agent-based models, supporting reproducible research in ecology,
-    agriculture, environmental sciences, and other fields that rely on climate
-    data.
+    LogoClim is a NetLogo model designed to be integrated into other simulations
+    through the LevelSpace extension, providing high resolution climate data from
+    sources validated and used by the Intergovernmental Panel on Climate Change
+    (IPCC).
 
 color:
   palette: # Based on NetLogo 7.0.0
@@ -52,44 +54,44 @@ color:
     color-swatch-violet: "#7c50a4"
     color-swatch-magenta: "#a71b6a"
     color-swatch-pink: "#d9637f"
-  background: white
-  primary: blue
-  secondary: orange
-  tertiary: red
-  success: blue
-  info: blue
-  warning: orange
-  danger: red
-  light: white
-  dark: black
+  background: "white"
+  primary: "blue"
+  secondary: "orange"
+  tertiary: "red"
+  success: "blue"
+  info: "blue"
+  warning: "orange"
+  danger: "red"
+  light: "white"
+  dark: "black"
 
 typography:
   fonts:
-    - family: Inter # Used on NetLogo Website
-      source: google
+    - family: "Inter" # Used on NetLogo Website
+      source: "google"
       weight: [100, 200, 300, 400, 500, 600, 700, 800, 900]
-    - family: Source Code Pro # Not official!
-      source: google
+    - family: "Source Code Pro" # Not official!
+      source: "google"
       weight: [200, 300, 400, 500, 600, 700, 800, 900]
   base:
-    family: Inter
-    size: 0.9em
+    family: "Inter"
+    size: "0.9em"
     line-height: 1.6 # 1.6em
-    weight: normal
+    weight: "normal"
   headings:
-    color: black
-    family: Inter
+    color: "black"
+    family: "Inter"
     weight: 700
   link:
-    color: light-theme-blue
-    decoration: none
+    color: "light-theme-blue"
+    decoration: "none"
   monospace:
-    family: Source Code Pro
-    size: 1em
+    family: "Source Code Pro"
+    size: "1em"
   monospace-inline:
-    family: Source Code Pro
-    color: orange
-    background-color: light-theme-light-gray
+    family: "Source Code Pro"
+    color: "orange"
+    background-color: "light-theme-light-gray"
   monospace-block:
-    family: Source Code Pro
-    background-color: light-theme-light-gray
+    family: "Source Code Pro"
+    background-color: "light-theme-light-gray"

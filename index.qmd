@@ -14,7 +14,9 @@ here("R", ".setup.R") |> source()
 
 ## Welcome
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension [@hjorth2020], providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
+
+The model simplifies and standardizes the integration of climate data into NetLogo, allowing researchers to focus their efforts on the model itself with the assurance of using reliable and widely recognized data. Although its main use is as a component of larger simulations, `LogoClim` also has its own graphical interface for monitoring and checking the datasets.
 
 This manual walks you through everything you need to get started: an overview of the model's structure, a breakdown of its core components, step-by-step usage instructions, and practical examples showing how to configure and run simulations. Whether you're new to NetLogo or already familiar with agent-based modeling, the goal here is to give you a clear path from setup to results.
 
@@ -59,6 +61,19 @@ When using WorldClim data, you must also cite the original data sources.
 
 The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 :::
+
+```{r}
+#| echo: false
+#| output: asis
+
+cat(
+  badge_doi(
+    doi = "10.5281/zenodo.21330590",
+    color = "1284C5",
+    alt = ""
+  )
+)
+```
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 

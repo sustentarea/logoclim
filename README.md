@@ -3,7 +3,8 @@
 <!-- badges: start -->
 [![JOSS journal badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.1.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![DOI Badge](https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg)](https://doi.org/10.5281/zenodo.21330590)
+[![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.2.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![Check NetLogo workflow badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![Render manual workflow badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![FAIR checklist badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
@@ -14,7 +15,9 @@
 
 ## Overview
 
-`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to simulate and visualize global climate conditions. It allows researchers to pull high-resolution climate data directly into agent-based models, making it easier to study how climate variables interact with complex systems over time.
+`LogoClim` is a [NetLogo](https://www.netlogo.org) model designed to be integrated into other simulations through the [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension ([Hjorth et al., 2020](https://doi.org/10.18564/jasss.4130)), providing high resolution climate data from sources validated and used by the Intergovernmental Panel on Climate Change ([IPCC](https://www.ipcc.ch/)).
+
+The model simplifies and standardizes the integration of climate data into NetLogo, allowing researchers to focus their efforts on the model itself with the assurance of using reliable and widely recognized data. Although its main use is as a component of larger simulations, `LogoClim` also has its own graphical interface for monitoring and checking the datasets.
 
 For a deep look into the model's structure and implementation, see the [user manual](https://sustentarea.github.io/logoclim/).
 
@@ -33,7 +36,7 @@ For a deep look into the model's structure and implementation, see the [user man
 
 The model operates on a grid of patches, where each patch represents a geographical area and stores values for latitude, longitude, and selected climate variables. During the simulation, patches update their colors based on the data values. The results can be visualized on a map, accompanied by plots that display the mean, minimum, maximum, and standard deviation of the selected variable over time.
 
-All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
+All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets ([Fick & Hijmans, 2017](https://doi.org/10.1002/joc.5086)). These data series are offered at various spatial resolutions, ranging from 10 minutes (about 340 km² at the equator) to 30 seconds (about 1 km² at the equator).
 
 ### Historical Climate Data
 
@@ -41,11 +44,11 @@ This [series](https://www.worldclim.org/data/worldclim21.html) includes only 12 
 
 ### Historical Monthly Weather Data
 
-This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
+This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthly data points for each year from 1951 to 2024, based on [downscaled](https://worldclim.org/data/downscaling.html) data from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), developed by the [Climatic Research Unit](https://www.uea.ac.uk/groups-and-centres/climatic-research-unit) at the [University of East Anglia](https://www.uea.ac.uk/) ([Harris et al., 2020](https://doi.org/10.1038/s41597-020-0453-3)). It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.
 
 ### Future Climate Data
 
-This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
+This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6)) ([Eyring et al., 2016](https://doi.org/10.5194/gmd-9-1937-2016)) for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four Shared Socioeconomic Pathways ([SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/)): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
 Learn more about the data series in the [WorldClim](https://www.worldclim.org) website.
 
@@ -81,7 +84,7 @@ Once everything is set, click on the `Setup` and then `Go` buttons to start the 
 
 `LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
 
-To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim`. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model ([Vartanian et al., 2026](https://github.com/sustentarea/logonia)), a fictional plant-growth model providing a practical example of how to integrate `LogoClim`. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
 
 <p align="center">
   <img src="images/logonia-interface.gif" />
@@ -138,11 +141,13 @@ Click [here](https://github.com/sponsors/danielvartan) to make a donation. Pleas
 >
 > The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
+[![DOI Badge](https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg)](https://doi.org/10.5281/zenodo.21330590)
+
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. GitHub. <https://github.com/danielvartan/logoclim>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. Zenodo. <https://doi.org/10.5281/zenodo.21330590>
 
 A BibLaTeX entry for LaTeX users is:
 
@@ -151,8 +156,8 @@ A BibLaTeX entry for LaTeX users is:
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
-  publisher = {GitHub},
-  url = {https://github.com/danielvartan/logoclim}
+  doi = {10.5281/zenodo.21330590},
+  publisher = {Zenodo}
 }
 ```
 
