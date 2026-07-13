@@ -4,7 +4,7 @@
 [![JOSS journal badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![DOI Badge](https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg)](https://doi.org/10.5281/zenodo.21330590)
-[![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.2.0-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
+[![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.2.1-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![Check NetLogo workflow badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![Render manual workflow badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![FAIR checklist badge](https://img.shields.io/badge/fairsoftwarechecklist.net--00a7d9)](https://fairsoftwarechecklist.net/v0.2?f=31&a=30112&i=32301&r=123)
