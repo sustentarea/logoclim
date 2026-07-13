@@ -21,4 +21,4 @@ The model operates on a grid of patches, where each patch represents a geographi
 
 All climate inputs come from [WorldClim 2.1](https://worldclim.org/), a widely used source of high-resolution climate datasets [@fick2017]. These data series are offered at various spatial resolutions, ranging from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator), and can be chosen within the model interface.
 
-Learn more about the data series in the [WorldClim](@sec-worldclim) section.
+Learn more about the data series in the [WorldClim](worldclim.qmd) section.

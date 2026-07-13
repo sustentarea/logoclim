@@ -9,7 +9,7 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-WorldClim is a project created by [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), and colleagues that provides high-resolution global climate data for spatial mapping and modeling [@fick2017]. These datasets include historical series [downscaled](https://www.gfdl.noaa.gov/climate-model-downscaling/) from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/), containing data interpolated from thousands of weather stations, as well as future projections derived from Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://wcrp-cmip.org/cmip-phases/cmip6/)) models.
+WorldClim is a project created by [Robert J. Hijmans](https://orcid.org/0000-0001-5872-2872), [Stephen E. Fick](https://orcid.org/0000-0002-3548-6966), and others that provides high-resolution global climate data for spatial mapping and modeling [@fick2017]. These datasets include historical series [downscaled](https://www.gfdl.noaa.gov/climate-model-downscaling/) from [CRU-TS-4.09](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/) as well as future projections derived from the Coupled Model Intercomparison Project Phase 6 ([CMIP6](https://wcrp-cmip.org/cmip-phases/cmip6/)) models.
 
 When used with agent-based models, [WorldClim](https://www.worldclim.org/) data can help simulate the effects of climate change on species distributions, ecosystem dynamics, and human-environment interactions, adding [structural realism](https://doi.org/10.1126/science.1116681) and complexity to simulations. `LogoClim` does the heavy lifting of integrating these datasets into NetLogo, allowing you to focus on your research questions and model design.
 
@@ -42,21 +42,23 @@ This [series](https://www.worldclim.org/data/monthlywth.html) includes 12 monthl
 This [series](https://www.worldclim.org/data/cmip6/cmip6climate.html) includes 12 monthly data points from [downscaled](https://worldclim.org/data/downscaling.html) climate projections derived from [CMIP6](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6) models for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four [SSPs](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and [bioclimatic variables](https://www.worldclim.org/data/bioclim.html).
 
 ::: {#fig-how-it-works-fcd-1}
-![](images/logoclim-interface-cnh-10m-fcd.png){fig-align="center" style="width: 100%; padding-top: 0px;"}
+![](images/logoclim-interface-chn-10m-fcd.png){fig-align="center" style="width: 100%; padding-top: 0px;"}
 
 *Future Climate Data* series at 10-minute resolution (~340 km^2^ at the equator), displaying the *Total Precipitation (mm)* variable for China in December 2081–2100 under the [SSP-585](https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/) scenario, as estimated by the [CMCC-ESM2](https://www.cmcc.it/models/cmcc-esm-earth-system-model) global climate model. Click on the image to enlarge it.
 :::
 
 ## LogoClim Data
 
-`LogoClim` uses [raster data](https://en.wikipedia.org/wiki/Raster_graphics) to represent climate variables. Datasets come from [WorldClim 2.1](https://worldclim.org/), but need to be converted to [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format before NetLogo can read them. To take care of that, we developed two functions in the [`orbis`](https://danielvartan.github.io/orbis/index.html) [R](https://www.r-project.org/) package [@vartanian2026a] that handle the extraction and conversion for you:
+`LogoClim` uses [raster data](https://en.wikipedia.org/wiki/Raster_graphics) to represent climate variables. Datasets come from [WorldClim 2.1](https://worldclim.org/), but need to be converted to [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format before NetLogo can read them. To take care of that, we developed two functions in the [`orbis`](https://danielvartan.github.io/orbis/index.html) [R](https://www.r-project.org/) package [@vartanian2026a] that handle the download and conversion for you:
 
 - [`worldclim_download()`](https://danielvartan.github.io/orbis/reference/worldclim_download.html): Download WorldClim data
 - [`worldclim_to_ascii`](https://danielvartan.github.io/orbis/reference/worldclim_to_ascii.html): Convert WorldClim GeoTIFF files to Esri ASCII Grid
 
-Using these functions requires some familiarity with [R](https://www.r-project.org/) programming language and its ecosystem. The next sections walk you through how to use them. If you are new to R, Hadley Wickham's [-@wickham2023e] [R for Data Science](https://r4ds.hadley.nz/) and Garrett Grolemund's [-@grolemund2014] [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) are both great free resources to get you started.
+Using these functions requires some familiarity with the [R](https://www.r-project.org/) programming language and its ecosystem. The next sections walk you through how to use them.
 
-We also plan to bring similar functionality to [Python](https://www.python.org) down the road. If you are interested in contributing to this effort, feel free to reach out through the project's [GitHub repository](https://github.com/sustentarea/logoclim).
+If you are new to R, Hadley Wickham's [-@wickham2023e] [R for Data Science](https://r4ds.hadley.nz/) and Garrett Grolemund's [-@grolemund2014] [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) are both great resources to get you started.
+
+We also plan to bring similar functionality to [Python](https://www.python.org) down the road. If you are interested in contributing to this effort, feel free to reach out through the project [GitHub repository](https://github.com/sustentarea/logoclim).
 
 ## License
 
@@ -66,13 +68,13 @@ Here is a summary of the licensing terms:
 
 ```text
 The data are freely available for academic use and other non-commercial use.
-Redistribution or commercial use is not allowed without prior permission. 
+Redistribution or commercial use is not allowed without prior permission.
 Using the data to create maps for publishing of academic research articles is
 allowed. Thus you can use the maps you made with WorldClim data for figures in
-articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are 
+articles published by PLoS, Springer Nature, Elsevier, MDPI, etc. You are
 allowed (but not required) to publish these articles (and the maps they contain)
 under an open license such as CC-BY as is the case with PLoS journals and may be
-the case with other open access articles. 
+the case with other open access articles.
 
 Please send your questions to info@worldclim.org
 ```

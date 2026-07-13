@@ -9,13 +9,9 @@ library(here)
 here("R", ".setup.R") |> source()
 ```
 
-To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) version 7 or later installed. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
+To get started using `LogoClim`, you must have [NetLogo](https://www.netlogo.org) installed. The model was developed with NetLogo 7.0.4. Use this version or newer for best compatibility. The NetLogo [website](https://www.netlogo.org) provides easy installers for Windows, macOS, and Linux, along with detailed instructions for installation.
 
-The model also depends on four NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). No manual installation is required since they are automatically installed the first time the model runs.
-
-::: {.callout-tip}
-Linux users can install NetLogo via [`LogoPak`](https://github.com/danielvartan/logopak), a [Flatpak](https://flatpak.org) package that bundles all four NetLogo applications: NetLogo, NetLogo 3D, HubNet Client, and BehaviorSearch.
-:::
+The model also depends on the NetLogo extensions: [`GIS`](https://docs.netlogo.org/gis.html), [`Pathdir`](https://github.com/cstaelin/Pathdir-Extension), [`String`](https://github.com/NetLogo/String-Extension), and [`Time`](https://docs.netlogo.org/time.html). These extensions are installed automatically when the model is run for the first time.
 
 With NetLogo ready, follow these steps to get `LogoClim` up and running.
 
@@ -39,7 +35,7 @@ With the files at hand, open the `logoclim.nlogox` file in NetLogo. You can find
 
 Use the **Select Data Directory** button in the model interface to specify their location. This will set the `data-path` global variable to the correct path, allowing the model to access the data. After that, you can configure the other parameters as needed.
 
-Once everything is set, click on the `Setup` and then `Go` buttons to start the simulation. Learn more about the model interface and parameters in the model's *Info Tab* and the [user manual](https://sustentarea.github.io/logoclim/qmd/how-to-use-it.html#interface-controls).
+Once everything is set, click on the `Setup` and then `Go` buttons to start the simulation.
 
 ::: {#fig-how-to-use-it-fcd-1}
 ![](images/logoclim-interface-ind-2-5m-fcd.png){fig-align="center" style="width: 100%; padding-top: 0px;"}
@@ -60,7 +56,7 @@ Here is a brief overview of the model interface and its controls.
 - **`Select Data Directory`**: Opens a dialog window, allowing the user to indicate the data directory.
 - **`Show Values`**: Displays patch values when hovering the mouse over them.
 
-### Choosers, Input Boxes, Sliders, And Switches
+### Choosers, Input Boxes, Sliders, and Switches
 
 - **`data-series`** (`string`): Chooser for selecting a data series (e.g., `"Future Climate Data"`).
 - **`data-resolution`** (`string`): Chooser for selecting the spatial resolution of the data, expressed in minutes of a degree of latitude/longitude (e.g., `"5 Minutes (~85 km2 at the Equator)"`).
@@ -81,7 +77,7 @@ Here is a brief overview of the model interface and its controls.
 - **`white-value`** (`number`): Slider for setting the upper threshold on the world map.
 - **`white-max`** (`boolean`): Switch for setting the white color threshold to the maximum value of the current dataset. If it is set to *`On`*, `white-value` will be ignored.
 
-### Monitors And Plots
+### Monitors and Plots
 
 - **`Climate Variable`**: Displays the climate variable being used. If `climate-variable` is set to *Bioclimatic Variables*, it instead shows the variable selected in the `bioclimatic-variable` chooser.
 - **`Month`**, **`Year`**: Displays the current month and year being simulated.
@@ -96,10 +92,10 @@ Here is a brief overview of the model interface and its controls.
 
 `LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models. The following chapters of this manual provide guidance on how to integrate `LogoClim` with other model.
 
-To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim`. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia).
 
 ::: {#fig-how-to-use-it-logonia-1}
 ![](images/logonia-interface.gif){fig-align="center" style="width: 100%; padding-top: 0px;"}
 
-[`Logônia`](https://github.com/sustentarea/logonia)'s interface. Click on the image to enlarge it.
+[`Logônia`](https://github.com/sustentarea/logonia) interface. Click on the image to enlarge it.
 :::

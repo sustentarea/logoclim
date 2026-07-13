@@ -81,7 +81,7 @@ Once everything is set, click on the `Setup` and then `Go` buttons to start the 
 
 `LogoClim` was created to be integrated with other models using NetLogo's [LevelSpace](https://ccl.northwestern.edu/netlogo/docs/ls.html) extension. This extension enables parallel execution and data exchange between models.
 
-To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim` with other models. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
+To facilitate this integration, we created the [`Logônia`](https://github.com/sustentarea/logonia) model, a fictional plant-growth model providing a practical example of how to integrate `LogoClim`. It is also available on the [CoMSES Network](https://www.comses.net/codebases/4f2be13a-3957-4537-bf64-3fad96ba271f/) and its code repository is available on [GitHub](https://github.com/sustentarea/logonia). See the [user manual](https://sustentarea.github.io/logoclim/qmd/levelspace.html) for integration instructions.
 
 <p align="center">
   <img src="images/logonia-interface.gif" />

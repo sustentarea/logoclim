@@ -24,7 +24,7 @@ If something is still unclear after reading through, feel free to open a discuss
 ::: {#fig-welcome-logoclim-interface}
 ![](images/logoclim-interface.gif){fig-align="center" style="width: 100%; padding-top: 0px;"}
 
-`LogoClim`'s interface. Click on the image to enlarge it.
+`LogoClim` interface. Click on the image to enlarge it.
 :::
 
 ## Contributing
@@ -47,6 +47,8 @@ cat(
 Contributions are always welcome, whether that's reporting bugs, suggesting features, or improving the code or documentation.
 
 Before opening a new issue, please check the model's [issues tab](https://github.com/sustentarea/logoclim/issues) to see if your topic has already been reported.
+
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/danielvartan)
 
 You can also support the development of `LogoClim` by becoming a sponsor. Click [here](https://github.com/sponsors/danielvartan) to make a donation. Please mention `LogoClim` in your donation message.
 

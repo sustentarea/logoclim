@@ -71,7 +71,7 @@ While other programming languages, such as [R](https://www.r-project.org/), offe
 
 The model supports all three climate data series from [WorldClim 2.1](https://worldclim.org/): long-term historical climate averages (1970–2000), historical monthly weather (1951–2024), and future climate projections (2021–2100). Each series is available at multiple spatial resolutions (from 10 minutes (~340 km² at the equator) to 30 seconds (~1 km² at the equator)), which can be selected within the model interface. Further details about each series are available on the WorldClim website.
 
-The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. We provide tools to automate and simplify the conversion process, which are described in the model's [user manual](https://sustentarea.github.io/logoclim/).
+The datasets are available for download from [WorldClim 2.1](https://worldclim.org/), but must be converted to [Esri ASCII](https://en.wikipedia.org/wiki/Esri_grid#ASCII) format for compatibility with NetLogo. We provide tools to automate and simplify the conversion process, which are described in the model's [user manual](https://sustentarea.github.io/logoclim/).
 
 We also provide example datasets for testing and demonstration. These files are available in the model's [OSF repository](https://doi.org/10.17605/OSF.IO/RE95Z) and are ready to use with `LogoClim`. To illustrate how `LogoClim` can be used in practice, we also developed the [`Logônia`](https://github.com/sustentarea/logonia) model [@vartanian2026g], which showcases its integration into a full NetLogo simulation.
 
