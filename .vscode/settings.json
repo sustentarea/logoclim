@@ -19,6 +19,7 @@
     "titleBar.inactiveForeground": "#15202b99"
   },
   "peacock.color": "#f16a15",
+  "cSpell.language": "en_US",
   "cSpell.ignorePaths": [
     "/.github/**",
     "/.vscode/**",
