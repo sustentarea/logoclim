@@ -2,17 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>3&nbsp; WorldClim – LogoClim User Manual</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -58,14 +61,14 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-394ead12451981d31e5928c23125edf0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-446fb54370a7a8a17a7083c01ae5dd9f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-394ead12451981d31e5928c23125edf0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2bec29a9bacf2b598905820d71afb463.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-5fc413f607176f2629b9db3f72267386.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2bec29a9bacf2b598905820d71afb463.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1cbeebe4d16940280aa1dd23fbf5a26c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-b7f7a3eedfb10da3dcc5f69de0ce9a5e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-1cbeebe4d16940280aa1dd23fbf5a26c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f52c5dac6c0574d7fb69839b56a9532c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a4ed09baba081c515a5cd95c1450f13c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f52c5dac6c0574d7fb69839b56a9532c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
@@ -359,7 +362,7 @@ div.csl-indent {
 <section id="historical-climate-data" class="level3" data-number="3.1.1"><h3 data-number="3.1.1" class="anchored" data-anchor-id="historical-climate-data">
 <span class="header-section-number">3.1.1</span> Historical Climate Data</h3>
 <p>This <a href="https://www.worldclim.org/data/worldclim21.html">series</a> includes only 12 monthly data points representing long-term average climate conditions for the period 1970-2000. It provides averages on minimum, mean, and maximum temperature, precipitation, solar radiation, wind speed, vapor pressure, elevation, and on <a href="https://www.worldclim.org/data/bioclim.html">bioclimatic variables</a>.</p>
-<div id="fig-how-it-works-hcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<div id="fig-how-it-works-hcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-hcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface-gbr-30s-hcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;3.1: Historical Climate Data series at 30-second resolution (~1 km2 at the equator), displaying the Water Vapor Pressure (kPa) for the United Kingdom in December, averaged over the 1970–2000 period. Click on the image to enlarge it."><img src="images/logoclim-interface-gbr-30s-hcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
@@ -370,7 +373,7 @@ Figure&nbsp;3.1: <em>Historical Climate Data</em> series at 30-second resolution
 </section><section id="historical-monthly-weather-data" class="level3" data-number="3.1.2"><h3 data-number="3.1.2" class="anchored" data-anchor-id="historical-monthly-weather-data">
 <span class="header-section-number">3.1.2</span> Historical Monthly Weather Data</h3>
 <p>This <a href="https://www.worldclim.org/data/monthlywth.html">series</a> includes 12 monthly data points for each year from 1951 to 2024, based on <a href="https://worldclim.org/data/downscaling.html">downscaled</a> data from <a href="https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.09/">CRU-TS-4.09</a>, developed by the <a href="https://www.uea.ac.uk/groups-and-centres/climatic-research-unit">Climatic Research Unit</a> at the <a href="https://www.uea.ac.uk/">University of East Anglia</a> <span class="citation" data-cites="harris2020">(<a href="references.html#ref-harris2020" role="doc-biblioref">Harris et al., 2020</a>)</span>. It provides monthly averages for minimum temperature, maximum temperature, and total precipitation.</p>
-<div id="fig-how-it-works-hmwd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<div id="fig-how-it-works-hmwd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-hmwd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface-bra-10m-hmwd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;3.2: Historical Monthly Weather Data series at 10-minute resolution (~340 km2 at the equator), displaying the Average Maximum Temperature (°C) for Brazil in December 1960. Click on the image to enlarge it."><img src="images/logoclim-interface-bra-10m-hmwd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
@@ -381,7 +384,7 @@ Figure&nbsp;3.2: <em>Historical Monthly Weather Data</em> series at 10-minute re
 </section><section id="future-climate-data" class="level3" data-number="3.1.3"><h3 data-number="3.1.3" class="anchored" data-anchor-id="future-climate-data">
 <span class="header-section-number">3.1.3</span> Future Climate Data</h3>
 <p>This <a href="https://www.worldclim.org/data/cmip6/cmip6climate.html">series</a> includes 12 monthly data points from <a href="https://worldclim.org/data/downscaling.html">downscaled</a> climate projections derived from the Coupled Model Intercomparison Project Phase 6 (<a href="https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip6">CMIP6</a>) <span class="citation" data-cites="eyring2016">(<a href="references.html#ref-eyring2016" role="doc-biblioref">Eyring et al., 2016</a>)</span> for four future periods: 2021-2040, 2041-2060, 2061-2080, and 2081-2100. The projections cover four Shared Socioeconomic Pathways (<a href="https://climatedata.ca/resource/understanding-shared-socio-economic-pathways-ssps/">SSPs</a>): 126, 245, 370, and 585, with data available for average minimum temperature, average maximum temperature, total precipitation, and <a href="https://www.worldclim.org/data/bioclim.html">bioclimatic variables</a>.</p>
-<div id="fig-how-it-works-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="width: 100%; padding-top: 0px;">
+<div id="fig-how-it-works-fcd-1" class="quarto-float quarto-figure quarto-figure-center anchored" style="width: 100%; padding-top: 0px;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-how-it-works-fcd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/logoclim-interface-chn-10m-fcd.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;3.3: Future Climate Data series at 10-minute resolution (~340 km2 at the equator), displaying the Total Precipitation (mm) variable for China in December 2081–2100 under the SSP-585 scenario, as estimated by the CMCC-ESM2 global climate model. Click on the image to enlarge it."><img src="images/logoclim-interface-chn-10m-fcd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width: 100%; padding-top: 0px;"></a>
 </div>
