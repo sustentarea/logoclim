@@ -10,7 +10,7 @@
 *.nlogo3d linguist-language=NetLogo
 *.nlogox linguist-language=NetLogo
 *.nlogox3d linguist-language=NetLogo
-*.qmd linguist-language=R
+# *.qmd linguist-language=R
 
 docs/** linguist-documentation
 fonts/** linguist-documentation
