@@ -2,6 +2,7 @@ meta:
   name: "LogoClim: WorldClim in NetLogo"
   link:
     home: "https://sustentarea.github.io/logoclim"
+    doi: "https://doi.org/10.21105/joss.08845"
     github: "https://github.com/sustentarea/logoclim"
     zenodo: "https://doi.org/10.5281/zenodo.21330590"
     comses: "https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a"

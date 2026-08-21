@@ -97,6 +97,7 @@
   "codeRepository": "https://github.com/sustentarea/logoclim",
   "issueTracker": "https://github.com/sustentarea/logoclim/issues",
   "relatedLink": [
+    "https://doi.org/10.21105/joss.08845",
     "https:/doi.org/10.5281/zenodo.21330590",
     "https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a",
     "https://doi.org/10.17605/OSF.IO/EAPZU",

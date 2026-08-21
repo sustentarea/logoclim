@@ -1,9 +1,8 @@
 # LogoClim <img src="images/logo.svg" align="right" width="120" />
 
 <!-- badges: start -->
-[![JOSS journal badge](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480/status.svg)](https://joss.theoj.org/papers/093e7333c6a34b5f3dc0b44b76e05480)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![DOI Badge](https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg)](https://doi.org/10.5281/zenodo.21330590)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.08845/status.svg)](https://doi.org/10.21105/joss.08845)
 [![CoMSES Network badge](https://img.shields.io/badge/CoMSES%20Network-2.2.1-1284C5.svg)](https://www.comses.net/codebases/bccd451f-76a4-408a-85fd-c5024359ba9a/)
 [![Check NetLogo workflow badge](https://github.com/sustentarea/logoclim/workflows/check-netlogo.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
 [![Render manual workflow badge](https://github.com/sustentarea/logoclim/workflows/render-manual.yaml/badge.svg)](https://github.com/sustentarea/logoclim/actions)
@@ -141,23 +140,27 @@ Click [here](https://github.com/sponsors/danielvartan) to make a donation. Pleas
 >
 > The appropriate citation depends on the specific dataset utilized. Please refer to the [WorldClim website](https://www.worldclim.org/data/index.html#citation) for up-to-date citation guidelines and dataset references.
 
-[![DOI Badge](https://img.shields.io/badge/doi-10.5281/zenodo.21330590-1284C5.svg)](https://doi.org/10.5281/zenodo.21330590)
+[![DOI](https://joss.theoj.org/papers/10.21105/joss.08845/status.svg)](https://doi.org/10.21105/joss.08845)
 
 If you use this model in your research, please cite it to acknowledge the effort invested in its development and maintenance. Your citation helps support the ongoing improvement of the model.
 
 To cite `LogoClim` in publications please use the following format:
 
-Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). *LogoClim: WorldClim in NetLogo* [Computer software]. Zenodo. <https://doi.org/10.5281/zenodo.21330590>
+Vartanian, D., Garcia, L., & Carvalho, A. M. (2026). LogoClim: WorldClim in NetLogo. *Journal of Open Source Software*, *11*(124), 8845. <https://doi.org/10.21105/joss.08845>
 
 A BibLaTeX entry for LaTeX users is:
 
 ```latex
-@software{vartanian2026,
+@article{vartanian2026h,
   title = {LogoClim: WorldClim in NetLogo},
   author = {{Daniel Vartanian} and {Leandro Garcia} and {Aline Martins de Carvalho}},
   year = {2026},
-  doi = {10.5281/zenodo.21330590},
-  publisher = {Zenodo}
+  journaltitle = {Journal of Open Source Software},
+  volume = {11},
+  number = {124},
+  pages = {8845},
+  issn = {2475-9066},
+  doi = {10.21105/joss.08845}
 }
 ```
 

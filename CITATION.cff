@@ -43,6 +43,9 @@ keywords:
   - Environmental Sciences
 identifiers:
   - type: doi
+    value: 10.21105/joss.08845
+    description: JOSS Article
+  - type: doi
     value: 10.5281/zenodo.21330590
     description: Zenodo Registry
   - type: url
