@@ -10,20 +10,24 @@
 *.nlogo3d linguist-language=NetLogo
 *.nlogox linguist-language=NetLogo
 *.nlogox3d linguist-language=NetLogo
-*.qmd linguist-language=Markdown
-# *.qmd linguist-language=R
+*.qmd linguist-language=R
 
+index.qmd linguist-documentation
 docs/** linguist-documentation
-fonts/** linguist-documentation
 images/** linguist-documentation
 paper/** linguist-documentation
+qmd/** linguist-documentation
+R/** linguist-documentation
 scss/** linguist-documentation
 
+.Rprofile linguist-generated
 .vscode/** linguist-generated
-.data/** linguist-generated
-data/** linguist-generated
+renv/** linguist-generated
 *.bib linguist-generated
 
+.data/** linguist-vendored
 csl/** linguist-vendored
+data/** linguist-vendored
+fonts/** linguist-vendored
 nlogox/string/** linguist-vendored
 nlogox/pathdir/** linguist-vendored
